@@ -165,6 +165,7 @@ public:
 
         mEdit->setFont(fixedFont);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
+        mEdit->setAcceptRichText(false);
 
         if (KeyCache::instance()->pgpOnly()) {
             mSigEncWidget->setProtocol(GpgME::OpenPGP);
