@@ -80,6 +80,8 @@ set(_kleopatra_SRCS
   accessibility/accessiblevaluelabel_p.h
   accessibility/accessiblewidgetfactory.cpp
   accessibility/accessiblewidgetfactory.h
+  commands/addadskcommand.cpp
+  commands/addadskcommand.h
   commands/adduseridcommand.cpp
   commands/adduseridcommand.h
   commands/authenticatepivcardapplicationcommand.cpp
@@ -300,6 +302,8 @@ set(_kleopatra_SRCS
   crypto/taskcollection.h
   crypto/verifychecksumscontroller.cpp
   crypto/verifychecksumscontroller.h
+  dialogs/addadskdialog.cpp
+  dialogs/addadskdialog.h
   dialogs/adduseriddialog.cpp
   dialogs/adduseriddialog.h
   dialogs/certificatedetailsdialog.cpp

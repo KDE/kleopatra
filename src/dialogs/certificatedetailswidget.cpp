@@ -27,6 +27,7 @@
 #ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
 #endif // MAILAKONADI_ENABLED
+#include "commands/addadskcommand.h"
 #include "commands/adduseridcommand.h"
 #include "commands/detailscommand.h"
 #include "commands/dumpcertificatecommand.h"
@@ -195,6 +196,7 @@ private:
         QPushButton *changePassphraseBtn = nullptr;
         QPushButton *exportBtn = nullptr;
         QPushButton *genRevokeBtn = nullptr;
+        QPushButton *addADSKBtn = nullptr;
 
         void setupUi(QWidget *parent)
         {
@@ -244,6 +246,11 @@ private:
                     revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
                     buttonRow->addWidget(revokeUserIDBtn);
 
+                    addADSKBtn =
+                        new QPushButton(i18nc("@action:button 'ADSK' means 'Additional Decryption Subkey'; Don't try translating it, though.", "Add ADSK"),
+                                        parent);
+                    addADSKBtn->setVisible(false);
+                    buttonRow->addWidget(addADSKBtn);
                     buttonRow->addStretch(1);
 
                     userIDsLayout->addLayout(buttonRow);
@@ -440,6 +447,11 @@ CertificateDetailsWidget::Private::Private(CertificateDetailsWidget *qq)
     connect(Kleo::KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, q, [this]() {
         keysMayHaveChanged();
     });
+    connect(ui.addADSKBtn, &QPushButton::clicked, q, [this]() {
+        auto addADSKCommand = new Kleo::Commands::AddADSKCommand(q->key());
+        addADSKCommand->setParentWidget(q);
+        addADSKCommand->start();
+    });
 }
 
 void CertificateDetailsWidget::Private::setupCommonProperties()
@@ -508,6 +520,7 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     if (DeVSCompliance::isCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
+    ui.addADSKBtn->setVisible(key.protocol() == GpgME::OpenPGP && isOwnKey);
 }
 
 void CertificateDetailsWidget::Private::updateUserIDActions()

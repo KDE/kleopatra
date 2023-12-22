@@ -303,6 +303,7 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     connect(this, &QApplication::focusChanged, this, [this](QWidget *, QWidget *now) {
         d->updateFocusFrame(now);
     });
+    setAttribute(Qt::AA_UseStyleSheetPropagationInWidgetStyles);
 }
 
 void KleopatraApplication::init()
