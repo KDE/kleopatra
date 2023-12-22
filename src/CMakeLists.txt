@@ -81,6 +81,8 @@ set(_kleopatra_SRCS
   accessibility/accessiblevaluelabel_p.h
   accessibility/accessiblewidgetfactory.cpp
   accessibility/accessiblewidgetfactory.h
+  commands/addadskcommand.cpp
+  commands/addadskcommand.h
   commands/addsubkeycommand.cpp
   commands/addsubkeycommand.h
   commands/adduseridcommand.cpp

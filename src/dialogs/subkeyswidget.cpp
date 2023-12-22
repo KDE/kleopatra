@@ -15,6 +15,7 @@
 
 #include "subkeyswidget.h"
 
+#include "commands/addadskcommand.h"
 #include "commands/addsubkeycommand.h"
 #include "commands/changeexpirycommand.h"
 #include "commands/exportsecretsubkeycommand.h"
@@ -25,6 +26,7 @@
 #include <kleopatra_debug.h>
 
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/TreeWidget>
@@ -44,6 +46,8 @@
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
+
+#include <gpgme.h>
 
 Q_DECLARE_METATYPE(GpgME::Subkey)
 
@@ -103,6 +107,11 @@ public:
             menu->addAction(ui.transferToSmartcardAction);
             menu->addAction(ui.exportSecretAction);
             menu->addAction(ui.restoreAction);
+#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+            if (engineIsVersion(2, 5, 0)) {
+                menu->addAction(ui.addAdskAction);
+            }
+#endif
             menu->popup(ui.moreButton->mapToGlobal(QPoint()));
         });
     }
@@ -131,6 +140,7 @@ public:
         QAction *transferToSmartcardAction = nullptr;
         QAction *exportSecretAction = nullptr;
         QAction *addSubkeyAction = nullptr;
+        QAction *addAdskAction = nullptr;
 
         QAction *restoreAction = nullptr;
         QPushButton *restoreBtn = nullptr;
@@ -169,6 +179,13 @@ public:
                 restoreAction = new QAction({}, i18nc("@action:button", "Restore printed backup"), widget);
                 transferToSmartcardAction = new QAction({}, i18nc("@action:button", "Transfer to smartcard"), widget);
                 exportSecretAction = new QAction({}, i18nc("@action:button", "Export secret subkey"), widget);
+                addAdskAction = new QAction({}, i18nc("@action:button", "Add ADSK"));
+                addAdskAction->setToolTip(i18nc("@info:tooltip",
+                                                "Add the ADSK specified in the GnuPG configuration to your certificate. By"
+                                                "adding an ADSK to your certificate, you allow the owner of the ADSK to decrypt all new messages that "
+                                                "are encrypted for your certificate, if the client encrypting the "
+                                                "message supports this functionality."));
+                addAdskAction->setVisible(false);
 
                 addActionButton(buttonRow, addSubkeyAction);
                 addActionButton(buttonRow, changeValidityAction);
@@ -348,6 +365,11 @@ SubKeysWidget::SubKeysWidget(QWidget *parent)
     connect(d->ui.addSubkeyAction, &QAction::triggered, this, [this]() {
         d->addSubkey();
     });
+    connect(d->ui.addAdskAction, &QAction::triggered, this, [this]() {
+        auto addADSKCommand = new Kleo::Commands::AddADSKCommand(key());
+        addADSKCommand->setParentWidget(this);
+        addADSKCommand->start();
+    });
 }
 
 SubKeysWidget::~SubKeysWidget() = default;
@@ -411,6 +433,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->ui.transferToSmartcardAction->setVisible(key.hasSecret());
     d->ui.addSubkeyAction->setVisible(key.hasSecret());
     d->ui.restoreAction->setVisible(true);
+    d->ui.addAdskAction->setVisible(key.protocol() == GpgME::OpenPGP && key.hasSecret());
 
     d->ui.exportOpenSSHAction->setEnabled(false);
     d->ui.exportOpenSSHBtn->setVisible(!key.hasSecret());
