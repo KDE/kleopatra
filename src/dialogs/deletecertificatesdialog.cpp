@@ -15,6 +15,7 @@
 #include <view/keytreeview.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/Stl_Util>
@@ -64,8 +65,6 @@ public:
     void readConfig()
     {
         KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DeleteCertificatesDialog"));
-        ui.selectedKTV.restoreLayout(dialog);
-        ui.unselectedKTV.restoreLayout(dialog);
         const QSize size = dialog.readEntry("Size", QSize(600, 400));
         if (size.isValid()) {
             q->resize(size);
@@ -83,56 +82,68 @@ public:
     {
         const auto &groups = KeyCache::instance()->groups();
         for (const auto &key : keys) {
-            if (Kleo::any_of(groups, [key](const auto &group) {
-                    return group.keys().contains(key);
+            QStringList foundGroups;
+            if (Kleo::any_of(groups, [key, &foundGroups](const auto &group) {
+                    if (group.keys().contains(key)) {
+                        foundGroups.append(group.name());
+                        return true;
+                    }
+                    return false;
                 })) {
-                ui.groupsKTV.addKeysUnselected({key});
+                ui.groupsList->addWidget(
+                    new QLabel(i18nc("<certificate name>, contained in: (list of groups)", "\t• %1, contained in:").arg(Formatting::prettyNameAndEMail(key))));
+                for (const auto &group : foundGroups) {
+                    ui.groupsList->addWidget(new QLabel(QStringLiteral("\t\t• %1").arg(group)));
+                }
+                keyInGroups++;
+                ui.groupsLB.setVisible(true);
             }
         }
-        if (!ui.groupsKTV.keys().empty()) {
-            ui.groupsLB.setVisible(true);
-            ui.groupsKTV.setVisible(true);
-        }
+        ui.groupsLB.setText(
+            i18np("The following certificate is part of at least one group. Deleting it may cause receivers to be unable to decrypt messages:",
+                  "The following certificates are part of at least one group. Deleting them may cause receivers to be unable to decrypt messages:",
+                  keyInGroups));
     }
 
 private:
+    std::vector<Key> selectedKeys;
+    std::vector<Key> unselectedKeys;
+    int keyInGroups = 0;
     struct UI {
         QLabel selectedLB;
-        KeyTreeView selectedKTV;
+        QVBoxLayout *selectedList;
         QLabel unselectedLB;
-        KeyTreeView unselectedKTV;
+        QVBoxLayout *unselectedList;
         QLabel groupsLB;
-        KeyTreeView groupsKTV;
+        QVBoxLayout *groupsList;
         QDialogButtonBox buttonBox;
         QVBoxLayout vlay;
 
         explicit UI(DeleteCertificatesDialog *qq)
-            : selectedLB(i18n("These are the certificates you have selected for deletion:"), qq)
-            , selectedKTV(qq)
-            , unselectedLB(i18n("These certificates will be deleted even though you did <b>not</b> "
-                                "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"),
-                           qq)
-            , unselectedKTV(qq)
-            , groupsLB(i18n("These certificates are part of groups. Deleting them may cause receivers to be unable to decrypt messages:"))
-            , groupsKTV(qq)
+            : selectedLB({}, qq)
+            , unselectedLB({}, qq)
+            , groupsLB({}, qq)
             , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel)
             , vlay(qq)
+            , selectedList(new QVBoxLayout)
+            , unselectedList(new QVBoxLayout)
+            , groupsList(new QVBoxLayout)
         {
             KDAB_SET_OBJECT_NAME(selectedLB);
-            KDAB_SET_OBJECT_NAME(selectedKTV);
+            KDAB_SET_OBJECT_NAME(selectedList);
             KDAB_SET_OBJECT_NAME(unselectedLB);
-            KDAB_SET_OBJECT_NAME(unselectedKTV);
+            KDAB_SET_OBJECT_NAME(unselectedList);
             KDAB_SET_OBJECT_NAME(groupsLB);
-            KDAB_SET_OBJECT_NAME(groupsKTV);
+            KDAB_SET_OBJECT_NAME(groupsList);
             KDAB_SET_OBJECT_NAME(buttonBox);
             KDAB_SET_OBJECT_NAME(vlay);
 
             vlay.addWidget(&selectedLB);
-            vlay.addWidget(&selectedKTV, 1);
+            vlay.addLayout(selectedList, 0);
             vlay.addWidget(&unselectedLB);
-            vlay.addWidget(&unselectedKTV, 1);
+            vlay.addLayout(unselectedList, 0);
             vlay.addWidget(&groupsLB);
-            vlay.addWidget(&groupsKTV, 1);
+            vlay.addLayout(groupsList, 0);
             vlay.addWidget(&buttonBox);
 
             const QString unselectedWhatsThis = xi18nc("@info:whatsthis",
@@ -146,24 +157,12 @@ private:
                                                        "delete its contents, too.</para>");
             unselectedLB.setContextMenuPolicy(Qt::NoContextMenu);
             unselectedLB.setWhatsThis(unselectedWhatsThis);
-            unselectedKTV.setWhatsThis(unselectedWhatsThis);
 
             buttonBox.button(QDialogButtonBox::Ok)->setText(i18nc("@action:button", "Delete"));
 
             connect(&unselectedLB, SIGNAL(linkActivated(QString)), qq, SLOT(slotWhatsThisRequested()));
 
-            selectedKTV.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(&selectedKTV));
-            unselectedKTV.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(&unselectedKTV));
-
-            selectedKTV.setHierarchicalView(false);
-            selectedKTV.view()->setSelectionMode(QAbstractItemView::NoSelection);
-            unselectedKTV.setHierarchicalView(false);
-            unselectedKTV.view()->setSelectionMode(QAbstractItemView::NoSelection);
-
             groupsLB.setVisible(false);
-            groupsKTV.setFlatModel(AbstractKeyListModel::createFlatKeyListModel(&groupsKTV));
-            groupsKTV.setHierarchicalView(false);
-            groupsKTV.setVisible(false);
 
             connect(&buttonBox, SIGNAL(accepted()), qq, SLOT(accept()));
             connect(&buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
@@ -185,22 +184,37 @@ DeleteCertificatesDialog::~DeleteCertificatesDialog()
 
 void DeleteCertificatesDialog::setSelectedKeys(const std::vector<Key> &keys)
 {
-    d->ui.selectedKTV.setKeys(keys);
+    d->selectedKeys = keys;
+    for (const auto &key : keys) {
+        d->ui.selectedList->addWidget(new QLabel(QStringLiteral("\t• %1").arg(Formatting::prettyNameAndEMail(key))));
+    }
+    d->ui.selectedLB.setText(
+        i18np("The following certificate was selected for deletion:", "The following certificates were selected for deletion:", keys.size()));
     d->checkGroups(keys);
+    resize(sizeHint());
 }
 
 void DeleteCertificatesDialog::setUnselectedKeys(const std::vector<Key> &keys)
 {
+    d->unselectedKeys = keys;
     d->ui.unselectedLB.setVisible(!keys.empty());
-    d->ui.unselectedKTV.setVisible(!keys.empty());
-    d->ui.unselectedKTV.setKeys(keys);
+    for (const auto &key : keys) {
+        d->ui.unselectedList->addWidget(new QLabel(QStringLiteral("\t• %1").arg(Formatting::prettyNameAndEMail(key))));
+    }
+    d->ui.unselectedLB.setText(
+        i18np("The following certificate will be deleted even though you did <b>not</b> "
+              "explicitly select it (<a href=\"whatsthis://\">Why?</a>):",
+              "The following certificates will be deleted even though you did <b>not</b> "
+              "explicitly select them (<a href=\"whatsthis://\">Why?</a>):",
+              keys.size()));
     d->checkGroups(keys);
+    resize(sizeHint());
 }
 
 std::vector<Key> DeleteCertificatesDialog::keys() const
 {
-    const std::vector<Key> sel = d->ui.selectedKTV.keys();
-    const std::vector<Key> uns = d->ui.unselectedKTV.keys();
+    const std::vector<Key> sel = d->selectedKeys;
+    const std::vector<Key> uns = d->unselectedKeys;
     std::vector<Key> result;
     result.reserve(sel.size() + uns.size());
     result.insert(result.end(), sel.begin(), sel.end());
@@ -210,8 +224,8 @@ std::vector<Key> DeleteCertificatesDialog::keys() const
 
 void DeleteCertificatesDialog::accept()
 {
-    const std::vector<Key> sel = d->ui.selectedKTV.keys();
-    const std::vector<Key> uns = d->ui.unselectedKTV.keys();
+    const std::vector<Key> sel = d->selectedKeys;
+    const std::vector<Key> uns = d->unselectedKeys;
 
     const uint secret =
         std::count_if(sel.cbegin(), sel.cend(), std::mem_fn(&Key::hasSecret)) + std::count_if(uns.cbegin(), uns.cend(), std::mem_fn(&Key::hasSecret));
