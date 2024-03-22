@@ -80,29 +80,42 @@ public:
 
     void checkGroups(const std::vector<Key> &keys)
     {
+        if (keys.size() == 0) {
+            return;
+        }
         const auto &groups = KeyCache::instance()->groups();
+        int groupsCount;
         for (const auto &key : keys) {
             QStringList foundGroups;
-            if (Kleo::any_of(groups, [key, &foundGroups](const auto &group) {
-                    if (group.keys().contains(key)) {
-                        foundGroups.append(group.name());
-                        return true;
-                    }
-                    return false;
-                })) {
-                ui.groupsList->addWidget(
-                    new QLabel(i18nc("<certificate name>, contained in: (list of groups)", "\t• %1, contained in:").arg(Formatting::prettyNameAndEMail(key))));
+            for (const auto &group : groups) {
+                if (group.keys().contains(key)) {
+                    foundGroups.append(group.name());
+                }
+            }
+            if (foundGroups.size() > 0) {
+                if (selectedKeys.size() + unselectedKeys.size() > 1) {
+                    ui.groupsList->addWidget(new QLabel(
+                        i18nc("<certificate name>, contained in: (list of groups)", "\t• %1, contained in:").arg(Formatting::prettyNameAndEMail(key))));
+                }
                 for (const auto &group : foundGroups) {
-                    ui.groupsList->addWidget(new QLabel(QStringLiteral("\t\t• %1").arg(group)));
+                    ui.groupsList->addWidget(new QLabel(
+                        QStringLiteral("%1• %2").arg(selectedKeys.size() + unselectedKeys.size() == 1 ? QStringLiteral("\t") : QStringLiteral("\t\t"), group)));
                 }
                 keyInGroups++;
                 ui.groupsLB.setVisible(true);
             }
+            groupsCount = foundGroups.size();
         }
-        ui.groupsLB.setText(
-            i18np("The following certificate is part of at least one group. Deleting it may cause receivers to be unable to decrypt messages:",
-                  "The following certificates are part of at least one group. Deleting them may cause receivers to be unable to decrypt messages:",
-                  keyInGroups));
+        if (selectedKeys.size() == 1 && unselectedKeys.size() == 0) {
+            ui.groupsLB.setText(i18np("The certificate is part of a group. Deleting it may prevent this recipient from decrypting messages to:",
+                                      "The certificate is part of groups. Deleting it may prevent this recipient from decrypting messages to:",
+                                      groupsCount));
+        } else {
+            ui.groupsLB.setText(
+                i18np("The following certificate is part of at least one group. Deleting it may cause receivers to be unable to decrypt messages:",
+                      "The following certificates are part of at least one group. Deleting them may cause receivers to be unable to decrypt messages:",
+                      keyInGroups));
+        }
     }
 
 private:
