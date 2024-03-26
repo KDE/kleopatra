@@ -80,7 +80,7 @@ public:
 
     void checkGroups(const std::vector<Key> &keys)
     {
-        if (keys.size() == 0) {
+        if (keys.empty()) {
             return;
         }
         const auto &groups = KeyCache::instance()->groups();
@@ -92,7 +92,7 @@ public:
                     foundGroups.append(group.name());
                 }
             }
-            if (foundGroups.size() > 0) {
+            if (!foundGroups.empty()) {
                 if (selectedKeys.size() + unselectedKeys.size() > 1) {
                     ui.groupsList->addWidget(new QLabel(
                         i18nc("<certificate name>, contained in: (list of groups)", "\t• %1, contained in:").arg(Formatting::prettyNameAndEMail(key))));
@@ -112,8 +112,8 @@ public:
                                       groupsCount));
         } else {
             ui.groupsLB.setText(
-                i18np("The following certificate is part of at least one group. Deleting it may cause receivers to be unable to decrypt messages:",
-                      "The following certificates are part of at least one group. Deleting them may cause receivers to be unable to decrypt messages:",
+                i18np("The following certificate is part of at least one group. Deleting it may prevent the recipient from decrypting messages to:",
+                      "The following certificates are part of at least one group. Deleting them may prevent the recipients from decrypting messages to:",
                       keyInGroups));
         }
     }
