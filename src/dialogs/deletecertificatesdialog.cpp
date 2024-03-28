@@ -30,6 +30,7 @@
 #include <QCursor>
 #include <QDialogButtonBox>
 #include <QLabel>
+#include <QListWidget>
 #include <QPushButton>
 #include <QTreeView>
 #include <QVBoxLayout>
@@ -84,63 +85,55 @@ public:
             return;
         }
         const auto &groups = KeyCache::instance()->groups();
-        int groupsCount;
+        QSet<QString> foundGroups;
         for (const auto &key : keys) {
-            QStringList foundGroups;
             for (const auto &group : groups) {
                 if (group.keys().contains(key)) {
-                    foundGroups.append(group.name());
+                    if (ui.groupsList->findItems(group.name(), Qt::MatchExactly).isEmpty()) {
+                        ui.groupsList->addItem(group.name());
+                    }
                 }
             }
-            if (!foundGroups.empty()) {
-                if (selectedKeys.size() + unselectedKeys.size() > 1) {
-                    ui.groupsList->addWidget(new QLabel(
-                        i18nc("<certificate name>, contained in: (list of groups)", "\t• %1, contained in:").arg(Formatting::prettyNameAndEMail(key))));
-                }
-                for (const auto &group : foundGroups) {
-                    ui.groupsList->addWidget(new QLabel(
-                        QStringLiteral("%1• %2").arg(selectedKeys.size() + unselectedKeys.size() == 1 ? QStringLiteral("\t") : QStringLiteral("\t\t"), group)));
-                }
-                keyInGroups++;
-                ui.groupsLB.setVisible(true);
-            }
-            groupsCount = foundGroups.size();
         }
-        if (selectedKeys.size() == 1 && unselectedKeys.size() == 0) {
+
+        ui.groupsLB.setVisible(ui.groupsList->count() > 0);
+        ui.groupsList->setVisible(ui.groupsList->count() > 0);
+
+        ui.groupsList->setVisible(ui.groupsList->count() > 0);
+        if (ui.groupsList->count() == 1) {
             ui.groupsLB.setText(i18np("The certificate is part of a group. Deleting it may prevent this recipient from decrypting messages to:",
-                                      "The certificate is part of groups. Deleting it may prevent this recipient from decrypting messages to:",
-                                      groupsCount));
+                                      "The certificates are part of a group. Deleting them may prevent these recipients from decrypting messages to:",
+                                      selectedKeys.size() + unselectedKeys.size()));
         } else {
-            ui.groupsLB.setText(
-                i18np("The following certificate is part of at least one group. Deleting it may prevent the recipient from decrypting messages to:",
-                      "The following certificates are part of at least one group. Deleting them may prevent the recipients from decrypting messages to:",
-                      keyInGroups));
+            ui.groupsLB.setText(i18np("The certificate is part of groups. Deleting it may prevent the recipient from decrypting messages to:",
+                                      "The certificates are part of groups. Deleting them may prevent the recipients from decrypting messages to:",
+                                      selectedKeys.size() + unselectedKeys.size()));
         }
+        q->resize(q->sizeHint());
     }
 
 private:
     std::vector<Key> selectedKeys;
     std::vector<Key> unselectedKeys;
-    int keyInGroups = 0;
     struct UI {
         QLabel selectedLB;
-        QVBoxLayout *selectedList;
+        QListWidget *selectedList;
         QLabel unselectedLB;
-        QVBoxLayout *unselectedList;
+        QListWidget *unselectedList;
         QLabel groupsLB;
-        QVBoxLayout *groupsList;
+        QListWidget *groupsList;
         QDialogButtonBox buttonBox;
         QVBoxLayout vlay;
 
         explicit UI(DeleteCertificatesDialog *qq)
             : selectedLB({}, qq)
+            , selectedList(new QListWidget)
             , unselectedLB({}, qq)
+            , unselectedList(new QListWidget)
             , groupsLB({}, qq)
+            , groupsList(new QListWidget)
             , buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel)
             , vlay(qq)
-            , selectedList(new QVBoxLayout)
-            , unselectedList(new QVBoxLayout)
-            , groupsList(new QVBoxLayout)
         {
             KDAB_SET_OBJECT_NAME(selectedLB);
             KDAB_SET_OBJECT_NAME(selectedList);
@@ -152,11 +145,11 @@ private:
             KDAB_SET_OBJECT_NAME(vlay);
 
             vlay.addWidget(&selectedLB);
-            vlay.addLayout(selectedList, 0);
+            vlay.addWidget(selectedList, 1);
             vlay.addWidget(&unselectedLB);
-            vlay.addLayout(unselectedList, 0);
+            vlay.addWidget(unselectedList, 1);
             vlay.addWidget(&groupsLB);
-            vlay.addLayout(groupsList, 0);
+            vlay.addWidget(groupsList, 1);
             vlay.addWidget(&buttonBox);
 
             const QString unselectedWhatsThis = xi18nc("@info:whatsthis",
@@ -176,6 +169,8 @@ private:
             connect(&unselectedLB, SIGNAL(linkActivated(QString)), qq, SLOT(slotWhatsThisRequested()));
 
             groupsLB.setVisible(false);
+            unselectedList->setVisible(false);
+            groupsList->setVisible(false);
 
             connect(&buttonBox, SIGNAL(accepted()), qq, SLOT(accept()));
             connect(&buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
@@ -199,7 +194,7 @@ void DeleteCertificatesDialog::setSelectedKeys(const std::vector<Key> &keys)
 {
     d->selectedKeys = keys;
     for (const auto &key : keys) {
-        d->ui.selectedList->addWidget(new QLabel(QStringLiteral("\t• %1").arg(Formatting::prettyNameAndEMail(key))));
+        d->ui.selectedList->addItem(Formatting::summaryLine(key));
     }
     d->ui.selectedLB.setText(
         i18np("The following certificate was selected for deletion:", "The following certificates were selected for deletion:", keys.size()));
@@ -212,8 +207,9 @@ void DeleteCertificatesDialog::setUnselectedKeys(const std::vector<Key> &keys)
     d->unselectedKeys = keys;
     d->ui.unselectedLB.setVisible(!keys.empty());
     for (const auto &key : keys) {
-        d->ui.unselectedList->addWidget(new QLabel(QStringLiteral("\t• %1").arg(Formatting::prettyNameAndEMail(key))));
+        d->ui.unselectedList->addItem(Formatting::summaryLine(key));
     }
+    d->ui.unselectedList->setVisible(d->ui.unselectedList->count() > 0);
     d->ui.unselectedLB.setText(
         i18np("The following certificate will be deleted even though you did <b>not</b> "
               "explicitly select it (<a href=\"whatsthis://\">Why?</a>):",
