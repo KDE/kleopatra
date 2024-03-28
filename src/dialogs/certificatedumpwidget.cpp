@@ -44,6 +44,7 @@ public:
 
             textEdit = new QTextEdit(widget);
             textEdit->setReadOnly(true);
+            textEdit->setFontFamily(QStringLiteral("monospace"));
             mainLayout->addWidget(textEdit);
         }
     } ui;
