@@ -40,6 +40,7 @@
 
 #include <Libkleo/GnuPG>
 
+#include "dialogs/debugviewdialog.h"
 #include "dialogs/updatenotification.h"
 
 // needed for GPGME_VERSION_NUMBER
@@ -569,6 +570,18 @@ void MainWindow::Private::setupActions()
             q,
             [this](bool) {
                 restartDaemons();
+            },
+            {},
+        },
+        {
+            "debug_view",
+            i18nc("@actioon:inmenu", "Debug View"),
+            i18nc("@info:tooltip", "Show output of common debugging commands."),
+            "",
+            q,
+            [this](bool) {
+                auto dialog = new Dialogs::DebugViewDialog(q);
+                dialog->open();
             },
             {},
         },

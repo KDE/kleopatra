@@ -325,6 +325,8 @@ set(_kleopatra_SRCS
   dialogs/certifywidget.h
   dialogs/createcsrforcardkeydialog.cpp
   dialogs/createcsrforcardkeydialog.h
+  dialogs/debugviewdialog.cpp
+  dialogs/debugviewdialog.h
   dialogs/deletecertificatesdialog.cpp
   dialogs/deletecertificatesdialog.h
   dialogs/editgroupdialog.cpp
