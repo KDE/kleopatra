@@ -18,6 +18,7 @@
 namespace GpgME
 {
 class Key;
+class UserID;
 }
 
 namespace Kleo
@@ -40,9 +41,6 @@ public:
 
     /** Overwrite default text with custom text, e.g. with a character marked
      *  as shortcut key. */
-    void setSignAsText(const QString &text);
-    void setEncryptForMeText(const QString &text);
-    void setEncryptForOthersText(const QString &text);
     void setEncryptWithPasswordText(const QString &text);
 
     /** Returns the list of recipients selected in the dialog

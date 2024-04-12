@@ -23,6 +23,7 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
+#include <QLabel>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QVBoxLayout>
@@ -146,9 +147,9 @@ public:
     Operations mOp;
     AbstractKeyListModel *mModel = nullptr;
     QCheckBox *mSymmetric = nullptr;
-    QCheckBox *mSigChk = nullptr;
-    QCheckBox *mEncOtherChk = nullptr;
-    QCheckBox *mEncSelfChk = nullptr;
+    QLabel *mSigChk = nullptr;
+    QLabel *mEncOtherLabel = nullptr;
+    QLabel *mEncSelfChk = nullptr;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
     std::unique_ptr<ExpiryChecker> mExpiryChecker;
@@ -170,12 +171,13 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     /* The signature selection */
     {
         auto sigGrp = new QGroupBox{i18nc("@title:group", "Prove authenticity (sign)"), this};
-        d->mSigChk = new QCheckBox{i18n("Sign as:"), this};
+        d->mSigChk = new QLabel{i18n("Sign as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
-        d->mSigChk->setChecked(haveSecretKeys);
+        // d->mSigChk->setChecked(haveSecretKeys);
 
         d->mSigSelect = new UserIDSelectionCombo{KeyUsage::Sign, this};
-        d->mSigSelect->setEnabled(d->mSigChk->isChecked());
+        d->mSigSelect->prependCustomItem(QIcon::fromTheme(QStringLiteral("edit-none")), i18n("Do not sign"), {});
+        // d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};
         d->mSignKeyExpiryMessage->setVisible(false);
@@ -187,11 +189,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         groupLayout->addWidget(d->mSignKeyExpiryMessage, 1, 1);
         lay->addWidget(sigGrp);
 
-        connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
-            d->mSigSelect->setEnabled(checked);
-            updateOp();
-            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
-        });
+        // connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
+        //     d->mSigSelect->setEnabled(checked);
+        //     updateOp();
+        //     d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
+        // });
         connect(d->mSigSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
@@ -206,11 +208,12 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         int row = 0;
 
         // Own key
-        d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
+        d->mEncSelfChk = new QLabel{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
-        d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        // d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
         d->mSelfSelect = new UserIDSelectionCombo{KeyUsage::Encrypt, this};
-        d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
+        d->mSelfSelect->prependCustomItem(QIcon::fromTheme(QStringLiteral("edit-none")), i18n("Do not encrypt for me"), {});
+        // d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
         d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
         d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
         recipientGrid->addWidget(d->mEncSelfChk, row, 0);
@@ -220,17 +223,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
         // Checkbox for other keys
         row++;
-        d->mEncOtherChk = new QCheckBox{i18n("Encrypt for others:"), this};
-        d->mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
-        d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
-        recipientGrid->addWidget(d->mEncOtherChk, row, 0, Qt::AlignTop);
-        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool checked) {
-            for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
-                recipient.edit->setEnabled(checked);
-                d->updateExpiryMessages(recipient.expiryMessage, checked ? recipient.edit->key() : Key{}, ExpiryChecker::EncryptionKey);
-            }
-            updateOp();
-        });
+        d->mEncOtherLabel = new QLabel{i18n("Encrypt for others:"), this};
+        recipientGrid->addWidget(d->mEncOtherLabel, row, 0, Qt::AlignTop | Qt::AlignRight);
         d->mRecpLayout = new QVBoxLayout;
         recipientGrid->addLayout(d->mRecpLayout, row, 1);
         recipientGrid->setRowStretch(row + 1, 1);
@@ -252,7 +246,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             bar->setValue(max);
         });
 
-        d->addRecipientWidget();
+        auto certLineEdit = d->addRecipientWidget();
+        if (d->mIsExclusive) {
+            connect(certLineEdit, &CertificateLineEdit::keyChanged, this, [this]() {
+                if (d->mCurrentProto != GpgME::CMS) {
+                    return;
+                }
+                // d->mSigChk->setChecked(false);
+            });
+        }
 
         // Checkbox for password
         d->mSymmetric = new QCheckBox(i18n("Encrypt with password. Anyone you share the password with can read the data."));
@@ -264,47 +266,38 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         encBoxLay->addWidget(d->mSymmetric);
 
         // Connect it
-        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
-            d->mSelfSelect->setEnabled(checked);
-            updateOp();
-            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
-        });
-        connect(d->mSelfSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
+        connect(d->mSelfSelect, &UserIDSelectionCombo::currentIndexChanged, this, [this]() {
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
         });
         connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
 
         if (d->mIsExclusive) {
-            connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
+            connect(d->mSelfSelect, &UserIDSelectionCombo::currentIndexChanged, this, [this](const auto index) {
                 if (d->mCurrentProto != GpgME::CMS) {
                     return;
                 }
-                if (value) {
-                    d->mSigChk->setChecked(false);
+                if (index != 0) {
+                    d->mSigSelect->setCurrentIndex(0);
                 }
             });
-            connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
+            connect(d->mSigSelect, &UserIDSelectionCombo::currentIndexChanged, this, [this](const auto index) {
                 if (d->mCurrentProto != GpgME::CMS) {
                     return;
                 }
-                if (value) {
-                    d->mSigChk->setChecked(false);
-                }
-            });
-            connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool value) {
-                if (d->mCurrentProto != GpgME::CMS) {
-                    return;
-                }
-                if (value) {
-                    d->mEncSelfChk->setChecked(false);
-                    d->mEncOtherChk->setChecked(false);
+                if (index != 0) {
+                    d->mSelfSelect->setCurrentIndex(0);
+                    // Copying the vector makes sure that all items are actually deleted.
+                    for (const auto &widget : std::vector(d->mRecpWidgets)) {
+                        d->recpRemovalRequested(widget);
+                    }
+                    d->addRecipientWidget();
                 }
             });
         }
 
         // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
-        d->mSigChk->setMinimumWidth(qMax(d->mEncOtherChk->width(), d->mEncSelfChk->width()));
+        d->mSigChk->setMinimumWidth(qMax(d->mEncOtherLabel->width(), d->mEncSelfChk->width()));
 
         lay->addWidget(encBox);
     }
@@ -326,21 +319,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
 SignEncryptWidget::~SignEncryptWidget() = default;
 
-void SignEncryptWidget::setSignAsText(const QString &text)
-{
-    d->mSigChk->setText(text);
-}
-
-void SignEncryptWidget::setEncryptForMeText(const QString &text)
-{
-    d->mEncSelfChk->setText(text);
-}
-
-void SignEncryptWidget::setEncryptForOthersText(const QString &text)
-{
-    d->mEncOtherChk->setText(text);
-}
-
 void SignEncryptWidget::setEncryptWithPasswordText(const QString &text)
 {
     d->mSymmetric->setText(text);
@@ -359,7 +337,6 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
 
     const RecipientWidgets recipient{new CertificateLineEdit{mModel, KeyUsage::Encrypt, new EncryptCertificateFilter{mCurrentProto}, q}, new KMessageWidget{q}};
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
-    recipient.edit->setEnabled(mEncOtherChk->isChecked());
     recipient.expiryMessage->setVisible(false);
     if (static_cast<unsigned>(index / 2) < mRecpWidgets.size()) {
         mRecpWidgets.insert(mRecpWidgets.begin() + index / 2, recipient);
@@ -381,6 +358,12 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
     connect(recipient.edit, &CertificateLineEdit::certificateSelectionRequested, q, [this, recipient]() {
         q->certificateSelectionRequested(recipient.edit);
     });
+
+    if (mIsExclusive) {
+        connect(recipient.edit, &CertificateLineEdit::keyChanged, q, [this]() {
+            mSigSelect->setCurrentIndex(0);
+        });
+    }
 
     return recipient.edit;
 }
@@ -519,7 +502,7 @@ void SignEncryptWidget::recipientsChanged()
     updateOp();
     for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
         if (!recipient.edit->isEditingInProgress() || recipient.edit->isEmpty()) {
-            d->updateExpiryMessages(recipient.expiryMessage, d->mEncOtherChk->isChecked() ? recipient.edit->key() : Key{}, ExpiryChecker::EncryptionKey);
+            d->updateExpiryMessages(recipient.expiryMessage, recipient.edit->userID().parent(), ExpiryChecker::EncryptionKey);
         }
     }
 }
@@ -652,26 +635,21 @@ void SignEncryptWidget::Private::recpRemovalRequested(const RecipientWidgets &re
     if (!recipient.edit) {
         return;
     }
-    const int emptyEdits = std::count_if(std::cbegin(mRecpWidgets), std::cend(mRecpWidgets), [](const auto &r) {
-        return r.edit->isEmpty();
-    });
-    if (emptyEdits > 1) {
-        if (recipientWidgetHasFocus(recipient.edit) || recipientWidgetHasFocus(recipient.expiryMessage)) {
-            const int index = mRecpLayout->indexOf(recipient.edit);
-            const auto focusWidget = (index < mRecpLayout->count() - 2) ? //
-                mRecpLayout->itemAt(index + 2)->widget()
-                                                                        : mRecpLayout->itemAt(mRecpLayout->count() - 3)->widget();
-            focusWidget->setFocus();
-        }
-        mRecpLayout->removeWidget(recipient.expiryMessage);
-        mRecpLayout->removeWidget(recipient.edit);
-        const auto it = std::find_if(std::begin(mRecpWidgets), std::end(mRecpWidgets), [recipient](const auto &r) {
-            return r.edit == recipient.edit;
-        });
-        mRecpWidgets.erase(it);
-        recipient.expiryMessage->deleteLater();
-        recipient.edit->deleteLater();
+    if (recipientWidgetHasFocus(recipient.edit) || recipientWidgetHasFocus(recipient.expiryMessage)) {
+        const int index = mRecpLayout->indexOf(recipient.edit);
+        const auto focusWidget = (index < mRecpLayout->count() - 2) ? //
+            mRecpLayout->itemAt(index + 2)->widget()
+                                                                    : mRecpLayout->itemAt(mRecpLayout->count() - 3)->widget();
+        focusWidget->setFocus();
     }
+    mRecpLayout->removeWidget(recipient.expiryMessage);
+    mRecpLayout->removeWidget(recipient.edit);
+    const auto it = std::find_if(std::begin(mRecpWidgets), std::end(mRecpWidgets), [recipient](const auto &r) {
+        return r.edit == recipient.edit;
+    });
+    mRecpWidgets.erase(it);
+    recipient.expiryMessage->deleteLater();
+    recipient.edit->deleteLater();
 }
 
 void SignEncryptWidget::removeRecipient(const GpgME::Key &key)
@@ -732,7 +710,7 @@ void SignEncryptWidget::saveOwnKeys() const
 
 void SignEncryptWidget::setSigningChecked(bool value)
 {
-    d->mSigChk->setChecked(value && !KeyCache::instance()->secretKeys().empty());
+    // d->mSigChk->setChecked(value && !KeyCache::instance()->secretKeys().empty());
 }
 
 void SignEncryptWidget::setEncryptionChecked(bool checked)
@@ -741,12 +719,10 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
         const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
-        d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
+        // d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
         d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
     } else {
-        d->mEncSelfChk->setChecked(false);
-        d->mEncOtherChk->setChecked(false);
+        // d->mEncSelfChk->setChecked(false);
         d->mSymmetric->setChecked(false);
     }
 }
@@ -762,21 +738,39 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 
 void Kleo::SignEncryptWidget::Private::onProtocolChanged()
 {
+    auto sigIndex = mSigSelect->currentIndex();
+    auto selfEncryptIndex = mSelfSelect->currentIndex();
+    auto encryptForOthers = q->recipients().size() > 0;
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(mCurrentProto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(mCurrentProto)));
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(mCurrentProto));
+    for (const auto &widget : std::vector(mRecpWidgets)) {
+        recpRemovalRequested(widget);
+    }
+    addRecipientWidget();
     for (const auto &recipient : std::as_const(mRecpWidgets)) {
         recipient.edit->setKeyFilter(encFilter);
     }
-
     if (mIsExclusive) {
         mSymmetric->setDisabled(mCurrentProto == GpgME::CMS);
-        if (mSymmetric->isChecked() && mCurrentProto == GpgME::CMS) {
-            mSymmetric->setChecked(false);
+        if (mCurrentProto == GpgME::CMS) {
+            if (mSymmetric->isChecked() && mCurrentProto) {
+                mSymmetric->setChecked(false);
+            }
+            if (sigIndex != 0 && selfEncryptIndex == 0 && !encryptForOthers) {
+                mSigSelect->setCurrentIndex(1);
+            } else {
+                mSigSelect->setCurrentIndex(0);
+            }
         }
-        if (mSigChk->isChecked() && mCurrentProto == GpgME::CMS && (mEncSelfChk->isChecked() || mEncOtherChk->isChecked())) {
-            mSigChk->setChecked(false);
-        }
+    }
+
+    if (mCurrentProto == GpgME::OpenPGP && sigIndex != 0) {
+        mSigSelect->setCurrentIndex(1);
+    }
+
+    if (selfEncryptIndex > 0) {
+        mSelfSelect->setCurrentIndex(1);
     }
 }
 
@@ -854,10 +848,8 @@ void SignEncryptWidget::Private::updateCheckBoxes()
     const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
     mSigChk->setEnabled(haveSecretKeys);
     mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
-    mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
     if (symmetricOnly) {
-        mEncSelfChk->setChecked(false);
-        mEncOtherChk->setChecked(false);
+        // mEncSelfChk->setChecked(false);
         mSymmetric->setChecked(true);
     }
 }
