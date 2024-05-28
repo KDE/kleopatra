@@ -44,6 +44,8 @@
 
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <KStandardAction>
+#include <qnamespace.h>
 
 static int tagsColumn;
 
@@ -94,6 +96,7 @@ KeyTreeView::KeyTreeView(QWidget *parent)
     , m_stringFilter()
     , m_keyFilter()
     , m_isHierarchical(true)
+    , m_showDefaultContextMenu(true)
 {
     init();
 }
@@ -109,6 +112,7 @@ KeyTreeView::KeyTreeView(const KeyTreeView &other)
     , m_keyFilter(other.m_keyFilter)
     , m_group(other.m_group)
     , m_isHierarchical(other.m_isHierarchical)
+    , m_showDefaultContextMenu(other.m_showDefaultContextMenu)
 {
     init();
     setColumnSizes(other.columnSizes());
@@ -119,7 +123,8 @@ KeyTreeView::KeyTreeView(const QString &text,
                          const std::shared_ptr<KeyFilter> &kf,
                          AbstractKeyListSortFilterProxyModel *proxy,
                          QWidget *parent,
-                         const KConfigGroup &group)
+                         const KConfigGroup &group,
+                         Options options)
     : QWidget(parent)
     , m_proxy(new KeyListSortFilterProxyModel(this))
     , m_additionalProxy(proxy)
@@ -131,6 +136,7 @@ KeyTreeView::KeyTreeView(const QString &text,
     , m_group(group)
     , m_isHierarchical(true)
     , m_onceResized(false)
+    , m_showDefaultContextMenu(!(options & Option::NoDefaultContextMenu))
 {
     init();
 }
@@ -232,6 +238,21 @@ void KeyTreeView::init()
     m_view->setAccessibleDescription(m_isHierarchical ? i18n("Hierarchical list of certificates") : i18n("List of certificates"));
     // we show details on double-click
     m_view->setExpandsOnDoubleClick(false);
+
+    if (m_showDefaultContextMenu) {
+        m_view->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(m_view, &KeyTreeView::customContextMenuRequested, this, [this](const auto &pos) {
+            auto menu = new QMenu;
+            menu->setAttribute(Qt::WA_DeleteOnClose, true);
+            menu->addAction(KStandardAction::copy(
+                this,
+                [this]() {
+                    QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
+                },
+                this));
+            menu->popup(m_view->mapToGlobal(pos));
+        });
+    }
 
     if (model()) {
         if (m_additionalProxy) {

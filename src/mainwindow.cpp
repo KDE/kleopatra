@@ -172,7 +172,7 @@ private:
 
             searchBar = new SearchBar{q};
             vbox->addWidget(searchBar);
-            tabWidget = new TabWidget{q};
+            tabWidget = new TabWidget{KeyTreeView::Option::NoDefaultContextMenu, q};
             vbox->addWidget(tabWidget);
 
             tabWidget->connectSearchBar(searchBar);

@@ -37,13 +37,22 @@ class SearchBar;
 class KeyTreeView : public QWidget
 {
     Q_OBJECT
+
+    Q_FLAGS(Options)
 public:
+    enum Option {
+        Default = 0x0,
+        NoDefaultContextMenu = 0x1,
+    };
+    Q_DECLARE_FLAGS(Options, Option)
+
     explicit KeyTreeView(QWidget *parent = nullptr);
     KeyTreeView(const QString &stringFilter,
                 const std::shared_ptr<KeyFilter> &keyFilter,
                 AbstractKeyListSortFilterProxyModel *additionalProxy,
                 QWidget *parent,
-                const KConfigGroup &group);
+                const KConfigGroup &group,
+                Options options = Option::Default);
     ~KeyTreeView() override;
 
     TreeView *view() const
@@ -165,6 +174,7 @@ private:
 
     bool m_isHierarchical : 1;
     bool m_onceResized : 1;
+    bool m_showDefaultContextMenu : 1;
 };
 
 }

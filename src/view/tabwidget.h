@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include "keytreeview.h"
+
 #include <KSharedConfig>
 
 #include <QWidget>
@@ -40,7 +42,7 @@ public:
     };
     Q_DECLARE_FLAGS(Options, Option)
 
-    explicit TabWidget(QWidget *parent = nullptr, Qt::WindowFlags f = {});
+    explicit TabWidget(KeyTreeView::Options options = KeyTreeView::Option::Default, QWidget *parent = nullptr, Qt::WindowFlags f = {});
     ~TabWidget() override;
 
     void setFlatModel(AbstractKeyListModel *model);
