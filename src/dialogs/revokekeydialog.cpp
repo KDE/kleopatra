@@ -311,9 +311,8 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
                "<item>You can still decrypt everything encrypted for this certificate.</item>"
                "<item>You cannot sign anything with this certificate anymore.</item>"
                "<item>You cannot certify other certificates with it anymore.</item>"
-               "<item>Other people can no longer encrypt with it after receiving the revocation.</item></list></para>")
-
-            .arg(formattedKey));
+               "<item>Other people can no longer encrypt with it after receiving the revocation.</item></list></para>",
+               formattedKey));
 }
 
 GpgME::RevocationReason RevokeKeyDialog::reason() const
