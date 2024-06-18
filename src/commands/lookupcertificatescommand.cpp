@@ -59,14 +59,6 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 using namespace QGpgME;
 
-namespace
-{
-struct KeyWithOrigin {
-    Key key;
-    Key::Origin origin;
-};
-}
-
 class LookupCertificatesCommand::Private : public ImportCertificatesCommand::Private
 {
     friend class ::Kleo::Commands::LookupCertificatesCommand;
@@ -87,7 +79,7 @@ private:
     void slotKeyListResult(const KeyListResult &result);
     void slotWKDLookupResult(const WKDLookupResult &result);
     void tryToFinishKeyLookup();
-    void slotImportRequested(const std::vector<Key> &keys);
+    void slotImportRequested(const std::vector<KeyWithOrigin> &keys);
     void slotDetailsRequested(const Key &key);
     void slotSaveAsRequested(const std::vector<Key> &keys);
     void slotDialogRejected()
@@ -272,7 +264,7 @@ void LookupCertificatesCommand::Private::createDialog()
     connect(dialog, &LookupCertificatesDialog::saveAsRequested, q, [this](const CertsVec &certs) {
         slotSaveAsRequested(certs);
     });
-    connect(dialog, &LookupCertificatesDialog::importRequested, q, [this](const CertsVec &certs) {
+    connect(dialog, &LookupCertificatesDialog::importRequested, q, [this](const std::vector<KeyWithOrigin> &certs) {
         slotImportRequested(certs);
     });
     connect(dialog, &LookupCertificatesDialog::detailsRequested, q, [this](const GpgME::Key &gpgKey) {
@@ -295,7 +287,7 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
     if (dialog) { // thus test
         dialog->setOverlayText({});
         dialog->setPassive(true);
-        dialog->setCertificates(std::vector<Key>(), {});
+        dialog->setCertificates({});
     }
 
     keyListing.reset();
@@ -520,12 +512,8 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
         std::sort(keyListing.keys.begin(), keyListing.keys.end(), [](const auto &lhs, const auto &rhs) {
             return qstricmp(lhs.key.primaryFingerprint(), rhs.key.primaryFingerprint()) < 0;
         });
-        std::vector<Key> keys;
-        std::vector<Key::Origin> origins;
-        for (const auto &pair : keyListing.keys) {
-            keys.push_back(pair.key), origins.push_back(pair.origin);
-        }
-        dialog->setCertificates(keys, origins);
+
+        dialog->setCertificates(keyListing.keys);
         if (keyListing.keys.size() == 0) {
             dialog->setOverlayText(i18nc("@info", "No certificates found"));
         }
@@ -537,20 +525,25 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
     }
 }
 
-void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<Key> &keys)
+void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<KeyWithOrigin> &keys)
 {
     dialog = nullptr;
 
     Q_ASSERT(!keys.empty());
-    Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const Key &key) {
-        return key.isNull();
+    Q_ASSERT(std::none_of(keys.cbegin(), keys.cend(), [](const auto &key) {
+        return key.key.isNull();
     }));
 
     std::vector<Key> wkdKeys, otherKeys;
     otherKeys.reserve(keys.size());
-    kdtools::separate_if(std::begin(keys), std::end(keys), std::back_inserter(wkdKeys), std::back_inserter(otherKeys), [this](const auto &key) {
-        return key.primaryFingerprint() && keyListing.wkdKeyFingerprints.find(key.primaryFingerprint()) != std::end(keyListing.wkdKeyFingerprints);
-    });
+    wkdKeys.reserve(keys.size());
+    for (const auto &[key, origin] : keys) {
+        if (origin == GpgME::Key::OriginWKD) {
+            wkdKeys.push_back(key);
+        } else {
+            otherKeys.push_back(key);
+        }
+    }
 
     std::vector<Key> pgp, cms;
     pgp.reserve(otherKeys.size());

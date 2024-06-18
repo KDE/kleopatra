@@ -16,6 +16,11 @@
 
 #include <gpgme++/key.h>
 
+struct KeyWithOrigin {
+    GpgME::Key key;
+    GpgME::Key::Origin origin;
+};
+
 namespace Kleo
 {
 namespace Dialogs
@@ -36,8 +41,8 @@ public:
     void setQueryMode(QueryMode mode);
     QueryMode queryMode() const;
 
-    void setCertificates(const std::vector<GpgME::Key> &certs, const std::vector<GpgME::Key::Origin> &origins);
-    std::vector<GpgME::Key> selectedCertificates() const;
+    void setCertificates(const std::vector<KeyWithOrigin> &certs);
+    std::vector<KeyWithOrigin> selectedCertificates() const;
 
     void setPassive(bool passive);
     bool isPassive() const;
@@ -50,11 +55,14 @@ public:
 Q_SIGNALS:
     void searchTextChanged(const QString &text);
     void saveAsRequested(const std::vector<GpgME::Key> &certs);
-    void importRequested(const std::vector<GpgME::Key> &certs);
+    void importRequested(const std::vector<KeyWithOrigin> &certs);
     void detailsRequested(const GpgME::Key &certs);
 
 public Q_SLOTS:
     void accept() override;
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     class Private;

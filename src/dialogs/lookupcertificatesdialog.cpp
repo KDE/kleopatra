@@ -11,22 +11,28 @@
 
 #include "lookupcertificatesdialog.h"
 
-#include <view/keytreeview.h>
 #include <view/textoverlay.h>
 
 #include <kleopatra_debug.h>
 
-#include <Libkleo/KeyListModel>
+#include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
+#include <Libkleo/KeyList>
+#include <Libkleo/TreeWidget>
 
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSeparator>
 #include <KSharedConfig>
+#include <KStandardAction>
 
+#include <QClipboard>
 #include <QDialogButtonBox>
 #include <QGridLayout>
+#include <QGuiApplication>
 #include <QLabel>
 #include <QLineEdit>
+#include <QMenu>
 #include <QPushButton>
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
@@ -39,12 +45,27 @@ using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
 
+Q_DECLARE_METATYPE(KeyWithOrigin);
+
+static const int KeyWithOriginRole = 0x201;
+
 class LookupCertificatesDialog::Private
 {
     friend class ::Kleo::Dialogs::LookupCertificatesDialog;
     LookupCertificatesDialog *const q;
 
 public:
+    enum Columns {
+        Name,
+        Email,
+        Fingerprint,
+        ValidFrom,
+        ValidUntil,
+        Protocol,
+        KeyID,
+        Origin,
+    };
+
     explicit Private(LookupCertificatesDialog *qq);
     ~Private();
 
@@ -63,12 +84,17 @@ private:
     }
     void slotDetailsClicked()
     {
-        Q_ASSERT(q->selectedCertificates().size() == 1);
-        Q_EMIT q->detailsRequested(q->selectedCertificates().front());
+        if (!q->selectedCertificates().empty()) {
+            Q_EMIT q->detailsRequested(q->selectedCertificates().front().key);
+        }
     }
     void slotSaveAsClicked()
     {
-        Q_EMIT q->saveAsRequested(q->selectedCertificates());
+        std::vector<GpgME::Key> keys;
+        for (const auto &[key, origin] : q->selectedCertificates()) {
+            keys.push_back(key);
+        }
+        Q_EMIT q->saveAsRequested(keys);
     }
 
     void readConfig();
@@ -80,22 +106,36 @@ private:
         return ui.findED->text().trimmed();
     }
 
-    std::vector<Key> selectedCertificates() const
+    std::vector<KeyWithOrigin> selectedCertificates() const
     {
-        const QAbstractItemView *const view = ui.resultTV->view();
+        const QAbstractItemView *const view = ui.resultTV;
         if (!view) {
-            return std::vector<Key>();
+            return {};
         }
-        const auto *const model = dynamic_cast<KeyListModelInterface *>(view->model());
-        Q_ASSERT(model);
-        const QItemSelectionModel *const sm = view->selectionModel();
+        const auto sm = view->selectionModel();
         Q_ASSERT(sm);
-        return model->keys(sm->selectedRows());
+
+        std::vector<KeyWithOrigin> keys;
+        for (const auto &index : sm->selectedRows()) {
+            const auto key = ui.resultTV->itemFromIndex(index)->data(Private::Name, KeyWithOriginRole).value<KeyWithOrigin>();
+            Q_ASSERT(!key.key.isNull());
+            keys.push_back(key);
+        }
+        return keys;
     }
 
     int numSelectedCertificates() const
     {
-        return ui.resultTV->selectedKeys().size();
+        return ui.resultTV->selectedItems().size();
+    }
+
+    void copySelectedValue()
+    {
+        auto clipboardData = ui.resultTV->currentIndex().data(Kleo::ClipboardRole).toString();
+        if (clipboardData.isEmpty()) {
+            clipboardData = ui.resultTV->currentIndex().data().toString();
+        }
+        QGuiApplication::clipboard()->setText(clipboardData);
     }
 
     QValidator *queryValidator();
@@ -112,7 +152,7 @@ private:
         QLabel *findLB;
         QLineEdit *findED;
         QPushButton *findPB;
-        Kleo::KeyTreeView *resultTV;
+        Kleo::TreeWidget *resultTV;
         TextOverlay *overlay;
         QPushButton *selectAllPB;
         QPushButton *deselectAllPB;
@@ -120,7 +160,7 @@ private:
         QPushButton *saveAsPB;
         QDialogButtonBox *buttonBox;
 
-        void setupUi(QDialog *dialog)
+        void setupUi(LookupCertificatesDialog *dialog)
         {
             auto verticalLayout = new QVBoxLayout{dialog};
             auto gridLayout = new QGridLayout{};
@@ -145,7 +185,7 @@ private:
             gridLayout->addWidget(new KSeparator{Qt::Horizontal, dialog}, row, 0, 1, 3);
 
             row++;
-            resultTV = new Kleo::KeyTreeView(dialog);
+            resultTV = new Kleo::TreeWidget(dialog);
             resultTV->setEnabled(true);
             resultTV->setMinimumSize(QSize(400, 0));
             overlay = new TextOverlay{resultTV, dialog};
@@ -193,6 +233,32 @@ private:
             QObject::connect(findED, SIGNAL(textChanged(QString)), dialog, SLOT(slotSearchTextChanged()));
 
             QMetaObject::connectSlotsByName(dialog);
+
+            resultTV->setHeaderLabels({
+                i18nc("@title:column", "Name"),
+                i18nc("@title:column", "Email"),
+                i18nc("@title:column", "Fingerprint"),
+                i18nc("@title:column", "Valid From"),
+                i18nc("@title:column", "Valid Until"),
+                i18nc("@title:column", "Protocol"),
+                i18nc("@title:column", "Key ID"),
+                i18nc("@title:column", "Origin"),
+            });
+
+            resultTV->setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+            resultTV->setContextMenuPolicy(Qt::CustomContextMenu);
+            connect(resultTV, &QTreeView::customContextMenuRequested, dialog, [this, dialog](const auto &pos) {
+                auto menu = new QMenu;
+                menu->setAttribute(Qt::WA_DeleteOnClose, true);
+                menu->addAction(KStandardAction::copy(
+                    dialog,
+                    [dialog]() {
+                        dialog->d->copySelectedValue();
+                    },
+                    dialog));
+                menu->popup(resultTV->mapToGlobal(pos));
+            });
         }
 
         explicit Ui(LookupCertificatesDialog *q)
@@ -204,18 +270,15 @@ private:
 
             findED->setClearButtonEnabled(true);
 
-            resultTV->setFlatModel(AbstractKeyListModel::createFlatKeyListModel(q));
-            resultTV->setHierarchicalView(false);
-
             importPB()->setText(i18n("Import"));
             importPB()->setEnabled(false);
 
-            connect(resultTV->view(), SIGNAL(doubleClicked(QModelIndex)), q, SLOT(slotDetailsClicked()));
+            connect(resultTV, SIGNAL(doubleClicked(QModelIndex)), q, SLOT(slotDetailsClicked()));
 
             findED->setFocus();
 
-            connect(selectAllPB, &QPushButton::clicked, resultTV->view(), &QTreeView::selectAll);
-            connect(deselectAllPB, &QPushButton::clicked, resultTV->view(), &QTreeView::clearSelection);
+            connect(selectAllPB, &QPushButton::clicked, resultTV, &QTreeView::selectAll);
+            connect(deselectAllPB, &QPushButton::clicked, resultTV, &QTreeView::clearSelection);
         }
 
         QPushButton *importPB() const
@@ -234,7 +297,7 @@ LookupCertificatesDialog::Private::Private(LookupCertificatesDialog *qq)
     , passive(false)
     , ui(q)
 {
-    connect(ui.resultTV->view()->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), q, SLOT(slotSelectionChanged()));
+    connect(ui.resultTV->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)), q, SLOT(slotSelectionChanged()));
     updateQueryMode();
 }
 
@@ -245,9 +308,9 @@ LookupCertificatesDialog::Private::~Private()
 void LookupCertificatesDialog::Private::readConfig()
 {
     KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
-
-    KConfigGroup resultKeysConfig = configGroup.group("ResultKeysView");
-    ui.resultTV->restoreLayout(resultKeysConfig);
+    if (!ui.resultTV->restoreColumnLayout(QStringLiteral("LookupCertificatesDialog"))) {
+        ui.resultTV->setColumnHidden(Private::KeyID, true);
+    }
 
     const QSize size = configGroup.readEntry("Size", QSize(600, 400));
     if (size.isValid()) {
@@ -330,16 +393,47 @@ LookupCertificatesDialog::QueryMode LookupCertificatesDialog::queryMode() const
     return d->queryMode;
 }
 
-void LookupCertificatesDialog::setCertificates(const std::vector<Key> &certs, const std::vector<Key::Origin> &origins)
+void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> &certs)
 {
-    d->ui.resultTV->view()->setFocus();
-    d->ui.resultTV->setKeys(certs, origins);
+    d->ui.resultTV->setFocus();
+    d->ui.resultTV->clear();
+
+    for (const auto &[cert, origin] : certs) {
+        auto item = new QTreeWidgetItem;
+        item->setData(Private::Name, Qt::DisplayRole, Formatting::prettyName(cert));
+        item->setData(Private::Email, Qt::DisplayRole, Formatting::prettyEMail(cert));
+        item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(cert.primaryFingerprint()));
+        item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.primaryFingerprint()));
+        item->setData(Private::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(cert.primaryFingerprint()));
+        item->setData(Private::ValidFrom, Qt::DisplayRole, Formatting::creationDateString(cert));
+        item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(cert));
+        item->setData(Private::ValidUntil, Qt::DisplayRole, Formatting::expirationDateString(cert));
+        item->setData(Private::ValidUntil, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(cert));
+        item->setData(Private::KeyID, Qt::DisplayRole, Formatting::prettyID(cert.keyID()));
+        item->setData(Private::KeyID, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.keyID()));
+        item->setData(Private::KeyID, Kleo::ClipboardRole, QString::fromLatin1(cert.keyID()));
+
+        if (origin == GpgME::Key::OriginKS) {
+            if (keyserver().startsWith(QStringLiteral("ldap:")) || keyserver().startsWith(QStringLiteral("ldaps:"))) {
+                item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
+            } else {
+                item->setData(Private::Origin, Qt::DisplayRole, i18n("Keyserver"));
+            }
+        } else {
+            item->setData(Private::Origin, Qt::DisplayRole, Formatting::origin(origin));
+        }
+
+        item->setData(Private::Protocol, Qt::DisplayRole, Formatting::displayName(cert.protocol()));
+        item->setData(Private::Name, KeyWithOriginRole, QVariant::fromValue(KeyWithOrigin{cert, origin}));
+
+        d->ui.resultTV->addTopLevelItem(item);
+    }
     if (certs.size() == 1) {
-        d->ui.resultTV->view()->setCurrentIndex(d->ui.resultTV->view()->model()->index(0, 0));
+        d->ui.resultTV->setCurrentIndex(d->ui.resultTV->model()->index(0, 0));
     }
 }
 
-std::vector<Key> LookupCertificatesDialog::selectedCertificates() const
+std::vector<KeyWithOrigin> LookupCertificatesDialog::selectedCertificates() const
 {
     return d->selectedCertificates();
 }
@@ -416,6 +510,14 @@ void LookupCertificatesDialog::Private::enableDisableWidgets()
     ui.saveAsPB->setEnabled(n == 1);
     ui.importPB()->setEnabled(n != 0);
     ui.importPB()->setDefault(false); // otherwise Import becomes default button if enabled and return triggers both a search and accept()
+}
+
+void LookupCertificatesDialog::keyPressEvent(QKeyEvent *event)
+{
+    if (event == QKeySequence::Copy && d->ui.resultTV->hasFocus()) {
+        d->copySelectedValue();
+        event->accept();
+    }
 }
 
 #include "moc_lookupcertificatesdialog.cpp"
