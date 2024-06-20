@@ -115,8 +115,6 @@ SmartCardWidget::Private::Private(SmartCardWidget *qq)
 {
     auto vLay = new QVBoxLayout(q);
 
-    vLay->addWidget(new QLabel(QStringLiteral("<h2>") + i18n("Smartcard Management") + QStringLiteral("</h2>")));
-
     mStack = new QStackedWidget;
     vLay->addWidget(mStack);
 
@@ -214,28 +212,12 @@ SmartCardWidget::SmartCardWidget(QWidget *parent)
 {
 }
 
-Kleo::SmartCardWidget::~SmartCardWidget() = default;
+SmartCardWidget::~SmartCardWidget() = default;
 
-QWidget *getFirstEnabledFocusWidget(QWidget *parent)
+void SmartCardWidget::showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards)
 {
-    for (auto w = parent->nextInFocusChain(); w != parent; w = w->nextInFocusChain()) {
-        if (w->isEnabled() && (w->focusPolicy() != Qt::NoFocus)) {
-            return w;
-        }
-    }
-    return nullptr;
-}
-
-void SmartCardWidget::focusFirstChild(Qt::FocusReason reason)
-{
-    if (d->mStack->currentWidget() == d->mPlaceHolderWidget) {
-        if (auto w = getFirstEnabledFocusWidget(d->mPlaceHolderWidget)) {
-            w->setFocus(reason);
-        }
-    } else if (auto cardWidget = d->mTabWidget->currentWidget()) {
-        if (auto w = getFirstEnabledFocusWidget(cardWidget)) {
-            w->setFocus(reason);
-        }
+    for (const auto &card : cards) {
+        d->cardAddedOrChanged(card->serialNumber(), card->appName());
     }
 }
 

@@ -82,6 +82,7 @@ public:
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();
+    void openOrRaiseSmartCardWindow();
     void openOrRaiseConfigDialog();
     void openOrRaiseGroupsConfigDialog(QWidget *parent);
 #ifndef QT_NO_SYSTEMTRAYICON

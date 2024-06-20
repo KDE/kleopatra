@@ -20,7 +20,6 @@
 #include "view/keylistcontroller.h"
 #include "view/padwidget.h"
 #include "view/searchbar.h"
-#include "view/smartcardwidget.h"
 #include "view/tabwidget.h"
 #include "view/welcomewidget.h"
 
@@ -125,7 +124,6 @@ namespace
 {
 static const std::vector<QString> mainViewActionNames = {
     QStringLiteral("view_certificate_overview"),
-    QStringLiteral("manage_smartcard"),
     QStringLiteral("pad_view"),
 };
 
@@ -355,11 +353,6 @@ public:
         }
     }
 
-    void showSmartcardView()
-    {
-        showView(QStringLiteral("manage_smartcard"), ui.scWidget);
-    }
-
     void showPadView()
     {
         if (!ui.padWidget) {
@@ -404,7 +397,7 @@ private:
     void keyListingDone()
     {
         const auto curWidget = ui.stackWidget->currentWidget();
-        if (curWidget == ui.scWidget || curWidget == ui.padWidget) {
+        if (curWidget == ui.padWidget) {
             return;
         }
         showCertificateView();
@@ -416,7 +409,6 @@ private:
     struct UI {
         CertificateView *searchTab = nullptr;
         PadWidget *padWidget = nullptr;
-        SmartCardWidget *scWidget = nullptr;
         WelcomeWidget *welcomeWidget = nullptr;
         QStackedWidget *stackWidget = nullptr;
         explicit UI(MainWindow *q);
@@ -437,9 +429,6 @@ MainWindow::Private::UI::UI(MainWindow *q)
     stackWidget->addWidget(searchTab);
 
     new KeyCacheOverlay(mainWidget, q);
-
-    scWidget = new SmartCardWidget{q};
-    stackWidget->addWidget(scWidget);
 
     welcomeWidget = new WelcomeWidget{q};
     stackWidget->addWidget(welcomeWidget);
@@ -649,8 +638,8 @@ void MainWindow::Private::setupActions()
             i18n("Show smartcard management"),
             "auth-sim-locked",
             q,
-            [this](bool) {
-                showSmartcardView();
+            [](bool) {
+                KleopatraApplication::instance()->openOrRaiseSmartCardWindow();
             },
             QString(),
         },

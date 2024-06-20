@@ -357,6 +357,8 @@ set(_kleopatra_SRCS
   dialogs/selftestdialog.h
   dialogs/setinitialpindialog.cpp
   dialogs/setinitialpindialog.h
+  dialogs/smartcardwindow.cpp
+  dialogs/smartcardwindow.h
   dialogs/subkeyswidget.cpp
   dialogs/subkeyswidget.h
   dialogs/trustchainwidget.cpp

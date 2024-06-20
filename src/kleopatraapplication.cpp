@@ -22,6 +22,7 @@
 
 #include <conf/configuredialog.h>
 #include <conf/groupsconfigdialog.h>
+#include <dialogs/smartcardwindow.h>
 #include <smartcard/readerstatus.h>
 
 #include <Libkleo/GnuPG>
@@ -216,6 +217,7 @@ public:
     QPointer<ConfigureDialog> configureDialog;
     QPointer<GroupsConfigDialog> groupsConfigDialog;
     QPointer<MainWindow> mainWindow;
+    QPointer<SmartCardWindow> smartCardWindow;
     std::unique_ptr<SmartCard::ReaderStatus> readerStatus;
 #ifndef QT_NO_SYSTEMTRAYICON
     SysTrayIcon *sysTray;
@@ -384,6 +386,7 @@ void KleopatraApplication::init()
 KleopatraApplication::~KleopatraApplication()
 {
     delete d->groupsConfigDialog;
+    delete d->smartCardWindow;
     delete d->mainWindow;
 }
 
@@ -720,6 +723,15 @@ void KleopatraApplication::openOrRaiseMainWindow()
     }
     open_or_raise(mw);
     UpdateNotification::checkUpdate(mw);
+}
+
+void KleopatraApplication::openOrRaiseSmartCardWindow()
+{
+    if (!d->smartCardWindow) {
+        d->smartCardWindow = new SmartCardWindow;
+        d->smartCardWindow->setAttribute(Qt::WA_DeleteOnClose);
+    }
+    open_or_raise(d->smartCardWindow);
 }
 
 void KleopatraApplication::openConfigDialogWithForeignParent(WId parentWId)

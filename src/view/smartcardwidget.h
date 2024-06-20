@@ -8,24 +8,27 @@
 */
 #pragma once
 
-#include <interfaces/focusfirstchild.h>
-
 #include <QWidget>
 
 #include <memory>
+#include <vector>
 
 namespace Kleo
 {
+namespace SmartCard
+{
+class Card;
+}
 
 /* SmartCardWidget a generic widget to interact with smartcards */
-class SmartCardWidget : public QWidget, public FocusFirstChild
+class SmartCardWidget : public QWidget
 {
     Q_OBJECT
 public:
     explicit SmartCardWidget(QWidget *parent = nullptr);
     ~SmartCardWidget() override;
 
-    void focusFirstChild(Qt::FocusReason reason = Qt::OtherFocusReason) override;
+    void showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards);
 
 public Q_SLOTS:
     void reload();
