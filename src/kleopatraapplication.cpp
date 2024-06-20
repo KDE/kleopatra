@@ -603,18 +603,18 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 
 void KleopatraApplication::handleFiles(const QStringList &files, WId parentId)
 {
-    const QVector<Command *> allCmds = Command::commandsForFiles(files, mainWindow()->keyListController());
+    auto mw = mainWindow();
+    if (!mw) {
+        mw = new MainWindow;
+        mw->setAttribute(Qt::WA_DeleteOnClose);
+        setMainWindow(mw);
+        d->connectConfigureDialog();
+    }
+    const QVector<Command *> allCmds = Command::commandsForFiles(files, mw->keyListController());
     for (Command *cmd : allCmds) {
         if (parentId) {
             cmd->setParentWId(parentId);
         } else {
-            MainWindow *mw = mainWindow();
-            if (!mw) {
-                mw = new MainWindow;
-                mw->setAttribute(Qt::WA_DeleteOnClose);
-                setMainWindow(mw);
-                d->connectConfigureDialog();
-            }
             cmd->setParentWidget(mw);
         }
         if (dynamic_cast<ImportCertificateFromFileCommand *>(cmd)) {
