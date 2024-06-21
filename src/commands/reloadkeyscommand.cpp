@@ -78,14 +78,6 @@ void ReloadKeysCommand::Private::keyListingDone(const KeyListResult &result)
 
 void ReloadKeysCommand::doStart()
 {
-    const auto view = d->parentWidgetOrView();
-    if (view && !view->isVisible()) {
-        // Small hack to make redisplay also work nicely when the keylist
-        // is not currently the active widget.
-        SmartCard::ReaderStatus::mutableInstance()->updateStatus();
-        d->finished();
-        return;
-    }
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, [this](const GpgME::KeyListResult &result) {
         d->keyListingDone(result);
     });
