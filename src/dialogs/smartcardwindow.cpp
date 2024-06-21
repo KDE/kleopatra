@@ -71,6 +71,16 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
     setCentralWidget(d->smartCardWidget);
 
     addAction(KStandardAction::close(this, &SmartCardWindow::close, this));
+    {
+        auto action = KStandardAction::redisplay(
+            this,
+            [this]() {
+                d->smartCardWidget->reload();
+            },
+            this);
+        action->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
+        addAction(action);
+    }
 
     // use size of main window as default size
     const auto mainWindow = KleopatraApplication::instance()->mainWindow();
