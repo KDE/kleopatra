@@ -76,8 +76,9 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
     const auto mainWindow = KleopatraApplication::instance()->mainWindow();
     d->restoreLayout(mainWindow ? mainWindow->size() : QSize{1024, 500});
 
-    // load currently inserted cards
+    // load the currently known cards and trigger an update
     d->smartCardWidget->showCards(ReaderStatus::instance()->getCards());
+    d->smartCardWidget->reload();
 }
 
 SmartCardWindow::~SmartCardWindow()
