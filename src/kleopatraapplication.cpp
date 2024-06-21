@@ -297,6 +297,16 @@ public:
             focusFrame->setWidget(nullptr);
         }
     }
+    MainWindow *getOrCreateMainWindow()
+    {
+        auto mw = q->mainWindow();
+        if (!mw) {
+            mw = new MainWindow;
+            mw->setAttribute(Qt::WA_DeleteOnClose);
+            q->setMainWindow(mw);
+        }
+        return mw;
+    }
 };
 
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
@@ -606,13 +616,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 
 void KleopatraApplication::handleFiles(const QStringList &files, WId parentId)
 {
-    auto mw = mainWindow();
-    if (!mw) {
-        mw = new MainWindow;
-        mw->setAttribute(Qt::WA_DeleteOnClose);
-        setMainWindow(mw);
-        d->connectConfigureDialog();
-    }
+    auto mw = d->getOrCreateMainWindow();
     const QVector<Command *> allCmds = Command::commandsForFiles(files, mw->keyListController());
     for (Command *cmd : allCmds) {
         if (parentId) {
@@ -700,27 +704,17 @@ void KleopatraApplication::restoreMainWindow()
         return;
     }
 
-    auto mw = new MainWindow;
+    auto mw = d->getOrCreateMainWindow();
     if (KMainWindow::canBeRestored(1)) {
         // restore to hidden state, Mainwindow::readProperties() will
         // restore saved visibility.
         mw->restore(1, false);
     }
-
-    mw->setAttribute(Qt::WA_DeleteOnClose);
-    setMainWindow(mw);
-    d->connectConfigureDialog();
 }
 
 void KleopatraApplication::openOrRaiseMainWindow()
 {
-    MainWindow *mw = mainWindow();
-    if (!mw) {
-        mw = new MainWindow;
-        mw->setAttribute(Qt::WA_DeleteOnClose);
-        setMainWindow(mw);
-        d->connectConfigureDialog();
-    }
+    auto mw = d->getOrCreateMainWindow();
     open_or_raise(mw);
     UpdateNotification::checkUpdate(mw);
 }
