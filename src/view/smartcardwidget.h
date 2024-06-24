@@ -13,6 +13,8 @@
 #include <memory>
 #include <vector>
 
+class KActionCollection;
+
 namespace Kleo
 {
 namespace SmartCard
@@ -27,6 +29,8 @@ class SmartCardWidget : public QWidget
 public:
     explicit SmartCardWidget(QWidget *parent = nullptr);
     ~SmartCardWidget() override;
+
+    void createActions(KActionCollection *ac);
 
     void showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards);
 

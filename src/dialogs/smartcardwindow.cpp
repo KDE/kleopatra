@@ -15,6 +15,7 @@
 #include <smartcard/readerstatus.h>
 #include <view/smartcardwidget.h>
 
+#include <KActionCollection>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
@@ -31,18 +32,25 @@ class SmartCardWindow::Private
     SmartCardWindow *const q;
 
 public:
-    Private(SmartCardWindow *qq)
-        : q(qq)
-    {
-    }
+    Private(SmartCardWindow *qq);
 
 private:
     void saveLayout();
     void restoreLayout(const QSize &defaultSize = {});
+    void createActions();
 
 private:
+    KActionCollection *actionCollection = nullptr;
     SmartCardWidget *smartCardWidget = nullptr;
 };
+
+SmartCardWindow::Private::Private(SmartCardWindow *qq)
+    : q(qq)
+    , actionCollection{new KActionCollection{qq, QStringLiteral("smartcards")}}
+{
+    actionCollection->setComponentDisplayName(i18n("Smart Card Management"));
+    actionCollection->addAssociatedWidget(q);
+}
 
 void SmartCardWindow::Private::saveLayout()
 {
@@ -60,6 +68,12 @@ void SmartCardWindow::Private::restoreLayout(const QSize &defaultSize)
     }
 }
 
+void SmartCardWindow::Private::createActions()
+{
+    actionCollection->addAction(KStandardAction::StandardAction::Close, QStringLiteral("close"), q, &SmartCardWindow::close);
+    smartCardWidget->createActions(actionCollection);
+}
+
 SmartCardWindow::SmartCardWindow(QWidget *parent)
     : QMainWindow(parent)
     , d(new Private(this))
@@ -70,17 +84,7 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
     d->smartCardWidget->setContentsMargins({});
     setCentralWidget(d->smartCardWidget);
 
-    addAction(KStandardAction::close(this, &SmartCardWindow::close, this));
-    {
-        auto action = KStandardAction::redisplay(
-            this,
-            [this]() {
-                d->smartCardWidget->reload();
-            },
-            this);
-        action->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
-        addAction(action);
-    }
+    d->createActions();
 
     // use size of main window as default size
     const auto mainWindow = KleopatraApplication::instance()->mainWindow();

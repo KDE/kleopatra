@@ -25,6 +25,7 @@
 
 #include "kleopatra_debug.h"
 
+#include <KActionCollection>
 #include <KLocalizedString>
 
 #include <QHBoxLayout>
@@ -33,6 +34,7 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QTabWidget>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -108,6 +110,7 @@ private:
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
     QTabWidget *mTabWidget;
+    QToolButton *mReloadButton;
 };
 
 SmartCardWidget::Private::Private(SmartCardWidget *qq)
@@ -115,13 +118,18 @@ SmartCardWidget::Private::Private(SmartCardWidget *qq)
 {
     auto vLay = new QVBoxLayout(q);
 
-    mStack = new QStackedWidget;
+    mStack = new QStackedWidget{q};
     vLay->addWidget(mStack);
 
-    mPlaceHolderWidget = new PlaceHolderWidget;
+    mPlaceHolderWidget = new PlaceHolderWidget{q};
     mStack->addWidget(mPlaceHolderWidget);
 
-    mTabWidget = new QTabWidget;
+    mTabWidget = new QTabWidget{q};
+
+    // create "Reload" button after tab widget to ensure correct tab order
+    mReloadButton = new QToolButton{q};
+    mTabWidget->setCornerWidget(mReloadButton, Qt::TopRightCorner);
+
     mStack->addWidget(mTabWidget);
 
     mStack->setCurrentWidget(mPlaceHolderWidget);
@@ -219,6 +227,14 @@ void SmartCardWidget::showCards(const std::vector<std::shared_ptr<Kleo::SmartCar
     for (const auto &card : cards) {
         d->cardAddedOrChanged(card->serialNumber(), card->appName());
     }
+}
+
+void SmartCardWidget::createActions(KActionCollection *ac)
+{
+    QAction *reloadAction = ac->addAction(KStandardAction::StandardAction::Redisplay, QStringLiteral("reload"), this, &SmartCardWidget::reload);
+    reloadAction->setText(i18nc("@action", "Reload"));
+    reloadAction->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
+    d->mReloadButton->setDefaultAction(reloadAction);
 }
 
 void SmartCardWidget::reload()
