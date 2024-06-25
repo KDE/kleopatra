@@ -1,4 +1,4 @@
-/*  view/smartcardwidget.cpp
+/*  view/smartcardswidget.cpp
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
@@ -9,7 +9,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "smartcardwidget.h"
+#include "smartcardswidget.h"
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
@@ -90,12 +90,12 @@ private:
 };
 } // namespace
 
-class SmartCardWidget::Private
+class SmartCardsWidget::Private
 {
-    friend class ::Kleo::SmartCardWidget;
+    friend class ::Kleo::SmartCardsWidget;
 
 public:
-    Private(SmartCardWidget *qq);
+    Private(SmartCardsWidget *qq);
 
     void cardAddedOrChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
@@ -105,7 +105,7 @@ private:
     void cardAddedOrChanged(const std::string &serialNumber);
 
 private:
-    SmartCardWidget *const q;
+    SmartCardsWidget *const q;
     QMap<std::pair<std::string, std::string>, QPointer<QWidget>> mCardWidgets;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
@@ -113,7 +113,7 @@ private:
     QToolButton *mReloadButton;
 };
 
-SmartCardWidget::Private::Private(SmartCardWidget *qq)
+SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     : q{qq}
 {
     auto vLay = new QVBoxLayout(q);
@@ -134,7 +134,7 @@ SmartCardWidget::Private::Private(SmartCardWidget *qq)
 
     mStack->setCurrentWidget(mPlaceHolderWidget);
 
-    connect(mPlaceHolderWidget, &PlaceHolderWidget::reload, q, &SmartCardWidget::reload);
+    connect(mPlaceHolderWidget, &PlaceHolderWidget::reload, q, &SmartCardsWidget::reload);
     connect(ReaderStatus::instance(), &ReaderStatus::cardAdded, q, [this](const std::string &serialNumber, const std::string &appName) {
         cardAddedOrChanged(serialNumber, appName);
     });
@@ -146,7 +146,7 @@ SmartCardWidget::Private::Private(SmartCardWidget *qq)
     });
 }
 
-void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumber, const std::string &appName)
+void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumber, const std::string &appName)
 {
     if (appName == SmartCard::NetKeyCard::AppName) {
         cardAddedOrChanged<NetKeyCard, NetKeyWidget>(serialNumber);
@@ -157,7 +157,7 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
     } else if (appName == SmartCard::P15Card::AppName) {
         cardAddedOrChanged<P15Card, P15CardWidget>(serialNumber);
     } else {
-        qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
+        qCWarning(KLEOPATRA_LOG) << "SmartCardsWidget::Private::cardAddedOrChanged:"
                                  << "App" << appName.c_str() << "is not supported";
     }
 }
@@ -179,11 +179,11 @@ static QString getCardLabel(const std::shared_ptr<Card> &card)
 }
 
 template<typename C, typename W>
-void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumber)
+void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumber)
 {
     const auto card = ReaderStatus::instance()->getCard<C>(serialNumber);
     if (!card) {
-        qCWarning(KLEOPATRA_LOG) << "SmartCardWidget::Private::cardAddedOrChanged:"
+        qCWarning(KLEOPATRA_LOG) << "SmartCardsWidget::Private::cardAddedOrChanged:"
                                  << "New or changed card" << serialNumber.c_str() << "with app" << C::AppName.c_str() << "not found";
         return;
     }
@@ -199,7 +199,7 @@ void SmartCardWidget::Private::cardAddedOrChanged(const std::string &serialNumbe
     cardWidget->setCard(card.get());
 }
 
-void SmartCardWidget::Private::cardRemoved(const std::string &serialNumber, const std::string &appName)
+void SmartCardsWidget::Private::cardRemoved(const std::string &serialNumber, const std::string &appName)
 {
     QWidget *cardWidget = mCardWidgets.take({serialNumber, appName});
     if (cardWidget) {
@@ -214,32 +214,32 @@ void SmartCardWidget::Private::cardRemoved(const std::string &serialNumber, cons
     }
 }
 
-SmartCardWidget::SmartCardWidget(QWidget *parent)
+SmartCardsWidget::SmartCardsWidget(QWidget *parent)
     : QWidget{parent}
     , d{std::make_unique<Private>(this)}
 {
 }
 
-SmartCardWidget::~SmartCardWidget() = default;
+SmartCardsWidget::~SmartCardsWidget() = default;
 
-void SmartCardWidget::showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards)
+void SmartCardsWidget::showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards)
 {
     for (const auto &card : cards) {
         d->cardAddedOrChanged(card->serialNumber(), card->appName());
     }
 }
 
-void SmartCardWidget::createActions(KActionCollection *ac)
+void SmartCardsWidget::createActions(KActionCollection *ac)
 {
-    QAction *reloadAction = ac->addAction(KStandardAction::StandardAction::Redisplay, QStringLiteral("reload"), this, &SmartCardWidget::reload);
+    QAction *reloadAction = ac->addAction(KStandardAction::StandardAction::Redisplay, QStringLiteral("reload"), this, &SmartCardsWidget::reload);
     reloadAction->setText(i18nc("@action", "Reload"));
     reloadAction->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
     d->mReloadButton->setDefaultAction(reloadAction);
 }
 
-void SmartCardWidget::reload()
+void SmartCardsWidget::reload()
 {
     ReaderStatus::mutableInstance()->updateStatus();
 }
 
-#include "smartcardwidget.moc"
+#include "smartcardswidget.moc"

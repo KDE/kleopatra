@@ -1,4 +1,4 @@
-/*  view/smartcardwidget.h
+/*  view/smartcardswidget.h
 
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
@@ -22,13 +22,13 @@ namespace SmartCard
 class Card;
 }
 
-/* SmartCardWidget a generic widget to interact with smartcards */
-class SmartCardWidget : public QWidget
+/* SmartCardsWidget a generic widget to interact with smartcards */
+class SmartCardsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SmartCardWidget(QWidget *parent = nullptr);
-    ~SmartCardWidget() override;
+    explicit SmartCardsWidget(QWidget *parent = nullptr);
+    ~SmartCardsWidget() override;
 
     void createActions(KActionCollection *ac);
 

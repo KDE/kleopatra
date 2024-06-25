@@ -6,7 +6,7 @@
 
 #include "smartcard/card.h"
 #include "smartcard/readerstatus.h"
-#include "view/smartcardwidget.h"
+#include "view/smartcardswidget.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>

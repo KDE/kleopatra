@@ -13,7 +13,7 @@
 #include <mainwindow.h>
 
 #include <smartcard/readerstatus.h>
-#include <view/smartcardwidget.h>
+#include <view/smartcardswidget.h>
 
 #include <KActionCollection>
 #include <KConfigGroup>
@@ -44,7 +44,7 @@ private:
 
 private:
     KActionCollection *actionCollection = nullptr;
-    SmartCardWidget *smartCardWidget = nullptr;
+    SmartCardsWidget *smartCardWidget = nullptr;
     QLabel *statusMessageLabel = nullptr;
 };
 
@@ -129,7 +129,7 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
 {
     setWindowTitle(i18nc("@title:window", "Manage Smart Cards"));
 
-    d->smartCardWidget = new SmartCardWidget{this};
+    d->smartCardWidget = new SmartCardsWidget{this};
     d->smartCardWidget->setContentsMargins({});
     setCentralWidget(d->smartCardWidget);
 
