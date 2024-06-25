@@ -21,6 +21,8 @@
 #include <KSharedConfig>
 #include <KStandardAction>
 
+#include <QLabel>
+#include <QStatusBar>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -38,10 +40,12 @@ private:
     void saveLayout();
     void restoreLayout(const QSize &defaultSize = {});
     void createActions();
+    void setUpStatusBar();
 
 private:
     KActionCollection *actionCollection = nullptr;
     SmartCardWidget *smartCardWidget = nullptr;
+    QLabel *statusMessageLabel = nullptr;
 };
 
 SmartCardWindow::Private::Private(SmartCardWindow *qq)
@@ -74,6 +78,51 @@ void SmartCardWindow::Private::createActions()
     smartCardWidget->createActions(actionCollection);
 }
 
+void SmartCardWindow::Private::setUpStatusBar()
+{
+    auto statusBar = q->statusBar();
+    statusBar->setSizeGripEnabled(false);
+
+    statusMessageLabel = new QLabel{statusBar};
+    statusBar->addWidget(statusMessageLabel, 1);
+
+    q->setStatusBar(statusBar);
+
+    connect(ReaderStatus::instance(), &ReaderStatus::updateCardsStarted, q, [this]() {
+        statusMessageLabel->setText(i18nc("@info:status", "Loading smart cards..."));
+    });
+    connect(ReaderStatus::instance(), &ReaderStatus::updateCardStarted, q, [this](const std::string &serialNumber, const std::string &appName) {
+        const auto card = ReaderStatus::instance()->getCard(serialNumber, appName);
+        if (card) {
+            statusMessageLabel->setText(i18nc("@info:status", "Updating smart card %1...", card->displaySerialNumber()));
+        } else {
+            statusMessageLabel->setText(i18nc("@info:status", "Updating smart card..."));
+        }
+    });
+    connect(ReaderStatus::instance(), &ReaderStatus::updateFinished, q, [this]() {
+        statusMessageLabel->clear();
+    });
+    connect(ReaderStatus::instance(), &ReaderStatus::startingLearnCards, q, [this]() {
+        statusMessageLabel->setText(i18nc("@info:status", "Importing certificates from smart cards..."));
+    });
+    connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, q, [this]() {
+        statusMessageLabel->clear();
+    });
+
+    switch (ReaderStatus::instance()->currentAction()) {
+    case ReaderStatus::UpdateCards: {
+        statusMessageLabel->setText(i18nc("@info:status", "Loading smart cards..."));
+        break;
+    }
+    case ReaderStatus::LearnCards: {
+        statusMessageLabel->setText(i18nc("@info:status", "Importing certificates from smart cards..."));
+        break;
+    }
+    case ReaderStatus::NoAction:
+        break;
+    }
+}
+
 SmartCardWindow::SmartCardWindow(QWidget *parent)
     : QMainWindow(parent)
     , d(new Private(this))
@@ -85,6 +134,7 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
     setCentralWidget(d->smartCardWidget);
 
     d->createActions();
+    d->setUpStatusBar();
 
     // use size of main window as default size
     const auto mainWindow = KleopatraApplication::instance()->mainWindow();

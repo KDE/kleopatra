@@ -35,11 +35,19 @@ class ReaderStatus : public QObject
 {
     Q_OBJECT
 public:
+    enum Action {
+        NoAction,
+        UpdateCards,
+        LearnCards,
+    };
+
     explicit ReaderStatus(QObject *parent = nullptr);
     ~ReaderStatus() override;
 
     static const ReaderStatus *instance();
     static ReaderStatus *mutableInstance();
+
+    Action currentAction() const;
 
     using TransactionFunc = std::function<void(const GpgME::Error &)>;
     void startSimpleTransaction(const std::shared_ptr<Card> &card, const QByteArray &cmd, QObject *receiver, const TransactionFunc &slot);
@@ -79,12 +87,17 @@ Q_SIGNALS:
     void cardAdded(const std::string &serialNumber, const std::string &appName);
     void cardChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
+    void updateCardsStarted();
+    void updateCardStarted(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
     void startingLearnCards(GpgME::Protocol protocol);
     void cardsLearned(GpgME::Protocol protocol);
     void startOfGpgAgentRequested();
 
 private:
+    void onUpdateCardsStarted();
+    void onUpdateCardStarted(const std::string &serialNumber, const std::string &appName);
+    void onUpdateFinished();
     void onStartingLearnCards(GpgME::Protocol protocol);
     void onCardsLearned(GpgME::Protocol protocol);
 
