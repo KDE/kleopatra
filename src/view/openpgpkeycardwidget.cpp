@@ -159,7 +159,7 @@ void OpenPGPKeyCardWidget::Private::updateKeyWidgets(const std::string &openPGPK
     widgets.keyTitleLabel->setVisible(cardSupportsKey);
     widgets.keyInfoLabel->setVisible(cardSupportsKey);
     widgets.showCertificateDetailsButton->setVisible(cardSupportsKey);
-    widgets.generateButton->setVisible(cardSupportsKey && (mAllowedActions & Action::GenerateKey));
+    widgets.generateButton->setVisible(cardSupportsKey && (mAllowedActions & Action::GenerateKey) && !DeVSCompliance::isActive());
     if (widgets.createCSRButton) {
         widgets.createCSRButton->setVisible(cardSupportsKey && (mAllowedActions & Action::CreateCSR));
     }
