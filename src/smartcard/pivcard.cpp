@@ -116,13 +116,3 @@ std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRe
         {"nistp256", i18n("ECDSA (Curve P-256)")},
     };
 }
-
-std::string PIVCard::certificateData(const std::string &keyRef) const
-{
-    return cardInfo("KLEO-CERTIFICATE-" + keyRef);
-}
-
-void PIVCard::setCertificateData(const std::string &keyRef, const std::string &data)
-{
-    addCardInfo("KLEO-CERTIFICATE-" + keyRef, data);
-}

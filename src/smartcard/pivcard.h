@@ -36,9 +36,6 @@ public:
     static const std::vector<KeyPairInfo> &supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
-
-    std::string certificateData(const std::string &keyRef) const;
-    void setCertificateData(const std::string &keyRef, const std::string &data);
 };
 } // namespace Smartcard
 } // namespace Kleopatra

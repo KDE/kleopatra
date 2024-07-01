@@ -110,6 +110,9 @@ public:
     bool hasNullPin() const;
     void setHasNullPin(bool value);
 
+    std::string certificateData(const std::string &keyRef) const;
+    void setCertificateData(const std::string &keyRef, const std::string &data);
+
     QString errorMsg() const;
     void setErrorMsg(const QString &msg);
 

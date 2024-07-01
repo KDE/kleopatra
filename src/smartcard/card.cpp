@@ -365,3 +365,13 @@ QString Card::displayAppName() const
 {
     return mDisplayAppName;
 }
+
+std::string Card::certificateData(const std::string &keyRef) const
+{
+    return cardInfo("KLEO-CERTIFICATE-" + keyRef);
+}
+
+void Card::setCertificateData(const std::string &keyRef, const std::string &data)
+{
+    addCardInfo("KLEO-CERTIFICATE-" + keyRef, data);
+}
