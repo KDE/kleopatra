@@ -25,6 +25,7 @@ const std::string PIVCard::AppName = "piv";
 PIVCard::PIVCard(const Card &card)
     : Card(card)
 {
+    setAppType(AppType::PIVApp);
     setAppName(AppName);
     setDisplayAppName(QStringLiteral("PIV"));
     setInitialKeyInfos(PIVCard::supportedKeys());

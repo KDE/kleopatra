@@ -17,6 +17,7 @@ const std::string P15Card::AppName = "p15";
 P15Card::P15Card(const Card &card)
     : Card(card)
 {
+    setAppType(AppType::P15App);
     setAppName(AppName);
     setDisplayAppName(QStringLiteral("PKCS#15"));
 }

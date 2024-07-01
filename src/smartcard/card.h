@@ -21,6 +21,14 @@ namespace Kleo
 namespace SmartCard
 {
 
+enum class AppType {
+    NoApp,
+    OpenPGPApp,
+    PIVApp,
+    NetKeyApp,
+    P15App,
+};
+
 /** Class representing an application on a smartcard or similar hardware token. */
 class Card
 {
@@ -53,6 +61,8 @@ public:
 
     virtual bool operator==(const Card &other) const;
     bool operator!=(const Card &other) const;
+
+    AppType appType() const;
 
     void setStatus(Status s);
     Status status() const;
@@ -109,6 +119,7 @@ public:
     std::string keyFingerprint(const std::string &keyRef) const;
 
 protected:
+    void setAppType(AppType app);
     void setAppName(const std::string &name);
     void setDisplayAppName(const QString &displayAppName);
     void setInitialKeyInfos(const std::vector<KeyPairInfo> &infos);
@@ -123,6 +134,7 @@ private:
 
 private:
     bool mHasNullPin = false;
+    AppType mAppType = AppType::NoApp;
     Status mStatus = NoCard;
     std::string mSerialNumber;
     QString mDisplaySerialNumber;

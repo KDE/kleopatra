@@ -43,6 +43,7 @@ const std::string OpenPGPCard::AppName = "openpgp";
 OpenPGPCard::OpenPGPCard(const Card &card)
     : Card(card)
 {
+    setAppType(AppType::OpenPGPApp);
     setAppName(AppName);
     setDisplayAppName(QStringLiteral("OpenPGP"));
     setInitialKeyInfos(OpenPGPCard::supportedKeys());

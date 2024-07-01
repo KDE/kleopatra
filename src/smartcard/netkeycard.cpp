@@ -32,6 +32,7 @@ const std::string NetKeyCard::AppName = "nks";
 NetKeyCard::NetKeyCard(const Card &card)
     : Card(card)
 {
+    setAppType(AppType::NetKeyApp);
     setAppName(AppName);
     setDisplayAppName(QStringLiteral("NetKey"));
 }
