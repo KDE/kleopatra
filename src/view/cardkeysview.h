@@ -39,7 +39,7 @@ public:
     explicit CardKeysView(QWidget *parent = nullptr);
     ~CardKeysView() override;
 
-    void setCard(const SmartCard::Card *card, const std::string &app);
+    void setCard(const SmartCard::Card *card);
 
 private:
     void loadCertificates();

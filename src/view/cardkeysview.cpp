@@ -90,10 +90,10 @@ CardKeysView::CardKeysView(QWidget *parent)
 
 CardKeysView::~CardKeysView() = default;
 
-void CardKeysView::setCard(const Card *card, const std::string &app)
+void CardKeysView::setCard(const Card *card)
 {
     mSerialNumber = card->serialNumber();
-    mAppName = app;
+    mAppName = card->appName();
 
     loadCertificates();
     if (mCertificates.size() != card->keyInfos().size()) {

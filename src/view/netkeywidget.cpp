@@ -200,7 +200,7 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
         mCreateCSRButton->setEnabled(!getKeysSuitableForCSRCreation(card).empty());
     }
 
-    mCardKeysView->setCard(card, NetKeyCard::AppName);
+    mCardKeysView->setCard(card);
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

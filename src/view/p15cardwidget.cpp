@@ -181,5 +181,5 @@ void P15CardWidget::setCard(const P15Card *card)
         return;
     }
     mCardKeysView->setVisible(true);
-    mCardKeysView->setCard(card, P15Card::AppName);
+    mCardKeysView->setCard(card);
 }
