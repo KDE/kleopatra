@@ -413,7 +413,9 @@ void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> 
         item->setData(Private::KeyID, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.keyID()));
         item->setData(Private::KeyID, Kleo::ClipboardRole, QString::fromLatin1(cert.keyID()));
 
-        if (origin == GpgME::Key::OriginKS) {
+        if (cert.protocol() == Protocol::CMS) {
+            item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
+        } else if (origin == GpgME::Key::OriginKS) {
             if (keyserver().startsWith(QStringLiteral("ldap:")) || keyserver().startsWith(QStringLiteral("ldaps:"))) {
                 item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
             } else {
