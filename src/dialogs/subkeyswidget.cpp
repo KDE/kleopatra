@@ -112,7 +112,7 @@ public:
             menu->addAction(ui.exportSecretAction);
             menu->addAction(ui.restoreAction);
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
-            if (engineIsVersion(2, 5, 0)) {
+            if (engineIsVersion(2, 4, 6)) {
                 menu->addAction(ui.addAdskAction);
             }
 #endif
