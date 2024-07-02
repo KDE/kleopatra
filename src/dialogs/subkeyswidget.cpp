@@ -25,6 +25,7 @@
 
 #include <kleopatra_debug.h>
 
+#include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
@@ -43,6 +44,9 @@
 #include <QPushButton>
 #include <QTreeWidgetItem>
 #include <QVBoxLayout>
+
+#include <QGpgME/CryptoConfig>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
@@ -433,7 +437,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
     d->ui.transferToSmartcardAction->setVisible(key.hasSecret());
     d->ui.addSubkeyAction->setVisible(key.hasSecret());
     d->ui.restoreAction->setVisible(true);
-    d->ui.addAdskAction->setVisible(key.protocol() == GpgME::OpenPGP && key.hasSecret());
+    const auto adskConfig = getCryptoConfigEntry(QGpgME::cryptoConfig(), "gpg", "default-new-key-adsk");
+    d->ui.addAdskAction->setVisible(key.protocol() == GpgME::OpenPGP && key.hasSecret() && adskConfig && adskConfig->isSet());
 
     d->ui.exportOpenSSHAction->setEnabled(false);
     d->ui.exportOpenSSHBtn->setVisible(!key.hasSecret());
