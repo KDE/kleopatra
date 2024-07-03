@@ -63,8 +63,6 @@ private:
     void setAdminKey();
 
 private:
-    QLabel *mSerialNumberLabel = nullptr;
-    QLabel *mVersionLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
     std::map<std::string, KeyWidgets> mKeyWidgets;
 };

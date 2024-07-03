@@ -36,8 +36,6 @@ private:
     void searchPGPFpr(const std::string &fpr);
 
 private:
-    QLabel *mVersionLabel = nullptr;
-    QLabel *mSerialNumberLabel = nullptr;
     QLabel *mStatusLabel = nullptr;
     QWidget *mOpenPGPKeysSection = nullptr;
     OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;

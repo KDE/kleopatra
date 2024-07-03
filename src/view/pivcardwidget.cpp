@@ -31,11 +31,9 @@
 #include <KLocalizedString>
 #include <KSeparator>
 
-#include <QFrame>
 #include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QScrollArea>
 #include <QVBoxLayout>
 
 using namespace GpgME;
@@ -85,51 +83,18 @@ static int toolTipOptions()
 PIVCardWidget::PIVCardWidget(QWidget *parent)
     : SmartCardWidget(parent)
 {
-    // Set up the scroll area
-    auto myLayout = new QVBoxLayout(this);
-    myLayout->setContentsMargins(0, 0, 0, 0);
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
-    auto area = new QScrollArea;
-    area->setFocusPolicy(Qt::NoFocus);
-    area->setFrameShape(QFrame::NoFrame);
-    area->setWidgetResizable(true);
-    myLayout->addWidget(area);
-
-    auto areaWidget = new QWidget;
-    area->setWidget(areaWidget);
-
-    auto areaVLay = new QVBoxLayout(areaWidget);
-
-    auto cardInfoGrid = new QGridLayout;
-    {
-        int row = 0;
-
-        // Version and Serialnumber
-        mVersionLabel = new QLabel{this};
-        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
-
-        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        mSerialNumberLabel = new QLabel{this};
-        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mSerialNumberLabel, row++, 1);
-
-        cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
-    }
-    areaVLay->addLayout(cardInfoGrid);
-
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
-
-    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:")), this));
+    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:")), this));
 
     auto keysGrid = new QGridLayout;
     for (const auto &keyInfo : PIVCard::supportedKeys()) {
         KeyWidgets keyWidgets = createKeyWidgets(keyInfo);
         layoutKeyWidgets(keysGrid, PIVCard::keyDisplayName(keyInfo.keyRef), keyWidgets);
     }
-    areaVLay->addLayout(keysGrid);
+    mContentLayout->addLayout(keysGrid);
 
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
     auto actionLayout = new QHBoxLayout;
 
@@ -172,9 +137,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
     }
 
     actionLayout->addStretch(-1);
-    areaVLay->addLayout(actionLayout);
+    mContentLayout->addLayout(actionLayout);
 
-    areaVLay->addStretch(1);
+    mContentLayout->addStretch(1);
 }
 
 PIVCardWidget::KeyWidgets PIVCardWidget::createKeyWidgets(const KeyPairInfo &keyInfo)
@@ -230,11 +195,7 @@ PIVCardWidget::~PIVCardWidget()
 
 void PIVCardWidget::setCard(const PIVCard *card)
 {
-    mSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("%1 version number", "PIV v%1 card", card->displayAppVersion()));
-
-    mSerialNumberLabel->setText(card->displaySerialNumber());
-    mSerialNumberLabel->setToolTip(QString::fromStdString(card->serialNumber()));
+    SmartCardWidget::setCard(card);
 
     if (card) {
         updateCachedValues(PIVCard::pivAuthenticationKeyRef(), card);

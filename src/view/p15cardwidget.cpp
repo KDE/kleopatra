@@ -19,10 +19,8 @@
 #include "smartcard/p15card.h"
 #include "smartcard/readerstatus.h"
 
-#include <QGridLayout>
 #include <QLabel>
 #include <QPushButton>
-#include <QScrollArea>
 #include <QStringList>
 #include <QVBoxLayout>
 
@@ -50,43 +48,11 @@ using namespace Kleo::SmartCard;
 P15CardWidget::P15CardWidget(QWidget *parent)
     : SmartCardWidget{parent}
 {
-    // Set up the scroll area
-    auto myLayout = new QVBoxLayout(this);
-    myLayout->setContentsMargins(0, 0, 0, 0);
-
-    auto area = new QScrollArea;
-    area->setFocusPolicy(Qt::NoFocus);
-    area->setFrameShape(QFrame::NoFrame);
-    area->setWidgetResizable(true);
-    myLayout->addWidget(area);
-
-    auto areaWidget = new QWidget;
-    area->setWidget(areaWidget);
-
-    auto areaVLay = new QVBoxLayout(areaWidget);
-
-    auto cardInfoGrid = new QGridLayout;
-    {
-        int row = 0;
-
-        // Version and Serialnumber
-        mVersionLabel = new QLabel{this};
-        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
-        cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
-
-        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        mSerialNumberLabel = new QLabel{this};
-        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
-        cardInfoGrid->addWidget(mSerialNumberLabel, row++, 1);
-
-        cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
-    }
-    areaVLay->addLayout(cardInfoGrid);
     mStatusLabel = new QLabel{this};
     mStatusLabel->setVisible(false);
-    areaVLay->addWidget(mStatusLabel);
+    mContentLayout->addWidget(mStatusLabel);
 
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
     mOpenPGPKeysSection = new QWidget{this};
     {
@@ -99,13 +65,13 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         l->addWidget(new KSeparator(Qt::Horizontal));
     }
     mOpenPGPKeysSection->setVisible(false);
-    areaVLay->addWidget(mOpenPGPKeysSection);
+    mContentLayout->addWidget(mOpenPGPKeysSection);
 
     mCardKeysView = new CardKeysView{this};
     mCardKeysView->setVisible(false);
-    areaVLay->addWidget(mCardKeysView);
+    mContentLayout->addWidget(mCardKeysView);
 
-    areaVLay->addStretch(1);
+    mContentLayout->addStretch(1);
 }
 
 P15CardWidget::~P15CardWidget() = default;
@@ -149,10 +115,7 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
 
 void P15CardWidget::setCard(const P15Card *card)
 {
-    mSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card", QString::fromStdString(card->manufacturer())));
-    mSerialNumberLabel->setText(card->displaySerialNumber());
-    mSerialNumberLabel->setToolTip(QString::fromStdString(card->serialNumber()));
+    SmartCardWidget::setCard(card);
 
     const auto sigInfo = card->keyInfo(card->signingKeyRef());
     if (!sigInfo.grip.empty()) {

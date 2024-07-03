@@ -36,7 +36,6 @@
 #include <QInputDialog>
 #include <QLabel>
 #include <QPushButton>
-#include <QScrollArea>
 #include <QVBoxLayout>
 
 #include <gpgme++/engineinfo.h>
@@ -48,52 +47,21 @@ using namespace Kleo::Commands;
 NetKeyWidget::NetKeyWidget(QWidget *parent)
     : SmartCardWidget(parent)
 {
-    auto vLay = new QVBoxLayout;
-
-    // Set up the scroll are
-    mArea = new QScrollArea{this};
-    mArea->setFocusPolicy(Qt::NoFocus);
-    mArea->setFrameShape(QFrame::NoFrame);
-    mArea->setWidgetResizable(true);
-    auto mAreaWidget = new QWidget;
-    mAreaWidget->setLayout(vLay);
-    mArea->setWidget(mAreaWidget);
-    auto scrollLay = new QVBoxLayout(this);
-    scrollLay->setContentsMargins(0, 0, 0, 0);
-    scrollLay->addWidget(mArea);
-
-    // Add general widgets
-    mVersionLabel = new QLabel{this};
-    mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-    vLay->addWidget(mVersionLabel, 0, Qt::AlignLeft);
-
-    {
-        auto hLay1 = new QHBoxLayout;
-        auto label = new QLabel(i18nc("@label", "Serial number:"));
-        mSerialNumberLabel = new QLabel{this};
-        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        label->setBuddy(mSerialNumberLabel);
-        hLay1->addWidget(label);
-        hLay1->addWidget(mSerialNumberLabel);
-        hLay1->addStretch(1);
-        vLay->addLayout(hLay1);
-    }
-
     mNullPinWidget = new NullPinWidget{this};
-    vLay->addWidget(mNullPinWidget);
+    mContentLayout->addWidget(mNullPinWidget);
 
     mErrorLabel = new QLabel{this};
     mErrorLabel->setVisible(false);
-    vLay->addWidget(mErrorLabel);
+    mContentLayout->addWidget(mErrorLabel);
 
-    vLay->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
     mCardKeysView = new CardKeysView{this};
-    vLay->addWidget(mCardKeysView);
+    mContentLayout->addWidget(mCardKeysView);
 
     // The action area
-    vLay->addWidget(new KSeparator(Qt::Horizontal));
-    vLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), 0, Qt::AlignLeft);
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), 0, Qt::AlignLeft);
 
     auto actionLayout = new QHBoxLayout();
 
@@ -132,8 +100,8 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     actionLayout->addWidget(mChangeSigGPINBtn);
     actionLayout->addStretch(1);
 
-    vLay->addLayout(actionLayout);
-    vLay->addStretch(1);
+    mContentLayout->addLayout(actionLayout);
+    mContentLayout->addStretch(1);
 }
 
 NetKeyWidget::~NetKeyWidget() = default;
@@ -164,9 +132,7 @@ std::vector<KeyPairInfo> getKeysSuitableForCSRCreation(const NetKeyCard *netKeyC
 
 void NetKeyWidget::setCard(const NetKeyCard *card)
 {
-    mSerialNumber = card->serialNumber();
-    mVersionLabel->setText(i18nc("1 is a Version number", "NetKey v%1 Card", card->appVersion()));
-    mSerialNumberLabel->setText(card->displaySerialNumber());
+    SmartCardWidget::setCard(card);
 
     mNullPinWidget->setSerialNumber(mSerialNumber);
     /* According to users of NetKey Cards it is fairly uncommon

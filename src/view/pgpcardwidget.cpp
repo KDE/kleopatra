@@ -40,7 +40,6 @@
 #include <QLabel>
 #include <QProgressDialog>
 #include <QPushButton>
-#include <QScrollArea>
 #include <QThread>
 #include <QVBoxLayout>
 
@@ -143,87 +142,59 @@ private:
 PGPCardWidget::PGPCardWidget(QWidget *parent)
     : SmartCardWidget(parent)
 {
-    // Set up the scroll area
-    auto myLayout = new QVBoxLayout(this);
-    myLayout->setContentsMargins(0, 0, 0, 0);
-
-    auto area = new QScrollArea;
-    area->setFocusPolicy(Qt::NoFocus);
-    area->setFrameShape(QFrame::NoFrame);
-    area->setWidgetResizable(true);
-    myLayout->addWidget(area);
-
-    auto areaWidget = new QWidget;
-    area->setWidget(areaWidget);
-
-    auto areaVLay = new QVBoxLayout(areaWidget);
-
-    auto cardInfoGrid = new QGridLayout;
     {
-        int row = 0;
-
-        // Version and Serialnumber
-        mVersionLabel = new QLabel{this};
-        mVersionLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mVersionLabel, row, 0, 1, 2);
-        row++;
-
-        cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        mSerialNumberLabel = new QLabel{this};
-        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mSerialNumberLabel, row, 1);
-        row++;
+        mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount() - 1, 0); // undo stretch set by base widget
+        int row = mInfoGridLayout->rowCount();
 
         // Cardholder Row
-        cardInfoGrid->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:")), row, 0);
+        mInfoGridLayout->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:")), row, 0);
         mCardHolderLabel = new QLabel{this};
         mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mCardHolderLabel, row, 1);
+        mInfoGridLayout->addWidget(mCardHolderLabel, row, 1);
         {
             auto button = new QPushButton{this};
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
             button->setToolTip(i18n("Change"));
-            cardInfoGrid->addWidget(button, row, 2);
+            mInfoGridLayout->addWidget(button, row, 2);
             connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
         }
         row++;
 
         // URL Row
-        cardInfoGrid->addWidget(new QLabel(i18nc("The URL under which a public key that "
-                                                 "corresponds to a smartcard can be downloaded",
-                                                 "Pubkey URL:")),
-                                row,
-                                0);
+        mInfoGridLayout->addWidget(new QLabel(i18nc("The URL under which a public key that "
+                                                    "corresponds to a smartcard can be downloaded",
+                                                    "Pubkey URL:")),
+                                   row,
+                                   0);
         mUrlLabel = new QLabel{this};
         mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mUrlLabel, row, 1);
+        mInfoGridLayout->addWidget(mUrlLabel, row, 1);
         {
             auto button = new QPushButton{this};
             button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
             button->setAccessibleName(i18nc("@action:button", "Edit"));
             button->setToolTip(i18n("Change"));
-            cardInfoGrid->addWidget(button, row, 2);
+            mInfoGridLayout->addWidget(button, row, 2);
             connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
         }
 
-        cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
+        mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount(), 1);
     }
-    areaVLay->addLayout(cardInfoGrid);
 
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
     // The keys
-    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
+    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
 
     mKeysWidget = new OpenPGPKeyCardWidget{this};
-    areaVLay->addWidget(mKeysWidget);
+    mContentLayout->addWidget(mKeysWidget);
     connect(mKeysWidget, &OpenPGPKeyCardWidget::createCSRRequested, this, &PGPCardWidget::createCSR);
     connect(mKeysWidget, &OpenPGPKeyCardWidget::generateKeyRequested, this, &PGPCardWidget::generateKey);
 
-    areaVLay->addWidget(new KSeparator(Qt::Horizontal));
+    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
 
-    areaVLay->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))));
+    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))));
 
     auto actionLayout = new QHBoxLayout;
 
@@ -278,24 +249,16 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     }
 
     actionLayout->addStretch(-1);
-    areaVLay->addLayout(actionLayout);
+    mContentLayout->addLayout(actionLayout);
 
-    areaVLay->addStretch(1);
+    mContentLayout->addStretch(1);
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
-    const QString version = card->displayAppVersion();
+    SmartCardWidget::setCard(card);
 
     mIs21 = card->appVersion() >= 0x0201;
-    const QString manufacturer = QString::fromStdString(card->manufacturer());
-    const bool manufacturerIsUnknown = manufacturer.isEmpty() || manufacturer == QLatin1String("unknown");
-    mVersionLabel->setText(
-        manufacturerIsUnknown
-            ? i18nc("Placeholder is a version number", "Unknown OpenPGP v%1 card", version)
-            : i18nc("First placeholder is manufacturer, second placeholder is a version number", "%1 OpenPGP v%2 card", manufacturer, version));
-    mSerialNumberLabel->setText(card->displaySerialNumber());
-    mSerialNumber = card->serialNumber();
 
     const auto holder = card->cardHolder();
     const auto url = QString::fromStdString(card->pubkeyUrl());

@@ -19,7 +19,6 @@
 
 class QLabel;
 class QPushButton;
-class QScrollArea;
 
 namespace Kleo
 {
@@ -46,8 +45,6 @@ private:
     void createCSR();
 
 private:
-    QLabel *mSerialNumberLabel = nullptr;
-    QLabel *mVersionLabel = nullptr;
     QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
@@ -55,6 +52,5 @@ private:
     QPushButton *mChangeNKSPINBtn = nullptr;
     QPushButton *mChangeSigGPINBtn = nullptr;
     CardKeysView *mCardKeysView = nullptr;
-    QScrollArea *mArea = nullptr;
 };
 } // namespace Kleo
