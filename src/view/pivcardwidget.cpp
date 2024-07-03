@@ -83,7 +83,7 @@ static int toolTipOptions()
 }
 
 PIVCardWidget::PIVCardWidget(QWidget *parent)
-    : QWidget(parent)
+    : SmartCardWidget(parent)
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -110,9 +110,9 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
         cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
 
         cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        mSerialNumber = new QLabel{this};
-        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
+        mSerialNumberLabel = new QLabel{this};
+        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        cardInfoGrid->addWidget(mSerialNumberLabel, row++, 1);
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
@@ -230,11 +230,11 @@ PIVCardWidget::~PIVCardWidget()
 
 void PIVCardWidget::setCard(const PIVCard *card)
 {
-    mCardSerialNumber = card->serialNumber();
+    mSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("%1 version number", "PIV v%1 card", card->displayAppVersion()));
 
-    mSerialNumber->setText(card->displaySerialNumber());
-    mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
+    mSerialNumberLabel->setText(card->displaySerialNumber());
+    mSerialNumberLabel->setToolTip(QString::fromStdString(card->serialNumber()));
 
     if (card) {
         updateCachedValues(PIVCard::pivAuthenticationKeyRef(), card);
@@ -310,7 +310,7 @@ void PIVCardWidget::updateKeyWidgets(const std::string &keyRef)
 
 void PIVCardWidget::generateKey(const std::string &keyref)
 {
-    auto cmd = new PIVGenerateCardKeyCommand(mCardSerialNumber, this);
+    auto cmd = new PIVGenerateCardKeyCommand(mSerialNumber, this);
     this->setEnabled(false);
     connect(cmd, &PIVGenerateCardKeyCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -321,7 +321,7 @@ void PIVCardWidget::generateKey(const std::string &keyref)
 
 void PIVCardWidget::createCSR(const std::string &keyref)
 {
-    auto cmd = new CreateCSRForCardKeyCommand(keyref, mCardSerialNumber, PIVCard::AppName, this);
+    auto cmd = new CreateCSRForCardKeyCommand(keyref, mSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -331,7 +331,7 @@ void PIVCardWidget::createCSR(const std::string &keyref)
 
 void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
 {
-    auto cmd = new CertificateToPIVCardCommand(keyref, mCardSerialNumber);
+    auto cmd = new CertificateToPIVCardCommand(keyref, mSerialNumber);
     this->setEnabled(false);
     connect(cmd, &CertificateToPIVCardCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -342,7 +342,7 @@ void PIVCardWidget::writeCertificateToCard(const std::string &keyref)
 
 void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
 {
-    auto cmd = new ImportCertificateFromPIVCardCommand(keyref, mCardSerialNumber);
+    auto cmd = new ImportCertificateFromPIVCardCommand(keyref, mSerialNumber);
     this->setEnabled(false);
     connect(cmd, &ImportCertificateFromPIVCardCommand::finished, this, [this, keyref]() {
         this->updateKeyWidgets(keyref);
@@ -354,7 +354,7 @@ void PIVCardWidget::importCertificateFromCard(const std::string &keyref)
 
 void PIVCardWidget::writeKeyToCard(const std::string &keyref)
 {
-    auto cmd = new KeyToCardCommand(keyref, mCardSerialNumber, PIVCard::AppName);
+    auto cmd = new KeyToCardCommand(keyref, mSerialNumber, PIVCard::AppName);
     this->setEnabled(false);
     connect(cmd, &KeyToCardCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -365,7 +365,7 @@ void PIVCardWidget::writeKeyToCard(const std::string &keyref)
 
 void PIVCardWidget::createKeyFromCardKeys()
 {
-    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mCardSerialNumber, PIVCard::AppName, this);
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -375,7 +375,7 @@ void PIVCardWidget::createKeyFromCardKeys()
 
 void PIVCardWidget::changePin(const std::string &keyRef)
 {
-    auto cmd = new ChangePinCommand(mCardSerialNumber, PIVCard::AppName, this);
+    auto cmd = new ChangePinCommand(mSerialNumber, PIVCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -386,7 +386,7 @@ void PIVCardWidget::changePin(const std::string &keyRef)
 
 void PIVCardWidget::setAdminKey()
 {
-    auto cmd = new SetPIVCardApplicationAdministrationKeyCommand(mCardSerialNumber, this);
+    auto cmd = new SetPIVCardApplicationAdministrationKeyCommand(mSerialNumber, this);
     this->setEnabled(false);
     connect(cmd, &SetPIVCardApplicationAdministrationKeyCommand::finished, this, [this]() {
         this->setEnabled(true);

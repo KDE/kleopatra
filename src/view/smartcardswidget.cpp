@@ -22,6 +22,7 @@
 #include "view/p15cardwidget.h"
 #include "view/pgpcardwidget.h"
 #include "view/pivcardwidget.h"
+#include "view/smartcardwidget.h"
 
 #include "kleopatra_debug.h"
 
@@ -106,7 +107,7 @@ private:
 
 private:
     SmartCardsWidget *const q;
-    QMap<std::pair<std::string, std::string>, QPointer<QWidget>> mCardWidgets;
+    QMap<std::pair<std::string, std::string>, QPointer<SmartCardWidget>> mCardWidgets;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
     QTabWidget *mTabWidget;

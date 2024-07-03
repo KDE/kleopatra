@@ -9,7 +9,7 @@
 */
 #pragma once
 
-#include <QWidget>
+#include "smartcardwidget.h"
 
 class QLabel;
 
@@ -23,7 +23,7 @@ namespace SmartCard
 class P15Card;
 }
 
-class P15CardWidget : public QWidget
+class P15CardWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
@@ -36,10 +36,8 @@ private:
     void searchPGPFpr(const std::string &fpr);
 
 private:
-    std::string mCardSerialNumber;
-
     QLabel *mVersionLabel = nullptr;
-    QLabel *mSerialNumber = nullptr;
+    QLabel *mSerialNumberLabel = nullptr;
     QLabel *mStatusLabel = nullptr;
     QWidget *mOpenPGPKeysSection = nullptr;
     OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;

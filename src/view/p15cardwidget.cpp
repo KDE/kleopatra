@@ -48,7 +48,7 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
-    : QWidget{parent}
+    : SmartCardWidget{parent}
 {
     // Set up the scroll area
     auto myLayout = new QVBoxLayout(this);
@@ -75,9 +75,9 @@ P15CardWidget::P15CardWidget(QWidget *parent)
         cardInfoGrid->addWidget(mVersionLabel, row++, 0, 1, 2);
 
         cardInfoGrid->addWidget(new QLabel(i18n("Serial number:")), row, 0);
-        mSerialNumber = new QLabel{this};
-        mSerialNumber->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
-        cardInfoGrid->addWidget(mSerialNumber, row++, 1);
+        mSerialNumberLabel = new QLabel{this};
+        mSerialNumberLabel->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
+        cardInfoGrid->addWidget(mSerialNumberLabel, row++, 1);
 
         cardInfoGrid->setColumnStretch(cardInfoGrid->columnCount(), 1);
     }
@@ -149,10 +149,10 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
 
 void P15CardWidget::setCard(const P15Card *card)
 {
-    mCardSerialNumber = card->serialNumber();
+    mSerialNumber = card->serialNumber();
     mVersionLabel->setText(i18nc("%1 is a smartcard manufacturer", "%1 PKCS#15 card", QString::fromStdString(card->manufacturer())));
-    mSerialNumber->setText(card->displaySerialNumber());
-    mSerialNumber->setToolTip(QString::fromStdString(card->serialNumber()));
+    mSerialNumberLabel->setText(card->displaySerialNumber());
+    mSerialNumberLabel->setToolTip(QString::fromStdString(card->serialNumber()));
 
     const auto sigInfo = card->keyInfo(card->signingKeyRef());
     if (!sigInfo.grip.empty()) {

@@ -8,10 +8,11 @@
 */
 #pragma once
 
+#include "smartcardwidget.h"
+
 #include <smartcard/keypairinfo.h>
 
 #include <QMap>
-#include <QWidget>
 
 #include <gpgme++/error.h>
 
@@ -26,7 +27,7 @@ namespace SmartCard
 class PIVCard;
 } // namespace SmartCard
 
-class PIVCardWidget : public QWidget
+class PIVCardWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
@@ -62,8 +63,7 @@ private:
     void setAdminKey();
 
 private:
-    std::string mCardSerialNumber;
-    QLabel *mSerialNumber = nullptr;
+    QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
     std::map<std::string, KeyWidgets> mKeyWidgets;

@@ -46,7 +46,7 @@ using namespace Kleo::SmartCard;
 using namespace Kleo::Commands;
 
 NetKeyWidget::NetKeyWidget(QWidget *parent)
-    : QWidget(parent)
+    : SmartCardWidget(parent)
 {
     auto vLay = new QVBoxLayout;
 

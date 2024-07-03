@@ -526,6 +526,8 @@ set(_kleopatra_SRCS
   view/searchbar.h
   view/smartcardswidget.cpp
   view/smartcardswidget.h
+  view/smartcardwidget.cpp
+  view/smartcardwidget.h
   view/tabwidget.cpp
   view/tabwidget.h
   view/textoverlay.cpp

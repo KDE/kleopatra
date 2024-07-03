@@ -7,9 +7,9 @@
 */
 #pragma once
 
-#include <Libkleo/Predicates>
+#include "smartcardwidget.h"
 
-#include <QWidget>
+#include <Libkleo/Predicates>
 
 #include <gpgme++/error.h>
 
@@ -31,7 +31,7 @@ namespace SmartCard
 class NetKeyCard;
 }
 
-class NetKeyWidget : public QWidget
+class NetKeyWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
@@ -46,8 +46,6 @@ private:
     void createCSR();
 
 private:
-    std::string mSerialNumber;
-
     QLabel *mSerialNumberLabel = nullptr;
     QLabel *mVersionLabel = nullptr;
     QLabel *mErrorLabel = nullptr;
