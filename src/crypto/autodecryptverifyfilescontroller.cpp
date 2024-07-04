@@ -86,6 +86,7 @@ public:
         q->emitDoneOrError();
     }
     void cancelAllTasks();
+    void onDialogFinished(int result);
 
     QStringList m_passedFiles, m_filesAfterPreparation;
     std::vector<std::shared_ptr<const DecryptVerifyResult>> m_results;
@@ -166,132 +167,16 @@ void AutoDecryptVerifyFilesController::Private::exec()
         q->connectTask(i);
     }
     coll->setTasks(m_runnableTasks);
-    DecryptVerifyFilesDialog dialog{coll};
-    m_dialog = &dialog;
+    m_dialog = new DecryptVerifyFilesDialog(coll);
+    m_dialog->setAttribute(Qt::WA_DeleteOnClose);
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
     q->applyWindowID(m_dialog);
 
+    m_dialog->show();
     QTimer::singleShot(0, q, SLOT(schedule()));
-    const auto result = m_dialog->exec();
-    if (result == QDialog::Rejected) {
-        q->cancel();
-    } else if (result == QDialog::Accepted && m_workDir) {
-        // Without workdir there is nothing to move.
-        const QDir workdir(m_workDir->path());
-        const QDir outDir(m_dialog->outputLocation());
-        qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        const auto filesAndFoldersToMove = workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-        const auto fileCount = Kleo::count_if(filesAndFoldersToMove, [](const auto &fi) {
-            return !fi.isDir();
-        });
-        OverwritePolicy overwritePolicy{m_dialog, fileCount > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{}};
-        for (const QFileInfo &fi : filesAndFoldersToMove) {
-            const auto inpath = fi.absoluteFilePath();
-
-            if (fi.isDir()) {
-                // A directory. Assume that the input was an archive
-                // and avoid directory merges by trying to find a non
-                // existing directory.
-                auto candidate = fi.fileName();
-                if (candidate.startsWith(QLatin1Char('-'))) {
-                    // Bug in GpgTar Extracts stdout passed archives to a dir named -
-                    candidate = QFileInfo(m_passedFiles.first()).baseName();
-                }
-
-                QString suffix;
-                QFileInfo ofi;
-                int i = 0;
-                do {
-                    ofi = QFileInfo(outDir.absoluteFilePath(candidate + suffix));
-                    if (!ofi.exists()) {
-                        break;
-                    }
-                    suffix = QStringLiteral("_%1").arg(++i);
-                } while (i < 1000);
-
-                const auto destPath = ofi.absoluteFilePath();
-#ifndef Q_OS_WIN
-                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(destPath));
-                qCDebug(KLEOPATRA_LOG) << "Moving" << job->srcUrls().front().toLocalFile() << "to" << job->destUrl().toLocalFile();
-                if (!job->exec()) {
-                    if (job->error() == KIO::ERR_USER_CANCELED) {
-                        break;
-                    }
-                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                xi18nc("@info",
-                                       "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
-                                       "<para><message>%3</message></para>",
-                                       inpath,
-                                       destPath,
-                                       job->errorString()));
-                }
-#else
-                // On Windows, KIO::move does not work for folders when crossing partition boundaries
-                if (!moveDir(inpath, destPath)) {
-                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>", inpath, destPath));
-                }
-#endif
-                continue;
-            }
-
-            const auto embeddedFileName = getEmbeddedFileName(inpath);
-            QString outFileName = fi.fileName();
-            if (!embeddedFileName.isEmpty() && embeddedFileName != fi.fileName()) {
-                // we switch "Yes" and "No" because Yes is default, but saving with embedded file name could be dangerous
-                const auto answer = KMessageBox::questionTwoActionsCancel(
-                    m_dialog,
-                    xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
-                    i18n("Use Original File Name?"),
-                    KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
-                    KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
-                if (answer == KMessageBox::Cancel) {
-                    qCDebug(KLEOPATRA_LOG) << "Saving canceled for:" << inpath;
-                    continue;
-                } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
-                    outFileName = embeddedFileName;
-                }
-            }
-            auto outpath = outDir.absoluteFilePath(outFileName);
-            qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
-            const QFileInfo ofi(outpath);
-            if (ofi.exists()) {
-                const auto policyAndPath = overwritePolicy.obtainOverwritePermission(outpath);
-                if (policyAndPath.policy == OverwritePolicy::Cancel) {
-                    qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
-                    break;
-                }
-                switch (policyAndPath.policy) {
-                case OverwritePolicy::Skip:
-                    continue;
-                case OverwritePolicy::Overwrite: {
-                    // overwrite existing file
-                    if (!QFile::remove(outpath)) {
-                        reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
-                        continue;
-                    }
-                    break;
-                }
-                case OverwritePolicy::Rename: {
-                    // use new name for file
-                    outpath = policyAndPath.fileName;
-                    break;
-                }
-                case OverwritePolicy::Cancel:
-                    // already handled outside of switch
-                    break;
-                case OverwritePolicy::None:
-                case OverwritePolicy::Ask:
-                case OverwritePolicy::Append:
-                    qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndPath.policy << "for" << outpath;
-                };
-            }
-            if (!QFile::rename(inpath, outpath)) {
-                reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));
-            }
-        }
-    }
-    q->emitDoneOrError();
+    connect(m_dialog, &QDialog::finished, q, [this](auto result) {
+        onDialogFinished(result);
+    });
 }
 
 QVector<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
@@ -675,4 +560,128 @@ void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::s
 
     QTimer::singleShot(0, this, SLOT(schedule()));
 }
+
+void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
+{
+    if (result == QDialog::Rejected) {
+        q->cancel();
+    } else if (result == QDialog::Accepted && m_workDir) {
+        // Without workdir there is nothing to move.
+        const QDir workdir(m_workDir->path());
+        const QDir outDir(m_dialog->outputLocation());
+        qCDebug(KLEOPATRA_LOG) << workdir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+        const auto filesAndFoldersToMove = workdir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
+        const auto fileCount = Kleo::count_if(filesAndFoldersToMove, [](const auto &fi) {
+            return !fi.isDir();
+        });
+        OverwritePolicy overwritePolicy{m_dialog, fileCount > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{}};
+        for (const QFileInfo &fi : filesAndFoldersToMove) {
+            const auto inpath = fi.absoluteFilePath();
+
+            if (fi.isDir()) {
+                // A directory. Assume that the input was an archive
+                // and avoid directory merges by trying to find a non
+                // existing directory.
+                auto candidate = fi.fileName();
+                if (candidate.startsWith(QLatin1Char('-'))) {
+                    // Bug in GpgTar Extracts stdout passed archives to a dir named -
+                    candidate = QFileInfo(m_passedFiles.first()).baseName();
+                }
+
+                QString suffix;
+                QFileInfo ofi;
+                int i = 0;
+                do {
+                    ofi = QFileInfo(outDir.absoluteFilePath(candidate + suffix));
+                    if (!ofi.exists()) {
+                        break;
+                    }
+                    suffix = QStringLiteral("_%1").arg(++i);
+                } while (i < 1000);
+
+                const auto destPath = ofi.absoluteFilePath();
+#ifndef Q_OS_WIN
+                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(destPath));
+                qCDebug(KLEOPATRA_LOG) << "Moving" << job->srcUrls().front().toLocalFile() << "to" << job->destUrl().toLocalFile();
+                if (!job->exec()) {
+                    if (job->error() == KIO::ERR_USER_CANCELED) {
+                        break;
+                    }
+                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                                xi18nc("@info",
+                                       "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
+                                       "<para><message>%3</message></para>",
+                                       inpath,
+                                       destPath,
+                                       job->errorString()));
+                }
+#else
+                // On Windows, KIO::move does not work for folders when crossing partition boundaries
+                if (!moveDir(inpath, destPath)) {
+                    reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>", inpath, destPath));
+                }
+#endif
+                continue;
+            }
+
+            const auto embeddedFileName = getEmbeddedFileName(inpath);
+            QString outFileName = fi.fileName();
+            if (!embeddedFileName.isEmpty() && embeddedFileName != fi.fileName()) {
+                // we switch "Yes" and "No" because Yes is default, but saving with embedded file name could be dangerous
+                const auto answer = KMessageBox::questionTwoActionsCancel(
+                    m_dialog,
+                    xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
+                    i18n("Use Original File Name?"),
+                    KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
+                    KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
+                if (answer == KMessageBox::Cancel) {
+                    qCDebug(KLEOPATRA_LOG) << "Saving canceled for:" << inpath;
+                    continue;
+                } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
+                    outFileName = embeddedFileName;
+                }
+            }
+            auto outpath = outDir.absoluteFilePath(outFileName);
+            qCDebug(KLEOPATRA_LOG) << "Moving " << inpath << " to " << outpath;
+            const QFileInfo ofi(outpath);
+            if (ofi.exists()) {
+                const auto policyAndPath = overwritePolicy.obtainOverwritePermission(outpath);
+                if (policyAndPath.policy == OverwritePolicy::Cancel) {
+                    qCDebug(KLEOPATRA_LOG) << "Overwriting canceled for: " << outpath;
+                    break;
+                }
+                switch (policyAndPath.policy) {
+                case OverwritePolicy::Skip:
+                    continue;
+                case OverwritePolicy::Overwrite: {
+                    // overwrite existing file
+                    if (!QFile::remove(outpath)) {
+                        reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
+                        continue;
+                    }
+                    break;
+                }
+                case OverwritePolicy::Rename: {
+                    // use new name for file
+                    outpath = policyAndPath.fileName;
+                    break;
+                }
+                case OverwritePolicy::Cancel:
+                    // already handled outside of switch
+                    break;
+                case OverwritePolicy::None:
+                case OverwritePolicy::Ask:
+                case OverwritePolicy::Append:
+                    qCDebug(KLEOPATRA_LOG) << "Unexpected OverwritePolicy result" << policyAndPath.policy << "for" << outpath;
+                };
+            }
+            if (!QFile::rename(inpath, outpath)) {
+                reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));
+            }
+        }
+    }
+    q->emitDoneOrError();
+}
+
 #include "moc_autodecryptverifyfilescontroller.cpp"
