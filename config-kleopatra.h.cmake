@@ -1,12 +1,6 @@
 /* DBus available */
 #cmakedefine01 HAVE_QDBUS
 
-/* Whether the archive jobs allow setting an output filename instead of passing an output IO device */
-#cmakedefine01 QGPGME_ARCHIVE_JOBS_SUPPORT_OUTPUT_FILENAME
-
-/* Whether the archive jobs allow setting an input filename instead of passing an input IO device */
-#cmakedefine01 QGPGME_ARCHIVE_JOBS_SUPPORT_INPUT_FILENAME
-
 /* Whether QGpgMe supports isMime on an decryptionResult */
 #cmakedefine01 QGPGME_SUPPORTS_IS_MIME
 
