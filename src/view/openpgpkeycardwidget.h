@@ -48,7 +48,6 @@ private:
     class Private;
     std::unique_ptr<Private> d;
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(OpenPGPKeyCardWidget::Actions)
-
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::OpenPGPKeyCardWidget::Actions)

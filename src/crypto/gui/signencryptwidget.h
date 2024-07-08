@@ -127,7 +127,6 @@ private:
     class Private;
     const std::unique_ptr<Private> d;
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(SignEncryptWidget::Operations)
-
 } // namespace Kleo
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::SignEncryptWidget::Operations)

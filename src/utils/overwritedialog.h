@@ -76,7 +76,6 @@ private:
     class Private;
     std::unique_ptr<Private> const d;
 };
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(OverwriteDialog::Options)
-
 }
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::OverwriteDialog::Options)
