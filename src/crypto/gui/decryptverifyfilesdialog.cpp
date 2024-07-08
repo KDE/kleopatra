@@ -33,7 +33,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
-#include <KWindowConfig>
 #include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo;
@@ -232,26 +231,18 @@ void DecryptVerifyFilesDialog::checkAccept()
 
 void DecryptVerifyFilesDialog::readConfig()
 {
-    winId(); // ensure there's a window created
-
-    // set default window size
-    windowHandle()->resize(640, 480);
-
-    // restore size from config file
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "DecryptVerifyFilesDialog");
-    KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
-
-    // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
-    // window was created -> QTBUG-40584. We therefore copy the size here.
-    // TODO: remove once this was resolved in QWidget QPA
-    resize(windowHandle()->size());
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DecryptVerifyFilesDialog"));
+    const QSize size = dialog.readEntry("Size", QSize(640, 480));
+    if (size.isValid()) {
+        resize(size);
+    }
 }
 
 void DecryptVerifyFilesDialog::writeConfig()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openStateConfig(), "DecryptVerifyFilesDialog");
-    KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
-    cfgGroup.sync();
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("DecryptVerifyFilesDialog"));
+    dialog.writeEntry("Size", size());
+    dialog.sync();
 }
 
 void DecryptVerifyFilesDialog::showContent(const std::shared_ptr<const Task::Result> &result)

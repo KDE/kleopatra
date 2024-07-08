@@ -25,7 +25,6 @@
 #include <KMessageBox>
 #include <KMessageWidget>
 #include <KSharedConfig>
-#include <KWindowConfig>
 
 #include "kleopatra_debug.h"
 #include <Libkleo/Compliance>
@@ -670,26 +669,18 @@ bool SignEncryptFilesWizard::encryptSymmetric() const
 
 void SignEncryptFilesWizard::readConfig()
 {
-    winId(); // ensure there's a window created
-
-    // set default window size
-    windowHandle()->resize(640, 480);
-
-    // restore size from config file
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
-    KWindowConfig::restoreWindowSize(windowHandle(), cfgGroup);
-
-    // NOTICE: QWindow::setGeometry() does NOT impact the backing QWidget geometry even if the platform
-    // window was created -> QTBUG-40584. We therefore copy the size here.
-    // TODO: remove once this was resolved in QWidget QPA
-    resize(windowHandle()->size());
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptFilesWizard"));
+    const QSize size = dialog.readEntry("Size", QSize(640, 480));
+    if (size.isValid()) {
+        resize(size);
+    }
 }
 
 void SignEncryptFilesWizard::writeConfig()
 {
-    KConfigGroup cfgGroup(KSharedConfig::openConfig(), "SignEncryptFilesWizard");
-    KWindowConfig::saveWindowSize(windowHandle(), cfgGroup);
-    cfgGroup.sync();
+    KConfigGroup dialog(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptFilesWizard"));
+    dialog.writeEntry("Size", size());
+    dialog.sync();
 }
 
 #include "signencryptfileswizard.moc"
