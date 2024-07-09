@@ -185,6 +185,7 @@ bool importWasCanceled(const ImportResultData &r)
 
 ImportCertificatesCommand::Private::Private(ImportCertificatesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
+    , certificateListWasEmpty(KeyCache::instance()->keys().empty())
     , progressWindowTitle{i18nc("@title:window", "Importing Certificates")}
     , progressLabelText{i18n("Importing certificates... (this can take a while)")}
 {
@@ -253,6 +254,11 @@ void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::ve
         })) {
         return;
     }
+
+    if (certificateListWasEmpty) {
+        return;
+    }
+
     q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"), new ImportResultProxyModel(results), make_tooltip(results));
     if (QTreeView *const tv = qobject_cast<QTreeView *>(parentWidgetOrView())) {
         tv->expandAll();
@@ -486,11 +492,7 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
 {
     const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
 
-    if (std::ranges::any_of(res, [](const auto &result) {
-            return result.result.numImported() > 0;
-        })) {
-        setImportResultProxyModel(res);
-    }
+    setImportResultProxyModel(res);
 
     if (!singleOpenPGPImport.isNull()) {
         if (showPleaseCertify(singleOpenPGPImport)) {

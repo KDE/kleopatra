@@ -134,6 +134,7 @@ private:
 private:
     bool waitForMoreJobs = false;
     bool importingSignerKeys = false;
+    bool certificateListWasEmpty = false;
     std::vector<GpgME::Protocol> nonWorkingProtocols;
     std::queue<ImportJobData> pendingJobs;
     std::vector<ImportJobData> runningJobs;
