@@ -236,6 +236,10 @@ void ExpiryDialog::setPrimaryKey(const GpgME::Key &key)
         d->ui.primaryKeyExpirationDate->setText(i18n("Expiration of primary key: %1", Kleo::Formatting::expirationDateString(key)));
         d->ui.onCB->setMaximumDate(Kleo::Formatting::expirationDate(key));
         d->ui.primaryKeyExpirationDate->setVisible(true);
+        const auto keyExpiryDate = QDateTime::fromSecsSinceEpoch(quint32(key.subkey(0).expirationTime())).date();
+        if (dateOfExpiry() > keyExpiryDate) {
+            setDateOfExpiry(keyExpiryDate);
+        }
     }
 }
 
