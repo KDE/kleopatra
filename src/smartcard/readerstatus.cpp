@@ -1290,31 +1290,37 @@ Error ReaderStatus::switchCardBackToOpenPGPApp(const std::string &serialNumber)
     return err;
 }
 
+void ReaderStatus::setCurrentAction(Action action)
+{
+    d->currentAction = action;
+    Q_EMIT currentActionChanged(action);
+}
+
 void ReaderStatus::onUpdateCardsStarted()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    d->currentAction = UpdateCards;
+    setCurrentAction(UpdateCards);
     Q_EMIT updateCardsStarted();
 }
 
 void ReaderStatus::onUpdateCardStarted(const std::string &serialNumber, const std::string &appName)
 {
     qCDebug(KLEOPATRA_LOG) << __func__ << serialNumber << appName;
-    d->currentAction = UpdateCards;
+    setCurrentAction(UpdateCards);
     Q_EMIT updateCardStarted(serialNumber, appName);
 }
 
 void ReaderStatus::onUpdateFinished()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    d->currentAction = NoAction;
+    setCurrentAction(NoAction);
     Q_EMIT updateFinished();
 }
 
 void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    d->currentAction = LearnCards;
+    setCurrentAction(LearnCards);
     // suspend automatic refreshes of the key cache while smart card keys are learned
     d->keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
     Q_EMIT startingLearnCards(protocol);
@@ -1323,7 +1329,7 @@ void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
 void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    d->currentAction = NoAction;
+    setCurrentAction(NoAction);
     Q_EMIT cardsLearned(protocol);
     d->learnCMSTransactionScheduled = false;
     d->keyCacheAutoRefreshSuspension.reset();
