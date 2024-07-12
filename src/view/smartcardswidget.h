@@ -38,6 +38,9 @@ public Q_SLOTS:
     void reload();
 
 private:
+    void updateReloadButton();
+
+private:
     class Private;
     std::unique_ptr<Private> d;
 };

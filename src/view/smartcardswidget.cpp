@@ -81,6 +81,14 @@ public:
         lay->addStretch(-1);
 
         connect(mReloadButton, &QPushButton::clicked, this, &PlaceHolderWidget::reload);
+
+        connect(ReaderStatus::instance(), &ReaderStatus::currentActionChanged, this, &PlaceHolderWidget::updateReloadButton);
+        updateReloadButton();
+    }
+
+    void updateReloadButton()
+    {
+        mReloadButton->setEnabled(ReaderStatus::instance()->currentAction() != ReaderStatus::UpdateCards);
     }
 
 Q_SIGNALS:
@@ -219,6 +227,8 @@ SmartCardsWidget::SmartCardsWidget(QWidget *parent)
     : QWidget{parent}
     , d{std::make_unique<Private>(this)}
 {
+    connect(ReaderStatus::instance(), &ReaderStatus::currentActionChanged, this, &SmartCardsWidget::updateReloadButton);
+    updateReloadButton();
 }
 
 SmartCardsWidget::~SmartCardsWidget() = default;
@@ -241,6 +251,11 @@ void SmartCardsWidget::createActions(KActionCollection *ac)
 void SmartCardsWidget::reload()
 {
     ReaderStatus::mutableInstance()->updateStatus();
+}
+
+void SmartCardsWidget::updateReloadButton()
+{
+    d->mReloadButton->setEnabled(ReaderStatus::instance()->currentAction() != ReaderStatus::UpdateCards);
 }
 
 #include "smartcardswidget.moc"
