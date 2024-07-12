@@ -11,7 +11,14 @@
 
 #include "smartcardswidget.h"
 
+#include "netkeywidget.h"
+#include "p15cardwidget.h"
+#include "pgpcardwidget.h"
+#include "pivcardwidget.h"
 #include "smartcardactions.h"
+#include "smartcardwidget.h"
+
+#include <commands/detailscommand.h>
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
@@ -19,12 +26,6 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/utils.h"
-
-#include "view/netkeywidget.h"
-#include "view/p15cardwidget.h"
-#include "view/pgpcardwidget.h"
-#include "view/pivcardwidget.h"
-#include "view/smartcardwidget.h"
 
 #include "kleopatra_debug.h"
 
@@ -40,7 +41,11 @@
 #include <QToolButton>
 #include <QVBoxLayout>
 
+#include <gpgme++/key.h>
+
+using namespace GpgME;
 using namespace Kleo;
+using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace Qt::Literals::StringLiterals;
 
@@ -111,8 +116,13 @@ class SmartCardsWidget::Private
 public:
     Private(SmartCardsWidget *qq);
 
+    std::string currentCardSlot() const;
+    GpgME::Key currentCertificate() const;
+
     void cardAddedOrChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
+
+    void showCertificateDetails();
 
 private:
     template<typename C, typename W>
@@ -162,6 +172,26 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     const auto actions = SmartCardActions::instance();
     actions->connectAction(u"reload"_s, q, &SmartCardsWidget::reload);
     mReloadButton->setDefaultAction(actions->action(u"reload"_s));
+
+    actions->connectAction(u"card_slot_show_certificate_details"_s, q, [this]() {
+        showCertificateDetails();
+    });
+}
+
+std::string SmartCardsWidget::Private::currentCardSlot() const
+{
+    if (const SmartCardWidget *widget = qobject_cast<const SmartCardWidget *>(mTabWidget->currentWidget())) {
+        return widget->currentCardSlot();
+    }
+    return {};
+}
+
+GpgME::Key SmartCardsWidget::Private::currentCertificate() const
+{
+    if (const SmartCardWidget *widget = qobject_cast<const SmartCardWidget *>(mTabWidget->currentWidget())) {
+        return widget->currentCertificate();
+    }
+    return {};
 }
 
 void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumber, const std::string &appName)
@@ -229,6 +259,16 @@ void SmartCardsWidget::Private::cardRemoved(const std::string &serialNumber, con
     }
     if (mCardWidgets.empty()) {
         mStack->setCurrentWidget(mPlaceHolderWidget);
+    }
+}
+
+void SmartCardsWidget::Private::showCertificateDetails()
+{
+    const Key certificate = currentCertificate();
+    if (!certificate.isNull()) {
+        auto cmd = new DetailsCommand(certificate);
+        cmd->setParentWidget(q->window());
+        cmd->start();
     }
 }
 

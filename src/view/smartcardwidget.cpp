@@ -12,6 +12,7 @@
 #include "infofield.h"
 
 #include <smartcard/card.h>
+#include <view/cardkeysview.h>
 
 #include <KLocalizedString>
 
@@ -98,4 +99,20 @@ void SmartCardWidget::setCard(const Card *card)
 
     mCardTypeField->setValue(cardType(card));
     mSerialNumberField->setValue(card->displaySerialNumber());
+}
+
+std::string SmartCardWidget::currentCardSlot() const
+{
+    if (mCardKeysView) {
+        return mCardKeysView->currentCardSlot();
+    }
+    return {};
+}
+
+GpgME::Key SmartCardWidget::currentCertificate() const
+{
+    if (mCardKeysView) {
+        return mCardKeysView->currentCertificate();
+    }
+    return {};
 }
