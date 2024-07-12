@@ -58,11 +58,13 @@ public:
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
 
-        const QStringList supported = QStringList() << i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 - v3.3")
-                                                    << i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk")
-                                                    << i18nc("NetKey refers to a smartcard protocol", "NetKey v3")
-                                                    << i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)")
-                                                    << i18nc("CardOS is a smartcard operating system", "CardOS 5 (various apps)");
+        const QStringList supported{
+            i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 or later"),
+            i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk"),
+            i18nc("NetKey refers to a smartcard protocol", "NetKey v3 or later"),
+            i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)"),
+            i18nc("CardOS is a smartcard operating system", "CardOS 5 (various apps)"),
+        };
         lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") + i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
         lay->addSpacing(10);
         lay->addWidget(new QLabel(QStringLiteral("\t\t") + i18n("Kleopatra currently supports the following card types:") + QStringLiteral("<ul><li>")
