@@ -30,8 +30,6 @@ public:
     explicit SmartCardsWidget(QWidget *parent = nullptr);
     ~SmartCardsWidget() override;
 
-    void createActions(KActionCollection *ac);
-
     void showCards(const std::vector<std::shared_ptr<Kleo::SmartCard::Card>> &cards);
 
 public Q_SLOTS:
