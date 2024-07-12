@@ -11,12 +11,16 @@
 
 #include "smartcardswidget.h"
 
+#include "smartcardactions.h"
+
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
 #include "smartcard/p15card.h"
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/utils.h"
+
+#include <utils/qt6compat.h>
 
 #include "view/netkeywidget.h"
 #include "view/p15cardwidget.h"
@@ -40,6 +44,7 @@
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -153,6 +158,10 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     connect(ReaderStatus::instance(), &ReaderStatus::cardRemoved, q, [this](const std::string &serialNumber, const std::string &appName) {
         cardRemoved(serialNumber, appName);
     });
+
+    const auto actions = SmartCardActions::instance();
+    actions->connectAction(u"reload"_s, q, &SmartCardsWidget::reload);
+    mReloadButton->setDefaultAction(actions->action(u"reload"_s));
 }
 
 void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumber, const std::string &appName)
@@ -238,14 +247,6 @@ void SmartCardsWidget::showCards(const std::vector<std::shared_ptr<Kleo::SmartCa
     for (const auto &card : cards) {
         d->cardAddedOrChanged(card->serialNumber(), card->appName());
     }
-}
-
-void SmartCardsWidget::createActions(KActionCollection *ac)
-{
-    QAction *reloadAction = ac->addAction(KStandardAction::StandardAction::Redisplay, QStringLiteral("reload"), this, &SmartCardsWidget::reload);
-    reloadAction->setText(i18nc("@action", "Reload"));
-    reloadAction->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
-    d->mReloadButton->setDefaultAction(reloadAction);
 }
 
 void SmartCardsWidget::reload()

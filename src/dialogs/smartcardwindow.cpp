@@ -13,6 +13,8 @@
 #include <mainwindow.h>
 
 #include <smartcard/readerstatus.h>
+#include <utils/qt6compat.h>
+#include <view/smartcardactions.h>
 #include <view/smartcardswidget.h>
 
 #include <KActionCollection>
@@ -27,6 +29,7 @@
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
+using namespace Qt::Literals::StringLiterals;
 
 class SmartCardWindow::Private
 {
@@ -39,21 +42,19 @@ public:
 private:
     void saveLayout();
     void restoreLayout(const QSize &defaultSize = {});
-    void createActions();
+    void connectActions();
     void setUpStatusBar();
 
 private:
-    KActionCollection *actionCollection = nullptr;
+    std::shared_ptr<const SmartCardActions> smartCardActions;
     SmartCardsWidget *smartCardWidget = nullptr;
     QLabel *statusMessageLabel = nullptr;
 };
 
 SmartCardWindow::Private::Private(SmartCardWindow *qq)
     : q(qq)
-    , actionCollection{new KActionCollection{qq, QStringLiteral("smartcards")}}
+    , smartCardActions{SmartCardActions::instance()}
 {
-    actionCollection->setComponentDisplayName(i18n("Smart Card Management"));
-    actionCollection->addAssociatedWidget(q);
 }
 
 void SmartCardWindow::Private::saveLayout()
@@ -72,10 +73,10 @@ void SmartCardWindow::Private::restoreLayout(const QSize &defaultSize)
     }
 }
 
-void SmartCardWindow::Private::createActions()
+void SmartCardWindow::Private::connectActions()
 {
-    actionCollection->addAction(KStandardAction::StandardAction::Close, QStringLiteral("close"), q, &SmartCardWindow::close);
-    smartCardWidget->createActions(actionCollection);
+    q->addAction(smartCardActions->action(u"window_close"_s));
+    smartCardActions->connectAction(u"window_close"_s, q, &SmartCardWindow::close);
 }
 
 void SmartCardWindow::Private::setUpStatusBar()
@@ -133,7 +134,7 @@ SmartCardWindow::SmartCardWindow(QWidget *parent)
     d->smartCardWidget->setContentsMargins({});
     setCentralWidget(d->smartCardWidget);
 
-    d->createActions();
+    d->connectActions();
     d->setUpStatusBar();
 
     // use size of main window as default size

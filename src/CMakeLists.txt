@@ -525,6 +525,8 @@ set(_kleopatra_SRCS
   view/progressoverlay.h
   view/searchbar.cpp
   view/searchbar.h
+  view/smartcardactions.cpp
+  view/smartcardactions.h
   view/smartcardswidget.cpp
   view/smartcardswidget.h
   view/smartcardwidget.cpp
