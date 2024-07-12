@@ -23,7 +23,6 @@ class QPushButton;
 namespace Kleo
 {
 class NullPinWidget;
-class CardKeysView;
 
 namespace SmartCard
 {
@@ -51,6 +50,5 @@ private:
     QPushButton *mCreateCSRButton = nullptr;
     QPushButton *mChangeNKSPINBtn = nullptr;
     QPushButton *mChangeSigGPINBtn = nullptr;
-    CardKeysView *mCardKeysView = nullptr;
 };
 } // namespace Kleo

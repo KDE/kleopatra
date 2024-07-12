@@ -32,6 +32,13 @@ SmartCardActions::SmartCardActions()
         action->setText(i18nc("@action", "Reload"));
         action->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
     }
+
+    // card slot actions
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_show_certificate_details"_s);
+        action->setText(i18nc("@action", "Show Certificate Details"));
+        action->setIcon(QIcon::fromTheme(u"dialog-information"_s));
+    }
 }
 
 SmartCardActions::~SmartCardActions() = default;

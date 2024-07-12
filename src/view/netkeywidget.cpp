@@ -54,15 +54,10 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     mErrorLabel->setVisible(false);
     mContentLayout->addWidget(mErrorLabel);
 
-    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
-
-    mCardKeysView = new CardKeysView{this};
-    mContentLayout->addWidget(mCardKeysView);
+    mCardKeysView = new CardKeysView{this, CardKeysView::NoCreated};
+    mContentLayout->addWidget(mCardKeysView, 1);
 
     // The action area
-    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
-    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))), 0, Qt::AlignLeft);
-
     auto actionLayout = new QHBoxLayout();
 
     if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
@@ -101,7 +96,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     actionLayout->addStretch(1);
 
     mContentLayout->addLayout(actionLayout);
-    mContentLayout->addStretch(1);
 }
 
 NetKeyWidget::~NetKeyWidget() = default;

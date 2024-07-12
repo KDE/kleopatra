@@ -15,8 +15,6 @@ class QLabel;
 
 namespace Kleo
 {
-class CardKeysView;
-class OpenPGPKeyCardWidget;
 
 namespace SmartCard
 {
@@ -37,9 +35,6 @@ private:
 
 private:
     QLabel *mStatusLabel = nullptr;
-    QWidget *mOpenPGPKeysSection = nullptr;
-    OpenPGPKeyCardWidget *mOpenPGPKeysWidget = nullptr;
-    CardKeysView *mCardKeysView = nullptr;
 };
 
 }
