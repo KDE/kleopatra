@@ -340,6 +340,17 @@ Key CardKeysView::currentCertificate() const
     return {};
 }
 
+bool CardKeysView::eventFilter(QObject *obj, QEvent *event)
+{
+    if ((event->type() == QEvent::FocusOut) //
+        && (obj == mTreeWidget->itemWidget(mTreeWidget->currentItem(), Actions))) {
+        // workaround for missing update when last actions button loses focus
+        mTreeWidget->viewport()->update();
+    }
+
+    return QWidget::eventFilter(obj, event);
+}
+
 void CardKeysView::updateKeyList(const Card *card)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
@@ -485,6 +496,7 @@ void CardKeysView::insertTreeWidgetItem(const Card *card, int slotIndex, const K
     connect(actionsButton, &QAbstractButton::pressed, mTreeWidget, [this, item]() {
         mTreeWidget->setCurrentItem(item, Actions);
     });
+    actionsButton->installEventFilter(this);
 }
 
 QToolButton *CardKeysView::createActionsButton(SmartCard::AppType appType)

@@ -58,6 +58,9 @@ public:
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
 private:
     void updateKeyList(const SmartCard::Card *card = nullptr);
     void
