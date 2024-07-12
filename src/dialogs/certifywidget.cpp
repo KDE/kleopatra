@@ -115,13 +115,6 @@ public:
     using TreeWidget::TreeWidget;
 
 protected:
-    void focusInEvent(QFocusEvent *event) override
-    {
-        TreeWidget::focusInEvent(event);
-        // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &TreeWidgetInternal::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
-    }
-
     bool edit(const QModelIndex &index, EditTrigger trigger, QEvent *event) override
     {
         if (event && event->type() == QEvent::KeyPress) {
@@ -132,17 +125,6 @@ protected:
             }
         }
         return TreeWidget::edit(index, trigger, event);
-    }
-
-private:
-    void forceAccessibleFocusEventForCurrentItem()
-    {
-        // force Qt to send a focus event for the current item to accessibility
-        // tools; otherwise, the user has no idea which item is selected when the
-        // list gets keyboard input focus
-        const auto current = currentIndex();
-        setCurrentIndex({});
-        setCurrentIndex(current);
     }
 };
 
