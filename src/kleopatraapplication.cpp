@@ -68,6 +68,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFocusFrame>
+#include <QProxyStyle>
 #if QT_CONFIG(graphicseffect)
 #include <QGraphicsEffect>
 #endif
@@ -309,14 +310,25 @@ public:
     }
 };
 
+class KleopatraProxyStyle : public QProxyStyle
+{
+public:
+    int styleHint(StyleHint hint, const QStyleOption *option = nullptr, const QWidget *widget = nullptr, QStyleHintReturn *returnData = nullptr) const override
+    {
+        // disable parent<->child navigation in tree views with left/right arrow keys
+        // because this interferes with column by column navigation that is required
+        // for accessibility
+        if (hint == QStyle::SH_ItemView_ArrowKeysNavigateIntoChildren)
+            return 0;
+        return QProxyStyle::styleHint(hint, option, widget, returnData);
+    }
+};
+
 KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     : QApplication(argc, argv)
     , d(new Private(this))
 {
-    // disable parent<->child navigation in tree views with left/right arrow keys
-    // because this interferes with column by column navigation that is required
-    // for accessibility
-    setStyleSheet(QStringLiteral("QTreeView { arrow-keys-navigate-into-children: 0; }"));
+    setStyle(new KleopatraProxyStyle);
 #ifdef Q_OS_WIN
     if (SystemInfo::isHighContrastModeActive()) {
         // use colors specified by Windows if high-contrast mode is active
