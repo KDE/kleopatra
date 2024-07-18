@@ -256,8 +256,8 @@ public:
                                       DeVSCompliance::name(true)));
             return false;
         }
-        bool sign = !mWidget->signKey().isNull();
-        bool encrypt = !mWidget->selfKey().isNull() || !mWidget->recipients().empty();
+        bool sign = !mWidget->signUserId().isNull();
+        bool encrypt = !mWidget->selfUserId().isNull() || !mWidget->recipients().empty();
         if (!mWidget->validate()) {
             return false;
         }
@@ -285,7 +285,7 @@ public:
             return true;
         }
 
-        if (!mWidget->selfKey().isNull() || mWidget->encryptSymmetric()) {
+        if (!mWidget->selfUserId().isNull() || mWidget->encryptSymmetric()) {
             return true;
         }
         const auto recipientKeys = recipients();
@@ -319,7 +319,7 @@ public:
      * signers */
     std::vector<Key> signers() const
     {
-        const Key k = mWidget->signKey();
+        const Key k = mWidget->signUserId().parent();
         if (!k.isNull()) {
             return {k};
         }
@@ -476,7 +476,7 @@ private Q_SLOTS:
             return;
         }
         const std::vector<Key> recipients = mWidget->recipients();
-        const Key sigKey = mWidget->signKey();
+        const Key sigKey = mWidget->signUserId().parent();
         const bool pgp = mWidget->encryptSymmetric() || std::any_of(std::cbegin(recipients), std::cend(recipients), [](const auto &k) {
                              return k.protocol() == Protocol::OpenPGP;
                          });

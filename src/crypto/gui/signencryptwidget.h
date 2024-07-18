@@ -8,10 +8,14 @@
 */
 #pragma once
 
+#include "dialogs/certificateselectiondialog.h"
+
 #include <QVector>
 #include <QWidget>
 
 #include <gpgme++/global.h>
+
+#include <Libkleo/UserIDSelectionCombo>
 
 #include <memory>
 
@@ -51,11 +55,11 @@ public:
 
     /** Returns the selected signing key or a null key if signing
      * is disabled. */
-    GpgME::Key signKey() const;
+    GpgME::UserID signUserId() const;
 
     /** Returns the selected encrypt to self key or a null key if
      * encrypt to self is disabled. */
-    GpgME::Key selfKey() const;
+    GpgME::UserID selfUserId() const;
 
     /** Returns the operation based on the current selection. */
     Operations currentOp() const;
@@ -110,6 +114,7 @@ protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();
     void certificateSelectionRequested(CertificateLineEdit *w);
+    void ownCertificateSelectionRequested(Kleo::Dialogs::CertificateSelectionDialog::Options options, UserIDSelectionCombo *combo);
 
 protected:
     void loadKeys();

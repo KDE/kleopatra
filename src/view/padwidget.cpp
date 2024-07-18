@@ -412,7 +412,7 @@ public:
         task->setInput(input);
         task->setOutput(output);
 
-        const auto sigKey = mSigEncWidget->signKey();
+        const auto sigKey = mSigEncWidget->signUserId().parent();
 
         const std::vector<GpgME::Key> recipients = mSigEncWidget->recipients();
         const bool encrypt = mSigEncWidget->encryptSymmetric() || !recipients.empty();
