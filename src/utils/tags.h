@@ -15,13 +15,6 @@ namespace Kleo
 {
 namespace Tags
 {
-/* Helper functions to work with tags configuration */
-bool tagsEnabled();
-void enableTags();
-/* Read / write a single tag key into configuration. */
-GpgME::Key tagKey();
-void setTagKey(const GpgME::Key &key);
-
 /* Get multiple keys to use for tags. Currently
  * this returns all fully trusted OpenPGP Keys. */
 std::vector<GpgME::Key> tagKeys();

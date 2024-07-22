@@ -588,7 +588,6 @@ kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/fileoperationspreferences.kcfgc
   kcfg/settings.kcfgc
   kcfg/smimevalidationpreferences.kcfgc
-  kcfg/tagspreferences.kcfgc
   kcfg/tooltippreferences.kcfgc
 )
 

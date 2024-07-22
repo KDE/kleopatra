@@ -17,7 +17,6 @@
 
 #include "dialogs/certifycertificatedialog.h"
 #include "exportopenpgpcertstoservercommand.h"
-#include "utils/tags.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
@@ -238,9 +237,6 @@ void CertifyCertificateCommand::Private::slotResult(const Error &err)
         information(i18n("Certification successful."), i18n("Certification Succeeded"));
     }
 
-    if (!dialog->tags().isEmpty()) {
-        Tags::enableTags();
-    }
     finished();
 }
 

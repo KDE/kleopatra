@@ -25,7 +25,6 @@
 #include "commands/changeexpirycommand.h"
 #include "commands/detailscommand.h"
 #include "utils/accessibility.h"
-#include "utils/tags.h"
 #include "view/infofield.h"
 
 #include <Libkleo/Algorithm>

@@ -12,7 +12,6 @@
 #include "commands/certifycertificatecommand.h"
 #include "commands/importcertificatefromkeyservercommand.h"
 #include "commands/revokecertificationcommand.h"
-#include "utils/tags.h"
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -82,7 +81,7 @@ public:
     Private(WebOfTrustWidget *qq)
         : q{qq}
     {
-        certificationsModel.enableRemarks(Tags::tagsEnabled());
+        certificationsModel.enableRemarks(true);
         auto vLay = new QVBoxLayout(q);
         vLay->setContentsMargins({});
 
@@ -91,9 +90,6 @@ public:
         certificationsTV->setModel(&certificationsModel);
         certificationsTV->setAllColumnsShowFocus(false);
         certificationsTV->setSelectionMode(QAbstractItemView::SingleSelection);
-        if (!Tags::tagsEnabled()) {
-            certificationsTV->hideColumn(static_cast<int>(UserIDListModel::Column::Tags));
-        }
         vLay->addWidget(certificationsTV);
 
         notAvailableLabel = new QLabel(i18nc("@info", "Certifications are not available before the certificate is imported."));
@@ -324,9 +320,7 @@ public:
             return;
         }
 
-        if (Tags::tagsEnabled()) {
-            job->addMode(GpgME::SignatureNotations);
-        }
+        job->addMode(GpgME::SignatureNotations);
 
         connect(job, &QGpgME::KeyListJob::result, q, &WebOfTrustWidget::signatureListingDone);
 

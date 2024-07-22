@@ -15,7 +15,6 @@
 #include "pluralhandlingspinbox.h"
 
 #include <settings.h>
-#include <tagspreferences.h>
 #include <tooltippreferences.h>
 
 #include <Libkleo/DNAttributeOrderConfigWidget>
@@ -337,7 +336,6 @@ public:
     QCheckBox *tooltipValidityCheckBox;
     QCheckBox *tooltipOwnerCheckBox;
     QCheckBox *tooltipDetailsCheckBox;
-    QCheckBox *useTagsCheckBox;
     QCheckBox *showExpirationCheckBox;
     PluralHandlingSpinBox *ownCertificateThresholdSpinBox;
     PluralHandlingSpinBox *otherCertificateThresholdSpinBox;
@@ -355,10 +353,6 @@ public:
         {
             auto tab = new QWidget{parent};
             auto tabLayout = new QVBoxLayout{tab};
-
-            useTagsCheckBox = new QCheckBox{i18nc("@option:check", "Show tags attached to certificates"), tab};
-            useTagsCheckBox->setToolTip(i18nc("@info:tooltip", "Enable display and usage of tags attached to certificates."));
-            tabLayout->addWidget(useTagsCheckBox);
 
             tabLayout->addWidget(new KSeparator{tab});
 
@@ -560,7 +554,6 @@ public:
         connect(tooltipValidityCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipValidityChanged(bool)));
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
-        connect(useTagsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotUseTagsChanged(bool)));
         connect(showExpirationCheckBox, &QCheckBox::toggled, q, emitChanged);
         connect(ownCertificateThresholdSpinBox, qOverload<int>(&QSpinBox::valueChanged), q, emitChanged);
         connect(otherCertificateThresholdSpinBox, qOverload<int>(&QSpinBox::valueChanged), q, emitChanged);
@@ -587,7 +580,6 @@ private:
     void slotTooltipValidityChanged(bool);
     void slotTooltipOwnerChanged(bool);
     void slotTooltipDetailsChanged(bool);
-    void slotUseTagsChanged(bool);
 
 private:
     Kleo::DNAttributeOrderConfigWidget *dnOrderWidget = nullptr;
@@ -731,10 +723,6 @@ void AppearanceConfigWidget::load()
     d->tooltipOwnerCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowOwnerInformation")));
     d->tooltipDetailsCheckBox->setChecked(prefs.showCertificateDetails());
     d->tooltipDetailsCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowCertificateDetails")));
-
-    const TagsPreferences tagsPrefs;
-    d->useTagsCheckBox->setChecked(tagsPrefs.useTags());
-    d->useTagsCheckBox->setEnabled(!tagsPrefs.isImmutable(QStringLiteral("UseTags")));
 }
 
 void AppearanceConfigWidget::save()
@@ -782,10 +770,6 @@ void AppearanceConfigWidget::save()
         KConfigGroup group(config, groups[i]);
         save_to_config(item, group);
     }
-
-    TagsPreferences tagsPrefs;
-    tagsPrefs.setUseTags(d->useTagsCheckBox->isChecked());
-    tagsPrefs.save();
 
     config->sync();
     KeyFilterManager::instance()->reload();
@@ -927,11 +911,6 @@ void AppearanceConfigWidget::Private::slotTooltipOwnerChanged(bool)
 }
 
 void AppearanceConfigWidget::Private::slotTooltipDetailsChanged(bool)
-{
-    Q_EMIT q->changed();
-}
-
-void AppearanceConfigWidget::Private::slotUseTagsChanged(bool)
 {
     Q_EMIT q->changed();
 }

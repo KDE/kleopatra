@@ -13,7 +13,6 @@
 
 #include <commands/exportopenpgpcertstoservercommand.h>
 #include <dialogs/certifycertificatedialog.h>
-#include <utils/tags.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -324,9 +323,6 @@ void CertifyGroupCommand::Private::wrapUp()
         cmd->start();
     }
 
-    if (!certificationOptions.tags.isEmpty()) {
-        Tags::enableTags();
-    }
     finished();
 }
 
