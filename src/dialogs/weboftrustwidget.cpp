@@ -179,7 +179,7 @@ public:
             return;
         }
         auto cmd = Command::commandForQuery(QString::fromUtf8(signature.signerKeyID()));
-        cmd->setParentWId(q->winId());
+        cmd->setParentWidget(q->window());
         cmd->start();
     }
 
