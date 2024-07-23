@@ -24,7 +24,7 @@
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 
-QString cardType(const Card *card)
+static QString cardTypeForDisplay(const Card *card)
 {
     switch (card->appType()) {
     case AppType::NetKeyApp:
@@ -93,12 +93,20 @@ SmartCardWidget::~SmartCardWidget() = default;
 
 void SmartCardWidget::setCard(const Card *card)
 {
-    mSerialNumber = card->serialNumber();
-    mAppName = card->appName();
-    mAppType = card->appType();
+    mCard.reset(card->clone());
 
-    mCardTypeField->setValue(cardType(card));
+    mCardTypeField->setValue(cardTypeForDisplay(card));
     mSerialNumberField->setValue(card->displaySerialNumber());
+}
+
+Kleo::SmartCard::AppType SmartCardWidget::cardType() const
+{
+    return mCard ? mCard->appType() : AppType::NoApp;
+}
+
+std::string SmartCardWidget::serialNumber() const
+{
+    return mCard ? mCard->serialNumber() : std::string{};
 }
 
 std::string SmartCardWidget::currentCardSlot() const
