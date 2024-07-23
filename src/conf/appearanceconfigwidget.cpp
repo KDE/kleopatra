@@ -229,6 +229,7 @@ static void set_default_appearance(QListWidgetItem *item)
     erase_if_allowed(item, Qt::ForegroundRole, MayChangeForegroundRole);
     erase_if_allowed(item, StoredBackgroundRole, MayChangeBackgroundRole);
     erase_if_allowed(item, Qt::BackgroundRole, MayChangeBackgroundRole);
+    erase_if_allowed(item, IconNameRole, MayChangeIconRole);
     erase_if_allowed(item, Qt::DecorationRole, MayChangeIconRole);
     static const int fontRoles[] = {Qt::FontRole, HasFontRole};
     static const int fontAllowRoles[] = {
