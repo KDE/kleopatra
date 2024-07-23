@@ -19,6 +19,7 @@
 
 class QAction;
 class QToolButton;
+class QTreeWidgetItem;
 
 namespace GpgME
 {
@@ -65,7 +66,7 @@ private:
     void updateKeyList(const SmartCard::Card *card = nullptr);
     void
     insertTreeWidgetItem(const SmartCard::Card *card, int slotIndex, const SmartCard::KeyPairInfo &keyInfo, const GpgME::Subkey &subkey, int treeIndex = -1);
-    QToolButton *createActionsButton(SmartCard::AppType cardType);
+    QToolButton *addActionsButton(QTreeWidgetItem *item, SmartCard::AppType cardType);
     void ensureCertificatesAreValidated();
     void startCertificateValidation(const std::vector<GpgME::Key> &certificates);
     void certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys);
