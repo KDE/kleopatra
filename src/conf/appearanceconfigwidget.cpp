@@ -676,6 +676,19 @@ void AppearanceConfigWidget::defaults()
     Q_EMIT changed();
 }
 
+bool greaterThanBySpecificity(const QString &lhs, const QString &rhs)
+{
+    const auto lFilter = KeyFilterManager::instance()->keyFilterByID(lhs);
+    const auto rFilter = KeyFilterManager::instance()->keyFilterByID(rhs);
+    if (!lFilter) {
+        return false;
+    }
+    if (!rFilter) {
+        return true;
+    }
+    return lFilter->specificity() > rFilter->specificity();
+}
+
 void AppearanceConfigWidget::load()
 {
     const Settings settings;
@@ -700,7 +713,8 @@ void AppearanceConfigWidget::load()
     if (!config) {
         return;
     }
-    const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    std::stable_sort(groups.begin(), groups.end(), greaterThanBySpecificity);
     for (const QString &group : groups) {
         const KConfigGroup configGroup{config, group};
         const bool isCmsSpecificKeyFilter = !configGroup.readEntry("is-openpgp-key", true);
@@ -746,7 +760,8 @@ void AppearanceConfigWidget::save()
     }
     // We know (assume) that the groups in the config object haven't changed,
     // so we just iterate over them and over the listviewitems, and map one-to-one.
-    const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    std::stable_sort(groups.begin(), groups.end(), greaterThanBySpecificity);
 #if 0
     if (groups.isEmpty()) {
         // If we created the default categories ourselves just now, then we need to make up their list
