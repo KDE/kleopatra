@@ -128,7 +128,7 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
 {
     SmartCardWidget::setCard(card);
 
-    mNullPinWidget->setSerialNumber(mSerialNumber);
+    mNullPinWidget->setSerialNumber(serialNumber());
     /* According to users of NetKey Cards it is fairly uncommon
      * to use SigG Certificates at all. So it should be optional to set the pins. */
     mNullPinWidget->setVisible(card->hasNKSNullPin() /*|| card->hasSigGNullPin()*/);
@@ -165,13 +165,13 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)
 {
-    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(serialNumber());
     if (!netKeyCard) {
-        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(serialNumber())));
         return;
     }
 
-    auto cmd = new ChangePinCommand(mSerialNumber, NetKeyCard::AppName, this);
+    auto cmd = new ChangePinCommand(serialNumber(), NetKeyCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &ChangePinCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -186,7 +186,7 @@ void NetKeyWidget::doChangePin(const std::string &keyRef)
 
 void NetKeyWidget::createKeyFromCardKeys()
 {
-    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(mSerialNumber, NetKeyCard::AppName, this);
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(serialNumber(), NetKeyCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, this, [this]() {
         this->setEnabled(true);
@@ -217,9 +217,9 @@ std::string getKeyRef(const std::vector<KeyPairInfo> &keys, QWidget *parent)
 
 void NetKeyWidget::createCSR()
 {
-    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(mSerialNumber);
+    const auto netKeyCard = ReaderStatus::instance()->getCard<NetKeyCard>(serialNumber());
     if (!netKeyCard) {
-        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(mSerialNumber)));
+        KMessageBox::error(this, i18n("Failed to find the smartcard with the serial number: %1", QString::fromStdString(serialNumber())));
         return;
     }
     const auto suitableKeys = getKeysSuitableForCSRCreation(netKeyCard.get());
@@ -231,7 +231,7 @@ void NetKeyWidget::createCSR()
     if (keyRef.empty()) {
         return;
     }
-    auto cmd = new CreateCSRForCardKeyCommand(keyRef, mSerialNumber, NetKeyCard::AppName, this);
+    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber(), NetKeyCard::AppName, this);
     this->setEnabled(false);
     connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
         this->setEnabled(true);

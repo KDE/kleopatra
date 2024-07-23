@@ -41,18 +41,17 @@ public:
 
     void setCard(const Kleo::SmartCard::Card *card);
 
+    Kleo::SmartCard::AppType cardType() const;
+    std::string serialNumber() const;
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
 protected:
-    std::string mSerialNumber;
-
     QVBoxLayout *mContentLayout = nullptr;
     QGridLayout *mInfoGridLayout = nullptr;
 
 private:
-    std::string mAppName;
-    Kleo::SmartCard::AppType mAppType;
+    std::unique_ptr<const Kleo::SmartCard::Card> mCard;
 
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
