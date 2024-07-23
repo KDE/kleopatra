@@ -30,6 +30,11 @@ public:
 
     bool hasSigGNullPin() const;
     bool hasNKSNullPin() const;
+
+private:
+    NetKeyCard(const NetKeyCard &card) = default;
+
+    NetKeyCard *clone() const override;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

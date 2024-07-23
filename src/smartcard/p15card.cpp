@@ -21,3 +21,8 @@ P15Card::P15Card(const Card &card)
     setAppName(AppName);
     setDisplayAppName(QStringLiteral("PKCS#15"));
 }
+
+P15Card *P15Card::clone() const
+{
+    return new P15Card{*this};
+}

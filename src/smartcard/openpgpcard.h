@@ -73,6 +73,11 @@ public:
     bool isSupportedAlgorithm(const std::string &algorithm) const;
 
 private:
+    OpenPGPCard(const OpenPGPCard &card) = default;
+
+    OpenPGPCard *clone() const override;
+
+private:
     std::vector<std::string> mAlgorithms;
 };
 } // namespace Smartcard
