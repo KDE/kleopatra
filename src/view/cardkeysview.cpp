@@ -482,41 +482,47 @@ void CardKeysView::insertTreeWidgetItem(const Card *card, int slotIndex, const K
 
     updateTreeWidgetItem(item, keyInfo, subkey, mOptions);
     mTreeWidget->insertTopLevelItem(index, item);
-    auto actionsButton = createActionsButton(card->appType());
-    mTreeWidget->setItemWidget(item, Actions, actionsButton);
+    auto actionsButton = addActionsButton(item, card->appType());
     if (index == 0) {
         forceSetTabOrder(mTreeWidget, actionsButton);
     } else {
         auto prevActionsButton = mTreeWidget->itemWidget(mTreeWidget->topLevelItem(index - 1), Actions);
         forceSetTabOrder(prevActionsButton, actionsButton);
     }
-    // ensure that current item is set to the right item before the action is triggered;
-    // interestingly, focus is given to the tree widget instead of the clicked button so that
-    // the event filtering of QAbstractItemView doesn't take care of this
-    connect(actionsButton, &QAbstractButton::pressed, mTreeWidget, [this, item]() {
-        mTreeWidget->setCurrentItem(item, Actions);
-    });
     actionsButton->installEventFilter(this);
 }
 
-QToolButton *CardKeysView::createActionsButton(SmartCard::AppType appType)
+QToolButton *CardKeysView::addActionsButton(QTreeWidgetItem *item, SmartCard::AppType appType)
 {
     const auto actions = actionsForCardSlot(appType);
     auto button = new QToolButton;
     if (actions.size() == 1) {
         button->setDefaultAction(actions.front());
+        // ensure that current item is set to the right item before the action is triggered;
+        // interestingly, focus is given to the tree widget instead of the clicked button so that
+        // the event filtering of QAbstractItemView doesn't take care of this
+        connect(button, &QAbstractButton::pressed, mTreeWidget, [this, item]() {
+            mTreeWidget->setCurrentItem(item, Actions);
+        });
     } else {
         button->setPopupMode(QToolButton::InstantPopup);
         button->setIcon(QIcon::fromTheme(QStringLiteral("application-menu")));
         button->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         button->setAccessibleName(i18nc("@action:button", "Actions"));
         button->setToolTip(i18nc("@info", "Show actions available for this smart card slot"));
-        auto menu = new QMenu{button};
-        for (auto action : actions) {
-            menu->addAction(action);
-        }
-        button->setMenu(menu);
+        // show the menu *after* the clicked item is set as current item to ensure correct action states
+        connect(button, &QAbstractButton::pressed, mTreeWidget, [this, item, button, appType]() {
+            mTreeWidget->setCurrentItem(item, Actions);
+            QMenu menu{button};
+            for (auto action : actionsForCardSlot(appType)) {
+                menu.addAction(action);
+            }
+            button->setMenu(&menu);
+            button->showMenu();
+            button->setMenu(nullptr);
+        });
     }
+    mTreeWidget->setItemWidget(item, Actions, button);
     return button;
 }
 
