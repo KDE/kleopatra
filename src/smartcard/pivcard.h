@@ -36,6 +36,11 @@ public:
     static const std::vector<KeyPairInfo> &supportedKeys();
     static QString keyDisplayName(const std::string &keyRef);
     static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
+
+private:
+    PIVCard(const PIVCard &card) = default;
+
+    PIVCard *clone() const override;
 };
 } // namespace Smartcard
 } // namespace Kleopatra

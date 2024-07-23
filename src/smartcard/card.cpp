@@ -49,6 +49,11 @@ Card::~Card()
 {
 }
 
+Card *Card::clone() const
+{
+    return new Card{*this};
+}
+
 void Card::setAppType(AppType app)
 {
     mAppType = app;

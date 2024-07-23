@@ -116,3 +116,8 @@ std::vector<AlgorithmInfo> PIVCard::supportedAlgorithms(const std::string &keyRe
         {"nistp256", i18n("ECDSA (Curve P-256)")},
     };
 }
+
+PIVCard *PIVCard::clone() const
+{
+    return new PIVCard{*this};
+}

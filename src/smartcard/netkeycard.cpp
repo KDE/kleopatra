@@ -73,3 +73,8 @@ bool NetKeyCard::hasSigGNullPin() const
     }
     return states[2] == Card::NullPin;
 }
+
+NetKeyCard *NetKeyCard::clone() const
+{
+    return new NetKeyCard{*this};
+}

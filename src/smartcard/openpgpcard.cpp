@@ -170,3 +170,8 @@ bool OpenPGPCard::isSupportedAlgorithm(const std::string &algorithm) const
 {
     return Kleo::contains(mAlgorithms, algorithm);
 }
+
+OpenPGPCard *OpenPGPCard::clone() const
+{
+    return new OpenPGPCard{*this};
+}

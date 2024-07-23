@@ -31,6 +31,11 @@ public:
     explicit P15Card(const Card &card);
 
     static const std::string AppName;
+
+private:
+    P15Card(const P15Card &card) = default;
+
+    P15Card *clone() const override;
 };
 
 }
