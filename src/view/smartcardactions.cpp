@@ -37,6 +37,36 @@ SmartCardActions::SmartCardActions()
         action->setText(i18nc("@action", "Show Certificate Details"));
         action->setIcon(QIcon::fromTheme(u"dialog-information"_s));
     }
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_generate_key"_s);
+        action->setText(i18nc("@action", "Generate New Key"));
+        action->setToolTip(i18nc("@info:tooltip", "If the card slot already contains a key then the new key will irrevocably replace the old key."));
+        action->setIcon(QIcon::fromTheme(u"view-certificate-add"_s));
+    }
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_write_key"_s);
+        action->setText(i18nc("@action", "Write Key to Card"));
+        action->setToolTip(i18nc("@info:tooltip", "Write the key pair of a certificate to the card"));
+        action->setIcon(QIcon::fromTheme(u"view-certificate-export"_s));
+    }
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_write_certificate"_s);
+        action->setText(i18nc("@action", "Write Certificate to Card"));
+        action->setToolTip(i18nc("@info:tooltip", "Write the certificate corresponding to this key to the card"));
+        action->setIcon(QIcon::fromTheme(u"view-certificate-export"_s));
+    }
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_read_certificate"_s);
+        action->setText(i18nc("@action", "Import Certificate from Card"));
+        action->setToolTip(i18nc("@info:tooltip", "Import the certificate stored on the card"));
+        action->setIcon(QIcon::fromTheme(u"view-certificate-import"_s));
+    }
+    {
+        QAction *action = mActionCollection->addAction(u"card_slot_create_csr"_s);
+        action->setText(i18nc("@action", "Create S/MIME Certification Request"));
+        action->setToolTip(i18nc("@info:tooltip", "Create an S/MIME certificate signing request for this key"));
+        action->setIcon(QIcon::fromTheme(u"view-certificate-add"_s));
+    }
 }
 
 SmartCardActions::~SmartCardActions() = default;

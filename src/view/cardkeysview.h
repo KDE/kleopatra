@@ -59,6 +59,9 @@ public:
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
+Q_SIGNALS:
+    void currentCardSlotChanged() const;
+
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 

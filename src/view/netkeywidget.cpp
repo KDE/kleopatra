@@ -56,6 +56,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 
     mCardKeysView = new CardKeysView{this, CardKeysView::NoCreated};
     mContentLayout->addWidget(mCardKeysView, 1);
+    connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 
     // The action area
     auto actionLayout = new QHBoxLayout();

@@ -10,9 +10,13 @@
 #include "smartcardwidget.h"
 
 #include "infofield.h"
+#include "smartcardactions.h"
 
 #include <smartcard/card.h>
+#include <smartcard/pivcard.h>
 #include <view/cardkeysview.h>
+
+#include <Libkleo/Compliance>
 
 #include <KLocalizedString>
 
@@ -23,6 +27,7 @@
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
+using namespace Qt::Literals::StringLiterals;
 
 static QString cardTypeForDisplay(const Card *card)
 {
@@ -123,4 +128,44 @@ GpgME::Key SmartCardWidget::currentCertificate() const
         return mCardKeysView->currentCertificate();
     }
     return {};
+}
+
+void SmartCardWidget::updateActions()
+{
+    const auto actions = SmartCardActions::instance();
+    if (QAction *action = actions->action(u"card_slot_show_certificate_details"_s)) {
+        action->setEnabled(!currentCertificate().isNull());
+    }
+    switch (cardType()) {
+    case AppType::PIVApp: {
+        const std::string keyRef = currentCardSlot();
+        if (QAction *action = actions->action(u"card_slot_write_key"_s)) {
+            action->setEnabled(keyRef == PIVCard::cardAuthenticationKeyRef() || keyRef == PIVCard::keyManagementKeyRef());
+        }
+        if (QAction *action = actions->action(u"card_slot_write_certificate"_s)) {
+            action->setEnabled(currentCertificate().protocol() == GpgME::CMS);
+        }
+        if (QAction *action = actions->action(u"card_slot_read_certificate"_s)) {
+            action->setEnabled(!mCard->certificateData(keyRef).empty());
+        }
+        if (QAction *action = actions->action(u"card_slot_create_csr"_s)) {
+            const auto keyInfo = mCard->keyInfo(keyRef);
+            // for PIV trying to create a CSR for the authentication key fails
+            action->setEnabled((keyInfo.canSign() || keyInfo.canEncrypt()) //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
+        break;
+    }
+    case AppType::OpenPGPApp:
+        // TODO
+        break;
+    case AppType::NetKeyApp:
+    case AppType::P15App:
+        // nothing to do
+        break;
+    case AppType::NoApp:
+        // cannot happen
+        break;
+    };
 }

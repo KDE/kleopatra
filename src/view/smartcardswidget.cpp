@@ -18,7 +18,12 @@
 #include "smartcardactions.h"
 #include "smartcardwidget.h"
 
+#include <commands/certificatetopivcardcommand.h>
+#include <commands/createcsrforcardkeycommand.h>
 #include <commands/detailscommand.h>
+#include <commands/importcertificatefrompivcardcommand.h>
+#include <commands/keytocardcommand.h>
+#include <commands/pivgeneratecardkeycommand.h>
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
@@ -116,13 +121,24 @@ class SmartCardsWidget::Private
 public:
     Private(SmartCardsWidget *qq);
 
+    const SmartCardWidget *currentCardWidget() const;
+    AppType currentCardType() const;
+    std::string currentSerialNumber() const;
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
     void cardAddedOrChanged(const std::string &serialNumber, const std::string &appName);
     void cardRemoved(const std::string &serialNumber, const std::string &appName);
 
+    void enableCurrentWidget();
+    void disableCurrentWidget();
+
     void showCertificateDetails();
+    void generateKey();
+    void createCSR();
+    void writeCertificateToCard();
+    void readCertificateFromCard();
+    void writeKeyToCard();
 
 private:
     template<typename C, typename W>
@@ -176,11 +192,47 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     actions->connectAction(u"card_slot_show_certificate_details"_s, q, [this]() {
         showCertificateDetails();
     });
+    actions->connectAction(u"card_slot_generate_key"_s, q, [this]() {
+        generateKey();
+    });
+    actions->connectAction(u"card_slot_write_key"_s, q, [this]() {
+        writeKeyToCard();
+    });
+    actions->connectAction(u"card_slot_write_certificate"_s, q, [this]() {
+        writeCertificateToCard();
+    });
+    actions->connectAction(u"card_slot_read_certificate"_s, q, [this]() {
+        readCertificateFromCard();
+    });
+    actions->connectAction(u"card_slot_create_csr"_s, q, [this]() {
+        createCSR();
+    });
+}
+
+const SmartCardWidget *SmartCardsWidget::Private::currentCardWidget() const
+{
+    return qobject_cast<const SmartCardWidget *>(mTabWidget->currentWidget());
+}
+
+AppType SmartCardsWidget::Private::currentCardType() const
+{
+    if (const SmartCardWidget *widget = currentCardWidget()) {
+        return widget->cardType();
+    }
+    return AppType::NoApp;
+}
+
+std::string SmartCardsWidget::Private::currentSerialNumber() const
+{
+    if (const SmartCardWidget *widget = currentCardWidget()) {
+        return widget->serialNumber();
+    }
+    return {};
 }
 
 std::string SmartCardsWidget::Private::currentCardSlot() const
 {
-    if (const SmartCardWidget *widget = qobject_cast<const SmartCardWidget *>(mTabWidget->currentWidget())) {
+    if (const SmartCardWidget *widget = currentCardWidget()) {
         return widget->currentCardSlot();
     }
     return {};
@@ -188,7 +240,7 @@ std::string SmartCardsWidget::Private::currentCardSlot() const
 
 GpgME::Key SmartCardsWidget::Private::currentCertificate() const
 {
-    if (const SmartCardWidget *widget = qobject_cast<const SmartCardWidget *>(mTabWidget->currentWidget())) {
+    if (const SmartCardWidget *widget = currentCardWidget()) {
         return widget->currentCertificate();
     }
     return {};
@@ -262,6 +314,16 @@ void SmartCardsWidget::Private::cardRemoved(const std::string &serialNumber, con
     }
 }
 
+void SmartCardsWidget::Private::enableCurrentWidget()
+{
+    mTabWidget->currentWidget()->setEnabled(true);
+}
+
+void SmartCardsWidget::Private::disableCurrentWidget()
+{
+    mTabWidget->currentWidget()->setEnabled(false);
+}
+
 void SmartCardsWidget::Private::showCertificateDetails()
 {
     const Key certificate = currentCertificate();
@@ -270,6 +332,81 @@ void SmartCardsWidget::Private::showCertificateDetails()
         cmd->setParentWidget(q->window());
         cmd->start();
     }
+}
+
+void SmartCardsWidget::Private::generateKey()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    const std::string keyRef = currentCardSlot();
+    auto cmd = new PIVGenerateCardKeyCommand(serialNumber, q->window());
+    disableCurrentWidget();
+    connect(cmd, &PIVGenerateCardKeyCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->setKeyRef(keyRef);
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::createCSR()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    const std::string keyRef = currentCardSlot();
+    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber, PIVCard::AppName, q->window());
+    disableCurrentWidget();
+    connect(cmd, &CreateCSRForCardKeyCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::writeCertificateToCard()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    const std::string keyRef = currentCardSlot();
+    auto cmd = new CertificateToPIVCardCommand(keyRef, serialNumber);
+    disableCurrentWidget();
+    connect(cmd, &CertificateToPIVCardCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->setParentWidget(q->window());
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::readCertificateFromCard()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    const std::string keyRef = currentCardSlot();
+    auto cmd = new ImportCertificateFromPIVCardCommand(keyRef, serialNumber);
+    disableCurrentWidget();
+    connect(cmd, &ImportCertificateFromPIVCardCommand::finished, q, [this, keyRef]() {
+        // this->updateKeyWidgets(keyRef); // this should happen automatically
+        enableCurrentWidget();
+    });
+    cmd->setParentWidget(q->window());
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::writeKeyToCard()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    const std::string keyRef = currentCardSlot();
+    auto cmd = new KeyToCardCommand(keyRef, serialNumber, PIVCard::AppName);
+    disableCurrentWidget();
+    connect(cmd, &KeyToCardCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->setParentWidget(q->window());
+    cmd->start();
 }
 
 SmartCardsWidget::SmartCardsWidget(QWidget *parent)
