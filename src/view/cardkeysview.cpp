@@ -26,7 +26,9 @@
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyHelpers>
+#include <Libkleo/SystemInfo>
 #include <Libkleo/TreeWidget>
 
 #include <KConfigGroup>
@@ -36,6 +38,7 @@
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 
+#include <QFont>
 #include <QHeaderView>
 #include <QLabel>
 #include <QMenu>
@@ -79,7 +82,7 @@ enum ColumnIndex {
     Created,
     Fingerprint,
     Certificate,
-    Actions,
+    Actions, // keep this as last column
 };
 }
 
@@ -169,7 +172,10 @@ static std::vector<CardKeysWidgetItem *> getItems(const TreeWidget *treeWidget, 
 
 static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &keyInfo, const Subkey &subkey, CardKeysView::Options options)
 {
+    static const QFont monospaceFont{u"monospace"_s};
+
     Q_ASSERT(item);
+    const auto key = subkey.parent();
     // slot
     item->setData(Slot, Qt::DisplayRole, QString::number(item->slotIndex() + 1));
     // key grip
@@ -206,12 +212,24 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         item->setData(Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
         item->setData(Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
         // certificate
-        if (subkey.parent().protocol() == GpgME::OpenPGP) {
-            item->setData(Certificate, Qt::DisplayRole, Formatting::prettyUserID(subkey.parent().userID(0)));
+        if (key.protocol() == GpgME::OpenPGP) {
+            item->setData(Certificate, Qt::DisplayRole, Formatting::prettyUserID(key.userID(0)));
         } else {
-            item->setData(Certificate, Qt::DisplayRole, DN(subkey.parent().userID(0).id()).prettyDN());
+            item->setData(Certificate, Qt::DisplayRole, DN(key.userID(0).id()).prettyDN());
         }
-        item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(subkey.parent(), toolTipOptions()));
+        item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(key, toolTipOptions()));
+    }
+    const auto keyFilters = KeyFilterManager::instance();
+    for (int col = 0; col < ColumnIndex::Actions; ++col) {
+        item->setFont(col, keyFilters->font(key, (col == KeyGrip || col == Fingerprint) ? monospaceFont : QFont{}));
+        if (!SystemInfo::isHighContrastModeActive()) {
+            if (auto bgColor = keyFilters->bgColor(key); bgColor.isValid()) {
+                item->setBackground(col, bgColor);
+            }
+            if (auto fgColor = keyFilters->fgColor(key); fgColor.isValid()) {
+                item->setForeground(col, fgColor);
+            }
+        }
     }
 }
 
