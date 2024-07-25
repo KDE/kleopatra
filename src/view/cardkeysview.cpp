@@ -131,13 +131,13 @@ static QString cardKeyUsageDisplayName(char c)
 {
     switch (c) {
     case 'e':
-        return i18n("encryption");
+        return i18n("encrypt");
     case 's':
-        return i18n("signatures");
+        return i18n("sign");
     case 'c':
-        return i18n("certification");
+        return i18n("certify");
     case 'a':
-        return i18n("authentication");
+        return i18n("authenticate");
     default:
         return {};
     };
