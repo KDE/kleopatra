@@ -23,6 +23,7 @@
 #include <commands/detailscommand.h>
 #include <commands/importcertificatefrompivcardcommand.h>
 #include <commands/keytocardcommand.h>
+#include <commands/openpgpgeneratecardkeycommand.h>
 #include <commands/pivgeneratecardkeycommand.h>
 
 #include "smartcard/netkeycard.h"
@@ -334,28 +335,36 @@ void SmartCardsWidget::Private::showCertificateDetails()
     }
 }
 
+static Command *createGenerateKeyCommand(AppType app, const std::string &serialNumber, const std::string &keyRef, QWidget *parent)
+{
+    Q_ASSERT(app == AppType::OpenPGPApp || app == AppType::PIVApp);
+    Q_ASSERT(!serialNumber.empty());
+    if (app == AppType::OpenPGPApp) {
+        return new OpenPGPGenerateCardKeyCommand(keyRef, serialNumber, parent);
+    }
+    auto cmd = new PIVGenerateCardKeyCommand(serialNumber, parent);
+    cmd->setKeyRef(keyRef);
+    return cmd;
+}
+
 void SmartCardsWidget::Private::generateKey()
 {
-    Q_ASSERT(currentCardType() == AppType::PIVApp);
-    const std::string serialNumber = currentSerialNumber();
-    Q_ASSERT(!serialNumber.empty());
-    const std::string keyRef = currentCardSlot();
-    auto cmd = new PIVGenerateCardKeyCommand(serialNumber, q->window());
+    auto cmd = createGenerateKeyCommand(currentCardType(), currentSerialNumber(), currentCardSlot(), q->window());
     disableCurrentWidget();
-    connect(cmd, &PIVGenerateCardKeyCommand::finished, q, [this]() {
+    connect(cmd, &Command::finished, q, [this]() {
         enableCurrentWidget();
     });
-    cmd->setKeyRef(keyRef);
     cmd->start();
 }
 
 void SmartCardsWidget::Private::createCSR()
 {
-    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    const auto app = currentCardType();
+    Q_ASSERT(app == AppType::OpenPGPApp || app == AppType::PIVApp);
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     const std::string keyRef = currentCardSlot();
-    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber, PIVCard::AppName, q->window());
+    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber, app == AppType::OpenPGPApp ? OpenPGPCard::AppName : PIVCard::AppName, q->window());
     disableCurrentWidget();
     connect(cmd, &CreateCSRForCardKeyCommand::finished, q, [this]() {
         enableCurrentWidget();
