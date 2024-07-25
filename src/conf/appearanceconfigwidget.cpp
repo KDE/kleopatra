@@ -48,6 +48,8 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 
+Q_DECLARE_METATYPE(KConfigGroup)
+
 enum {
     HasFontRole = Qt::UserRole + 0x1234, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
     IconNameRole, /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
@@ -60,6 +62,7 @@ enum {
     MayChangeIconRole,
     StoredForegroundRole, /*!< Stores the actual configured foreground color */
     StoredBackgroundRole, /*!< Stores the actual configured background color */
+    ConfigGroupRole,
 
     EndDummy,
 };
@@ -138,6 +141,7 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
 
     const QString name = group.readEntry("Name");
     item->setText(name.isEmpty() ? i18nc("Key filter without user-assigned name", "<unnamed>") : name);
+    item->setData(ConfigGroupRole, QVariant::fromValue(group));
 
     const QColor fg = group.readEntry("foreground-color", QColor());
     item->setData(StoredForegroundRole, fg.isValid() ? QBrush(fg) : QVariant());
@@ -177,10 +181,23 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
     item->setData(MayChangeIconRole, !group.isEntryImmutable("icon"));
 }
 
-static void erase_if_allowed(QListWidgetItem *item, int role, int allowRole)
+static void resetString(QListWidgetItem *item, int role, int allowRole, const char *key)
 {
     if (item && item->data(allowRole).toBool()) {
-        item->setData(role, QVariant());
+        auto config = item->data(ConfigGroupRole).value<KConfigGroup>();
+        config.revertToDefault(key);
+        item->setData(role, config.readEntry(key, QString()));
+    }
+}
+
+static void resetColor(QListWidgetItem *item, int role, int allowRole, const char *key)
+{
+    if (item && item->data(allowRole).toBool()) {
+        auto config = item->data(ConfigGroupRole).value<KConfigGroup>();
+        config.revertToDefault(key);
+
+        const auto value = config.readEntry(key, QColor{});
+        item->setData(role, value.isValid() ? value : QVariant());
     }
 }
 
@@ -215,9 +232,16 @@ static void erase_if_allowed(QListWidgetItem *item, const int role[], size_t num
         if (!item->data(allowRole[i]).toBool()) {
             return;
         }
-    for (unsigned int i = 0; i < numRoles; ++i) {
-        item->setData(role[i], QVariant());
-    }
+    auto config = item->data(ConfigGroupRole).value<KConfigGroup>();
+    config.revertToDefault("font");
+    config.revertToDefault("font-bold");
+    config.revertToDefault("font-strikeout");
+    config.revertToDefault("font-italic");
+    auto value = config.readEntry<QFont>("font", tryToFindFontFor(item));
+    value.setBold(config.readEntry("font-bold", false));
+    value.setStrikeOut(config.readEntry("font-strikeout", false));
+    value.setItalic(config.readEntry("font-italic", false));
+    item->setData(Qt::FontRole, value);
 }
 
 static void set_default_appearance(QListWidgetItem *item)
@@ -225,12 +249,14 @@ static void set_default_appearance(QListWidgetItem *item)
     if (!item) {
         return;
     }
-    erase_if_allowed(item, StoredForegroundRole, MayChangeForegroundRole);
-    erase_if_allowed(item, Qt::ForegroundRole, MayChangeForegroundRole);
-    erase_if_allowed(item, StoredBackgroundRole, MayChangeBackgroundRole);
-    erase_if_allowed(item, Qt::BackgroundRole, MayChangeBackgroundRole);
-    erase_if_allowed(item, IconNameRole, MayChangeIconRole);
-    erase_if_allowed(item, Qt::DecorationRole, MayChangeIconRole);
+    if (!SystemInfo::isHighContrastModeActive()) {
+        resetColor(item, Qt::ForegroundRole, MayChangeForegroundRole, "foreground-color");
+        resetColor(item, Qt::BackgroundRole, MayChangeBackgroundRole, "background-color");
+    }
+    resetColor(item, StoredForegroundRole, MayChangeForegroundRole, "foreground-color");
+    resetColor(item, StoredBackgroundRole, MayChangeBackgroundRole, "background-color");
+    resetString(item, IconNameRole, MayChangeIconRole, "icon");
+    item->setData(Qt::DecorationRole, QIcon::fromTheme(item->data(ConfigGroupRole).value<KConfigGroup>().readEntry("icon", QString())));
     static const int fontRoles[] = {Qt::FontRole, HasFontRole};
     static const int fontAllowRoles[] = {
         MayChangeFontRole,
@@ -246,7 +272,7 @@ static void writeOrDelete(KConfigGroup &group, const char *key, const QVariant &
     if (value.isValid()) {
         group.writeEntry(key, value);
     } else {
-        group.deleteEntry(key);
+        group.revertToDefault(key);
     }
 }
 
