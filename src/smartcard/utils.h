@@ -18,8 +18,11 @@ namespace Kleo
 {
 namespace SmartCard
 {
+enum class AppType;
 struct AlgorithmInfo;
 class OpenPGPCard;
+
+std::string appName(Kleo::SmartCard::AppType appType);
 
 QString displayAppName(const std::string &appName);
 

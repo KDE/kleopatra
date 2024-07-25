@@ -168,7 +168,19 @@ void SmartCardWidget::updateActions()
         }
         break;
     }
-    case AppType::NetKeyApp:
+    case AppType::NetKeyApp: {
+        const std::string keyRef = currentCardSlot();
+        if (QAction *action = actions->action(u"card_slot_create_csr"_s)) {
+            const auto keyInfo = mCard->keyInfo(keyRef);
+            // SigG certificates for qualified signatures (with keyRef "NKS-SIGG.*") are issued with the physical cards;
+            // it's not possible to request a certificate for them; therefore, we only enable it for NKS-NKS3.* keys
+            action->setEnabled(keyRef.starts_with("NKS-NKS3.") //
+                               && keyInfo.canSign() //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
+        break;
+    }
     case AppType::P15App:
         // nothing to do
         break;

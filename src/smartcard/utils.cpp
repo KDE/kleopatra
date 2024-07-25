@@ -12,6 +12,7 @@
 #include "algorithminfo.h"
 #include "netkeycard.h"
 #include "openpgpcard.h"
+#include "p15card.h"
 #include "pivcard.h"
 
 #include <kleopatra_debug.h>
@@ -25,6 +26,23 @@
 #include <QString>
 
 using namespace Kleo::SmartCard;
+
+std::string Kleo::SmartCard::appName(AppType appType)
+{
+    switch (appType) {
+    case AppType::OpenPGPApp:
+        return OpenPGPCard::AppName;
+    case AppType::PIVApp:
+        return PIVCard::AppName;
+    case AppType::NetKeyApp:
+        return NetKeyCard::AppName;
+    case AppType::P15App:
+        return P15Card::AppName;
+    case AppType::NoApp:
+        break;
+    };
+    return {};
+}
 
 QString Kleo::SmartCard::displayAppName(const std::string &appName)
 {
