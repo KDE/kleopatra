@@ -71,10 +71,10 @@ std::string PIVCard::pukKeyRef()
 const std::vector<KeyPairInfo> &PIVCard::supportedKeys()
 {
     static const std::vector<KeyPairInfo> keyInfos = {
-        {PIVCard::pivAuthenticationKeyRef(), "", "a", "", ""},
-        {PIVCard::cardAuthenticationKeyRef(), "", "a", "", ""},
-        {PIVCard::digitalSignatureKeyRef(), "", "sc", "", ""},
-        {PIVCard::keyManagementKeyRef(), "", "e", "", ""},
+        {PIVCard::pivAuthenticationKeyRef(), "", "a", {}, ""},
+        {PIVCard::cardAuthenticationKeyRef(), "", "a", {}, ""},
+        {PIVCard::digitalSignatureKeyRef(), "", "sc", {}, ""},
+        {PIVCard::keyManagementKeyRef(), "", "e", {}, ""},
     };
 
     return keyInfos;

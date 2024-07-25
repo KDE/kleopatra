@@ -197,7 +197,8 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
     }
     // created
     if (!(options & CardKeysView::NoCreated)) {
-        item->setData(Created, Qt::DisplayRole, QString::fromStdString(keyInfo.keyTime));
+        item->setData(Created, Qt::DisplayRole, Formatting::dateString(keyInfo.keyTime.date()));
+        item->setData(Created, Qt::AccessibleTextRole, Formatting::accessibleDate(keyInfo.keyTime.date()));
     }
     item->setSubkey(subkey);
     if (subkey.isNull()) {
