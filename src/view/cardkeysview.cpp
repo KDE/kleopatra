@@ -47,6 +47,7 @@
 #include <QVBoxLayout>
 
 #include <gpgme++/context.h>
+#include <gpgme++/engineinfo.h>
 #include <gpgme++/key.h>
 #include <gpgme++/keylistresult.h>
 
@@ -237,35 +238,39 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
 
 static std::vector<QAction *> actionsForCardSlot(SmartCard::AppType appType)
 {
+    std::vector<QString> actions;
     switch (appType) {
     case AppType::NetKeyApp:
-    case AppType::P15App:
-        return SmartCardActions::instance()->actions({u"card_slot_show_certificate_details"_s});
-    case AppType::OpenPGPApp:
-        if (DeVSCompliance::isActive()) {
-            return SmartCardActions::instance()->actions({
-                u"card_slot_show_certificate_details"_s,
-                u"card_slot_create_csr"_s,
-            });
+        actions = {u"card_slot_show_certificate_details"_s};
+        if (!(engineInfo(GpgME::GpgSMEngine).engineVersion() < "2.2.26")) { // see https://dev.gnupg.org/T5184
+            actions.push_back(u"card_slot_create_csr"_s);
         }
-        return SmartCardActions::instance()->actions({
-            u"card_slot_show_certificate_details"_s,
-            u"card_slot_generate_key"_s,
-            u"card_slot_create_csr"_s,
-        });
-    case AppType::PIVApp:
-        return SmartCardActions::instance()->actions({
+        break;
+    case AppType::P15App:
+        actions = {u"card_slot_show_certificate_details"_s};
+        break;
+    case AppType::OpenPGPApp:
+        actions = {u"card_slot_show_certificate_details"_s};
+        if (!DeVSCompliance::isActive()) {
+            actions.push_back(u"card_slot_generate_key"_s);
+        }
+        actions.push_back(u"card_slot_create_csr"_s);
+        break;
+    case AppType::PIVApp: {
+        actions = {
             u"card_slot_show_certificate_details"_s,
             u"card_slot_generate_key"_s,
             u"card_slot_write_key"_s,
             u"card_slot_write_certificate"_s,
             u"card_slot_read_certificate"_s,
             u"card_slot_create_csr"_s,
-        });
+        };
+        break;
+    }
     case AppType::NoApp:
         break;
     };
-    return {};
+    return SmartCardActions::instance()->actions(actions);
 }
 
 static bool canImportCertificates(const Card *card, const std::vector<std::string> &keyRefsWithoutSMimeCertificate)

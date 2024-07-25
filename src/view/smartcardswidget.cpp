@@ -362,11 +362,11 @@ void SmartCardsWidget::Private::generateKey()
 void SmartCardsWidget::Private::createCSR()
 {
     const auto app = currentCardType();
-    Q_ASSERT(app == AppType::OpenPGPApp || app == AppType::PIVApp);
+    Q_ASSERT(app == AppType::NetKeyApp || app == AppType::OpenPGPApp || app == AppType::PIVApp);
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     const std::string keyRef = currentCardSlot();
-    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber, app == AppType::OpenPGPApp ? OpenPGPCard::AppName : PIVCard::AppName, q->window());
+    auto cmd = new CreateCSRForCardKeyCommand(keyRef, serialNumber, appName(app), q->window());
     disableCurrentWidget();
     connect(cmd, &CreateCSRForCardKeyCommand::finished, q, [this]() {
         enableCurrentWidget();

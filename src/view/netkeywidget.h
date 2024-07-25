@@ -9,13 +9,7 @@
 
 #include "smartcardwidget.h"
 
-#include <Libkleo/Predicates>
-
-#include <gpgme++/error.h>
-
-#include <set>
 #include <string>
-#include <vector>
 
 class QLabel;
 class QPushButton;
@@ -41,13 +35,11 @@ public:
 private:
     void doChangePin(const std::string &keyRef);
     void createKeyFromCardKeys();
-    void createCSR();
 
 private:
     QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
     QPushButton *mKeyForCardKeysButton = nullptr;
-    QPushButton *mCreateCSRButton = nullptr;
     QPushButton *mChangeNKSPINBtn = nullptr;
     QPushButton *mChangeSigGPINBtn = nullptr;
 };
