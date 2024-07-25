@@ -8,6 +8,8 @@
 */
 #pragma once
 
+#include <QDateTime>
+
 #include <string>
 
 namespace Kleo
@@ -30,7 +32,7 @@ struct KeyPairInfo {
     std::string keyRef;
     std::string grip;
     std::string usage;
-    std::string keyTime;
+    QDateTime keyTime;
     std::string algorithm;
 };
 } // namespace Smartcard

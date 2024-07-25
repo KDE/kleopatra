@@ -87,9 +87,9 @@ std::string OpenPGPCard::resetCodeKeyRef()
 const std::vector<KeyPairInfo> &OpenPGPCard::supportedKeys()
 {
     static const std::vector<KeyPairInfo> keyInfos = {
-        {OpenPGPCard::pgpSigKeyRef(), "", "sc", "", ""},
-        {OpenPGPCard::pgpEncKeyRef(), "", "e", "", ""},
-        {OpenPGPCard::pgpAuthKeyRef(), "", "a", "", ""},
+        {OpenPGPCard::pgpSigKeyRef(), "", "sc", {}, ""},
+        {OpenPGPCard::pgpEncKeyRef(), "", "e", {}, ""},
+        {OpenPGPCard::pgpAuthKeyRef(), "", "a", {}, ""},
     };
 
     return keyInfos;

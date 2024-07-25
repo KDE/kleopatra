@@ -11,8 +11,10 @@
 
 #include <QString>
 #include <QStringList>
+#include <QTimeZone>
 
 using namespace Kleo::SmartCard;
+using namespace Qt::Literals::StringLiterals;
 
 // static
 KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s)
@@ -30,8 +32,12 @@ KeyPairInfo KeyPairInfo::fromStatusLine(const std::string &s)
     if (values.size() >= 3) {
         info.usage = values[2].toStdString();
     }
-    if (values.size() >= 4) {
-        info.keyTime = values[3].toStdString();
+    if (values.size() >= 4 && !values[3].isEmpty() && values[3] != "-"_L1) {
+        bool ok;
+        const qint64 secondsSinceEpoch = values[3].toLongLong(&ok);
+        if (ok) {
+            info.keyTime = QDateTime::fromSecsSinceEpoch(secondsSinceEpoch, QTimeZone::utc());
+        }
     }
     if (values.size() >= 5) {
         info.algorithm = values[4].toStdString();
@@ -69,14 +75,14 @@ void KeyPairInfo::update(const KeyPairInfo &other)
         // reset all infos if the grip changed
         grip = other.grip;
         usage = std::string();
-        keyTime = std::string();
+        keyTime = QDateTime{};
         algorithm = std::string();
     }
     // now update all infos from other's infos unless other's infos are empty or not specified
     if (!other.usage.empty() && other.usage != "-") {
         usage = other.usage;
     }
-    if (!other.keyTime.empty() && other.keyTime != "-") {
+    if (other.keyTime.isValid()) {
         keyTime = other.keyTime;
     }
     if (!other.algorithm.empty() && other.algorithm != "-") {
