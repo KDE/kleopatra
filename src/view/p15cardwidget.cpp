@@ -51,7 +51,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     mStatusLabel->setVisible(false);
     mContentLayout->addWidget(mStatusLabel);
 
-    mCardKeysView = new CardKeysView{this, CardKeysView::NoCreated};
+    mCardKeysView = new CardKeysView{this};
     mCardKeysView->setVisible(false);
     mContentLayout->addWidget(mCardKeysView);
     connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
