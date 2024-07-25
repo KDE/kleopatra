@@ -172,7 +172,7 @@ static std::vector<CardKeysWidgetItem *> getItems(const TreeWidget *treeWidget, 
     return items;
 }
 
-static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &keyInfo, const Subkey &subkey, CardKeysView::Options options)
+static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &keyInfo, const Subkey &subkey)
 {
     static const QFont monospaceFont{u"monospace"_s};
 
@@ -198,9 +198,15 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         // we don't have to set/overwrite data for Qt::AccessibleTextRole because keyInfo.usage never changes
     }
     // created
-    if (!(options & CardKeysView::NoCreated)) {
+    if (keyInfo.grip.empty()) {
+        item->setData(Created, Qt::DisplayRole, u"-"_s);
+        item->setData(Created, Qt::AccessibleTextRole, QVariant{});
+    } else if (keyInfo.keyTime.isValid()) {
         item->setData(Created, Qt::DisplayRole, Formatting::dateString(keyInfo.keyTime.date()));
         item->setData(Created, Qt::AccessibleTextRole, Formatting::accessibleDate(keyInfo.keyTime.date()));
+    } else {
+        item->setData(Created, Qt::DisplayRole, u"?"_s);
+        item->setData(Created, Qt::AccessibleTextRole, i18nc("@info date is unknown", "unknown"));
     }
     item->setSubkey(subkey);
     if (subkey.isNull()) {
@@ -339,9 +345,6 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
         i18nc("@title:column", "Certificate"),
         i18nc("@title:column", "Actions"),
     });
-    if (mOptions & NoCreated) {
-        mTreeWidget->forceColumnHidden(Created);
-    }
     mainLayout->addWidget(mTreeWidget);
 
     connect(mTreeWidget, &QTreeWidget::currentItemChanged, this, [this]() {
@@ -431,7 +434,7 @@ void CardKeysView::updateKeyList(const Card *card)
                 Q_ASSERT(firstSetUp);
                 insertTreeWidgetItem(card, slotIndex, keyInfo, Subkey{});
             } else {
-                updateTreeWidgetItem(items.front(), keyInfo, Subkey{}, mOptions);
+                updateTreeWidgetItem(items.front(), keyInfo, Subkey{});
                 for (int i = 1; i < int(items.size()); ++i) {
                     auto item = items.at(i);
                     qCDebug(KLEOPATRA_LOG) << __func__ << "deleting item - slot:" << item->slotIndex() << "certificate:" << item->subkey().parent();
@@ -447,7 +450,7 @@ void CardKeysView::updateKeyList(const Card *card)
             } else if (items.front()->subkey().isNull()) {
                 // the second most simple case: slot with no associated subkeys -> slot with one or more associated subkeys
                 Q_ASSERT(items.size() == 1);
-                updateTreeWidgetItem(items.front(), keyInfo, subkeys.front(), mOptions);
+                updateTreeWidgetItem(items.front(), keyInfo, subkeys.front());
                 const int itemIndex = mTreeWidget->indexOfTopLevelItem(items.front());
                 for (int i = 1; i < int(subkeys.size()); ++i) {
                     insertTreeWidgetItem(card, slotIndex, keyInfo, subkeys.at(i), itemIndex + i);
@@ -466,7 +469,7 @@ void CardKeysView::updateKeyList(const Card *card)
                         delete item;
                         ++i;
                     } else if (itemVsSubkey == 0) {
-                        updateTreeWidgetItem(item, keyInfo, subkey, mOptions);
+                        updateTreeWidgetItem(item, keyInfo, subkey);
                         ++i;
                         ++s;
                     } else {
@@ -507,6 +510,9 @@ void CardKeysView::updateKeyList(const Card *card)
     }
 
     if (firstSetUp && !mTreeWidget->restoreColumnLayout(u"CardKeysView-"_s + QString::fromStdString(mAppName))) {
+        if (!(mOptions & ShowCreated)) {
+            mTreeWidget->hideColumn(Created);
+        }
         mTreeWidget->header()->resizeSections(QHeaderView::ResizeToContents);
     }
 
@@ -527,7 +533,7 @@ void CardKeysView::insertTreeWidgetItem(const Card *card, int slotIndex, const K
     auto item = new CardKeysWidgetItem{slotIndex, keyInfo.keyRef};
     item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled | Qt::ItemNeverHasChildren);
 
-    updateTreeWidgetItem(item, keyInfo, subkey, mOptions);
+    updateTreeWidgetItem(item, keyInfo, subkey);
     mTreeWidget->insertTopLevelItem(index, item);
     auto actionsButton = addActionsButton(item, card->appType());
     if (index == 0) {

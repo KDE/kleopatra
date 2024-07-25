@@ -46,12 +46,13 @@ public:
     enum Option {
         // clang-format off
         NoOptions    = 0x0000,
-        NoCreated    = 0x0001, // no "Created" column
+        ShowCreated  = 0x0001, // show "Created" column by default
+        DefaultOptions = ShowCreated,
         // clang-format on
     };
     Q_DECLARE_FLAGS(Options, Option)
 
-    explicit CardKeysView(QWidget *parent, Options options = NoOptions);
+    explicit CardKeysView(QWidget *parent, Options options = DefaultOptions);
     ~CardKeysView() override;
 
     void setCard(const SmartCard::Card *card);

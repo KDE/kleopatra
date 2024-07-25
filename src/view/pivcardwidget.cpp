@@ -32,7 +32,8 @@ using namespace Kleo::SmartCard;
 PIVCardWidget::PIVCardWidget(QWidget *parent)
     : SmartCardWidget(parent)
 {
-    mCardKeysView = new CardKeysView{this, CardKeysView::NoCreated};
+    // do not show Created column by default; creation time is not reported by scdaemon for PIV cards
+    mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
     mContentLayout->addWidget(mCardKeysView);
     connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 
