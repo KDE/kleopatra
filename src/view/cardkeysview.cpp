@@ -508,6 +508,7 @@ void CardKeysView::updateKeyList(const Card *card)
     }
 
     if (firstSetUp && !mTreeWidget->restoreColumnLayout(u"CardKeysView-"_s + QString::fromStdString(mAppName))) {
+        mTreeWidget->hideColumn(KeyGrip);
         if (!(mOptions & ShowCreated)) {
             mTreeWidget->hideColumn(Created);
         }
