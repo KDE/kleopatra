@@ -22,6 +22,7 @@
 #include <view/progressoverlay.h>
 #include <view/smartcardactions.h>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Debug>
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
@@ -241,7 +242,17 @@ static std::vector<QAction *> actionsForCardSlot(SmartCard::AppType appType)
     case AppType::P15App:
         return SmartCardActions::instance()->actions({u"card_slot_show_certificate_details"_s});
     case AppType::OpenPGPApp:
-        break;
+        if (DeVSCompliance::isActive()) {
+            return SmartCardActions::instance()->actions({
+                u"card_slot_show_certificate_details"_s,
+                u"card_slot_create_csr"_s,
+            });
+        }
+        return SmartCardActions::instance()->actions({
+            u"card_slot_show_certificate_details"_s,
+            u"card_slot_generate_key"_s,
+            u"card_slot_create_csr"_s,
+        });
     case AppType::PIVApp:
         return SmartCardActions::instance()->actions({
             u"card_slot_show_certificate_details"_s,

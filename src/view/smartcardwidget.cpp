@@ -158,9 +158,17 @@ void SmartCardWidget::updateActions()
         }
         break;
     }
-    case AppType::OpenPGPApp:
-        // TODO
+    case AppType::OpenPGPApp: {
+        const std::string keyRef = currentCardSlot();
+        if (QAction *action = actions->action(u"card_slot_create_csr"_s)) {
+            const auto keyInfo = mCard->keyInfo(keyRef);
+            // trying to create a CSR for the encryption key fails (signing the request fails with "Invalid ID")
+            action->setEnabled((keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate()) //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
         break;
+    }
     case AppType::NetKeyApp:
     case AppType::P15App:
         // nothing to do

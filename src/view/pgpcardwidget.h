@@ -23,11 +23,9 @@ class QLabel;
 namespace Kleo
 {
 class GenCardKeyDialog;
-class OpenPGPKeyCardWidget;
 
 namespace SmartCard
 {
-struct KeyPairInfo;
 class OpenPGPCard;
 } // namespace SmartCard
 
@@ -47,8 +45,6 @@ public Q_SLOTS:
     void changeNameResult(const GpgME::Error &err);
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
-    void createCSR(const std::string &keyref);
-    void generateKey(const std::string &keyref);
 
 private:
     void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
@@ -56,7 +52,6 @@ private:
 private:
     QLabel *mCardHolderLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
-    OpenPGPKeyCardWidget *mKeysWidget = nullptr;
     QString mUrl;
     bool mCardIsEmpty = false;
     bool mIs21 = false;

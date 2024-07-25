@@ -13,12 +13,7 @@
 
 #include "pgpcardwidget.h"
 
-#include "openpgpkeycardwidget.h"
-
 #include "kleopatra_debug.h"
-
-#include "commands/createcsrforcardkeycommand.h"
-#include "commands/openpgpgeneratecardkeycommand.h"
 
 #include "smartcard/algorithminfo.h"
 #include "smartcard/openpgpcard.h"
@@ -26,6 +21,7 @@
 #include "smartcard/utils.h"
 
 #include "dialogs/gencardkeydialog.h"
+#include <view/cardkeysview.h>
 
 #include <utils/qt-cxx20-compat.h>
 
@@ -45,7 +41,6 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KSeparator>
 
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -182,19 +177,9 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount(), 1);
     }
 
-    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
-
-    // The keys
-    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Keys:"))));
-
-    mKeysWidget = new OpenPGPKeyCardWidget{this};
-    mContentLayout->addWidget(mKeysWidget);
-    connect(mKeysWidget, &OpenPGPKeyCardWidget::createCSRRequested, this, &PGPCardWidget::createCSR);
-    connect(mKeysWidget, &OpenPGPKeyCardWidget::generateKeyRequested, this, &PGPCardWidget::generateKey);
-
-    mContentLayout->addWidget(new KSeparator(Qt::Horizontal));
-
-    mContentLayout->addWidget(new QLabel(QStringLiteral("<b>%1</b>").arg(i18n("Actions:"))));
+    mCardKeysView = new CardKeysView{this};
+    mContentLayout->addWidget(mCardKeysView);
+    connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 
     auto actionLayout = new QHBoxLayout;
 
@@ -250,8 +235,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
 
     actionLayout->addStretch(-1);
     mContentLayout->addLayout(actionLayout);
-
-    mContentLayout->addStretch(1);
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
@@ -267,10 +250,10 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
 
-    mKeysWidget->update(card);
-
     mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty() && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
         && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
+
+    mCardKeysView->setCard(card);
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
@@ -476,26 +459,6 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
         KMessageBox::information(this, i18nc("@info", "URL successfully changed."), i18nc("@title", "Success"));
         ReaderStatus::mutableInstance()->updateStatus();
     }
-}
-
-void PGPCardWidget::createCSR(const std::string &keyref)
-{
-    auto cmd = new CreateCSRForCardKeyCommand(keyref, serialNumber(), OpenPGPCard::AppName, this);
-    this->setEnabled(false);
-    connect(cmd, &CreateCSRForCardKeyCommand::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->start();
-}
-
-void PGPCardWidget::generateKey(const std::string &keyref)
-{
-    auto cmd = new OpenPGPGenerateCardKeyCommand(keyref, serialNumber(), this);
-    this->setEnabled(false);
-    connect(cmd, &OpenPGPGenerateCardKeyCommand::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->start();
 }
 
 #include "pgpcardwidget.moc"
