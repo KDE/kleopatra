@@ -71,7 +71,6 @@ private:
         QRadioButton *onRB;
         KDateComboBox *onCB;
         QCheckBox *updateSubkeysCheckBox;
-        QLabel *primaryKeyExpirationDate;
         LabelHelper labelHelper;
 
         explicit UI(Mode mode, Dialogs::ExpiryDialog *qq)
@@ -98,7 +97,13 @@ private:
             {
                 auto hboxLayout = new QHBoxLayout;
 
-                onRB = new QRadioButton{i18n("Valid until:"), mainWidget};
+                const auto range = Kleo::Expiration::expirationDateRange();
+                onRB = new QRadioButton{mainWidget};
+                onRB->setText(i18nc("The placeholders are dates",
+                                    "Valid until (between %1 and %2):",
+                                    Formatting::dateString(range.minimum),
+                                    Formatting::dateString(range.maximum.isValid() ? range.maximum : Expiration::maximumAllowedDate())));
+
                 onRB->setChecked(true);
 
                 hboxLayout->addWidget(onRB);
@@ -112,11 +117,6 @@ private:
 
                 vboxLayout->addLayout(hboxLayout);
             }
-
-            primaryKeyExpirationDate = new QLabel(qq);
-            primaryKeyExpirationDate->setVisible(false);
-            vboxLayout->addWidget(primaryKeyExpirationDate);
-            labelHelper.addLabel(primaryKeyExpirationDate);
 
             {
                 updateSubkeysCheckBox = new QCheckBox{i18n("Also update the validity period of the subkeys"), qq};
@@ -233,13 +233,19 @@ void ExpiryDialog::showEvent(QShowEvent *event)
 void ExpiryDialog::setPrimaryKey(const GpgME::Key &key)
 {
     if (!key.subkey(0).neverExpires()) {
-        d->ui.primaryKeyExpirationDate->setText(i18n("Expiration of primary key: %1", Kleo::Formatting::expirationDateString(key)));
+        d->ui.neverRB->setText(i18nc("The placeholder is a date", "Same validity as the primary key (%1)", Kleo::Formatting::expirationDateString(key)));
+        d->ui.onRB->setText(i18nc("The placeholders are dates",
+                                  "Valid until (between %1 and %2):",
+                                  Kleo::Formatting::dateString(d->ui.onCB->minimumDate()),
+                                  Kleo::Formatting::expirationDateString(key)));
         d->ui.onCB->setMaximumDate(Kleo::Formatting::expirationDate(key));
-        d->ui.primaryKeyExpirationDate->setVisible(true);
         const auto keyExpiryDate = QDateTime::fromSecsSinceEpoch(quint32(key.subkey(0).expirationTime())).date();
         if (dateOfExpiry() > keyExpiryDate) {
             setDateOfExpiry(keyExpiryDate);
         }
+    } else {
+        d->ui.neverRB->setText(
+            i18nc("'unlimited' means 'forever', here", "Same validity as the primary key (unlimited)", Kleo::Formatting::expirationDateString(key)));
     }
 }
 
