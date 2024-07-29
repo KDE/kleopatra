@@ -334,8 +334,6 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     mTreeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     mTreeWidget->setRootIsDecorated(false);
-    // set a smaller default column size (default for most styles is 100) so that the Actions column doesn't get too wide by default
-    mTreeWidget->header()->setDefaultSectionSize(20);
     mTreeWidget->setHeaderLabels({
         i18nc("@title:column Key slot of a smart card", "Slot"),
         i18nc("@title:column", "Keygrip"),
@@ -345,6 +343,7 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
         i18nc("@title:column", "Certificate"),
         i18nc("@title:column", "Actions"),
     });
+    mTreeWidget->header()->setStretchLastSection(false); // the Actions column shouldn't stretch
     mainLayout->addWidget(mTreeWidget);
 
     connect(mTreeWidget, &QTreeWidget::currentItemChanged, this, [this]() {
