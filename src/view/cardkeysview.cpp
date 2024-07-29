@@ -80,6 +80,7 @@ enum ColumnIndex {
     KeyGrip,
     Usage,
     Created,
+    Algorithm,
     Fingerprint,
     Certificate,
     Actions, // keep this as last column
@@ -206,6 +207,18 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         item->setData(Created, Qt::DisplayRole, u"?"_s);
         item->setData(Created, Qt::AccessibleTextRole, i18nc("@info date is unknown", "unknown"));
     }
+    // algorithm
+    if (keyInfo.grip.empty()) {
+        item->setData(Algorithm, Qt::DisplayRole, u"-"_s);
+        item->setData(Algorithm, Qt::AccessibleTextRole, QVariant{});
+    } else if (keyInfo.algorithm.empty()) {
+        item->setData(Algorithm, Qt::DisplayRole, u"?"_s);
+        item->setData(Algorithm, Qt::AccessibleTextRole, i18nc("@info unknown key algorithm", "unknown"));
+    } else {
+        item->setData(Algorithm, Qt::DisplayRole, QString::fromStdString(keyInfo.algorithm));
+        item->setData(Algorithm, Qt::AccessibleTextRole, QVariant{});
+    }
+
     item->setSubkey(subkey);
     if (subkey.isNull()) {
         // fingerprint
@@ -337,10 +350,12 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
         i18nc("@title:column", "Keygrip"),
         i18nc("@title:column", "Usage"),
         i18nc("@title:column", "Created"),
+        i18nc("@title:column", "Algorithm"),
         i18nc("@title:column", "Fingerprint"),
         i18nc("@title:column", "Certificate"),
         i18nc("@title:column", "Actions"),
     });
+    Q_ASSERT(mTreeWidget->columnCount() == ColumnIndex::Actions + 1);
     mTreeWidget->header()->setStretchLastSection(false); // the Actions column shouldn't stretch
     mainLayout->addWidget(mTreeWidget);
 
