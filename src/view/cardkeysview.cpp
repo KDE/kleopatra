@@ -180,7 +180,7 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
     Q_ASSERT(item);
     const auto key = subkey.parent();
     // slot
-    item->setData(Slot, Qt::DisplayRole, QString::number(item->slotIndex() + 1));
+    item->setData(Slot, Qt::DisplayRole, QString::fromStdString(keyInfo.keyRef));
     // key grip
     if (keyInfo.grip.empty()) {
         item->setData(KeyGrip, Qt::DisplayRole, u"-"_s);
