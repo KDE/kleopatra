@@ -424,7 +424,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         } else {
             item->setData(Private::Storage, Qt::DisplayRole, i18nc("unknown storage location", "unknown"));
         }
-        item->setData(Private::Keygrip, Qt::DisplayRole, Formatting::prettyID(subkey.keyGrip()));
+        item->setData(Private::Keygrip, Qt::DisplayRole, QString::fromLatin1(subkey.keyGrip()));
         d->ui.subkeysTree->addTopLevelItem(item);
         if (subkey.fingerprint() == selectedKeyFingerprint) {
             d->ui.subkeysTree->setCurrentItem(item);
