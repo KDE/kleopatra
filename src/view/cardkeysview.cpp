@@ -15,6 +15,7 @@
 
 #include <commands/detailscommand.h>
 #include <smartcard/card.h>
+#include <smartcard/pivcard.h>
 #include <smartcard/readerstatus.h>
 #include <smartcard/utils.h>
 #include <utils/gui-helper.h>
@@ -88,8 +89,6 @@ enum ColumnIndex {
 };
 }
 
-namespace
-{
 static const int CardKeysWidgetItemType = QTreeWidgetItem::UserType;
 
 class CardKeysWidgetItem : public QTreeWidgetItem
@@ -127,7 +126,6 @@ private:
     std::string mKeyRef;
     Subkey mSubkey;
 };
-}
 
 static QString cardKeyUsageDisplayName(char c)
 {
@@ -295,6 +293,77 @@ static std::vector<QAction *> actionsForCardSlot(SmartCard::AppType appType)
         break;
     };
     return SmartCardActions::instance()->actions(actions);
+}
+
+static QAction *createProxyAction(QAction *action, QObject *parent)
+{
+    // create a clone of the given action; for each card slot we use a different
+    // clone so that the clones can be enabled/disabled individually; the
+    // triggered signal is forwarded to the original action
+    Q_ASSERT(action);
+    auto proxyAction = new QAction{parent};
+    proxyAction->setObjectName(action->objectName());
+    proxyAction->setText(action->text());
+    proxyAction->setToolTip(action->toolTip());
+    proxyAction->setIcon(action->icon());
+    QObject::connect(proxyAction, &QAction::triggered, action, &QAction::trigger);
+    return proxyAction;
+}
+
+static QAction *updateAction(QAction *action, const CardKeysWidgetItem *item, const Card *card)
+{
+    if (action->objectName() == "card_slot_show_certificate_details"_L1) {
+        action->setEnabled(!item->subkey().isNull());
+        return action;
+    }
+    switch (card->appType()) {
+    case AppType::PIVApp: {
+        if (action->objectName() == "card_slot_write_key"_L1) {
+            action->setEnabled(item->keyRef() == PIVCard::cardAuthenticationKeyRef() || item->keyRef() == PIVCard::keyManagementKeyRef());
+        } else if (action->objectName() == "card_slot_write_certificate"_L1) {
+            action->setEnabled(item->subkey().parent().protocol() == GpgME::CMS);
+        } else if (action->objectName() == "card_slot_read_certificate"_L1) {
+            action->setEnabled(!card->certificateData(item->keyRef()).empty());
+        } else if (action->objectName() == "card_slot_create_csr"_L1) {
+            const auto keyInfo = card->keyInfo(item->keyRef());
+            // for PIV trying to create a CSR for the authentication key fails
+            action->setEnabled((keyInfo.canSign() || keyInfo.canEncrypt()) //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
+        break;
+    }
+    case AppType::OpenPGPApp: {
+        if (action->objectName() == "card_slot_create_csr"_L1) {
+            const auto keyInfo = card->keyInfo(item->keyRef());
+            // trying to create a CSR for the encryption key fails (signing the request fails with "Invalid ID")
+            action->setEnabled((keyInfo.canCertify() || keyInfo.canSign() || keyInfo.canAuthenticate()) //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
+        break;
+    }
+    case AppType::NetKeyApp: {
+        if (action->objectName() == "card_slot_create_csr"_L1) {
+            const auto keyInfo = card->keyInfo(item->keyRef());
+            // SigG certificates for qualified signatures (with keyRef "NKS-SIGG.*") are issued with the physical cards;
+            // it's not possible to request a certificate for them; therefore, we only enable it for NKS-NKS3.* keys
+            action->setEnabled(item->keyRef().starts_with("NKS-NKS3.") //
+                               && keyInfo.canSign() //
+                               && !keyInfo.grip.empty() //
+                               && DeVSCompliance::algorithmIsCompliant(keyInfo.algorithm));
+        }
+        break;
+    }
+    case AppType::P15App:
+        // nothing to do
+        break;
+    case AppType::NoApp:
+        // cannot happen
+        break;
+    };
+
+    return action;
 }
 
 static bool canImportCertificates(const Card *card, const std::vector<std::string> &keyRefsWithoutSMimeCertificate)
@@ -552,12 +621,12 @@ void CardKeysView::insertTreeWidgetItem(int slotIndex, const KeyPairInfo &keyInf
     actionsButton->installEventFilter(this);
 }
 
-QToolButton *CardKeysView::addActionsButton(QTreeWidgetItem *item, SmartCard::AppType appType)
+QToolButton *CardKeysView::addActionsButton(CardKeysWidgetItem *item, SmartCard::AppType appType)
 {
     const auto actions = actionsForCardSlot(appType);
     auto button = new QToolButton;
     if (actions.size() == 1) {
-        button->setDefaultAction(actions.front());
+        button->setDefaultAction(updateAction(createProxyAction(actions.front(), button), item, mCard.get()));
         // ensure that current item is set to the right item before the action is triggered;
         // interestingly, focus is given to the tree widget instead of the clicked button so that
         // the event filtering of QAbstractItemView doesn't take care of this
@@ -575,7 +644,7 @@ QToolButton *CardKeysView::addActionsButton(QTreeWidgetItem *item, SmartCard::Ap
             mTreeWidget->setCurrentItem(item, Actions);
             QMenu menu{button};
             for (auto action : actionsForCardSlot(appType)) {
-                menu.addAction(action);
+                menu.addAction(updateAction(createProxyAction(action, &menu), item, mCard.get()));
             }
             button->setMenu(&menu);
             button->showMenu();

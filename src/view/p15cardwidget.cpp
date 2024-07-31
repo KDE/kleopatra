@@ -53,7 +53,6 @@ P15CardWidget::P15CardWidget(QWidget *parent)
 
     mCardKeysView = new CardKeysView{this};
     mContentLayout->addWidget(mCardKeysView);
-    connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 }
 
 P15CardWidget::~P15CardWidget() = default;

@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 
+class CardKeysWidgetItem;
 class QAction;
 class QToolButton;
 class QTreeWidgetItem;
@@ -69,7 +70,7 @@ protected:
 private:
     void updateKeyList();
     void insertTreeWidgetItem(int slotIndex, const SmartCard::KeyPairInfo &keyInfo, const GpgME::Subkey &subkey, int treeIndex = -1);
-    QToolButton *addActionsButton(QTreeWidgetItem *item, SmartCard::AppType cardType);
+    QToolButton *addActionsButton(CardKeysWidgetItem *item, SmartCard::AppType cardType);
     void ensureCertificatesAreValidated();
     void startCertificateValidation(const std::vector<GpgME::Key> &certificates);
     void certificateValidationDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys);

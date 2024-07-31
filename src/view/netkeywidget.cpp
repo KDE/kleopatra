@@ -44,7 +44,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     // do not show Created column by default; creation time is not reported by scdaemon for NetKey cards
     mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
     mContentLayout->addWidget(mCardKeysView, 1);
-    connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 
     // The action area
     auto actionLayout = new QHBoxLayout();
