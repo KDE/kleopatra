@@ -110,8 +110,6 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
-
-    mCardKeysView->setCard(card);
 }
 
 void NetKeyWidget::doChangePin(const std::string &keyRef)

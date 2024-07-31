@@ -53,7 +53,7 @@ protected:
     QGridLayout *mInfoGridLayout = nullptr;
 
 private:
-    std::unique_ptr<const Kleo::SmartCard::Card> mCard;
+    std::shared_ptr<const Kleo::SmartCard::Card> mCard;
 
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;

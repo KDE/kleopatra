@@ -95,8 +95,6 @@ void PIVCardWidget::setCard(const PIVCard *card)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
                                           && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
     }
-
-    mCardKeysView->setCard(card);
 }
 
 void PIVCardWidget::createKeyFromCardKeys()

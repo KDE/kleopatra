@@ -285,8 +285,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 
     mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty() && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
         && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
-
-    mCardKeysView->setCard(card);
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
