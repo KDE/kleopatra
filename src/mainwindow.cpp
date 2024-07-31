@@ -685,6 +685,9 @@ void MainWindow::Private::setupActions()
         if (auto action = coll->action(QStringLiteral("configure_groups"))) {
             delete action;
         }
+        if (auto action = coll->action(QStringLiteral("configure_groups_toolbar"))) {
+            delete action;
+        }
     }
 
     for (const QString &name : mainViewActionNames) {
