@@ -179,7 +179,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
 
     mCardKeysView = new CardKeysView{this};
     mContentLayout->addWidget(mCardKeysView);
-    connect(mCardKeysView, &CardKeysView::currentCardSlotChanged, this, &SmartCardWidget::updateActions);
 
     auto actionLayout = new QHBoxLayout;
 

@@ -46,8 +46,6 @@ public:
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
-    void updateActions();
-
 protected:
     QVBoxLayout *mContentLayout = nullptr;
     QGridLayout *mInfoGridLayout = nullptr;
