@@ -55,7 +55,7 @@ public:
     explicit CardKeysView(QWidget *parent, Options options = DefaultOptions);
     ~CardKeysView() override;
 
-    void setCard(const SmartCard::Card *card);
+    void setCard(const std::shared_ptr<const SmartCard::Card> &card);
 
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
@@ -67,9 +67,8 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-    void updateKeyList(const SmartCard::Card *card = nullptr);
-    void
-    insertTreeWidgetItem(const SmartCard::Card *card, int slotIndex, const SmartCard::KeyPairInfo &keyInfo, const GpgME::Subkey &subkey, int treeIndex = -1);
+    void updateKeyList();
+    void insertTreeWidgetItem(int slotIndex, const SmartCard::KeyPairInfo &keyInfo, const GpgME::Subkey &subkey, int treeIndex = -1);
     QToolButton *addActionsButton(QTreeWidgetItem *item, SmartCard::AppType cardType);
     void ensureCertificatesAreValidated();
     void startCertificateValidation(const std::vector<GpgME::Key> &certificates);
@@ -79,9 +78,7 @@ private:
 private:
     Options mOptions;
 
-    std::string mSerialNumber;
-    std::string mAppName;
-    Kleo::SmartCard::AppType mAppType;
+    std::shared_ptr<const Kleo::SmartCard::Card> mCard;
 
     std::vector<GpgME::Key> mCertificates; // only S/MIME certificates
 

@@ -378,20 +378,16 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeViewOverlay = new ProgressOverlay{mTreeWidget, this};
     mTreeViewOverlay->hide();
 
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
-        updateKeyList(nullptr);
-    });
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, &CardKeysView::updateKeyList);
 }
 
 CardKeysView::~CardKeysView() = default;
 
-void CardKeysView::setCard(const Card *card)
+void CardKeysView::setCard(const std::shared_ptr<const Card> &card)
 {
-    mSerialNumber = card->serialNumber();
-    mAppName = card->appName();
-    mAppType = card->appType();
+    mCard = card;
 
-    updateKeyList(card);
+    updateKeyList();
 }
 
 std::string CardKeysView::currentCardSlot() const
@@ -422,27 +418,18 @@ bool CardKeysView::eventFilter(QObject *obj, QEvent *event)
     return QWidget::eventFilter(obj, event);
 }
 
-void CardKeysView::updateKeyList(const Card *card)
+void CardKeysView::updateKeyList()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     const bool firstSetUp = (mTreeWidget->topLevelItemCount() == 0);
 
-    if (mSerialNumber.empty()) {
+    if (!mCard) {
         // ignore KeyCache::keysMayHaveChanged signal until the card has been set
         return;
     }
 
-    const auto cardRefHolder = card ? std::shared_ptr<Card>{} : ReaderStatus::instance()->getCard(mSerialNumber, mAppName);
-    if (!card) {
-        card = cardRefHolder.get();
-    }
-    if (!card) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find the" << mAppName << "smart card with the serial number" << mSerialNumber;
-        return;
-    }
-
     std::vector<std::string> keyRefsWithoutSMimeCertificate;
-    const auto cardKeyInfos = card->keyInfos();
+    const auto cardKeyInfos = mCard->keyInfos();
     mCertificates.clear();
     mCertificates.reserve(cardKeyInfos.size());
     for (int slotIndex = 0; slotIndex < int(cardKeyInfos.size()); ++slotIndex) {
@@ -453,7 +440,7 @@ void CardKeysView::updateKeyList(const Card *card)
         if (subkeys.empty()) {
             if (items.empty()) {
                 Q_ASSERT(firstSetUp);
-                insertTreeWidgetItem(card, slotIndex, keyInfo, Subkey{});
+                insertTreeWidgetItem(slotIndex, keyInfo, Subkey{});
             } else {
                 updateTreeWidgetItem(items.front(), keyInfo, Subkey{});
                 for (int i = 1; i < int(items.size()); ++i) {
@@ -466,7 +453,7 @@ void CardKeysView::updateKeyList(const Card *card)
             if (items.empty()) {
                 Q_ASSERT(firstSetUp);
                 for (const auto &subkey : subkeys) {
-                    insertTreeWidgetItem(card, slotIndex, keyInfo, subkey);
+                    insertTreeWidgetItem(slotIndex, keyInfo, subkey);
                 }
             } else if (items.front()->subkey().isNull()) {
                 // the second most simple case: slot with no associated subkeys -> slot with one or more associated subkeys
@@ -474,7 +461,7 @@ void CardKeysView::updateKeyList(const Card *card)
                 updateTreeWidgetItem(items.front(), keyInfo, subkeys.front());
                 const int itemIndex = mTreeWidget->indexOfTopLevelItem(items.front());
                 for (int i = 1; i < int(subkeys.size()); ++i) {
-                    insertTreeWidgetItem(card, slotIndex, keyInfo, subkeys.at(i), itemIndex + i);
+                    insertTreeWidgetItem(slotIndex, keyInfo, subkeys.at(i), itemIndex + i);
                 }
             } else {
                 // the complicated case; we make use of the known order of the existing items and subkeys
@@ -496,7 +483,7 @@ void CardKeysView::updateKeyList(const Card *card)
                     } else {
                         // this subkey is new; insert it before the current item
                         const int itemIndex = mTreeWidget->indexOfTopLevelItem(item);
-                        insertTreeWidgetItem(card, slotIndex, keyInfo, subkey, itemIndex);
+                        insertTreeWidgetItem(slotIndex, keyInfo, subkey, itemIndex);
                         ++s;
                     }
                 }
@@ -513,7 +500,7 @@ void CardKeysView::updateKeyList(const Card *card)
                 }
                 insertIndex -= s;
                 for (; s < int(subkeys.size()); ++s) {
-                    insertTreeWidgetItem(card, slotIndex, keyInfo, subkeys.at(s), insertIndex + s);
+                    insertTreeWidgetItem(slotIndex, keyInfo, subkeys.at(s), insertIndex + s);
                 }
             }
             for (const auto &subkey : subkeys) {
@@ -530,7 +517,7 @@ void CardKeysView::updateKeyList(const Card *card)
         }
     }
 
-    if (firstSetUp && !mTreeWidget->restoreColumnLayout(u"CardKeysView-"_s + QString::fromStdString(mAppName))) {
+    if (firstSetUp && !mTreeWidget->restoreColumnLayout(u"CardKeysView-"_s + QString::fromStdString(mCard->appName()))) {
         mTreeWidget->hideColumn(KeyGrip);
         if (!(mOptions & ShowCreated)) {
             mTreeWidget->hideColumn(Created);
@@ -540,13 +527,13 @@ void CardKeysView::updateKeyList(const Card *card)
 
     ensureCertificatesAreValidated();
 
-    if (firstSetUp && canImportCertificates(card, keyRefsWithoutSMimeCertificate)) {
+    if (firstSetUp && canImportCertificates(mCard.get(), keyRefsWithoutSMimeCertificate)) {
         // the card contains keys we don't know; try to learn them from the card
         learnCard();
     }
 }
 
-void CardKeysView::insertTreeWidgetItem(const Card *card, int slotIndex, const KeyPairInfo &keyInfo, const Subkey &subkey, int index)
+void CardKeysView::insertTreeWidgetItem(int slotIndex, const KeyPairInfo &keyInfo, const Subkey &subkey, int index)
 {
     qCDebug(KLEOPATRA_LOG) << __func__ << "slot:" << slotIndex << "certificate:" << subkey.parent() << "index:" << index;
     if (index == -1) {
@@ -557,7 +544,7 @@ void CardKeysView::insertTreeWidgetItem(const Card *card, int slotIndex, const K
 
     updateTreeWidgetItem(item, keyInfo, subkey);
     mTreeWidget->insertTopLevelItem(index, item);
-    auto actionsButton = addActionsButton(item, card->appType());
+    auto actionsButton = addActionsButton(item, mCard->appType());
     if (index == 0) {
         forceSetTabOrder(mTreeWidget, actionsButton);
     } else {

@@ -103,6 +103,8 @@ void SmartCardWidget::setCard(const Card *card)
 
     mCardTypeField->setValue(cardTypeForDisplay(card));
     mSerialNumberField->setValue(card->displaySerialNumber());
+
+    mCardKeysView->setCard(mCard);
 }
 
 Kleo::SmartCard::AppType SmartCardWidget::cardType() const
