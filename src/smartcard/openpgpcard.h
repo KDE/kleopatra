@@ -36,7 +36,6 @@ public:
     static std::string resetCodeKeyRef();
 
     static const std::vector<KeyPairInfo> &supportedKeys();
-    static QString keyDisplayName(const std::string &keyRef);
 
     /**
      * Returns an algorithm name for the algorithm \p algorithm that is suitable

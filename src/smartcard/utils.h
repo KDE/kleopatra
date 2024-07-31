@@ -27,6 +27,12 @@ std::string appName(Kleo::SmartCard::AppType appType);
 QString displayAppName(const std::string &appName);
 
 /**
+ * Returns a human-readable name for the key slot \p keyRef if such a name is
+ * known. Otherwise, returns an empty string.
+ */
+QString cardKeyDisplayName(const std::string &keyRef);
+
+/**
  * Returns the subset of algorithms \p supportedAlgorithms that are compliant.
  */
 std::vector<AlgorithmInfo> getAllowedAlgorithms(const std::vector<AlgorithmInfo> &supportedAlgorithms);
