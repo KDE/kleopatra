@@ -34,7 +34,6 @@ public:
     static std::string pukKeyRef();
 
     static const std::vector<KeyPairInfo> &supportedKeys();
-    static QString keyDisplayName(const std::string &keyRef);
     static std::vector<AlgorithmInfo> supportedAlgorithms(const std::string &keyRef);
 
 private:

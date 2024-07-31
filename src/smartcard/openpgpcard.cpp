@@ -96,18 +96,6 @@ const std::vector<KeyPairInfo> &OpenPGPCard::supportedKeys()
 }
 
 // static
-QString OpenPGPCard::keyDisplayName(const std::string &keyRef)
-{
-    static const QMap<std::string, QString> displayNames = {
-        {OpenPGPCard::pgpSigKeyRef(), i18n("Signature")},
-        {OpenPGPCard::pgpEncKeyRef(), i18n("Encryption")},
-        {OpenPGPCard::pgpAuthKeyRef(), i18n("Authentication")},
-    };
-
-    return displayNames.value(keyRef);
-}
-
-// static
 std::string OpenPGPCard::getAlgorithmName(const std::string &algorithm, const std::string &keyRef)
 {
     static const std::map<std::string, std::string> ecdhAlgorithmMapping = {

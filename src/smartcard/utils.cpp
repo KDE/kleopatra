@@ -57,6 +57,21 @@ QString Kleo::SmartCard::displayAppName(const std::string &appName)
     }
 }
 
+QString Kleo::SmartCard::cardKeyDisplayName(const std::string &keyRef)
+{
+    static const QMap<std::string, QString> displayNames = {
+        {OpenPGPCard::pgpSigKeyRef(), i18n("Signature Key")},
+        {OpenPGPCard::pgpEncKeyRef(), i18n("Encryption Key")},
+        {OpenPGPCard::pgpAuthKeyRef(), i18n("Authentication Key")},
+        {PIVCard::pivAuthenticationKeyRef(), i18n("PIV Authentication Key")},
+        {PIVCard::cardAuthenticationKeyRef(), i18n("Card Authentication Key")},
+        {PIVCard::digitalSignatureKeyRef(), i18n("Digital Signature Key")},
+        {PIVCard::keyManagementKeyRef(), i18n("Key Management Key")},
+    };
+
+    return displayNames.value(keyRef);
+}
+
 std::vector<AlgorithmInfo> Kleo::SmartCard::getAllowedAlgorithms(const std::vector<AlgorithmInfo> &supportedAlgorithms)
 {
     std::vector<AlgorithmInfo> result;

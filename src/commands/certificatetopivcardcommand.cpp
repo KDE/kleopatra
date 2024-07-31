@@ -17,6 +17,7 @@
 
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
+#include "smartcard/utils.h"
 
 #include "utils/writecertassuantransaction.h"
 
@@ -136,10 +137,11 @@ void CertificateToPIVCardCommand::Private::start()
                                           DN(certificate.userID(0).id()).prettyDN(),
                                           Formatting::complianceStringShort(certificate),
                                           Formatting::creationDateString(certificate));
+    const QString slotName = cardKeyDisplayName(cardSlot);
     const QString message = i18nc("@info %1 name of card slot, %2 serial number of card",
                                   "<p>Please confirm that you want to write the following certificate to the %1 slot of card %2:</p>"
                                   "<center>%3</center>",
-                                  PIVCard::keyDisplayName(cardSlot),
+                                  !slotName.isEmpty() ? slotName : QString::fromStdString(cardSlot),
                                   QString::fromStdString(serialNumber()),
                                   certificateInfo);
     auto confirmButton = KStandardGuiItem::ok();
