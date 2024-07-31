@@ -16,6 +16,7 @@
 #include <commands/detailscommand.h>
 #include <smartcard/card.h>
 #include <smartcard/readerstatus.h>
+#include <smartcard/utils.h>
 #include <utils/gui-helper.h>
 #include <view/progressoverlay.h>
 #include <view/smartcardactions.h>
@@ -178,7 +179,13 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
     Q_ASSERT(item);
     const auto key = subkey.parent();
     // slot
-    item->setData(Slot, Qt::DisplayRole, QString::fromStdString(keyInfo.keyRef));
+    const QString slotName = cardKeyDisplayName(keyInfo.keyRef);
+    if (!slotName.isEmpty()) {
+        item->setData(Slot, Qt::DisplayRole, slotName);
+        item->setData(Slot, Qt::ToolTipRole, i18nc("@info:tooltip", "Card slot ID: %1", QString::fromStdString(keyInfo.keyRef)));
+    } else {
+        item->setData(Slot, Qt::DisplayRole, QString::fromStdString(keyInfo.keyRef));
+    }
     // key grip
     if (keyInfo.grip.empty()) {
         item->setData(KeyGrip, Qt::DisplayRole, u"-"_s);
