@@ -81,12 +81,12 @@ namespace
 {
 enum ColumnIndex {
     Slot,
-    KeyGrip,
-    Usage,
-    Created,
-    Algorithm,
-    Fingerprint,
     Certificate,
+    Fingerprint,
+    Created,
+    Usage,
+    Algorithm,
+    KeyGrip,
     Actions, // keep this as last column
 };
 }
@@ -424,13 +424,13 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     mTreeWidget->setRootIsDecorated(false);
     mTreeWidget->setHeaderLabels({
-        i18nc("@title:column Key slot of a smart card", "Slot"),
-        i18nc("@title:column", "Keygrip"),
-        i18nc("@title:column", "Usage"),
-        i18nc("@title:column", "Created"),
-        i18nc("@title:column", "Algorithm"),
+        i18nc("@title:column Name or ID of a storage slot for a key on a smart card", "Card Slot"),
+        i18nc("@title:column", "User ID"),
         i18nc("@title:column", "Fingerprint"),
-        i18nc("@title:column", "Certificate"),
+        i18nc("@title:column", "Created"),
+        i18nc("@title:column", "Usage"),
+        i18nc("@title:column", "Algorithm"),
+        i18nc("@title:column", "Keygrip"),
         i18nc("@title:column", "Actions"),
     });
     Q_ASSERT(mTreeWidget->columnCount() == ColumnIndex::Actions + 1);
