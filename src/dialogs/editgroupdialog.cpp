@@ -76,8 +76,8 @@ public:
     {
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
         if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
-            if (role == Qt::DecorationRole && index.column() == 0) {
-                return QIcon::fromTheme(QStringLiteral("data-warning"));
+            if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
+                return QIcon::fromTheme(QStringLiteral("data-error"));
             }
             if (role == Qt::ToolTipRole) {
                 return i18nc("@info:tooltip", "This certificate cannot be used for encryption.");
