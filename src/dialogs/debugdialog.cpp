@@ -59,6 +59,8 @@ DebugDialog::DebugDialog(QWidget *parent)
 {
     auto layout = new QVBoxLayout(this);
 
+    setWindowTitle(i18nc("@title:window", "GnuPG Configuration Overview"));
+
     d->commandCombo = new QComboBox;
     for (const auto &command : commands) {
         d->commandCombo->addItem(command.name.isEmpty() ? command.command : command.name, command.command);
