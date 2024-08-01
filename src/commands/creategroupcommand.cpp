@@ -35,7 +35,7 @@ class CreateGroupCommand::Private : public Command::Private
 public:
     using Command::Private::Private;
     ~Private() override;
-    KeyGroup showEditGroupDialog(const std::vector<Key> &keys, KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget);
+    void showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget);
 };
 
 CreateGroupCommand::Private *CreateGroupCommand::d_func()
@@ -63,27 +63,31 @@ void CreateGroupCommand::doCancel()
 {
 }
 
-KeyGroup CreateGroupCommand::Private::showEditGroupDialog(const std::vector<Key> &keys,
-                                                          KeyGroup group,
-                                                          const QString &windowTitle,
-                                                          EditGroupDialog::FocusWidget focusWidget)
+void CreateGroupCommand::Private::showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)
 {
-    auto dialog = std::make_unique<EditGroupDialog>(parentWidgetOrView());
+    auto dialog = new EditGroupDialog(parentWidgetOrView());
     dialog->setWindowTitle(windowTitle);
-    dialog->setGroupName(group.name());
+    dialog->setKeyGroup(group);
     dialog->setInitialFocus(focusWidget);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    dialog->setGroupKeys(keys);
+    dialog->show();
 
-    const int result = dialog->exec();
-    if (result == QDialog::Rejected) {
-        return KeyGroup();
-    }
+    connect(dialog, &QDialog::finished, q, [dialog, this](const auto result) {
+        if (result == QDialog::Rejected) {
+            canceled();
+            return;
+        }
 
-    group.setName(dialog->groupName());
-    group.setKeys(dialog->groupKeys());
+        const auto newGroup = dialog->keyGroup();
 
-    return group;
+        if (!newGroup.isNull()) {
+            auto groups = KeyCache::instance()->configurableGroups();
+            groups.push_back(newGroup);
+            KeyCache::mutableInstance()->saveConfigurableGroups(groups);
+        }
+        finished();
+    });
 }
 
 void CreateGroupCommand::doStart()
@@ -106,11 +110,7 @@ void CreateGroupCommand::doStart()
     KeyGroup group = KeyGroup(newId, i18nc("default name for new group of keys", "New Group"), {}, KeyGroup::ApplicationConfig);
     group.setIsImmutable(false);
 
-    const KeyGroup newGroup = d->showEditGroupDialog(keys, group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
-    if (!newGroup.isNull()) {
-        auto groups = KeyCache::instance()->configurableGroups();
-        groups.push_back(newGroup);
-        KeyCache::mutableInstance()->saveConfigurableGroups(groups);
-    }
-    d->finished();
+    group.setKeys(keys);
+
+    d->showEditGroupDialog(group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
 }

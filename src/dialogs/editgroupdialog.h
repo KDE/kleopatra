@@ -13,7 +13,6 @@
 #include <QDialog>
 
 #include <memory>
-#include <vector>
 
 namespace GpgME
 {
@@ -22,6 +21,8 @@ class Key;
 
 namespace Kleo
 {
+class KeyGroup;
+
 namespace Dialogs
 {
 
@@ -39,11 +40,8 @@ public:
 
     void setInitialFocus(FocusWidget widget);
 
-    void setGroupName(const QString &name);
-    QString groupName() const;
-
-    void setGroupKeys(const std::vector<GpgME::Key> &keys);
-    std::vector<GpgME::Key> groupKeys() const;
+    void setKeyGroup(const KeyGroup &group);
+    KeyGroup keyGroup() const;
 
 protected:
     void showEvent(QShowEvent *event) override;

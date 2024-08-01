@@ -302,24 +302,16 @@ private:
         ui.exportButton->setEnabled(selectedGroups.size() == 1);
     }
 
-    KeyGroup showEditGroupDialog(KeyGroup group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)
+    EditGroupDialog *showEditGroupDialog(const KeyGroup &group, const QString &windowTitle, EditGroupDialog::FocusWidget focusWidget)
     {
-        auto dialog = std::make_unique<EditGroupDialog>(q);
+        auto dialog = new EditGroupDialog(q);
         dialog->setWindowTitle(windowTitle);
-        dialog->setGroupName(group.name());
-        const KeyGroup::Keys &keys = group.keys();
-        dialog->setGroupKeys(std::vector<GpgME::Key>(keys.cbegin(), keys.cend()));
         dialog->setInitialFocus(focusWidget);
+        dialog->setKeyGroup(group);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        const int result = dialog->exec();
-        if (result == QDialog::Rejected) {
-            return KeyGroup();
-        }
-
-        group.setName(dialog->groupName());
-        group.setKeys(dialog->groupKeys());
-
-        return group;
+        dialog->show();
+        return dialog;
     }
 
     void addGroup()
@@ -328,18 +320,25 @@ private:
         KeyGroup group = KeyGroup(newId, i18nc("default name for new group of keys", "New Group"), {}, KeyGroup::ApplicationConfig);
         group.setIsImmutable(false);
 
-        const KeyGroup newGroup = showEditGroupDialog(group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
-        if (newGroup.isNull()) {
-            return;
-        }
+        const auto dialog = showEditGroupDialog(group, i18nc("@title:window a group of keys", "New Group"), EditGroupDialog::GroupName);
+        connect(dialog, &EditGroupDialog::finished, q, [this, dialog](const auto result) {
+            if (result == QDialog::Rejected) {
+                return;
+            }
 
-        const QModelIndex newIndex = groupsModel->addGroup(newGroup);
-        if (!newIndex.isValid()) {
-            qCDebug(KLEOPATRA_LOG) << "Adding group to model failed";
-            return;
-        }
+            const auto newGroup = dialog->keyGroup();
+            if (newGroup.isNull()) {
+                return;
+            }
 
-        Q_EMIT q->changed();
+            const QModelIndex newIndex = groupsModel->addGroup(newGroup);
+            if (!newIndex.isValid()) {
+                qCDebug(KLEOPATRA_LOG) << "Adding group to model failed";
+                return;
+            }
+
+            Q_EMIT q->changed();
+        });
     }
 
     void editGroup(const QModelIndex &index = {})
@@ -365,27 +364,34 @@ private:
             return;
         }
 
-        const KeyGroup updatedGroup = showEditGroupDialog(group, i18nc("@title:window a group of keys", "Edit Group"), EditGroupDialog::KeysFilter);
-        if (updatedGroup.isNull()) {
-            return;
-        }
+        const auto dialog = showEditGroupDialog(group, i18nc("@title:window a group of keys", "Edit Group"), EditGroupDialog::KeysFilter);
+        connect(dialog, &EditGroupDialog::finished, q, [this, dialog](const auto result) {
+            if (result == QDialog::Rejected) {
+                return;
+            }
 
-        // look up index of updated group; the groupIndex used above may have become invalid
-        const auto updatedGroupIndex = getGroupIndex(updatedGroup);
-        if (updatedGroupIndex.isValid()) {
-            const bool success = ui.groupsList->model()->setData(updatedGroupIndex, QVariant::fromValue(updatedGroup));
-            if (!success) {
-                qCDebug(KLEOPATRA_LOG) << "Updating group in model failed";
+            const auto updatedGroup = dialog->keyGroup();
+            if (updatedGroup.isNull()) {
                 return;
             }
-        } else {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Failed to find index of group" << updatedGroup << "; maybe it was removed behind our back; re-add it";
-            const QModelIndex newIndex = groupsModel->addGroup(updatedGroup);
-            if (!newIndex.isValid()) {
-                qCDebug(KLEOPATRA_LOG) << "Re-adding group to model failed";
-                return;
+
+            // look up index of updated group; the groupIndex used above may have become invalid
+            const auto updatedGroupIndex = getGroupIndex(updatedGroup);
+            if (updatedGroupIndex.isValid()) {
+                const bool success = ui.groupsList->model()->setData(updatedGroupIndex, QVariant::fromValue(updatedGroup));
+                if (!success) {
+                    qCDebug(KLEOPATRA_LOG) << "Updating group in model failed";
+                    return;
+                }
+            } else {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Failed to find index of group" << updatedGroup << "; maybe it was removed behind our back; re-add it";
+                const QModelIndex newIndex = groupsModel->addGroup(updatedGroup);
+                if (!newIndex.isValid()) {
+                    qCDebug(KLEOPATRA_LOG) << "Re-adding group to model failed";
+                    return;
+                }
             }
-        }
+        });
 
         Q_EMIT q->changed();
     }

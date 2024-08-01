@@ -145,6 +145,8 @@ class EditGroupDialog::Private
     } ui;
     AbstractKeyListModel *availableKeysModel = nullptr;
     AbstractKeyListModel *groupKeysModel = nullptr;
+    KeyGroup keyGroup;
+    std::vector<GpgME::Key> oldKeys;
 
 public:
     Private(EditGroupDialog *qq)
@@ -397,9 +399,8 @@ void EditGroupDialog::Private::updateFromKeyCache()
     const auto selectedGroupKeys = ui.groupKeysList->selectedKeys();
     const auto selectedOtherKeys = ui.availableKeysList->selectedKeys();
 
-    const auto oldGroupKeys = q->groupKeys();
-    const auto wasGroupKey = [oldGroupKeys](const Key &key) {
-        return std::ranges::any_of(oldGroupKeys, [key](const auto &k) {
+    const auto wasGroupKey = [this](const Key &key) {
+        return std::ranges::any_of(oldKeys, [key](const auto &k) {
             return _detail::ByFingerprint<std::equal_to>()(k, key);
         });
     };
@@ -439,32 +440,15 @@ void EditGroupDialog::setInitialFocus(FocusWidget widget)
     }
 }
 
-void EditGroupDialog::setGroupName(const QString &name)
+void EditGroupDialog::showEvent(QShowEvent *event)
 {
-    d->ui.groupNameEdit->setText(name);
+    QDialog::showEvent(event);
+
+    // prevent accidental closing of dialog when pressing Enter while a search field has focus
+    Kleo::unsetDefaultButtons(d->ui.buttonBox);
 }
 
-QString EditGroupDialog::groupName() const
-{
-    return d->ui.groupNameEdit->text().trimmed();
-}
-
-void EditGroupDialog::setGroupKeys(const std::vector<Key> &groupKeys)
-{
-    d->groupKeysModel->setKeys(groupKeys);
-
-    // update the keys in the "available keys" list
-    const auto isGroupKey = [groupKeys](const Key &key) {
-        return std::ranges::any_of(groupKeys, [key](const auto &k) {
-            return _detail::ByFingerprint<std::equal_to>()(k, key);
-        });
-    };
-    auto otherKeys = KeyCache::instance()->keys();
-    Kleo::erase_if(otherKeys, isGroupKey);
-    d->availableKeysModel->setKeys(otherKeys);
-}
-
-std::vector<Key> EditGroupDialog::groupKeys() const
+KeyGroup EditGroupDialog::keyGroup() const
 {
     std::vector<Key> keys;
     keys.reserve(d->groupKeysModel->rowCount());
@@ -472,15 +456,31 @@ std::vector<Key> EditGroupDialog::groupKeys() const
         const QModelIndex index = d->groupKeysModel->index(row, 0);
         keys.push_back(d->groupKeysModel->key(index));
     }
-    return keys;
+    d->keyGroup.setKeys(keys);
+
+    d->keyGroup.setName(d->ui.groupNameEdit->text().trimmed());
+    return d->keyGroup;
 }
 
-void EditGroupDialog::showEvent(QShowEvent *event)
+void EditGroupDialog::setKeyGroup(const KeyGroup &keyGroup)
 {
-    QDialog::showEvent(event);
+    d->keyGroup = keyGroup;
 
-    // prevent accidental closing of dialog when pressing Enter while a search field has focus
-    Kleo::unsetDefaultButtons(d->ui.buttonBox);
+    const auto &keys = keyGroup.keys();
+    d->oldKeys = std::vector<GpgME::Key>(keys.begin(), keys.end());
+    d->groupKeysModel->setKeys(d->oldKeys);
+
+    // update the keys in the "available keys" list
+    const auto isGroupKey = [keys](const Key &key) {
+        return std::ranges::any_of(keys, [key](const auto &k) {
+            return _detail::ByFingerprint<std::equal_to>()(k, key);
+        });
+    };
+    auto otherKeys = KeyCache::instance()->keys();
+    Kleo::erase_if(otherKeys, isGroupKey);
+    d->availableKeysModel->setKeys(otherKeys);
+
+    d->ui.groupNameEdit->setText(keyGroup.name());
 }
 
 #include "editgroupdialog.moc"
