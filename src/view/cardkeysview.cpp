@@ -230,7 +230,7 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         item->setData(Fingerprint, Qt::DisplayRole, QString{});
         item->setData(Fingerprint, Qt::AccessibleTextRole, QVariant{});
         // certificate
-        item->setData(Certificate, Qt::DisplayRole, QString{});
+        item->setData(Certificate, Qt::DisplayRole, keyInfo.grip.empty() ? i18nc("@info", "no key") : i18nc("@info", "no associated certificate"));
         item->setData(Certificate, Qt::ToolTipRole, QString{});
     } else {
         // fingerprint
@@ -246,7 +246,13 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
     }
     const auto keyFilters = KeyFilterManager::instance();
     for (int col = 0; col < ColumnIndex::Actions; ++col) {
-        item->setFont(col, keyFilters->font(key, (col == KeyGrip || col == Fingerprint) ? monospaceFont : QFont{}));
+        if ((col == Certificate) && subkey.isNull()) {
+            QFont italicFont;
+            italicFont.setItalic(true);
+            item->setFont(col, italicFont);
+        } else {
+            item->setFont(col, keyFilters->font(key, (col == KeyGrip || col == Fingerprint) ? monospaceFont : QFont{}));
+        }
         if (!SystemInfo::isHighContrastModeActive()) {
             if (auto bgColor = keyFilters->bgColor(key); bgColor.isValid()) {
                 item->setBackground(col, bgColor);
