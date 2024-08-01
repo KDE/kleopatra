@@ -29,6 +29,7 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyHelpers>
+#include <Libkleo/KeyList>
 #include <Libkleo/SystemInfo>
 #include <Libkleo/TreeWidget>
 
@@ -236,6 +237,7 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         // fingerprint
         item->setData(Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
         item->setData(Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
+        item->setData(Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(subkey.fingerprint()));
         // certificate
         if (key.protocol() == GpgME::OpenPGP) {
             item->setData(Certificate, Qt::DisplayRole, Formatting::prettyUserID(key.userID(0)));
