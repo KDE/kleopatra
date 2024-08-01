@@ -87,7 +87,7 @@ DebugDialog::DebugDialog(QWidget *parent)
 
         auto saveButton = buttonBox->addButton(QDialogButtonBox::Save);
         connect(saveButton, &QPushButton::clicked, this, [this]() {
-            QFileDialog::saveFileContent(d->outputEdit->toPlainText().toUtf8(), QStringLiteral("kleopatra_debug_%1.log").arg(d->commandCombo->currentText()));
+            QFileDialog::saveFileContent(d->outputEdit->toPlainText().toUtf8(), QStringLiteral("kleopatra_debug_%1.txt").arg(d->commandCombo->currentText()));
         });
 
         layout->addWidget(buttonBox);
