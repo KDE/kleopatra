@@ -19,6 +19,9 @@
 #include <Libkleo/Compat>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyFilter>
+#include <Libkleo/KeyFilterManager>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
@@ -31,6 +34,7 @@
 #include <KStandardGuiItem>
 
 #include <QApplication>
+#include <QComboBox>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -50,6 +54,7 @@ using namespace Kleo::Dialogs;
 using namespace GpgME;
 
 Q_DECLARE_METATYPE(GpgME::Key)
+Q_DECLARE_METATYPE(std::shared_ptr<KeyFilter>)
 
 namespace
 {
@@ -61,57 +66,66 @@ auto createOpenPGPOnlyKeyFilter()
 }
 }
 
+namespace
+{
+
+class FiltersProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    using QSortFilterProxyModel::QSortFilterProxyModel;
+
+protected:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override
+    {
+        const QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+        const auto matchContexts = qvariant_cast<KeyFilter::MatchContexts>(sourceModel()->data(index, KeyFilterManager::FilterMatchContextsRole));
+        return matchContexts & KeyFilter::Filtering;
+    }
+};
+
+}
+
 class WarnNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
 {
     Q_OBJECT
 public:
-    using Kleo::AbstractKeyListSortFilterProxyModel::AbstractKeyListSortFilterProxyModel;
-    ~WarnNonEncryptionKeysProxyModel() override;
+    enum Mode {
+        Warn,
+        Disable,
+    };
+
+    WarnNonEncryptionKeysProxyModel(Mode mode, QObject *parent = nullptr)
+        : AbstractKeyListSortFilterProxyModel(parent)
+        , m_mode(mode)
+    {
+    }
+
     WarnNonEncryptionKeysProxyModel *clone() const override
     {
-        return new WarnNonEncryptionKeysProxyModel(this->parent());
+        return new WarnNonEncryptionKeysProxyModel(m_mode, parent());
     }
 
     QVariant data(const QModelIndex &index, int role) const override
     {
+        if (!index.isValid()) {
+            return {};
+        }
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
-        if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
-            if (role == Qt::DecorationRole && index.column() == 0) {
-                return QIcon::fromTheme(QStringLiteral("data-warning"));
+        const auto &key = sourceIndex.data(KeyList::KeyRole).value<Key>();
+        if (!Kleo::canBeUsedForEncryption(key)) {
+            if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
+                return QIcon::fromTheme(QStringLiteral("data-error"));
+            }
+            if (role == Qt::DisplayRole && index.column() == KeyList::Columns::Validity) {
+                return i18nc("@info as in 'this certificate is unusable'", "unusable");
             }
             if (role == Qt::ToolTipRole) {
                 return i18nc("@info:tooltip", "This certificate cannot be used for encryption.");
             }
-        }
-        return sourceIndex.data(role);
-    }
-};
-
-WarnNonEncryptionKeysProxyModel::~WarnNonEncryptionKeysProxyModel() = default;
-
-class DisableNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
-{
-    Q_OBJECT
-public:
-    using Kleo::AbstractKeyListSortFilterProxyModel::AbstractKeyListSortFilterProxyModel;
-    ~DisableNonEncryptionKeysProxyModel() override;
-    DisableNonEncryptionKeysProxyModel *clone() const override
-    {
-        return new DisableNonEncryptionKeysProxyModel(this->parent());
-    }
-
-    QVariant data(const QModelIndex &index, int role) const override
-    {
-        const auto sourceIndex = sourceModel()->index(index.row(), index.column());
-        if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
-            if (role == Qt::ForegroundRole) {
-                return qApp->palette().color(QPalette::Disabled, QPalette::Text);
-            }
-            if (role == Qt::BackgroundRole) {
-                return KColorScheme(QPalette::Disabled, KColorScheme::View).background(KColorScheme::NeutralBackground).color();
-            }
-            if (role == Qt::ToolTipRole) {
-                return i18nc("@info:tooltip", "This certificate cannot be added to the group as it cannot be used for encryption.");
+            if (role == Qt::BackgroundRole || role == Qt::ForegroundRole) {
+                return {};
             }
         }
         return sourceIndex.data(role);
@@ -119,16 +133,18 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override
     {
         auto originalFlags = index.model()->QAbstractItemModel::flags(index);
-        if (Kleo::keyHasEncrypt(index.data(KeyList::KeyRole).value<Key>())) {
+        const auto key = index.data(KeyList::KeyRole).value<Key>();
+        if (m_mode == Warn || Kleo::canBeUsedForEncryption(key)) {
             return originalFlags;
         } else {
             return (originalFlags & ~Qt::ItemIsEnabled);
         }
         return {};
     }
-};
 
-DisableNonEncryptionKeysProxyModel::~DisableNonEncryptionKeysProxyModel() = default;
+private:
+    Mode m_mode;
+};
 
 class EditGroupDialog::Private
 {
@@ -142,11 +158,13 @@ class EditGroupDialog::Private
         QLineEdit *groupKeysFilter = nullptr;
         KeyTreeView *groupKeysList = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
+        QComboBox *combo = nullptr;
     } ui;
     AbstractKeyListModel *availableKeysModel = nullptr;
     AbstractKeyListModel *groupKeysModel = nullptr;
     KeyGroup keyGroup;
     std::vector<GpgME::Key> oldKeys;
+    FiltersProxyModel *filtersProxyModel = nullptr;
 
 public:
     Private(EditGroupDialog *qq)
@@ -188,12 +206,40 @@ public:
             label->setBuddy(ui.availableKeysFilter);
             hbox->addWidget(ui.availableKeysFilter, 1);
 
+            ui.combo = new QComboBox;
+            ui.combo->setAccessibleName(i18n("Filter certificates by category"));
+            ui.combo->setToolTip(i18nc("@info:tooltip", "Show only certificates that belong to the selected category."));
+
+            hbox->addWidget(ui.combo);
+
+            filtersProxyModel = new FiltersProxyModel{q};
+            auto keyFilterModel = new KeyFilterModel{q};
+
+            std::shared_ptr<DefaultKeyFilter> filter;
+            filter = std::make_shared<DefaultKeyFilter>();
+            filter->setCanEncrypt(DefaultKeyFilter::Set);
+            filter->setIsBad(DefaultKeyFilter::NotSet);
+            filter->setName(i18n("Usable for Encryption"));
+            filter->setId(QStringLiteral("CanEncryptFilter"));
+            filter->setMatchContexts(KeyFilter::Filtering);
+            keyFilterModel->prependCustomFilter(filter);
+
+            filtersProxyModel->setSourceModel(keyFilterModel);
+            filtersProxyModel->sort(0, Qt::AscendingOrder);
+            ui.combo->setModel(filtersProxyModel);
+
+            connect(ui.combo, &QComboBox::currentIndexChanged, q, [this](int index) {
+                const auto filter =
+                    filtersProxyModel->data(filtersProxyModel->index(index, 0), KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>();
+                ui.availableKeysList->setKeyFilter(filter);
+            });
+
             availableKeysLayout->addLayout(hbox);
         }
 
         availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         availableKeysModel->setKeys(KeyCache::instance()->keys());
-        auto proxyModel = new DisableNonEncryptionKeysProxyModel(q);
+        auto proxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Disable, q);
         proxyModel->setSourceModel(availableKeysModel);
         ui.availableKeysList = new KeyTreeView({}, nullptr, proxyModel, q, {});
         ui.availableKeysList->view()->setAccessibleName(i18n("available keys"));
@@ -253,7 +299,7 @@ public:
 
         groupKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
 
-        auto warnNonEncryptionProxyModel = new WarnNonEncryptionKeysProxyModel(q);
+        auto warnNonEncryptionProxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Warn, q);
         ui.groupKeysList = new KeyTreeView({}, nullptr, warnNonEncryptionProxyModel, q, {});
         ui.groupKeysList->view()->setAccessibleName(i18n("group keys"));
         ui.groupKeysList->view()->setRootIsDecorated(false);
@@ -284,8 +330,8 @@ public:
         connect(ui.availableKeysList->view()->selectionModel(),
                 &QItemSelectionModel::selectionChanged,
                 q,
-                [addButton](const QItemSelection &selected, const QItemSelection &) {
-                    addButton->setEnabled(!selected.isEmpty());
+                [addButton, this](const QItemSelection &, const QItemSelection &) {
+                    addButton->setEnabled(ui.availableKeysList->selectedKeys().size() > 0);
                 });
         connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
             showKeyDetails(index);
@@ -318,6 +364,13 @@ public:
         const QSize sizeHint = q->sizeHint();
         const QSize defaultSize = QSize(qMax(sizeHint.width(), 150 * fm.horizontalAdvance(QLatin1Char('x'))), sizeHint.height());
         restoreLayout(defaultSize);
+
+        for (auto i = 0; i < filtersProxyModel->rowCount(); ++i) {
+            if (filtersProxyModel->index(i, 0).data(KeyFilterManager::FilterIdRole).toString() == QStringLiteral("CanEncryptFilter")) {
+                ui.combo->setCurrentIndex(i);
+                break;
+            };
+        }
     }
 
     ~Private()
@@ -372,7 +425,14 @@ void EditGroupDialog::Private::addKeysToGroup()
 {
     const std::vector<Key> selectedGroupKeys = ui.groupKeysList->selectedKeys();
 
-    const std::vector<Key> selectedKeys = ui.availableKeysList->selectedKeys();
+    std::vector<Key> selectedKeys = ui.availableKeysList->selectedKeys();
+
+    // NOTE: This seems to be only necessary on Qt5. I've added it here for ease
+    // of backporting. We can remove it after backporting.
+    Kleo::erase_if(selectedKeys, [](const auto &key) {
+        return !Kleo::canBeUsedForEncryption(key);
+    });
+
     groupKeysModel->addKeys(selectedKeys);
     for (const Key &key : selectedKeys) {
         availableKeysModel->removeKey(key);
