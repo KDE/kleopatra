@@ -43,7 +43,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPointer>
-#include <QPushButton>
 #include <QStackedWidget>
 #include <QTabWidget>
 #include <QToolButton>
@@ -85,7 +84,9 @@ public:
         {
             auto hbox = new QHBoxLayout;
             hbox->addStretch(1);
-            mReloadButton = new QPushButton{i18n("Reload"), this};
+            mReloadButton = new QToolButton{this};
+            mReloadButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+            mReloadButton->setDefaultAction(SmartCardActions::instance()->action(u"reload"_s));
             hbox->addWidget(mReloadButton);
             hbox->addStretch(1);
             lay->addLayout(hbox);
@@ -98,8 +99,6 @@ public:
         hLay->addStretch(-1);
         lay->addStretch(-1);
 
-        connect(mReloadButton, &QPushButton::clicked, this, &PlaceHolderWidget::reload);
-
         connect(ReaderStatus::instance(), &ReaderStatus::currentActionChanged, this, &PlaceHolderWidget::updateReloadButton);
         updateReloadButton();
     }
@@ -109,11 +108,8 @@ public:
         mReloadButton->setEnabled(ReaderStatus::instance()->currentAction() != ReaderStatus::UpdateCards);
     }
 
-Q_SIGNALS:
-    void reload();
-
 private:
-    QPushButton *mReloadButton = nullptr;
+    QToolButton *mReloadButton = nullptr;
 };
 } // namespace
 
@@ -177,7 +173,6 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
 
     mStack->setCurrentWidget(mPlaceHolderWidget);
 
-    connect(mPlaceHolderWidget, &PlaceHolderWidget::reload, q, &SmartCardsWidget::reload);
     connect(ReaderStatus::instance(), &ReaderStatus::cardAdded, q, [this](const std::string &serialNumber, const std::string &appName) {
         cardAddedOrChanged(serialNumber, appName);
     });
