@@ -79,6 +79,9 @@ public:
             if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
                 return QIcon::fromTheme(QStringLiteral("data-error"));
             }
+            if (role == Qt::DisplayRole && index.column() == KeyList::Columns::Validity) {
+                return i18nc("@info as in 'this certificate is unusable'", "unusable");
+            }
             if (role == Qt::ToolTipRole) {
                 return i18nc("@info:tooltip", "This certificate cannot be used for encryption.");
             }
