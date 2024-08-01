@@ -90,6 +90,9 @@ DebugDialog::DebugDialog(QWidget *parent)
             QFileDialog::saveFileContent(d->outputEdit->toPlainText().toUtf8(), QStringLiteral("kleopatra_debug_%1.txt").arg(d->commandCombo->currentText()));
         });
 
+        auto closeButton = buttonBox->addButton(QDialogButtonBox::Close);
+        connect(closeButton, &QPushButton::clicked, this, &QDialog::accept);
+
         layout->addWidget(buttonBox);
     }
 
