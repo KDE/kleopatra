@@ -66,7 +66,6 @@ class WarnNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterPr
     Q_OBJECT
 public:
     using Kleo::AbstractKeyListSortFilterProxyModel::AbstractKeyListSortFilterProxyModel;
-    ~WarnNonEncryptionKeysProxyModel() override;
     WarnNonEncryptionKeysProxyModel *clone() const override
     {
         return new WarnNonEncryptionKeysProxyModel(this->parent());
@@ -89,8 +88,6 @@ public:
         return sourceIndex.data(role);
     }
 };
-
-WarnNonEncryptionKeysProxyModel::~WarnNonEncryptionKeysProxyModel() = default;
 
 class DisableNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
 {
