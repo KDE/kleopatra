@@ -573,7 +573,7 @@ void MainWindow::Private::setupActions()
 #endif
         {
             "tools_debug_view",
-            i18n("Debug View"),
+            i18n("Show GnuPG Configuration"),
             QString(),
             "",
             q,
