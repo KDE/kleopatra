@@ -19,6 +19,8 @@
 #include <Libkleo/Compat>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/KeyCache>
+#include <Libkleo/KeyFilter>
+#include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
@@ -31,6 +33,8 @@
 #include <KStandardGuiItem>
 
 #include <QApplication>
+#include <QComboBox>
+#include <QConcatenateTablesProxyModel>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -59,6 +63,79 @@ auto createOpenPGPOnlyKeyFilter()
     filter->setIsOpenPGP(DefaultKeyFilter::Set);
     return filter;
 }
+}
+
+namespace
+{
+
+class CanEncryptKeyFilterModel : public QAbstractListModel
+{
+    using QAbstractListModel::QAbstractListModel;
+
+    int rowCount(const QModelIndex &) const override
+    {
+        return 1;
+    }
+
+    QVariant data(const QModelIndex &index, int role) const override
+    {
+        if (index.row() != 0) {
+            return {};
+        }
+        static std::shared_ptr<DefaultKeyFilter> filter;
+        if (!filter) {
+            filter = std::make_shared<DefaultKeyFilter>();
+            filter->setCanEncrypt(DefaultKeyFilter::Set);
+            filter->setIsBad(DefaultKeyFilter::NotSet);
+            filter->setName(i18n("Usable for Encryption"));
+            filter->setDescription(i18n("Certificates that can be used for encryption"));
+            filter->setId(QStringLiteral("CanEncryptFilter"));
+            if (!Settings{}.cmsEnabled()) {
+                filter->setIsOpenPGP(DefaultKeyFilter::Set);
+            }
+        }
+
+        switch (role) {
+        case Qt::DecorationRole:
+            return filter->icon();
+
+        case Qt::DisplayRole:
+        case Qt::EditRole:
+            return filter->name();
+        case Qt::ToolTipRole:
+            return filter->description();
+
+        case KeyFilterManager::FilterIdRole:
+            return filter->id();
+
+        case KeyFilterManager::FilterMatchContextsRole:
+            return QVariant::fromValue(filter->availableMatchContexts());
+
+        case KeyFilterManager::FilterRole:
+            return QVariant::fromValue(std::static_pointer_cast<KeyFilter>(filter));
+
+        default:
+            return QVariant();
+        }
+    }
+};
+
+class FiltersProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    using QSortFilterProxyModel::QSortFilterProxyModel;
+
+protected:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override
+    {
+        const QModelIndex index = sourceModel()->index(sourceRow, 0, sourceParent);
+        const auto matchContexts = qvariant_cast<KeyFilter::MatchContexts>(sourceModel()->data(index, KeyFilterManager::FilterMatchContextsRole));
+        return matchContexts & KeyFilter::Filtering;
+    }
+};
+
 }
 
 class WarnNonEncryptionKeysProxyModel : public Kleo::AbstractKeyListSortFilterProxyModel
@@ -104,11 +181,11 @@ public:
     {
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
         if (!Kleo::keyHasEncrypt(sourceIndex.data(KeyList::KeyRole).value<Key>())) {
-            if (role == Qt::ForegroundRole) {
-                return qApp->palette().color(QPalette::Disabled, QPalette::Text);
+            if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
+                return QIcon::fromTheme(QStringLiteral("data-error"));
             }
-            if (role == Qt::BackgroundRole) {
-                return KColorScheme(QPalette::Disabled, KColorScheme::View).background(KColorScheme::NeutralBackground).color();
+            if (role == Qt::DisplayRole && index.column() == KeyList::Columns::Validity) {
+                return i18nc("@info as in 'this certificate is unusable'", "unusable");
             }
             if (role == Qt::ToolTipRole) {
                 return i18nc("@info:tooltip", "This certificate cannot be added to the group as it cannot be used for encryption.");
@@ -119,7 +196,8 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override
     {
         auto originalFlags = index.model()->QAbstractItemModel::flags(index);
-        if (Kleo::keyHasEncrypt(index.data(KeyList::KeyRole).value<Key>())) {
+        const auto key = index.data(KeyList::KeyRole).value<Key>();
+        if (Kleo::keyHasEncrypt(key) && !key.isBad()) {
             return originalFlags;
         } else {
             return (originalFlags & ~Qt::ItemIsEnabled);
@@ -142,11 +220,13 @@ class EditGroupDialog::Private
         QLineEdit *groupKeysFilter = nullptr;
         KeyTreeView *groupKeysList = nullptr;
         QDialogButtonBox *buttonBox = nullptr;
+        QComboBox *combo = nullptr;
     } ui;
     AbstractKeyListModel *availableKeysModel = nullptr;
     AbstractKeyListModel *groupKeysModel = nullptr;
     KeyGroup keyGroup;
     std::vector<GpgME::Key> oldKeys;
+    FiltersProxyModel *filtersProxyModel = nullptr;
 
 public:
     Private(EditGroupDialog *qq)
@@ -187,6 +267,26 @@ public:
             ui.availableKeysFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.availableKeysFilter);
             hbox->addWidget(ui.availableKeysFilter, 1);
+
+            ui.combo = new QComboBox;
+            ui.combo->setAccessibleName(i18n("Filter certificates by category"));
+            ui.combo->setToolTip(i18nc("@info:tooltip", "Show only certificates that belong to the selected category."));
+
+            hbox->addWidget(ui.combo);
+
+            filtersProxyModel = new FiltersProxyModel{q};
+            auto filtersConcatenateModel = new QConcatenateTablesProxyModel{q};
+            filtersConcatenateModel->addSourceModel(KeyFilterManager::instance()->model());
+            filtersConcatenateModel->addSourceModel(new CanEncryptKeyFilterModel{q});
+            filtersProxyModel->setSourceModel(filtersConcatenateModel);
+            filtersProxyModel->sort(0, Qt::AscendingOrder);
+            ui.combo->setModel(filtersProxyModel);
+
+            connect(ui.combo, &QComboBox::currentIndexChanged, q, [this](int index) {
+                const auto filter =
+                    filtersProxyModel->data(filtersProxyModel->index(index, 0), KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>();
+                ui.availableKeysList->setKeyFilter(filter);
+            });
 
             availableKeysLayout->addLayout(hbox);
         }
@@ -318,6 +418,14 @@ public:
         const QSize sizeHint = q->sizeHint();
         const QSize defaultSize = QSize(qMax(sizeHint.width(), 150 * fm.horizontalAdvance(QLatin1Char('x'))), sizeHint.height());
         restoreLayout(defaultSize);
+
+        for (auto i = 0; i < filtersProxyModel->rowCount(); ++i) {
+            if (filtersProxyModel->data(filtersProxyModel->index(i, 0), KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>()->id()
+                == QStringLiteral("CanEncryptFilter")) {
+                ui.combo->setCurrentIndex(i);
+                break;
+            };
+        }
     }
 
     ~Private()
