@@ -384,8 +384,8 @@ public:
         connect(ui.availableKeysList->view()->selectionModel(),
                 &QItemSelectionModel::selectionChanged,
                 q,
-                [addButton](const QItemSelection &selected, const QItemSelection &) {
-                    addButton->setEnabled(!selected.isEmpty());
+                [addButton, this](const QItemSelection &selected, const QItemSelection &) {
+                    addButton->setEnabled(ui.availableKeysList->selectedKeys().size() > 0);
                 });
         connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
             showKeyDetails(index);
