@@ -21,6 +21,7 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyFilterManager>
+#include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
@@ -34,7 +35,6 @@
 
 #include <QApplication>
 #include <QComboBox>
-#include <QConcatenateTablesProxyModel>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
@@ -67,58 +67,6 @@ auto createOpenPGPOnlyKeyFilter()
 
 namespace
 {
-
-class CanEncryptKeyFilterModel : public QAbstractListModel
-{
-    using QAbstractListModel::QAbstractListModel;
-
-    int rowCount(const QModelIndex &) const override
-    {
-        return 1;
-    }
-
-    QVariant data(const QModelIndex &index, int role) const override
-    {
-        if (index.row() != 0) {
-            return {};
-        }
-        static std::shared_ptr<DefaultKeyFilter> filter;
-        if (!filter) {
-            filter = std::make_shared<DefaultKeyFilter>();
-            filter->setCanEncrypt(DefaultKeyFilter::Set);
-            filter->setIsBad(DefaultKeyFilter::NotSet);
-            filter->setName(i18n("Usable for Encryption"));
-            filter->setDescription(i18n("Certificates that can be used for encryption"));
-            filter->setId(QStringLiteral("CanEncryptFilter"));
-            if (!Settings{}.cmsEnabled()) {
-                filter->setIsOpenPGP(DefaultKeyFilter::Set);
-            }
-        }
-
-        switch (role) {
-        case Qt::DecorationRole:
-            return filter->icon();
-
-        case Qt::DisplayRole:
-        case Qt::EditRole:
-            return filter->name();
-        case Qt::ToolTipRole:
-            return filter->description();
-
-        case KeyFilterManager::FilterIdRole:
-            return filter->id();
-
-        case KeyFilterManager::FilterMatchContextsRole:
-            return QVariant::fromValue(filter->availableMatchContexts());
-
-        case KeyFilterManager::FilterRole:
-            return QVariant::fromValue(std::static_pointer_cast<KeyFilter>(filter));
-
-        default:
-            return QVariant();
-        }
-    }
-};
 
 class FiltersProxyModel : public QSortFilterProxyModel
 {
@@ -160,9 +108,12 @@ public:
 
     QVariant data(const QModelIndex &index, int role) const override
     {
+        if (!index.isValid()) {
+            return {};
+        }
         const auto sourceIndex = sourceModel()->index(index.row(), index.column());
         const auto &key = sourceIndex.data(KeyList::KeyRole).value<Key>();
-        if (!Kleo::keyHasEncrypt(key) || key.isBad()) {
+        if (!Kleo::canBeUsedForEncryption(key)) {
             if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
                 return QIcon::fromTheme(QStringLiteral("data-error"));
             }
@@ -258,10 +209,19 @@ public:
             hbox->addWidget(ui.combo);
 
             filtersProxyModel = new FiltersProxyModel{q};
-            auto filtersConcatenateModel = new QConcatenateTablesProxyModel{q};
-            filtersConcatenateModel->addSourceModel(KeyFilterManager::instance()->model());
-            filtersConcatenateModel->addSourceModel(new CanEncryptKeyFilterModel{q});
-            filtersProxyModel->setSourceModel(filtersConcatenateModel);
+            auto keyFilterModel = new KeyFilterModel{q};
+
+            std::shared_ptr<DefaultKeyFilter> filter;
+            filter = std::make_shared<DefaultKeyFilter>();
+            filter->setCanEncrypt(DefaultKeyFilter::Set);
+            filter->setIsBad(DefaultKeyFilter::NotSet);
+            filter->setName(i18n("Usable for Encryption"));
+            filter->setDescription(i18n("Certificates that can be used for encryption"));
+            filter->setId(QStringLiteral("CanEncryptFilter"));
+            filter->setMatchContexts(KeyFilter::Filtering);
+            keyFilterModel->prependCustomFilter(filter);
+
+            filtersProxyModel->setSourceModel(keyFilterModel);
             filtersProxyModel->sort(0, Qt::AscendingOrder);
             ui.combo->setModel(filtersProxyModel);
 
@@ -403,8 +363,7 @@ public:
         restoreLayout(defaultSize);
 
         for (auto i = 0; i < filtersProxyModel->rowCount(); ++i) {
-            if (filtersProxyModel->data(filtersProxyModel->index(i, 0), KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>()->id()
-                == QStringLiteral("CanEncryptFilter")) {
+            if (filtersProxyModel->index(i, 0).data(KeyFilterManager::FilterIdRole).toString() == QStringLiteral("CanEncryptFilter")) {
                 ui.combo->setCurrentIndex(i);
                 break;
             };
@@ -466,9 +425,9 @@ void EditGroupDialog::Private::addKeysToGroup()
     std::vector<Key> selectedKeys = ui.availableKeysList->selectedKeys();
 
     // NOTE: This seems to be only necessary on Qt5. I've added it here for ease
-    //  of backporting. We can remove it after backporting.
+    // of backporting. We can remove it after backporting.
     Kleo::erase_if(selectedKeys, [](const auto &key) {
-        return !Kleo::keyHasEncrypt(key) || key.isBad();
+        return !Kleo::canBeUsedForEncryption(key);
     });
 
     groupKeysModel->addKeys(selectedKeys);
