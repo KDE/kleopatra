@@ -116,7 +116,6 @@ int main(int argc, char **argv)
     });
     STARTUP_TIMING << "Service created";
 
-    KCrash::initialize();
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
     qCDebug(KLEOPATRA_LOG) << "Application created";
 
@@ -142,6 +141,8 @@ int main(int argc, char **argv)
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
+
+    KCrash::initialize();
 
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because

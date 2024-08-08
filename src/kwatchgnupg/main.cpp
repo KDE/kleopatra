@@ -22,12 +22,14 @@
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
-    KCrash::initialize();
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kwatchgnupg"));
-    AboutData aboutData;
 
+    AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
+
+    KCrash::initialize();
+
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
     parser.process(app);
