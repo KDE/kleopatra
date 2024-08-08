@@ -436,6 +436,7 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     mTreeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     mTreeWidget->setRootIsDecorated(false);
+    mTreeWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     mTreeWidget->setHeaderLabels({
         i18nc("@title:column Name or ID of a storage slot for a key on a smart card", "Card Slot"),
         i18nc("@title:column", "User ID"),
@@ -453,6 +454,18 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
 
     connect(mTreeWidget, &QTreeWidget::currentItemChanged, this, [this]() {
         Q_EMIT currentCardSlotChanged();
+    });
+    connect(mTreeWidget, &QWidget::customContextMenuRequested, this, [this](const auto &pos) {
+        const auto item = static_cast<const CardKeysWidgetItem *>(mTreeWidget->itemAt(pos));
+        if (!item) {
+            return;
+        }
+        auto menu = new QMenu;
+        menu->setAttribute(Qt::WA_DeleteOnClose, true);
+        for (auto action : actionsForCardSlot(mCard->appType())) {
+            menu->addAction(updateAction(createProxyAction(action, menu), item, mCard.get()));
+        }
+        menu->popup(mTreeWidget->viewport()->mapToGlobal(pos));
     });
     if (auto action = SmartCardActions::instance()->action(u"card_slot_show_certificate_details"_s)) {
         connect(mTreeWidget, &QAbstractItemView::doubleClicked, action, &QAction::trigger);
