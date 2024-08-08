@@ -71,25 +71,6 @@ public:
         return QSize(min.width(), min.height() + 5 * fontMetrics().height());
     }
 
-protected:
-    void focusInEvent(QFocusEvent *event) override
-    {
-        QTreeView::focusInEvent(event);
-        // queue the invokation, so that it happens after the widget itself got focus
-        QMetaObject::invokeMethod(this, &TreeViewInternal::forceAccessibleFocusEventForCurrentItem, Qt::QueuedConnection);
-    }
-
-private:
-    void forceAccessibleFocusEventForCurrentItem()
-    {
-        // force Qt to send a focus event for the current item to accessibility
-        // tools; otherwise, the user has no idea which item is selected when the
-        // list gets keyboard input focus
-        const auto current = currentIndex();
-        setCurrentIndex({});
-        setCurrentIndex(current);
-    }
-
 private:
     QList<QAction *> mColumnActions;
 };
