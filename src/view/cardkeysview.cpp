@@ -81,6 +81,7 @@ namespace
 enum ColumnIndex {
     Slot,
     Certificate,
+    KeyProtocol,
     Fingerprint,
     Created,
     Usage,
@@ -233,6 +234,8 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         // certificate
         item->setData(Certificate, Qt::DisplayRole, keyInfo.grip.empty() ? i18nc("@info", "no key") : i18nc("@info", "no associated certificate"));
         item->setData(Certificate, Qt::ToolTipRole, QString{});
+        // protocol
+        item->setData(KeyProtocol, Qt::DisplayRole, QString{});
     } else {
         // fingerprint
         item->setData(Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
@@ -245,6 +248,8 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
             item->setData(Certificate, Qt::DisplayRole, DN(key.userID(0).id()).prettyDN());
         }
         item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(key, toolTipOptions()));
+        // protocol
+        item->setData(KeyProtocol, Qt::DisplayRole, Formatting::type(key));
     }
     const auto keyFilters = KeyFilterManager::instance();
     for (int col = 0; col < ColumnIndex::Actions; ++col) {
@@ -432,6 +437,7 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeWidget->setHeaderLabels({
         i18nc("@title:column Name or ID of a storage slot for a key on a smart card", "Card Slot"),
         i18nc("@title:column", "User ID"),
+        i18nc("@title:column", "Protocol"),
         i18nc("@title:column", "Fingerprint"),
         i18nc("@title:column", "Created"),
         i18nc("@title:column", "Usage"),
@@ -593,6 +599,7 @@ void CardKeysView::updateKeyList()
     }
 
     if (firstSetUp && !mTreeWidget->restoreColumnLayout(u"CardKeysView-"_s + QString::fromStdString(mCard->appName()))) {
+        mTreeWidget->hideColumn(KeyProtocol);
         mTreeWidget->hideColumn(KeyGrip);
         if (!(mOptions & ShowCreated)) {
             mTreeWidget->hideColumn(Created);
