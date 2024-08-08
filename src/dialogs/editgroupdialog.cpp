@@ -130,7 +130,7 @@ public:
     {
         auto originalFlags = index.model()->QAbstractItemModel::flags(index);
         const auto key = index.data(KeyList::KeyRole).value<Key>();
-        if ((Kleo::keyHasEncrypt(key) && !key.isBad()) || m_mode == Warn) {
+        if (m_mode == Warn || Kleo::canBeUsedForEncryption(key)) {
             return originalFlags;
         } else {
             return (originalFlags & ~Qt::ItemIsEnabled);
