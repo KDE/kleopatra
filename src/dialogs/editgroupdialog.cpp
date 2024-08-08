@@ -123,6 +123,9 @@ public:
             if (role == Qt::ToolTipRole) {
                 return i18nc("@info:tooltip", "This certificate cannot be used for encryption.");
             }
+            if (role == Qt::BackgroundRole || role == Qt::ForegroundRole || role == Qt::FontRole) {
+                return {};
+            }
         }
         return sourceIndex.data(role);
     }
