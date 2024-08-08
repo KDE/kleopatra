@@ -89,6 +89,7 @@ Q_SIGNALS:
     void commandsExecuting(bool);
 
     void contextMenuRequested(QAbstractItemView *view, const QPoint &p);
+    void selectionChanged();
 
 private:
     class Private;

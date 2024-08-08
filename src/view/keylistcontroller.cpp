@@ -56,6 +56,7 @@
 #include "commands/revokekeycommand.h"
 #include "commands/signencryptfilescommand.h"
 #include "commands/signencryptfoldercommand.h"
+#include "commands/togglecertificateenabledcommand.h"
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -64,6 +65,8 @@
 #include <Libkleo/KeyListModel>
 
 #include <gpgme++/key.h>
+
+#include <gpgme.h>
 
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -139,6 +142,7 @@ public:
         currentView = view;
         q->enableDisableActions(view ? view->selectionModel() : nullptr);
     }
+    void updateActions(KActionCollection *collection);
 
 private:
     int toolTipOptions() const;
@@ -321,7 +325,7 @@ TabWidget *KeyListController::tabWidget() const
 
 void KeyListController::createActions(KActionCollection *coll)
 {
-    const std::vector<action_data> common_and_openpgp_action_data = {
+    std::vector<action_data> common_and_openpgp_action_data = {
         // File menu
         {
             "file_new_certificate",
@@ -606,6 +610,20 @@ void KeyListController::createActions(KActionCollection *coll)
         // (come from MainWindow)
     };
 
+    if (ToggleCertificateEnabledCommand::isSupported()) {
+        common_and_openpgp_action_data.push_back(action_data{
+            "certificates_disable",
+            i18nc("@action:inmenu", "Disable Certificate"),
+            i18nc("@action:tooltip",
+                  "Disabled certificates are not offered when selecting a certificate to sign with or to encrypt for.\nThey are still listed in the "
+                  "certificate list."),
+            nullptr,
+            nullptr,
+            nullptr,
+            QString(),
+        });
+    }
+
     static const action_data cms_create_csr_action_data = {
         "file_new_certificate_signing_request",
         i18n("New S/MIME Certification Request..."),
@@ -730,6 +748,11 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ChangeOwnerTrustCommand>(coll->action(QStringLiteral("certificates_change_owner_trust")));
     registerActionForCommand<TrustRootCommand>(coll->action(QStringLiteral("certificates_trust_root")));
     registerActionForCommand<DistrustRootCommand>(coll->action(QStringLiteral("certificates_distrust_root")));
+
+    if (ToggleCertificateEnabledCommand::isSupported()) {
+        registerActionForCommand<ToggleCertificateEnabledCommand>(coll->action(QStringLiteral("certificates_disable")));
+    }
+
     //---
     registerActionForCommand<CertifyCertificateCommand>(coll->action(QStringLiteral("certificates_certify_certificate")));
     if (RevokeCertificationCommand::isSupported()) {
@@ -757,6 +780,14 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<DumpCrlCacheCommand>(coll->action(QStringLiteral("crl_dump_crl_cache")));
 
     enableDisableActions(nullptr);
+
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this, coll]() {
+        d->updateActions(coll);
+    });
+
+    connect(this, &KeyListController::selectionChanged, this, [coll, this]() {
+        d->updateActions(coll);
+    });
 }
 
 void KeyListController::registerAction(QAction *action, Command::Restrictions restrictions, Command *(*create)(QAbstractItemView *, KeyListController *))
@@ -814,6 +845,7 @@ void KeyListController::Private::connectView(QAbstractItemView *view)
     });
     connect(view->selectionModel(), &QItemSelectionModel::selectionChanged, q, [this](const QItemSelection &oldSel, const QItemSelection &newSel) {
         slotSelectionChanged(oldSel, newSel);
+        Q_EMIT q->selectionChanged();
     });
 
     view->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -1100,6 +1132,20 @@ void KeyListController::updateConfig()
     }
     if (d->hierarchicalModel) {
         d->hierarchicalModel->setToolTipOptions(opts);
+    }
+}
+
+void KeyListController::Private::updateActions(KActionCollection *collection)
+{
+    if (ToggleCertificateEnabledCommand::isSupported()) {
+        auto key = q->currentView()->selectionModel()->currentIndex().data(KeyList::KeyRole).value<GpgME::Key>();
+        if (key.isNull() || !key.primaryFingerprint()) {
+            return;
+        }
+        // Get the key from the cache, as the existing one isn't correctly updated yet
+        key = KeyCache::instance()->findByKeyIDOrFingerprint(key.primaryFingerprint());
+        auto action = collection->action(QStringLiteral("certificates_disable"));
+        action->setText(key.isDisabled() ? i18nc("@action:inmenu", "Enable Certificate") : i18nc("@action:inmenu", "Disable Certificate"));
     }
 }
 
