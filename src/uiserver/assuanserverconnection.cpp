@@ -220,7 +220,7 @@ Q_SIGNALS:
     void startKeyManager();
 
 public Q_SLOTS:
-    void slotReadActivity(int)
+    void slotReadActivity(intptr_t)
     {
         Q_ASSERT(ctx);
         int done = false;

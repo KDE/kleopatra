@@ -79,9 +79,9 @@ private:
         }
         const QByteArray serialized(static_cast<const char *>(cds->lpData), cds->cbData);
         QDataStream ds(serialized);
-        quint32 curProc;
+        intptr_t curProc;
         ds >> curProc;
-        mResponderProc = (HANDLE)curProc;
+        mResponderProc = reinterpret_cast<HANDLE>(curProc);
         QString workDir;
         ds >> workDir;
         QStringList args;
@@ -134,7 +134,7 @@ private:
         }
         CloseHandle(responderHandle);
 
-        ds << (qint32)mResponderProc << QDir::currentPath() << QCoreApplication::arguments();
+        ds << reinterpret_cast<intptr_t>(mResponderProc) << QDir::currentPath() << QCoreApplication::arguments();
         COPYDATASTRUCT cds;
         cds.dwData = MY_DATA_TYPE;
         cds.cbData = serialized.size();

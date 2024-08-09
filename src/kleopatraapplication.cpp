@@ -476,7 +476,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
         // WId is not a portable type as it is a pointer type on Windows.
         // casting it from an integer is ok though as the values are guaranteed to
         // be compatible in the documentation.
-        parentId = reinterpret_cast<WId>(parser.value(QStringLiteral("parent-windowid")).toUInt());
+        parentId = static_cast<WId>((parser.value(QStringLiteral("parent-windowid")).toUInt()));
 #else
         parentId = parser.value(QStringLiteral("parent-windowid")).toUInt();
 #endif
