@@ -248,7 +248,7 @@ void KeyTreeView::init()
                     QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
                 },
                 this));
-            menu->popup(m_view->mapToGlobal(pos));
+            menu->popup(m_view->viewport()->mapToGlobal(pos));
         });
     }
 
