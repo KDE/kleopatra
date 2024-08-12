@@ -302,8 +302,7 @@ void RevokeKeyDialog::setKey(const GpgME::Key &key)
     d->key = key;
     auto formattedKey =
         QStringLiteral("%1 (%2, created %3)")
-            .arg(Formatting::nameAndEmailForSummaryLine(key), Formatting::prettyID(key.subkey(0).fingerprint()), Formatting::creationDateString(key))
-            .toHtmlEscaped();
+            .arg(Formatting::nameAndEmailForSummaryLine(key), Formatting::prettyID(key.subkey(0).fingerprint()), Formatting::creationDateString(key));
     d->ui.infoLabel->setText(
         xi18nc("@info",
                "<para>You are about to revoke the following certificate:</para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
