@@ -196,28 +196,6 @@ static void resetColor(QListWidgetItem *item, int role, int allowRole, const cha
     }
 }
 
-#if 0
-static void erase_if_allowed(QListWidgetItem *item, const int role[], size_t numRoles, int allowRole)
-{
-    if (item && item->data(allowRole).toBool())
-        for (unsigned int i = 0; i < numRoles; ++i) {
-            item->setData(role[i], QVariant());
-        }
-}
-
-static void erase_if_allowed(QListWidgetItem *item, int role, const int allowRole[], size_t numAllowRoles)
-{
-    if (!item) {
-        return;
-    }
-    for (unsigned int i = 0; i < numAllowRoles; ++i)
-        if (!item->data(allowRole[i]).toBool()) {
-            return;
-        }
-    item->setData(role, QVariant());
-}
-#endif
-
 static void erase_if_allowed(QListWidgetItem *item, const int allowRole[], size_t numAllowRoles)
 {
     if (!item) {
