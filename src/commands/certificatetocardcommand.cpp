@@ -20,7 +20,6 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
-#include <Libkleo/KeySelectionDialog>
 
 #include <QGpgME/ExportJob>
 #include <gpgme.h>
