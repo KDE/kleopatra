@@ -51,6 +51,6 @@ private:
     void apply();
 
     QList<Kleo::Config::KleoConfigModule *> mModules;
-    QList<Kleo::Config::KleoConfigModule *> mChangedModules;
+    QSet<Kleo::Config::KleoConfigModule *> mChangedModules;
     QMap<QString, QString> mHelpUrls;
 };

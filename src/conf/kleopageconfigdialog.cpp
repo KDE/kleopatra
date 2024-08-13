@@ -97,7 +97,7 @@ void KleoPageConfigDialog::slotCurrentPageChanged(KPageWidgetItem *current, KPag
         canceled = queryUser == KMessageBox::Cancel;
     }
     if (!canceled) {
-        mChangedModules.removeAll(previousModule);
+        mChangedModules.remove(previousModule);
         setCurrentPage(current);
     }
     blockSignals(false);
@@ -144,7 +144,7 @@ void KleoPageConfigDialog::slotUser1Clicked()
         return;
     }
     module->load();
-    mChangedModules.removeAll(module);
+    mChangedModules.remove(module);
     clientChanged();
 }
 
@@ -190,7 +190,7 @@ void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath
     item->setIcon(QIcon::fromTheme(icon));
     connect(module, &KleoConfigModule::changed, this, [this, module]() {
         moduleChanged(true);
-        mChangedModules.append(module);
+        mChangedModules.insert(module);
     });
     mHelpUrls.insert(name, docPath);
 }
@@ -201,7 +201,7 @@ void KleoPageConfigDialog::moduleChanged(bool state)
     qCDebug(KLEOPATRA_LOG) << "Module changed: " << state << " mod " << module;
     if (mChangedModules.contains(module)) {
         if (!state) {
-            mChangedModules.removeAll(module);
+            mChangedModules.remove(module);
         } else {
             return;
         }
