@@ -63,15 +63,9 @@ public:
     ~Private();
 
 private:
-    void slotKeyFilterChanged(int idx)
-    {
-        Q_EMIT q->keyFilterChanged(keyFilter(idx));
-    }
-
     std::shared_ptr<KeyFilter> keyFilter(int idx) const
     {
-        const QModelIndex mi = proxyModel->mapToSource(proxyModel->index(idx, 0));
-        return KeyFilterManager::instance()->fromModelIndex(mi);
+        return proxyModel->index(idx, 0).data(KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>();
     }
 
     std::shared_ptr<KeyFilter> currentKeyFilter() const
@@ -122,6 +116,7 @@ private:
 
 private:
     ProxyModel *proxyModel;
+    KeyFilterModel *keyFilterModel;
     QLineEdit *lineEdit;
     QComboBox *combo;
     QPushButton *certifyButton;
@@ -154,8 +149,12 @@ SearchBar::Private::Private(SearchBar *qq)
     certifyButton->hide();
     layout->addWidget(certifyButton);
 
+    keyFilterModel = new KeyFilterModel{q};
+    keyFilterModel->setSourceModel(KeyFilterManager::instance()->model());
+
     proxyModel = new ProxyModel{q};
-    proxyModel->setSourceModel(KeyFilterManager::instance()->model());
+    proxyModel->setSourceModel(keyFilterModel);
+
     proxyModel->sort(0, Qt::AscendingOrder);
     combo->setModel(proxyModel);
 
@@ -165,8 +164,8 @@ SearchBar::Private::Private(SearchBar *qq)
     Q_SET_OBJECT_NAME(certifyButton);
 
     connect(lineEdit, &QLineEdit::textChanged, q, &SearchBar::stringFilterChanged);
-    connect(combo, &QComboBox::currentIndexChanged, q, [this](int index) {
-        slotKeyFilterChanged(index);
+    connect(combo, &QComboBox::currentIndexChanged, q, [this]() {
+        Q_EMIT q->keyFilterChanged(combo->currentData(KeyFilterManager::FilterRole).value<std::shared_ptr<KeyFilter>>());
     });
     connect(certifyButton, &QPushButton::clicked, q, [this]() {
         listNotCertifiedKeys();
@@ -206,10 +205,13 @@ void SearchBar::setStringFilter(const QString &filter)
 // slot
 void SearchBar::setKeyFilter(const std::shared_ptr<KeyFilter> &kf)
 {
-    const QModelIndex sourceIndex = KeyFilterManager::instance()->toModelIndex(kf);
-    const QModelIndex proxyIndex = d->proxyModel->mapFromSource(sourceIndex);
-    if (proxyIndex.isValid()) {
-        d->combo->setCurrentIndex(proxyIndex.row());
+    if (!kf) {
+        return;
+    }
+
+    auto index = d->combo->findData(kf->id());
+    if (index != -1) {
+        d->combo->setCurrentIndex(index);
     } else {
         d->combo->setCurrentIndex(0);
     }
@@ -230,6 +232,12 @@ void SearchBar::setChangeKeyFilterEnabled(bool on)
 QLineEdit *SearchBar::lineEdit() const
 {
     return d->lineEdit;
+}
+
+void SearchBar::addCustomKeyFilter(const std::shared_ptr<KeyFilter> &keyFilter)
+{
+    d->keyFilterModel->prependCustomFilter(keyFilter);
+    d->proxyModel->sort(0, Qt::AscendingOrder);
 }
 
 #include "moc_searchbar.cpp"

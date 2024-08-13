@@ -83,6 +83,8 @@ public:
 
     static void filterAllowedKeys(std::vector<GpgME::Key> &keys, int options);
 
+    void addCustomKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);
+
 public Q_SLOTS:
     void setStringFilter(const QString &text);
     void setKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter);

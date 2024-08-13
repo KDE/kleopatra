@@ -518,4 +518,9 @@ void CertificateSelectionDialog::accept()
     }
 }
 
+void CertificateSelectionDialog::addCustomKeyFilter(const std::shared_ptr<Kleo::KeyFilter> &filter)
+{
+    d->ui.searchBar.addCustomKeyFilter(filter);
+}
+
 #include "moc_certificateselectiondialog.cpp"

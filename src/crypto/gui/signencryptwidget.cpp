@@ -422,6 +422,22 @@ void SignEncryptWidget::ownCertificateSelectionRequested(CertificateSelectionDia
                       | //
                       options);
 
+    auto keyFilter = std::make_shared<DefaultKeyFilter>();
+    keyFilter->setMatchContexts(KeyFilter::Filtering);
+    keyFilter->setIsBad(DefaultKeyFilter::NotSet);
+    if (options & CertificateSelectionDialog::SignOnly) {
+        keyFilter->setName(i18n("Usable for Signing"));
+        keyFilter->setDescription(i18n("Certificates that can be used for signing"));
+        keyFilter->setId(QStringLiteral("CanSignFilter"));
+    } else {
+        keyFilter->setName(i18n("Usable for Encryption"));
+        keyFilter->setDescription(i18n("Certificates that can be used for encryption"));
+        keyFilter->setId(QStringLiteral("CanEncryptFilter"));
+    }
+
+    dialog.addCustomKeyFilter(keyFilter);
+    dialog.setKeyFilter(keyFilter);
+
     if (dialog.exec()) {
         auto userId = dialog.selectedUserIDs()[0];
         auto index = combo->findUserId(userId);
@@ -444,6 +460,16 @@ void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certi
         CertificateSelectionDialog::EncryptOnly | //
         CertificateSelectionDialog::optionsFromProtocol(d->mCurrentProto) | //
         CertificateSelectionDialog::IncludeGroups));
+
+    auto keyFilter = std::make_shared<DefaultKeyFilter>();
+    keyFilter->setMatchContexts(KeyFilter::Filtering);
+    keyFilter->setIsBad(DefaultKeyFilter::NotSet);
+    keyFilter->setName(i18n("Usable for Encryption"));
+    keyFilter->setDescription(i18n("Certificates that can be used for encryption"));
+    keyFilter->setId(QStringLiteral("CanEncryptFilter"));
+
+    dlg.addCustomKeyFilter(keyFilter);
+    dlg.setKeyFilter(keyFilter);
 
     if (!certificateLineEdit->key().isNull()) {
         const auto key = certificateLineEdit->key();
