@@ -15,7 +15,6 @@
 
 #include "certificatedetailswidget.h"
 
-#include "cardinfotab.h"
 #include "certificatedumpwidget.h"
 #include "dialogs/weboftrustwidget.h"
 #include "kleopatra_debug.h"
@@ -150,7 +149,6 @@ private:
         WebOfTrustWidget *webOfTrustWidget = nullptr;
         TrustChainWidget *trustChainWidget = nullptr;
         CertificateDumpWidget *certificateDumpWidget = nullptr;
-        CardInfoTab *cardInfoTab = nullptr;
         RevokersWidget *revokersWidget = nullptr;
 
         void setupUi(QWidget *parent)
@@ -280,9 +278,6 @@ private:
             trustChainWidget = new TrustChainWidget(parent);
             tabWidget->addTab(trustChainWidget, i18nc("@title:tab", "Trust Chain Details"));
 
-            cardInfoTab = new CardInfoTab(parent);
-            tabWidget->addTab(cardInfoTab, i18nc("@title:tab", "Smartcard"));
-
             certificateDumpWidget = new CertificateDumpWidget(parent);
             tabWidget->addTab(certificateDumpWidget, i18nc("@title:tab", "Certificate Dump"));
 
@@ -397,7 +392,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     }
 
     ui.usageField->setValue(usage.join(i18nc("Separator between words in a list", ", ")));
-    ui.cardInfoTab->setKey(key);
 }
 
 void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
