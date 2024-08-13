@@ -11,7 +11,6 @@
 
 #include "tabwidget.h"
 
-#include "keytreeview.h"
 #include "kleopatra_debug.h"
 #include "searchbar.h"
 
@@ -34,7 +33,6 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <KSharedConfig>
 #include <QAction>
 #include <QInputDialog>
 #include <QTabWidget>

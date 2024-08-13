@@ -17,7 +17,6 @@
 #include "settings.h"
 #include "unknownrecipientwidget.h"
 
-#include "dialogs/certificateselectiondialog.h"
 #include "utils/gui-helper.h"
 
 #include <QCheckBox>
@@ -39,7 +38,6 @@
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/UserIDSelectionCombo>
 
 #include <Libkleo/GnuPG>
 

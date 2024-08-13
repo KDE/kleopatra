@@ -17,7 +17,6 @@
 #include <Libkleo/KeyListSortFilterProxyModel>
 #include <Libkleo/KeyRearrangeColumnsProxyModel>
 #include <Libkleo/Predicates>
-#include <Libkleo/TreeView>
 
 #include "utils/headerview.h"
 #include "utils/tags.h"

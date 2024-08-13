@@ -78,7 +78,6 @@
 #include <QStylePainter>
 
 #include <KSharedConfig>
-#include <memory>
 
 #ifdef Q_OS_WIN
 #include <windows.h>

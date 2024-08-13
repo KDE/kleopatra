@@ -38,8 +38,6 @@
 
 #include <gpg-error.h>
 
-#include <memory>
-
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Formatting;
