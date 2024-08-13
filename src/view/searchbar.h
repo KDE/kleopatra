@@ -32,6 +32,7 @@ public:
     QLineEdit *lineEdit() const;
 
     void updateClickMessage(const QString &shortcutStr);
+    void addCustomKeyFilter(const std::shared_ptr<KeyFilter> &keyFilter);
 
 public Q_SLOTS:
     void setStringFilter(const QString &text);
