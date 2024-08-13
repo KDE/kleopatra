@@ -470,6 +470,7 @@ set(_kleopatra_SRCS
   utils/overwritedialog.h
   utils/path-helper.cpp
   utils/path-helper.h
+  utils/qt6compat.h
   utils/scrollarea.cpp
   utils/scrollarea.h
   utils/systemtrayicon.cpp
