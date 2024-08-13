@@ -20,6 +20,10 @@ inline QString operator""_s(const char16_t *str, size_t size) noexcept
 {
     return QString::fromUtf16(const_cast<char16_t *>(str), int(size));
 }
+constexpr inline QLatin1String operator""_L1(const char *str, size_t size) noexcept
+{
+    return QLatin1String{str, int(size)};
+}
 } // StringLiterals
 } // Literals
 } // Qt
