@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-09 00:40+0000\n"
+"POT-Creation-Date: 2024-08-13 00:40+0000\n"
 "PO-Revision-Date: 2024-08-09 12:45+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -256,36 +256,36 @@ msgstr ""
 "Introduïu la clau d'administració de l'aplicació de la targeta PIV en format "
 "codificat hexadecimal."
 
-#: src/commands/certificatetocardcommand.cpp:70
+#: src/commands/certificatetocardcommand.cpp:69
 #: src/commands/keytocardcommand.cpp:59
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/certificatetocardcommand.cpp:166
+#: src/commands/certificatetocardcommand.cpp:165
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
 msgstr "No s'ha trobat cap targeta intel·ligent buida."
 
-#: src/commands/certificatetocardcommand.cpp:255
-#: src/commands/certificatetocardcommand.cpp:318
-#: src/commands/certificatetocardcommand.cpp:377
+#: src/commands/certificatetocardcommand.cpp:254
+#: src/commands/certificatetocardcommand.cpp:317
+#: src/commands/certificatetocardcommand.cpp:376
 #: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
 #: src/commands/keytocardcommand.cpp:657
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "No s'ha pogut trobar la targeta amb el número de sèrie: %1"
 
-#: src/commands/certificatetocardcommand.cpp:268
+#: src/commands/certificatetocardcommand.cpp:267
 #, kde-format
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
 msgstr ""
 "No s'ha trobat cap ranura per a la subclau %1 a la targeta intel·ligent."
 
-#: src/commands/certificatetocardcommand.cpp:290
+#: src/commands/certificatetocardcommand.cpp:289
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
@@ -295,20 +295,20 @@ msgstr ""
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "No s'ha pogut trobar la targeta OpenPGP amb el número de sèrie: %1"
 
-#: src/commands/certificatetocardcommand.cpp:327
+#: src/commands/certificatetocardcommand.cpp:326
 #: src/commands/keytocardcommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "No s'ha pogut copiar la clau a la targeta."
 
-#: src/commands/certificatetocardcommand.cpp:339
+#: src/commands/certificatetocardcommand.cpp:338
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
 msgstr "<para>La clau s'ha copiat a la targeta intel·ligent.</para>"
 
-#: src/commands/certificatetocardcommand.cpp:342
+#: src/commands/certificatetocardcommand.cpp:341
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -318,7 +318,7 @@ msgstr ""
 "<para>La clau s'ha copiat a la targeta intel·ligent.</para><para>S'ha "
 "exportat una còpia de seguretat a <filename>%1</filename></para>"
 
-#: src/commands/certificatetocardcommand.cpp:356
+#: src/commands/certificatetocardcommand.cpp:355
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -328,14 +328,14 @@ msgstr ""
 "Segur que voleu suprimir la còpia de la clau secreta emmagatzemada en este "
 "ordinador?"
 
-#: src/commands/certificatetocardcommand.cpp:357
+#: src/commands/certificatetocardcommand.cpp:356
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "Confirmeu la supressió"
 
-#: src/commands/certificatetocardcommand.cpp:403
+#: src/commands/certificatetocardcommand.cpp:402
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -345,7 +345,7 @@ msgstr ""
 "<para>No s'ha pogut suprimir la còpia de la clau secreta emmagatzemada en "
 "este ordinador:</para><para><message>%1</message></para>"
 
-#: src/commands/certificatetocardcommand.cpp:429
+#: src/commands/certificatetocardcommand.cpp:428
 #: src/commands/keytocardcommand.cpp:751
 #, kde-kuit-format
 msgctxt "@info"
@@ -3523,64 +3523,86 @@ msgstr "Seleccioneu un o més fitxers per a signar i/o encriptar"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Seleccioneu una carpeta per a signar i/o encriptar"
 
+#: src/commands/togglecertificateenabledcommand.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to enable certificate:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>No s'ha pogut fer l'actualització:</para><para><message>%1</message></"
+"para>"
+
+#: src/commands/togglecertificateenabledcommand.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to disable certificate:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>No s'ha pogut fer l'actualització:</para><para><message>%1</message></"
+"para>"
+
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<sense nom>"
 
-#: src/conf/appearanceconfigwidget.cpp:324
+#: src/conf/appearanceconfigwidget.cpp:301
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "Este paràmetre l'ha bloquejat l'administrador del sistema."
 
-#: src/conf/appearanceconfigwidget.cpp:369
+#: src/conf/appearanceconfigwidget.cpp:346
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 "Mostra la informació següent en els consells de la llista de certificats:"
 
-#: src/conf/appearanceconfigwidget.cpp:372
+#: src/conf/appearanceconfigwidget.cpp:349
 #, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Mostra la validesa"
 
-#: src/conf/appearanceconfigwidget.cpp:375
+#: src/conf/appearanceconfigwidget.cpp:352
 #, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Mostra la informació del propietari"
 
-#: src/conf/appearanceconfigwidget.cpp:378
+#: src/conf/appearanceconfigwidget.cpp:355
 #, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Mostra els detalls tècnics"
 
-#: src/conf/appearanceconfigwidget.cpp:383
+#: src/conf/appearanceconfigwidget.cpp:360
 #, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "Mostra el venciment pròxim del certificat"
 
-#: src/conf/appearanceconfigwidget.cpp:390
+#: src/conf/appearanceconfigwidget.cpp:367
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
 msgstr "Llindar per als certificats propis:"
 
-#: src/conf/appearanceconfigwidget.cpp:396
-#: src/conf/appearanceconfigwidget.cpp:410
+#: src/conf/appearanceconfigwidget.cpp:373
+#: src/conf/appearanceconfigwidget.cpp:387
 #, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "mai"
 
-#: src/conf/appearanceconfigwidget.cpp:397
-#: src/conf/appearanceconfigwidget.cpp:411
+#: src/conf/appearanceconfigwidget.cpp:374
+#: src/conf/appearanceconfigwidget.cpp:388
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " day"
@@ -3588,7 +3610,7 @@ msgid_plural " days"
 msgstr[0] " dia"
 msgstr[1] " dies"
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:376
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3598,13 +3620,13 @@ msgstr ""
 "Seleccioneu ací el nombre de dies que voleu ser avisat per avançat, si el "
 "vostre propi certificat està a punt de véncer prompte."
 
-#: src/conf/appearanceconfigwidget.cpp:404
+#: src/conf/appearanceconfigwidget.cpp:381
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
 msgstr "Llindar per als certificats d'altres:"
 
-#: src/conf/appearanceconfigwidget.cpp:414
+#: src/conf/appearanceconfigwidget.cpp:391
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3614,67 +3636,67 @@ msgstr ""
 "Seleccioneu ací el nombre de dies que voleu ser avisat per avançat, si el "
 "certificat d'una altra persona està a punt de véncer prompte."
 
-#: src/conf/appearanceconfigwidget.cpp:424
+#: src/conf/appearanceconfigwidget.cpp:401
 #, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "General"
 
-#: src/conf/appearanceconfigwidget.cpp:444
+#: src/conf/appearanceconfigwidget.cpp:421
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "Establix la icona…"
 
-#: src/conf/appearanceconfigwidget.cpp:451
+#: src/conf/appearanceconfigwidget.cpp:428
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "Establix el color del text…"
 
-#: src/conf/appearanceconfigwidget.cpp:458
+#: src/conf/appearanceconfigwidget.cpp:435
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "Establix el color de fons…"
 
-#: src/conf/appearanceconfigwidget.cpp:465
+#: src/conf/appearanceconfigwidget.cpp:442
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "Establix la lletra…"
 
-#: src/conf/appearanceconfigwidget.cpp:472
+#: src/conf/appearanceconfigwidget.cpp:449
 #, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Cursiva"
 
-#: src/conf/appearanceconfigwidget.cpp:479
+#: src/conf/appearanceconfigwidget.cpp:456
 #, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Negreta"
 
-#: src/conf/appearanceconfigwidget.cpp:486
+#: src/conf/appearanceconfigwidget.cpp:463
 #, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Ratllat"
 
-#: src/conf/appearanceconfigwidget.cpp:495
+#: src/conf/appearanceconfigwidget.cpp:472
 #, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Aparença predeterminada"
 
-#: src/conf/appearanceconfigwidget.cpp:503
+#: src/conf/appearanceconfigwidget.cpp:480
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Categories de certificat"
 
-#: src/conf/appearanceconfigwidget.cpp:528
+#: src/conf/appearanceconfigwidget.cpp:505
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
@@ -3682,7 +3704,7 @@ msgstr ""
 "està actiu."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:537 src/kcfg/settings.kcfg:149
+#: src/conf/appearanceconfigwidget.cpp:514 src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Ordre dels atributs DN"
@@ -3966,8 +3988,8 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:177
-#: src/dialogs/editgroupdialog.cpp:237
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:194
+#: src/dialogs/editgroupdialog.cpp:283
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
@@ -3985,8 +4007,8 @@ msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "Busca la llista de grups que coincidisquen amb el terme de busca."
 
-#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:186
-#: src/dialogs/editgroupdialog.cpp:246
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:203
+#: src/dialogs/editgroupdialog.cpp:292
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
@@ -7458,41 +7480,37 @@ msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "Suprimiu la clau secreta"
 
-#: src/dialogs/editgroupdialog.cpp:83
+#: src/dialogs/editgroupdialog.cpp:121
+#, kde-format
+msgctxt "@info as in 'this certificate is unusable'"
+msgid "unusable"
+msgstr ""
+
+#: src/dialogs/editgroupdialog.cpp:124
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "Este certificat no es pot emprar per a encriptar."
 
-#: src/dialogs/editgroupdialog.cpp:114
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"This certificate cannot be added to the group as it cannot be used for "
-"encryption."
-msgstr ""
-"Este certificat no es pot afegir al grup perquè no es pot emprar per a "
-"encriptar."
-
-#: src/dialogs/editgroupdialog.cpp:159
+#: src/dialogs/editgroupdialog.cpp:176
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "Nom:"
 
-#: src/dialogs/editgroupdialog.cpp:171
+#: src/dialogs/editgroupdialog.cpp:188
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "Claus disponibles"
 
-#: src/dialogs/editgroupdialog.cpp:178 src/dialogs/editgroupdialog.cpp:184
+#: src/dialogs/editgroupdialog.cpp:195 src/dialogs/editgroupdialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "Busca les claus disponibles"
 
-#: src/dialogs/editgroupdialog.cpp:179 src/dialogs/editgroupdialog.cpp:185
+#: src/dialogs/editgroupdialog.cpp:196 src/dialogs/editgroupdialog.cpp:202
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
@@ -7500,48 +7518,73 @@ msgstr ""
 "Busca en la llista de claus disponibles les claus que coincidisquen amb el "
 "terme de busca."
 
-#: src/dialogs/editgroupdialog.cpp:199
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#, kde-format
+msgid "Filter certificates by category"
+msgstr "Filtra els certificats per la categoria"
+
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Show only certificates that belong to the selected category."
+msgstr ""
+"Només mostra els certificats que pertanguen a la categoria seleccionada."
+
+#: src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Encriptació"
+
+#: src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for encryption"
+msgstr "Este certificat no es pot emprar per a encriptació."
+
+#: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
 msgid "available keys"
 msgstr "claus disponibles"
 
-#: src/dialogs/editgroupdialog.cpp:215
+#: src/dialogs/editgroupdialog.cpp:261
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "Afig les claus seleccionades"
 
-#: src/dialogs/editgroupdialog.cpp:216
+#: src/dialogs/editgroupdialog.cpp:262
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "Afig les claus seleccionades al grup"
 
-#: src/dialogs/editgroupdialog.cpp:222
+#: src/dialogs/editgroupdialog.cpp:268
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "Elimina les claus seleccionades"
 
-#: src/dialogs/editgroupdialog.cpp:223
+#: src/dialogs/editgroupdialog.cpp:269
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "Elimina les claus seleccionades del grup"
 
-#: src/dialogs/editgroupdialog.cpp:231
+#: src/dialogs/editgroupdialog.cpp:277
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "Grup de claus"
 
-#: src/dialogs/editgroupdialog.cpp:238 src/dialogs/editgroupdialog.cpp:244
+#: src/dialogs/editgroupdialog.cpp:284 src/dialogs/editgroupdialog.cpp:290
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "Busca al grup de claus"
 
-#: src/dialogs/editgroupdialog.cpp:239 src/dialogs/editgroupdialog.cpp:245
+#: src/dialogs/editgroupdialog.cpp:285 src/dialogs/editgroupdialog.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
@@ -7549,12 +7592,12 @@ msgstr ""
 "Busca en la llista de grup de claus les claus que coincidisquen amb el terme "
 "de busca."
 
-#: src/dialogs/editgroupdialog.cpp:258
+#: src/dialogs/editgroupdialog.cpp:304
 #, kde-format
 msgid "group keys"
 msgstr "grup de claus"
 
-#: src/dialogs/editgroupdialog.cpp:424
+#: src/dialogs/editgroupdialog.cpp:484
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -7859,7 +7902,7 @@ msgstr "Revoca el certificat"
 msgid "Error: The description must not contain empty lines."
 msgstr "S'ha produït un error: La descripció no pot contindre línies buides."
 
-#: src/dialogs/revokekeydialog.cpp:309
+#: src/dialogs/revokekeydialog.cpp:308
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9367,43 +9410,43 @@ msgstr "Vi&sualitza"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:138
+#: src/kleopatra.rc:44 src/kleopatra.rc:139
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certificats"
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:66
+#: src/kleopatra.rc:67
 #, kde-format
 msgid "&Tools"
 msgstr "&Eines"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:83
+#: src/kleopatra.rc:84
 #, kde-format
 msgid "&Settings"
 msgstr "Con&figuració"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:89
+#: src/kleopatra.rc:90
 #, kde-format
 msgid "&Window"
 msgstr "&Finestra"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:100
+#: src/kleopatra.rc:101
 #, kde-format
 msgid "&Help"
 msgstr "&Ajuda"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:107
+#: src/kleopatra.rc:108
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Més documentació"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:122 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Barra d'eines principal"
@@ -11886,47 +11929,47 @@ msgstr "S'estan llegint els certificats de la targeta intel·ligent…"
 msgid "Loading certificate cache..."
 msgstr "S'està carregant la memòria cau dels certificats…"
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:332
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Parell nou de claus OpenPGP…"
 
-#: src/view/keylistcontroller.cpp:329
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Crea un certificat OpenPGP nou"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:341
 #, kde-format
 msgid "Export..."
 msgstr "Exporta…"
 
-#: src/view/keylistcontroller.cpp:338
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Exporta el certificat seleccionat (clau pública) a un fitxer"
 
-#: src/view/keylistcontroller.cpp:346
+#: src/view/keylistcontroller.cpp:350
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Publica al servidor…"
 
-#: src/view/keylistcontroller.cpp:348
+#: src/view/keylistcontroller.cpp:352
 #, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "Publica el certificat seleccionat (clau pública) al directori intern"
 
-#: src/view/keylistcontroller.cpp:349
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Publica el certificat seleccionat (clau pública) a %1"
 
-#: src/view/keylistcontroller.cpp:358
+#: src/view/keylistcontroller.cpp:362
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Publica al proveïdor de correu…"
 
-#: src/view/keylistcontroller.cpp:359
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11935,252 +11978,277 @@ msgstr ""
 "Si s'oferix, publica el certificat seleccionat (clau pública) al directori "
 "web de claus del proveïdor"
 
-#: src/view/keylistcontroller.cpp:368
+#: src/view/keylistcontroller.cpp:372
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Còpia de seguretat de les claus secretes…"
 
-#: src/view/keylistcontroller.cpp:377
+#: src/view/keylistcontroller.cpp:381
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Imprimix la clau secreta…"
 
-#: src/view/keylistcontroller.cpp:386
+#: src/view/keylistcontroller.cpp:390
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Busca al servidor…"
 
-#: src/view/keylistcontroller.cpp:388
+#: src/view/keylistcontroller.cpp:392
 #, kde-format
 msgid "Search for certificates in internal directory"
 msgstr "Busca certificats al directori intern"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:393
 #, kde-format
 msgid "Search for certificates on %1"
 msgstr "Busca certificats a %1"
 
-#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importa…"
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:402
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Importa un certificat des d'un fitxer"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:410
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Desencriptació/verificació…"
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Desencripta i/o verifica els fitxers"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:419
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signa i encripta…"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Encripta i/o signa els fitxers"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:428
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Signa i encripta una carpeta…"
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Encripta i/o signa els fitxers"
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:437
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Crea fitxers de suma de verificació…"
 
-#: src/view/keylistcontroller.cpp:442
+#: src/view/keylistcontroller.cpp:446
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Comprova la suma de verificació…"
 
-#: src/view/keylistcontroller.cpp:452
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Redisplay"
 msgstr "Torna a mostrar"
 
-#: src/view/keylistcontroller.cpp:461
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Stop Operation"
 msgstr "Para l'operació"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:478
 #, kde-format
 msgid "Details"
 msgstr "Detalls"
 
-#: src/view/keylistcontroller.cpp:484
+#: src/view/keylistcontroller.cpp:488
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Revoca un certificat…"
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Revoca els certificats OpenPGP seleccionats"
 
-#: src/view/keylistcontroller.cpp:493
+#: src/view/keylistcontroller.cpp:497
 #, kde-format
 msgid "Delete"
 msgstr "Suprimix"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Suprimix els certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:506
 #, kde-format
 msgid "Update Certificates"
 msgstr "Actualitza els certificats"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Actualitza els certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:511
+#: src/view/keylistcontroller.cpp:515
 #, kde-format
 msgid "Certify..."
 msgstr "Certifica…"
 
-#: src/view/keylistcontroller.cpp:512
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Certifica la validesa del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:520
+#: src/view/keylistcontroller.cpp:524
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Revoca la certificació…"
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Revoca la certificació del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:529
+#: src/view/keylistcontroller.cpp:533
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Canvia el final del període de validesa…"
 
-#: src/view/keylistcontroller.cpp:538
+#: src/view/keylistcontroller.cpp:542
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Canvia el dret de certificació…"
 
-#: src/view/keylistcontroller.cpp:539
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Concedix o revoca el dret de certificació del certificat seleccionat"
 
-#: src/view/keylistcontroller.cpp:547
+#: src/view/keylistcontroller.cpp:551
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Canvia la frase de pas…"
 
-#: src/view/keylistcontroller.cpp:556
+#: src/view/keylistcontroller.cpp:560
 #, kde-format
 msgid "Add User ID..."
 msgstr "Afig un ID d'usuari…"
 
-#: src/view/keylistcontroller.cpp:565
+#: src/view/keylistcontroller.cpp:569
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Crea un grup…"
 
-#: src/view/keylistcontroller.cpp:566
+#: src/view/keylistcontroller.cpp:570
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Crea un grup a partir dels certificats seleccionats"
 
-#: src/view/keylistcontroller.cpp:574
+#: src/view/keylistcontroller.cpp:578
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Copia a la targeta"
 
-#: src/view/keylistcontroller.cpp:575
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Copia el certificat seleccionat a la targeta intel·ligent"
 
-#: src/view/keylistcontroller.cpp:584
+#: src/view/keylistcontroller.cpp:588
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Actualitza els certificats OpenPGP"
 
-#: src/view/keylistcontroller.cpp:594
+#: src/view/keylistcontroller.cpp:598
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Copia"
 
-#: src/view/keylistcontroller.cpp:611
+#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Delete Certificates"
+msgctxt "@action:inmenu"
+msgid "Disable Certificate"
+msgstr "Suprimix els certificats"
+
+#: src/view/keylistcontroller.cpp:618
+#, kde-format
+msgctxt "@action:tooltip"
+msgid ""
+"Disabled certificates are not offered when selecting a certificate to sign "
+"with or to encrypt for.\n"
+"They are still listed in the certificate list."
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:629
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Sol·licitud de certificació S/MIME nova…"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Crea una sol·licitud nova de signatura de certificat S/MIME (CSR)"
 
-#: src/view/keylistcontroller.cpp:623
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Confia en el certificat arrel"
 
-#: src/view/keylistcontroller.cpp:632
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Desconfia del certificat arrel"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Technical Details"
 msgstr "Detalls tècnics"
 
-#: src/view/keylistcontroller.cpp:651
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Actualitza els certificats S/MIME"
 
-#: src/view/keylistcontroller.cpp:660
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Neteja el cau de la CRL"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:687
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Bolcat del cau de la CRL"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:696
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importa la CRL des d'un fitxer…"
+
+#: src/view/keylistcontroller.cpp:1148
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Select Certificate"
+msgctxt "@action:inmenu"
+msgid "Enable Certificate"
+msgstr "Seleccioneu un certificat"
 
 #: src/view/keytreeview.cpp:236 src/view/keytreeview.cpp:518
 #, kde-format
@@ -12768,18 +12836,6 @@ msgstr ""
 "Només mostra els certificats que coincidisquen amb el terme de busca "
 "introduït."
 
-#: src/view/searchbar.cpp:142
-#, kde-format
-msgid "Filter certificates by category"
-msgstr "Filtra els certificats per la categoria"
-
-#: src/view/searchbar.cpp:143
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Show only certificates that belong to the selected category."
-msgstr ""
-"Només mostra els certificats que pertanguen a la categoria seleccionada."
-
 #: src/view/searchbar.cpp:147
 #, kde-format
 msgid "Show not certified certificates"
@@ -13145,3 +13201,11 @@ msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques utilitzeu <interface>Busca al servidor</"
 "interface>."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "This certificate cannot be added to the group as it cannot be used for "
+#~ "encryption."
+#~ msgstr ""
+#~ "Este certificat no es pot afegir al grup perquè no es pot emprar per a "
+#~ "encriptar."

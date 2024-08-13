@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-09 00:40+0000\n"
+"POT-Creation-Date: 2024-08-13 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -261,36 +261,36 @@ msgid ""
 "Please enter the PIV Card Application Administration Key in hex-encoded form."
 msgstr "PIV カードアプリケーションの管理鍵を16進の形式で入力してください。"
 
-#: src/commands/certificatetocardcommand.cpp:70
+#: src/commands/certificatetocardcommand.cpp:69
 #: src/commands/keytocardcommand.cpp:59
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/commands/certificatetocardcommand.cpp:166
+#: src/commands/certificatetocardcommand.cpp:165
 #, kde-format
 msgctxt "@info"
 msgid "No empty smart card was found."
 msgstr ""
 
-#: src/commands/certificatetocardcommand.cpp:255
-#: src/commands/certificatetocardcommand.cpp:318
-#: src/commands/certificatetocardcommand.cpp:377
+#: src/commands/certificatetocardcommand.cpp:254
+#: src/commands/certificatetocardcommand.cpp:317
+#: src/commands/certificatetocardcommand.cpp:376
 #: src/commands/keytocardcommand.cpp:189 src/commands/keytocardcommand.cpp:471
 #: src/commands/keytocardcommand.cpp:657
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "そのシリアル番号を持ったカードを見つけるのに失敗しました: %1"
 
-#: src/commands/certificatetocardcommand.cpp:268
+#: src/commands/certificatetocardcommand.cpp:267
 #, fuzzy, kde-format
 #| msgid "Change the PIN required for using the keys on the smartcard."
 msgctxt "@info"
 msgid "No slot found for subkey %1 on the smart card."
 msgstr "スマートカードでこの鍵を使用するために必要な PIN の変更。"
 
-#: src/commands/certificatetocardcommand.cpp:290
+#: src/commands/certificatetocardcommand.cpp:289
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
@@ -300,14 +300,14 @@ msgstr "スマートカードでこの鍵を使用するために必要な PIN �
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "そのシリアル番号で OpenPGP カードが見つけられませんでした: %1"
 
-#: src/commands/certificatetocardcommand.cpp:327
+#: src/commands/certificatetocardcommand.cpp:326
 #: src/commands/keytocardcommand.cpp:479
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
 msgstr "この鍵をカードにコピーするのに失敗しました。"
 
-#: src/commands/certificatetocardcommand.cpp:339
+#: src/commands/certificatetocardcommand.cpp:338
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "The certificate has been updated."
@@ -315,7 +315,7 @@ msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
 msgstr "この証明書は更新されました。"
 
-#: src/commands/certificatetocardcommand.cpp:342
+#: src/commands/certificatetocardcommand.cpp:341
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -329,7 +329,7 @@ msgstr ""
 "<para>カードへの鍵のコピーに失敗しました:</para><para><message>%1</message></"
 "para>"
 
-#: src/commands/certificatetocardcommand.cpp:356
+#: src/commands/certificatetocardcommand.cpp:355
 #, fuzzy, kde-kuit-format
 #| msgid "Do you really want to delete the local copy of the secret key?"
 msgctxt "@info"
@@ -338,14 +338,14 @@ msgid ""
 "computer?"
 msgstr "本当に秘密鍵の手元のコピーを削除したいですか?"
 
-#: src/commands/certificatetocardcommand.cpp:357
+#: src/commands/certificatetocardcommand.cpp:356
 #: src/commands/keytocardcommand.cpp:665
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
 msgstr "削除の確認"
 
-#: src/commands/certificatetocardcommand.cpp:403
+#: src/commands/certificatetocardcommand.cpp:402
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -356,7 +356,7 @@ msgid ""
 "para><para><message>%1</message></para>"
 msgstr "<para>鍵の削除に失敗しました:</para><para><message>%1</message></para>"
 
-#: src/commands/certificatetocardcommand.cpp:429
+#: src/commands/certificatetocardcommand.cpp:428
 #: src/commands/keytocardcommand.cpp:751
 #, kde-kuit-format
 msgctxt "@info"
@@ -3539,54 +3539,76 @@ msgstr "署名/暗号化するファイル(複数可)を選択"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "署名/暗号化するフォルダを選択"
 
+#: src/commands/togglecertificateenabledcommand.cpp:77
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to enable certificate:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>要求の保存に失敗しました。</para><para><message>%1</message></para>"
+
+#: src/commands/togglecertificateenabledcommand.cpp:79
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Saving the request failed.</para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to disable certificate:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>要求の保存に失敗しました。</para><para><message>%1</message></para>"
+
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<名前なし>"
 
-#: src/conf/appearanceconfigwidget.cpp:324
+#: src/conf/appearanceconfigwidget.cpp:301
 #, fuzzy, kde-format
 #| msgid "This parameter has been locked down by the system administrator."
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "このパラメータはシステム管理者によってロックされています。"
 
-#: src/conf/appearanceconfigwidget.cpp:369
+#: src/conf/appearanceconfigwidget.cpp:346
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:372
+#: src/conf/appearanceconfigwidget.cpp:349
 #, fuzzy, kde-format
 #| msgid "Show validity"
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "有効性を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:375
+#: src/conf/appearanceconfigwidget.cpp:352
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "証明書保持者の情報を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:378
+#: src/conf/appearanceconfigwidget.cpp:355
 #, fuzzy, kde-format
 #| msgid "Show technical details"
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "技術的詳細を表示"
 
-#: src/conf/appearanceconfigwidget.cpp:383
+#: src/conf/appearanceconfigwidget.cpp:360
 #, fuzzy, kde-format
 #| msgid "Show certificate owner information"
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "証明書保持者の情報を表示する"
 
-#: src/conf/appearanceconfigwidget.cpp:390
+#: src/conf/appearanceconfigwidget.cpp:367
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Is '%1' your own certificate?"
@@ -3594,23 +3616,23 @@ msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
 msgstr "'%1' はあなた自身の証明書)ですか?"
 
-#: src/conf/appearanceconfigwidget.cpp:396
-#: src/conf/appearanceconfigwidget.cpp:410
+#: src/conf/appearanceconfigwidget.cpp:373
+#: src/conf/appearanceconfigwidget.cpp:387
 #, fuzzy, kde-format
 #| msgid "never"
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "無期限"
 
-#: src/conf/appearanceconfigwidget.cpp:397
-#: src/conf/appearanceconfigwidget.cpp:411
+#: src/conf/appearanceconfigwidget.cpp:374
+#: src/conf/appearanceconfigwidget.cpp:388
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " day"
 msgid_plural " days"
 msgstr[0] ""
 
-#: src/conf/appearanceconfigwidget.cpp:399
+#: src/conf/appearanceconfigwidget.cpp:376
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3618,14 +3640,14 @@ msgid ""
 "certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:404
+#: src/conf/appearanceconfigwidget.cpp:381
 #, fuzzy, kde-format
 #| msgid "Trust Root Certificate"
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
 msgstr "ルート証明書を信頼する"
 
-#: src/conf/appearanceconfigwidget.cpp:414
+#: src/conf/appearanceconfigwidget.cpp:391
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3633,7 +3655,7 @@ msgid ""
 "person's certificate is about to expire soon."
 msgstr ""
 
-#: src/conf/appearanceconfigwidget.cpp:424
+#: src/conf/appearanceconfigwidget.cpp:401
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
@@ -3641,76 +3663,76 @@ msgctxt "@title:tab"
 msgid "General"
 msgstr "鍵を作成"
 
-#: src/conf/appearanceconfigwidget.cpp:444
+#: src/conf/appearanceconfigwidget.cpp:421
 #, fuzzy, kde-format
 #| msgid "Set &Icon..."
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "アイコンを設定(&I)..."
 
-#: src/conf/appearanceconfigwidget.cpp:451
+#: src/conf/appearanceconfigwidget.cpp:428
 #, fuzzy, kde-format
 #| msgid "Set &Text Color..."
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "テキスト色を設定(&T)..."
 
-#: src/conf/appearanceconfigwidget.cpp:458
+#: src/conf/appearanceconfigwidget.cpp:435
 #, fuzzy, kde-format
 #| msgid "Set &Background Color..."
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "背景色を設定(&B)..."
 
-#: src/conf/appearanceconfigwidget.cpp:465
+#: src/conf/appearanceconfigwidget.cpp:442
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "フォントを設定(&O)..."
 
-#: src/conf/appearanceconfigwidget.cpp:472
+#: src/conf/appearanceconfigwidget.cpp:449
 #, fuzzy, kde-format
 #| msgid "Italic"
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "イタリック"
 
-#: src/conf/appearanceconfigwidget.cpp:479
+#: src/conf/appearanceconfigwidget.cpp:456
 #, fuzzy, kde-format
 #| msgid "Bold"
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "ボールド"
 
-#: src/conf/appearanceconfigwidget.cpp:486
+#: src/conf/appearanceconfigwidget.cpp:463
 #, fuzzy, kde-format
 #| msgid "Strikeout"
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "取り消し線"
 
-#: src/conf/appearanceconfigwidget.cpp:495
+#: src/conf/appearanceconfigwidget.cpp:472
 #, fuzzy, kde-format
 #| msgid "Default Appearance"
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "標準の外観"
 
-#: src/conf/appearanceconfigwidget.cpp:503
+#: src/conf/appearanceconfigwidget.cpp:480
 #, fuzzy, kde-format
 #| msgid "Certificate Categories"
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "証明書カテゴリ"
 
-#: src/conf/appearanceconfigwidget.cpp:528
+#: src/conf/appearanceconfigwidget.cpp:505
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "ハイコントラスト・モードが有効なので色のプレビューは禁止されています。"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:537 src/kcfg/settings.kcfg:149
+#: src/conf/appearanceconfigwidget.cpp:514 src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 属性の順番"
@@ -3984,8 +4006,8 @@ msgctxt ""
 msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
-#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:177
-#: src/dialogs/editgroupdialog.cpp:237
+#: src/conf/groupsconfigwidget.cpp:144 src/dialogs/editgroupdialog.cpp:194
+#: src/dialogs/editgroupdialog.cpp:283
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
@@ -4003,8 +4025,8 @@ msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "検索の語にマッチするグループのリストを検索する。"
 
-#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:186
-#: src/dialogs/editgroupdialog.cpp:246
+#: src/conf/groupsconfigwidget.cpp:153 src/dialogs/editgroupdialog.cpp:203
+#: src/dialogs/editgroupdialog.cpp:292
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
@@ -7528,101 +7550,122 @@ msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "秘密鍵の削除"
 
-#: src/dialogs/editgroupdialog.cpp:83
+#: src/dialogs/editgroupdialog.cpp:121
+#, kde-format
+msgctxt "@info as in 'this certificate is unusable'"
+msgid "unusable"
+msgstr ""
+
+#: src/dialogs/editgroupdialog.cpp:124
 #, fuzzy, kde-format
 #| msgid "Issuer Certificate Not Found (%1)"
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "発行者証明書が見つかりません (%1)"
 
-#: src/dialogs/editgroupdialog.cpp:114
-#, fuzzy, kde-format
-#| msgid "Issuer Certificate Not Found (%1)"
-msgctxt "@info:tooltip"
-msgid ""
-"This certificate cannot be added to the group as it cannot be used for "
-"encryption."
-msgstr "発行者証明書が見つかりません (%1)"
-
-#: src/dialogs/editgroupdialog.cpp:159
+#: src/dialogs/editgroupdialog.cpp:176
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "名前:"
 
-#: src/dialogs/editgroupdialog.cpp:171
+#: src/dialogs/editgroupdialog.cpp:188
 #, kde-format
 msgctxt "@title"
 msgid "Available Keys"
 msgstr "利用可能な鍵"
 
-#: src/dialogs/editgroupdialog.cpp:178 src/dialogs/editgroupdialog.cpp:184
+#: src/dialogs/editgroupdialog.cpp:195 src/dialogs/editgroupdialog.cpp:201
 #, kde-format
 msgctxt "@label"
 msgid "Search available keys"
 msgstr "利用可能な鍵を検索"
 
-#: src/dialogs/editgroupdialog.cpp:179 src/dialogs/editgroupdialog.cpp:185
+#: src/dialogs/editgroupdialog.cpp:196 src/dialogs/editgroupdialog.cpp:202
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr "検索の語にマッチする鍵のための利用可能な鍵を検索"
 
-#: src/dialogs/editgroupdialog.cpp:199
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#, kde-format
+msgid "Filter certificates by category"
+msgstr "証明書をカテゴリでフィルタ"
+
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#, fuzzy, kde-format
+#| msgid "Show only certificates that belong to the selected category."
+msgctxt "@info:tooltip"
+msgid "Show only certificates that belong to the selected category."
+msgstr "選択されたカテゴリに属する証明書のみ表示。"
+
+#: src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "暗号化"
+
+#: src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgid "Issuer Certificate Not Found (%1)"
+msgid "Certificates that can be used for encryption"
+msgstr "発行者証明書が見つかりません (%1)"
+
+#: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
 msgid "available keys"
 msgstr "利用可能な鍵"
 
-#: src/dialogs/editgroupdialog.cpp:215
+#: src/dialogs/editgroupdialog.cpp:261
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Keys"
 msgstr "選択された鍵を追加"
 
-#: src/dialogs/editgroupdialog.cpp:216
+#: src/dialogs/editgroupdialog.cpp:262
 #, fuzzy, kde-format
 #| msgid "Add the selected keys to the group"
 msgctxt "@info:tooltip"
 msgid "Add the selected keys to the group"
 msgstr "選択された鍵をグループに追加"
 
-#: src/dialogs/editgroupdialog.cpp:222
+#: src/dialogs/editgroupdialog.cpp:268
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Keys"
 msgstr "選択された鍵を削除"
 
-#: src/dialogs/editgroupdialog.cpp:223
+#: src/dialogs/editgroupdialog.cpp:269
 #, fuzzy, kde-format
 #| msgid "Remove the selected keys from the group"
 msgctxt "@info:tooltip"
 msgid "Remove the selected keys from the group"
 msgstr "選択された鍵をグループから削除"
 
-#: src/dialogs/editgroupdialog.cpp:231
+#: src/dialogs/editgroupdialog.cpp:277
 #, kde-format
 msgctxt "@title"
 msgid "Group Keys"
 msgstr "グループの鍵"
 
-#: src/dialogs/editgroupdialog.cpp:238 src/dialogs/editgroupdialog.cpp:244
+#: src/dialogs/editgroupdialog.cpp:284 src/dialogs/editgroupdialog.cpp:290
 #, kde-format
 msgctxt "@label"
 msgid "Search group keys"
 msgstr "グループの鍵を検索"
 
-#: src/dialogs/editgroupdialog.cpp:239 src/dialogs/editgroupdialog.cpp:245
+#: src/dialogs/editgroupdialog.cpp:285 src/dialogs/editgroupdialog.cpp:291
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list of group keys for keys matching the search term."
 msgstr "検索の語にマッチする鍵のためのグループの鍵を検索"
 
-#: src/dialogs/editgroupdialog.cpp:258
+#: src/dialogs/editgroupdialog.cpp:304
 #, kde-format
 msgid "group keys"
 msgstr "グループの鍵"
 
-#: src/dialogs/editgroupdialog.cpp:424
+#: src/dialogs/editgroupdialog.cpp:484
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -7951,7 +7994,7 @@ msgstr "証明書を取消..."
 msgid "Error: The description must not contain empty lines."
 msgstr "エラー: 記述には空行があってはいけません。"
 
-#: src/dialogs/revokekeydialog.cpp:309
+#: src/dialogs/revokekeydialog.cpp:308
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9449,43 +9492,43 @@ msgstr "表示(&V)"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:44 src/kleopatra.rc:138
+#: src/kleopatra.rc:44 src/kleopatra.rc:139
 #, kde-format
 msgid "&Certificates"
 msgstr "証明書(&C)"
 
 #. i18n: ectx: Menu (tools)
-#: src/kleopatra.rc:66
+#: src/kleopatra.rc:67
 #, kde-format
 msgid "&Tools"
 msgstr "ツール(&T)"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:83
+#: src/kleopatra.rc:84
 #, kde-format
 msgid "&Settings"
 msgstr "設定(&S)"
 
 #. i18n: ectx: Menu (window)
-#: src/kleopatra.rc:89
+#: src/kleopatra.rc:90
 #, kde-format
 msgid "&Window"
 msgstr "ウィンドウ(&W)"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:100
+#: src/kleopatra.rc:101
 #, kde-format
 msgid "&Help"
 msgstr "ヘルプ(&H)"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:107
+#: src/kleopatra.rc:108
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:121 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:122 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "メインツールバー"
@@ -12008,49 +12051,49 @@ msgstr "証明書のキャッシュを読み込み中..."
 msgid "Loading certificate cache..."
 msgstr "証明書のキャッシュを読み込み中..."
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:332
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "新しい OpenPGP 鍵ペアを作成"
 
-#: src/view/keylistcontroller.cpp:329
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "新しい OpenPGP 証明書を作成"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:341
 #, kde-format
 msgid "Export..."
 msgstr "エクスポート..."
 
-#: src/view/keylistcontroller.cpp:338
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "選択された証明書(公開鍵をファイルにエクスポート"
 
-#: src/view/keylistcontroller.cpp:346
+#: src/view/keylistcontroller.cpp:350
 #, kde-format
 msgid "Publish on Server..."
 msgstr "サーバへ公開..."
 
-#: src/view/keylistcontroller.cpp:348
+#: src/view/keylistcontroller.cpp:352
 #, fuzzy, kde-format
 #| msgid "Publish the selected certificate (public key) on a public keyserver"
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "選択された証明書 (公開鍵)を公開鍵サーバに公開"
 
-#: src/view/keylistcontroller.cpp:349
+#: src/view/keylistcontroller.cpp:353
 #, fuzzy, kde-format
 #| msgid "Publish the selected certificate (public key) on a public keyserver"
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "選択された証明書 (公開鍵)を公開鍵サーバに公開"
 
-#: src/view/keylistcontroller.cpp:358
+#: src/view/keylistcontroller.cpp:362
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "メールプロバイダへ公開..."
 
-#: src/view/keylistcontroller.cpp:359
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -12059,261 +12102,286 @@ msgstr ""
 "選択された証明書 (公開鍵)をメールプロバイダのウェブ鍵ディレクトリで(提供され"
 "ている場合に)公開"
 
-#: src/view/keylistcontroller.cpp:368
+#: src/view/keylistcontroller.cpp:372
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "秘密鍵をバックアップ..."
 
-#: src/view/keylistcontroller.cpp:377
+#: src/view/keylistcontroller.cpp:381
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "秘密鍵を印刷..."
 
-#: src/view/keylistcontroller.cpp:386
+#: src/view/keylistcontroller.cpp:390
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "サーバでルックアップ..."
 
-#: src/view/keylistcontroller.cpp:388
+#: src/view/keylistcontroller.cpp:392
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
 msgid "Search for certificates in internal directory"
 msgstr "鍵サーバでの証明書の検索"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
 msgid "Search for certificates on %1"
 msgstr "鍵サーバでの証明書の検索"
 
-#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "インポート..."
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:402
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "証明書をファイルからインポートする"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:410
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "復号/検証..."
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "ファイルを復号/検証"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:419
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "署名/暗号化..."
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "ファイルを暗号化/署名"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:428
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "フォルダを署名/暗号化..."
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "フォルダを暗号化/署名"
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:437
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "チェックサムファイルを作成..."
 
-#: src/view/keylistcontroller.cpp:442
+#: src/view/keylistcontroller.cpp:446
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "チェックサムファイルを検証..."
 
-#: src/view/keylistcontroller.cpp:452
+#: src/view/keylistcontroller.cpp:456
 #, kde-format
 msgid "Redisplay"
 msgstr "再表示"
 
-#: src/view/keylistcontroller.cpp:461
+#: src/view/keylistcontroller.cpp:465
 #, kde-format
 msgid "Stop Operation"
 msgstr "操作を停止"
 
-#: src/view/keylistcontroller.cpp:474
+#: src/view/keylistcontroller.cpp:478
 #, kde-format
 msgid "Details"
 msgstr "詳細"
 
-#: src/view/keylistcontroller.cpp:484
+#: src/view/keylistcontroller.cpp:488
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "証明書を取消..."
 
-#: src/view/keylistcontroller.cpp:485
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "選択した OpenPGP 証明書を取消"
 
-#: src/view/keylistcontroller.cpp:493
+#: src/view/keylistcontroller.cpp:497
 #, kde-format
 msgid "Delete"
 msgstr "削除"
 
-#: src/view/keylistcontroller.cpp:494
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "選択した証明書を削除"
 
-#: src/view/keylistcontroller.cpp:502
+#: src/view/keylistcontroller.cpp:506
 #, fuzzy, kde-format
 #| msgctxt "@title:tab"
 #| msgid "Imported Certificates"
 msgid "Update Certificates"
 msgstr "インポートした証明書"
 
-#: src/view/keylistcontroller.cpp:503
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgid "Update selected certificates"
 msgstr "選択した証明書を削除"
 
 # 証明書に署名
-#: src/view/keylistcontroller.cpp:511
+#: src/view/keylistcontroller.cpp:515
 #, kde-format
 msgid "Certify..."
 msgstr "保証..."
 
-#: src/view/keylistcontroller.cpp:512
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "選択した証明書の有効性を保証する。"
 
-#: src/view/keylistcontroller.cpp:520
+#: src/view/keylistcontroller.cpp:524
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "保証の取消..."
 
-#: src/view/keylistcontroller.cpp:521
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "選択した証明書の保証を取消。"
 
-#: src/view/keylistcontroller.cpp:529
+#: src/view/keylistcontroller.cpp:533
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "有効期間の終了を変更..."
 
-#: src/view/keylistcontroller.cpp:538
+#: src/view/keylistcontroller.cpp:542
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "保証の力を変更..."
 
-#: src/view/keylistcontroller.cpp:539
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "選択した証明書の保証の力を与える/取り消す"
 
-#: src/view/keylistcontroller.cpp:547
+#: src/view/keylistcontroller.cpp:551
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "パスフレーズを変更..."
 
-#: src/view/keylistcontroller.cpp:556
+#: src/view/keylistcontroller.cpp:560
 #, kde-format
 msgid "Add User ID..."
 msgstr "ユーザ ID を追加..."
 
-#: src/view/keylistcontroller.cpp:565
+#: src/view/keylistcontroller.cpp:569
 #, fuzzy, kde-format
 #| msgid "Configure Groups..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "グループを設定..."
 
-#: src/view/keylistcontroller.cpp:566
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "選択した証明書の有効性を保証する。"
 
-#: src/view/keylistcontroller.cpp:574
+#: src/view/keylistcontroller.cpp:578
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:575
+#: src/view/keylistcontroller.cpp:579
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "選択した証明書を削除"
 
-#: src/view/keylistcontroller.cpp:584
+#: src/view/keylistcontroller.cpp:588
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP 証明書を更新"
 
-#: src/view/keylistcontroller.cpp:594
+#: src/view/keylistcontroller.cpp:598
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:611
+#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Delete Certificates"
+msgctxt "@action:inmenu"
+msgid "Disable Certificate"
+msgstr "証明書の削除"
+
+#: src/view/keylistcontroller.cpp:618
+#, kde-format
+msgctxt "@action:tooltip"
+msgid ""
+"Disabled certificates are not offered when selecting a certificate to sign "
+"with or to encrypt for.\n"
+"They are still listed in the certificate list."
+msgstr ""
+
+#: src/view/keylistcontroller.cpp:629
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "新しい S/MIME 証明要求..."
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "新しい S/MIME 証明書署名要求 (CSR) を作成"
 
-#: src/view/keylistcontroller.cpp:623
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "ルート証明書を信頼する"
 
-#: src/view/keylistcontroller.cpp:632
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "ルート証明書を信頼しない"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Technical Details"
 msgstr "技術的な詳細"
 
-#: src/view/keylistcontroller.cpp:651
+#: src/view/keylistcontroller.cpp:669
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME 証明書を更新"
 
-#: src/view/keylistcontroller.cpp:660
+#: src/view/keylistcontroller.cpp:678
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL キャッシュをクリア"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:687
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL キャッシュをダンプ"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:696
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL をファイルからインポート..."
+
+#: src/view/keylistcontroller.cpp:1148
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Select Certificate"
+msgctxt "@action:inmenu"
+msgid "Enable Certificate"
+msgstr "証明書を選択"
 
 #: src/view/keytreeview.cpp:236 src/view/keytreeview.cpp:518
 #, kde-format
@@ -12906,18 +12974,6 @@ msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "入力された検索語にマッチする証明書だけを表示。"
 
-#: src/view/searchbar.cpp:142
-#, kde-format
-msgid "Filter certificates by category"
-msgstr "証明書をカテゴリでフィルタ"
-
-#: src/view/searchbar.cpp:143
-#, fuzzy, kde-format
-#| msgid "Show only certificates that belong to the selected category."
-msgctxt "@info:tooltip"
-msgid "Show only certificates that belong to the selected category."
-msgstr "選択されたカテゴリに属する証明書のみ表示。"
-
 #: src/view/searchbar.cpp:147
 #, kde-format
 msgid "Show not certified certificates"
@@ -13299,6 +13355,14 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#, fuzzy
+#~| msgid "Issuer Certificate Not Found (%1)"
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "This certificate cannot be added to the group as it cannot be used for "
+#~ "encryption."
+#~ msgstr "発行者証明書が見つかりません (%1)"
 
 #~ msgid "Authentication"
 #~ msgstr "認証"
