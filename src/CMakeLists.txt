@@ -313,8 +313,6 @@ set(_kleopatra_SRCS
   dialogs/adduseriddialog.h
   dialogs/animatedexpander.cpp
   dialogs/animatedexpander.h
-  dialogs/cardinfotab.cpp
-  dialogs/cardinfotab.h
   dialogs/certificatedetailsdialog.cpp
   dialogs/certificatedetailsdialog.h
   dialogs/certificatedetailsinputwidget.cpp

@@ -15,7 +15,6 @@
 
 #include "certificatedetailswidget.h"
 
-#include "cardinfotab.h"
 #include "certificatedumpwidget.h"
 #include "dialogs/weboftrustwidget.h"
 #include "kleopatra_debug.h"
@@ -147,7 +146,6 @@ private:
         WebOfTrustWidget *webOfTrustWidget = nullptr;
         TrustChainWidget *trustChainWidget = nullptr;
         CertificateDumpWidget *certificateDumpWidget = nullptr;
-        CardInfoTab *cardInfoTab = nullptr;
 
         void setupUi(QWidget *parent)
         {
@@ -271,9 +269,6 @@ private:
             trustChainWidget = new TrustChainWidget(parent);
             tabWidget->addTab(trustChainWidget, i18nc("@title:tab", "Trust Chain Details"));
 
-            cardInfoTab = new CardInfoTab(parent);
-            tabWidget->addTab(cardInfoTab, i18nc("@title:tab", "Smartcard"));
-
             certificateDumpWidget = new CertificateDumpWidget(parent);
             tabWidget->addTab(certificateDumpWidget, i18nc("@title:tab", "Certificate Dump"));
         }
@@ -360,7 +355,6 @@ void CertificateDetailsWidget::Private::setupCommonProperties()
     if (DeVSCompliance::isCompliant()) {
         ui.complianceField->setValue(Kleo::Formatting::complianceStringForKey(key));
     }
-    ui.cardInfoTab->setKey(key);
 }
 
 void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
