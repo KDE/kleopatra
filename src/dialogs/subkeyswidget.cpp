@@ -85,11 +85,11 @@ public:
     enum Columns {
         KeyId,
         Fingerprint,
+        Status,
         ValidFrom,
         ValidUntil,
-        Status,
-        Algorithm,
         Usage,
+        Algorithm,
         Storage,
         Keygrip,
     };
@@ -164,11 +164,11 @@ public:
             subkeysTree->setHeaderLabels({
                 i18nc("@title:column", "Key ID"),
                 i18nc("@title:column", "Fingerprint"),
+                i18nc("@title:column", "Status"),
                 i18nc("@title:column", "Valid From"),
                 i18nc("@title:column", "Valid Until"),
-                i18nc("@title:column", "Status"),
-                i18nc("@title:column", "Algorithm"),
                 i18nc("@title:column", "Usage"),
+                i18nc("@title:column", "Algorithm"),
                 i18nc("@title:column", "Storage"),
                 i18nc("@title:column", "Keygrip"),
             });
@@ -397,6 +397,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(Private::KeyId, Qt::UserRole, QVariant::fromValue(subkey));
         item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
         item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
+        item->setData(Private::Status, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
         item->setData(Private::ValidFrom, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
         item->setData(Private::ValidUntil,
@@ -405,9 +406,8 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(Private::ValidUntil,
                       Qt::AccessibleTextRole,
                       subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
-        item->setData(Private::Status, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
-        item->setData(Private::Algorithm, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
         item->setData(Private::Usage, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
+        item->setData(Private::Algorithm, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
         const auto isPrimary = subkey.keyID() == key.keyID();
         if (!key.hasSecret()) {
             item->setData(Private::Storage, Qt::DisplayRole, i18nc("not applicable", "n/a"));

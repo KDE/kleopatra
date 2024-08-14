@@ -240,7 +240,13 @@ void UserIdsWidget::Private::setUpUserIDTable()
 {
     userIDTable->clear();
 
-    QStringList headers = {i18n("Email"), i18n("Name"), i18n("Trust Level"), i18n("Tags"), i18n("Origin")};
+    QStringList headers = {
+        i18n("Name"),
+        i18n("Email"),
+        i18n("Trust Level"),
+        i18n("Origin"),
+        i18n("Tags"),
+    };
     userIDTable->setColumnCount(headers.count());
     userIDTable->setColumnWidth(0, 200);
     userIDTable->setColumnWidth(1, 200);
@@ -256,16 +262,17 @@ void UserIdsWidget::Private::setUpUserIDTable()
         auto pMail = Kleo::Formatting::prettyEMail(uid);
         auto pName = Kleo::Formatting::prettyName(uid);
 
-        item->setData(0, Qt::DisplayRole, pMail);
+        item->setData(0, Qt::DisplayRole, pName);
         item->setData(0, Qt::ToolTipRole, toolTip);
-        item->setData(0, Qt::AccessibleTextRole, pMail.isEmpty() ? i18nc("text for screen readers for an empty email address", "no email") : pMail);
-        item->setData(1, Qt::DisplayRole, pName);
+        item->setData(1, Qt::DisplayRole, pMail);
         item->setData(1, Qt::ToolTipRole, toolTip);
+        item->setData(1, Qt::AccessibleTextRole, pMail.isEmpty() ? i18nc("text for screen readers for an empty email address", "no email") : pMail);
 
         item->setData(2, Qt::DecorationRole, trustLevelIcon(uid));
         item->setData(2, Qt::DisplayRole, trustLevelText(uid));
         item->setData(2, Qt::ToolTipRole, toolTip);
 
+        item->setData(3, Qt::DisplayRole, Formatting::origin(uid.origin()));
         GpgME::Error err;
         QStringList tagList;
         for (const auto &tag : uid.remarks(Tags::tagKeys(), err)) {
@@ -276,14 +283,13 @@ void UserIdsWidget::Private::setUpUserIDTable()
         }
         qCDebug(KLEOPATRA_LOG) << "tagList:" << tagList;
         const auto tags = tagList.join(QStringLiteral("; "));
-        item->setData(3, Qt::DisplayRole, tags);
-        item->setData(3, Qt::ToolTipRole, toolTip);
+        item->setData(4, Qt::DisplayRole, tags);
+        item->setData(4, Qt::ToolTipRole, toolTip);
 
-        item->setData(4, Qt::DisplayRole, Formatting::origin(uid.origin()));
         userIDTable->addTopLevelItem(item);
     }
     if (!userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"))) {
-        userIDTable->hideColumn(3);
+        userIDTable->hideColumn(4);
     }
     for (int i = 0; i < userIDTable->columnCount(); i++) {
         userIDTable->resizeColumnToContents(i);
