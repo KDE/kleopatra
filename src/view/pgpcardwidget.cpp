@@ -190,7 +190,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     }
 
     mCardKeysView = new CardKeysView{this};
-    mContentLayout->addWidget(mCardKeysView);
+    mContentLayout->addWidget(mCardKeysView, 1);
 
     auto actionLayout = new QHBoxLayout;
 

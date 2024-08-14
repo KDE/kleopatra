@@ -34,7 +34,7 @@ PIVCardWidget::PIVCardWidget(QWidget *parent)
 {
     // do not show Created column by default; creation time is not reported by scdaemon for PIV cards
     mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
-    mContentLayout->addWidget(mCardKeysView);
+    mContentLayout->addWidget(mCardKeysView, 1);
 
     auto actionLayout = new QHBoxLayout;
 

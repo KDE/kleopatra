@@ -52,7 +52,7 @@ P15CardWidget::P15CardWidget(QWidget *parent)
     mContentLayout->addWidget(mStatusLabel);
 
     mCardKeysView = new CardKeysView{this};
-    mContentLayout->addWidget(mCardKeysView);
+    mContentLayout->addWidget(mCardKeysView, 1);
 }
 
 P15CardWidget::~P15CardWidget() = default;
