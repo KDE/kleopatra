@@ -13,6 +13,7 @@
 #include "smartcardactions.h"
 
 #include <smartcard/card.h>
+#include <smartcard/netkeycard.h>
 #include <smartcard/pivcard.h>
 #include <view/cardkeysview.h>
 
@@ -22,7 +23,9 @@
 
 #include <QGridLayout>
 #include <QLabel>
+#include <QMenu>
 #include <QScrollArea>
+#include <QToolButton>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -53,6 +56,97 @@ static QString cardTypeForDisplay(const Card *card)
     };
 }
 
+static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
+{
+    std::vector<QString> actions;
+    switch (appType) {
+    case AppType::NetKeyApp:
+        actions = {
+            u"card_all_create_openpgp_certificate"_s,
+            u"card_netkey_set_nks_pin"_s,
+            u"card_netkey_set_sigg_pin"_s,
+        };
+        break;
+    case AppType::OpenPGPApp:
+        break;
+    case AppType::P15App:
+        // there are no card actions for generic PKCS#15 cards
+        break;
+    case AppType::PIVApp:
+        break;
+    case AppType::NoApp:
+        break;
+    };
+    return SmartCardActions::instance()->actions(actions);
+}
+
+static QAction *createProxyAction(QAction *action, QObject *parent)
+{
+    // create a clone of the given action; for each card we use a different
+    // clone so that the clones can be enabled/disabled individually; the
+    // triggered signal is forwarded to the original action
+    Q_ASSERT(action);
+    auto proxyAction = new QAction{parent};
+    proxyAction->setObjectName(action->objectName());
+    proxyAction->setText(action->text());
+    proxyAction->setToolTip(action->toolTip());
+    proxyAction->setIcon(action->icon());
+    QObject::connect(proxyAction, &QAction::triggered, action, &QAction::trigger);
+    return proxyAction;
+}
+
+static void updateCardAction(QAction *action, const Card *card)
+{
+    switch (card->appType()) {
+    case AppType::NetKeyApp: {
+        auto netKeyCard = static_cast<const NetKeyCard *>(card);
+        if (action->objectName() == "card_all_create_openpgp_certificate"_L1) {
+            action->setEnabled(!netKeyCard->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
+                               && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
+                               && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
+        } else if (action->objectName() == "card_netkey_set_nks_pin"_L1) {
+            if (!netKeyCard->hasNKSNullPin()) {
+                action->setText(i18nc("@action NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
+            }
+        } else if (action->objectName() == "card_netkey_set_sigg_pin"_L1) {
+            if (!netKeyCard->hasSigGNullPin()) {
+                action->setText(i18nc("@action SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
+            }
+        }
+        break;
+    }
+    case AppType::OpenPGPApp:
+        break;
+    case AppType::P15App:
+        break;
+    case AppType::PIVApp:
+        break;
+    case AppType::NoApp:
+        break;
+    };
+}
+
+static void updateCardActions(QToolButton *actionsButton, const Card *card)
+{
+    if (!actionsButton->menu()) {
+        const auto actions = actionsForCard(card->appType());
+        if (actions.empty()) {
+            // there are no card actions for this card app
+            return;
+        } else {
+            actionsButton->setVisible(true);
+        }
+        auto menu = new QMenu{actionsButton};
+        for (auto action : actions) {
+            menu->addAction(createProxyAction(action, menu));
+        }
+        actionsButton->setMenu(menu);
+    }
+    for (auto action : actionsButton->menu()->actions()) {
+        updateCardAction(action, card);
+    }
+}
+
 SmartCardWidget::SmartCardWidget(QWidget *parent)
     : QWidget{parent}
 {
@@ -70,6 +164,7 @@ SmartCardWidget::SmartCardWidget(QWidget *parent)
     mContentLayout = new QVBoxLayout{areaWidget};
     auto contentLayout = mContentLayout;
 
+    auto upperLayout = new QHBoxLayout;
     {
         // auto gridLayout = new QGridLayout;
         mInfoGridLayout = new QGridLayout;
@@ -90,8 +185,21 @@ SmartCardWidget::SmartCardWidget(QWidget *parent)
 
         gridLayout->setColumnStretch(gridLayout->columnCount(), 1);
 
-        contentLayout->addLayout(gridLayout);
+        upperLayout->addLayout(gridLayout, 1);
     }
+    {
+        auto layout = new QVBoxLayout;
+        mCardActionsButton = new QToolButton{this};
+        mCardActionsButton->setPopupMode(QToolButton::InstantPopup);
+        mCardActionsButton->setText(i18nc("@action:button", "Card Actions"));
+        mCardActionsButton->setToolTip(i18nc("@info", "Show actions available for this smart card"));
+        mCardActionsButton->setVisible(false);
+        layout->addWidget(mCardActionsButton);
+        layout->addStretch(1);
+        upperLayout->addLayout(layout);
+    }
+
+    contentLayout->addLayout(upperLayout);
 }
 
 SmartCardWidget::~SmartCardWidget() = default;
@@ -103,7 +211,14 @@ void SmartCardWidget::setCard(const Card *card)
     mCardTypeField->setValue(cardTypeForDisplay(card));
     mSerialNumberField->setValue(card->displaySerialNumber());
 
+    updateCardActions(mCardActionsButton, card);
+
     mCardKeysView->setCard(mCard);
+}
+
+const Kleo::SmartCard::Card *SmartCardWidget::card() const
+{
+    return mCard.get();
 }
 
 Kleo::SmartCard::AppType SmartCardWidget::cardType() const

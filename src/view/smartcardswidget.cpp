@@ -19,7 +19,9 @@
 #include "smartcardwidget.h"
 
 #include <commands/certificatetopivcardcommand.h>
+#include <commands/changepincommand.h>
 #include <commands/createcsrforcardkeycommand.h>
+#include <commands/createopenpgpkeyfromcardkeyscommand.h>
 #include <commands/detailscommand.h>
 #include <commands/importcertificatefrompivcardcommand.h>
 #include <commands/keytocardcommand.h>
@@ -130,6 +132,11 @@ public:
     void enableCurrentWidget();
     void disableCurrentWidget();
 
+    // card actions
+    void createOpenPGPCertificate();
+    void changePin(const std::string &keyRef);
+
+    // card slot actions
     void showCertificateDetails();
     void generateKey();
     void createCSR();
@@ -185,6 +192,18 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     actions->connectAction(u"reload"_s, q, &SmartCardsWidget::reload);
     mReloadButton->setDefaultAction(actions->action(u"reload"_s));
 
+    // connect card actions
+    actions->connectAction(u"card_all_create_openpgp_certificate"_s, q, [this]() {
+        createOpenPGPCertificate();
+    });
+    actions->connectAction(u"card_netkey_set_nks_pin"_s, q, [this]() {
+        changePin(NetKeyCard::nksPinKeyRef());
+    });
+    actions->connectAction(u"card_netkey_set_sigg_pin"_s, q, [this]() {
+        changePin(NetKeyCard::sigGPinKeyRef());
+    });
+
+    // connect card slot actions
     actions->connectAction(u"card_slot_show_certificate_details"_s, q, [this]() {
         showCertificateDetails();
     });
@@ -318,6 +337,43 @@ void SmartCardsWidget::Private::enableCurrentWidget()
 void SmartCardsWidget::Private::disableCurrentWidget()
 {
     mTabWidget->currentWidget()->setEnabled(false);
+}
+
+void SmartCardsWidget::Private::createOpenPGPCertificate()
+{
+    const auto app = currentCardType();
+    Q_ASSERT(app == AppType::NetKeyApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(serialNumber, appName(app), q->window());
+    disableCurrentWidget();
+    connect(cmd, &CreateOpenPGPKeyFromCardKeysCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::changePin(const std::string &keyRef)
+{
+    const auto app = currentCardType();
+    Q_ASSERT(app == AppType::NetKeyApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
+    auto cmd = new ChangePinCommand(serialNumber, appName(app), q->window());
+    cmd->setKeyRef(keyRef);
+    if (app == AppType::NetKeyApp) {
+        auto netKeyCard = static_cast<const NetKeyCard *>(currentCardWidget()->card());
+        Q_ASSERT(netKeyCard);
+        if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin()) //
+            || (keyRef == NetKeyCard::sigGPinKeyRef() && netKeyCard->hasSigGNullPin())) {
+            cmd->setMode(ChangePinCommand::NullPinMode);
+        }
+    }
+    disableCurrentWidget();
+    connect(cmd, &ChangePinCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->start();
 }
 
 void SmartCardsWidget::Private::showCertificateDetails()
