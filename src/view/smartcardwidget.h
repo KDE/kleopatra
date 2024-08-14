@@ -14,6 +14,7 @@
 #include <string>
 
 class QGridLayout;
+class QToolButton;
 class QVBoxLayout;
 
 namespace GpgME
@@ -40,6 +41,7 @@ public:
     ~SmartCardWidget() override;
 
     void setCard(const Kleo::SmartCard::Card *card);
+    const Kleo::SmartCard::Card *card() const;
 
     Kleo::SmartCard::AppType cardType() const;
     std::string serialNumber() const;
@@ -55,6 +57,7 @@ private:
 
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
+    QToolButton *mCardActionsButton = nullptr;
 
 protected:
     Kleo::CardKeysView *mCardKeysView = nullptr;

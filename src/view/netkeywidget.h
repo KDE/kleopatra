@@ -9,10 +9,7 @@
 
 #include "smartcardwidget.h"
 
-#include <string>
-
 class QLabel;
-class QPushButton;
 
 namespace Kleo
 {
@@ -33,14 +30,7 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
-    void doChangePin(const std::string &keyRef);
-    void createKeyFromCardKeys();
-
-private:
     QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
-    QPushButton *mKeyForCardKeysButton = nullptr;
-    QPushButton *mChangeNKSPINBtn = nullptr;
-    QPushButton *mChangeSigGPINBtn = nullptr;
 };
 } // namespace Kleo

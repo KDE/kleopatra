@@ -9,6 +9,7 @@
 
 #include "smartcardactions.h"
 
+#include <commands/createopenpgpkeyfromcardkeyscommand.h>
 #include <utils/qt6compat.h>
 
 #include <KActionCollection>
@@ -16,6 +17,7 @@
 
 #include <algorithm>
 
+using namespace Kleo::Commands;
 using namespace Qt::Literals::StringLiterals;
 
 SmartCardActions::SmartCardActions()
@@ -32,6 +34,19 @@ SmartCardActions::SmartCardActions()
         action->setText(i18nc("@action", "Reload"));
         action->setToolTip(i18nc("@info:tooltip", "Reload smart cards"));
     }
+
+    // card actions
+    if (CreateOpenPGPKeyFromCardKeysCommand::isSupported()) {
+        addAction(u"card_all_create_openpgp_certificate"_s, //
+                  i18nc("@action", "Create OpenPGP Certificate"),
+                  i18nc("@info:tooltip", "Create an OpenPGP certificate for the keys stored on the card."));
+    }
+
+    // NetKey-specific card actions
+    addAction(u"card_netkey_set_nks_pin"_s, //
+              i18nc("@action NKS is an identifier for a type of keys on a NetKey card", "Set NKS PIN"));
+    addAction(u"card_netkey_set_sigg_pin"_s, //
+              i18nc("@action SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
 
     // card slot actions
     addAction(u"card_slot_show_certificate_details"_s, //
