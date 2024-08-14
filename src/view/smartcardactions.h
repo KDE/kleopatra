@@ -22,6 +22,8 @@ class SmartCardActions
 private:
     SmartCardActions();
 
+    void addAction(const QString &id, const QString &text, const QString &toolTip, const QIcon &icon);
+
 public:
     ~SmartCardActions();
 
