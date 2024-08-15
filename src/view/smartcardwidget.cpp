@@ -69,6 +69,13 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
         };
         break;
     case AppType::OpenPGPApp:
+        actions = {
+            u"card_pgp_generate_keys_and_certificate"_s,
+            u"card_pgp_change_pin"_s,
+            u"card_pgp_unblock_card"_s,
+            u"card_pgp_change_admin_pin"_s,
+            u"card_pgp_change_puk"_s,
+        };
         break;
     case AppType::P15App:
         // there are no card actions for generic PKCS#15 cards

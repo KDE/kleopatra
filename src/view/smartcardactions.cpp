@@ -48,6 +48,34 @@ SmartCardActions::SmartCardActions()
     addAction(u"card_netkey_set_sigg_pin"_s, //
               i18nc("@action SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
 
+    // OpenPGP-specific card actions
+    addAction(u"card_pgp_generate_keys_and_certificate"_s, //
+              i18nc("@action:button", "Generate New Keys"),
+              xi18nc("@info:tooltip",
+                     "<para>Generate three new keys on the smart card and create a new OpenPGP "
+                     "certificate with those keys. Optionally, the encryption key is generated "
+                     "off-card and a backup is created so that you can still access data encrypted "
+                     "with this key in case the card is lost or damaged.</para>"
+                     "<para><emphasis strong='true'>"
+                     "Existing keys on the smart card will be overwritten."
+                     "</emphasis></para>"));
+    addAction(u"card_pgp_change_pin"_s, //
+              i18nc("@action:button", "Change PIN"),
+              i18nc("@info:tooltip",
+                    "Change the PIN required for using the keys on the smart card. "
+                    "The PIN must contain at least six characters."));
+    addAction(u"card_pgp_unblock_card"_s, //
+              i18nc("@action:button", "Unblock Card"),
+              i18nc("@info:tooltip", "Unblock the smart card with the PUK (if available) or the Admin PIN."));
+    addAction(u"card_pgp_change_admin_pin"_s, //
+              i18nc("@action:button", "Change Admin PIN"),
+              i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
+    addAction(u"card_pgp_change_puk"_s, //
+              i18nc("@action:button", "Change PUK"),
+              i18nc("@info:tooltip",
+                    "Set or change the PUK that can be used to unblock the smart card. "
+                    "The PUK must contain at least eight characters."));
+
     // PIV-specific card actions
     addAction(u"card_piv_change_pin"_s, //
               i18nc("@action", "Change PIN"),

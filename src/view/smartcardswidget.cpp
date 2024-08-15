@@ -23,6 +23,7 @@
 #include <commands/createcsrforcardkeycommand.h>
 #include <commands/createopenpgpkeyfromcardkeyscommand.h>
 #include <commands/detailscommand.h>
+#include <commands/generateopenpgpcardkeysandcertificatecommand.h>
 #include <commands/importcertificatefrompivcardcommand.h>
 #include <commands/keytocardcommand.h>
 #include <commands/openpgpgeneratecardkeycommand.h>
@@ -136,8 +137,10 @@ public:
     void disableCurrentWidget();
 
     // card actions
+    void generateCardKeysAndOpenPGPCertificate();
     void createOpenPGPCertificate();
-    void changePin(const std::string &keyRef);
+    void changePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode = ChangePinCommand::NormalMode);
+    void unblockOpenPGPCard();
     void setPIVAdminKey();
 
     // card slot actions
@@ -205,6 +208,21 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     });
     actions->connectAction(u"card_netkey_set_sigg_pin"_s, q, [this]() {
         changePin(NetKeyCard::sigGPinKeyRef());
+    });
+    actions->connectAction(u"card_pgp_generate_keys_and_certificate"_s, q, [this]() {
+        generateCardKeysAndOpenPGPCertificate();
+    });
+    actions->connectAction(u"card_pgp_change_pin"_s, q, [this]() {
+        changePin(OpenPGPCard::pinKeyRef());
+    });
+    actions->connectAction(u"card_pgp_unblock_card"_s, q, [this]() {
+        unblockOpenPGPCard();
+    });
+    actions->connectAction(u"card_pgp_change_admin_pin"_s, q, [this]() {
+        changePin(OpenPGPCard::adminPinKeyRef());
+    });
+    actions->connectAction(u"card_pgp_change_puk"_s, q, [this]() {
+        changePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode);
     });
     actions->connectAction(u"card_piv_change_pin"_s, q, [this]() {
         changePin(PIVCard::pinKeyRef());
@@ -352,6 +370,17 @@ void SmartCardsWidget::Private::disableCurrentWidget()
     mTabWidget->currentWidget()->setEnabled(false);
 }
 
+void SmartCardsWidget::Private::generateCardKeysAndOpenPGPCertificate()
+{
+    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    auto cmd = new GenerateOpenPGPCardKeysAndCertificateCommand(currentSerialNumber(), q->window());
+    disableCurrentWidget();
+    connect(cmd, &Command::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->start();
+}
+
 void SmartCardsWidget::Private::createOpenPGPCertificate()
 {
     const auto app = currentCardType();
@@ -366,14 +395,15 @@ void SmartCardsWidget::Private::createOpenPGPCertificate()
     cmd->start();
 }
 
-void SmartCardsWidget::Private::changePin(const std::string &keyRef)
+void SmartCardsWidget::Private::changePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
 {
     const auto app = currentCardType();
-    Q_ASSERT(app == AppType::NetKeyApp || app == AppType::PIVApp);
+    Q_ASSERT(app == AppType::NetKeyApp || app == AppType::OpenPGPApp || app == AppType::PIVApp);
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     auto cmd = new ChangePinCommand(serialNumber, appName(app), q->window());
     cmd->setKeyRef(keyRef);
+    cmd->setMode(mode);
     if (app == AppType::NetKeyApp) {
         auto netKeyCard = static_cast<const NetKeyCard *>(currentCardWidget()->card());
         Q_ASSERT(netKeyCard);
@@ -387,6 +417,13 @@ void SmartCardsWidget::Private::changePin(const std::string &keyRef)
         enableCurrentWidget();
     });
     cmd->start();
+}
+
+void SmartCardsWidget::Private::unblockOpenPGPCard()
+{
+    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    // unblock card with the PUK
+    changePin(OpenPGPCard::resetCodeKeyRef());
 }
 
 void SmartCardsWidget::Private::setPIVAdminKey()

@@ -15,8 +15,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <commands/generateopenpgpcardkeysandcertificatecommand.h>
-
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
 
@@ -37,7 +35,6 @@
 #include <Libkleo/Formatting>
 
 using namespace Kleo;
-using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
@@ -85,61 +82,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
 
     mCardKeysView = new CardKeysView{this};
     mContentLayout->addWidget(mCardKeysView, 1);
-
-    auto actionLayout = new QHBoxLayout;
-
-    {
-        auto generateButton = new QPushButton(i18n("Generate New Keys"), this);
-        generateButton->setToolTip(xi18nc("@info:tooltip",
-                                          "<para>Generate three new keys on the smart card and create a new OpenPGP "
-                                          "certificate with those keys. Optionally, the encryption key is generated "
-                                          "off-card and a backup is created so that you can still access data encrypted "
-                                          "with this key in case the card is lost or damaged.</para>"
-                                          "<para><emphasis strong='true'>"
-                                          "Existing keys on the smart card will be overwritten."
-                                          "</emphasis></para>"));
-        actionLayout->addWidget(generateButton);
-        connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
-    }
-    {
-        auto pinButton = new QPushButton(i18n("Change PIN"), this);
-        pinButton->setToolTip(i18nc("@info:tooltip",
-                                    "Change the PIN required for using the keys on the smart card. "
-                                    "The PIN must contain at least six characters."));
-        actionLayout->addWidget(pinButton);
-        connect(pinButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::pinKeyRef());
-        });
-    }
-    {
-        auto unblockButton = new QPushButton(i18n("Unblock Card"), this);
-        unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK."));
-        actionLayout->addWidget(unblockButton);
-        connect(unblockButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::resetCodeKeyRef());
-        });
-    }
-    {
-        auto pukButton = new QPushButton(i18n("Change Admin PIN"), this);
-        pukButton->setToolTip(i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
-        actionLayout->addWidget(pukButton);
-        connect(pukButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::adminPinKeyRef());
-        });
-    }
-    {
-        auto resetCodeButton = new QPushButton(i18n("Change PUK"), this);
-        resetCodeButton->setToolTip(i18nc("@info:tooltip",
-                                          "Set or change the PUK required to unblock the smart card. "
-                                          "The PUK must contain at least eight characters."));
-        actionLayout->addWidget(resetCodeButton);
-        connect(resetCodeButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode);
-        });
-    }
-
-    actionLayout->addStretch(-1);
-    mContentLayout->addLayout(actionLayout);
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
@@ -154,28 +96,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mUrl = url;
     mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
-}
-
-void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
-{
-    auto cmd = new ChangePinCommand(serialNumber(), OpenPGPCard::AppName, this);
-    this->setEnabled(false);
-    connect(cmd, &ChangePinCommand::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->setKeyRef(keyRef);
-    cmd->setMode(mode);
-    cmd->start();
-}
-
-void PGPCardWidget::genkeyRequested()
-{
-    auto cmd = new GenerateOpenPGPCardKeysAndCertificateCommand(serialNumber(), this);
-    this->setEnabled(false);
-    connect(cmd, &Command::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->start();
 }
 
 void PGPCardWidget::changeNameRequested()

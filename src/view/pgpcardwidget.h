@@ -12,18 +12,17 @@
 
 #include "smartcardwidget.h"
 
-#include "commands/changepincommand.h"
-
-#include <gpgme++/error.h>
-
 #include <string>
 
 class QLabel;
 
+namespace GpgME
+{
+class Error;
+}
+
 namespace Kleo
 {
-class GenCardKeyDialog;
-
 namespace SmartCard
 {
 class OpenPGPCard;
@@ -36,18 +35,12 @@ public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
 
     void setCard(const SmartCard::OpenPGPCard *card);
-    void doGenKey(GenCardKeyDialog *dlg);
-    void genKeyDone(const GpgME::Error &err, const std::string &backup);
 
 public Q_SLOTS:
-    void genkeyRequested();
     void changeNameRequested();
     void changeNameResult(const GpgME::Error &err);
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
-
-private:
-    void doChangePin(const std::string &keyRef, Commands::ChangePinCommand::ChangePinMode mode = Commands::ChangePinCommand::NormalMode);
 
 private:
     QLabel *mCardHolderLabel = nullptr;
