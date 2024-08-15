@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -6312,22 +6312,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Címzett"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Titkosítás"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for signing"
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Titkosítás"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for encryption"
+msgstr "Ez a tanúsítvány helyben le van tiltva."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Az aláírási tanúsítvány lejárt"
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "a tanúsítvány lejárt"
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -6336,34 +6362,34 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ez a tanúsítvány új a kulcstárolóban."
 msgstr[1] "Ez a tanúsítvány új a kulcstárolóban."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ez a tanúsítvány helyben le van tiltva."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ez a tanúsítvány helyben le van tiltva."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nem sikerült kapcsolódni ehhez az aljazathoz: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Nem sikerült a(z) „%1” végrehajtása: %2"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -7866,30 +7892,18 @@ msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "Filter certificates by category"
 msgstr "tanúsítvány"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "A tanúsítvány érvényessége nem ellenőrizhető."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Titkosítás"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid "This certificate has been disabled locally."
-msgid "Certificates that can be used for encryption"
-msgstr "Ez a tanúsítvány helyben le van tiltva."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -13319,33 +13333,33 @@ msgid ""
 "Application."
 msgstr ""
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Aláírt felhasználóazonosítók:"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "Filter certificates by text"
 msgstr "tanúsítvány"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "A tanúsítvány érvényessége nem ellenőrizhető."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgid "Show not certified certificates"
 msgstr "Nem sikerült létrehozni ezt a tanúsítványt: %1"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -13353,7 +13367,7 @@ msgid ""
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"

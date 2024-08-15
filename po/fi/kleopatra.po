@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2024-03-11 16:36+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -5985,20 +5985,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "vastaanottajan avain"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Salaus"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for signing"
+msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Salaus"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for encryption"
+msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Tämä varmenne on vanhentunut."
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Tämä varmenne vanhenee tänään."
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6006,30 +6034,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Tämä varmenne vanhenee huomenna."
 msgstr[1] "Tämä varmenne vanhenee %1 päivässä."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Tätä varmennetta ei voi käyttää allekirjoittamiseen."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Seuraaville vastaanottajille ei löytynyt avaimia:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Joitakin avaimia ei löytynyt"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate is expired."
@@ -7484,30 +7512,17 @@ msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr "Etsi luettelosta hakusanoja vastaavia käytettävissä olevia avaimia."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Suodata varmenteita luokalla"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, fuzzy, kde-format
 #| msgid "Show only certificates that belong to the selected category."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Näytä vain valittuun luokkaan kuuluvat varmenteet."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Salaus"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Tätä varmennetta ei voi käyttää salaamiseen."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -12855,7 +12870,7 @@ msgstr ""
 "todentamaan PIV-korttisovelluksen ylläpitäjän ja ylläpitäjä (Kleopatra) "
 "todentamaan PIV-korttisovelluksen."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, fuzzy, kde-format
 #| msgctxt "@info::placeholder"
 #| msgid "Enter search term"
@@ -12863,24 +12878,24 @@ msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Anna hakusanat"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Suodata varmenteita tekstillä"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, fuzzy, kde-format
 #| msgid "Show only certificates that match the entered search term."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "Näytä vain annettua hakujonoa vastaavat varmenteet."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Näytä varmentamattomat varmenteet"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -12891,7 +12906,7 @@ msgstr ""
 "tästä.<br/><br/>Varmentamista vaaditaan, jotta tiedetään varmenteiden "
 "todella kuuluvan kenelle ne väittävät kuuluvansa."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, fuzzy, kde-format
 #| msgctxt "@info::placeholder"
 #| msgid "Enter search term"

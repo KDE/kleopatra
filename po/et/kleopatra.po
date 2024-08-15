@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -6221,22 +6221,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Saaja"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Krüptimine"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for signing"
+msgstr "See sertifikaat on kohalikult keelatud."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Krüptimine"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for encryption"
+msgstr "See sertifikaat on kohalikult keelatud."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Allkirjastamise sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "sertifikaat on aegunud"
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -6245,35 +6271,35 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "See sertifikaat on sinu võtmehoidjas uus."
 msgstr[1] "See sertifikaat on sinu võtmehoidjas uus."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "See sertifikaat on kohalikult keelatud."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, fuzzy, kde-format
 #| msgctxt "%1 is user input that could not be found"
 #| msgid "Could not find a key for '%1'"
 msgid "Could not find a key for the following recipients:"
 msgstr "'%1' võtit ei leitud"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, fuzzy, kde-format
 #| msgid "Failed to find recipient"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Saajat ei leitud"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, fuzzy, kde-format
 #| msgid "Signing certificate is expired"
 msgctxt "@info"
@@ -7778,31 +7804,19 @@ msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Write certificate to card"
 msgid "Filter certificates by category"
 msgstr "Sertifikaadi kaardile kirjutamine"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Valitud sertifikaadi kehtivuse sertifitseerimine"
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Krüptimine"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid "This certificate has been disabled locally."
-msgid "Certificates that can be used for encryption"
-msgstr "See sertifikaat on kohalikult keelatud."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -13171,34 +13185,34 @@ msgid ""
 "Application."
 msgstr ""
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Allkirjastatud kasutaja ID-d:"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Write certificate"
 msgid "Filter certificates by text"
 msgstr "Kirjuta sertifikaat"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "Valitud sertifikaadi kehtivuse sertifitseerimine"
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgid "Show not certified certificates"
 msgstr "Sertifikaadi loomine nurjus: %1"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -13209,7 +13223,7 @@ msgstr ""
 "<br/><br/>Sertifitseerimine on nõutav kindlustamaks, et sertifikaadid "
 "kuuluvad tõepoolest identiteedile, kellele kuulumist nad väidavad."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"

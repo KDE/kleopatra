@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2024-08-09 12:45+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -5987,20 +5987,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "clau del destinatari"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Encriptació"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for signing"
+msgstr "Este certificat no es pot emprar per a encriptació."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Encriptació"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for encryption"
+msgstr "Este certificat no es pot emprar per a encriptació."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Este certificat ha caducat."
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Este certificat venç hui."
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6008,30 +6036,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Este certificat venç demà."
 msgstr[1] "Este certificat venç dintre de %1 dies."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Este certificat no es pot emprar per a encriptació."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Este certificat no es pot emprar per a signatura."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "No s'ha trobat cap clau per als destinataris següents:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "No s'ha pogut trobar algunes de les claus"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7443,30 +7471,17 @@ msgstr ""
 "Busca en la llista de claus disponibles les claus que coincidisquen amb el "
 "terme de busca."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Filtra els certificats per la categoria"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr ""
 "Només mostra els certificats que pertanguen a la categoria seleccionada."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Encriptació"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Este certificat no es pot emprar per a encriptació."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -12748,18 +12763,18 @@ msgstr ""
 "l'aplicació de la targeta PIV i per l'administrador (resp. Kleopatra) per a "
 "autenticar l'aplicació de la targeta PIV."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Introduïu el terme que s'ha de buscar"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Filtra els certificats pel text"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
@@ -12767,12 +12782,12 @@ msgstr ""
 "Només mostra els certificats que coincidisquen amb el terme de busca "
 "introduït."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Mostra els certificats sense certificar"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -12784,7 +12799,7 @@ msgstr ""
 "assegurar-se que els certificats realment pertanyen a la identitat que diuen "
 "pertànyer."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"

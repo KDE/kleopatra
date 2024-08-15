@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2024-08-12 23:01+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -5955,20 +5955,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ на получател"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Криптиране"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for signing"
+msgstr "Този сертификат не може да се използва за криптиране."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Криптиране"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for encryption"
+msgstr "Този сертификат не може да се използва за криптиране."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Сертификатът е изтекъл"
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Сертификатът изтича днес"
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5976,30 +6004,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Сертификатът изтича утре."
 msgstr[1] "Сертификатът изтича след %1 дни."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Този сертификат не може да се използва за криптиране."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Този сертификат не може да се използва за подписване."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не можа да се намери ключ за следните получатели:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Неуспех при намирането на някои от ключовете"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7409,30 +7437,17 @@ msgstr ""
 "Търсене в списъка на наличните ключове за ключове, отговарящи на термина за "
 "търсене."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Филтриране на сертификати по категория"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr ""
 "Показване само на сертификати, които принадлежат към избраната категория."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Криптиране"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Този сертификат не може да се използва за криптиране."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -12700,30 +12715,30 @@ msgstr ""
 "PIV Card и от администратора (респ. Kleopatra) за удостоверяване на "
 "приложението PIV Card."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Въведете термин за търсене"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Филтриране на сертификатите по текст"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
 "Показване само на сертификати, които отговарят на въведената дума за търсене."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Показване на несертифицирани сертификати"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -12735,7 +12750,7 @@ msgstr ""
 "уверите, че сертификатите всъщност принадлежат към самоличността, за която "
 "твърдят, че принадлежат."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"

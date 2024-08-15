@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgpgcertmanager\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2015-01-09 11:46+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -6379,22 +6379,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "Primalac"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Šifrovanje"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for signing"
+msgstr "Ovaj certifikat je lokalno onemogućen."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Šifrovanje"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgid "This certificate has been disabled locally."
+msgid "Certificates that can be used for encryption"
+msgstr "Ovaj certifikat je lokalno onemogućen."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Istekao certifikat za potpisivanje"
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, fuzzy, kde-format
 #| msgid "certificate expired"
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "certifikat istekao"
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, fuzzy, kde-format
 #| msgid "This certificate is new to your keystore."
 msgctxt "@info"
@@ -6404,34 +6430,34 @@ msgstr[0] "Ovaj certifikat je novi za kolekciju ključeva."
 msgstr[1] "Ovaj certifikat je novi za kolekciju ključeva."
 msgstr[2] "Ovaj certifikat je novi za kolekciju ključeva."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ovaj certifikat je lokalno onemogućen."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, fuzzy, kde-format
 #| msgid "This certificate has been disabled locally."
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ovaj certifikat je lokalno onemogućen."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, fuzzy, kde-format
 #| msgid "Could not bind to socket: %1"
 msgid "Could not find a key for the following recipients:"
 msgstr "Nije u mogućnosti da napravi priključak: %1"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Neuspjelo izvršavanje %1: %2"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, fuzzy, kde-format
 #| msgid "Signing certificate expired"
 msgctxt "@info"
@@ -7947,30 +7973,18 @@ msgctxt "@info:tooltip"
 msgid "Search the list of available keys for keys matching the search term."
 msgstr ""
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "Filter certificates by category"
 msgstr "certifikat"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Ispravnost potpisa ne može biti potvrđena."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Šifrovanje"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid "This certificate has been disabled locally."
-msgid "Certificates that can be used for encryption"
-msgstr "Ovaj certifikat je lokalno onemogućen."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -13399,33 +13413,33 @@ msgid ""
 "Application."
 msgstr ""
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "ID potpisanog korisnika:"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgid "Filter certificates by text"
 msgstr "certifikat"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr "Ispravnost potpisa ne može biti potvrđena."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, fuzzy, kde-format
 #| msgid "Could not create certificate: %1"
 msgid "Show not certified certificates"
 msgstr "Ne može se napraviti certifikat: %1"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -13433,7 +13447,7 @@ msgid ""
 "certificates actually belong to the identity they claim to belong to."
 msgstr ""
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, fuzzy, kde-format
 #| msgid "Signed user IDs:"
 msgctxt "@info:placeholder"

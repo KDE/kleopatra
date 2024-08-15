@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -6179,20 +6179,48 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "chave do destinatário"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Signing"
+msgstr "Encriptação"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for signing"
+msgstr "Este certificado não pode ser usado para encriptação."
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, fuzzy, kde-format
+#| msgid "Encryption"
+msgid "Usable for Encryption"
+msgstr "Encriptação"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "This certificate cannot be used for encryption."
+msgid "Certificates that can be used for encryption"
+msgstr "Este certificado não pode ser usado para encriptação."
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Este certificado expirou."
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Este certificado expira hoje."
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6200,31 +6228,31 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Este certificado expira amanhã."
 msgstr[1] "Este certificado expira daqui a %1 dias."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Este certificado não pode ser usado para encriptação."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Este certificado não pode ser usado para assinatura."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Não foi possível encontrar uma chave para os seguintes destinatários:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, fuzzy, kde-format
 #| msgid "Failed to find some keys"
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Não foi possível encontrar algumas chaves"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate is expired."
@@ -7703,30 +7731,17 @@ msgstr ""
 "Procura na lista de chaves disponíveis por chaves que correspondam ao termo "
 "da pesquisa."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Filtrar os certificados pela categoria"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, fuzzy, kde-format
 #| msgid "Show only certificates that belong to the selected category."
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Mostrar apenas os certificados que pertençam à categoria seleccionada."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Encriptação"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Este certificado não pode ser usado para encriptação."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -13165,7 +13180,7 @@ msgstr ""
 "essa aplicação para autenticar o Administrador da mesma e pelo administrador "
 "(resp. Kleopatra) para autenticar o cartão PIV."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, fuzzy, kde-format
 #| msgctxt "@info::placeholder"
 #| msgid "Enter search term"
@@ -13173,12 +13188,12 @@ msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Indique o termo da pesquisa"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Filtrar os certificados pelo texto"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, fuzzy, kde-format
 #| msgid "Show only certificates that match the entered search term."
 msgctxt "@info:tooltip"
@@ -13187,12 +13202,12 @@ msgstr ""
 "Mostrar apenas os certificados correspondentes ao termo de pesquisa "
 "introduzido."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Mostrar os certificados não certificados"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -13204,7 +13219,7 @@ msgstr ""
 "necessária para garantir que os certificados pertencem de facto à identidade "
 "que eles afirmam pertencer."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, fuzzy, kde-format
 #| msgctxt "@info::placeholder"
 #| msgid "Enter search term"

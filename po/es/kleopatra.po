@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
-"PO-Revision-Date: 2024-08-03 03:41+0200\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
+"PO-Revision-Date: 2024-08-14 12:47+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -3529,24 +3529,22 @@ msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Seleccione carpeta para firmar o cifrar"
 
 #: src/commands/togglecertificateenabledcommand.cpp:77
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to enable certificate:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>La actualización ha fallado:</para><para><message>%1</message></para>"
+"<para>La activación del certificado ha fallado:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:79
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to disable certificate:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>La actualización ha fallado:</para><para><message>%1</message></para>"
+"<para>La desactivación del certificado ha fallado:</para><para><message>%1</"
+"message></para>"
 
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
@@ -5977,20 +5975,44 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "clave del destinatario"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Usable for Encryption"
+msgid "Usable for Signing"
+msgstr "Se puede usar para cifrar"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgid "Certificates that can be used for encryption"
+msgid "Certificates that can be used for signing"
+msgstr "Certificados que se pueden usar para cifrar"
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, kde-format
+msgid "Usable for Encryption"
+msgstr "Se puede usar para cifrar"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, kde-format
+msgid "Certificates that can be used for encryption"
+msgstr "Certificados que se pueden usar para cifrar"
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Este certificado ha caducado."
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Este certificado caduca hoy."
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5998,30 +6020,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Este certificado caduca mañana."
 msgstr[1] "Este certificado caduca dentro de %1 días."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Este certificado no se puede usar para cifrar."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Este certificado no se puede usar para firmar."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "No se ha podido encontrar una clave para los siguientes destinatarios:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "No se han encontrado algunas claves"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7397,7 +7419,7 @@ msgstr "Borrado de clave secreta"
 #, kde-format
 msgctxt "@info as in 'this certificate is unusable'"
 msgid "unusable"
-msgstr ""
+msgstr "inservible"
 
 #: src/dialogs/editgroupdialog.cpp:124
 #, kde-format
@@ -7431,30 +7453,17 @@ msgstr ""
 "Buscar en la lista de claves disponibles las claves que coincidan con el "
 "término a buscar."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Filtrar certificados por categoría"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr ""
 "Mostrar solo los certificados que pertenezcan a la categoría seleccionada."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Cifrado"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Este certificado no se puede usar para cifrar."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -10744,22 +10753,19 @@ msgid "PIV"
 msgstr "PIV"
 
 #: src/smartcard/utils.cpp:63
-#, fuzzy, kde-format
-#| msgid "Signature"
+#, kde-format
 msgid "Signature Key"
-msgstr "Firma"
+msgstr "Clave de firma"
 
 #: src/smartcard/utils.cpp:64
-#, fuzzy, kde-format
-#| msgid "Encryption key:"
+#, kde-format
 msgid "Encryption Key"
-msgstr "Clave para cifrar:"
+msgstr "Clave de cifrado"
 
 #: src/smartcard/utils.cpp:65
-#, fuzzy, kde-format
-#| msgid "PIV Authentication Key"
+#, kde-format
 msgid "Authentication Key"
-msgstr "Clave de autenticación PIV"
+msgstr "Clave de autenticación"
 
 #: src/smartcard/utils.cpp:66
 #, kde-format
@@ -11737,50 +11743,42 @@ msgid "Cannot remove file %1: %2"
 msgstr "No se puede eliminar el archivo %1: %2"
 
 #: src/view/cardkeysview.cpp:136
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Encrypt"
+#, kde-format
 msgid "encrypt"
-msgstr "Cifrar"
+msgstr "cifrar"
 
 #: src/view/cardkeysview.cpp:138
-#, fuzzy, kde-format
-#| msgid "signing"
+#, kde-format
 msgid "sign"
-msgstr "firma"
+msgstr "firmar"
 
 #: src/view/cardkeysview.cpp:140
-#, fuzzy, kde-format
-#| msgid "Certify"
+#, kde-format
 msgid "certify"
-msgstr "Certificado"
+msgstr "certificar"
 
 #: src/view/cardkeysview.cpp:142
-#, fuzzy, kde-format
-#| msgid "Authenticate"
+#, kde-format
 msgid "authenticate"
-msgstr "Autenticar"
+msgstr "autenticar"
 
 #: src/view/cardkeysview.cpp:185
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Card slot ID: %1"
-msgstr ""
+msgstr "ID de ranura de tarjeta: %1"
 
 #: src/view/cardkeysview.cpp:201
-#, fuzzy, kde-format
-#| msgid "none"
+#, kde-format
 msgctxt "@info entry in Usage column of a smart card key"
 msgid "none"
-msgstr "ninguno"
+msgstr "ninguna"
 
 #: src/view/cardkeysview.cpp:215
-#, fuzzy, kde-format
-#| msgctxt "unknown cardholder"
-#| msgid "unknown"
+#, kde-format
 msgctxt "@info date is unknown"
 msgid "unknown"
-msgstr "desconocido"
+msgstr "desconocida"
 
 #: src/view/cardkeysview.cpp:223
 #, kde-format
@@ -11789,61 +11787,53 @@ msgid "unknown"
 msgstr "desconocido"
 
 #: src/view/cardkeysview.cpp:235
-#, fuzzy, kde-format
-#| msgid "group keys"
+#, kde-format
 msgctxt "@info"
 msgid "no key"
-msgstr "Claves de grupo"
+msgstr "ninguna clave"
 
 #: src/view/cardkeysview.cpp:235
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Write certificate"
+#, kde-format
 msgctxt "@info"
 msgid "no associated certificate"
-msgstr "Escribir certificado"
+msgstr "ningún certificado asociado"
 
 #: src/view/cardkeysview.cpp:433
-#, fuzzy, kde-format
-#| msgid "User IDs and certifications"
+#, kde-format
 msgctxt "@title"
 msgid "card keys and certificates"
-msgstr "ID y certificaciones de usuario"
+msgstr "claves y certificados de tarjeta"
 
 #: src/view/cardkeysview.cpp:439
-#, fuzzy, kde-format
-#| msgid "Select Card Slot"
+#, kde-format
 msgctxt "@title:column Name or ID of a storage slot for a key on a smart card"
 msgid "Card Slot"
-msgstr "Seleccionar ranura de tarjeta"
+msgstr "Ranura de tarjeta"
 
 #: src/view/cardkeysview.cpp:443
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Create"
+#, kde-format
 msgctxt "@title:column"
 msgid "Created"
-msgstr "Crear"
+msgstr "Creada"
 
 #: src/view/cardkeysview.cpp:447
-#, fuzzy, kde-format
-#| msgid "Actions:"
+#, kde-format
 msgctxt "@title:column"
 msgid "Actions"
-msgstr "Acciones:"
+msgstr "Acciones"
 
 #: src/view/cardkeysview.cpp:668
-#, fuzzy, kde-format
-#| msgid "Actions:"
+#, kde-format
 msgctxt "@action:button"
 msgid "Actions"
-msgstr "Acciones:"
+msgstr "Acciones"
 
 #: src/view/cardkeysview.cpp:669
 #, kde-format
 msgctxt "@info"
 msgid "Show actions available for this smart card slot"
 msgstr ""
+"Mostrar las acciones disponibles para esta ranura de tarjeta inteligente"
 
 #: src/view/cardkeysview.cpp:742
 #, kde-format
@@ -12110,12 +12100,10 @@ msgid "Copy"
 msgstr "Copiar"
 
 #: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Delete Certificates"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
-msgstr "Borrar certificados"
+msgstr "Desactivar certificado"
 
 #: src/view/keylistcontroller.cpp:618
 #, kde-format
@@ -12125,6 +12113,9 @@ msgid ""
 "with or to encrypt for.\n"
 "They are still listed in the certificate list."
 msgstr ""
+"Los certificados desactivados no se ofrecen al seleccionar un certificado "
+"para firmar o cifrar.\n"
+"No obstante, se muestran en la lista de certificados."
 
 #: src/view/keylistcontroller.cpp:629
 #, kde-format
@@ -12172,12 +12163,10 @@ msgid "Import CRL From File..."
 msgstr "Importar CRL desde archivo..."
 
 #: src/view/keylistcontroller.cpp:1148
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Select Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable Certificate"
-msgstr "Seleccionar certificado"
+msgstr "Activar certificado"
 
 #: src/view/keytreeview.cpp:235 src/view/keytreeview.cpp:517
 #, kde-format
@@ -12747,30 +12736,30 @@ msgstr ""
 "aplicaciones de la tarjeta PIV y el administrador (resp. Kleopatra) para "
 "autenticar la aplicación de tarjeta PIV."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Introduzca el término que se va a buscar"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Filtrar certificados por texto"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
 "Mostrar solo los certificados que coincidan con el término introducido."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Mostrar los certificados sin certificar"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -12782,7 +12771,7 @@ msgstr ""
 "asegurarse de que los certificados pertenecen a la identidad que realmente "
 "proclama que les pertenecen."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
@@ -12806,12 +12795,10 @@ msgid "Reload smart cards"
 msgstr "Volver a cargar tarjetas inteligentes"
 
 #: src/view/smartcardactions.cpp:42
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Generate New Keys"
+#, kde-format
 msgctxt "@action"
 msgid "Generate New Key"
-msgstr "Generar nuevas claves"
+msgstr "Generar nueva clave"
 
 #: src/view/smartcardactions.cpp:43
 #, kde-format
@@ -12820,14 +12807,14 @@ msgid ""
 "If the card slot already contains a key then the new key will irrevocably "
 "replace the old key."
 msgstr ""
+"Si la ranura de tarjeta ya contiene una clave, la nueva clave sustituirá a "
+"la antigua de manera irreversible."
 
 #: src/view/smartcardactions.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Write Key"
+#, kde-format
 msgctxt "@action"
 msgid "Write Key to Card"
-msgstr "Escribir clave"
+msgstr "Escribir clave en la tarjeta"
 
 #: src/view/smartcardactions.cpp:49
 #, kde-format
@@ -12836,9 +12823,7 @@ msgid "Write the key pair of a certificate to the card"
 msgstr "Escribir el par de claves de un certificado en la tarjeta"
 
 #: src/view/smartcardactions.cpp:54
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Write certificate to card"
+#, kde-format
 msgctxt "@action"
 msgid "Write Certificate to Card"
 msgstr "Escribir certificado en la tarjeta"
@@ -12850,12 +12835,10 @@ msgid "Write the certificate corresponding to this key to the card"
 msgstr "Escribir el certificado correspondiente a esta clave en la tarjeta"
 
 #: src/view/smartcardactions.cpp:60
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Imported Certificates from %1"
+#, kde-format
 msgctxt "@action"
 msgid "Import Certificate from Card"
-msgstr "Certificados importados desde %1"
+msgstr "Importar certificado de la tarjeta"
 
 #: src/view/smartcardactions.cpp:61
 #, kde-format
@@ -12864,27 +12847,22 @@ msgid "Import the certificate stored on the card"
 msgstr "Importar el certificado guardado en la tarjeta"
 
 #: src/view/smartcardactions.cpp:66
-#, fuzzy, kde-format
-#| msgid "New S/MIME Certification Request..."
+#, kde-format
 msgctxt "@action"
 msgid "Create S/MIME Certification Request"
-msgstr "Nueva petición de certificación S/MIME..."
+msgstr "Crear petición de certificación S/MIME"
 
 #: src/view/smartcardactions.cpp:67
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Create a certificate signing request for this key"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an S/MIME certificate signing request for this key"
-msgstr "Crear una petición de firma de certificado para esta clave"
+msgstr "Crear una petición de firma de certificado S/MIME para esta clave"
 
 #: src/view/smartcardswidget.cpp:70
-#, fuzzy, kde-format
-#| msgctxt "OpenPGP refers to a smartcard protocol"
-#| msgid "OpenPGP v2.0 - v3.3"
+#, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 or later"
-msgstr "OpenPGP v2.0 - v3.3"
+msgstr "OpenPGP v2.0 o posterior"
 
 #: src/view/smartcardswidget.cpp:71
 #, kde-format
@@ -12893,12 +12871,10 @@ msgid "Gnuk"
 msgstr "Gnuk"
 
 #: src/view/smartcardswidget.cpp:72
-#, fuzzy, kde-format
-#| msgctxt "NetKey refers to a smartcard protocol"
-#| msgid "NetKey v3"
+#, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3 or later"
-msgstr "NetKey v3"
+msgstr "NetKey v3 o posterior"
 
 #: src/view/smartcardswidget.cpp:73
 #, kde-format

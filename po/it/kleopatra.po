@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-14 00:39+0000\n"
-"PO-Revision-Date: 2024-08-10 03:21+0200\n"
+"POT-Creation-Date: 2024-08-15 00:40+0000\n"
+"PO-Revision-Date: 2024-08-13 18:24+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -3519,24 +3519,22 @@ msgid "Select Folder to Sign and/or Encrypt"
 msgstr "Seleziona la cartella da firmare o cifrare"
 
 #: src/commands/togglecertificateenabledcommand.cpp:77
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to enable certificate:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Aggiornamento non riuscito:</para><para><message>%1</message></para>"
+"<para>Impossibile abilitare il certificato:</para><para><message>%1</"
+"message></para>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:79
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to disable certificate:</para><para><message>%1</message></para>"
 msgstr ""
-"<para>Aggiornamento non riuscito:</para><para><message>%1</message></para>"
+"<para>Impossibile disabilitare il certificato:</para><para><message>%1</"
+"message></para>"
 
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
@@ -5968,20 +5966,44 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "chiave del destinatario"
 
-#: src/crypto/gui/signencryptwidget.cpp:629
-#: src/crypto/gui/signencryptwidget.cpp:907
+#: src/crypto/gui/signencryptwidget.cpp:429
+#, fuzzy, kde-format
+#| msgid "Usable for Encryption"
+msgid "Usable for Signing"
+msgstr "Utilizzabile per la cifratura"
+
+#: src/crypto/gui/signencryptwidget.cpp:430
+#, fuzzy, kde-format
+#| msgid "Certificates that can be used for encryption"
+msgid "Certificates that can be used for signing"
+msgstr "Certificati che possono essere utilizzati per la cifratura"
+
+#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#, kde-format
+msgid "Usable for Encryption"
+msgstr "Utilizzabile per la cifratura"
+
+#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#, kde-format
+msgid "Certificates that can be used for encryption"
+msgstr "Certificati che possono essere utilizzati per la cifratura"
+
+#: src/crypto/gui/signencryptwidget.cpp:655
+#: src/crypto/gui/signencryptwidget.cpp:933
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Il certificato è scaduto."
 
-#: src/crypto/gui/signencryptwidget.cpp:632
+#: src/crypto/gui/signencryptwidget.cpp:658
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Questo certificato scade oggi."
 
-#: src/crypto/gui/signencryptwidget.cpp:634
+#: src/crypto/gui/signencryptwidget.cpp:660
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5989,30 +6011,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Questo certificato scade domani."
 msgstr[1] "Questo certificato scade tra %1 giorni."
 
-#: src/crypto/gui/signencryptwidget.cpp:639
+#: src/crypto/gui/signencryptwidget.cpp:665
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Questo certificato non può essere utilizzato per la cifratura."
 
-#: src/crypto/gui/signencryptwidget.cpp:641
+#: src/crypto/gui/signencryptwidget.cpp:667
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Questo certificato non può essere utilizzato per la firma."
 
-#: src/crypto/gui/signencryptwidget.cpp:870
+#: src/crypto/gui/signencryptwidget.cpp:896
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Impossibile trovare una chiave per i seguenti destinatari:"
 
-#: src/crypto/gui/signencryptwidget.cpp:872
+#: src/crypto/gui/signencryptwidget.cpp:898
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Impossibile trovare alcune chiavi"
 
-#: src/crypto/gui/signencryptwidget.cpp:910
+#: src/crypto/gui/signencryptwidget.cpp:936
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7383,11 +7405,10 @@ msgid "Secret Key Deletion"
 msgstr "Eliminazione chiave segreta"
 
 #: src/dialogs/editgroupdialog.cpp:121
-#, fuzzy, kde-format
-#| msgid "disabled"
+#, kde-format
 msgctxt "@info as in 'this certificate is unusable'"
 msgid "unusable"
-msgstr "disabilitata"
+msgstr "inutilizzabile"
 
 #: src/dialogs/editgroupdialog.cpp:124
 #, kde-format
@@ -7421,29 +7442,16 @@ msgstr ""
 "Cerca nell'elenco delle chiavi disponibili le chiavi corrispondenti al "
 "termine di ricerca."
 
-#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:142
+#: src/dialogs/editgroupdialog.cpp:209 src/view/searchbar.cpp:137
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "Filtra i certificati per categoria"
 
-#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:143
+#: src/dialogs/editgroupdialog.cpp:210 src/view/searchbar.cpp:138
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "Mostra solo i certificati che appartengono alla categoria selezionata."
-
-#: src/dialogs/editgroupdialog.cpp:221
-#, fuzzy, kde-format
-#| msgid "Encryption"
-msgid "Usable for Encryption"
-msgstr "Cifratura"
-
-#: src/dialogs/editgroupdialog.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "This certificate cannot be used for encryption."
-msgid "Certificates that can be used for encryption"
-msgstr "Questo certificato non può essere utilizzato per la cifratura."
 
 #: src/dialogs/editgroupdialog.cpp:245
 #, kde-format
@@ -12091,12 +12099,10 @@ msgid "Copy"
 msgstr "Copia"
 
 #: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Delete Certificates"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
-msgstr "Elimina certificati"
+msgstr "Disabilita certificato"
 
 #: src/view/keylistcontroller.cpp:618
 #, kde-format
@@ -12106,6 +12112,9 @@ msgid ""
 "with or to encrypt for.\n"
 "They are still listed in the certificate list."
 msgstr ""
+"I certificati disabilitati non vengono offerti quando si seleziona un "
+"certificato con cui firmare o per cui cifrare.\n"
+"Sono comunque elencati nell'elenco dei certificati."
 
 #: src/view/keylistcontroller.cpp:629
 #, kde-format
@@ -12153,12 +12162,10 @@ msgid "Import CRL From File..."
 msgstr "Importa CRL da file..."
 
 #: src/view/keylistcontroller.cpp:1148
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Select Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable Certificate"
-msgstr "Seleziona file certificato"
+msgstr "Abilita certificato"
 
 #: src/view/keytreeview.cpp:235 src/view/keytreeview.cpp:517
 #, kde-format
@@ -12729,30 +12736,30 @@ msgstr ""
 "l'amministratore dell'applicazione della scheda PIV e dall'amministratore "
 "(resp. Kleopatra) per autenticare la domanda della scheda PIV."
 
-#: src/view/searchbar.cpp:137
+#: src/view/searchbar.cpp:132
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term"
 msgstr "Digita un termine di ricerca"
 
-#: src/view/searchbar.cpp:138
+#: src/view/searchbar.cpp:133
 #, kde-format
 msgid "Filter certificates by text"
 msgstr "Filtra i certificati per testo"
 
-#: src/view/searchbar.cpp:139
+#: src/view/searchbar.cpp:134
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that match the entered search term."
 msgstr ""
 "Mostra solo i certificati che corrispondono al termine di ricerca digitato."
 
-#: src/view/searchbar.cpp:147
+#: src/view/searchbar.cpp:142
 #, kde-format
 msgid "Show not certified certificates"
 msgstr "Mostra certificati non certificati"
 
-#: src/view/searchbar.cpp:149
+#: src/view/searchbar.cpp:144
 #, kde-format
 msgid ""
 "Some certificates are not yet certified. Click here to see a list of these "
@@ -12764,7 +12771,7 @@ msgstr ""
 "certificati appartengano realmente all'identità a cui dichiarano di "
 "appartenere."
 
-#: src/view/searchbar.cpp:197
+#: src/view/searchbar.cpp:196
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
