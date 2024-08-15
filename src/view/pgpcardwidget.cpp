@@ -15,8 +15,6 @@
 
 #include "kleopatra_debug.h"
 
-#include <commands/generateopenpgpcardkeysandcertificatecommand.h>
-
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
 
@@ -35,7 +33,6 @@
 #include <Libkleo/Formatting>
 
 using namespace Kleo;
-using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
@@ -97,67 +94,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
 
     mCardKeysView = new CardKeysView{this};
     mContentLayout->addWidget(mCardKeysView, 1);
-
-    auto actionLayout = new QHBoxLayout;
-
-    {
-        auto generateButton = new QPushButton(i18nc("@action:button", "Generate New Keys"), this);
-        generateButton->setToolTip(xi18nc("@info:tooltip",
-                                          "<para>Generate three new keys on the smart card and create a new OpenPGP "
-                                          "certificate with those keys. Optionally, the encryption key is generated "
-                                          "off-card and a backup is created so that you can still access data encrypted "
-                                          "with this key in case the card is lost or damaged.</para>"
-                                          "<para><emphasis strong='true'>"
-                                          "Existing keys on the smart card will be overwritten."
-                                          "</emphasis></para>"));
-        actionLayout->addWidget(generateButton);
-        connect(generateButton, &QPushButton::clicked, this, &PGPCardWidget::genkeyRequested);
-    }
-    {
-        auto pinButton = new QPushButton(i18nc("@action:button", "Change PIN"), this);
-        pinButton->setToolTip(i18nc("@info:tooltip",
-                                    "Change the PIN required for using the keys on the smart card. "
-                                    "The PIN must contain at least six characters."));
-        actionLayout->addWidget(pinButton);
-        connect(pinButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::pinKeyRef());
-        });
-    }
-    {
-        auto unblockButton = new QPushButton(i18nc("@action:button", "Unblock Card"), this);
-        unblockButton->setToolTip(i18nc("@info:tooltip", "Unblock the smart card with the PUK (if available) or the Admin PIN."));
-        actionLayout->addWidget(unblockButton);
-        connect(unblockButton, &QPushButton::clicked, this, [this]() {
-            if (mPUKIsAvailable) {
-                // unblock card with the PUK
-                doChangePin(OpenPGPCard::resetCodeKeyRef());
-            } else {
-                // unblock card with the Admin PIN
-                doChangePin(OpenPGPCard::pinKeyRef(), ChangePinCommand::ResetMode);
-            }
-        });
-    }
-    {
-        auto pukButton = new QPushButton(i18nc("@action:button", "Change Admin PIN"), this);
-        pukButton->setToolTip(i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
-        actionLayout->addWidget(pukButton);
-        connect(pukButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::adminPinKeyRef());
-        });
-    }
-    {
-        mSetOrChangePUKButton = new QPushButton(i18nc("@action:button", "Set PUK"), this);
-        mSetOrChangePUKButton->setToolTip(i18nc("@info:tooltip",
-                                                "Set or change the PUK that can be used to unblock the smart card. "
-                                                "The PUK must contain at least eight characters."));
-        actionLayout->addWidget(mSetOrChangePUKButton);
-        connect(mSetOrChangePUKButton, &QPushButton::clicked, this, [this]() {
-            doChangePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode);
-        });
-    }
-
-    actionLayout->addStretch(-1);
-    mContentLayout->addLayout(actionLayout);
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
@@ -185,30 +121,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         countersWithLabels.push_back(i18nc("label: value", "%1: %2", pinLabels[countersWithLabels.size()], pinCounter));
     }
     mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
-    mPUKIsAvailable = (pinCounters.size() == 3) && (pinCounters[1] > 0);
-    mSetOrChangePUKButton->setText(mPUKIsAvailable ? i18nc("@action:button", "Change PUK") : i18nc("@action:button", "Set PUK"));
-}
-
-void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
-{
-    auto cmd = new ChangePinCommand(serialNumber(), OpenPGPCard::AppName, this);
-    this->setEnabled(false);
-    connect(cmd, &ChangePinCommand::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->setKeyRef(keyRef);
-    cmd->setMode(mode);
-    cmd->start();
-}
-
-void PGPCardWidget::genkeyRequested()
-{
-    auto cmd = new GenerateOpenPGPCardKeysAndCertificateCommand(serialNumber(), this);
-    this->setEnabled(false);
-    connect(cmd, &Command::finished, this, [this]() {
-        this->setEnabled(true);
-    });
-    cmd->start();
 }
 
 void PGPCardWidget::changeNameRequested()

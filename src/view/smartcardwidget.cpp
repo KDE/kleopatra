@@ -68,6 +68,13 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
         };
         break;
     case AppType::OpenPGPApp:
+        actions = {
+            u"card_pgp_generate_keys_and_certificate"_s,
+            u"card_pgp_change_pin"_s,
+            u"card_pgp_unblock_card"_s,
+            u"card_pgp_change_admin_pin"_s,
+            u"card_pgp_change_puk"_s,
+        };
         break;
     case AppType::P15App:
         // there are no card actions for generic PKCS#15 cards
@@ -122,6 +129,11 @@ static void updateCardAction(QAction *action, const Card *card)
         break;
     }
     case AppType::OpenPGPApp:
+        if (action->objectName() == "card_pgp_change_puk"_L1) {
+            const auto pinCounters = card->pinCounters();
+            const bool pukIsAvailable = (pinCounters.size() == 3) && (pinCounters[1] > 0);
+            action->setText(pukIsAvailable ? i18nc("@action", "Change PUK") : i18nc("@action", "Set PUK"));
+        }
         break;
     case AppType::P15App:
         break;
