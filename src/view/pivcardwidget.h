@@ -10,31 +10,13 @@
 
 #include "smartcardwidget.h"
 
-class QPushButton;
-
 namespace Kleo
 {
-
-namespace SmartCard
-{
-class PIVCard;
-} // namespace SmartCard
-
 class PIVCardWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
     explicit PIVCardWidget(QWidget *parent = nullptr);
     ~PIVCardWidget() override;
-
-    void setCard(const SmartCard::PIVCard *card);
-
-private:
-    void createKeyFromCardKeys();
-    void changePin(const std::string &keyRef);
-    void setAdminKey();
-
-private:
-    QPushButton *mKeyForCardKeysButton = nullptr;
 };
 } // namespace Kleo

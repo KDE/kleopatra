@@ -48,6 +48,22 @@ SmartCardActions::SmartCardActions()
     addAction(u"card_netkey_set_sigg_pin"_s, //
               i18nc("@action SigG is an identifier for a type of keys on a NetKey card", "Set SigG PIN"));
 
+    // PIV-specific card actions
+    addAction(u"card_piv_change_pin"_s, //
+              i18nc("@action", "Change PIN"),
+              i18nc("@info:tooltip", "Change the PIN required for using the keys on the smart card."));
+    addAction(u"card_piv_change_puk"_s, //
+              i18nc("@action", "Change PUK"),
+              i18nc("@info:tooltip",
+                    "Change the PIN Unblocking Key (PUK) that can be used to unblock the smart card "
+                    "after a wrong PIN has been entered too many times."));
+    addAction(u"card_piv_change_admin_key"_s, //
+              i18nc("@action", "Change Admin Key"),
+              i18nc("@info:tooltip",
+                    "Change the PIV Card Application Administration Key that is used by the "
+                    "PIV Card Application to authenticate the PIV Card Application Administrator and by the "
+                    "administrator (resp. Kleopatra) to authenticate the PIV Card Application."));
+
     // card slot actions
     addAction(u"card_slot_show_certificate_details"_s, //
               i18nc("@action", "Show Certificate Details"),
