@@ -15,122 +15,28 @@
 
 #include "kleopatra_debug.h"
 
-#include "smartcard/algorithminfo.h"
+#include <commands/generateopenpgpcardkeysandcertificatecommand.h>
+
 #include "smartcard/openpgpcard.h"
 #include "smartcard/readerstatus.h"
-#include "smartcard/utils.h"
 
-#include "dialogs/gencardkeydialog.h"
 #include <view/cardkeysview.h>
 
-#include <Libkleo/Compliance>
-#include <Libkleo/GnuPG>
-
-#include <QFileDialog>
-#include <QFileInfo>
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QInputDialog>
 #include <QLabel>
-#include <QProgressDialog>
 #include <QPushButton>
-#include <QThread>
 #include <QVBoxLayout>
 
 #include <KLocalizedString>
 #include <KMessageBox>
 
 #include <Libkleo/Formatting>
-#include <Libkleo/KeyCache>
-
-#include <gpgme++/context.h>
-#include <gpgme++/data.h>
-
-#include <QGpgME/DataProvider>
-
-#include <gpgme++/gpggencardkeyinteractor.h>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
-
-namespace
-{
-class GenKeyThread : public QThread
-{
-    Q_OBJECT
-
-public:
-    explicit GenKeyThread(const GenCardKeyDialog::KeyParams &params, const std::string &serial)
-        : mSerial(serial)
-        , mParams(params)
-    {
-    }
-
-    GpgME::Error error()
-    {
-        return mErr;
-    }
-
-    std::string bkpFile()
-    {
-        return mBkpFile;
-    }
-
-protected:
-    void run() override
-    {
-        // the index of the curves in this list has to match the enum values
-        // minus 1 of GpgGenCardKeyInteractor::Curve
-        static const std::vector<std::string> curves = {
-            "curve25519",
-            "curve448",
-            "nistp256",
-            "nistp384",
-            "nistp521",
-            "brainpoolP256r1",
-            "brainpoolP384r1",
-            "brainpoolP512r1",
-            "secp256k1", // keep it, even if we don't support it in Kleopatra
-        };
-
-        auto ei = std::make_unique<GpgME::GpgGenCardKeyInteractor>(mSerial);
-        if (mParams.algorithm.starts_with("rsa")) {
-            ei->setAlgo(GpgME::GpgGenCardKeyInteractor::RSA);
-            ei->setKeySize(QByteArray::fromStdString(mParams.algorithm.substr(3)).toInt());
-        } else {
-            ei->setAlgo(GpgME::GpgGenCardKeyInteractor::ECC);
-            const auto curveIt = std::find(curves.cbegin(), curves.cend(), mParams.algorithm);
-            if (curveIt != curves.end()) {
-                ei->setCurve(static_cast<GpgME::GpgGenCardKeyInteractor::Curve>(curveIt - curves.cbegin() + 1));
-            } else {
-                qCWarning(KLEOPATRA_LOG) << this << __func__ << "Invalid curve name:" << mParams.algorithm;
-                mErr = GpgME::Error::fromCode(GPG_ERR_INV_VALUE);
-                return;
-            }
-        }
-        ei->setNameUtf8(mParams.name.toStdString());
-        ei->setEmailUtf8(mParams.email.toStdString());
-        ei->setDoBackup(mParams.backup);
-
-        const auto ctx = std::shared_ptr<GpgME::Context>(GpgME::Context::createForProtocol(GpgME::OpenPGP));
-        ctx->setFlag("extended-edit", "1"); // we want to be able to select all curves
-        QGpgME::QByteArrayDataProvider dp;
-        GpgME::Data data(&dp);
-
-        mErr = ctx->cardEdit(GpgME::Key(), std::move(ei), data);
-        mBkpFile = static_cast<GpgME::GpgGenCardKeyInteractor *>(ctx->lastCardEditInteractor())->backupFileName();
-    }
-
-private:
-    GpgME::Error mErr;
-    std::string mSerial;
-    GenCardKeyDialog::KeyParams mParams;
-
-    std::string mBkpFile;
-};
-
-} // Namespace
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
     : SmartCardWidget(parent)
@@ -281,9 +187,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
     mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
     mPUKIsAvailable = (pinCounters.size() == 3) && (pinCounters[1] > 0);
     mSetOrChangePUKButton->setText(mPUKIsAvailable ? i18nc("@action:button", "Change PUK") : i18nc("@action:button", "Set PUK"));
-
-    mCardIsEmpty = card->keyFingerprint(OpenPGPCard::pgpSigKeyRef()).empty() && card->keyFingerprint(OpenPGPCard::pgpEncKeyRef()).empty()
-        && card->keyFingerprint(OpenPGPCard::pgpAuthKeyRef()).empty();
 }
 
 void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode)
@@ -298,99 +201,14 @@ void PGPCardWidget::doChangePin(const std::string &keyRef, ChangePinCommand::Cha
     cmd->start();
 }
 
-void PGPCardWidget::doGenKey(GenCardKeyDialog *dlg)
-{
-    const GpgME::Error err = ReaderStatus::switchCardAndApp(serialNumber(), OpenPGPCard::AppName);
-    if (err) {
-        return;
-    }
-
-    const auto params = dlg->getKeyParams();
-
-    auto progress = new QProgressDialog(this, Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::Dialog);
-    progress->setAutoClose(true);
-    progress->setMinimumDuration(0);
-    progress->setMaximum(0);
-    progress->setMinimum(0);
-    progress->setModal(true);
-    progress->setCancelButton(nullptr);
-    progress->setWindowTitle(i18nc("@title:window", "Generating Keys"));
-    progress->setLabel(new QLabel(i18nc("@label:textbox", "This may take several minutes...")));
-    auto workerThread = new GenKeyThread(params, serialNumber());
-    connect(workerThread, &QThread::finished, this, [this, workerThread, progress] {
-        progress->accept();
-        progress->deleteLater();
-        genKeyDone(workerThread->error(), workerThread->bkpFile());
-        delete workerThread;
-    });
-    workerThread->start();
-    progress->exec();
-}
-
-void PGPCardWidget::genKeyDone(const GpgME::Error &err, const std::string &backup)
-{
-    if (err) {
-        KMessageBox::error(this, i18nc("@info", "Failed to generate new key: %1", Formatting::errorAsString(err)));
-        return;
-    }
-    if (err.isCanceled()) {
-        return;
-    }
-    if (!backup.empty()) {
-        const auto bkpFile = QString::fromStdString(backup);
-        QFileInfo fi(bkpFile);
-        const auto target =
-            QFileDialog::getSaveFileName(this, i18n("Save backup of encryption key"), fi.fileName(), QStringLiteral("%1 (*.gpg)").arg(i18n("Backup Key")));
-        if (!target.isEmpty() && !QFile::copy(bkpFile, target)) {
-            KMessageBox::error(this, i18nc("@info", "Failed to move backup. The backup key is still stored under: %1", bkpFile));
-        } else if (!target.isEmpty()) {
-            QFile::remove(bkpFile);
-        }
-    }
-
-    KMessageBox::information(this, i18nc("@info", "Successfully generated a new key for this card."), i18nc("@title", "Success"));
-    ReaderStatus::mutableInstance()->updateStatus();
-}
-
 void PGPCardWidget::genkeyRequested()
 {
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
-    if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
-        return;
-    }
-
-    if (!mCardIsEmpty) {
-        auto ret = KMessageBox::warningContinueCancel(this,
-                                                      i18n("The existing keys on this card will be <b>deleted</b> "
-                                                           "and replaced by new keys.")
-                                                          + QStringLiteral("<br/><br/>")
-                                                          + i18n("It will no longer be possible to decrypt past communication "
-                                                                 "encrypted for the existing key."),
-                                                      i18n("Secret Key Deletion"),
-                                                      KStandardGuiItem::guiItem(KStandardGuiItem::Delete),
-                                                      KStandardGuiItem::cancel(),
-                                                      QString(),
-                                                      KMessageBox::Notify | KMessageBox::Dangerous);
-
-        if (ret != KMessageBox::Continue) {
-            return;
-        }
-    }
-
-    auto dlg = new GenCardKeyDialog(GenCardKeyDialog::AllKeyAttributes, this);
-    const auto allowedAlgos = getAllowedAlgorithms(pgpCard->supportedAlgorithms());
-    if (allowedAlgos.empty()) {
-        KMessageBox::error(this, i18nc("@info", "You cannot generate keys on this smart card because it doesn't support any of the compliant algorithms."));
-        return;
-    }
-    dlg->setSupportedAlgorithms(allowedAlgos, getPreferredAlgorithm(allowedAlgos));
-    connect(dlg, &QDialog::accepted, this, [this, dlg]() {
-        doGenKey(dlg);
-        dlg->deleteLater();
+    auto cmd = new GenerateOpenPGPCardKeysAndCertificateCommand(serialNumber(), this);
+    this->setEnabled(false);
+    connect(cmd, &Command::finished, this, [this]() {
+        this->setEnabled(true);
     });
-    dlg->setModal(true);
-    dlg->show();
+    cmd->start();
 }
 
 void PGPCardWidget::changeNameRequested()
@@ -490,7 +308,5 @@ void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
         ReaderStatus::mutableInstance()->updateStatus();
     }
 }
-
-#include "pgpcardwidget.moc"
 
 #include "moc_pgpcardwidget.cpp"

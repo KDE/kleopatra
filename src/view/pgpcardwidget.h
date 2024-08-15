@@ -56,7 +56,6 @@ private:
     QLabel *mPinCounterLabel = nullptr;
     QPushButton *mSetOrChangePUKButton = nullptr;
     QString mUrl;
-    bool mCardIsEmpty = false;
     bool mIs21 = false;
     bool mPUKIsAvailable = false;
 };
