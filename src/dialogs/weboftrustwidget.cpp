@@ -240,7 +240,6 @@ public:
     void addActionsForSignature(QMenu *menu)
     {
         menu->addAction(detailsAction);
-        menu->addAction(certifyAction);
         if (revokeAction) {
             menu->addAction(revokeAction);
             if (!revokeAction->isEnabled()) {
@@ -256,7 +255,7 @@ public:
         const auto userID = selectedUserID();
         const auto signature = selectedCertification();
         detailsAction->setEnabled(!signature.isNull());
-        certifyAction->setEnabled(keyCanBeCertified && userCanSignUserIDs && (!userID.isNull() || !signature.isNull()));
+        certifyAction->setEnabled(keyCanBeCertified && userCanSignUserIDs && !userID.isNull());
         if (revokeAction) {
             revokeAction->setToolTip({});
             if (!signature.isNull()) {

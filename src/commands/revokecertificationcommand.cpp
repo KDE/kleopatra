@@ -58,6 +58,24 @@ struct KeyAndSignature {
     UserID::Signature signature;
 };
 
+static std::vector<UserID::Signature> revokableCertifications(const GpgME::UserID &userId)
+{
+    auto signatures = userId.signatures();
+    std::sort(signatures.begin(), signatures.end());
+    std::reverse(signatures.begin(), signatures.end());
+
+    auto last = std::unique(signatures.begin(), signatures.end(), [](const auto &sig1, const auto &sig2) {
+        return !qstricmp(sig1.signerKeyID(), sig2.signerKeyID());
+    });
+    signatures.erase(last, signatures.end());
+    erase_if(signatures, [](const auto &certification) {
+        return userCanRevokeCertification(certification) != CertificationCanBeRevoked;
+    });
+
+    std::reverse(signatures.begin(), signatures.end());
+    return signatures;
+}
+
 static std::vector<KeyAndSignature> getCertificationKeys(const GpgME::UserID &userId)
 {
     std::vector<KeyAndSignature> keys;
@@ -65,13 +83,12 @@ static std::vector<KeyAndSignature> getCertificationKeys(const GpgME::UserID &us
         qCWarning(KLEOPATRA_LOG) << __func__ << "- Error: Signatures of user ID" << QString::fromUtf8(userId.id()) << "not available";
         return keys;
     }
-    std::vector<GpgME::UserID::Signature> revokableCertifications;
-    Kleo::copy_if(userId.signatures(), std::back_inserter(revokableCertifications), [](const auto &certification) {
-        return userCanRevokeCertification(certification) == CertificationCanBeRevoked;
+
+    const auto certifications = revokableCertifications(userId);
+    std::transform(certifications.begin(), certifications.end(), std::back_inserter(keys), [](const auto &signature) {
+        return KeyAndSignature{KeyCache::instance()->findByKeyIDOrFingerprint(signature.signerKeyID()), signature};
     });
-    Kleo::transform(revokableCertifications, std::back_inserter(keys), [](const auto &certification) {
-        return KeyAndSignature{KeyCache::instance()->findByKeyIDOrFingerprint(certification.signerKeyID()), certification};
-    });
+
     return keys;
 }
 
