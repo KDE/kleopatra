@@ -82,6 +82,14 @@ static QPushButton *addActionButton(QLayout *buttonBox, QAction *action)
 class UserIdsWidget::Private
 {
 public:
+    enum Columns {
+        Name,
+        Email,
+        TrustLevel,
+        Origin,
+        Tags,
+    };
+
     Private(UserIdsWidget *qq)
         : q{qq}
     {
@@ -250,8 +258,8 @@ void UserIdsWidget::Private::setUpUserIDTable()
         i18n("Tags"),
     };
     userIDTable->setColumnCount(headers.count());
-    userIDTable->setColumnWidth(0, 200);
-    userIDTable->setColumnWidth(1, 200);
+    userIDTable->setColumnWidth(Name, 200);
+    userIDTable->setColumnWidth(Email, 200);
     userIDTable->setHeaderLabels(headers);
 
     const auto uids = key.userIDs();
@@ -259,22 +267,22 @@ void UserIdsWidget::Private::setUpUserIDTable()
         const auto &uid = uids[i];
         auto item = new QTreeWidgetItem;
         const QString toolTip = tofuTooltipString(uid);
-        item->setData(0, Qt::UserRole, QVariant::fromValue(uid));
+        item->setData(Name, Qt::UserRole, QVariant::fromValue(uid));
 
         auto pMail = Kleo::Formatting::prettyEMail(uid);
         auto pName = Kleo::Formatting::prettyName(uid);
 
-        item->setData(0, Qt::DisplayRole, pName);
-        item->setData(0, Qt::ToolTipRole, toolTip);
-        item->setData(1, Qt::DisplayRole, pMail);
-        item->setData(1, Qt::ToolTipRole, toolTip);
-        item->setData(1, Qt::AccessibleTextRole, pMail.isEmpty() ? i18nc("text for screen readers for an empty email address", "no email") : pMail);
+        item->setData(Name, Qt::DisplayRole, pName);
+        item->setData(Name, Qt::ToolTipRole, toolTip);
+        item->setData(Email, Qt::DisplayRole, pMail);
+        item->setData(Email, Qt::ToolTipRole, toolTip);
+        item->setData(Email, Qt::AccessibleTextRole, pMail.isEmpty() ? i18nc("text for screen readers for an empty email address", "no email") : pMail);
 
-        item->setData(2, Qt::DecorationRole, trustLevelIcon(uid));
-        item->setData(2, Qt::DisplayRole, trustLevelText(uid));
-        item->setData(2, Qt::ToolTipRole, toolTip);
+        item->setData(TrustLevel, Qt::DecorationRole, trustLevelIcon(uid));
+        item->setData(TrustLevel, Qt::DisplayRole, trustLevelText(uid));
+        item->setData(TrustLevel, Qt::ToolTipRole, toolTip);
 
-        item->setData(3, Qt::DisplayRole, Formatting::origin(uid.origin()));
+        item->setData(Origin, Qt::DisplayRole, Formatting::origin(uid.origin()));
         GpgME::Error err;
         QStringList tagList;
         for (const auto &tag : uid.remarks(Tags::tagKeys(), err)) {
@@ -285,13 +293,13 @@ void UserIdsWidget::Private::setUpUserIDTable()
         }
         qCDebug(KLEOPATRA_LOG) << "tagList:" << tagList;
         const auto tags = tagList.join(QStringLiteral("; "));
-        item->setData(4, Qt::DisplayRole, tags);
-        item->setData(4, Qt::ToolTipRole, toolTip);
+        item->setData(Tags, Qt::DisplayRole, tags);
+        item->setData(Tags, Qt::ToolTipRole, toolTip);
 
         userIDTable->addTopLevelItem(item);
     }
     if (!userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"))) {
-        userIDTable->hideColumn(4);
+        userIDTable->hideColumn(Tags);
     }
     for (int i = 0; i < userIDTable->columnCount(); i++) {
         userIDTable->resizeColumnToContents(i);
