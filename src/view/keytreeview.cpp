@@ -200,6 +200,7 @@ void KeyTreeView::restoreLayout(const KConfigGroup &group)
     } else {
         m_onceResized = true;
     }
+    m_view->header()->setFirstSectionMovable(false);
 }
 
 void KeyTreeView::init()

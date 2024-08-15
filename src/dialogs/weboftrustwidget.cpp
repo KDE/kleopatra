@@ -405,6 +405,7 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
     d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();
     d->certificationsTV->restoreColumnLayout(QStringLiteral("WebOfTrustWidget"));
+    d->certificationsTV->header()->setFirstSectionMovable(false);
     for (int i = 0; i < d->certificationsModel.columnCount(); i++) {
         d->certificationsTV->resizeColumnToContents(i);
     }
