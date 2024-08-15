@@ -47,6 +47,5 @@ private:
     QLabel *mUrlLabel = nullptr;
     QLabel *mPinCounterLabel = nullptr;
     QString mUrl;
-    bool mIs21 = false;
 };
 } // namespace Kleo

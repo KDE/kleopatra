@@ -100,8 +100,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     SmartCardWidget::setCard(card);
 
-    mIs21 = card->appVersion() >= 0x0201;
-
     const auto holder = card->cardHolder();
     const auto url = QString::fromStdString(card->pubkeyUrl());
     mCardHolderLabel->setText(holder.isEmpty() ? i18n("not set") : holder);
