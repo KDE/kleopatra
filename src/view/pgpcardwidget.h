@@ -53,7 +53,6 @@ private:
     QLabel *mCardHolderLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
     QString mUrl;
-    bool mCardIsEmpty = false;
     bool mIs21 = false;
 };
 } // namespace Kleo
