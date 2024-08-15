@@ -73,6 +73,12 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
         // there are no card actions for generic PKCS#15 cards
         break;
     case AppType::PIVApp:
+        actions = {
+            u"card_all_create_openpgp_certificate"_s,
+            u"card_piv_change_pin"_s,
+            u"card_piv_change_puk"_s,
+            u"card_piv_change_admin_key"_s,
+        };
         break;
     case AppType::NoApp:
         break;
@@ -119,8 +125,14 @@ static void updateCardAction(QAction *action, const Card *card)
         break;
     case AppType::P15App:
         break;
-    case AppType::PIVApp:
+    case AppType::PIVApp: {
+        if (action->objectName() == "card_all_create_openpgp_certificate"_L1) {
+            action->setEnabled(card->hasSigningKey() && card->hasEncryptionKey()
+                               && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
+                               && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
+        }
         break;
+    }
     case AppType::NoApp:
         break;
     };

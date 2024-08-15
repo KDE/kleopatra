@@ -27,6 +27,7 @@
 #include <commands/keytocardcommand.h>
 #include <commands/openpgpgeneratecardkeycommand.h>
 #include <commands/pivgeneratecardkeycommand.h>
+#include <commands/setpivcardapplicationadministrationkeycommand.h>
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
@@ -135,6 +136,7 @@ public:
     // card actions
     void createOpenPGPCertificate();
     void changePin(const std::string &keyRef);
+    void setPIVAdminKey();
 
     // card slot actions
     void showCertificateDetails();
@@ -201,6 +203,15 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     });
     actions->connectAction(u"card_netkey_set_sigg_pin"_s, q, [this]() {
         changePin(NetKeyCard::sigGPinKeyRef());
+    });
+    actions->connectAction(u"card_piv_change_pin"_s, q, [this]() {
+        changePin(PIVCard::pinKeyRef());
+    });
+    actions->connectAction(u"card_piv_change_puk"_s, q, [this]() {
+        changePin(PIVCard::pukKeyRef());
+    });
+    actions->connectAction(u"card_piv_change_admin_key"_s, q, [this]() {
+        setPIVAdminKey();
     });
 
     // connect card slot actions
@@ -342,7 +353,7 @@ void SmartCardsWidget::Private::disableCurrentWidget()
 void SmartCardsWidget::Private::createOpenPGPCertificate()
 {
     const auto app = currentCardType();
-    Q_ASSERT(app == AppType::NetKeyApp);
+    Q_ASSERT(app == AppType::NetKeyApp || app == AppType::PIVApp);
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     auto cmd = new CreateOpenPGPKeyFromCardKeysCommand(serialNumber, appName(app), q->window());
@@ -356,7 +367,7 @@ void SmartCardsWidget::Private::createOpenPGPCertificate()
 void SmartCardsWidget::Private::changePin(const std::string &keyRef)
 {
     const auto app = currentCardType();
-    Q_ASSERT(app == AppType::NetKeyApp);
+    Q_ASSERT(app == AppType::NetKeyApp || app == AppType::PIVApp);
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     auto cmd = new ChangePinCommand(serialNumber, appName(app), q->window());
@@ -371,6 +382,17 @@ void SmartCardsWidget::Private::changePin(const std::string &keyRef)
     }
     disableCurrentWidget();
     connect(cmd, &ChangePinCommand::finished, q, [this]() {
+        enableCurrentWidget();
+    });
+    cmd->start();
+}
+
+void SmartCardsWidget::Private::setPIVAdminKey()
+{
+    Q_ASSERT(currentCardType() == AppType::PIVApp);
+    auto cmd = new SetPIVCardApplicationAdministrationKeyCommand(currentSerialNumber(), q->window());
+    disableCurrentWidget();
+    connect(cmd, &Command::finished, q, [this]() {
         enableCurrentWidget();
     });
     cmd->start();
