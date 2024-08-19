@@ -146,6 +146,19 @@ std::shared_ptr<SmartCardActions> SmartCardActions::mutableInstance()
     }
 }
 
+// static
+QAction *SmartCardActions::createProxyAction(QAction *action, QObject *parent)
+{
+    Q_ASSERT(action);
+    auto proxyAction = new QAction{parent};
+    proxyAction->setObjectName(action->objectName());
+    proxyAction->setText(action->text());
+    proxyAction->setToolTip(action->toolTip());
+    proxyAction->setIcon(action->icon());
+    QObject::connect(proxyAction, &QAction::triggered, action, &QAction::trigger);
+    return proxyAction;
+}
+
 QAction *SmartCardActions::action(const QString &name) const
 {
     return mActionCollection->action(name);

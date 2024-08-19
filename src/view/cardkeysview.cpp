@@ -310,21 +310,6 @@ static std::vector<QAction *> actionsForCardSlot(SmartCard::AppType appType)
     return SmartCardActions::instance()->actions(actions);
 }
 
-static QAction *createProxyAction(QAction *action, QObject *parent)
-{
-    // create a clone of the given action; for each card slot we use a different
-    // clone so that the clones can be enabled/disabled individually; the
-    // triggered signal is forwarded to the original action
-    Q_ASSERT(action);
-    auto proxyAction = new QAction{parent};
-    proxyAction->setObjectName(action->objectName());
-    proxyAction->setText(action->text());
-    proxyAction->setToolTip(action->toolTip());
-    proxyAction->setIcon(action->icon());
-    QObject::connect(proxyAction, &QAction::triggered, action, &QAction::trigger);
-    return proxyAction;
-}
-
 static QAction *updateAction(QAction *action, const CardKeysWidgetItem *item, const Card *card)
 {
     if (action->objectName() == "card_slot_show_certificate_details"_L1) {
@@ -463,7 +448,7 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
         auto menu = new QMenu;
         menu->setAttribute(Qt::WA_DeleteOnClose, true);
         for (auto action : actionsForCardSlot(mCard->appType())) {
-            menu->addAction(updateAction(createProxyAction(action, menu), item, mCard.get()));
+            menu->addAction(updateAction(SmartCardActions::createProxyAction(action, menu), item, mCard.get()));
         }
         menu->popup(mTreeWidget->viewport()->mapToGlobal(pos));
     });
@@ -656,7 +641,7 @@ QToolButton *CardKeysView::addActionsButton(CardKeysWidgetItem *item, SmartCard:
     const auto actions = actionsForCardSlot(appType);
     auto button = new QToolButton;
     if (actions.size() == 1) {
-        button->setDefaultAction(updateAction(createProxyAction(actions.front(), button), item, mCard.get()));
+        button->setDefaultAction(updateAction(SmartCardActions::createProxyAction(actions.front(), button), item, mCard.get()));
         // ensure that current item is set to the right item before the action is triggered;
         // interestingly, focus is given to the tree widget instead of the clicked button so that
         // the event filtering of QAbstractItemView doesn't take care of this
@@ -674,7 +659,7 @@ QToolButton *CardKeysView::addActionsButton(CardKeysWidgetItem *item, SmartCard:
             mTreeWidget->setCurrentItem(item, Actions);
             QMenu menu{button};
             for (auto action : actionsForCardSlot(appType)) {
-                menu.addAction(updateAction(createProxyAction(action, &menu), item, mCard.get()));
+                menu.addAction(updateAction(SmartCardActions::createProxyAction(action, &menu), item, mCard.get()));
             }
             button->setMenu(&menu);
             button->showMenu();

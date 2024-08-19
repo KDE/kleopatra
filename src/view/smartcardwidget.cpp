@@ -94,21 +94,6 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
     return SmartCardActions::instance()->actions(actions);
 }
 
-static QAction *createProxyAction(QAction *action, QObject *parent)
-{
-    // create a clone of the given action; for each card we use a different
-    // clone so that the clones can be enabled/disabled individually; the
-    // triggered signal is forwarded to the original action
-    Q_ASSERT(action);
-    auto proxyAction = new QAction{parent};
-    proxyAction->setObjectName(action->objectName());
-    proxyAction->setText(action->text());
-    proxyAction->setToolTip(action->toolTip());
-    proxyAction->setIcon(action->icon());
-    QObject::connect(proxyAction, &QAction::triggered, action, &QAction::trigger);
-    return proxyAction;
-}
-
 static void updateCardAction(QAction *action, const Card *card)
 {
     switch (card->appType()) {
@@ -158,7 +143,7 @@ static void updateCardActions(QToolButton *actionsButton, const Card *card)
         }
         auto menu = new QMenu{actionsButton};
         for (auto action : actions) {
-            menu->addAction(createProxyAction(action, menu));
+            menu->addAction(SmartCardActions::createProxyAction(action, menu));
         }
         actionsButton->setMenu(menu);
     }
