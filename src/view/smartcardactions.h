@@ -30,6 +30,20 @@ public:
     static std::shared_ptr<const SmartCardActions> instance();
     static std::shared_ptr<SmartCardActions> mutableInstance();
 
+    /** Creates and returns a proxy for the action @p action.
+     *
+     * The proxy action is created with object name, text, tool tip and icon of
+     * the action @p action. The triggered signal of the proxy action is
+     * forwarded to the original action.
+     *
+     * The properties and the state of the proxy action can be changed independently
+     * from the original action. The idea is that one can listen to the triggered
+     * signal of the original action although we use individual proxy actions for
+     * the different card apps or card slots, so that those proxy actions can be
+     * disabled individually or the text can be changed.
+     */
+    static QAction *createProxyAction(QAction *action, QObject *parent);
+
     /** Returns the action with the name @p name or @c nullptr if no action with this name exists. */
     QAction *action(const QString &name) const;
 
