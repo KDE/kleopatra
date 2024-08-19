@@ -98,6 +98,10 @@ static void updateCardAction(QAction *action, const Card *card)
 {
     switch (card->appType()) {
     case AppType::NetKeyApp: {
+        if (card->pinStates().empty()) {
+            action->setEnabled(false);
+            return;
+        }
         auto netKeyCard = static_cast<const NetKeyCard *>(card);
         if (action->objectName() == "card_all_create_openpgp_certificate"_L1) {
             action->setEnabled(!netKeyCard->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
