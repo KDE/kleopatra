@@ -33,7 +33,7 @@ class ImportCertificateFromPIVCardCommand::Private : public CardCommand::Private
     }
 
 public:
-    explicit Private(ImportCertificateFromPIVCardCommand *qq, const std::string &slot, const std::string &serialno);
+    explicit Private(ImportCertificateFromPIVCardCommand *qq, const std::string &slot, const std::string &serialno, QWidget *parent);
     ~Private() override;
 
 private:
@@ -58,8 +58,11 @@ const ImportCertificateFromPIVCardCommand::Private *ImportCertificateFromPIVCard
 #define q q_func()
 #define d d_func()
 
-ImportCertificateFromPIVCardCommand::Private::Private(ImportCertificateFromPIVCardCommand *qq, const std::string &slot, const std::string &serialno)
-    : CardCommand::Private(qq, serialno, nullptr)
+ImportCertificateFromPIVCardCommand::Private::Private(ImportCertificateFromPIVCardCommand *qq,
+                                                      const std::string &slot,
+                                                      const std::string &serialno,
+                                                      QWidget *parent)
+    : CardCommand::Private(qq, serialno, parent)
     , cardSlot(slot)
 {
 }
@@ -111,8 +114,8 @@ void ImportCertificateFromPIVCardCommand::Private::importCanceled()
     canceled();
 }
 
-ImportCertificateFromPIVCardCommand::ImportCertificateFromPIVCardCommand(const std::string &cardSlot, const std::string &serialno)
-    : CardCommand(new Private(this, cardSlot, serialno))
+ImportCertificateFromPIVCardCommand::ImportCertificateFromPIVCardCommand(const std::string &cardSlot, const std::string &serialno, QWidget *parent)
+    : CardCommand(new Private(this, cardSlot, serialno, parent))
 {
 }
 

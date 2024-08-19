@@ -70,7 +70,7 @@ class KeyToCardCommand::Private : public CardCommand::Private
 
 public:
     explicit Private(KeyToCardCommand *qq, const GpgME::Subkey &subkey);
-    explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName);
+    explicit Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName, QWidget *parent);
 
 private:
     enum Confirmation {
@@ -131,8 +131,8 @@ KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const GpgME::Subkey &su
 {
 }
 
-KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName_)
-    : CardCommand::Private(qq, serialNumber, nullptr)
+KeyToCardCommand::Private::Private(KeyToCardCommand *qq, const std::string &slot, const std::string &serialNumber, const std::string &appName_, QWidget *parent)
+    : CardCommand::Private(qq, serialNumber, parent)
     , appName(appName_)
     , cardSlot(slot)
 {
@@ -697,8 +697,8 @@ KeyToCardCommand::KeyToCardCommand(const GpgME::Subkey &subkey)
 {
 }
 
-KeyToCardCommand::KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName)
-    : CardCommand(new Private(this, cardSlot, serialNumber, appName))
+KeyToCardCommand::KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName, QWidget *parent)
+    : CardCommand(new Private(this, cardSlot, serialNumber, appName, parent))
 {
 }
 
