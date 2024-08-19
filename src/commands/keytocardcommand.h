@@ -35,7 +35,7 @@ class KeyToCardCommand : public CardCommand
     Q_OBJECT
 public:
     KeyToCardCommand(const GpgME::Subkey &subkey);
-    KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName);
+    KeyToCardCommand(const std::string &cardSlot, const std::string &serialNumber, const std::string &appName, QWidget *parent = nullptr);
     ~KeyToCardCommand() override;
 
     static std::vector<std::shared_ptr<Kleo::SmartCard::Card>> getSuitableCards(const GpgME::Subkey &subkey);

@@ -495,12 +495,11 @@ void SmartCardsWidget::Private::writeCertificateToCard()
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     const std::string keyRef = currentCardSlot();
-    auto cmd = new CertificateToPIVCardCommand(keyRef, serialNumber);
+    auto cmd = new CertificateToPIVCardCommand(keyRef, serialNumber, q->window());
     disableCurrentWidget();
     connect(cmd, &CertificateToPIVCardCommand::finished, q, [this]() {
         enableCurrentWidget();
     });
-    cmd->setParentWidget(q->window());
     cmd->start();
 }
 
@@ -510,13 +509,12 @@ void SmartCardsWidget::Private::readCertificateFromCard()
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     const std::string keyRef = currentCardSlot();
-    auto cmd = new ImportCertificateFromPIVCardCommand(keyRef, serialNumber);
+    auto cmd = new ImportCertificateFromPIVCardCommand(keyRef, serialNumber, q->window());
     disableCurrentWidget();
     connect(cmd, &ImportCertificateFromPIVCardCommand::finished, q, [this, keyRef]() {
         // this->updateKeyWidgets(keyRef); // this should happen automatically
         enableCurrentWidget();
     });
-    cmd->setParentWidget(q->window());
     cmd->start();
 }
 
@@ -526,12 +524,11 @@ void SmartCardsWidget::Private::writeKeyToCard()
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     const std::string keyRef = currentCardSlot();
-    auto cmd = new KeyToCardCommand(keyRef, serialNumber, PIVCard::AppName);
+    auto cmd = new KeyToCardCommand(keyRef, serialNumber, PIVCard::AppName, q->window());
     disableCurrentWidget();
     connect(cmd, &KeyToCardCommand::finished, q, [this]() {
         enableCurrentWidget();
     });
-    cmd->setParentWidget(q->window());
     cmd->start();
 }
 

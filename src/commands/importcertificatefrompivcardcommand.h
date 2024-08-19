@@ -20,7 +20,7 @@ class ImportCertificateFromPIVCardCommand : public CardCommand
 {
     Q_OBJECT
 public:
-    ImportCertificateFromPIVCardCommand(const std::string &cardSlot, const std::string &serialno);
+    ImportCertificateFromPIVCardCommand(const std::string &cardSlot, const std::string &serialno, QWidget *parent = nullptr);
     ~ImportCertificateFromPIVCardCommand() override;
 
 private:
