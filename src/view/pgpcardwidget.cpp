@@ -36,7 +36,7 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 PGPCardWidget::PGPCardWidget(QWidget *parent)
-    : SmartCardWidget(parent)
+    : SmartCardWidget(AppType::OpenPGPApp, parent)
 {
     {
         mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount() - 1, 0); // undo stretch set by base widget

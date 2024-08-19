@@ -36,8 +36,10 @@ class Card;
 class SmartCardWidget : public QWidget
 {
     Q_OBJECT
+protected:
+    SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *parent = nullptr);
+
 public:
-    SmartCardWidget(QWidget *parent = nullptr);
     ~SmartCardWidget() override;
 
     void setCard(const Kleo::SmartCard::Card *card);
@@ -53,6 +55,7 @@ protected:
     QGridLayout *mInfoGridLayout = nullptr;
 
 private:
+    Kleo::SmartCard::AppType mAppType;
     std::shared_ptr<const Kleo::SmartCard::Card> mCard;
 
     std::unique_ptr<Kleo::InfoField> mCardTypeField;

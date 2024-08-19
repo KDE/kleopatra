@@ -45,7 +45,7 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 P15CardWidget::P15CardWidget(QWidget *parent)
-    : SmartCardWidget{parent}
+    : SmartCardWidget{AppType::P15App, parent}
 {
     mStatusLabel = new QLabel{this};
     mStatusLabel->setVisible(false);
