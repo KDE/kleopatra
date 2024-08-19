@@ -20,6 +20,7 @@
 #include <Libkleo/Compliance>
 
 #include <KLocalizedString>
+#include <KMessageWidget>
 
 #include <QGridLayout>
 #include <QLabel>
@@ -214,6 +215,10 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
 
 void SmartCardWidget::addCardKeysView()
 {
+    mErrorWidget = new KMessageWidget{this};
+    mErrorWidget->setVisible(false);
+    mContentLayout->addWidget(mErrorWidget);
+
     Q_ASSERT(!mCardKeysView);
     switch (mAppType) {
     case AppType::NetKeyApp:
@@ -245,6 +250,16 @@ void SmartCardWidget::setCard(const Card *card)
     mSerialNumberField->setValue(card->displaySerialNumber());
 
     updateCardActions(mCardActionsButton, card);
+
+    const auto errMsg = card->errorMsg();
+    if (!errMsg.isEmpty()) {
+        mErrorWidget->setMessageType(KMessageWidget::Error);
+        mErrorWidget->setCloseButtonVisible(false);
+        mErrorWidget->setText(i18nc("@info", "Error: %1", errMsg));
+        mErrorWidget->setVisible(true);
+    } else {
+        mErrorWidget->setVisible(false);
+    }
 
     mCardKeysView->setCard(mCard);
 }

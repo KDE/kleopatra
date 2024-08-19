@@ -13,6 +13,7 @@
 #include <memory>
 #include <string>
 
+class KMessageWidget;
 class QGridLayout;
 class QToolButton;
 class QVBoxLayout;
@@ -62,5 +63,6 @@ private:
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
     QToolButton *mCardActionsButton = nullptr;
+    KMessageWidget *mErrorWidget = nullptr;
     Kleo::CardKeysView *mCardKeysView = nullptr;
 };

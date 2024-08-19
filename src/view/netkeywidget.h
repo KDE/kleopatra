@@ -9,8 +9,6 @@
 
 #include "smartcardwidget.h"
 
-class QLabel;
-
 namespace Kleo
 {
 class NullPinWidget;
@@ -30,7 +28,6 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
-    QLabel *mErrorLabel = nullptr;
     NullPinWidget *mNullPinWidget = nullptr;
 };
 } // namespace Kleo
