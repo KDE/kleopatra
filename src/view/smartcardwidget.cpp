@@ -208,6 +208,28 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
     contentLayout->addLayout(upperLayout);
 }
 
+void SmartCardWidget::addCardKeysView()
+{
+    Q_ASSERT(!mCardKeysView);
+    switch (mAppType) {
+    case AppType::NetKeyApp:
+        // do not show Created column by default; creation time is not reported by scdaemon for NetKey cards
+        mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
+        break;
+    case AppType::OpenPGPApp:
+    case AppType::P15App:
+        mCardKeysView = new CardKeysView{this, CardKeysView::ShowCreated};
+        break;
+    case AppType::PIVApp:
+        // do not show Created column by default; creation time is not reported by scdaemon for PIV cards
+        mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
+        break;
+    case AppType::NoApp:
+        return;
+    };
+    mContentLayout->addWidget(mCardKeysView, 1);
+}
+
 SmartCardWidget::~SmartCardWidget() = default;
 
 void SmartCardWidget::setCard(const Card *card)

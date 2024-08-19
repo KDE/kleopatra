@@ -80,8 +80,7 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount(), 1);
     }
 
-    mCardKeysView = new CardKeysView{this};
-    mContentLayout->addWidget(mCardKeysView, 1);
+    addCardKeysView();
 }
 
 void PGPCardWidget::setCard(const OpenPGPCard *card)
