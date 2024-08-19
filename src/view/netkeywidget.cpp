@@ -32,9 +32,7 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
     mErrorLabel->setVisible(false);
     mContentLayout->addWidget(mErrorLabel);
 
-    // do not show Created column by default; creation time is not reported by scdaemon for NetKey cards
-    mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
-    mContentLayout->addWidget(mCardKeysView, 1);
+    addCardKeysView();
 }
 
 NetKeyWidget::~NetKeyWidget() = default;

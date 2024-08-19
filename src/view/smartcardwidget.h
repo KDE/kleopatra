@@ -38,6 +38,7 @@ class SmartCardWidget : public QWidget
     Q_OBJECT
 protected:
     SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *parent = nullptr);
+    void addCardKeysView();
 
 public:
     ~SmartCardWidget() override;
@@ -61,7 +62,5 @@ private:
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
     QToolButton *mCardActionsButton = nullptr;
-
-protected:
     Kleo::CardKeysView *mCardKeysView = nullptr;
 };
