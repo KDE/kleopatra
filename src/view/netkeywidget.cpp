@@ -23,7 +23,7 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 
 NetKeyWidget::NetKeyWidget(QWidget *parent)
-    : SmartCardWidget(parent)
+    : SmartCardWidget(AppType::NetKeyApp, parent)
 {
     mNullPinWidget = new NullPinWidget{this};
     mContentLayout->addWidget(mNullPinWidget);

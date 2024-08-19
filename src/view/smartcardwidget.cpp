@@ -152,8 +152,9 @@ static void updateCardActions(QToolButton *actionsButton, const Card *card)
     }
 }
 
-SmartCardWidget::SmartCardWidget(QWidget *parent)
+SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *parent)
     : QWidget{parent}
+    , mAppType{appType}
 {
     auto mainLayout = new QVBoxLayout{this};
     mainLayout->setContentsMargins({});
@@ -211,6 +212,7 @@ SmartCardWidget::~SmartCardWidget() = default;
 
 void SmartCardWidget::setCard(const Card *card)
 {
+    Q_ASSERT(mAppType == card->appType());
     mCard.reset(card->clone());
 
     mCardTypeField->setValue(cardTypeForDisplay(card));

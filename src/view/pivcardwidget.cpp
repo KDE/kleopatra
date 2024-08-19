@@ -11,12 +11,15 @@
 
 #include "cardkeysview.h"
 
+#include <smartcard/card.h>
+
 #include <QVBoxLayout>
 
 using namespace Kleo;
+using namespace Kleo::SmartCard;
 
 PIVCardWidget::PIVCardWidget(QWidget *parent)
-    : SmartCardWidget(parent)
+    : SmartCardWidget(AppType::PIVApp, parent)
 {
     // do not show Created column by default; creation time is not reported by scdaemon for PIV cards
     mCardKeysView = new CardKeysView{this, CardKeysView::NoOptions};
