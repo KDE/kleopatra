@@ -16,7 +16,6 @@
 
 #include <KLocalizedString>
 
-#include <QLabel>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -27,10 +26,6 @@ NetKeyWidget::NetKeyWidget(QWidget *parent)
 {
     mNullPinWidget = new NullPinWidget{this};
     mContentLayout->addWidget(mNullPinWidget);
-
-    mErrorLabel = new QLabel{this};
-    mErrorLabel->setVisible(false);
-    mContentLayout->addWidget(mErrorLabel);
 
     addCardKeysView();
 }
@@ -48,12 +43,4 @@ void NetKeyWidget::setCard(const NetKeyCard *card)
 
     mNullPinWidget->setSigGVisible(false /*card->hasSigGNullPin()*/);
     mNullPinWidget->setNKSVisible(card->hasNKSNullPin());
-
-    const auto errMsg = card->errorMsg();
-    if (!errMsg.isEmpty()) {
-        mErrorLabel->setText(QStringLiteral("<b>%1:</b> %2").arg(i18n("Error"), errMsg));
-        mErrorLabel->setVisible(true);
-    } else {
-        mErrorLabel->setVisible(false);
-    }
 }
