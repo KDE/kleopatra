@@ -30,6 +30,7 @@
 #include <QDialogButtonBox>
 #include <QGridLayout>
 #include <QGuiApplication>
+#include <QHeaderView>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
@@ -144,6 +145,7 @@ private:
     bool passive;
     QValidator *anyQueryValidator = nullptr;
     QValidator *emailQueryValidator = nullptr;
+    bool initial = false;
 
     struct Ui {
         QLabel *guidanceLabel;
@@ -308,6 +310,8 @@ void LookupCertificatesDialog::Private::readConfig()
     KConfigGroup configGroup(KSharedConfig::openStateConfig(), QStringLiteral("LookupCertificatesDialog"));
     if (!ui.resultTV->restoreColumnLayout(QStringLiteral("LookupCertificatesDialog"))) {
         ui.resultTV->setColumnHidden(Private::KeyID, true);
+        initial = true;
+        ui.resultTV->header()->resizeSections(QHeaderView::ResizeToContents);
     }
 
     const QSize size = configGroup.readEntry("Size", QSize(600, 400));
@@ -430,6 +434,12 @@ void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> 
     }
     if (certs.size() == 1) {
         d->ui.resultTV->setCurrentIndex(d->ui.resultTV->model()->index(0, 0));
+    }
+    if (d->initial && d->ui.resultTV->model()->rowCount() > 0) {
+        d->initial = false;
+        for (int i = 0; i < d->ui.resultTV->columnCount(); i++) {
+            d->ui.resultTV->resizeColumnToContents(i);
+        }
     }
 }
 
