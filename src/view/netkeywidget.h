@@ -9,10 +9,10 @@
 
 #include "smartcardwidget.h"
 
+class KMessageWidget;
+
 namespace Kleo
 {
-class NullPinWidget;
-
 namespace SmartCard
 {
 class NetKeyCard;
@@ -28,6 +28,6 @@ public:
     void setCard(const SmartCard::NetKeyCard *card);
 
 private:
-    NullPinWidget *mNullPinWidget = nullptr;
+    KMessageWidget *mNullPinWidget = nullptr;
 };
 } // namespace Kleo
