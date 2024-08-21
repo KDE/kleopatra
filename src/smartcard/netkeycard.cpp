@@ -56,6 +56,11 @@ std::string NetKeyCard::sigGPinKeyRef()
 
 bool NetKeyCard::hasNKSNullPin() const
 {
+    static std::string forceNullPinSerialNumber = qgetenv("KLEO_FORCE_NULLPIN").toStdString();
+    if (serialNumber() == forceNullPinSerialNumber) {
+        return true;
+    }
+
     const auto states = pinStates();
     if (states.size() < 2) {
         qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << states.size();
