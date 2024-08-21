@@ -11,8 +11,6 @@
 
 #include "smartcardwidget.h"
 
-class QLabel;
-
 namespace Kleo
 {
 
@@ -32,9 +30,6 @@ public:
 
 private:
     void searchPGPFpr(const std::string &fpr);
-
-private:
-    QLabel *mStatusLabel = nullptr;
 };
 
 }

@@ -47,10 +47,6 @@ using namespace Kleo::SmartCard;
 P15CardWidget::P15CardWidget(QWidget *parent)
     : SmartCardWidget{AppType::P15App, parent}
 {
-    mStatusLabel = new QLabel{this};
-    mStatusLabel->setVisible(false);
-    mContentLayout->addWidget(mStatusLabel);
-
     addCardKeysView();
 }
 
@@ -62,8 +58,8 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
     if (!Settings().alwaysSearchCardOnKeyserver() && !Kleo::keyserver().startsWith(QLatin1String{"ldap"})) {
         return;
     }
-    mStatusLabel->setText(i18n("Searching in directory service..."));
-    mStatusLabel->setVisible(true);
+    statusLabel()->setText(i18n("Searching in directory service..."));
+    statusLabel()->setVisible(true);
     qCDebug(KLEOPATRA_LOG) << "Looking for:" << fpr.c_str() << "on ldap server";
     QGpgME::KeyListJob *job = QGpgME::openpgp()->keyListJob(true);
     connect(job, &QGpgME::KeyListJob::result, job, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
@@ -72,15 +68,15 @@ void P15CardWidget::searchPGPFpr(const std::string &fpr)
             qCDebug(KLEOPATRA_LOG) << "Importing: " << keys[0].primaryFingerprint();
             connect(importJob, &QGpgME::ImportFromKeyserverJob::result, importJob, [this](GpgME::ImportResult, QString, GpgME::Error) {
                 qCDebug(KLEOPATRA_LOG) << "import job done";
-                mStatusLabel->setText(i18n("Automatic import finished."));
+                statusLabel()->setText(i18n("Automatic import finished."));
             });
             importJob->start(keys);
         } else if (keys.size() > 1) {
             qCDebug(KLEOPATRA_LOG) << "Multiple keys found on server";
-            mStatusLabel->setText(i18n("Error multiple keys found on server."));
+            statusLabel()->setText(i18n("Error multiple keys found on server."));
         } else {
             qCDebug(KLEOPATRA_LOG) << "No key found";
-            mStatusLabel->setText(i18n("Key not found in directory service."));
+            statusLabel()->setText(i18n("Key not found in directory service."));
         }
     });
     job->start(QStringList() << QString::fromStdString(fpr));
@@ -101,7 +97,7 @@ void P15CardWidget::setCard(const P15Card *card)
                 searchPGPFpr(pgpSigFpr);
             }
         } else {
-            mStatusLabel->setVisible(false);
+            statusLabel()->setVisible(false);
         }
     }
 }

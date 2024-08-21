@@ -219,6 +219,10 @@ void SmartCardWidget::addCardKeysView()
         mNullPinWidget = new KMessageWidget{this};
         mNullPinWidget->setVisible(false);
         mContentLayout->addWidget(mNullPinWidget);
+    } else if (mAppType == AppType::P15App) {
+        mStatusLabel = new QLabel{this};
+        mStatusLabel->setVisible(false);
+        mContentLayout->addWidget(mStatusLabel);
     }
 
     mErrorWidget = new KMessageWidget{this};
@@ -304,4 +308,9 @@ GpgME::Key SmartCardWidget::currentCertificate() const
 KMessageWidget *SmartCardWidget::nullPinMessageWidget() const
 {
     return mNullPinWidget;
+}
+
+QLabel *SmartCardWidget::statusLabel() const
+{
+    return mStatusLabel;
 }
