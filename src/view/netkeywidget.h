@@ -9,8 +9,6 @@
 
 #include "smartcardwidget.h"
 
-class KMessageWidget;
-
 namespace Kleo
 {
 namespace SmartCard
@@ -26,8 +24,5 @@ public:
     ~NetKeyWidget() override;
 
     void setCard(const SmartCard::NetKeyCard *card);
-
-private:
-    KMessageWidget *mNullPinWidget = nullptr;
 };
 } // namespace Kleo
