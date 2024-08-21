@@ -12,6 +12,7 @@
 #include <tooltippreferences.h>
 
 #include <kleopatra_debug.h>
+#include <settings.h>
 
 #include <commands/detailscommand.h>
 #include <smartcard/card.h>
@@ -371,8 +372,9 @@ static bool canImportCertificates(const Card *card, const std::vector<std::strin
         // no S/MIME certificates to learn from OpenPGP cards
         return false;
     case AppType::NetKeyApp:
-    case AppType::P15App:
         return !keyRefsWithoutSMimeCertificate.empty();
+    case AppType::P15App:
+        return Settings().autoLoadP15Certs() && !keyRefsWithoutSMimeCertificate.empty();
     case AppType::PIVApp:
         // check whether there are S/MIME certificates for the given card slots
         return std::ranges::any_of(keyRefsWithoutSMimeCertificate, [card](const auto &keyRef) {
