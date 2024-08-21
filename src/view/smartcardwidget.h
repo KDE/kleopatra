@@ -15,6 +15,7 @@
 
 class KMessageWidget;
 class QGridLayout;
+class QLabel;
 class QToolButton;
 class QVBoxLayout;
 
@@ -54,6 +55,7 @@ public:
 
 protected:
     KMessageWidget *nullPinMessageWidget() const;
+    QLabel *statusLabel() const;
 
 protected:
     QVBoxLayout *mContentLayout = nullptr;
@@ -67,6 +69,7 @@ private:
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
     QToolButton *mCardActionsButton = nullptr;
     KMessageWidget *mNullPinWidget = nullptr;
+    QLabel *mStatusLabel = nullptr;
     KMessageWidget *mErrorWidget = nullptr;
     Kleo::CardKeysView *mCardKeysView = nullptr;
 };
