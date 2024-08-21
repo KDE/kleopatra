@@ -219,6 +219,12 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
 
 void SmartCardWidget::addCardKeysView()
 {
+    if (mAppType == AppType::NetKeyApp) {
+        mNullPinWidget = new KMessageWidget{this};
+        mNullPinWidget->setVisible(false);
+        mContentLayout->addWidget(mNullPinWidget);
+    }
+
     mErrorWidget = new KMessageWidget{this};
     mErrorWidget->setVisible(false);
     mContentLayout->addWidget(mErrorWidget);
@@ -297,4 +303,9 @@ GpgME::Key SmartCardWidget::currentCertificate() const
         return mCardKeysView->currentCertificate();
     }
     return {};
+}
+
+KMessageWidget *SmartCardWidget::nullPinMessageWidget() const
+{
+    return mNullPinWidget;
 }

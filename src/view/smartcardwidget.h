@@ -53,6 +53,9 @@ public:
     GpgME::Key currentCertificate() const;
 
 protected:
+    KMessageWidget *nullPinMessageWidget() const;
+
+protected:
     QVBoxLayout *mContentLayout = nullptr;
     QGridLayout *mInfoGridLayout = nullptr;
 
@@ -63,6 +66,7 @@ private:
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
     QToolButton *mCardActionsButton = nullptr;
+    KMessageWidget *mNullPinWidget = nullptr;
     KMessageWidget *mErrorWidget = nullptr;
     Kleo::CardKeysView *mCardKeysView = nullptr;
 };
