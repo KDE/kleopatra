@@ -106,9 +106,4 @@ void P15CardWidget::setCard(const P15Card *card)
             mStatusLabel->setVisible(false);
         }
     }
-
-    /* Check if additional keys could be available */
-    if (!Settings().autoLoadP15Certs()) {
-        return;
-    }
 }
