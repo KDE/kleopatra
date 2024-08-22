@@ -69,6 +69,7 @@ private:
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;
     std::unique_ptr<Kleo::InfoField> mCardholderField;
     std::unique_ptr<Kleo::InfoField> mPublicKeyUrlField;
+    std::unique_ptr<Kleo::InfoField> mPinCountersField;
     QToolButton *mCardActionsButton = nullptr;
     KMessageWidget *mNullPinWidget = nullptr;
     QLabel *mStatusLabel = nullptr;

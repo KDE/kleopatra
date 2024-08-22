@@ -12,8 +12,6 @@
 
 #include "smartcardwidget.h"
 
-class QLabel;
-
 namespace Kleo
 {
 namespace SmartCard
@@ -28,8 +26,5 @@ public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
 
     void setCard(const SmartCard::OpenPGPCard *card);
-
-private:
-    QLabel *mPinCounterLabel = nullptr;
 };
 } // namespace Kleo

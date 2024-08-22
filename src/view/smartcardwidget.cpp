@@ -229,6 +229,17 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             gridLayout->addLayout(mPublicKeyUrlField->layout(), row, 1);
         }
 
+        if (mAppType == AppType::OpenPGPApp) {
+            row++;
+            mPinCountersField = std::make_unique<InfoField>(i18nc("@label The number of remaining attempts to enter a PIN or PUK, as in "
+                                                                  "Remaining attempts: PIN: 2, PUK: 3, Admin PIN: 3",
+                                                                  "Remaining attempts:"),
+                                                            parent);
+            mPinCountersField->setToolTip(xi18nc("@info:tooltip", "Shows the number of remaining attempts for entering the correct PIN or PUK."));
+            gridLayout->addWidget(mPinCountersField->label(), row, 0);
+            gridLayout->addLayout(mPinCountersField->layout(), row, 1);
+        }
+
         gridLayout->setColumnStretch(gridLayout->columnCount(), 1);
 
         upperLayout->addLayout(gridLayout, 1);
@@ -300,6 +311,19 @@ void SmartCardWidget::setCard(const Card *card)
         mPublicKeyUrlField->setValue(url.isEmpty() //
                                          ? ("<em>"_L1 + i18n("not set") + "</em>"_L1)
                                          : u"<a href=\"%1\">%1</a>"_s.arg(url.toHtmlEscaped()));
+
+        const auto pinLabels = card->pinLabels();
+        const auto pinCounters = card->pinCounters();
+        QStringList countersWithLabels;
+        countersWithLabels.reserve(pinCounters.size());
+        for (const auto &pinCounter : pinCounters) {
+            // sanity check
+            if (countersWithLabels.size() == pinLabels.size()) {
+                break;
+            }
+            countersWithLabels.push_back(i18nc("label: value", "%1: %2", pinLabels[countersWithLabels.size()], pinCounter));
+        }
+        mPinCountersField->setValue(countersWithLabels.join(", "_L1));
     }
 
     updateCardActions(mCardActionsButton, card);
