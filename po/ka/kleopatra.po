@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-16 00:40+0000\n"
+"POT-Creation-Date: 2024-08-22 00:40+0000\n"
 "PO-Revision-Date: 2024-08-15 05:37+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -227,7 +227,7 @@ msgstr "მომხმარებლის ID-ის დამატება 
 #: src/commands/authenticatepivcardapplicationcommand.cpp:128
 #: src/commands/certificatetopivcardcommand.cpp:123
 #: src/commands/certificatetopivcardcommand.cpp:182
-#: src/commands/importcertificatefrompivcardcommand.cpp:77
+#: src/commands/importcertificatefrompivcardcommand.cpp:80
 #: src/commands/keytocardcommand.cpp:372
 #: src/commands/pivgeneratecardkeycommand.cpp:124
 #: src/commands/pivgeneratecardkeycommand.cpp:196
@@ -279,11 +279,11 @@ msgid "No slot found for subkey %1 on the smart card."
 msgstr "ქვეგასაღებისთვის %1 ჭკვიან ბარათზე სლოტი აღმოჩენილი არაა."
 
 #: src/commands/certificatetocardcommand.cpp:289
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:251
 #: src/commands/keytocardcommand.cpp:262
 #: src/commands/openpgpgeneratecardkeycommand.cpp:136
 #: src/commands/openpgpgeneratecardkeycommand.cpp:173
-#: src/view/pgpcardwidget.cpp:359 src/view/pgpcardwidget.cpp:425
-#: src/view/pgpcardwidget.cpp:472
+#: src/view/pgpcardwidget.cpp:152 src/view/pgpcardwidget.cpp:199
 #, kde-format
 msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "OpenPGP ბარათის პოვნის შეცდომა სერიული ნომრით: %1"
@@ -747,7 +747,6 @@ msgstr "საკვანძო ფრაზა წარმატებით 
 #: src/commands/changepincommand.cpp:123
 #: src/commands/createcsrforcardkeycommand.cpp:141
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:106
-#: src/view/netkeywidget.cpp:118
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
 msgstr "შეცდომა ჭკვიანი ბარათის პოვნისას სერიული ნომრით: %1"
@@ -1850,6 +1849,93 @@ msgid ""
 "message></para>"
 msgstr "<para>შეცდომა გატანისას:</para><para><message>%1</message></para>"
 
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:190
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to generate new key: %1"
+msgctxt "@info"
+msgid "Failed to generate new card keys and a certificate: %1"
+msgstr "ახალი გასაღების გენერაციის შეცდომა: %1"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:202
+#, kde-format
+msgid "Save backup of encryption key"
+msgstr "დაშიფვრის გასაღების მარქაფი ფაილში"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:204
+#, kde-format
+msgid "Backup Key"
+msgstr "მარქაფი გასაღები"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:206
+#, kde-format
+msgctxt "@info"
+msgid "Failed to move backup. The backup key is still stored under: %1"
+msgstr ""
+"მარქაფის გადატანა ჩავარდა. მარქაფი გასაღები ჯერ კიდევ დამახსოვრებულია "
+"ბილიკზე: %1"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:212
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
+msgctxt "@info"
+msgid "Successfully generated new card keys and a certificate for this card."
+msgstr "ამ ბარათისთვის ახალი გასაღების გენერაცია წარმატებით დასრულდა."
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:212
+#: src/view/pgpcardwidget.cpp:169 src/view/pgpcardwidget.cpp:216
+#, kde-format
+msgctxt "@title"
+msgid "Success"
+msgstr "წარმატება"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:235
+#, kde-format
+msgctxt "@title:window"
+msgid "Generating Keys"
+msgstr "გასაღებების გენერაცია"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:236
+#, kde-format
+msgctxt "@label:textbox"
+msgid "This may take several minutes..."
+msgstr "შეიძლება, რამდენიმე წუთი დასჭირდეს..."
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:261
+#, kde-format
+msgid ""
+"The existing keys on this card will be <b>deleted</b> and replaced by new "
+"keys."
+msgstr ""
+"ამ ბარათზე არსებული გასაღებები <b>წაიშლება</b> და ახალი გასაღებებით "
+"ჩანაცვლდება."
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:264
+#: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
+#: src/commands/openpgpgeneratecardkeycommand.cpp:184
+#: src/commands/pivgeneratecardkeycommand.cpp:135
+#, kde-format
+msgid ""
+"It will no longer be possible to decrypt past communication encrypted for "
+"the existing key."
+msgstr "არსებული გასაღებისთვის ძველი კომუნიკაციის გაშიფვრა შესაძლებელი აღარაა."
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:266
+#, kde-format
+msgid "Secret Key Deletion"
+msgstr "საიდუმლო გასაღების წაშლა"
+
+#: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:288
+#, kde-format
+msgctxt "@info"
+msgid ""
+"You cannot generate keys on this smart card because it doesn't support any "
+"of the compliant algorithms."
+msgstr ""
+"ამ სმარტ ბარათზე გასაღებების გენერაციას ვერ შეძლებთ, რადგან, როგორც ჩანს, "
+"მას თავსებადი ალგორითმის მხარდაჭერა არ გააჩნია."
+
 #: src/commands/genrevokecommand.cpp:72
 #, kde-format
 msgid "This is a revocation certificate for the OpenPGP key:"
@@ -2036,12 +2122,12 @@ msgid_plural "Fetching %1 keys... (this can take a while)"
 msgstr[0] "1 გასაღების გამოთხოვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 msgstr[1] "%1 გასაღების გამოთხოვა... (ამას კარგა ხანი შეიძლება დასჭირდეს)"
 
-#: src/commands/importcertificatefrompivcardcommand.cpp:84
+#: src/commands/importcertificatefrompivcardcommand.cpp:87
 #, kde-format
 msgid "Sorry! No certificate to import from this card slot was found."
 msgstr "უკაცრავად! ამ ბარათის სლოტში შემოსატანი სერტიფიკატი ვერ ვპოვე."
 
-#: src/commands/importcertificatefrompivcardcommand.cpp:89
+#: src/commands/importcertificatefrompivcardcommand.cpp:92
 #, kde-format
 msgid "Card Certificate"
 msgstr "ბარათის სერტიფიკატი"
@@ -2512,16 +2598,6 @@ msgstr "აირჩიეთ ბარათის სლოტი, რომ�
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "უკაცრავად! ამ გასაღების OpenPGP ბარათზე გადატანა შეუძლებელია."
-
-#: src/commands/keytocardcommand.cpp:287 src/commands/keytocardcommand.cpp:406
-#: src/commands/openpgpgeneratecardkeycommand.cpp:184
-#: src/commands/pivgeneratecardkeycommand.cpp:135
-#: src/view/pgpcardwidget.cpp:368
-#, kde-format
-msgid ""
-"It will no longer be possible to decrypt past communication encrypted for "
-"the existing key."
-msgstr "არსებული გასაღებისთვის ძველი კომუნიკაციის გაშიფვრა შესაძლებელი აღარაა."
 
 #: src/commands/keytocardcommand.cpp:290 src/commands/keytocardcommand.cpp:409
 #, kde-format
@@ -3945,8 +4021,8 @@ msgctxt "@action:button"
 msgid "New"
 msgstr "ახალი"
 
-#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:150
-#: src/view/pgpcardwidget.cpp:169
+#: src/conf/groupsconfigwidget.cpp:182 src/view/pgpcardwidget.cpp:53
+#: src/view/pgpcardwidget.cpp:72
 #, kde-format
 msgctxt "@action:button"
 msgid "Edit"
@@ -5123,6 +5199,7 @@ msgid "This certificate is revoked"
 msgstr "ეს სერტიფიკატი გაუქმებულია"
 
 #: src/crypto/gui/certificatelineedit.cpp:727 src/dialogs/expirydialog.cpp:219
+#: src/view/smartcardwidget.cpp:262
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -6943,7 +7020,7 @@ msgid "User IDs"
 msgstr "მომხმარებლის ID-ები"
 
 #: src/dialogs/certifywidget.cpp:222 src/dialogs/certifywidget.cpp:449
-#: src/dialogs/certifywidget.cpp:463 src/view/cardkeysview.cpp:440
+#: src/dialogs/certifywidget.cpp:463 src/view/cardkeysview.cpp:425
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
@@ -7082,7 +7159,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:463
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:166
-#: src/view/cardkeysview.cpp:442
+#: src/view/cardkeysview.cpp:427
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7595,7 +7672,7 @@ msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "ვადა"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:241 src/view/cardkeysview.cpp:441
+#: src/dialogs/lookupcertificatesdialog.cpp:241 src/view/cardkeysview.cpp:426
 #, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
@@ -7961,13 +8038,13 @@ msgctxt "@title:column"
 msgid "Status"
 msgstr "სტატუსი"
 
-#: src/dialogs/subkeyswidget.cpp:170 src/view/cardkeysview.cpp:444
+#: src/dialogs/subkeyswidget.cpp:170 src/view/cardkeysview.cpp:429
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "გამოყენება"
 
-#: src/dialogs/subkeyswidget.cpp:171 src/view/cardkeysview.cpp:445
+#: src/dialogs/subkeyswidget.cpp:171 src/view/cardkeysview.cpp:430
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
@@ -7979,7 +8056,7 @@ msgctxt "@title:column"
 msgid "Storage"
 msgstr "საცავი"
 
-#: src/dialogs/subkeyswidget.cpp:173 src/view/cardkeysview.cpp:446
+#: src/dialogs/subkeyswidget.cpp:173 src/view/cardkeysview.cpp:431
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
@@ -8314,7 +8391,7 @@ msgctxt "@info"
 msgid "Certifications are not available before the certificate is imported."
 msgstr "სერტიფიცირება ხელმიუწვდომელია სერტიფიკატის შემოტანამდე."
 
-#: src/dialogs/weboftrustwidget.cpp:104 src/view/smartcardactions.cpp:37
+#: src/dialogs/weboftrustwidget.cpp:104 src/view/smartcardactions.cpp:96
 #, kde-format
 msgctxt "@action"
 msgid "Show Certificate Details"
@@ -11643,43 +11720,43 @@ msgctxt "@info"
 msgid "no associated certificate"
 msgstr "ასოცირებული სერტიფიკატის გარეშე"
 
-#: src/view/cardkeysview.cpp:433
+#: src/view/cardkeysview.cpp:418
 #, kde-format
 msgctxt "@title"
 msgid "card keys and certificates"
 msgstr "ბარათის გასაღებები და სერტიფიკატები"
 
-#: src/view/cardkeysview.cpp:439
+#: src/view/cardkeysview.cpp:424
 #, kde-format
 msgctxt "@title:column Name or ID of a storage slot for a key on a smart card"
 msgid "Card Slot"
 msgstr "ბარათის სლოტი"
 
-#: src/view/cardkeysview.cpp:443
+#: src/view/cardkeysview.cpp:428
 #, kde-format
 msgctxt "@title:column"
 msgid "Created"
 msgstr "შექმნილია"
 
-#: src/view/cardkeysview.cpp:447
+#: src/view/cardkeysview.cpp:432
 #, kde-format
 msgctxt "@title:column"
 msgid "Actions"
 msgstr "ქმედებები"
 
-#: src/view/cardkeysview.cpp:668
+#: src/view/cardkeysview.cpp:653
 #, kde-format
 msgctxt "@action:button"
 msgid "Actions"
 msgstr "ქმედებები"
 
-#: src/view/cardkeysview.cpp:669
+#: src/view/cardkeysview.cpp:654
 #, kde-format
 msgctxt "@info"
 msgid "Show actions available for this smart card slot"
 msgstr "ამ ჭკვიანი ბარათის სლოტისთვის ხელმისაწვდომი ქმედებების ჩვენება"
 
-#: src/view/cardkeysview.cpp:742
+#: src/view/cardkeysview.cpp:727
 #, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
@@ -12019,49 +12096,6 @@ msgstr "სერტიფიკატების იერარქიულ�
 msgid "List of certificates"
 msgstr "სერტიფიკატების სია"
 
-#: src/view/netkeywidget.cpp:53 src/view/pivcardwidget.cpp:43
-#, kde-format
-msgctxt "@action:button"
-msgid "Create OpenPGP Key"
-msgstr "OpenPGP გასაღების შექმნა"
-
-#: src/view/netkeywidget.cpp:54 src/view/pivcardwidget.cpp:44
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Create an OpenPGP key for the keys stored on the card."
-msgstr "OpenPGP-ის გასაღების შექმნა ბარათზე შენახული გასაღებებისთვის."
-
-#: src/view/netkeywidget.cpp:60
-#, kde-format
-msgctxt ""
-"@action:button NKS is an identifier for a type of keys on a NetKey card"
-msgid "Change NKS PIN"
-msgstr "NKS PIN-კოდის შეცვლა"
-
-#: src/view/netkeywidget.cpp:62
-#, kde-format
-msgctxt ""
-"@action:button SigG is an identifier for a type of keys on a NetKey card"
-msgid "Change SigG PIN"
-msgstr "SigG PIN-კოდის შეცვლა"
-
-#: src/view/netkeywidget.cpp:94 src/view/nullpinwidget.cpp:43
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-msgid "Set SigG PIN"
-msgstr "SigG PIN-კოდის დაყენება"
-
-#: src/view/netkeywidget.cpp:96
-#, kde-format
-msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-msgid "Change SigG PIN"
-msgstr "SigG PIN-კოდის შეცვლა"
-
-#: src/view/netkeywidget.cpp:101
-#, kde-format
-msgid "Error"
-msgstr "შეცდომა"
-
 #: src/view/nullpinwidget.cpp:35
 #, kde-format
 msgctxt ""
@@ -12080,6 +12114,12 @@ msgstr "სერტიფიკატების დაყენებამ�
 msgctxt "NKS is an identifier for a type of keys on a NetKey card"
 msgid "Set NKS PIN"
 msgstr "NKS PIN-ის დაყენება"
+
+#: src/view/nullpinwidget.cpp:43
+#, kde-format
+msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+msgid "Set SigG PIN"
+msgstr "SigG PIN-კოდის დაყენება"
 
 #: src/view/nullpinwidget.cpp:70
 #, kde-format
@@ -12109,22 +12149,22 @@ msgctxt "@title:window"
 msgid "Set initial PIN"
 msgstr "საწყისი PIN კოდის დაყენება"
 
-#: src/view/p15cardwidget.cpp:68
+#: src/view/p15cardwidget.cpp:67
 #, kde-format
 msgid "Searching in directory service..."
 msgstr "ძებნა კატალოგის სერვისში..."
 
-#: src/view/p15cardwidget.cpp:78
+#: src/view/p15cardwidget.cpp:77
 #, kde-format
 msgid "Automatic import finished."
 msgstr "ავტომატური შემოტანა დასრულდა."
 
-#: src/view/p15cardwidget.cpp:83
+#: src/view/p15cardwidget.cpp:82
 #, kde-format
 msgid "Error multiple keys found on server."
 msgstr "შეცდომა: სერვერზე აღმოჩენილია ერთზე მეტი გასაღები."
 
-#: src/view/p15cardwidget.cpp:86
+#: src/view/p15cardwidget.cpp:85
 #, kde-format
 msgid "Key not found in directory service."
 msgstr "კატალოგის სერვისში გასაღები აღმოჩენილი არაა."
@@ -12264,19 +12304,19 @@ msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
 msgstr "ბლოკნოტის ხელმოწერა/დაშიფვრა"
 
-#: src/view/pgpcardwidget.cpp:143
+#: src/view/pgpcardwidget.cpp:46
 #, kde-format
 msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "ბარათის მფლობელი:"
 
-#: src/view/pgpcardwidget.cpp:151 src/view/pgpcardwidget.cpp:170
+#: src/view/pgpcardwidget.cpp:54 src/view/pgpcardwidget.cpp:73
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Change"
 msgstr "შეცვლა"
 
-#: src/view/pgpcardwidget.cpp:160
+#: src/view/pgpcardwidget.cpp:63
 #, kde-format
 msgctxt ""
 "The URL under which a public key that corresponds to a smartcard can be "
@@ -12284,7 +12324,7 @@ msgctxt ""
 msgid "Pubkey URL:"
 msgstr "საჯარო გასაღების ბმული:"
 
-#: src/view/pgpcardwidget.cpp:180
+#: src/view/pgpcardwidget.cpp:83
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12292,7 +12332,7 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr "დარჩენილი მცდელობები:"
 
-#: src/view/pgpcardwidget.cpp:184
+#: src/view/pgpcardwidget.cpp:87
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12300,281 +12340,84 @@ msgid ""
 msgstr ""
 "აჩვენებს სწორი PIN ან PUK კოდის შეყვანის დარჩენილი მცდელობების რაოდენობას."
 
-#: src/view/pgpcardwidget.cpp:198
-#, kde-format
-msgctxt "@action:button"
-msgid "Generate New Keys"
-msgstr "ახალი გასაღებების გენერაცია"
-
-#: src/view/pgpcardwidget.cpp:200
-#, kde-kuit-format
-msgctxt "@info:tooltip"
-msgid ""
-"<para>Generate three new keys on the smart card and create a new OpenPGP "
-"certificate with those keys. Optionally, the encryption key is generated off-"
-"card and a backup is created so that you can still access data encrypted "
-"with this key in case the card is lost or damaged.</para><para><emphasis "
-"strong='true'>Existing keys on the smart card will be overwritten.</"
-"emphasis></para>"
-msgstr ""
-"<para>სამი ახალი გასაღების გენერაცია ჭკვიან ბარათზე და ამ გასაღებებით ახალი "
-"OpenPGP სერტიფიკატის გენერაცია. ასევე შეგიძლიათ, დაშიფვრის გასაღები ბარათის "
-"გარეთ დააგენერიროთ და შექმნათ მისი მარქაფიც, ასე რომ ამ გასაღებით დაშიფრულ "
-"მონაცემებთან წვდომა მაშინაც გექნებათ, თუ ბარათი დაზიანდა ან დაკარგეთ.</"
-"para><para><emphasis strong='true'>ჭკვიან ბარათზე არსებულ გასაღებებს თავზე "
-"გადაეწერება.</emphasis></para>"
-
-#: src/view/pgpcardwidget.cpp:211 src/view/pivcardwidget.cpp:50
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PIN"
-msgstr "PIN კოდის შეცვლა"
-
-#: src/view/pgpcardwidget.cpp:213
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Change the PIN required for using the keys on the smart card. The PIN must "
-"contain at least six characters."
-msgstr ""
-"სმარტ ბარათზე არსებული გასაღებების გამოყენებისთვის საჭირო PIN-კოდის შეცვლა. "
-"PIN კოდი სულ ცოტა, ექვს სიმბოლოს უნდა შეიცავდეს."
-
-#: src/view/pgpcardwidget.cpp:221
-#, kde-format
-msgctxt "@action:button"
-msgid "Unblock Card"
-msgstr "ბარათის განბლოკვა"
-
-#: src/view/pgpcardwidget.cpp:222
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
-msgstr ""
-"განბლოკეთ ჭკვიანი ბარათი PUK კოდით (თუ ხელმისაწვდომია), ან ადმინისტრატორის "
-"PIN-კოდით."
-
-#: src/view/pgpcardwidget.cpp:235
-#, kde-format
-msgctxt "@action:button"
-msgid "Change Admin PIN"
-msgstr "ადმინის PIN-ის შეცვლა"
-
-#: src/view/pgpcardwidget.cpp:236
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Change the PIN required for administrative operations."
-msgstr "ადმინისტრირებისთვის საჭირო PIN-კოდის შეცვლა."
-
-#: src/view/pgpcardwidget.cpp:243 src/view/pgpcardwidget.cpp:283
-#, kde-format
-msgctxt "@action:button"
-msgid "Set PUK"
-msgstr "PUK-კოდის დაყენება"
-
-#: src/view/pgpcardwidget.cpp:245
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Set or change the PUK that can be used to unblock the smart card. The PUK "
-"must contain at least eight characters."
-msgstr ""
-"დააყენეთ ან შეცვალეთ PUK-კოდი, რომელიც ჭკვიანი ბარათის განბლოკვისთვისაა "
-"საჭირო. PUK კოდი, სულ ცოტა, რვა სიმბოლოს უნდა შეიცავდეს."
-
-#: src/view/pgpcardwidget.cpp:265 src/view/pgpcardwidget.cpp:267
+#: src/view/pgpcardwidget.cpp:104 src/view/pgpcardwidget.cpp:106
 #, kde-format
 msgid "not set"
 msgstr "არაა დაყენებული"
 
-#: src/view/pgpcardwidget.cpp:279
+#: src/view/pgpcardwidget.cpp:118
 #, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/view/pgpcardwidget.cpp:283 src/view/pivcardwidget.cpp:60
-#, kde-format
-msgctxt "@action:button"
-msgid "Change PUK"
-msgstr "PUK-ის შეცვლა"
-
-#: src/view/pgpcardwidget.cpp:317
-#, kde-format
-msgctxt "@title:window"
-msgid "Generating Keys"
-msgstr "გასაღებების გენერაცია"
-
-#: src/view/pgpcardwidget.cpp:318
-#, kde-format
-msgctxt "@label:textbox"
-msgid "This may take several minutes..."
-msgstr "შეიძლება, რამდენიმე წუთი დასჭირდეს..."
-
-#: src/view/pgpcardwidget.cpp:333
-#, kde-format
-msgctxt "@info"
-msgid "Failed to generate new key: %1"
-msgstr "ახალი გასაღების გენერაციის შეცდომა: %1"
-
-#: src/view/pgpcardwidget.cpp:343
-#, kde-format
-msgid "Save backup of encryption key"
-msgstr "დაშიფვრის გასაღების მარქაფი ფაილში"
-
-#: src/view/pgpcardwidget.cpp:343
-#, kde-format
-msgid "Backup Key"
-msgstr "მარქაფი გასაღები"
-
-#: src/view/pgpcardwidget.cpp:345
-#, kde-format
-msgctxt "@info"
-msgid "Failed to move backup. The backup key is still stored under: %1"
-msgstr ""
-"მარქაფის გადატანა ჩავარდა. მარქაფი გასაღები ჯერ კიდევ დამახსოვრებულია "
-"ბილიკზე: %1"
-
-#: src/view/pgpcardwidget.cpp:351
-#, kde-format
-msgctxt "@info"
-msgid "Successfully generated a new key for this card."
-msgstr "ამ ბარათისთვის ახალი გასაღების გენერაცია წარმატებით დასრულდა."
-
-#: src/view/pgpcardwidget.cpp:351 src/view/pgpcardwidget.cpp:442
-#: src/view/pgpcardwidget.cpp:489
-#, kde-format
-msgctxt "@title"
-msgid "Success"
-msgstr "წარმატება"
-
-#: src/view/pgpcardwidget.cpp:365
-#, kde-format
-msgid ""
-"The existing keys on this card will be <b>deleted</b> and replaced by new "
-"keys."
-msgstr ""
-"ამ ბარათზე არსებული გასაღებები <b>წაიშლება</b> და ახალი გასაღებებით "
-"ჩანაცვლდება."
-
-#: src/view/pgpcardwidget.cpp:370
-#, kde-format
-msgid "Secret Key Deletion"
-msgstr "საიდუმლო გასაღების წაშლა"
-
-#: src/view/pgpcardwidget.cpp:384
-#, kde-format
-msgctxt "@info"
-msgid ""
-"You cannot generate keys on this smart card because it doesn't support any "
-"of the compliant algorithms."
-msgstr ""
-"ამ სმარტ ბარათზე გასაღებების გენერაციას ვერ შეძლებთ, რადგან, როგორც ჩანს, "
-"მას თავსებადი ალგორითმის მხარდაჭერა არ გააჩნია."
-
-#: src/view/pgpcardwidget.cpp:401
+#: src/view/pgpcardwidget.cpp:128
 #, kde-format
 msgid "Change cardholder"
 msgstr "ბარათის მფლობელის შეცვლა"
 
-#: src/view/pgpcardwidget.cpp:401
+#: src/view/pgpcardwidget.cpp:128
 #, kde-format
 msgid "New name:"
 msgstr "ახალი სახელი:"
 
-#: src/view/pgpcardwidget.cpp:407
+#: src/view/pgpcardwidget.cpp:134
 #, kde-format
 msgctxt "@info"
 msgid "The \"<\" character may not be used."
 msgstr "\"<\" სიმბოლოს გამოყენება აკრძალულია."
 
-#: src/view/pgpcardwidget.cpp:411
+#: src/view/pgpcardwidget.cpp:138
 #, kde-format
 msgctxt "@info"
 msgid "Double spaces are not allowed"
 msgstr "ორმაგი გამოტოვებები დაშვებული არაა"
 
-#: src/view/pgpcardwidget.cpp:415
+#: src/view/pgpcardwidget.cpp:142
 #, kde-format
 msgctxt "@info"
 msgid "The size of the name may not exceed 38 characters."
 msgstr "სახელის ზომა 38 სიმბოლოზე მეტი არ შეიძლება, იყოს."
 
-#: src/view/pgpcardwidget.cpp:438
+#: src/view/pgpcardwidget.cpp:165
 #, kde-format
 msgctxt "@info"
 msgid "Name change failed: %1"
 msgstr "სახელის შეცვლის შეცდომა: %1"
 
-#: src/view/pgpcardwidget.cpp:442
+#: src/view/pgpcardwidget.cpp:169
 #, kde-format
 msgctxt "@info"
 msgid "Name successfully changed."
 msgstr "სახელი წარმატებით შეიცვალა."
 
-#: src/view/pgpcardwidget.cpp:453
+#: src/view/pgpcardwidget.cpp:180
 #, kde-format
 msgid "Change the URL where the pubkey can be found"
 msgstr "ბმულის, სადაც საჯარო გასაღების პოვნა შეიძლება, შეცვლა"
 
-#: src/view/pgpcardwidget.cpp:454
+#: src/view/pgpcardwidget.cpp:181
 #, kde-format
 msgid "New pubkey URL:"
 msgstr "ახალი საჯარო გასაღების ბმული:"
 
-#: src/view/pgpcardwidget.cpp:465
+#: src/view/pgpcardwidget.cpp:192
 #, kde-format
 msgctxt "@info"
 msgid "The size of the URL may not exceed 254 characters."
 msgstr "ბმულის ზომა, არ შეიძლება, 254 სიმბოლოს აჭარბებდეს."
 
-#: src/view/pgpcardwidget.cpp:485
+#: src/view/pgpcardwidget.cpp:212
 #, kde-format
 msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "URL-ის შეცვლის შეცდომა: %1"
 
-#: src/view/pgpcardwidget.cpp:489
+#: src/view/pgpcardwidget.cpp:216
 #, kde-format
 msgctxt "@info"
 msgid "URL successfully changed."
 msgstr "URL წარმატებით შეიცვალა."
-
-#: src/view/pivcardwidget.cpp:52
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Change the PIV Card Application PIN that activates the PIV Card and enables "
-"private key operations using the stored keys."
-msgstr ""
-"შეცვალეთ PIV ბარათის აპლიკაციის PIN-კოდი, რომელიც ააქტიურებს PIV ბარათს და "
-"დამახსოვრებული გასაღებებით ოპერაციებით საშუალებას გაძლევთ."
-
-#: src/view/pivcardwidget.cpp:61
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-msgstr ""
-"შეცვალეთ PIN-კოდის განბლოკვის გასაღები, რომელიც PIN-კოდის შეცვლას რთავს."
-
-#: src/view/pivcardwidget.cpp:68
-#, kde-format
-msgctxt "@action:button"
-msgid "Change Admin Key"
-msgstr "ადმინის გასაღების შეცვლა"
-
-#: src/view/pivcardwidget.cpp:70
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Change the PIV Card Application Administration Key that is used by the PIV "
-"Card Application to authenticate the PIV Card Application Administrator and "
-"by the administrator (resp. Kleopatra) to authenticate the PIV Card "
-"Application."
-msgstr ""
-"შეცვალეთ PIV ბარათის აპლიკაციის ადმინისტრატორის გასაღები, რომელიც PIV "
-"ბარათის აპლიკაციის მიერ გამოიყენება PIV ბარათის ადმინისტრატორის, ან "
-"ადმინისტრატორი (მაგ: Kleopatra) PIV ბარათის აპლიკაციის ავთენტიკაციისთვის."
 
 #: src/view/searchbar.cpp:132
 #, kde-format
@@ -12616,30 +12459,205 @@ msgctxt "@info:placeholder"
 msgid "Enter search term <%1>"
 msgstr "შეიყვანეთ საძებნი სტრიქონი <%1>"
 
-#: src/view/smartcardactions.cpp:22
+#: src/view/smartcardactions.cpp:25
 #, kde-format
 msgid "Smart Card Management"
 msgstr "ჭკვიანი ბარათების მართვა"
 
-#: src/view/smartcardactions.cpp:30
+#: src/view/smartcardactions.cpp:33
 #, kde-format
 msgctxt "@action"
 msgid "Reload"
 msgstr "თავიდან ჩატვირთვა"
 
-#: src/view/smartcardactions.cpp:31
+#: src/view/smartcardactions.cpp:34
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reload smart cards"
 msgstr "ჭკვიანი ბარათების თავიდან ჩატვირთვა"
 
-#: src/view/smartcardactions.cpp:42
+#: src/view/smartcardactions.cpp:40
+#, fuzzy, kde-format
+#| msgctxt "title:window"
+#| msgid "Create OpenPGP Certificate"
+msgctxt "@action"
+msgid "Create OpenPGP Certificate"
+msgstr "OpenPGP სერთიფიკატის შექმნა"
+
+#: src/view/smartcardactions.cpp:41
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Create an OpenPGP key for the keys stored on the card."
+msgctxt "@info:tooltip"
+msgid "Create an OpenPGP certificate for the keys stored on the card."
+msgstr "OpenPGP-ის გასაღების შექმნა ბარათზე შენახული გასაღებებისთვის."
+
+#: src/view/smartcardactions.cpp:46
+#, fuzzy, kde-format
+#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Set NKS PIN"
+msgctxt "@action NKS is an identifier for a type of keys on a NetKey card"
+msgid "Set NKS PIN"
+msgstr "NKS PIN-ის დაყენება"
+
+#: src/view/smartcardactions.cpp:48
+#, fuzzy, kde-format
+#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Set SigG PIN"
+msgctxt "@action SigG is an identifier for a type of keys on a NetKey card"
+msgid "Set SigG PIN"
+msgstr "SigG PIN-კოდის დაყენება"
+
+#: src/view/smartcardactions.cpp:52
+#, kde-format
+msgctxt "@action:button"
+msgid "Generate New Keys"
+msgstr "ახალი გასაღებების გენერაცია"
+
+#: src/view/smartcardactions.cpp:54
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"<para>Generate three new keys on the smart card and create a new OpenPGP "
+"certificate with those keys. Optionally, the encryption key is generated off-"
+"card and a backup is created so that you can still access data encrypted "
+"with this key in case the card is lost or damaged.</para><para><emphasis "
+"strong='true'>Existing keys on the smart card will be overwritten.</"
+"emphasis></para>"
+msgstr ""
+"<para>სამი ახალი გასაღების გენერაცია ჭკვიან ბარათზე და ამ გასაღებებით ახალი "
+"OpenPGP სერტიფიკატის გენერაცია. ასევე შეგიძლიათ, დაშიფვრის გასაღები ბარათის "
+"გარეთ დააგენერიროთ და შექმნათ მისი მარქაფიც, ასე რომ ამ გასაღებით დაშიფრულ "
+"მონაცემებთან წვდომა მაშინაც გექნებათ, თუ ბარათი დაზიანდა ან დაკარგეთ.</"
+"para><para><emphasis strong='true'>ჭკვიან ბარათზე არსებულ გასაღებებს თავზე "
+"გადაეწერება.</emphasis></para>"
+
+#: src/view/smartcardactions.cpp:62
+#, kde-format
+msgctxt "@action:button"
+msgid "Change PIN"
+msgstr "PIN კოდის შეცვლა"
+
+#: src/view/smartcardactions.cpp:64
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Change the PIN required for using the keys on the smart card. The PIN must "
+"contain at least six characters."
+msgstr ""
+"სმარტ ბარათზე არსებული გასაღებების გამოყენებისთვის საჭირო PIN-კოდის შეცვლა. "
+"PIN კოდი სულ ცოტა, ექვს სიმბოლოს უნდა შეიცავდეს."
+
+#: src/view/smartcardactions.cpp:67
+#, kde-format
+msgctxt "@action:button"
+msgid "Unblock Card"
+msgstr "ბარათის განბლოკვა"
+
+#: src/view/smartcardactions.cpp:68
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Unblock the smart card with the PUK (if available) or the Admin PIN."
+msgstr ""
+"განბლოკეთ ჭკვიანი ბარათი PUK კოდით (თუ ხელმისაწვდომია), ან ადმინისტრატორის "
+"PIN-კოდით."
+
+#: src/view/smartcardactions.cpp:70
+#, kde-format
+msgctxt "@action:button"
+msgid "Change Admin PIN"
+msgstr "ადმინის PIN-ის შეცვლა"
+
+#: src/view/smartcardactions.cpp:71
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Change the PIN required for administrative operations."
+msgstr "ადმინისტრირებისთვის საჭირო PIN-კოდის შეცვლა."
+
+#: src/view/smartcardactions.cpp:73
+#, kde-format
+msgctxt "@action:button"
+msgid "Set PUK"
+msgstr "PUK-კოდის დაყენება"
+
+#: src/view/smartcardactions.cpp:75
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Set or change the PUK that can be used to unblock the smart card. The PUK "
+"must contain at least eight characters."
+msgstr ""
+"დააყენეთ ან შეცვალეთ PUK-კოდი, რომელიც ჭკვიანი ბარათის განბლოკვისთვისაა "
+"საჭირო. PUK კოდი, სულ ცოტა, რვა სიმბოლოს უნდა შეიცავდეს."
+
+#: src/view/smartcardactions.cpp:80
+#, fuzzy, kde-format
+#| msgid "Change PIN"
+msgctxt "@action"
+msgid "Change PIN"
+msgstr "PIN კოდის შეცვლა"
+
+#: src/view/smartcardactions.cpp:81
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Change the PIN required for using the keys on the smart card. The PIN "
+#| "must contain at least six characters."
+msgctxt "@info:tooltip"
+msgid "Change the PIN required for using the keys on the smart card."
+msgstr ""
+"სმარტ ბარათზე არსებული გასაღებების გამოყენებისთვის საჭირო PIN-კოდის შეცვლა. "
+"PIN კოდი სულ ცოტა, ექვს სიმბოლოს უნდა შეიცავდეს."
+
+#: src/view/smartcardactions.cpp:83 src/view/smartcardwidget.cpp:125
+#, fuzzy, kde-format
+#| msgid "Change PUK"
+msgctxt "@action"
+msgid "Change PUK"
+msgstr "PUK-ის შეცვლა"
+
+#: src/view/smartcardactions.cpp:85
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Set or change the PUK that can be used to unblock the smart card. The PUK "
+#| "must contain at least eight characters."
+msgctxt "@info:tooltip"
+msgid ""
+"Change the PIN Unblocking Key (PUK) that can be used to unblock the smart "
+"card after a wrong PIN has been entered too many times."
+msgstr ""
+"დააყენეთ ან შეცვალეთ PUK-კოდი, რომელიც ჭკვიანი ბარათის განბლოკვისთვისაა "
+"საჭირო. PUK კოდი, სულ ცოტა, რვა სიმბოლოს უნდა შეიცავდეს."
+
+#: src/view/smartcardactions.cpp:88
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Change Admin Key"
+msgctxt "@action"
+msgid "Change Admin Key"
+msgstr "ადმინის გასაღების შეცვლა"
+
+#: src/view/smartcardactions.cpp:90
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"Change the PIV Card Application Administration Key that is used by the PIV "
+"Card Application to authenticate the PIV Card Application Administrator and "
+"by the administrator (resp. Kleopatra) to authenticate the PIV Card "
+"Application."
+msgstr ""
+"შეცვალეთ PIV ბარათის აპლიკაციის ადმინისტრატორის გასაღები, რომელიც PIV "
+"ბარათის აპლიკაციის მიერ გამოიყენება PIV ბარათის ადმინისტრატორის, ან "
+"ადმინისტრატორი (მაგ: Kleopatra) PIV ბარათის აპლიკაციის ავთენტიკაციისთვის."
+
+#: src/view/smartcardactions.cpp:100
 #, kde-format
 msgctxt "@action"
 msgid "Generate New Key"
 msgstr "ახალი გასაღების გენერაცია"
 
-#: src/view/smartcardactions.cpp:43
+#: src/view/smartcardactions.cpp:101
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -12649,95 +12667,95 @@ msgstr ""
 "თუ ეს ბარათის სლოტი უკვე შეიცავს გასაღებს, მაშინ ახალი გასაღები შეუქცევადად "
 "გადაეწერება ძველს თავზე."
 
-#: src/view/smartcardactions.cpp:48
+#: src/view/smartcardactions.cpp:104
 #, kde-format
 msgctxt "@action"
 msgid "Write Key to Card"
 msgstr "გასაღების ჩაწერა ბარათზე"
 
-#: src/view/smartcardactions.cpp:49
+#: src/view/smartcardactions.cpp:105
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the key pair of a certificate to the card"
 msgstr "სერტიფიკატის გასაღებების წყვილის ბარათზე ჩაწერა"
 
-#: src/view/smartcardactions.cpp:54
+#: src/view/smartcardactions.cpp:108
 #, kde-format
 msgctxt "@action"
 msgid "Write Certificate to Card"
 msgstr "სერტიფიკატის ჩაწერა ბარათზე"
 
-#: src/view/smartcardactions.cpp:55
+#: src/view/smartcardactions.cpp:109
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Write the certificate corresponding to this key to the card"
 msgstr "ბარათზე ამ გასაღების შესაბამისი სერტიფიკატის ჩაწერა"
 
-#: src/view/smartcardactions.cpp:60
+#: src/view/smartcardactions.cpp:112
 #, kde-format
 msgctxt "@action"
 msgid "Import Certificate from Card"
 msgstr "სერტიფიკატის შემოტანა ბარათიდან"
 
-#: src/view/smartcardactions.cpp:61
+#: src/view/smartcardactions.cpp:113
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import the certificate stored on the card"
 msgstr "ბარათზე დამახსოვრებული სერტიფიკატის შეოტანა"
 
-#: src/view/smartcardactions.cpp:66
+#: src/view/smartcardactions.cpp:116
 #, kde-format
 msgctxt "@action"
 msgid "Create S/MIME Certification Request"
 msgstr "S/MIME სერტიფიკაციის მოთხოვნის შექმნა"
 
-#: src/view/smartcardactions.cpp:67
+#: src/view/smartcardactions.cpp:117
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an S/MIME certificate signing request for this key"
 msgstr "S/MME ხელმოწერის მოთხოვნის შექმნა ამ გასაღებისთვის"
 
-#: src/view/smartcardswidget.cpp:70
+#: src/view/smartcardswidget.cpp:74
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 or later"
 msgstr "OpenPGP v2.0 ან უფრო ახალი"
 
-#: src/view/smartcardswidget.cpp:71
+#: src/view/smartcardswidget.cpp:75
 #, kde-format
 msgctxt "Gnuk is a cryptographic token for GnuPG"
 msgid "Gnuk"
 msgstr "Gnuk"
 
-#: src/view/smartcardswidget.cpp:72
+#: src/view/smartcardswidget.cpp:76
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3 or later"
 msgstr "NetKey v3 ან უფრო ახალი"
 
-#: src/view/smartcardswidget.cpp:73
+#: src/view/smartcardswidget.cpp:77
 #, kde-format
 msgctxt "PIV refers to a smartcard protocol"
 msgid "PIV (requires GnuPG 2.3 or later)"
 msgstr "PIV (მოითხოვს GnuPG 2.3 ან უფრო ახალს)"
 
-#: src/view/smartcardswidget.cpp:74
+#: src/view/smartcardswidget.cpp:78
 #, kde-format
 msgctxt "CardOS is a smartcard operating system"
 msgid "CardOS 5 (various apps)"
 msgstr "CardOS 5 (სხვადასხვა აპები)"
 
-#: src/view/smartcardswidget.cpp:76
+#: src/view/smartcardswidget.cpp:80
 #, kde-format
 msgid "Please insert a compatible smartcard."
 msgstr "შეაერთეთ თავსებადი სმარტ-ბარათი."
 
-#: src/view/smartcardswidget.cpp:78
+#: src/view/smartcardswidget.cpp:82
 #, kde-format
 msgid "Kleopatra currently supports the following card types:"
 msgstr "Kleopatra-ს, ამჟამად, შემდეგი ბარათის ტიპების მხარდაჭერა გააჩნია:"
 
-#: src/view/smartcardswidget.cpp:267
+#: src/view/smartcardswidget.cpp:316
 #, kde-format
 msgctxt ""
 "@title:tab smartcard application - name of card holder - serial number of "
@@ -12745,54 +12763,96 @@ msgctxt ""
 msgid "%1 - %2 - %3"
 msgstr "%1 - %2 - %3"
 
-#: src/view/smartcardswidget.cpp:272
+#: src/view/smartcardswidget.cpp:321
 #, kde-format
 msgctxt "@title:tab smartcard application - serial number of smartcard"
 msgid "%1 - %2"
 msgstr "%1 - %2"
 
-#: src/view/smartcardwidget.cpp:36
+#: src/view/smartcardwidget.cpp:40
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "ბარათი NetKey v%1"
 
-#: src/view/smartcardwidget.cpp:41
+#: src/view/smartcardwidget.cpp:45
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "უცნობი OpenPGP v%1 ბარათი"
 
-#: src/view/smartcardwidget.cpp:43
+#: src/view/smartcardwidget.cpp:47
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 ბარათი"
 
-#: src/view/smartcardwidget.cpp:48
+#: src/view/smartcardwidget.cpp:52
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr "%1 PKCS#15 ბარათი"
 
-#: src/view/smartcardwidget.cpp:50
+#: src/view/smartcardwidget.cpp:54
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr "PIV v%1 ბარათი"
 
-#: src/view/smartcardwidget.cpp:82
+#: src/view/smartcardwidget.cpp:112
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "@action:button NKS is an identifier for a type of keys on a NetKey card"
+#| msgid "Change NKS PIN"
+msgctxt "@action NKS is an identifier for a type of keys on a NetKey card"
+msgid "Change NKS PIN"
+msgstr "NKS PIN-კოდის შეცვლა"
+
+#: src/view/smartcardwidget.cpp:116
+#, fuzzy, kde-format
+#| msgctxt ""
+#| "@action:button SigG is an identifier for a type of keys on a NetKey card"
+#| msgid "Change SigG PIN"
+msgctxt "@action SigG is an identifier for a type of keys on a NetKey card"
+msgid "Change SigG PIN"
+msgstr "SigG PIN-კოდის შეცვლა"
+
+#: src/view/smartcardwidget.cpp:125
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Set PUK"
+msgctxt "@action"
+msgid "Set PUK"
+msgstr "PUK-კოდის დაყენება"
+
+#: src/view/smartcardwidget.cpp:192
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
 msgstr "ბარათის ტიპი:"
 
-#: src/view/smartcardwidget.cpp:87
+#: src/view/smartcardwidget.cpp:197
 #, kde-format
 msgctxt "@label"
 msgid "Serial number:"
 msgstr "სერიული ნომერი:"
+
+#: src/view/smartcardwidget.cpp:209
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Actions"
+msgctxt "@action:button"
+msgid "Card Actions"
+msgstr "ქმედებები"
+
+#: src/view/smartcardwidget.cpp:210
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Show actions available for this smart card slot"
+msgctxt "@info"
+msgid "Show actions available for this smart card"
+msgstr "ამ ჭკვიანი ბარათის სლოტისთვის ხელმისაწვდომი ქმედებების ჩვენება"
 
 #: src/view/tabwidget.cpp:661
 #, kde-format
@@ -12957,6 +13017,34 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgctxt "@action:button"
+#~ msgid "Create OpenPGP Key"
+#~ msgstr "OpenPGP გასაღების შექმნა"
+
+#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
+#~ msgid "Change SigG PIN"
+#~ msgstr "SigG PIN-კოდის შეცვლა"
+
+#~ msgid "Error"
+#~ msgstr "შეცდომა"
+
+#~ msgctxt "@action:button"
+#~ msgid "Change PUK"
+#~ msgstr "PUK-ის შეცვლა"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Change the PIV Card Application PIN that activates the PIV Card and "
+#~ "enables private key operations using the stored keys."
+#~ msgstr ""
+#~ "შეცვალეთ PIV ბარათის აპლიკაციის PIN-კოდი, რომელიც ააქტიურებს PIV ბარათს "
+#~ "და დამახსოვრებული გასაღებებით ოპერაციებით საშუალებას გაძლევთ."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
+#~ msgstr ""
+#~ "შეცვალეთ PIN-კოდის განბლოკვის გასაღები, რომელიც PIN-კოდის შეცვლას რთავს."
 
 #~ msgid "Subkeys"
 #~ msgstr "ქვეგასაღებები"
@@ -13218,10 +13306,6 @@ msgstr ""
 #~ msgid "Key Material"
 #~ msgstr "გასაღების მასალა"
 
-#~ msgctxt "title:window"
-#~ msgid "Create OpenPGP Certificate"
-#~ msgstr "OpenPGP სერთიფიკატის შექმნა"
-
 #~ msgid "Enter a name and an email address to use for the certificate."
 #~ msgstr "შეიყვანეთ სახელი და ელფოსტის მისამართი სერტიფიკატისთვის."
 
@@ -13268,12 +13352,6 @@ msgstr ""
 #~ msgctxt "@label:textbox"
 #~ msgid "Serial number:"
 #~ msgstr "სერიული ნომერი:"
-
-#~ msgid "Change PIN"
-#~ msgstr "PIN კოდის შეცვლა"
-
-#~ msgid "Change PUK"
-#~ msgstr "PUK-ის შეცვლა"
 
 #~ msgid "SecOps VSA-10573"
 #~ msgstr "SecOps VSA-10573"
