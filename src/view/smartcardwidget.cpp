@@ -77,6 +77,7 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
             u"card_pgp_change_admin_pin"_s,
             u"card_pgp_change_puk"_s,
             u"card_pgp_change_cardholder"_s,
+            u"card_pgp_change_publickeyurl"_s,
         };
         break;
     case AppType::P15App:
