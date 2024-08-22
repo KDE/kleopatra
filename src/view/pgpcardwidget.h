@@ -12,14 +12,7 @@
 
 #include "smartcardwidget.h"
 
-#include <string>
-
 class QLabel;
-
-namespace GpgME
-{
-class Error;
-}
 
 namespace Kleo
 {
@@ -36,13 +29,7 @@ public:
 
     void setCard(const SmartCard::OpenPGPCard *card);
 
-public Q_SLOTS:
-    void changeUrlRequested();
-    void changeUrlResult(const GpgME::Error &err);
-
 private:
-    QLabel *mUrlLabel = nullptr;
     QLabel *mPinCounterLabel = nullptr;
-    QString mUrl;
 };
 } // namespace Kleo

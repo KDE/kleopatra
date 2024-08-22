@@ -146,6 +146,7 @@ public:
     void changePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode = ChangePinCommand::NormalMode);
     void unblockOpenPGPCard();
     void changeCardholder();
+    void changePublicKeyUrl();
     void setPIVAdminKey();
 
     // card slot actions
@@ -231,6 +232,9 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     });
     actions->connectAction(u"card_pgp_change_cardholder"_s, q, [this]() {
         changeCardholder();
+    });
+    actions->connectAction(u"card_pgp_change_publickeyurl"_s, q, [this]() {
+        changePublicKeyUrl();
     });
     actions->connectAction(u"card_piv_change_pin"_s, q, [this]() {
         changePin(PIVCard::pinKeyRef());
@@ -485,6 +489,48 @@ void SmartCardsWidget::Private::changeCardholder()
             KMessageBox::error(q, i18nc("@info", "Name change failed: %1", Formatting::errorAsString(err)));
         } else if (!err.isCanceled()) {
             KMessageBox::information(q, i18nc("@info", "Name successfully changed."), i18nc("@title", "Success"));
+            ReaderStatus::mutableInstance()->updateStatus();
+        }
+    });
+}
+
+void SmartCardsWidget::Private::changePublicKeyUrl()
+{
+    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    QString text = currentCardWidget()->card()->publicKeyUrl();
+    while (true) {
+        bool ok = false;
+        text = QInputDialog::getText(q,
+                                     i18nc("@title:window", "Change Public Key URL"),
+                                     i18nc("@label", "Enter the new public key URL:"),
+                                     QLineEdit::Normal,
+                                     text,
+                                     &ok,
+                                     Qt::WindowFlags(),
+                                     Qt::ImhLatinOnly);
+        if (!ok) {
+            return;
+        }
+        // Some additional restrictions imposed by gnupg
+        if (text.size() > 254) {
+            KMessageBox::error(q, i18nc("@info", "The size of the URL may not exceed 254 characters."));
+            continue;
+        }
+        break;
+    }
+
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(currentSerialNumber());
+    if (!pgpCard) {
+        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(currentSerialNumber())));
+        return;
+    }
+
+    const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this](const GpgME::Error &err) {
+        if (err) {
+            KMessageBox::error(q, i18nc("@info", "URL change failed: %1", Formatting::errorAsString(err)));
+        } else if (!err.isCanceled()) {
+            KMessageBox::information(q, i18nc("@info", "URL successfully changed."), i18nc("@title", "Success"));
             ReaderStatus::mutableInstance()->updateStatus();
         }
     });

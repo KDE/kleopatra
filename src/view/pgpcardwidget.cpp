@@ -16,21 +16,11 @@
 #include "kleopatra_debug.h"
 
 #include "smartcard/openpgpcard.h"
-#include "smartcard/readerstatus.h"
-
-#include <view/cardkeysview.h>
 
 #include <QGridLayout>
-#include <QHBoxLayout>
-#include <QInputDialog>
 #include <QLabel>
-#include <QPushButton>
-#include <QVBoxLayout>
 
 #include <KLocalizedString>
-#include <KMessageBox>
-
-#include <Libkleo/Formatting>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -41,25 +31,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
     {
         mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount() - 1, 0); // undo stretch set by base widget
         int row = mInfoGridLayout->rowCount();
-
-        // URL Row
-        mInfoGridLayout->addWidget(new QLabel(i18nc("The URL under which a public key that "
-                                                    "corresponds to a smartcard can be downloaded",
-                                                    "Pubkey URL:")),
-                                   row,
-                                   0);
-        mUrlLabel = new QLabel{this};
-        mUrlLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        mInfoGridLayout->addWidget(mUrlLabel, row, 1);
-        {
-            auto button = new QPushButton{this};
-            button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
-            button->setAccessibleName(i18nc("@action:button", "Edit"));
-            button->setToolTip(i18nc("@info:tooltip", "Change"));
-            mInfoGridLayout->addWidget(button, row, 2);
-            connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeUrlRequested);
-        }
-        row++;
 
         // PIN counters row
         {
@@ -84,11 +55,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     SmartCardWidget::setCard(card);
 
-    const auto url = card->publicKeyUrl();
-    mUrl = url;
-    mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
-    mUrlLabel->setOpenExternalLinks(true);
-
     const auto pinLabels = card->pinLabels();
     const auto pinCounters = card->pinCounters();
     QStringList countersWithLabels;
@@ -101,53 +67,6 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
         countersWithLabels.push_back(i18nc("label: value", "%1: %2", pinLabels[countersWithLabels.size()], pinCounter));
     }
     mPinCounterLabel->setText(countersWithLabels.join(QLatin1String(", ")));
-}
-
-void PGPCardWidget::changeUrlRequested()
-{
-    QString text = mUrl;
-    while (true) {
-        bool ok = false;
-        text = QInputDialog::getText(this,
-                                     i18n("Change the URL where the pubkey can be found"),
-                                     i18n("New pubkey URL:"),
-                                     QLineEdit::Normal,
-                                     text,
-                                     &ok,
-                                     Qt::WindowFlags(),
-                                     Qt::ImhLatinOnly);
-        if (!ok) {
-            return;
-        }
-        // Some additional restrictions imposed by gnupg
-        if (text.size() > 254) {
-            KMessageBox::error(this, i18nc("@info", "The size of the URL may not exceed 254 characters."));
-        }
-        break;
-    }
-
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
-    if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
-        return;
-    }
-
-    const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, [this](const GpgME::Error &err) {
-        changeUrlResult(err);
-    });
-}
-
-void PGPCardWidget::changeUrlResult(const GpgME::Error &err)
-{
-    if (err) {
-        KMessageBox::error(this, i18nc("@info", "URL change failed: %1", Formatting::errorAsString(err)));
-        return;
-    }
-    if (!err.isCanceled()) {
-        KMessageBox::information(this, i18nc("@info", "URL successfully changed."), i18nc("@title", "Success"));
-        ReaderStatus::mutableInstance()->updateStatus();
-    }
 }
 
 #include "moc_pgpcardwidget.cpp"
