@@ -26,8 +26,21 @@ class InfoField
 public:
     InfoField(const QString &label, QWidget *parent);
 
+    /** Returns the label which displays the label text. Add it to the UI. */
     QLabel *label() const;
+    /**
+     * Returns the layout containing the value label and the optional action button.
+     * Add it to the UI.
+     */
     QLayout *layout() const;
+
+    /**
+     * Returns the label which displays the value.
+     * Don't add this label to the UI. Instead add layout() to the UI.
+     * Use this accessor if you need to change some properties of the value
+     * label, e.g. the text interaction flags.
+     */
+    QLabel *valueLabel() const;
 
     void setValue(const QString &value, const QString &accessibleValue = {});
     QString value() const;

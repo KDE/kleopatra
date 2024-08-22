@@ -61,6 +61,11 @@ QLayout *InfoField::layout() const
     return mLayout;
 }
 
+QLabel *InfoField::valueLabel() const
+{
+    return mValue;
+}
+
 void InfoField::setValue(const QString &value, const QString &accessibleValue)
 {
     mValue->setText(value);
