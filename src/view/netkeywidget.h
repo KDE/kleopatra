@@ -11,18 +11,11 @@
 
 namespace Kleo
 {
-namespace SmartCard
-{
-class NetKeyCard;
-}
-
 class NetKeyWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
     explicit NetKeyWidget(QWidget *parent = nullptr);
     ~NetKeyWidget() override;
-
-    void setCard(const SmartCard::NetKeyCard *card);
 };
 } // namespace Kleo

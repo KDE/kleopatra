@@ -53,7 +53,6 @@ public:
     GpgME::Key currentCertificate() const;
 
 protected:
-    KMessageWidget *nullPinMessageWidget() const;
     QLabel *statusLabel() const;
 
 private:
