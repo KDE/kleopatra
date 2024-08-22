@@ -419,10 +419,9 @@ void SmartCardsWidget::Private::changePin(const std::string &keyRef, ChangePinCo
     cmd->setKeyRef(keyRef);
     cmd->setMode(mode);
     if (app == AppType::NetKeyApp) {
-        auto netKeyCard = static_cast<const NetKeyCard *>(currentCardWidget()->card());
-        Q_ASSERT(netKeyCard);
-        if ((keyRef == NetKeyCard::nksPinKeyRef() && netKeyCard->hasNKSNullPin()) //
-            || (keyRef == NetKeyCard::sigGPinKeyRef() && netKeyCard->hasSigGNullPin())) {
+        const Card *card = currentCardWidget()->card();
+        if ((keyRef == NetKeyCard::nksPinKeyRef() && card->hasNKSNullPin()) //
+            || (keyRef == NetKeyCard::sigGPinKeyRef() && card->hasSigGNullPin())) {
             cmd->setMode(ChangePinCommand::NullPinMode);
         }
     }

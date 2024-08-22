@@ -574,19 +574,11 @@ static void handle_netkey_card(std::shared_ptr<Card> &ci, std::shared_ptr<Contex
     std::vector<Card::PinState> states;
     states.reserve(chvStatus.count());
     // CHV Status for NKS v3 is
-    // Pin1 (Normal pin) Pin2 (Normal PUK)
-    // SigG1 SigG PUK.
-    int num = 0;
-    for (const auto &state : chvStatus) {
-        const auto parsed = parse_pin_state(state);
-        states.push_back(parsed);
-        if (parsed == Card::NullPin) {
-            if (num == 0) {
-                ci->setHasNullPin(true);
-            }
-        }
-        ++num;
-    }
+    // 0: NKS PIN retry counter (or special state if < 0)
+    // 1: NKS PUK retry counter (or special state if < 0)
+    // 2: SigG PIN retry counter (or special state if < 0)
+    // 3: SigG PUK retry counter (or special state if < 0)
+    Kleo::transform(chvStatus, std::back_inserter(states), &parse_pin_state);
     nkCard->setPinStates(states);
 
     const auto info = Assuan::sendStatusLinesCommand(gpg_agent, "SCD LEARN --force", err);
@@ -959,7 +951,7 @@ private:
                             }
                             oldCards.erase(matchingOldCard);
                         }
-                        if (newCard->hasNullPin() && firstCardWithNullPin.empty()) {
+                        if (newCard->hasNKSNullPin() && firstCardWithNullPin.empty()) {
                             firstCardWithNullPin = newCard->serialNumber();
                         }
                         if (newCard->status() == Card::CardError) {
@@ -1103,7 +1095,7 @@ private:
     {
         const auto cis = cardInfos();
         const auto firstWithNullPin = std::find_if(cis.cbegin(), cis.cend(), [](const std::shared_ptr<Card> &ci) {
-            return ci->hasNullPin();
+            return ci->hasNKSNullPin();
         });
         return firstWithNullPin != cis.cend() ? (*firstWithNullPin)->serialNumber() : std::string();
     }

@@ -49,36 +49,6 @@ std::string NetKeyCard::sigGPinKeyRef()
     return std::string("PW1.CH.SIG");
 }
 
-// State 0 -> NKS PIN Retry counter
-// State 1 -> NKS PUK Retry counter
-// State 2 -> SigG PIN Retry counter
-// State 3 -> SigG PUK Retry counter
-
-bool NetKeyCard::hasNKSNullPin() const
-{
-    static std::string forceNullPinSerialNumber = qgetenv("KLEO_FORCE_NULLPIN").toStdString();
-    if (serialNumber() == forceNullPinSerialNumber) {
-        return true;
-    }
-
-    const auto states = pinStates();
-    if (states.size() < 2) {
-        qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << states.size();
-        return false;
-    }
-    return states[0] == Card::NullPin;
-}
-
-bool NetKeyCard::hasSigGNullPin() const
-{
-    const auto states = pinStates();
-    if (states.size() < 4) {
-        qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << states.size();
-        return false;
-    }
-    return states[2] == Card::NullPin;
-}
-
 NetKeyCard *NetKeyCard::clone() const
 {
     return new NetKeyCard{*this};

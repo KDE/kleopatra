@@ -106,17 +106,16 @@ static void updateCardAction(QAction *action, const Card *card)
             action->setEnabled(false);
             return;
         }
-        auto netKeyCard = static_cast<const NetKeyCard *>(card);
         if (action->objectName() == "card_all_create_openpgp_certificate"_L1) {
-            action->setEnabled(!netKeyCard->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
+            action->setEnabled(!card->hasNKSNullPin() && card->hasSigningKey() && card->hasEncryptionKey()
                                && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->signingKeyRef()).algorithm)
                                && DeVSCompliance::algorithmIsCompliant(card->keyInfo(card->encryptionKeyRef()).algorithm));
         } else if (action->objectName() == "card_netkey_set_nks_pin"_L1) {
-            if (!netKeyCard->hasNKSNullPin()) {
+            if (!card->hasNKSNullPin()) {
                 action->setText(i18nc("@action NKS is an identifier for a type of keys on a NetKey card", "Change NKS PIN"));
             }
         } else if (action->objectName() == "card_netkey_set_sigg_pin"_L1) {
-            if (!netKeyCard->hasSigGNullPin()) {
+            if (!card->hasSigGNullPin()) {
                 action->setText(i18nc("@action SigG is an identifier for a type of keys on a NetKey card", "Change SigG PIN"));
             }
         }

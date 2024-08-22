@@ -28,9 +28,6 @@ public:
     static std::string nksPinKeyRef();
     static std::string sigGPinKeyRef();
 
-    bool hasSigGNullPin() const;
-    bool hasNKSNullPin() const;
-
 private:
     NetKeyCard(const NetKeyCard &card) = default;
 
