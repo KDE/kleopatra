@@ -49,7 +49,7 @@ SmartCardActions::SmartCardActions()
 
     // OpenPGP-specific card actions
     addAction(u"card_pgp_generate_keys_and_certificate"_s, //
-              i18nc("@action:button", "Generate New Keys"),
+              i18nc("@action", "Generate New Keys"),
               xi18nc("@info:tooltip",
                      "<para>Generate three new keys on the smart card and create a new OpenPGP "
                      "certificate with those keys. Optionally, the encryption key is generated "
@@ -59,18 +59,18 @@ SmartCardActions::SmartCardActions()
                      "Existing keys on the smart card will be overwritten."
                      "</emphasis></para>"));
     addAction(u"card_pgp_change_pin"_s, //
-              i18nc("@action:button", "Change PIN"),
+              i18nc("@action", "Change PIN"),
               i18nc("@info:tooltip",
                     "Change the PIN required for using the keys on the smart card. "
                     "The PIN must contain at least six characters."));
     addAction(u"card_pgp_unblock_card"_s, //
-              i18nc("@action:button", "Unblock Card"),
+              i18nc("@action", "Unblock Card"),
               i18nc("@info:tooltip", "Unblock the smart card with the PUK (if available) or the Admin PIN."));
     addAction(u"card_pgp_change_admin_pin"_s, //
-              i18nc("@action:button", "Change Admin PIN"),
+              i18nc("@action", "Change Admin PIN"),
               i18nc("@info:tooltip", "Change the PIN required for administrative operations."));
     addAction(u"card_pgp_change_puk"_s, //
-              i18nc("@action:button", "Set PUK"),
+              i18nc("@action", "Set PUK"),
               i18nc("@info:tooltip",
                     "Set or change the PUK that can be used to unblock the smart card. "
                     "The PUK must contain at least eight characters."));
