@@ -26,7 +26,6 @@ using namespace Qt::Literals::StringLiterals;
 NetKeyWidget::NetKeyWidget(QWidget *parent)
     : SmartCardWidget(AppType::NetKeyApp, parent)
 {
-    addCardKeysView();
 }
 
 NetKeyWidget::~NetKeyWidget() = default;

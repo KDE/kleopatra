@@ -9,11 +9,7 @@
 
 #include "pivcardwidget.h"
 
-#include "cardkeysview.h"
-
 #include <smartcard/card.h>
-
-#include <QVBoxLayout>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -21,7 +17,6 @@ using namespace Kleo::SmartCard;
 PIVCardWidget::PIVCardWidget(QWidget *parent)
     : SmartCardWidget(AppType::PIVApp, parent)
 {
-    addCardKeysView();
 }
 
 PIVCardWidget::~PIVCardWidget() = default;

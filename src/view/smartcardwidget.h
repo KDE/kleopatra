@@ -40,7 +40,6 @@ class SmartCardWidget : public QWidget
     Q_OBJECT
 protected:
     SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *parent = nullptr);
-    void addCardKeysView();
 
 public:
     ~SmartCardWidget() override;
@@ -56,10 +55,6 @@ public:
 protected:
     KMessageWidget *nullPinMessageWidget() const;
     QLabel *statusLabel() const;
-
-protected:
-    QVBoxLayout *mContentLayout = nullptr;
-    QGridLayout *mInfoGridLayout = nullptr;
 
 private:
     Kleo::SmartCard::AppType mAppType;
