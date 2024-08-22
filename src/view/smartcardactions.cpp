@@ -76,8 +76,7 @@ SmartCardActions::SmartCardActions()
                     "The PUK must contain at least eight characters."));
     addAction(u"card_pgp_change_cardholder"_s, //
               i18nc("@action", "Change Cardholder"),
-              i18nc("@info:tooltip", "Change the cardholder's name."),
-              QIcon::fromTheme(u"document-edit"_s));
+              i18nc("@info:tooltip", "Change the cardholder's name."));
 
     // PIV-specific card actions
     addAction(u"card_piv_change_pin"_s, //
