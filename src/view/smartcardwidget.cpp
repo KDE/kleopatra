@@ -15,6 +15,7 @@
 #include <smartcard/card.h>
 #include <smartcard/netkeycard.h>
 #include <smartcard/pivcard.h>
+#include <utils/accessibility.h>
 #include <view/cardkeysview.h>
 
 #include <Libkleo/Compliance>
@@ -198,6 +199,18 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
         gridLayout->addWidget(mSerialNumberField->label(), row, 0);
         gridLayout->addLayout(mSerialNumberField->layout(), row, 1);
 
+        if (mAppType == AppType::OpenPGPApp) {
+            row++;
+            mCardholderField =
+                std::make_unique<InfoField>(i18nc("@label The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:"), parent);
+            const auto action = SmartCardActions::createProxyAction(SmartCardActions::instance()->action(u"card_pgp_change_cardholder"_s), parent);
+            Kleo::setAccessibleName(action, action->text());
+            action->setText({});
+            mCardholderField->setAction(action);
+            gridLayout->addWidget(mCardholderField->label(), row, 0);
+            gridLayout->addLayout(mCardholderField->layout(), row, 1);
+        }
+
         gridLayout->setColumnStretch(gridLayout->columnCount(), 1);
 
         upperLayout->addLayout(gridLayout, 1);
@@ -262,6 +275,10 @@ void SmartCardWidget::setCard(const Card *card)
 
     mCardTypeField->setValue(cardTypeForDisplay(card));
     mSerialNumberField->setValue(card->displaySerialNumber());
+    if (mAppType == AppType::OpenPGPApp) {
+        const auto holder = card->cardHolder();
+        mCardholderField->setValue(holder.isEmpty() ? i18n("not set") : holder);
+    }
 
     updateCardActions(mCardActionsButton, card);
 

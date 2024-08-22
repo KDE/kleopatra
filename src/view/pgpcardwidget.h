@@ -37,13 +37,10 @@ public:
     void setCard(const SmartCard::OpenPGPCard *card);
 
 public Q_SLOTS:
-    void changeNameRequested();
-    void changeNameResult(const GpgME::Error &err);
     void changeUrlRequested();
     void changeUrlResult(const GpgME::Error &err);
 
 private:
-    QLabel *mCardHolderLabel = nullptr;
     QLabel *mUrlLabel = nullptr;
     QLabel *mPinCounterLabel = nullptr;
     QString mUrl;
