@@ -174,9 +174,8 @@ void SetInitialPinCommand::doStart()
         return;
     }
 
-    const std::vector<Card::PinState> pinStates = nksCard->pinStates();
-    d->dialog->setNksPinPresent(pinStates.size() >= 1 && pinStates[0] != Card::NullPin);
-    d->dialog->setSigGPinPresent(pinStates.size() >= 3 && pinStates[2] != Card::NullPin);
+    d->dialog->setNksPinPresent(!nksCard->hasNKSNullPin());
+    d->dialog->setSigGPinPresent(!nksCard->hasSigGNullPin());
 
     d->ensureDialogVisible();
 }
