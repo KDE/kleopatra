@@ -77,6 +77,7 @@ static std::vector<QAction *> actionsForCard(SmartCard::AppType appType)
             u"card_pgp_unblock_card"_s,
             u"card_pgp_change_admin_pin"_s,
             u"card_pgp_change_puk"_s,
+            u"card_pgp_change_cardholder"_s,
         };
         break;
     case AppType::P15App:
@@ -200,6 +201,7 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             mCardholderField =
                 std::make_unique<InfoField>(i18nc("@label The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:"), parent);
             const auto action = SmartCardActions::createProxyAction(SmartCardActions::instance()->action(u"card_pgp_change_cardholder"_s), parent);
+            action->setIcon(QIcon::fromTheme(u"document-edit"_s));
             Kleo::setAccessibleName(action, action->text());
             action->setText({});
             mCardholderField->setAction(action);
