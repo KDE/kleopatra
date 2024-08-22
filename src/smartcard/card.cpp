@@ -213,23 +213,44 @@ void Card::setPinStates(const std::vector<PinState> &pinStates)
     mPinStates = pinStates;
 }
 
-bool Card::hasNullPin() const
+bool Card::hasNKSNullPin() const
 {
-    return mHasNullPin;
+    static const std::string forceNullPinSerialNumber = qgetenv("KLEO_FORCE_NULLPIN").toStdString();
+
+    if (mAppType != AppType::NetKeyApp) {
+        return false;
+    }
+    if (serialNumber() == forceNullPinSerialNumber) {
+        return true;
+    }
+
+    if (mPinStates.size() < 2) {
+        qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << mPinStates.size();
+        return false;
+    }
+    return mPinStates[0] == Card::NullPin;
 }
 
-void Card::setHasNullPin(bool value)
+bool Card::hasSigGNullPin() const
 {
-    mHasNullPin = value;
+    if (mAppType != AppType::NetKeyApp) {
+        return false;
+    }
+
+    if (mPinStates.size() < 4) {
+        qCWarning(KLEOPATRA_LOG) << "Invalid size of pin states:" << mPinStates.size();
+        return false;
+    }
+    return mPinStates[2] == Card::NullPin;
 }
 
 bool Card::operator==(const Card &other) const
 {
-    return mHasNullPin == other.mHasNullPin && mStatus == other.mStatus && mSerialNumber == other.mSerialNumber && mAppName == other.mAppName
-        && mAppVersion == other.mAppVersion && mCardType == other.mCardType && mCardVersion == other.mCardVersion && mCardHolder == other.mCardHolder
-        && mSigningKeyRef == other.mSigningKeyRef && mEncryptionKeyRef == other.mEncryptionKeyRef && mAuthenticationKeyRef == other.mAuthenticationKeyRef
-        && mPinStates == other.mPinStates && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos && mCardInfo == other.mCardInfo
-        && mPinCounters == other.mPinCounters && mPinLabels == other.mPinLabels && mAppType == other.mAppType;
+    return mStatus == other.mStatus && mSerialNumber == other.mSerialNumber && mAppName == other.mAppName && mAppVersion == other.mAppVersion
+        && mCardType == other.mCardType && mCardVersion == other.mCardVersion && mCardHolder == other.mCardHolder && mSigningKeyRef == other.mSigningKeyRef
+        && mEncryptionKeyRef == other.mEncryptionKeyRef && mAuthenticationKeyRef == other.mAuthenticationKeyRef && mPinStates == other.mPinStates
+        && mErrMsg == other.mErrMsg && mKeyInfos == other.mKeyInfos && mCardInfo == other.mCardInfo && mPinCounters == other.mPinCounters
+        && mPinLabels == other.mPinLabels && mAppType == other.mAppType;
 }
 
 bool Card::operator!=(const Card &other) const

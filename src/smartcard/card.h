@@ -111,8 +111,8 @@ public:
     std::vector<PinState> pinStates() const;
     void setPinStates(const std::vector<PinState> &pinStates);
 
-    bool hasNullPin() const;
-    void setHasNullPin(bool value);
+    bool hasNKSNullPin() const;
+    bool hasSigGNullPin() const;
 
     std::string certificateData(const std::string &keyRef) const;
     void setCertificateData(const std::string &keyRef, const std::string &data);
@@ -143,7 +143,6 @@ private:
     void updateKeyInfo(const KeyPairInfo &keyPairInfo);
 
 private:
-    bool mHasNullPin = false;
     AppType mAppType = AppType::NoApp;
     Status mStatus = NoCard;
     std::string mSerialNumber;
