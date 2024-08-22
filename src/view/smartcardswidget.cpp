@@ -438,7 +438,10 @@ void SmartCardsWidget::Private::unblockOpenPGPCard()
 
 void SmartCardsWidget::Private::changeCardholder()
 {
-    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    const auto app = currentCardType();
+    Q_ASSERT(app == AppType::OpenPGPApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
     QString text = currentCardWidget()->card()->cardHolder();
     while (true) {
         bool ok = false;
@@ -472,26 +475,28 @@ void SmartCardsWidget::Private::changeCardholder()
     const auto lastName = parts.takeLast();
     const QString formatted = lastName + "<<"_L1 + parts.join(u'<');
 
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(currentSerialNumber());
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber);
     if (!pgpCard) {
-        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(currentSerialNumber())));
+        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber)));
         return;
     }
 
     const QByteArray command = QByteArrayLiteral("SCD SETATTR DISP-NAME ") + formatted.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this](const GpgME::Error &err) {
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this, serialNumber, app](const GpgME::Error &err) {
         if (err) {
             KMessageBox::error(q, i18nc("@info", "Name change failed: %1", Formatting::errorAsString(err)));
         } else if (!err.isCanceled()) {
-            KMessageBox::information(q, i18nc("@info", "Name successfully changed."), i18nc("@title", "Success"));
-            ReaderStatus::mutableInstance()->updateStatus();
+            ReaderStatus::mutableInstance()->updateCard(serialNumber, appName(app));
         }
     });
 }
 
 void SmartCardsWidget::Private::changePublicKeyUrl()
 {
-    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    const auto app = currentCardType();
+    Q_ASSERT(app == AppType::OpenPGPApp);
+    const std::string serialNumber = currentSerialNumber();
+    Q_ASSERT(!serialNumber.empty());
     QString text = currentCardWidget()->card()->publicKeyUrl();
     while (true) {
         bool ok = false;
@@ -514,19 +519,18 @@ void SmartCardsWidget::Private::changePublicKeyUrl()
         break;
     }
 
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(currentSerialNumber());
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber);
     if (!pgpCard) {
-        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(currentSerialNumber())));
+        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber)));
         return;
     }
 
     const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this](const GpgME::Error &err) {
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this, serialNumber, app](const GpgME::Error &err) {
         if (err) {
             KMessageBox::error(q, i18nc("@info", "URL change failed: %1", Formatting::errorAsString(err)));
         } else if (!err.isCanceled()) {
-            KMessageBox::information(q, i18nc("@info", "URL successfully changed."), i18nc("@title", "Success"));
-            ReaderStatus::mutableInstance()->updateStatus();
+            ReaderStatus::mutableInstance()->updateCard(serialNumber, appName(app));
         }
     });
 }
