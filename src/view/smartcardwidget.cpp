@@ -175,15 +175,12 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
 
     auto areaWidget = new QWidget{this};
     area->setWidget(areaWidget);
-    mContentLayout = new QVBoxLayout{areaWidget};
-    auto contentLayout = mContentLayout;
+    auto contentLayout = new QVBoxLayout{areaWidget};
 
     auto upperLayout = new QHBoxLayout;
     {
-        // auto gridLayout = new QGridLayout;
-        mInfoGridLayout = new QGridLayout;
-        auto gridLayout = mInfoGridLayout;
-        // gridLayout->setColumnStretch(1, 1);
+        auto gridLayout = new QGridLayout;
+        gridLayout->setColumnStretch(1, 1);
 
         int row = -1;
 
@@ -225,8 +222,6 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             gridLayout->addLayout(mPublicKeyUrlField->layout(), row, 1);
         }
 
-        gridLayout->setColumnStretch(gridLayout->columnCount(), 1);
-
         upperLayout->addLayout(gridLayout, 1);
     }
     {
@@ -242,23 +237,20 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
     }
 
     contentLayout->addLayout(upperLayout);
-}
 
-void SmartCardWidget::addCardKeysView()
-{
     if (mAppType == AppType::NetKeyApp) {
         mNullPinWidget = new KMessageWidget{this};
         mNullPinWidget->setVisible(false);
-        mContentLayout->addWidget(mNullPinWidget);
+        contentLayout->addWidget(mNullPinWidget);
     } else if (mAppType == AppType::P15App) {
         mStatusLabel = new QLabel{this};
         mStatusLabel->setVisible(false);
-        mContentLayout->addWidget(mStatusLabel);
+        contentLayout->addWidget(mStatusLabel);
     }
 
     mErrorWidget = new KMessageWidget{this};
     mErrorWidget->setVisible(false);
-    mContentLayout->addWidget(mErrorWidget);
+    contentLayout->addWidget(mErrorWidget);
 
     Q_ASSERT(!mCardKeysView);
     switch (mAppType) {
@@ -277,7 +269,7 @@ void SmartCardWidget::addCardKeysView()
     case AppType::NoApp:
         return;
     };
-    mContentLayout->addWidget(mCardKeysView, 1);
+    contentLayout->addWidget(mCardKeysView, 1);
 }
 
 SmartCardWidget::~SmartCardWidget() = default;

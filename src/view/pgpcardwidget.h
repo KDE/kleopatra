@@ -16,17 +16,10 @@ class QLabel;
 
 namespace Kleo
 {
-namespace SmartCard
-{
-class OpenPGPCard;
-} // namespace SmartCard
-
 class PGPCardWidget : public SmartCardWidget
 {
     Q_OBJECT
 public:
     explicit PGPCardWidget(QWidget *parent = nullptr);
-
-    void setCard(const SmartCard::OpenPGPCard *card);
 };
 } // namespace Kleo

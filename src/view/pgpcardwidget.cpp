@@ -11,7 +11,7 @@
 
 #include "pgpcardwidget.h"
 
-#include "smartcard/openpgpcard.h"
+#include <smartcard/card.h>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -19,10 +19,4 @@ using namespace Kleo::SmartCard;
 PGPCardWidget::PGPCardWidget(QWidget *parent)
     : SmartCardWidget(AppType::OpenPGPApp, parent)
 {
-    addCardKeysView();
-}
-
-void PGPCardWidget::setCard(const OpenPGPCard *card)
-{
-    SmartCardWidget::setCard(card);
 }

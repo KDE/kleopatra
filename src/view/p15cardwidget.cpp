@@ -47,7 +47,6 @@ using namespace Kleo::SmartCard;
 P15CardWidget::P15CardWidget(QWidget *parent)
     : SmartCardWidget{AppType::P15App, parent}
 {
-    addCardKeysView();
 }
 
 P15CardWidget::~P15CardWidget() = default;
