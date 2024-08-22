@@ -209,6 +209,21 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             gridLayout->addLayout(mCardholderField->layout(), row, 1);
         }
 
+        if (mAppType == AppType::OpenPGPApp) {
+            row++;
+            mPublicKeyUrlField = std::make_unique<InfoField>(i18nc("@label", "Public key URL:"), parent);
+            // make the public key URL clickable
+            mPublicKeyUrlField->valueLabel()->setTextInteractionFlags(Qt::TextBrowserInteraction);
+            mPublicKeyUrlField->valueLabel()->setOpenExternalLinks(true);
+            const auto action = SmartCardActions::createProxyAction(SmartCardActions::instance()->action(u"card_pgp_change_publickeyurl"_s), parent);
+            action->setIcon(QIcon::fromTheme(u"document-edit"_s));
+            Kleo::setAccessibleName(action, action->text());
+            action->setText({});
+            mPublicKeyUrlField->setAction(action);
+            gridLayout->addWidget(mPublicKeyUrlField->label(), row, 0);
+            gridLayout->addLayout(mPublicKeyUrlField->layout(), row, 1);
+        }
+
         gridLayout->setColumnStretch(gridLayout->columnCount(), 1);
 
         upperLayout->addLayout(gridLayout, 1);
@@ -276,6 +291,8 @@ void SmartCardWidget::setCard(const Card *card)
     if (mAppType == AppType::OpenPGPApp) {
         const auto holder = card->cardHolder();
         mCardholderField->setValue(holder.isEmpty() ? i18n("not set") : holder);
+        const auto url = card->publicKeyUrl();
+        mPublicKeyUrlField->setValue(url.isEmpty() ? i18n("not set") : u"<a href=\"%1\">%1</a>"_s.arg(url.toHtmlEscaped()));
     }
 
     updateCardActions(mCardActionsButton, card);

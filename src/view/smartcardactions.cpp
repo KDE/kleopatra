@@ -78,6 +78,9 @@ SmartCardActions::SmartCardActions()
     addAction(u"card_pgp_change_cardholder"_s, //
               i18nc("@action", "Change Cardholder"),
               i18nc("@info:tooltip", "Change the cardholder's name."));
+    addAction(u"card_pgp_change_publickeyurl"_s, //
+              i18nc("@action", "Change Public Key URL"),
+              i18nc("@info:tooltip", "Change the URL where the public key for the keys on this smartcard can be downloaded."));
 
     // PIV-specific card actions
     addAction(u"card_piv_change_pin"_s, //
