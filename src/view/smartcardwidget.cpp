@@ -295,9 +295,11 @@ void SmartCardWidget::setCard(const Card *card)
     mSerialNumberField->setValue(card->displaySerialNumber());
     if (mAppType == AppType::OpenPGPApp) {
         const auto holder = card->cardHolder();
-        mCardholderField->setValue(holder.isEmpty() ? i18n("not set") : holder);
+        mCardholderField->setValue(holder.isEmpty() ? ("<em>"_L1 + i18n("not set") + "</em>"_L1) : holder);
         const auto url = card->publicKeyUrl();
-        mPublicKeyUrlField->setValue(url.isEmpty() ? i18n("not set") : u"<a href=\"%1\">%1</a>"_s.arg(url.toHtmlEscaped()));
+        mPublicKeyUrlField->setValue(url.isEmpty() //
+                                         ? ("<em>"_L1 + i18n("not set") + "</em>"_L1)
+                                         : u"<a href=\"%1\">%1</a>"_s.arg(url.toHtmlEscaped()));
     }
 
     updateCardActions(mCardActionsButton, card);
