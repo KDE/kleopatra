@@ -153,6 +153,11 @@ QString Card::cardHolder() const
     return mCardHolder;
 }
 
+QString Card::publicKeyUrl() const
+{
+    return QString::fromStdString(cardInfo("PUBKEY-URL"));
+}
+
 void Card::setSigningKeyRef(const std::string &keyRef)
 {
     mSigningKeyRef = keyRef;
