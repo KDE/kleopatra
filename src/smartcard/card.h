@@ -93,6 +93,7 @@ public:
     QString displayCardVersion() const;
 
     QString cardHolder() const;
+    QString publicKeyUrl() const;
 
     void setSigningKeyRef(const std::string &keyRef);
     std::string signingKeyRef() const;

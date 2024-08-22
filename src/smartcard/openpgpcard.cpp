@@ -142,11 +142,6 @@ void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorit
     }
 }
 
-std::string OpenPGPCard::pubkeyUrl() const
-{
-    return cardInfo("PUBKEY-URL");
-}
-
 std::vector<AlgorithmInfo> OpenPGPCard::supportedAlgorithms() const
 {
     std::vector<AlgorithmInfo> algos;

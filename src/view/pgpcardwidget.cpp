@@ -72,7 +72,7 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     SmartCardWidget::setCard(card);
 
-    const auto url = QString::fromStdString(card->pubkeyUrl());
+    const auto url = card->publicKeyUrl();
     mUrl = url;
     mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);

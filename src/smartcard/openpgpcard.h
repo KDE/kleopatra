@@ -55,8 +55,6 @@ public:
      */
     void setSupportedAlgorithms(const std::vector<std::string> &algorithms);
 
-    std::string pubkeyUrl() const;
-
     /**
      * Returns a list of algorithm IDs and corresponding display names.
      *
