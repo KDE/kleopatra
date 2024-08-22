@@ -44,21 +44,6 @@ PGPCardWidget::PGPCardWidget(QWidget *parent)
         mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount() - 1, 0); // undo stretch set by base widget
         int row = mInfoGridLayout->rowCount();
 
-        // Cardholder Row
-        mInfoGridLayout->addWidget(new QLabel(i18nc("The owner of a smartcard. GnuPG refers to this as cardholder.", "Cardholder:")), row, 0);
-        mCardHolderLabel = new QLabel{this};
-        mCardHolderLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        mInfoGridLayout->addWidget(mCardHolderLabel, row, 1);
-        {
-            auto button = new QPushButton{this};
-            button->setIcon(QIcon::fromTheme(QStringLiteral("cell_edit")));
-            button->setAccessibleName(i18nc("@action:button", "Edit"));
-            button->setToolTip(i18n("Change"));
-            mInfoGridLayout->addWidget(button, row, 2);
-            connect(button, &QPushButton::clicked, this, &PGPCardWidget::changeNameRequested);
-        }
-        row++;
-
         // URL Row
         mInfoGridLayout->addWidget(new QLabel(i18nc("The URL under which a public key that "
                                                     "corresponds to a smartcard can be downloaded",
@@ -87,63 +72,10 @@ void PGPCardWidget::setCard(const OpenPGPCard *card)
 {
     SmartCardWidget::setCard(card);
 
-    const auto holder = card->cardHolder();
     const auto url = QString::fromStdString(card->pubkeyUrl());
-    mCardHolderLabel->setText(holder.isEmpty() ? i18n("not set") : holder);
     mUrl = url;
     mUrlLabel->setText(url.isEmpty() ? i18n("not set") : QStringLiteral("<a href=\"%1\">%1</a>").arg(url.toHtmlEscaped()));
     mUrlLabel->setOpenExternalLinks(true);
-}
-
-void PGPCardWidget::changeNameRequested()
-{
-    QString text = mCardHolderLabel->text();
-    while (true) {
-        bool ok = false;
-        text = QInputDialog::getText(this, i18n("Change cardholder"), i18n("New name:"), QLineEdit::Normal, text, &ok, Qt::WindowFlags(), Qt::ImhLatinOnly);
-        if (!ok) {
-            return;
-        }
-        // Some additional restrictions imposed by gnupg
-        if (text.contains(QLatin1Char('<'))) {
-            KMessageBox::error(this, i18nc("@info", "The \"<\" character may not be used."));
-            continue;
-        }
-        if (text.contains(QLatin1String("  "))) {
-            KMessageBox::error(this, i18nc("@info", "Double spaces are not allowed"));
-            continue;
-        }
-        if (text.size() > 38) {
-            KMessageBox::error(this, i18nc("@info", "The size of the name may not exceed 38 characters."));
-        }
-        break;
-    }
-    auto parts = text.split(QLatin1Char(' '));
-    const auto lastName = parts.takeLast();
-    const QString formatted = lastName + QStringLiteral("<<") + parts.join(QLatin1Char('<'));
-
-    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber());
-    if (!pgpCard) {
-        KMessageBox::error(this, i18n("Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(serialNumber())));
-        return;
-    }
-
-    const QByteArray command = QByteArrayLiteral("SCD SETATTR DISP-NAME ") + formatted.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, this, [this](const GpgME::Error &err) {
-        changeNameResult(err);
-    });
-}
-
-void PGPCardWidget::changeNameResult(const GpgME::Error &err)
-{
-    if (err) {
-        KMessageBox::error(this, i18nc("@info", "Name change failed: %1", Formatting::errorAsString(err)));
-        return;
-    }
-    if (!err.isCanceled()) {
-        KMessageBox::information(this, i18nc("@info", "Name successfully changed."), i18nc("@title", "Success"));
-        ReaderStatus::mutableInstance()->updateStatus();
-    }
 }
 
 void PGPCardWidget::changeUrlRequested()

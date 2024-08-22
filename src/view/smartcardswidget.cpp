@@ -41,11 +41,16 @@
 
 #include "kleopatra_debug.h"
 
+#include <Libkleo/Formatting>
+
 #include <KActionCollection>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 #include <QHBoxLayout>
+#include <QInputDialog>
 #include <QLabel>
+#include <QLineEdit>
 #include <QPointer>
 #include <QStackedWidget>
 #include <QTabWidget>
@@ -142,6 +147,7 @@ public:
     void createOpenPGPCertificate();
     void changePin(const std::string &keyRef, ChangePinCommand::ChangePinMode mode = ChangePinCommand::NormalMode);
     void unblockOpenPGPCard();
+    void changeCardholder();
     void setPIVAdminKey();
 
     // card slot actions
@@ -224,6 +230,9 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     });
     actions->connectAction(u"card_pgp_change_puk"_s, q, [this]() {
         changePin(OpenPGPCard::resetCodeKeyRef(), ChangePinCommand::ResetMode);
+    });
+    actions->connectAction(u"card_pgp_change_cardholder"_s, q, [this]() {
+        changeCardholder();
     });
     actions->connectAction(u"card_piv_change_pin"_s, q, [this]() {
         changePin(PIVCard::pinKeyRef());
@@ -421,6 +430,59 @@ void SmartCardsWidget::Private::unblockOpenPGPCard()
     Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
     // unblock card with the PUK
     changePin(OpenPGPCard::resetCodeKeyRef());
+}
+
+void SmartCardsWidget::Private::changeCardholder()
+{
+    Q_ASSERT(currentCardType() == AppType::OpenPGPApp);
+    QString text = currentCardWidget()->card()->cardHolder();
+    while (true) {
+        bool ok = false;
+        text = QInputDialog::getText(q,
+                                     i18nc("@title:window", "Change Cardholder"),
+                                     i18nc("@label ", "Enter the new cardholder name:"),
+                                     QLineEdit::Normal,
+                                     text,
+                                     &ok,
+                                     Qt::WindowFlags(),
+                                     Qt::ImhLatinOnly);
+        if (!ok) {
+            return;
+        }
+        // Some additional restrictions imposed by gnupg
+        if (text.contains(u'<')) {
+            KMessageBox::error(q, i18nc("@info", "The \"<\" character may not be used."));
+            continue;
+        }
+        if (text.contains("  "_L1)) {
+            KMessageBox::error(q, i18nc("@info", "Double spaces are not allowed"));
+            continue;
+        }
+        if (text.size() > 38) {
+            KMessageBox::error(q, i18nc("@info", "The size of the name may not exceed 38 characters."));
+            continue;
+        }
+        break;
+    }
+    auto parts = text.split(u' ');
+    const auto lastName = parts.takeLast();
+    const QString formatted = lastName + "<<"_L1 + parts.join(u'<');
+
+    const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(currentSerialNumber());
+    if (!pgpCard) {
+        KMessageBox::error(q, i18nc("@info", "Failed to find the OpenPGP card with the serial number: %1", QString::fromStdString(currentSerialNumber())));
+        return;
+    }
+
+    const QByteArray command = QByteArrayLiteral("SCD SETATTR DISP-NAME ") + formatted.toUtf8();
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this](const GpgME::Error &err) {
+        if (err) {
+            KMessageBox::error(q, i18nc("@info", "Name change failed: %1", Formatting::errorAsString(err)));
+        } else if (!err.isCanceled()) {
+            KMessageBox::information(q, i18nc("@info", "Name successfully changed."), i18nc("@title", "Success"));
+            ReaderStatus::mutableInstance()->updateStatus();
+        }
+    });
 }
 
 void SmartCardsWidget::Private::setPIVAdminKey()
