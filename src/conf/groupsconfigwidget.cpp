@@ -391,9 +391,9 @@ private:
                     return;
                 }
             }
-        });
 
-        Q_EMIT q->changed();
+            Q_EMIT q->changed();
+        });
     }
 
     bool confirmDeletion(const std::vector<KeyGroup> &groups)
