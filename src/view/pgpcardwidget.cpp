@@ -9,20 +9,9 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-kleopatra.h>
-
 #include "pgpcardwidget.h"
 
-#include "kleopatra_debug.h"
-
 #include "smartcard/openpgpcard.h"
-
-#include <utils/qt-cxx20-compat.h>
-
-#include <QGridLayout>
-#include <QLabel>
-
-#include <KLocalizedString>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -30,13 +19,6 @@ using namespace Kleo::SmartCard;
 PGPCardWidget::PGPCardWidget(QWidget *parent)
     : SmartCardWidget(AppType::OpenPGPApp, parent)
 {
-    {
-        mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount() - 1, 0); // undo stretch set by base widget
-        int row = mInfoGridLayout->rowCount();
-
-        mInfoGridLayout->setColumnStretch(mInfoGridLayout->columnCount(), 1);
-    }
-
     addCardKeysView();
 }
 
