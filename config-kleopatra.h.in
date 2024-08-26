@@ -15,3 +15,6 @@
 
 /* Whether ImportJob::setImportOptions exists */
 #cmakedefine01 QGPGME_IMPORT_JOB_SUPPORTS_IMPORT_OPTIONS
+
+/* Whether the verify jobs have setProcessAllSignatures. */
+#cmakedefine01 QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
