@@ -1290,6 +1290,9 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
                              slotResult(decryptResult, verifyResult, plainText);
                          });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
+#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
+        job->setProcessAllSignatures(true);
+#endif
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (!m_inputFilePath.isEmpty() && !m_outputFilePath.isEmpty()) {
             job->setInputFile(m_inputFilePath);
@@ -1333,6 +1336,9 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
         return;
     }
     m_outputDirectory = outputDirectory;
+#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
+    job->setProcessAllSignatures(true);
+#endif
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
@@ -1684,6 +1690,9 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
             slotResult(result, plainText);
         });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
+#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
+        job->setProcessAllSignatures(true);
+#endif
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (!m_inputFilePath.isEmpty() && !m_outputFilePath.isEmpty()) {
             job->setInputFile(m_inputFilePath);
@@ -1723,6 +1732,9 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
         return;
     }
     m_outputDirectory = outputDirectory;
+#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
+    job->setProcessAllSignatures(true);
+#endif
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
@@ -1896,6 +1908,9 @@ void VerifyDetachedTask::doStart()
         std::unique_ptr<QGpgME::VerifyDetachedJob> job{d->m_backend->verifyDetachedJob()};
         kleo_assert(job);
         d->registerJob(job.get());
+#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
+        job->setProcessAllSignatures(true);
+#endif
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (d->m_protocol == GpgME::OpenPGP && !d->m_signatureFilePath.isEmpty() && !d->m_signedFilePath.isEmpty()) {
             job->setSignatureFile(d->m_signatureFilePath);
