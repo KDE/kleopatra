@@ -85,56 +85,12 @@ static bool mailbox_equal(const Mailbox &lhs, const Mailbox &rhs, Qt::CaseSensit
     return addrspec_equal(lhs.addrSpec(), rhs.addrSpec(), cs);
 }
 
-static std::string stripAngleBrackets(const std::string &str)
-{
-    if (str.empty()) {
-        return str;
-    }
-    if (str[0] == '<' && str[str.size() - 1] == '>') {
-        return str.substr(1, str.size() - 2);
-    }
-    return str;
-}
-
-static std::string email(const UserID &uid)
-{
-    if (uid.parent().protocol() == OpenPGP) {
-        if (const char *const email = uid.email()) {
-            return stripAngleBrackets(email);
-        } else {
-            return std::string();
-        }
-    }
-
-    Q_ASSERT(uid.parent().protocol() == CMS);
-
-    if (const char *const id = uid.id())
-        if (*id == '<') {
-            return stripAngleBrackets(id);
-        } else {
-            return DN(id)[QStringLiteral("EMAIL")].trimmed().toUtf8().constData();
-        }
-    else {
-        return std::string();
-    }
-}
-
-static Mailbox mailbox(const UserID &uid)
-{
-    const std::string e = email(uid);
-    Mailbox mbox;
-    if (!e.empty()) {
-        mbox.setAddress(e.c_str());
-    }
-    return mbox;
-}
-
 static std::vector<Mailbox> extractMailboxes(const Key &key)
 {
     std::vector<Mailbox> res;
     const auto userIDs{key.userIDs()};
     for (const UserID &id : userIDs) {
-        const Mailbox mbox = mailbox(id);
+        const Mailbox mbox = Kleo::Formatting::mailbox(id);
         if (!mbox.addrSpec().isEmpty()) {
             res.push_back(mbox);
         }
@@ -181,56 +137,6 @@ static bool relevantInDecryptVerifyContext(const VerificationResult &r)
     return (r.error() && r.error().code() != GPG_ERR_DECRYPT_FAILED) || r.numSignatures() > 0;
 }
 
-static QString signatureSummaryToString(int summary)
-{
-    if (summary & Signature::None) {
-        return i18n("Error: Signature not verified");
-    } else if (summary & Signature::Valid || summary & Signature::Green) {
-        return i18n("Good signature");
-    } else if (summary & Signature::KeyRevoked) {
-        return i18n("Signing certificate was revoked");
-    } else if (summary & Signature::KeyExpired) {
-        return i18n("Signing certificate is expired");
-    } else if (summary & Signature::KeyMissing) {
-        return i18n("Certificate is not available");
-    } else if (summary & Signature::SigExpired) {
-        return i18n("Signature expired");
-    } else if (summary & Signature::CrlMissing) {
-        return i18n("CRL missing");
-    } else if (summary & Signature::CrlTooOld) {
-        return i18n("CRL too old");
-    } else if (summary & Signature::BadPolicy) {
-        return i18n("Bad policy");
-    } else if (summary & Signature::SysError) {
-        return i18n("System error"); // ### retrieve system error details?
-    } else if (summary & Signature::Red) {
-        return i18n("Bad signature");
-    }
-    return QString();
-}
-
-static QString formatValidSignatureWithTrustLevel(const UserID &id)
-{
-    if (id.isNull()) {
-        return QString();
-    }
-    switch (id.validity()) {
-    case UserID::Marginal:
-        return i18n("The signature is valid but the trust in the certificate's validity is only marginal.");
-    case UserID::Full:
-        return i18n("The signature is valid and the certificate's validity is fully trusted.");
-    case UserID::Ultimate:
-        return i18n("The signature is valid and the certificate's validity is ultimately trusted.");
-    case UserID::Never:
-        return i18n("The signature is valid but the certificate's validity is <em>not trusted</em>.");
-    case UserID::Unknown:
-        return i18n("The signature is valid but the certificate's validity is unknown.");
-    case UserID::Undefined:
-    default:
-        return i18n("The signature is valid but the certificate's validity is undefined.");
-    }
-}
-
 static QString renderKeyLink(const QString &fpr, const QString &text)
 {
     return QStringLiteral("<a href=\"key:%1\">%2</a>").arg(fpr, text);
@@ -260,39 +166,6 @@ static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
     const QString email = Formatting::prettyEMail(key);
     const QString user = !email.isEmpty() ? email : Formatting::prettyName(key);
     return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), user);
-}
-
-static QString formatDate(const QDateTime &dt)
-{
-    return QLocale().toString(dt);
-}
-static QString formatSigningInformation(const Signature &sig)
-{
-    if (sig.isNull()) {
-        return QString();
-    }
-    const QDateTime dt = sig.creationTime() != 0 ? QDateTime::fromSecsSinceEpoch(quint32(sig.creationTime())) : QDateTime();
-    QString text;
-    Key key = sig.key();
-    if (dt.isValid()) {
-        text = i18nc("1 is a date", "Signature created on %1", formatDate(dt)) + QStringLiteral("<br>");
-    }
-    if (key.isNull()) {
-        return text += i18n("With unavailable certificate:") + QStringLiteral("<br>ID: 0x%1").arg(QString::fromLatin1(sig.fingerprint()).toUpper());
-    }
-    text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
-
-    if (DeVSCompliance::isCompliant()) {
-        text += (QStringLiteral("<br/>")
-                 + (sig.isDeVs() ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                         "The signature is %1",
-                                         DeVSCompliance::name(true))
-                                 : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                         "The signature <b>is not</b> %1.",
-                                         DeVSCompliance::name(true))));
-    }
-
-    return text;
 }
 
 static QString strikeOut(const QString &str, bool strike)
@@ -326,16 +199,6 @@ static bool IsBad(const Signature &sig)
 static bool IsGoodOrValid(const Signature &sig)
 {
     return (sig.summary() & Signature::Valid) || (sig.summary() & Signature::Green);
-}
-
-static UserID findUserIDByMailbox(const Key &key, const Mailbox &mbox)
-{
-    const auto userIDs{key.userIDs()};
-    for (const UserID &id : userIDs)
-        if (mailbox_equal(mailbox(id), mbox, Qt::CaseInsensitive)) {
-            return id;
-        }
-    return UserID();
 }
 
 static void updateKeys(const VerificationResult &result)
@@ -491,53 +354,6 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     return i18n("<b>Decryption succeeded.</b>");
 }
 
-static QString formatSignature(const Signature &sig, const DecryptVerifyResult::SenderInfo &info)
-{
-    if (sig.isNull()) {
-        return QString();
-    }
-
-    const QString text = formatSigningInformation(sig) + QLatin1StringView("<br/>");
-    const Key key = sig.key();
-
-    // Green
-    if (sig.summary() & Signature::Valid) {
-        const UserID id = findUserIDByMailbox(key, info.informativeSender);
-        return text + formatValidSignatureWithTrustLevel(!id.isNull() ? id : key.userID(0));
-    }
-
-    // Red
-    if ((sig.summary() & Signature::Red)) {
-        const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
-        if (sig.summary() & Signature::SysError) {
-            return ret + QStringLiteral(" (%1)").arg(Formatting::errorAsString(sig.status()));
-        }
-        return ret;
-    }
-
-    // Key missing
-    if ((sig.summary() & Signature::KeyMissing)) {
-        return text + i18n("You can search the certificate on a keyserver or import it from a file.");
-    }
-
-    // Yellow
-    if ((sig.validity() & Signature::Validity::Undefined) //
-        || (sig.validity() & Signature::Validity::Unknown) //
-        || (sig.summary() == Signature::Summary::None)) {
-        return text
-            + (key.protocol() == OpenPGP
-                   ? i18n("The used key is not certified by you or any trusted person.")
-                   : i18n("The used certificate is not certified by a trustworthy Certificate Authority or the Certificate Authority is unknown."));
-    }
-
-    // Catch all fall through
-    const QString ret = text + i18n("The signature is invalid: %1", signatureSummaryToString(sig.summary()));
-    if (sig.summary() & Signature::SysError) {
-        return ret + QStringLiteral(" (%1)").arg(Formatting::errorAsString(sig.status()));
-    }
-    return ret;
-}
-
 static QStringList format(const std::vector<Mailbox> &mbxs)
 {
     QStringList res;
@@ -556,7 +372,7 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     const std::vector<Signature> sigs = res.signatures();
     QString details;
     for (const Signature &sig : sigs) {
-        details += formatSignature(sig, info) + QLatin1Char('\n');
+        details += Kleo::Formatting::prettySignature(sig, info.informativeSender) + QLatin1Char('\n');
     }
     details = details.trimmed();
     details.replace(QLatin1Char('\n'), QStringLiteral("<br/><br/>"));
