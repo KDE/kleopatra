@@ -483,8 +483,7 @@ public:
                 userIdListView->addTopLevelItem(item);
             }
             userIdListView->sortItems(0, Qt::AscendingOrder);
-            userIdListView->resizeColumnToContents(0);
-            userIdListView->resizeColumnToContents(1);
+            userIdListView->resizeToContentsLimited();
         }
     }
 

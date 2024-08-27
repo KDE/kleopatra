@@ -301,9 +301,7 @@ void UserIdsWidget::Private::setUpUserIDTable()
     if (!userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"))) {
         userIDTable->hideColumn(Tags);
     }
-    for (int i = 0; i < userIDTable->columnCount(); i++) {
-        userIDTable->resizeColumnToContents(i);
-    }
+    userIDTable->resizeToContentsLimited();
 }
 
 QString UserIdsWidget::Private::tofuTooltipString(const GpgME::UserID &uid) const

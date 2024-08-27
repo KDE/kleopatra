@@ -298,7 +298,7 @@ private:
     }
     void updateColumnSizes()
     {
-        ui.resultsTV->header()->resizeSections(QHeaderView::ResizeToContents);
+        ui.resultsTV->resizeToContentsLimited();
     }
 
 private:

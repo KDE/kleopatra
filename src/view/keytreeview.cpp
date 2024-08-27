@@ -614,12 +614,10 @@ void KeyTreeView::initializeColumnSizes()
         return;
     }
     m_onceResized = true;
+    m_view->resizeToContentsLimited();
+
     m_view->setColumnWidth(KeyList::PrettyName, 260);
     m_view->setColumnWidth(KeyList::PrettyEMail, 260);
-
-    for (int i = 2; i < m_view->model()->columnCount(); ++i) {
-        m_view->resizeColumnToContents(i);
-    }
 }
 
 void KeyTreeView::saveStateBeforeModelChange()

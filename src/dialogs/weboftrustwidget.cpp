@@ -400,11 +400,9 @@ void WebOfTrustWidget::setKey(const GpgME::Key &key)
     d->certificationsModel.setKey(key);
     d->updateActions();
     d->certificationsTV->expandAll();
-    d->certificationsTV->header()->resizeSections(QHeaderView::ResizeToContents);
     d->startSignatureListing();
-    d->certificationsTV->restoreColumnLayout(QStringLiteral("WebOfTrustWidget"));
-    for (int i = 0; i < d->certificationsModel.columnCount(); i++) {
-        d->certificationsTV->resizeColumnToContents(i);
+    if (!d->certificationsTV->restoreColumnLayout(QStringLiteral("WebOfTrustWidget"))) {
+        d->certificationsTV->resizeToContentsLimited();
     }
     d->fetchAction->setEnabled(!key.isBad());
 }
