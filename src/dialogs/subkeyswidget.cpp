@@ -430,7 +430,6 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
             d->ui.subkeysTree->setCurrentItem(item);
         }
     }
-    d->ui.subkeysTree->header()->resizeSections(QHeaderView::ResizeToContents);
 
     d->ui.changeValidityAction->setVisible(key.hasSecret());
     d->ui.exportSecretAction->setVisible(key.hasSecret());
@@ -452,9 +451,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         d->ui.subkeysTree->hideColumn(Private::KeyId);
         d->ui.subkeysTree->hideColumn(Private::Keygrip);
     }
-    for (int i = 0; i < d->ui.subkeysTree->columnCount(); i++) {
-        d->ui.subkeysTree->resizeColumnToContents(i);
-    }
+    d->ui.subkeysTree->resizeToContentsLimited();
 }
 
 GpgME::Key SubKeysWidget::key() const

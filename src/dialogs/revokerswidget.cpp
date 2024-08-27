@@ -141,9 +141,7 @@ void RevokersWidget::setKey(const GpgME::Key &key)
         this,
         [this]() {
             if (!d->ui.revokersTree->restoreColumnLayout(QStringLiteral("RevokersWidget"))) {
-                for (int i = 0; i < d->ui.revokersTree->columnCount(); i++) {
-                    d->ui.revokersTree->resizeColumnToContents(i);
-                }
+                d->ui.revokersTree->resizeToContentsLimited();
             }
         },
         Qt::QueuedConnection);

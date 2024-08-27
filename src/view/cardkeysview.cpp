@@ -604,7 +604,7 @@ void CardKeysView::updateKeyList()
         if (!(mOptions & ShowCreated)) {
             mTreeWidget->hideColumn(Created);
         }
-        mTreeWidget->header()->resizeSections(QHeaderView::ResizeToContents);
+        mTreeWidget->resizeToContentsLimited();
     }
 
     ensureCertificatesAreValidated();

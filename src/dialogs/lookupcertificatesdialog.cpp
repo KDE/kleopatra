@@ -311,7 +311,7 @@ void LookupCertificatesDialog::Private::readConfig()
     if (!ui.resultTV->restoreColumnLayout(QStringLiteral("LookupCertificatesDialog"))) {
         ui.resultTV->setColumnHidden(Private::KeyID, true);
         initial = true;
-        ui.resultTV->header()->resizeSections(QHeaderView::ResizeToContents);
+        ui.resultTV->resizeToContentsLimited();
     }
 
     const QSize size = configGroup.readEntry("Size", QSize(600, 400));
@@ -437,9 +437,7 @@ void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> 
     }
     if (d->initial && d->ui.resultTV->model()->rowCount() > 0) {
         d->initial = false;
-        for (int i = 0; i < d->ui.resultTV->columnCount(); i++) {
-            d->ui.resultTV->resizeColumnToContents(i);
-        }
+        d->ui.resultTV->resizeToContentsLimited();
     }
 }
 
