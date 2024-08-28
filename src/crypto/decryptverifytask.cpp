@@ -34,6 +34,7 @@
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
 
+#include <KEmailAddress>
 #include <KMime/Types>
 
 #include <gpgme++/context.h>
@@ -75,56 +76,46 @@ static AuditLogEntry auditLogFromSender(QObject *sender)
     return AuditLogEntry::fromJob(qobject_cast<const QGpgME::Job *>(sender));
 }
 
-static bool addrspec_equal(const AddrSpec &lhs, const AddrSpec &rhs, Qt::CaseSensitivity cs)
+static std::vector<QString> extractEmails(const Key &key)
 {
-    return lhs.localPart.compare(rhs.localPart, cs) == 0 && lhs.domain.compare(rhs.domain, Qt::CaseInsensitive) == 0;
-}
-
-static bool mailbox_equal(const Mailbox &lhs, const Mailbox &rhs, Qt::CaseSensitivity cs)
-{
-    return addrspec_equal(lhs.addrSpec(), rhs.addrSpec(), cs);
-}
-
-static std::vector<Mailbox> extractMailboxes(const Key &key)
-{
-    std::vector<Mailbox> res;
+    std::vector<QString> res;
     const auto userIDs{key.userIDs()};
     for (const UserID &id : userIDs) {
-        const Mailbox mbox = Kleo::Formatting::mailbox(id);
-        if (!mbox.addrSpec().isEmpty()) {
-            res.push_back(mbox);
+        const auto email = Kleo::Formatting::email(id);
+        if (!email.isEmpty()) {
+            res.push_back(email);
         }
     }
     return res;
 }
 
-static std::vector<Mailbox> extractMailboxes(const std::vector<Key> &signers)
+static std::vector<QString> extractEmails(const std::vector<Key> &signers)
 {
-    std::vector<Mailbox> res;
+    std::vector<QString> res;
     for (const Key &i : signers) {
-        const std::vector<Mailbox> bxs = extractMailboxes(i);
+        const std::vector<QString> bxs = extractEmails(i);
         res.insert(res.end(), bxs.begin(), bxs.end());
     }
     return res;
 }
 
-static bool keyContainsMailbox(const Key &key, const Mailbox &mbox)
+static bool keyContainsEmail(const Key &key, const QString &email)
 {
-    const std::vector<Mailbox> mbxs = extractMailboxes(key);
-    return std::find_if(mbxs.cbegin(),
-                        mbxs.cend(),
-                        [mbox](const Mailbox &m) {
-                            return mailbox_equal(mbox, m, Qt::CaseInsensitive);
+    const std::vector<QString> emails = extractEmails(key);
+    return std::find_if(emails.cbegin(),
+                        emails.cend(),
+                        [email](const QString &emailItem) {
+                            return emailItem.compare(email, Qt::CaseInsensitive);
                         })
-        != mbxs.cend();
+        != emails.cend();
 }
 
-static bool keysContainMailbox(const std::vector<Key> &keys, const Mailbox &mbox)
+static bool keysContainEmail(const std::vector<Key> &keys, const QString &email)
 {
     return std::find_if(keys.cbegin(),
                         keys.cend(),
-                        [mbox](const Key &key) {
-                            return keyContainsMailbox(key, mbox);
+                        [email](const Key &key) {
+                            return keyContainsEmail(key, email);
                         })
         != keys.cend();
 }
@@ -238,20 +229,20 @@ static bool mimeTypeInherits(const QMimeType &mimeType, const QString &mimeTypeN
 class DecryptVerifyResult::SenderInfo
 {
 public:
-    explicit SenderInfo(const Mailbox &infSender, const std::vector<Key> &signers_)
+    explicit SenderInfo(const QString &infSender, const std::vector<Key> &signers_)
         : informativeSender(infSender)
         , signers(signers_)
     {
     }
-    const Mailbox informativeSender;
+    const QString informativeSender;
     const std::vector<Key> signers;
     bool hasInformativeSender() const
     {
-        return !informativeSender.addrSpec().isEmpty();
+        return !informativeSender.isEmpty();
     }
     bool conflicts() const
     {
-        return hasInformativeSender() && hasKeys() && !keysContainMailbox(signers, informativeSender);
+        return hasInformativeSender() && hasKeys() && !keysContainEmail(signers, informativeSender);
     }
     bool hasKeys() const
     {
@@ -259,9 +250,9 @@ public:
             return !key.isNull();
         });
     }
-    std::vector<Mailbox> signerMailboxes() const
+    std::vector<QString> signerEmails() const
     {
-        return extractMailboxes(signers);
+        return extractEmails(signers);
     }
 };
 
@@ -354,12 +345,21 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     return i18n("<b>Decryption succeeded.</b>");
 }
 
-static QStringList format(const std::vector<Mailbox> &mbxs)
+static QString formatEmail(const QString &email_)
+{
+    QString email;
+    QString name;
+    QString comment;
+    if (!email_.isEmpty() && KEmailAddress::splitAddress(email_, name, email, comment) == KEmailAddress::AddressOk) {
+        return email;
+    }
+    return email_;
+}
+
+static QStringList formatEmails(const std::vector<QString> &emails)
 {
     QStringList res;
-    std::transform(mbxs.cbegin(), mbxs.cend(), std::back_inserter(res), [](const Mailbox &mbox) {
-        return mbox.prettyAddress();
-    });
+    std::transform(emails.cbegin(), emails.cend(), std::back_inserter(res), &formatEmail);
     return res;
 }
 
@@ -378,8 +378,8 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     details.replace(QLatin1Char('\n'), QStringLiteral("<br/><br/>"));
     if (info.conflicts()) {
         details += i18n("<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>",
-                        info.informativeSender.prettyAddress(),
-                        format(info.signerMailboxes()).join(i18nc("separator for a list of e-mail addresses", ", ")));
+                        formatEmail(info.informativeSender),
+                        formatEmails(info.signerEmails()).join(i18nc("separator for a list of e-mail addresses", ", ")));
     }
     return details;
 }
@@ -564,7 +564,7 @@ public:
 
 DecryptVerifyResult::SenderInfo DecryptVerifyResult::Private::makeSenderInfo() const
 {
-    return SenderInfo(m_informativeSender, KeyCache::instance()->findSigners(m_verificationResult));
+    return SenderInfo(QString::fromUtf8(m_informativeSender.address()), KeyCache::instance()->findSigners(m_verificationResult));
 }
 
 std::shared_ptr<DecryptVerifyResult>
