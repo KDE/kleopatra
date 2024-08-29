@@ -47,10 +47,22 @@ using namespace GpgME;
 namespace
 {
 
-QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted)
+QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted, bool sign, bool encrypt)
 {
-    return i18nc("Input file --> Output file (rarr is arrow",
-                 "%1 &rarr; %2",
+    Q_ASSERT(sign || encrypt);
+    if (sign && encrypt) {
+        return i18nc("Signed and encrypted <file> as <file>",
+                     "Signed and encrypted %1 as %2",
+                     input.toHtmlEscaped(),
+                     outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
+    } else if (sign) {
+        return i18nc("Signed <file> as <file>",
+                     "Signed %1 as %2",
+                     input.toHtmlEscaped(),
+                     outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
+    }
+    return i18nc("Encrypted <file> as <file>",
+                 "Encrypted %1 as %2",
                  input.toHtmlEscaped(),
                  outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
 }
@@ -272,7 +284,7 @@ QString ErrorResult::overview() const
 {
     Q_ASSERT(m_error || m_error.isCanceled());
     Q_ASSERT(m_sign || m_encrypt);
-    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true);
+    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true, m_sign, m_encrypt);
     const bool canceled = m_error.isCanceled();
     if (m_sign && m_encrypt) {
         return canceled ? i18n("%1: <b>Sign/encrypt canceled.</b>", label) : i18n(" %1: Sign/encrypt failed.", label);
@@ -916,7 +928,8 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 
 QString SignEncryptFilesResult::overview() const
 {
-    const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
+    const QString files =
+        formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated, !m_sresult.isNull() /* TODO ?? */, !m_eresult.isNull() /* TODO ?? */);
     return files + QLatin1StringView(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
 

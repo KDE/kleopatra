@@ -33,6 +33,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
+#include <KTitleWidget>
 #include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo;
@@ -116,11 +117,18 @@ void DecryptVerifyFilesDialog::allDone()
     Q_ASSERT(m_tasks);
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
+    m_progressBar->setVisible(false);
     for (const auto &i : m_progressLabelByTag.keys()) {
         if (!i.isEmpty()) {
+            m_progressLabelByTag.value(i)->setVisible(false);
             m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
         } else {
-            m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
+            m_progressLabelByTag.value(i)->setVisible(false);
+            // TODO adjust decryption / verification / decryption and verification
+            m_progressLabelByTag.value(i)->setText(i18n("Verification finished"));
+            auto widget = new KTitleWidget;
+            widget->setText(i18n("Verification Finished"));
+            m_progressLabelLayout->addWidget(widget);
         }
     }
 

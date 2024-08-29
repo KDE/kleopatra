@@ -114,6 +114,11 @@ public:
         Mbox,
     };
 
+    struct ResultListItem {
+        QString details;
+        Task::Result::VisualCode code;
+    };
+
     virtual QString overview() const = 0;
     virtual QString details() const = 0;
     virtual GpgME::Error error() const = 0;
@@ -125,6 +130,10 @@ public:
         return QPointer<Task>();
     }
     virtual ContentType viewableContentType() const;
+    virtual QList<Task::Result::ResultListItem> detailsList() const
+    {
+        return {};
+    };
 
 protected:
     static QString makeOverview(const QString &msg);

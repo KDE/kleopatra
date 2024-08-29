@@ -51,6 +51,11 @@ namespace Crypto
 
 class DecryptVerifyResult;
 
+struct SignatureResult {
+    QString details;
+    Task::Result::VisualCode code;
+};
+
 class AbstractDecryptVerifyTask : public Task
 {
     Q_OBJECT
@@ -245,6 +250,7 @@ public:
     AuditLogEntry auditLog() const override;
     QPointer<Task> parentTask() const override;
     Task::Result::ContentType viewableContentType() const override;
+    QList<Task::Result::ResultListItem> detailsList() const override;
 
     GpgME::VerificationResult verificationResult() const;
     GpgME::DecryptionResult decryptionResult() const;

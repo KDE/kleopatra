@@ -153,7 +153,7 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
     if (output.isEmpty()) {
         return strikeOut(input, inputDeleted);
     }
-    return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2", strikeOut(input, inputDeleted), strikeOut(output, outputDeleted));
+    return i18nc("Decrypted <file> from <file>", "Decrypted %1 from %2", strikeOut(output, outputDeleted), strikeOut(input, inputDeleted));
 }
 
 static bool IsErrorOrCanceled(const GpgME::Error &err)
@@ -746,7 +746,31 @@ QString DecryptVerifyResult::overview() const
         // Avoid ugly breaks
         ov = QStringLiteral("<br>") + ov;
     }
-    return i18nc("label: result example: foo.sig: Verification failed. ", "%1: %2", d->label(), ov);
+    // TODO how does this behave for decrypt or decrpytverify?
+    return d->label();
+}
+
+static Task::Result::VisualCode codeForSignature(const Signature &signature)
+{
+    if (signature.summary() & Signature::Red) {
+        return Task::Result::VisualCode::Danger;
+    }
+    if (signature.summary() & Signature::Valid || signature.summary() & Signature::Green) {
+        return Task::Result::AllGood;
+    }
+    return Task::Result::Warning;
+}
+
+QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
+{
+    QList<Task::Result::ResultListItem> details;
+    for (const Signature &sig : d->m_verificationResult.signatures()) {
+        details += Task::Result::ResultListItem{
+            .details = Kleo::Formatting::prettySignature(sig, d->makeSenderInfo().informativeSender),
+            .code = codeForSignature(sig),
+        };
+    }
+    return details;
 }
 
 QString DecryptVerifyResult::details() const
