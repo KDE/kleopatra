@@ -7,12 +7,12 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <config-kleopatra.h>
-
-#include "aboutdata.h"
-#include "kleopatraapplication.h"
 #include "mainwindow.h"
+#include "aboutdata.h"
+#include "kcolorscheme_version.h"
+#include "kleopatraapplication.h"
 #include "settings.h"
+#include <config-kleopatra.h>
 
 #include <interfaces/focusfirstchild.h>
 
@@ -712,7 +712,11 @@ void MainWindow::Private::setupActions()
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
     KStandardAction::preferences(qApp, SLOT(openOrRaiseConfigDialog()), coll);
 
+#if KCOLORSCHEME_VERSION < QT_VERSION_CHECK(6, 6, 0)
     auto manager = new KColorSchemeManager(q);
+#else
+    auto manager = KColorSchemeManager::instance();
+#endif
     KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
     coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
 
