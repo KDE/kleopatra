@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-01 00:39+0000\n"
-"PO-Revision-Date: 2024-08-29 16:19+0300\n"
+"PO-Revision-Date: 2024-09-02 21:32+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1241,14 +1241,15 @@ msgstr ""
 "הצפוי בשל שגיאה לא צפויה."
 
 #: src/commands/dumpcrlcachecommand.cpp:346
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "An error occurred while trying to dump the CRL cache. The output from GpgSM "
 "was:\n"
 "%1"
 msgstr ""
-"אירעה שגיאה במהלך הניסיון לייבא את קובץ רשימת ביטול התעודות. הפלט מ-Dirmngr "
-"היה: "
+"אירעה שגיאה במהלך הניסיון להטיל את מטמון רשימת שלילת התעודות. הפלט מ־GpgSM "
+"היה:\n"
+"%1"
 
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
@@ -1770,12 +1771,10 @@ msgstr ""
 "<para>אירעה שגיאה במהלך הייצוא:</para><para><message>%1</message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:190
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to generate new key: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to generate new card keys and a certificate: %1"
-msgstr "יצירת מפתח חדש נכשלה: %1"
+msgstr "יצירת מפתחות ואישור חדשים לכרטיס נכשלה: %1"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:202
 #, kde-format
@@ -1794,12 +1793,10 @@ msgid "Failed to move backup. The backup key is still stored under: %1"
 msgstr "העברת הגיבוי נכשלה. מפתח הגיבוי עדיין מאוחסן תחת: %1"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:212
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated a new key for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully generated new card keys and a certificate for this card."
-msgstr "מפתח חדש נוצר בהצלחה לכרטיס זה."
+msgstr "מפתחות כרטיס ואישור חדשים נוצרו בהצלחה לכרטיס הזה."
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:212
 #, kde-format
@@ -3355,22 +3352,18 @@ msgid "Select Folder to Sign and/or Encrypt"
 msgstr ""
 
 #: src/commands/togglecertificateenabledcommand.cpp:77
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to enable certificate:</para><para><message>%1</message></para>"
-msgstr "<para>העדכון נכשל:</para><para><message>%1</message></para>"
+msgstr "<para>הפעלת האישור נכשלה:</para><para><message>%1</message></para>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:79
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Update failed:</para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to disable certificate:</para><para><message>%1</message></para>"
-msgstr "<para>העדכון נכשל:</para><para><message>%1</message></para>"
+msgstr "<para>השבתת האישור נכשלה:</para><para><message>%1</message></para>"
 
 #: src/conf/appearanceconfigwidget.cpp:136
 #, kde-format
@@ -8230,7 +8223,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:58
 #, kde-format
 msgid "Minimum validity period"
-msgstr ""
+msgstr "תקופת תוקף מזערית"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:59
@@ -8238,7 +8231,7 @@ msgstr ""
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr ""
+msgstr "ציון תקופת התוקף המזערית למפתחות OpenPGP חדשים או מורחבים בימים."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:60
@@ -8248,12 +8241,14 @@ msgid ""
 "validity period of OpenPGP certificates. It applies at key creation and "
 "change of validity."
 msgstr ""
+"ההגדרה הזאת מציינת את מספר הימים המזערי שהמשתמש יכול לבחור לתקופת תוקף של "
+"אישורי OpenPGP. חל ביצירת המפתח ובהחלפת משך התוקף."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:64
 #, kde-format
 msgid "Maximum validity period"
-msgstr ""
+msgstr "תקופת תוקף מרבית"
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
@@ -8261,7 +8256,7 @@ msgstr ""
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
 "keys in days."
-msgstr ""
+msgstr "ציון תקופת התוקף המרבית למפתחות OpenPGP חדשים או מורחבים בימים."
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
@@ -8272,19 +8267,22 @@ msgid ""
 "change of validity. If this setting is not set or is set to a negative "
 "value, then unlimited validity is allowed."
 msgstr ""
+"ההגדרה הזאת מציינת את מספר הימים המרבי שהמשתמש יכול לבחור לתקופת תוקף של "
+"אישורי OpenPGP. חל ביצירת המפתח ובהחלפת משך התוקף. אם ההגדרה הזאת לא מוגדרת "
+"או שהערך הוא שלישי, מותר תוקף ללא הגבלה."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Hide advanced settings"
-msgstr ""
+msgstr "הסתרת הגדרות מתקדמות"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:71
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
-msgstr ""
+msgstr "אם חיובי (true), כפתור ההגדרות המתקדמות באשף האישור החדש יוסתר."
 
 #. i18n: ectx: label, entry, group (Certification)
 #: src/kcfg/settings.kcfg:77
@@ -9040,7 +9038,7 @@ msgctxt "@info:tooltip"
 msgid ""
 "Restart the background processes, e.g. after making changes to the "
 "configuration."
-msgstr ""
+msgstr "הפעלת תהליכי הרקע מחדש, כלומר לאחר ביצוע שינויים בהגדרות."
 
 #: src/mainwindow.cpp:612
 #, kde-format
@@ -9193,7 +9191,7 @@ msgstr ""
 #: src/mainwindow.cpp:805
 #, kde-format
 msgid "GnuPG Command&line"
-msgstr ""
+msgstr "שורת ה&פקודה של GnuPG"
 
 #: src/mainwindow.cpp:815
 #, kde-format
@@ -9226,12 +9224,12 @@ msgstr ""
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
-msgstr ""
+msgstr "יש עדיין פעולות שמתבצעות ברקע. הן תיקטענה בעת סגירת החלון. להמשיך?"
 
 #: src/mainwindow.cpp:855
 #, kde-format
 msgid "Ongoing Background Tasks"
-msgstr ""
+msgstr "משימות רקע שמתבצעות כרגע"
 
 #: src/newcertificatewizard/advancedsettingsdialog.cpp:135
 #, kde-format
@@ -9328,7 +9326,7 @@ msgstr "כתובת דוא״ל:"
 #: src/newcertificatewizard/enterdetailspage.cpp:142
 #, kde-format
 msgid "Protect the generated key with a passphrase."
-msgstr ""
+msgstr "הגנה על מפתח שנוצר עם מילת צופן."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:144
 #, kde-format
@@ -9337,6 +9335,8 @@ msgid ""
 "Encrypts the secret key with an unrecoverable passphrase. You will be asked "
 "for the passphrase during key generation."
 msgstr ""
+"מצפין את המפתח הסודי עם מילת צופן שלא ניתן לשחזר. תופיע בקשה לאספקת מילת "
+"הצופן במהלך יצירת מפתח."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:180
 #, kde-format
@@ -9354,6 +9354,8 @@ msgid ""
 "Please enter your personal details below. If you want more control over the "
 "parameters, click on the Advanced Settings button."
 msgstr ""
+"נא למלא את הפרטים האישיים שלך להלן. לשליטה טובה יותר במשתנים, יש ללחוץ על "
+"כפתור ההגדרות המתקדמות."
 
 #: src/newcertificatewizard/enterdetailspage.cpp:222
 #, kde-format
@@ -9673,6 +9675,7 @@ msgctxt "@info"
 msgid ""
 "<para>Install <application>%1</application> version %2 or higher.</para>"
 msgstr ""
+"<para>יש להתקין את <application>%1</application> בגרסה %2 ומעלה.</para>"
 
 #: src/selftest/enginecheck.cpp:127
 #, kde-format
@@ -9696,6 +9699,8 @@ msgid ""
 "<para><application>%1</application> v%2.%3.%4 is required for this test, but "
 "only %5 is installed.</para>"
 msgstr ""
+"<para><application>%1</application> v%2.%3.%4 נחוץ לבדיקה הזאת, אבל מותקנת "
+"רק %5.</para>"
 
 #: src/selftest/enginecheck.cpp:185
 #, kde-kuit-format
@@ -9704,6 +9709,8 @@ msgid ""
 "<para><application>%1</application> is required for this test, but does not "
 "seem available.</para><para>See tests further up for more information.</para>"
 msgstr ""
+"<para><application>%1</application> נחוצה לבדיקה הזאת, אבל לא נראה שהיא "
+"זמינה.</para><para>אפשר להסתכל על הבדיקות שלמעלה לפרטים נוספים.</para>"
 
 #: src/selftest/enginecheck.cpp:188
 #, kde-kuit-format
@@ -9871,7 +9878,7 @@ msgstr "לא נגיש"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not connect to UiServer: <message>%1</message>"
-msgstr ""
+msgstr "לא ניתן להתחבר לשרת ממשק המשתמש: <message>%1</message>"
 
 #: src/selftest/uiservercheck.cpp:54
 #, kde-kuit-format
@@ -9881,6 +9888,9 @@ msgid ""
 "connections to <resource>localhost</resource> or <resource>127.0.0.1</"
 "resource>).</para>"
 msgstr ""
+"<para>נא לבדוק שחומת האש שלך לא מוגדרת לחסום חיבורים מקומיים (מאפשרת חיבורים "
+"אל <resource>localhost</resource> או אל <resource>127.0.0.1</resource>).</"
+"para>"
 
 #: src/selftest/uiservercheck.cpp:58
 #, kde-format
@@ -9907,13 +9917,13 @@ msgstr "יציאה מעותקים פעילים כלשהם של <application>Kleo
 #, kde-format
 msgctxt "@label PIN to unlock the smart card for user operations"
 msgid "PIN"
-msgstr ""
+msgstr "קוד אישי (PIN)"
 
 #: src/smartcard/card.cpp:390
 #, kde-format
 msgctxt "@label PIN/Key to unblock/reset the normal PIN"
 msgid "PUK"
-msgstr ""
+msgstr "PUK"
 
 #: src/smartcard/card.cpp:391
 #, kde-format
@@ -9924,7 +9934,7 @@ msgstr "קוד אישי (PIN) לניהול"
 #: src/smartcard/pivcard.cpp:88
 #, kde-format
 msgid "RSA key transport (2048 bits)"
-msgstr ""
+msgstr "תעבורת מפתח RSA‏ (2048 סיביות)"
 
 #: src/smartcard/pivcard.cpp:89
 #, kde-format
@@ -9967,7 +9977,7 @@ msgstr "OpenPGP"
 #, kde-format
 msgctxt "proper name of a type of smartcard"
 msgid "PIV"
-msgstr ""
+msgstr "PIV"
 
 #: src/smartcard/utils.cpp:63
 #, kde-format
@@ -11558,25 +11568,19 @@ msgid "Create OpenPGP Certificate"
 msgstr "יצירת אישור OpenPGP"
 
 #: src/view/smartcardactions.cpp:41
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Create an OpenPGP key for the keys stored on the card."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Create an OpenPGP certificate for the keys stored on the card."
-msgstr "יצירת מפתח OpenPGP למפתחות שמאוחסנים בכרטיס."
+msgstr "יצירת אישור OpenPGP למפתחות שמאוחסנים בכרטיס."
 
 #: src/view/smartcardactions.cpp:46
-#, fuzzy, kde-format
-#| msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#| msgid "Set NKS PIN"
+#, kde-format
 msgctxt "@action NKS is an identifier for a type of keys on a NetKey card"
 msgid "Set NKS PIN"
 msgstr "הגדרת קוד NKS אישי (PIN)"
 
 #: src/view/smartcardactions.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#| msgid "Set SigG PIN"
+#, kde-format
 msgctxt "@action SigG is an identifier for a type of keys on a NetKey card"
 msgid "Set SigG PIN"
 msgstr "הגדרת קוד SigG אישי (PIN)"
@@ -11615,9 +11619,7 @@ msgid ""
 msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
 
 #: src/view/smartcardactions.cpp:67
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Unblock Card"
+#, kde-format
 msgctxt "@action"
 msgid "Unblock Card"
 msgstr "שחרור חסימת כרטיס"
@@ -11630,9 +11632,7 @@ msgstr ""
 "שחרור חסימת הכרטיס החכם עם ה־PUK (אם יש) או הקוד האישי (PIN) של הניהול."
 
 #: src/view/smartcardactions.cpp:70
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Admin PIN"
+#, kde-format
 msgctxt "@action"
 msgid "Change Admin PIN"
 msgstr "החלפת קוד אישי (PIN) לניהול"
@@ -11644,9 +11644,7 @@ msgid "Change the PIN required for administrative operations."
 msgstr "החלפת הקוד האישי (PIN) לפעולות ניהוליות."
 
 #: src/view/smartcardactions.cpp:73 src/view/smartcardwidget.cpp:127
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Set PUK"
+#, kde-format
 msgctxt "@action"
 msgid "Set PUK"
 msgstr "הגדרת PUK"
@@ -11661,46 +11659,40 @@ msgid ""
 msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
 
 #: src/view/smartcardactions.cpp:78
-#, fuzzy, kde-format
-#| msgid "Change cardholder"
+#, kde-format
 msgctxt "@action"
 msgid "Change Cardholder"
 msgstr "החלפת בעלי הכרטיס"
 
 #: src/view/smartcardactions.cpp:79
-#, fuzzy, kde-format
-#| msgid "Change cardholder"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the cardholder's name."
-msgstr "החלפת בעלי הכרטיס"
+msgstr "החלפת שם בעלי הכרטיס."
 
 #: src/view/smartcardactions.cpp:81
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Admin Key"
+#, kde-format
 msgctxt "@action"
 msgid "Change Public Key URL"
-msgstr "החלפת מפתח ניהול"
+msgstr "החלפת כתובת מפתח ציבורי"
 
 #: src/view/smartcardactions.cpp:82
-#, fuzzy, kde-format
-#| msgid "Change the URL where the pubkey can be found"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Change the URL where the public key for the keys on this smartcard can be "
 "downloaded."
-msgstr "להחליף את הכתובת בה ניתן למצוא את המפתח הציבורי"
+msgstr ""
+"החלפת הכתובת ממנה ניתן להוריד את המפתח הציבורי למפתחות בכרטיס החכם הזה."
 
 #: src/view/smartcardactions.cpp:87
-#, fuzzy, kde-format
-#| msgid "Change the PIN required for using the keys on the smartcard."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Change the PIN required for using the keys on the smart card."
 msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
 
 #: src/view/smartcardactions.cpp:89 src/view/smartcardwidget.cpp:127
-#, fuzzy, kde-format
-#| msgid "Change PUK"
+#, kde-format
 msgctxt "@action"
 msgid "Change PUK"
 msgstr "החלפת PUK"
@@ -11715,9 +11707,7 @@ msgid ""
 msgstr "החלפת הקוד האישי (PIN) שנחוץ לשימוש במפתחות בכרטיס החכם."
 
 #: src/view/smartcardactions.cpp:94
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Admin Key"
+#, kde-format
 msgctxt "@action"
 msgid "Change Admin Key"
 msgstr "החלפת מפתח ניהול"
@@ -11851,8 +11841,7 @@ msgid "%1 - %2"
 msgstr "%1 - %2"
 
 #: src/view/smartcardswidget.cpp:453
-#, fuzzy, kde-format
-#| msgid "Change cardholder"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Cardholder"
 msgstr "החלפת בעלי הכרטיס"
@@ -11882,11 +11871,10 @@ msgid "The size of the name may not exceed 38 characters."
 msgstr "גודל השם לא יכול לחרוג מ־38 תווים."
 
 #: src/view/smartcardswidget.cpp:484 src/view/smartcardswidget.cpp:528
-#, fuzzy, kde-format
-#| msgid "Failed to find the smartcard with the serial number: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to find the OpenPGP card with the serial number: %1"
-msgstr "נכשל איתור כרטיס חכם עם המספר הסידורי: %1"
+msgstr "נכשל איתור כרטיס ה־OpenPGP עם המספר הסידורי: %1"
 
 #: src/view/smartcardswidget.cpp:491
 #, kde-format
@@ -11895,19 +11883,16 @@ msgid "Name change failed: %1"
 msgstr "שינוי השם נכשל: %1"
 
 #: src/view/smartcardswidget.cpp:508
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Change Admin Key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Public Key URL"
-msgstr "החלפת מפתח ניהול"
+msgstr "החלפת כתובת מפתח ציבורי"
 
 #: src/view/smartcardswidget.cpp:509
-#, fuzzy, kde-format
-#| msgid "New pubkey URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Enter the new public key URL:"
-msgstr "כתובת חדשה למפתח ציבורי:"
+msgstr "נא למלא את כתובת המפתח הציבורי החדשה:"
 
 #: src/view/smartcardswidget.cpp:520
 #, kde-format
@@ -11996,19 +11981,13 @@ msgid "Serial number:"
 msgstr "מספר סידורי:"
 
 #: src/view/smartcardwidget.cpp:231
-#, fuzzy, kde-format
-#| msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
-#| msgid "Cardholder:"
+#, kde-format
 msgctxt "@label The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "בעלי הכרטיס:"
 
 #: src/view/smartcardwidget.cpp:243
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "The URL under which a public key that corresponds to a smartcard can be "
-#| "downloaded"
-#| msgid "Pubkey URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Public key URL:"
 msgstr "כתובת מפתח ציבורי:"
@@ -12029,20 +12008,16 @@ msgid ""
 msgstr "הצגת מספר הניסיונות הנותרים להקלדת הקוד האישי (PIN) או ה־PUK."
 
 #: src/view/smartcardwidget.cpp:273
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Actions"
+#, kde-format
 msgctxt "@action:button"
 msgid "Card Actions"
-msgstr "פעולות"
+msgstr "פעולות כרטיס"
 
 #: src/view/smartcardwidget.cpp:274
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Show actions available for this smart card slot"
+#, kde-format
 msgctxt "@info"
 msgid "Show actions available for this smart card"
-msgstr "הצגת פעולות שזמינות לחריץ הכרטיס החכם הזה"
+msgstr "הצגת פעולות שזמינות לכרטיס החכם הזה"
 
 #: src/view/smartcardwidget.cpp:328 src/view/smartcardwidget.cpp:331
 #, kde-format
