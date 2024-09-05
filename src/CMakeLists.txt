@@ -467,6 +467,8 @@ set(_kleopatra_SRCS
   utils/path-helper.h
   utils/scrollarea.cpp
   utils/scrollarea.h
+  utils/statusmessage.cpp
+  utils/statusmessage.h
   utils/systemtrayicon.cpp
   utils/systemtrayicon.h
   utils/tags.cpp

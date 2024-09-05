@@ -23,6 +23,14 @@ ecm_add_test(
 )
 
 ecm_add_test(
+    statusmessagetest.cpp
+    ${CMAKE_SOURCE_DIR}/src/utils/statusmessage.cpp
+    ${logging_category_srcs}
+    TEST_NAME statusmessagetest
+    LINK_LIBRARIES Qt::Test
+)
+
+ecm_add_test(
     stripsuffixtest.cpp
     ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
     ${logging_category_srcs}
