@@ -13,6 +13,7 @@
 #include <mainwindow.h>
 
 #include <smartcard/readerstatus.h>
+#include <utils/statusmessage.h>
 #include <view/smartcardactions.h>
 #include <view/smartcardswidget.h>
 
@@ -47,7 +48,7 @@ private:
 private:
     std::shared_ptr<const SmartCardActions> smartCardActions;
     SmartCardsWidget *smartCardWidget = nullptr;
-    QLabel *statusMessageLabel = nullptr;
+    StatusMessage *statusMessage = nullptr;
 };
 
 SmartCardWindow::Private::Private(SmartCardWindow *qq)
@@ -83,39 +84,41 @@ void SmartCardWindow::Private::setUpStatusBar()
     auto statusBar = q->statusBar();
     statusBar->setSizeGripEnabled(false);
 
-    statusMessageLabel = new QLabel{statusBar};
+    auto statusMessageLabel = new QLabel{statusBar};
     statusBar->addWidget(statusMessageLabel, 1);
 
     q->setStatusBar(statusBar);
 
+    statusMessage = new StatusMessage{q};
+    connect(statusMessage, &StatusMessage::messageChanged, statusMessageLabel, &QLabel::setText);
     connect(ReaderStatus::instance(), &ReaderStatus::updateCardsStarted, q, [this]() {
-        statusMessageLabel->setText(i18nc("@info:status", "Loading smart cards..."));
+        statusMessage->showMessage(i18nc("@info:status", "Loading smart cards..."));
     });
     connect(ReaderStatus::instance(), &ReaderStatus::updateCardStarted, q, [this](const std::string &serialNumber, const std::string &appName) {
         const auto card = ReaderStatus::instance()->getCard(serialNumber, appName);
         if (card) {
-            statusMessageLabel->setText(i18nc("@info:status", "Updating smart card %1...", card->displaySerialNumber()));
+            statusMessage->showMessage(i18nc("@info:status", "Updating smart card %1...", card->displaySerialNumber()));
         } else {
-            statusMessageLabel->setText(i18nc("@info:status", "Updating smart card..."));
+            statusMessage->showMessage(i18nc("@info:status", "Updating smart card..."));
         }
     });
     connect(ReaderStatus::instance(), &ReaderStatus::updateFinished, q, [this]() {
-        statusMessageLabel->clear();
+        statusMessage->clearMessage();
     });
     connect(ReaderStatus::instance(), &ReaderStatus::startingLearnCards, q, [this]() {
-        statusMessageLabel->setText(i18nc("@info:status", "Importing certificates from smart cards..."));
+        statusMessage->showMessage(i18nc("@info:status", "Importing certificates from smart cards..."));
     });
     connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, q, [this]() {
-        statusMessageLabel->clear();
+        statusMessage->clearMessage();
     });
 
     switch (ReaderStatus::instance()->currentAction()) {
     case ReaderStatus::UpdateCards: {
-        statusMessageLabel->setText(i18nc("@info:status", "Loading smart cards..."));
+        statusMessage->showMessage(i18nc("@info:status", "Loading smart cards..."));
         break;
     }
     case ReaderStatus::LearnCards: {
-        statusMessageLabel->setText(i18nc("@info:status", "Importing certificates from smart cards..."));
+        statusMessage->showMessage(i18nc("@info:status", "Importing certificates from smart cards..."));
         break;
     }
     case ReaderStatus::NoAction:
