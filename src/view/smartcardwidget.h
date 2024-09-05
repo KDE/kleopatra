@@ -8,6 +8,7 @@
 */
 #pragma once
 
+#include <QPointer>
 #include <QWidget>
 
 #include <memory>
@@ -22,6 +23,10 @@ class QVBoxLayout;
 namespace GpgME
 {
 class Key;
+}
+namespace QGpgME
+{
+class Job;
 }
 
 namespace Kleo
@@ -52,12 +57,13 @@ public:
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
-protected:
-    QLabel *statusLabel() const;
+private:
+    void retrieveOpenPGPCertificate();
 
 private:
     Kleo::SmartCard::AppType mAppType;
     std::shared_ptr<const Kleo::SmartCard::Card> mCard;
+    QPointer<QGpgME::Job> mJob;
 
     std::unique_ptr<Kleo::InfoField> mCardTypeField;
     std::unique_ptr<Kleo::InfoField> mSerialNumberField;

@@ -25,11 +25,6 @@ class P15CardWidget : public SmartCardWidget
 public:
     explicit P15CardWidget(QWidget *parent = nullptr);
     ~P15CardWidget() override;
-
-    void setCard(const SmartCard::P15Card *card);
-
-private:
-    void searchPGPFpr(const std::string &fpr);
 };
 
 }

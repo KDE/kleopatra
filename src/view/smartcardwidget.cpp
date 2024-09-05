@@ -18,10 +18,19 @@
 #include <utils/accessibility.h>
 #include <view/cardkeysview.h>
 
+#include <kleopatra_debug.h>
+#include <settings.h>
+
 #include <Libkleo/Compliance>
+#include <Libkleo/GnuPG>
+#include <Libkleo/KeyCache>
 
 #include <KLocalizedString>
 #include <KMessageWidget>
+
+#include <QGpgME/ImportFromKeyserverJob>
+#include <QGpgME/KeyListJob>
+#include <QGpgME/Protocol>
 
 #include <QGridLayout>
 #include <QLabel>
@@ -29,6 +38,9 @@
 #include <QScrollArea>
 #include <QToolButton>
 #include <QVBoxLayout>
+
+#include <gpgme++/importresult.h>
+#include <gpgme++/keylistresult.h>
 
 using namespace Kleo;
 using namespace Kleo::SmartCard;
@@ -284,11 +296,12 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
         mNullPinWidget = new KMessageWidget{this};
         mNullPinWidget->setVisible(false);
         contentLayout->addWidget(mNullPinWidget);
-    } else if (mAppType == AppType::P15App) {
-        mStatusLabel = new QLabel{this};
-        mStatusLabel->setVisible(false);
-        contentLayout->addWidget(mStatusLabel);
     }
+
+    // used for OpenPGP and PKCS#15 cards when looking up missing OpenPGP certificates
+    mStatusLabel = new QLabel{this};
+    mStatusLabel->setVisible(false);
+    contentLayout->addWidget(mStatusLabel);
 
     mErrorWidget = new KMessageWidget{this};
     mErrorWidget->setVisible(false);
@@ -314,11 +327,17 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
     contentLayout->addWidget(mCardKeysView, 1);
 }
 
-SmartCardWidget::~SmartCardWidget() = default;
+SmartCardWidget::~SmartCardWidget()
+{
+    if (mJob) {
+        mJob->slotCancel();
+    }
+}
 
 void SmartCardWidget::setCard(const Card *card)
 {
     Q_ASSERT(mAppType == card->appType());
+    const bool firstSetup = !mCard;
     mCard.reset(card->clone());
 
     mCardTypeField->setValue(cardTypeForDisplay(card));
@@ -359,6 +378,10 @@ void SmartCardWidget::setCard(const Card *card)
         mErrorWidget->setVisible(false);
     }
 
+    if (firstSetup && (mAppType == AppType::OpenPGPApp || mAppType == AppType::P15App)) {
+        retrieveOpenPGPCertificate();
+    }
+
     mCardKeysView->setCard(mCard);
 }
 
@@ -393,7 +416,57 @@ GpgME::Key SmartCardWidget::currentCertificate() const
     return {};
 }
 
-QLabel *SmartCardWidget::statusLabel() const
+void SmartCardWidget::retrieveOpenPGPCertificate()
 {
-    return mStatusLabel;
+    Q_ASSERT(mCard);
+    Q_ASSERT(mAppType == AppType::OpenPGPApp || mAppType == AppType::P15App);
+    Q_ASSERT(!mJob);
+
+    mStatusLabel->setVisible(false);
+
+    // Auto import the OpenPGP key for the card keys only from LDAP or if explicitly enabled
+    if (!(Kleo::keyserver().startsWith("ldap"_L1) || //
+          (Settings().alwaysSearchCardOnKeyserver() && Kleo::haveKeyserverConfigured()))) {
+        return;
+    }
+    const auto sigInfo = mCard->keyInfo(mCard->signingKeyRef());
+    if (sigInfo.grip.empty()) {
+        return;
+    }
+    const auto key = KeyCache::instance()->findSubkeyByKeyGrip(sigInfo.grip, GpgME::OpenPGP).parent();
+    if (!key.isNull()) {
+        return;
+    }
+    qCDebug(KLEOPATRA_LOG) << __func__ << "No key found for key grip" << sigInfo.grip;
+    const auto fpr = mCard->keyFingerprint(mCard->signingKeyRef());
+    if (fpr.empty()) {
+        return;
+    }
+    qCDebug(KLEOPATRA_LOG) << __func__ << "Should be OpenPGP key" << fpr;
+    mStatusLabel->setText(i18n("Searching matching certificate in directory service..."));
+    mStatusLabel->setVisible(true);
+    qCDebug(KLEOPATRA_LOG) << __func__ << "Looking for" << fpr << "on key server" << Kleo::keyserver();
+    auto keyListJob = QGpgME::openpgp()->keyListJob(/* remote = */ true);
+    mJob = keyListJob;
+    connect(keyListJob, &QGpgME::KeyListJob::result, this, [this](GpgME::KeyListResult, std::vector<GpgME::Key> keys, QString, GpgME::Error) {
+        mJob.clear();
+        if (keys.size() == 1) {
+            qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - Importing" << keys[0].primaryFingerprint();
+            auto importJob = QGpgME::openpgp()->importFromKeyserverJob();
+            mJob = importJob;
+            connect(importJob, &QGpgME::ImportFromKeyserverJob::result, this, [this](GpgME::ImportResult, QString, GpgME::Error) {
+                mJob.clear();
+                qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - import job done";
+                mStatusLabel->setText(i18n("The matching certificate was imported successfully."));
+            });
+            importJob->start(keys);
+        } else if (keys.size() > 1) {
+            qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - Multiple keys found on server";
+            mStatusLabel->setText(i18n("Multiple matching certificates were found in directory service."));
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - No key found on server";
+            mStatusLabel->setText(i18n("No matching certificate was found in directory service."));
+        }
+    });
+    keyListJob->start({QString::fromStdString(fpr)});
 }
