@@ -57,6 +57,9 @@ public:
     std::string currentCardSlot() const;
     GpgME::Key currentCertificate() const;
 
+Q_SIGNALS:
+    void statusMessage(const QString &message);
+
 private:
     void retrieveOpenPGPCertificate();
 
@@ -72,7 +75,6 @@ private:
     std::unique_ptr<Kleo::InfoField> mPinCountersField;
     QToolButton *mCardActionsButton = nullptr;
     KMessageWidget *mNullPinWidget = nullptr;
-    QLabel *mStatusLabel = nullptr;
     KMessageWidget *mErrorWidget = nullptr;
     Kleo::CardKeysView *mCardKeysView = nullptr;
 };

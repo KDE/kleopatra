@@ -91,6 +91,9 @@ void SmartCardWindow::Private::setUpStatusBar()
 
     statusMessage = new StatusMessage{q};
     connect(statusMessage, &StatusMessage::messageChanged, statusMessageLabel, &QLabel::setText);
+    connect(smartCardWidget, &SmartCardsWidget::statusMessage, statusMessage, &StatusMessage::showMessage);
+    connect(smartCardWidget, &SmartCardsWidget::cardChanged, statusMessage, &StatusMessage::setContext);
+
     connect(ReaderStatus::instance(), &ReaderStatus::updateCardsStarted, q, [this]() {
         statusMessage->showMessage(i18nc("@info:status", "Loading smart cards..."));
     });

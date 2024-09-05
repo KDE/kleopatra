@@ -35,6 +35,10 @@ public:
 public Q_SLOTS:
     void reload();
 
+Q_SIGNALS:
+    void statusMessage(const QString &message, const QByteArray &cardId);
+    void cardChanged(const QByteArray &cardId);
+
 private:
     void updateReloadButton();
 

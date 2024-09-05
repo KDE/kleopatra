@@ -298,11 +298,6 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
         contentLayout->addWidget(mNullPinWidget);
     }
 
-    // used for OpenPGP and PKCS#15 cards when looking up missing OpenPGP certificates
-    mStatusLabel = new QLabel{this};
-    mStatusLabel->setVisible(false);
-    contentLayout->addWidget(mStatusLabel);
-
     mErrorWidget = new KMessageWidget{this};
     mErrorWidget->setVisible(false);
     contentLayout->addWidget(mErrorWidget);
@@ -422,7 +417,8 @@ void SmartCardWidget::retrieveOpenPGPCertificate()
     Q_ASSERT(mAppType == AppType::OpenPGPApp || mAppType == AppType::P15App);
     Q_ASSERT(!mJob);
 
-    mStatusLabel->setVisible(false);
+    // clear the status message
+    Q_EMIT statusMessage({});
 
     // Auto import the OpenPGP key for the card keys only from LDAP or if explicitly enabled
     if (!(Kleo::keyserver().startsWith("ldap"_L1) || //
@@ -443,8 +439,7 @@ void SmartCardWidget::retrieveOpenPGPCertificate()
         return;
     }
     qCDebug(KLEOPATRA_LOG) << __func__ << "Should be OpenPGP key" << fpr;
-    mStatusLabel->setText(i18n("Searching matching certificate in directory service..."));
-    mStatusLabel->setVisible(true);
+    Q_EMIT statusMessage(i18n("Searching matching certificate in directory service..."));
     qCDebug(KLEOPATRA_LOG) << __func__ << "Looking for" << fpr << "on key server" << Kleo::keyserver();
     auto keyListJob = QGpgME::openpgp()->keyListJob(/* remote = */ true);
     mJob = keyListJob;
@@ -457,15 +452,15 @@ void SmartCardWidget::retrieveOpenPGPCertificate()
             connect(importJob, &QGpgME::ImportFromKeyserverJob::result, this, [this](GpgME::ImportResult, QString, GpgME::Error) {
                 mJob.clear();
                 qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - import job done";
-                mStatusLabel->setText(i18n("The matching certificate was imported successfully."));
+                Q_EMIT statusMessage(i18n("The matching certificate was imported successfully."));
             });
             importJob->start(keys);
         } else if (keys.size() > 1) {
             qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - Multiple keys found on server";
-            mStatusLabel->setText(i18n("Multiple matching certificates were found in directory service."));
+            Q_EMIT statusMessage(i18n("Multiple matching certificates were found in directory service."));
         } else {
             qCDebug(KLEOPATRA_LOG) << "retrieveOpenPGPCertificate - No key found on server";
-            mStatusLabel->setText(i18n("No matching certificate was found in directory service."));
+            Q_EMIT statusMessage(i18n("No matching certificate was found in directory service."));
         }
     });
     keyListJob->start({QString::fromStdString(fpr)});

@@ -118,6 +118,11 @@ public:
 private:
     QToolButton *mReloadButton = nullptr;
 };
+
+static QByteArray getCardId(const Card *card)
+{
+    return QByteArray::fromStdString(card->appName() + ':' + card->serialNumber());
+}
 } // namespace
 
 class SmartCardsWidget::Private
@@ -191,6 +196,23 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
 
     mStack->setCurrentWidget(mPlaceHolderWidget);
 
+    connect(mStack, &QStackedWidget::currentChanged, q, [this]() {
+        if (mStack->currentWidget() == mPlaceHolderWidget) {
+            Q_EMIT q->cardChanged({});
+        } else if (auto cardWidget = currentCardWidget()) {
+            Q_EMIT q->cardChanged(getCardId(cardWidget->card()));
+        }
+    });
+    connect(mTabWidget, &QTabWidget::currentChanged, q, [this]() {
+        if (auto cardWidget = currentCardWidget()) {
+            // check if card is already set because it is set after the card widget is added to the tab widget
+            if (cardWidget->card()) {
+                Q_EMIT q->cardChanged(getCardId(cardWidget->card()));
+            }
+        } else {
+            Q_EMIT q->cardChanged({});
+        }
+    });
     connect(ReaderStatus::instance(), &ReaderStatus::cardAdded, q, [this](const std::string &serialNumber, const std::string &appName) {
         cardAddedOrChanged(serialNumber, appName);
     });
@@ -350,11 +372,17 @@ void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumb
         cardWidget = new W;
         mCardWidgets.insert({serialNumber, C::AppName}, cardWidget);
         mTabWidget->addTab(cardWidget, getCardLabel(card));
+        cardWidget->setCard(card.get());
         if (mCardWidgets.size() == 1) {
             mStack->setCurrentWidget(mTabWidget);
         }
+        const QByteArray context = getCardId(card.get());
+        connect(cardWidget, &SmartCardWidget::statusMessage, q, [this, context](const QString &message) {
+            Q_EMIT q->statusMessage(message, context);
+        });
+    } else {
+        cardWidget->setCard(card.get());
     }
-    cardWidget->setCard(card.get());
 }
 
 void SmartCardsWidget::Private::cardRemoved(const std::string &serialNumber, const std::string &appName)
