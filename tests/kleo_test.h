@@ -22,7 +22,7 @@
         qputenv("GNUPGHOME", KLEO_TEST_GNUPGHOME);                                                                                                             \
         qputenv("LC_ALL", "C");                                                                                                                                \
         qputenv("KDEHOME", QFile::encodeName(QDir::homePath() + QLatin1StringView("/.kde-unit-test")));                                                        \
-        KAboutData aboutData(QLatin1StringView("qttest"), i18n("qttest"), QLatin1String("version"));                                                           \
+        KAboutData aboutData(QLatin1StringView("qttest"), i18n("qttest"), QLatin1StringView("version"));                                                       \
         QApplication app(argc, argv);                                                                                                                          \
         app.setApplicationName(QLatin1StringView("qttest"));                                                                                                   \
         TestObject tc;                                                                                                                                         \

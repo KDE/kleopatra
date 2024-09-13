@@ -34,7 +34,8 @@ class GpgConfCheck : public SelfTestImplementation
 
 public:
     explicit GpgConfCheck(const char *component)
-        : SelfTestImplementation(i18nc("@title", "%1 Configuration Check", component && *component ? QLatin1StringView(component) : QLatin1String("gpgconf")))
+        : SelfTestImplementation(
+              i18nc("@title", "%1 Configuration Check", component && *component ? QLatin1StringView(component) : QLatin1StringView("gpgconf")))
         , m_component(QLatin1StringView(component))
     {
         runTest();

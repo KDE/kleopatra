@@ -391,7 +391,7 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     }
 
     if (knownRecipients.empty()) {
-        return QLatin1StringView("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1String("</i>");
+        return QLatin1StringView("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1StringView("</i>");
     }
 
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
@@ -401,7 +401,7 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     } else {
         details += QLatin1StringView("<ul>");
         for (const Key &key : knownRecipients) {
-            details += QLatin1StringView("<li>") + renderKey(key) + QLatin1String("</li>");
+            details += QLatin1StringView("<li>") + renderKey(key) + QLatin1StringView("</li>");
         }
         if (knownRecipients.size() < numRecipients) {
             details += QLatin1StringView("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())

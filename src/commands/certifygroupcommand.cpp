@@ -289,7 +289,7 @@ void CertifyGroupCommand::Private::wrapUp()
     });
     const bool sendToServer = (successCount > 0) && certificationOptions.exportable && certificationOptions.sendToServer;
 
-    QString message = QLatin1StringView{"<p>"} + resultSummary(results) + QLatin1String{"</p>"};
+    QString message = QLatin1StringView{"<p>"} + resultSummary(results) + QLatin1StringView{"</p>"};
     if (sendToServer) {
         message += i18nc("@info", "<p>Next the certified certificates will be uploaded to the configured certificate directory.</p>");
     }

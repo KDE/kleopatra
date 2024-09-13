@@ -93,12 +93,12 @@ static QString injectComments(const GpgME::Key &key, const QByteArray &data)
 
     // Fixup the HTML coming from the toolTip for our own format.
     overView.remove(QLatin1StringView("<tr><th>"));
-    overView.replace(QLatin1StringView("</th><td>"), QLatin1String("\t"));
-    overView.replace(QLatin1StringView("</td></tr>"), QLatin1String("\n"));
+    overView.replace(QLatin1StringView("</th><td>"), QLatin1StringView("\t"));
+    overView.replace(QLatin1StringView("</td></tr>"), QLatin1StringView("\n"));
     overView.remove(QLatin1StringView("<table border=\"0\">"));
     overView.remove(QLatin1StringView("\n</table>"));
-    overView.replace(QLatin1StringView("&lt;"), QLatin1String("<"));
-    overView.replace(QLatin1StringView("&gt;"), QLatin1String(">"));
+    overView.replace(QLatin1StringView("&lt;"), QLatin1StringView("<"));
+    overView.replace(QLatin1StringView("&gt;"), QLatin1StringView(">"));
 
     auto overViewLines = overView.split(QLatin1Char('\n'));
 

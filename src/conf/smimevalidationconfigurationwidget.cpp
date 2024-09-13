@@ -378,14 +378,14 @@ SMIMECryptoConfigEntries::configEntry(const char *componentName, const char *ent
     if (!entry) {
         if (showError == DoShowError) {
             qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf doesn't seem to know the entry for %1/%2")
-                                            .arg(QLatin1StringView(componentName), QLatin1String(entryName));
+                                            .arg(QLatin1StringView(componentName), QLatin1StringView(entryName));
         }
         return nullptr;
     }
     if (entry->argType() != argType || entry->isList()) {
         if (showError == DoShowError) {
             qCWarning(KLEOPATRA_LOG) << QStringLiteral("Backend error: gpgconf has wrong type for %1/%2: %3 %4")
-                                            .arg(QLatin1StringView(componentName), QLatin1String(entryName))
+                                            .arg(QLatin1StringView(componentName), QLatin1StringView(entryName))
                                             .arg(entry->argType())
                                             .arg(entry->isList());
         }

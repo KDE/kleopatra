@@ -378,8 +378,8 @@ void EnterDetailsPage::updateForm()
         if (attr == QLatin1StringView("EMAIL")) {
             row = row_index_of(ui->emailLE, ui->gridLayout);
             validator = regex.isEmpty() ? Validation::email() : Validation::email(regex);
-        } else if (attr == QLatin1StringView("NAME") || attr == QLatin1String("CN")) {
-            if (attr == QLatin1String("NAME")) {
+        } else if (attr == QLatin1StringView("NAME") || attr == QLatin1StringView("CN")) {
+            if (attr == QLatin1StringView("NAME")) {
                 continue;
             }
             row = row_index_of(ui->nameLE, ui->gridLayout);

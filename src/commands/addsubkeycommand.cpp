@@ -82,23 +82,23 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
     unsigned int flags = 0;
     if (dialog->usage().canEncrypt()) {
         flags |= GPGME_CREATE_ENCR;
-        usage = QLatin1String("encr");
+        usage = QLatin1StringView("encr");
     } else if (dialog->usage().canSign()) {
         flags |= GPGME_CREATE_SIGN;
-        usage = QLatin1String("sign");
+        usage = QLatin1StringView("sign");
     } else if (dialog->usage().canAuthenticate()) {
         flags |= GPGME_CREATE_AUTH;
-        usage = QLatin1String("auth");
+        usage = QLatin1StringView("auth");
     }
     QString algoString = dialog->algo();
-    if (algoString.startsWith(QLatin1String("curve"))) {
+    if (algoString.startsWith(QLatin1StringView("curve"))) {
         if (dialog->usage().canEncrypt()) {
-            algoString.replace(QLatin1String("curve"), QLatin1String("cv"));
+            algoString.replace(QLatin1StringView("curve"), QLatin1StringView("cv"));
         } else {
-            algoString.replace(QLatin1String("curve"), QLatin1String("ed"));
+            algoString.replace(QLatin1StringView("curve"), QLatin1StringView("ed"));
         }
-    } else if (algoString != QLatin1String("default")) {
-        algoString = QLatin1String("%1/%2").arg(algoString, usage);
+    } else if (algoString != QLatin1StringView("default")) {
+        algoString = QLatin1StringView("%1/%2").arg(algoString, usage);
     }
     algo = algoString.toLatin1();
     job->startAddSubkey(key(), algo.data(), QDateTime(dialog->expires(), QTime()), flags);

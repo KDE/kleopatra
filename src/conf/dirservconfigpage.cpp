@@ -421,7 +421,7 @@ void DirectoryServicesConfigurationPage::Private::save()
         } else if (keyserver == QLatin1StringView{"none"}) {
             mOpenPGPServiceEntry->setStringValue(keyserver);
         } else {
-            const auto keyserverValue = keyserver.contains(QLatin1Char{':'}) ? keyserver : (QLatin1String{"hkps://"} + keyserver);
+            const auto keyserverValue = keyserver.contains(QLatin1Char{':'}) ? keyserver : (QLatin1StringView{"hkps://"} + keyserver);
             mOpenPGPServiceEntry->setStringValue(keyserverValue);
         }
         mRetrieveKeysEntry->setBoolValue(mRetrieveKeysCheckBox->isChecked());
@@ -479,7 +479,7 @@ CryptoConfigEntry *DirectoryServicesConfigurationPage::Private::configEntry(cons
         if (showError == DoShowError) {
             KMessageBox::error(
                 q,
-                i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1StringView(componentName), QLatin1String(entryName)));
+                i18n("Backend error: gpgconf does not seem to know the entry for %1/%2", QLatin1StringView(componentName), QLatin1StringView(entryName)));
         }
         return nullptr;
     }

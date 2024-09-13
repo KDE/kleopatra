@@ -254,7 +254,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
             if (proposedFileName.endsWith(QLatin1StringView(".asc"))) {
                 proposedFileName.replace(idx, 4, QLatin1StringView(".pem"));
             }
-            if (proposedFileName.endsWith(QLatin1StringView(".gpg")) || proposedFileName.endsWith(QLatin1String(".pgp"))) {
+            if (proposedFileName.endsWith(QLatin1StringView(".gpg")) || proposedFileName.endsWith(QLatin1StringView(".pgp"))) {
                 proposedFileName.replace(idx, 4, QLatin1StringView(".der"));
             }
         }
@@ -297,7 +297,7 @@ void ExportCertificateCommand::Private::startExportJob(GpgME::Protocol protocol,
     Q_ASSERT(backend);
     const QString fileName = fileNames[protocol];
     const bool binary = protocol == GpgME::OpenPGP
-        ? fileName.endsWith(QLatin1StringView(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1String(".pgp"), Qt::CaseInsensitive)
+        ? fileName.endsWith(QLatin1StringView(".gpg"), Qt::CaseInsensitive) || fileName.endsWith(QLatin1StringView(".pgp"), Qt::CaseInsensitive)
         : fileName.endsWith(QLatin1StringView(".der"), Qt::CaseInsensitive);
     std::unique_ptr<ExportJob> job(backend->publicKeyExportJob(!binary));
     Q_ASSERT(job.get());

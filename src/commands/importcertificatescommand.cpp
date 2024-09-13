@@ -348,7 +348,7 @@ static QString make_message_report(const std::vector<ImportResultData> &res, con
     } else {
         const QString title = isImportFromSingleSource(res) && !res.front().id.isEmpty() ? i18n("Detailed results of importing %1:", res.front().id)
                                                                                          : i18n("Detailed results of import:");
-        report += QLatin1StringView{"<p>"} + title + QLatin1String{"</p>"};
+        report += QLatin1StringView{"<p>"} + title + QLatin1StringView{"</p>"};
         report += QLatin1StringView{"<p><table width=\"100%\">"};
         report += make_report(res, groups);
         report += QLatin1StringView{"</table></p>"};

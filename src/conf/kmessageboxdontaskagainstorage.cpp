@@ -11,11 +11,11 @@ bool KMessageBoxDontAskAgainConfigStorage::shouldBeShownTwoActions(const QString
 {
     KConfigGroup cg(KMessageBox_againConfig ? KMessageBox_againConfig : KSharedConfig::openConfig().data(), QStringLiteral("Notification Messages"));
     const QString dontAsk = cg.readEntry(dontShowAgainName, QString()).toLower();
-    if (dontAsk == QLatin1String("yes") || dontAsk == QLatin1String("true")) {
+    if (dontAsk == QLatin1StringView("yes") || dontAsk == QLatin1StringView("true")) {
         result = KMessageBox::PrimaryAction;
         return false;
     }
-    if (dontAsk == QLatin1String("no") || dontAsk == QLatin1String("false")) {
+    if (dontAsk == QLatin1StringView("no") || dontAsk == QLatin1StringView("false")) {
         result = KMessageBox::SecondaryAction;
         return false;
     }

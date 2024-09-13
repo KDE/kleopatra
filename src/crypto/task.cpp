@@ -230,7 +230,7 @@ static QString image(const char *img)
 
 QString Task::Result::makeOverview(const QString &msg)
 {
-    return QLatin1StringView("<b>") + msg + QLatin1String("</b>");
+    return QLatin1StringView("<b>") + msg + QLatin1StringView("</b>");
 }
 
 QString Task::Result::iconPath(VisualCode code)

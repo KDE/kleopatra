@@ -57,7 +57,7 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
         }
         const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
         const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
-        const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1String{"_"});
+        const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1StringView{"_"});
         /* Not translated so it's better to use in tutorials etc. */
         filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage);
     } else {

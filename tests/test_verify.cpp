@@ -118,8 +118,8 @@ private Q_SLOTS:
     {
         qRegisterMetaType<GpgME::VerificationResult>();
 
-        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data.sig");
-        const QString dataFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data");
+        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1StringView("/test.data.sig");
+        const QString dataFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1StringView("/test.data");
 
         QFile sigFile(sigFileName);
         QVERIFY(sigFile.open(QFile::ReadOnly));
@@ -155,7 +155,7 @@ private Q_SLOTS:
      * encrypted PGP messages */
     void testDecryptVerifyOpaqueSigned()
     {
-        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1String("/test.data.signed-opaque.asc");
+        const QString sigFileName = QLatin1StringView(KLEO_TEST_DATADIR) + QLatin1StringView("/test.data.signed-opaque.asc");
         std::pair<GpgME::DecryptionResult, GpgME::VerificationResult> result;
         QByteArray plaintext;
         QFile sigFile(sigFileName);

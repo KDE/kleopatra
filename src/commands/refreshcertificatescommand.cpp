@@ -292,11 +292,11 @@ static auto informationOnChanges(const ImportResult &result)
             details.push_back(i18n("New signatures: %1", result.newSignatures()));
         }
         if (!details.empty()) {
-            text += QLatin1StringView{"<br><br>"} + details.join(QLatin1String{"<br>"});
+            text += QLatin1StringView{"<br><br>"} + details.join(QLatin1StringView{"<br>"});
         }
     }
 
-    text = QLatin1StringView{"<p>"} + text + QLatin1String{"</p>"};
+    text = QLatin1StringView{"<p>"} + text + QLatin1StringView{"</p>"};
     if (result.numImported() > 0) {
         text += QLatin1StringView{"<p>"}
             + i18np("Additionally, one new key has been retrieved.", "Additionally, %1 new keys have been retrieved.", result.numImported())
@@ -396,7 +396,7 @@ void RefreshCertificatesCommand::Private::checkFinished()
 
     if (!pgpKeys.empty()) {
         text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of OpenPGP certificate update from keyserver, LDAP server, or Active Directory")
-            + QLatin1String{"</strong></p>"};
+            + QLatin1StringView{"</strong></p>"};
         if (hasPgpError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(keyserverResult.error()));
         } else if (pgpSkipped) {
@@ -413,7 +413,7 @@ void RefreshCertificatesCommand::Private::checkFinished()
     }
 
     if (!wkdKeys.empty() && !wkdSkipped) {
-        text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update from Web Key Directory") + QLatin1String{"</strong></p>"};
+        text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update from Web Key Directory") + QLatin1StringView{"</strong></p>"};
         if (hasWkdError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(wkdRefreshResult.error()));
         } else if (wkdRefreshResult.numConsidered() == 0) {
@@ -427,7 +427,7 @@ void RefreshCertificatesCommand::Private::checkFinished()
     }
 
     if (!smimeKeys.empty()) {
-        text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of S/MIME certificate update") + QLatin1String{"</strong></p>"};
+        text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of S/MIME certificate update") + QLatin1StringView{"</strong></p>"};
         if (hasSmimeError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(*smimeError));
         } else {

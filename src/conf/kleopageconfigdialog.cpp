@@ -170,11 +170,12 @@ void KleoPageConfigDialog::slotHelpClicked()
     QUrl docUrl;
 
 #ifdef Q_OS_WIN
-    docUrl = QUrl(QLatin1StringView("https://docs.kde.org/index.php?branch=stable5&language=") + QLocale().name() + QLatin1String("&application=kleopatra"));
+    docUrl =
+        QUrl(QLatin1StringView("https://docs.kde.org/index.php?branch=stable5&language=") + QLocale().name() + QLatin1StringView("&application=kleopatra"));
 #else
     docUrl = QUrl(QStringLiteral("help:/")).resolved(QUrl(docPath)); // same code as in KHelpClient::invokeHelp
 #endif
-    if (docUrl.scheme() == QLatin1StringView("help") || docUrl.scheme() == QLatin1String("man") || docUrl.scheme() == QLatin1String("info")) {
+    if (docUrl.scheme() == QLatin1StringView("help") || docUrl.scheme() == QLatin1StringView("man") || docUrl.scheme() == QLatin1StringView("info")) {
         // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
         QProcess::startDetached(QStringLiteral("khelpcenter"), QStringList() << docUrl.toString());
     } else {
