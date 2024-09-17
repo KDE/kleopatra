@@ -143,17 +143,15 @@ static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
     return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), user);
 }
 
-static QString strikeOut(const QString &str, bool strike)
-{
-    return QString(strike ? QStringLiteral("<s>%1</s>") : QStringLiteral("%1")).arg(str.toHtmlEscaped());
-}
-
-static QString formatInputOutputLabel(const QString &input, const QString &output, bool inputDeleted, bool outputDeleted)
+static QString formatInputOutputLabel(const QString &input, const QString &output, bool failed)
 {
     if (output.isEmpty()) {
-        return strikeOut(input, inputDeleted);
+        return input;
     }
-    return i18nc("Decrypted <file> from <file>", "Decrypted %1 from %2", strikeOut(output, outputDeleted), strikeOut(input, inputDeleted));
+    if (failed) {
+        return i18nc("Failed to decrypt <file> from <file>", "Failed to decrypt %1 from %2", output, input);
+    }
+    return i18nc("Decrypted <file> from <file>", "Decrypted %1 from %2", output, input);
 }
 
 static bool IsErrorOrCanceled(const GpgME::Error &err)
@@ -518,7 +516,7 @@ public:
 
     QString label() const
     {
-        return formatInputOutputLabel(m_inputLabel, m_outputLabel, false, q->hasError());
+        return formatInputOutputLabel(m_inputLabel, m_outputLabel, q->hasError());
     }
 
     DecryptVerifyResult::SenderInfo makeSenderInfo() const;
