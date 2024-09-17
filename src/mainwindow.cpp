@@ -9,7 +9,6 @@
 
 #include "mainwindow.h"
 #include "aboutdata.h"
-#include "kcolorscheme_version.h"
 #include "kleopatraapplication.h"
 #include "settings.h"
 #include <config-kleopatra.h>
