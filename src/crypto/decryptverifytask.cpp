@@ -149,9 +149,9 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
         return input;
     }
     if (failed) {
-        return i18nc("Failed to decrypt <file> from <file>", "Failed to decrypt %1 from %2", output, input);
+        return xi18nc("Failed to decrypt <file> from <file>", "Failed to decrypt <filename>%1</filename> from <filename>%2</filename>", output, input);
     }
-    return i18nc("Decrypted <file> from <file>", "Decrypted %1 from %2", output, input);
+    return xi18nc("Decrypted <file> from <file>", "Decrypted <filename>%1</filename> from <filename>%2</filename>", output, input);
 }
 
 static bool IsErrorOrCanceled(const GpgME::Error &err)
