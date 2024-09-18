@@ -358,7 +358,7 @@ static QString formatVerificationResultDetails(const VerificationResult &res, co
     const std::vector<Signature> sigs = res.signatures();
     QString details;
     for (const Signature &sig : sigs) {
-        details += Kleo::Formatting::prettySignature(sig, info.informativeSender) + QLatin1Char('\n');
+        details += Kleo::Formatting::prettySignature(sig, info.informativeSender, true) + QLatin1Char('\n');
     }
     details = details.trimmed();
     details.replace(QLatin1Char('\n'), QStringLiteral("<br/><br/>"));
@@ -764,7 +764,7 @@ QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
     QList<Task::Result::ResultListItem> details;
     for (const Signature &sig : d->m_verificationResult.signatures()) {
         details += Task::Result::ResultListItem{
-            .details = Kleo::Formatting::prettySignature(sig, d->makeSenderInfo().informativeSender),
+            .details = Kleo::Formatting::prettySignature(sig, d->makeSenderInfo().informativeSender, true),
             .code = codeForSignature(sig),
         };
     }
