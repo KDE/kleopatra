@@ -287,8 +287,8 @@ private:
             certificateDumpWidget = new CertificateDumpWidget(parent);
             tabWidget->addTab(certificateDumpWidget, i18nc("@title:tab", "Certificate Dump"));
 
-            revokersWidget = new RevokersWidget(parent);
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+            revokersWidget = new RevokersWidget(parent);
             const auto index = tabWidget->addTab(revokersWidget, i18nc("@title:tab", "Revokers"));
             tabWidget->setTabVisible(index, false);
 #endif
@@ -556,8 +556,8 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.userIDs->setKey(key);
     ui.subKeysWidget->setKey(key);
     ui.webOfTrustWidget->setKey(key);
-    ui.revokersWidget->setKey(key);
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+    ui.revokersWidget->setKey(key);
     setTabVisible(ui.revokersWidget, key.numRevocationKeys() > 0);
 #endif
 
