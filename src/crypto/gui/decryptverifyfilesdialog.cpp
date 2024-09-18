@@ -52,6 +52,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     auto outputLayout = new QHBoxLayout;
 
     m_outputLocationFNR = new FileNameRequester;
+    m_outputLocationFNR->setButtonText(i18nc("@info:tooltip", "Choose output folder"));
     auto outLabel = new QLabel(i18nc("@label:textbox", "&Output folder:"));
     outLabel->setBuddy(m_outputLocationFNR);
     outputLayout->addWidget(outLabel);
