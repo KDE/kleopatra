@@ -125,10 +125,9 @@ void DecryptVerifyFilesDialog::allDone()
             m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
         } else {
             m_progressLabelByTag.value(i)->setVisible(false);
-            // TODO adjust decryption / verification / decryption and verification
-            m_progressLabelByTag.value(i)->setText(i18n("Verification finished"));
+            m_progressLabelByTag.value(i)->setText(i18nc("@title", "Finished"));
             auto widget = new KTitleWidget;
-            widget->setText(i18n("Verification Finished"));
+            widget->setText(i18nc("@title", "Finished"));
             m_progressLabelLayout->addWidget(widget);
         }
     }
