@@ -63,3 +63,5 @@ void StatusMessage::emitMessage(const QString &message)
         Q_EMIT messageChanged(message);
     }
 }
+
+#include "moc_statusmessage.cpp"

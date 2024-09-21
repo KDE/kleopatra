@@ -465,3 +465,5 @@ void SmartCardWidget::retrieveOpenPGPCertificate()
     });
     keyListJob->start({QString::fromStdString(fpr)});
 }
+
+#include "moc_smartcardwidget.cpp"
