@@ -222,36 +222,9 @@ Task::Result::ContentType Task::Result::viewableContentType() const
     return Task::Result::ContentType::None;
 }
 
-static QString image(const char *img)
-{
-    // ### escape?
-    return KIconLoader::global()->iconPath(QLatin1StringView(img), KIconLoader::Small);
-}
-
 QString Task::Result::makeOverview(const QString &msg)
 {
     return QLatin1StringView("<b>") + msg + QLatin1StringView("</b>");
-}
-
-QString Task::Result::iconPath(VisualCode code)
-{
-    switch (code) {
-    case Danger:
-        return image("dialog-error");
-    case AllGood:
-        return image("dialog-ok");
-    case Warning:
-        return image("dialog-warning");
-    case NeutralError:
-    case NeutralSuccess:
-    default:
-        return QString();
-    }
-}
-
-QString Task::Result::icon() const
-{
-    return iconPath(code());
 }
 
 #include "moc_task_p.cpp"

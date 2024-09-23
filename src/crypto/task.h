@@ -114,7 +114,6 @@ public:
         Mbox,
     };
 
-    virtual QString icon() const;
     virtual QString overview() const = 0;
     virtual QString details() const = 0;
     virtual GpgME::Error error() const = 0;
@@ -128,7 +127,6 @@ public:
     virtual ContentType viewableContentType() const;
 
 protected:
-    static QString iconPath(VisualCode code);
     static QString makeOverview(const QString &msg);
 
 private:
