@@ -308,13 +308,11 @@ Command *Command::commandForQuery(const QString &query)
     const auto cache = Kleo::KeyCache::instance();
     GpgME::Key key = cache->findByKeyIDOrFingerprint(query.toLocal8Bit().data());
 
-    if (key.isNull() && query.size() > 16) {
-        // Try to find by subkeyid
-        std::vector<std::string> id;
-        id.push_back(query.right(16).toStdString());
-        auto keys = cache->findSubkeysByKeyID(id);
-        if (keys.size()) {
-            key = keys[0].parent();
+    if (key.isNull() && Kleo::isFingerprint(query)) {
+        // Try to find the key by subkey fingerprint
+        const auto subkey = cache->findSubkeyByFingerprint(query.toStdString());
+        if (!subkey.isNull()) {
+            key = subkey.parent();
         }
     }
     if (key.isNull()) {
