@@ -207,6 +207,8 @@ public:
         return 0;
     }
 
+    QString label() const override;
+
 private:
     std::shared_ptr<FileOutput> m_output;
     mutable std::shared_ptr<QIODevice> m_ioDevice = nullptr;
@@ -840,4 +842,9 @@ std::shared_ptr<Output> Output::createFromByteArray(QByteArray *data, const QStr
     auto ret = std::shared_ptr<ByteArrayOutput>(new ByteArrayOutput(data));
     ret->setLabel(label);
     return ret;
+}
+
+QString OutputInput::label() const
+{
+    return m_output->label();
 }

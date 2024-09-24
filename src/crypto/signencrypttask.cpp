@@ -47,12 +47,41 @@ using namespace GpgME;
 namespace
 {
 
-QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted)
+QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted, bool sign, bool encrypt)
 {
-    return i18nc("Input file --> Output file (rarr is arrow",
-                 "%1 &rarr; %2",
-                 input.toHtmlEscaped(),
-                 outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
+    Q_ASSERT(sign || encrypt);
+    if (sign && encrypt) {
+        if (outputDeleted) {
+            return xi18nc("Failed to sign and encrypt <file> as <file>",
+                          "Failed to sign and encrypt <filename>%1</filename> as <filename>%2</filename>",
+                          input.toHtmlEscaped(),
+                          output.toHtmlEscaped());
+        } else {
+            return xi18nc("Signed and encrypted <file> as <file>",
+                          "Signed and encrypted <filename>%1</filename> as <filename>%2</filename>",
+                          input.toHtmlEscaped(),
+                          output.toHtmlEscaped());
+        }
+    } else if (sign) {
+        if (outputDeleted) {
+            return xi18nc("Failed to sign <file> as <file>",
+                          "Failed to sign <filename>%1</filename> as <filename>%2</filename>",
+                          input.toHtmlEscaped(),
+                          output.toHtmlEscaped());
+        } else {
+            return xi18nc("Signed <file> as <file>",
+                          "Signed <filename>%1</filename> as <filename>%2</filename>",
+                          input.toHtmlEscaped(),
+                          output.toHtmlEscaped());
+        }
+    }
+    if (outputDeleted) {
+        return xi18nc("Failed to encrypt <file> as <file>",
+                      "Failed to encrypt <filename>%1</filename> as <filename>%2</filename>",
+                      input.toHtmlEscaped(),
+                      output.toHtmlEscaped());
+    }
+    return xi18nc("Encrypted <file> as <file>", "Encrypted <filename>%1</filename> as <filename>%2</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
 }
 
 class ErrorResult : public Task::Result
@@ -272,7 +301,7 @@ QString ErrorResult::overview() const
 {
     Q_ASSERT(m_error || m_error.isCanceled());
     Q_ASSERT(m_sign || m_encrypt);
-    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true);
+    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true, m_sign, m_encrypt);
     const bool canceled = m_error.isCanceled();
     if (m_sign && m_encrypt) {
         return canceled ? i18n("%1: <b>Sign/encrypt canceled.</b>", label) : i18n(" %1: Sign/encrypt failed.", label);
@@ -916,7 +945,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 
 QString SignEncryptFilesResult::overview() const
 {
-    const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
+    const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated, !m_sresult.isNull(), !m_eresult.isNull());
     return files + QLatin1StringView(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
 
