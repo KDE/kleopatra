@@ -187,20 +187,12 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         auto groupBoxLayout = new QVBoxLayout{groupBox};
         groupBoxLayout->setContentsMargins({});
 
-        if (gpgme_check_version("1.16.0")) {
-            mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
-            if (QLayout *l = mDirectoryServices->layout()) {
-                l->setContentsMargins(0, 0, 0, 0);
-            }
-            groupBoxLayout->addWidget(mDirectoryServices);
-            connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::changed);
-        } else {
-            // QGpgME does not properly support keyserver flags for X.509 keyservers (added in GnuPG 2.2.28);
-            // disable the configuration to prevent the configuration from being corrupted
-            groupBoxLayout->addWidget(new QLabel{i18n("Configuration of directory services is not possible "
-                                                      "because the used gpgme libraries are too old."),
-                                                 q});
+        mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
+        if (QLayout *l = mDirectoryServices->layout()) {
+            l->setContentsMargins(0, 0, 0, 0);
         }
+        groupBoxLayout->addWidget(mDirectoryServices);
+        connect(mDirectoryServices, &DirectoryServicesWidget::changed, q, &DirectoryServicesConfigurationPage::changed);
 
         glay->addWidget(groupBox, row, 0, 1, 3);
     }
