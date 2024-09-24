@@ -1,0 +1,330 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY gnupg "<acronym
+>GnuPG</acronym
+>">
+  <!ENTITY gpgconf "<application
+>GPGConf</application
+>">
+  <!ENTITY watchgnupg "<application
+>WatchGnuPG</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE">
+]>
+
+<book id="kwatchgnupg" lang="&language;">
+
+<bookinfo id="kwatchgnupginfo">
+<title
+>Priročnik za &kwatchgnupg;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+>&Marc.Mutz.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <contrib
+>Razvijalec</contrib>
+<affiliation>
+<address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <affiliation
+> <address
+>&David.Faure.mail;</address>
+</affiliation>
+<contrib
+>Razvijalec</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+> <firstname
+>Peter</firstname
+><surname
+>Žaucer</surname
+><affiliation
+><address
+><email
+>peter.zaucer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>26.07.2016</date>
+<releaseinfo
+>1.0 (Applications 16.08)</releaseinfo>
+
+<abstract>
+<para
+>&kwatchgnupg; je preprost &gnupg; pregledovalnik dnevnika. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>GnuPG</keyword>
+<keyword
+>Pregledovalnik dnevnika</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Uvod</title
+> 
+
+<para
+>&kwatchgnupg; je preprost &gnupg; pregledovalnik dnevnikov za &gnupg; različice 1.4, 2.0 in 2.1. Deluje kot &GUI; ovojnik okrog orodja ukazne vrstice &watchgnupg;, ki posluša vtičnico za vrstice dnevnika iz &gnupg; ozadne aplikacije. Glejte <userinput
+>info watchgnupg</userinput
+> za več informacij o &watchgnupg;.</para>
+
+<para
+>&kwatchgnupg; lahko zaženete iz menija <menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>GnuPG Log Viewer</guimenuitem
+></menuchoice
+> obeh &kleopatra; in &kmail;, kot tudi iz ukazne vrstice. &kwatchgnupg; izvršljiva datoteka se imenuje <userinput
+>kwatchgnupg</userinput
+>. </para>
+
+<sect1 id="mainfunc"
+><title
+>Glavne funkcije</title>
+
+<sect2 id="mainfunc.viewing"
+><title
+>Ogled dnevnika</title>
+
+<para
+>Glavna funkcija &kwatchgnupg; je seveda predstaviti informacije odpravljanja napak &gnupg; in beleženje informacij uporabniku. Glavno okno je razdeljeno na veliko območje za ogled besedila, kjer se bodo pojavila &gnupg; sporočila, ko bodo ustvarjena, orodna vrstica, ki omogoča hiter dostop do najpogosteje potrebnih funkcij, kot tudi obvezna menijska vrstica. </para>
+
+<para
+>Vsaka vrstica v pogledu besedila ima običajno predpono z identifikatorjem <acronym
+>FD</acronym
+> in časovnim žigom v formatu ISO. Identifikator <acronym
+>FD</acronym
+> lahko uporabite za razlikovanje med izhodi iz različnih &gnupg; instanc, ki tečejo vzporedno. Za časovnim žigom je ime komponente, ki je vir vrstice dnevnika, skupaj z nekaterimi notranjimi informacijami v oglatih oklepajih, ki mu sledi izvirni izhod za odpravljanje napak ali dnevnik, kot ga natisne komponenta. </para>
+
+<para
+>Privzeto je število vrstic dnevnika, ki se hranijo v zgodovini, omejeno na 10000 vrstic. Velikost zgodovine lahko nastavite v konfiguracijskem pogovornem oknu. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.saving">
+<title
+>Shranjevanje vsebine okna dnevnika v datoteko</title>
+
+<para
+>Včasih bi bilo priročno shraniti vsebino trenutnega okna dnevnika v datoteko, npr. da ga pošljete razvijalcem kot del poročila o napaki. V &kwatchgnupg; lahko to dosežete na dva načina: </para>
+
+<para
+>Najprej lahko izberete <menuchoice
+><guilabel
+>Datoteka</guilabel
+><guimenuitem
+>Shrani kot...</guimenuitem
+></menuchoice
+> (ali ustrezno ikono v orodni vrstici), da shranite celotno vsebino okna dnevnika v datoteko. Pozvani boste, da določite mesto shranjevanja datoteke. </para>
+
+<para
+>Drugič, zanimive vrstice lahko izberete z običajno izbiro z levim klikom na miški in jih prilepite v urejevalnik besedil ali poštnega uporabniškega agenta, tako kot vsako drugo besedilo. Prepričajte se, da vrstice niso pretrgane, saj to zmanjša berljivost dnevnika. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.clear"
+><title
+>Čiščenje okna dnevnika</title>
+
+<para
+>Za udobje lahko rečeš programu &kwatchgnupg; da počisti okno dnevnika z <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Počisti zgodovino</guimenuitem
+></menuchoice
+> (ali ustrezno ikono v orodni vrstici). </para>
+
+<para
+>To uporabite pred začetkom kripto operacije, ki jo želite spremljati, da dobite samo izhod te operacije. Nato lahko dnevnik shranite z <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Shrani kot...</guimenuitem
+></menuchoice
+>, kot je opisano zgoraj. </para>
+
+<para
+>Če izbrišete dnevnik, se zavrže vsa prejšnja vsebina okna dnevnika. Če niste prepričani, ali boste pozneje potrebovali trenutno vsebino, jo pred brisanjem shranite v datoteko (glejte zgoraj). </para>
+</sect2>
+</sect1>
+
+</chapter>
+
+<chapter id="configure"
+><title
+>Konfiguriranje &kwatchgnupg;</title>
+
+<para
+>Če želite konfigurirati &kwatchgnupg;, izberite <menuchoice
+><guimenu
+>Nastavitve</guimenu
+><guimenuitem
+>Konfiguriraj &kwatchgnupg;</guimenuitem
+></menuchoice
+> ali ustrezno ikono v orodni vrstici. Pogovorno okno za konfiguracijo &kwatchgnupg; je razdeljeno na dva dela, od katerih bo vsak opisan spodaj. </para>
+
+<sect1 id="configure.dialog"
+><title
+>Pogovorno okno z nastavitvami</title>
+
+<sect2 id="configure.watchgnupg"
+><title
+>Nastavitve &watchgnupg;</title>
+
+<para
+>&watchgnupg; je proces, ki dejansko nadzira aktivnost vtiča za beleženje in oblikuje vrstice, kot je prikazano v datoteki &kwatchgnupg; pogled besedila. Nastavitve v tej skupini se prenesejo v zaledje z uporabo &gpgconf; mehanizma. </para>
+
+<para
+><guilabel
+>Izvedljiva</guilabel
+> vsebuje pot do datoteke &watchgnupg; aplikacije. Če je &watchgnupg; v vašem <varname
+>$PATH</varname
+>, lahko obdržite privzeti <userinput
+>watchgnupg</userinput
+>. Če &watchgnupg; ni v vašem <varname
+>$PATH</varname
+> ali če imate nameščeno več kot eno različico, tukaj vnesite absolutno ime datoteke izvršljive datoteke watchgnupg. </para>
+
+<para
+><guilabel
+>Vtič</guilabel
+> vsebuje vtič, ki ga bi &watchgnupg; moral poslušati. Sprememba tukaj je razdeljena vsem &gnupg; zalednim modulom, ki uporabljajo &gpgconf;, zato vam te nastavitve ni treba spreminjati, če imajo vaše &gnupg; konfiguracijske datoteke nastavljeno drugo <varname
+>log-datoteko</varname
+>. </para>
+
+<para
+><guilabel
+>Privzeta raven dnevnika</guilabel
+> določa količino zapisovalnih informacij, ki jih vrnejo zaledni moduli. Oglejte si &watchgnupg; dokumentacijo za katero raven vključuje katere informacije. Sprememba tukaj je razdeljena vsem &gnupg; zalednim modulom, ki uporabljajo &gpgconf;, zato vam te nastavitve ni treba spreminjati, če imajo vaše &gnupg; konfiguracijske datoteke drug nastavljen set <varname
+>na ravni dnevnika</varname
+>. </para>
+
+</sect2>
+
+<sect2 id="configure.logwindow"
+><title
+>Nastavitve okna dnevnika</title>
+
+<para
+>Tukaj lahko konfigurirate velikost medpomnilnika zgodovine, tj. število vrstic dnevnika, ki se hranijo. Če je &gnupg; zaledje oddalo več vrstic od zadnjega brisanja zgodovine, potem se najstarejše vrstice zavržejo, dokler spet ni dovolj prostora za nove vrstice. </para>
+
+<para
+>Omejitev velikosti zgodovine lahko onemogočite s klikom na <guibutton
+>Nastavi neomejeno</guibutton
+>. Upoštevajte pa, da bo poraba pomnilnika &kwatchgnupg; rasla s številom vrstic, ki jih trenutno prikazuje. Če uporabljate neomejeno velikost zgodovine, ne pozabite zagnati &kwatchgnupg; samo za kratke operacije ali redno ročno brišite zgodovino. </para>
+
+</sect2>
+
+</sect1>
+
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Zasluge in licenca</title>
+
+<para
+>&kwatchgnupg; avtorske pravice 2004 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Avtorske pravice dokumentacije 2004 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Sodelovalci</title>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Prevod: Matjaž Jeran<email
+>matjaz.jeran@amis.net</email
+> in Peter Žaucer<email
+>peter.zaucer@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->
