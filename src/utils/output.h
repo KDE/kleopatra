@@ -95,7 +95,7 @@ public:
     static std::shared_ptr<Output> createFromFile(const QString &fileName, const std::shared_ptr<OverwritePolicy> &);
     static std::shared_ptr<Output> createFromFile(const QString &fileName, bool forceOverwrite);
     static std::shared_ptr<Output> createFromPipeDevice(assuan_fd_t fd, const QString &label);
-    static std::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &workingDirectory);
+    static std::shared_ptr<Output> createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &workingDirectory, const QString &file);
 #ifndef QT_NO_CLIPBOARD
     static std::shared_ptr<Output> createFromClipboard();
 #endif

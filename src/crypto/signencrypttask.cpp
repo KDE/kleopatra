@@ -47,14 +47,6 @@ using namespace GpgME;
 namespace
 {
 
-QString formatInputOutputLabel(const QString &input, const QString &output, bool outputDeleted)
-{
-    return i18nc("Input file --> Output file (rarr is arrow",
-                 "%1 &rarr; %2",
-                 input.toHtmlEscaped(),
-                 outputDeleted ? QStringLiteral("<s>%1</s>").arg(output.toHtmlEscaped()) : output.toHtmlEscaped());
-}
-
 class ErrorResult : public Task::Result
 {
 public:
@@ -104,6 +96,7 @@ namespace
 struct LabelAndError {
     QString label;
     QString errorString;
+    QStringList fileNames;
 };
 }
 
@@ -114,14 +107,12 @@ public:
                            const EncryptionResult &er,
                            const LabelAndError &input,
                            const LabelAndError &output,
-                           bool outputCreated,
                            const AuditLogEntry &auditLog)
         : Task::Result()
         , m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
-        , m_outputCreated(outputCreated)
         , m_auditLog(auditLog)
     {
         qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
@@ -140,63 +131,160 @@ private:
     const EncryptionResult m_eresult;
     const LabelAndError m_input;
     const LabelAndError m_output;
-    const bool m_outputCreated;
     const AuditLogEntry m_auditLog;
 };
 
-static QString makeSigningOverview(const Error &err)
+QString formatResultLine(const QStringList &inputs,
+                         const QString &output,
+                         bool sign,
+                         bool encrypt,
+                         bool signingFailed,
+                         bool encryptionFailed,
+                         const GpgME::Error &error)
 {
-    if (err.isCanceled()) {
-        return i18n("Signing canceled.");
+    Q_ASSERT(inputs.size() > 0);
+    Q_ASSERT(sign || encrypt);
+
+    if (error.isCanceled()) {
+        if (sign && encrypt) {
+            return i18nc("@info", "Signing and encryption canceled.");
+        }
+        if (sign) {
+            return i18nc("@info", "Signing canceled.");
+        }
+
+        return i18nc("@info", "Encryption canceled.");
     }
 
-    if (err) {
-        return i18n("Signing failed.");
+    if (signingFailed && encryptionFailed) {
+        if (inputs.size() == 1) {
+            return xi18nc("@info Failed to sign and encrypt <file>: <reason>",
+                          "Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
+                          inputs[0],
+                          Formatting::errorAsString(error));
+        }
+        if (inputs.size() == 2) {
+            return xi18nc("@info Failed to sign and encrypt <file> and <file>: <reason>",
+                          "Failed to sign and encrypt <filename>%1</filename> and <filename>%2</filename>: <emphasis strong='true'>%3</emphasis>",
+                          inputs[0],
+                          inputs[1],
+                          Formatting::errorAsString(error));
+        }
+        return xi18ncp("@info Failed to sign and encrypt <file> and <n> other(s): <reason>",
+                       "Failed to sign and encrypt <filename>%2</filename> and %1 other: <emphasis strong='true'>%3</emphasis>",
+                       "Failed to sign and encrypt <filename>%2</filename> and %1 others: <emphasis strong='true'>%3</emphasis>",
+                       inputs.size() - 1,
+                       inputs[0],
+                       Formatting::errorAsString(error));
     }
-    return i18n("Signing succeeded.");
-}
 
-static QString makeResultOverview(const SigningResult &result)
-{
-    return makeSigningOverview(result.error());
-}
-
-static QString makeEncryptionOverview(const Error &err)
-{
-    if (err.isCanceled()) {
-        return i18n("Encryption canceled.");
+    if (signingFailed) {
+        if (inputs.size() == 1) {
+            return xi18nc("@info Failed to sign <file>: <reason>",
+                          "Failed to sign <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
+                          inputs[0],
+                          Formatting::errorAsString(error));
+        }
+        if (inputs.size() == 2) {
+            return xi18nc("@info Failed to sign <file> and <file>: <reason>",
+                          "Failed to sign <filename>%1</filename> and <filename>%2</filename>: <emphasis strong='true'>%3</emphasis>",
+                          inputs[0],
+                          inputs[1],
+                          Formatting::errorAsString(error));
+        }
+        return xi18ncp("@info Failed to sign <file> and <n> other(s): <reason>",
+                       "Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>%3</emphasis>",
+                       "Failed to sign <filename>%2</filename> and %1 others: <emphasis strong='true'>%3</emphasis>",
+                       inputs.size() - 1,
+                       inputs[0],
+                       Formatting::errorAsString(error));
     }
 
-    if (err) {
-        return i18n("Encryption failed.");
+    if (encryptionFailed) {
+        if (inputs.size() == 1) {
+            return xi18nc("@info Failed to encrypt <file>: <reason>",
+                          "Failed to encrypt <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
+                          inputs[0],
+                          Formatting::errorAsString(error));
+        }
+        if (inputs.size() == 2) {
+            return xi18nc("@info Failed to encrypt <file> and <file>: <reason>",
+                          "Failed to encrypt <filename>%1</filename> and <filename>%2</filename>: <emphasis strong='true'>%3</emphasis>",
+                          inputs[0],
+                          inputs[1],
+                          Formatting::errorAsString(error));
+        }
+        return xi18ncp("@info Failed to encrypt <file> and <n> other(s): <reason>",
+                       "Failed to encrypt <filename>%2</filename> and %1 other: <emphasis strong='true'>%3</emphasis>",
+                       "Failed to encrypt <filename>%2</filename> and %1 others: <emphasis strong='true'>%3</emphasis>",
+                       inputs.size() - 1,
+                       inputs[0],
+                       Formatting::errorAsString(error));
     }
 
-    return i18n("Encryption succeeded.");
-}
+    if (sign && encrypt) {
+        if (inputs.size() == 1) {
+            return xi18nc("@info Successfully signed and encrypted <file> and saved it as <file>.",
+                          "Successfully signed and encrypted <filename>%1</filename> and saved it as <filename>%2</filename>.",
+                          inputs[0],
+                          output);
+        }
+        if (inputs.size() == 2) {
+            return xi18nc("@info Successfully signed and encrypted <file> and <file> and saved it as <file>.",
+                          "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</filename> and saved it as <filename>%3</filename>.",
+                          inputs[0],
+                          inputs[1],
+                          output);
+        }
+        return xi18ncp("@info Successfully signed and encrypted <file> and <n> other(s) as <file>.",
+                       "Successfully signed and encrypted <filename>%2</filename> and %1 other and saved it as <filename>%3</filename>.",
+                       "Successfully signed and encrypted <filename>%2</filename> and %1 others and saved it as <filename>%3</filename>.",
+                       inputs.size() - 1,
+                       inputs[0],
+                       output);
+    }
 
-static QString makeResultOverview(const EncryptionResult &result)
-{
-    return makeEncryptionOverview(result.error());
-}
+    if (sign) {
+        if (inputs.size() == 1) {
+            return xi18nc("@info Successfully signed <file> and saved the signature in <file>.",
+                          "Successfully signed <filename>%1</filename> and saved the signature in <filename>%2</filename>.",
+                          inputs[0],
+                          output);
+        }
+        if (inputs.size() == 2) {
+            return xi18nc("@info Successfully signed <file> and <file> and saved the signature in <file>.",
+                          "Successfully signed <filename>%1</filename> and <filename>%2</filename> and saved the signature in <filename>%3</filename>.",
+                          inputs[0],
+                          inputs[1],
+                          output);
+        }
+        return xi18ncp("@info Successfully signed <file> and <n> other(s) and saved the signature in <file>.",
+                       "Successfully signed <filename>%2</filename> and %1 other and saved the signature in <filename>%3</filename>.",
+                       "Successfully signed <filename>%2</filename> and %1 others and saved the signature in <filename>%3</filename>.",
+                       inputs.size() - 1,
+                       inputs[0],
+                       output);
+    }
 
-static QString makeResultOverview(const SigningResult &sr, const EncryptionResult &er)
-{
-    if (er.isNull() && sr.isNull()) {
-        return QString();
+    if (inputs.size() == 1) {
+        return xi18nc("@info Successfully encrypted <file> and saved it as <file>.",
+                      "Successfully encrypted <filename>%1</filename> and saved it as <filename>%2</filename>.",
+                      inputs[0],
+                      output);
     }
-    if (er.isNull()) {
-        return makeResultOverview(sr);
+    if (inputs.size() == 2) {
+        return xi18nc("@info Successfully encrypted <file> and <file> and saved it as <file>.",
+                      "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> and saved it as <filename>%3</filename>.",
+                      inputs[0],
+                      inputs[1],
+                      output);
     }
-    if (sr.isNull()) {
-        return makeResultOverview(er);
-    }
-    if (sr.error().isCanceled() || sr.error()) {
-        return makeResultOverview(sr);
-    }
-    if (er.error().isCanceled() || er.error()) {
-        return makeResultOverview(er);
-    }
-    return i18n("Signing and encryption succeeded.");
+    return xi18ncp("@info Successfully encrypted <file> and <n> other(s) and saved it as <file>.",
+                   "Successfully encrypted <filename>%2</filename> and %1 other and saved it as <filename>%3</filename>.",
+                   "Successfully encrypted <filename>%2</filename> and %1 others and saved it as <filename>%3</filename>.",
+                   inputs.size() - 1,
+                   inputs[0],
+                   output);
 }
 
 static QString escape(QString s)
@@ -237,7 +325,7 @@ static QString makeResultDetails(const EncryptionResult &result, const QString &
     if (err || err.isCanceled()) {
         return Formatting::errorAsString(err).toHtmlEscaped();
     }
-    return i18n(" Encryption succeeded.");
+    return {};
 }
 
 }
@@ -246,15 +334,8 @@ QString ErrorResult::overview() const
 {
     Q_ASSERT(m_error || m_error.isCanceled());
     Q_ASSERT(m_sign || m_encrypt);
-    const QString label = formatInputOutputLabel(m_inputLabel, m_outputLabel, true);
-    const bool canceled = m_error.isCanceled();
-    if (m_sign && m_encrypt) {
-        return canceled ? i18n("%1: <b>Sign/encrypt canceled.</b>", label) : i18n(" %1: Sign/encrypt failed.", label);
-    }
-    return i18nc("label: result. Example: foo -> foo.gpg: Encryption failed.",
-                 "%1: <b>%2</b>",
-                 label,
-                 m_sign ? makeSigningOverview(m_error) : makeEncryptionOverview(m_error));
+
+    return formatResultLine({m_inputLabel}, m_outputLabel, m_sign, m_encrypt, true, true, m_error);
 }
 
 QString ErrorResult::details() const
@@ -846,7 +927,6 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
     qCDebug(KLEOPATRA_LOG) << q << __func__ << "job:" << job << "signing result:" << QGpgME::toLogString(sresult)
                            << "encryption result:" << QGpgME::toLogString(eresult);
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
-    bool outputCreated = false;
     if (input && input->failed()) {
         if (output) {
             output->cancel();
@@ -874,7 +954,6 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
             if (output) {
                 output->finalize();
             }
-            outputCreated = true;
             if (input) {
                 input->finalize();
             }
@@ -884,9 +963,9 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         }
     }
 
-    const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
-    const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
-    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog));
+    const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}, inputFileNames};
+    const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}, {}};
+    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, auditLog));
     result->setIsNotepad(isNotepad);
     q->emitResult(result);
 }
@@ -911,8 +990,13 @@ QString SignEncryptFilesResult::overview() const
         return {};
     }
 
-    const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
-    return files + QLatin1StringView(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
+    return formatResultLine(m_input.fileNames,
+                            m_output.label,
+                            !m_sresult.isNull(),
+                            !m_eresult.isNull(),
+                            m_sresult.error(),
+                            m_eresult.error(),
+                            m_sresult.error().code() ? m_sresult.error() : m_eresult.error());
 }
 
 QString SignEncryptFilesResult::details() const

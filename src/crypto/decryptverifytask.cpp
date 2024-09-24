@@ -143,19 +143,6 @@ static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
     return renderKeyLink(QLatin1StringView(key.primaryFingerprint()), user);
 }
 
-static QString strikeOut(const QString &str, bool strike)
-{
-    return QString(strike ? QStringLiteral("<s>%1</s>") : QStringLiteral("%1")).arg(str.toHtmlEscaped());
-}
-
-static QString formatInputOutputLabel(const QString &input, const QString &output, bool inputDeleted, bool outputDeleted)
-{
-    if (output.isEmpty()) {
-        return strikeOut(input, inputDeleted);
-    }
-    return i18nc("Input file --> Output file (rarr is arrow", "%1 &rarr; %2", strikeOut(input, inputDeleted), strikeOut(output, outputDeleted));
-}
-
 static bool IsErrorOrCanceled(const GpgME::Error &err)
 {
     return err || err.isCanceled();
@@ -274,39 +261,40 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
     const Error err = res.error();
 
     if (err.isCanceled()) {
-        return i18n("<b>Verification canceled.</b>");
+        return i18n("Verification canceled.");
     } else if (err) {
-        return i18n("<b>Verification failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
+        return Formatting::errorAsString(err).toHtmlEscaped();
     }
 
     const std::vector<Signature> sigs = res.signatures();
 
     if (sigs.empty()) {
-        return i18n("<b>No signatures found.</b>");
+        return i18n("No signatures found.");
     }
 
     const uint bad = std::count_if(sigs.cbegin(), sigs.cend(), IsBad);
     if (bad > 0) {
-        return i18np("<b>Invalid signature.</b>", "<b>%1 invalid signatures.</b>", bad);
+        return i18np("Invalid signature.", "%1 invalid signatures.", bad);
     }
     const uint warn = std::count_if(sigs.cbegin(), sigs.cend(), [](const Signature &sig) {
         return !IsGoodOrValid(sig);
     });
     if (warn == sigs.size()) {
-        return i18np("<b>The data could not be verified.</b>", "<b>%1 signatures could not be verified.</b>", warn);
+        return i18np("The data could not be verified.", "%1 signatures could not be verified.", warn);
     }
 
     // Good signature:
     QString text;
     if (sigs.size() == 1) {
-        text = i18n("<b>Valid signature by %1</b>", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
+        text = i18n("Valid signature by %1.", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
         if (info.conflicts())
-            text += i18n("<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used for signing.",
-                         renderKeyLink(QLatin1StringView(sigs[0].key().primaryFingerprint()), i18n("certificate")));
+            text += i18nc("@info The placeholder is a link to the certificate. The text of the link is the translated work 'certificate'",
+                          "<br/>Warning: The sender's mail address is not stored in the %1 used for signing.",
+                          renderKeyLink(QLatin1StringView(sigs[0].key().primaryFingerprint()), i18n("certificate")));
     } else {
-        text = i18np("<b>Valid signature.</b>", "<b>%1 valid signatures.</b>", sigs.size());
+        text = i18np("Valid signature.", "%1 valid signatures.", sigs.size());
         if (info.conflicts()) {
-            text += i18n("<br/><b>Warning:</b> The sender's mail address is not stored in the certificates used for signing.");
+            text += i18n("<br/>Warning: The sender's mail address is not stored in the certificates used for signing.");
         }
     }
 
@@ -318,19 +306,87 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
     const Error err = result.error();
 
     if (err.isCanceled()) {
-        return i18n("<b>Decryption canceled.</b>");
+        return i18n("Decryption canceled.");
     } else if (result.error().code() == GPG_ERR_NO_SECKEY) {
-        return i18nc("@info",
-                     "<b>Decryption not possible: %1</b><br />The data was not encrypted for any secret key in your certificate list.",
-                     Formatting::errorAsString(err));
+        return Formatting::errorAsString(err).append(u'.');
     } else if (result.isLegacyCipherNoMDC()) {
-        return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
+        return i18n("No integrity protection (MDC).");
     } else if (!errorString.isEmpty()) {
-        return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
+        return errorString.toHtmlEscaped();
     } else if (err) {
-        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err));
+        return Formatting::errorAsString(err).append(u'.');
     }
-    return i18n("<b>Decryption succeeded.</b>");
+    return {};
+}
+static QString formatDecryptVerifyResultOverview(const DecryptionResult &dr, const VerificationResult &vr, const DecryptVerifyResult::SenderInfo &info)
+{
+    if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
+        return formatDecryptionResultOverview(dr);
+    }
+    return formatVerificationResultOverview(vr, info);
+}
+
+static QString formatResultLine(const QString &input,
+                                const QString &output,
+                                const Error &error,
+                                const VerificationResult &verificationResult,
+                                const DecryptionResult &decryptionResult,
+                                const DecryptVerifyResult::SenderInfo &senderInfo)
+{
+    const auto verify = verificationResult.numSignatures() > 0;
+    const auto decrypt = !decryptionResult.isNull();
+    Q_ASSERT(verify || decrypt);
+
+    if (verify && decrypt) {
+        if (error.code() == GPG_ERR_NO_SECKEY) {
+            return xi18nc("@info Unable to decrypt and verify <file>: <reason><nl />The data was not encrypted for any secret key in your certificate list.",
+                          "Unable to decrypt and verify <filename>%1</filename>: <emphasis strong='true'>%2</emphasis><nl />The data was not encrypted for any "
+                          "secret key in your certificate list.",
+                          input,
+                          formatDecryptVerifyResultOverview(decryptionResult, verificationResult, senderInfo));
+        }
+        if (error.code() != GPG_ERR_NO_ERROR) {
+            return xi18nc("@info Failed to decrypt and verify <file>: <reason>",
+                          "Failed to decrypt and verify <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
+                          input,
+                          formatDecryptVerifyResultOverview(decryptionResult, verificationResult, senderInfo));
+        }
+        return xi18nc("@info Successfully decrypted and verified <file> as <file>.",
+                      "Successfully decrypted and verified <filename>%1</filename> as <filename>%2</filename>.",
+                      input,
+                      output);
+    }
+
+    if (verify) {
+        if (error) {
+            return xi18nc("@info Failed to verify <file>: <reason>",
+                          "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
+                          input,
+                          formatVerificationResultOverview(verificationResult, senderInfo));
+        }
+        return xi18nc("@info Verified <file> with signature in <file>.",
+                      "Verified <filename>%1</filename> with signature in <filename>%2</filename>.",
+                      output,
+                      input);
+    }
+
+    if (error.code() == GPG_ERR_NO_SECKEY) {
+        return xi18nc("@info Unable to decrypt <file>: <reason><nl />The data was not encrypted for any secret key in your certificate list.",
+                      "Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</emphasis><nl />The data was not encrypted for any secret key in "
+                      "your certificate list.",
+                      input,
+                      formatDecryptionResultOverview(decryptionResult));
+    }
+    if (error.code() != GPG_ERR_NO_ERROR) {
+        return xi18nc("@info Failed to decrypt <file>: <reason>",
+                      "Failed to decrypt <filename>%1</filename>: %2",
+                      input,
+                      formatDecryptionResultOverview(decryptionResult));
+    }
+    return xi18nc("@info Successfully decrypted <file> as <file>.",
+                  "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>.",
+                  input,
+                  output);
 }
 
 static QString formatEmail(const QString &email_)
@@ -458,14 +514,6 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res,
     return details;
 }
 
-static QString formatDecryptVerifyResultOverview(const DecryptionResult &dr, const VerificationResult &vr, const DecryptVerifyResult::SenderInfo &info)
-{
-    if (IsErrorOrCanceled(dr) || !relevantInDecryptVerifyContext(vr)) {
-        return formatDecryptionResultOverview(dr);
-    }
-    return formatVerificationResultOverview(vr, info);
-}
-
 static QString formatDecryptVerifyResultDetails(const DecryptionResult &dr,
                                                 const VerificationResult &vr,
                                                 const std::vector<Key> &recipients,
@@ -520,7 +568,7 @@ public:
 
     QString label() const
     {
-        return formatInputOutputLabel(m_inputLabel, m_outputLabel, false, q->hasError());
+        return formatResultLine(m_inputLabel, m_outputLabel, q->error(), m_verificationResult, m_decryptionResult, makeSenderInfo());
     }
 
     DecryptVerifyResult::SenderInfo makeSenderInfo() const;
@@ -765,19 +813,7 @@ QString DecryptVerifyResult::overview() const
         return {};
     }
 
-    QString ov;
-    if (d->isDecryptOnly()) {
-        ov += formatDecryptionResultOverview(d->m_decryptionResult);
-    } else if (d->isVerifyOnly()) {
-        ov += formatVerificationResultOverview(d->m_verificationResult, d->makeSenderInfo());
-    } else {
-        ov += formatDecryptVerifyResultOverview(d->m_decryptionResult, d->m_verificationResult, d->makeSenderInfo());
-    }
-    if (ov.size() + d->label().size() > 120) {
-        // Avoid ugly breaks
-        ov = QStringLiteral("<br>") + ov;
-    }
-    return i18nc("label: result example: foo.sig: Verification failed. ", "%1: %2", d->label(), ov);
+    return d->label();
 }
 
 QString DecryptVerifyResult::details() const
@@ -1169,6 +1205,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
         return;
     }
     m_outputDirectory = outputDirectory;
+    m_outputFilePath = outputDirectory;
 #if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
     job->setProcessAllSignatures(true);
 #endif
@@ -1564,6 +1601,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
         q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_GENERAL), {}, {}));
         return;
     }
+    m_outputFilePath = outputDirectory;
     m_outputDirectory = outputDirectory;
 #if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
     job->setProcessAllSignatures(true);
@@ -1711,22 +1749,12 @@ QString VerifyDetachedTask::label() const
 
 QString VerifyDetachedTask::inputLabel() const
 {
-    const QString signatureLabel = d->signatureLabel();
-    const QString signedDataLabel = d->signedDataLabel();
-    if (!signedDataLabel.isEmpty() && !signatureLabel.isEmpty()) {
-        return xi18nc(
-            "Verification of a detached signature summary. The first file contains the data."
-            "The second file is signature.",
-            "Verified <filename>%1</filename> with <filename>%2</filename>",
-            signedDataLabel,
-            signatureLabel);
-    }
-    return signatureLabel;
+    return d->signatureLabel();
 }
 
 QString VerifyDetachedTask::outputLabel() const
 {
-    return QString();
+    return d->signedDataLabel();
 }
 
 Protocol VerifyDetachedTask::protocol() const

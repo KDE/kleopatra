@@ -207,6 +207,8 @@ public:
         return 0;
     }
 
+    QString label() const override;
+
 private:
     std::shared_ptr<FileOutput> m_output;
     mutable std::shared_ptr<QIODevice> m_ioDevice = nullptr;
@@ -346,7 +348,7 @@ private:
 class ProcessStdInOutput : public OutputImplBase
 {
 public:
-    explicit ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd);
+    explicit ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd, const QString &file);
 
     std::shared_ptr<QIODevice> ioDevice() const override
     {
@@ -394,6 +396,7 @@ private:
     const QString m_command;
     const QStringList m_arguments;
     const std::shared_ptr<redirect_close<QProcess>> m_proc;
+    const QString m_file;
 };
 
 class FileOutput : public OutputImplBase
@@ -715,16 +718,18 @@ void FileOutput::doFinalize()
     throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n(R"(Could not rename file "%1" to "%2")", tmpFileName, m_fileName));
 }
 
-std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &wd)
+
+std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &wd, const QString &file)
 {
-    return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, wd));
+    return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, wd, file));
 }
 
-ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd)
+ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &args, const QDir &wd, const QString &file)
     : OutputImplBase()
     , m_command(cmd)
     , m_arguments(args)
     , m_proc(new redirect_close<QProcess>)
+    , m_file(file)
 {
     qCDebug(KLEOPATRA_LOG) << "cd" << wd.absolutePath() << '\n' << cmd << args;
     if (cmd.isEmpty())
@@ -738,16 +743,7 @@ ProcessStdInOutput::ProcessStdInOutput(const QString &cmd, const QStringList &ar
 
 QString ProcessStdInOutput::label() const
 {
-    if (!m_proc) {
-        return OutputImplBase::label();
-    }
-    // output max. 3 arguments
-    const QString cmdline = (QStringList(m_command) + m_arguments.mid(0, 3)).join(QLatin1Char(' '));
-    if (m_arguments.size() > 3) {
-        return i18nc("e.g. \"Input to tar xf - file1 ...\"", "Input to %1 ...", cmdline);
-    } else {
-        return i18nc("e.g. \"Input to tar xf - file\"", "Input to %1", cmdline);
-    }
+    return QFileInfo(m_file).fileName();
 }
 
 QString ProcessStdInOutput::doErrorString() const
@@ -830,4 +826,9 @@ std::shared_ptr<Output> Output::createFromByteArray(QByteArray *data, const QStr
     auto ret = std::shared_ptr<ByteArrayOutput>(new ByteArrayOutput(data));
     ret->setLabel(label);
     return ret;
+}
+
+QString OutputInput::label() const
+{
+    return m_output->label();
 }

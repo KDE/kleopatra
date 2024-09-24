@@ -441,7 +441,7 @@ std::shared_ptr<Output> ArchiveDefinition::createOutputFromUnpackCommand(GpgME::
 {
     checkProtocol(p);
     const QFileInfo fi(file);
-    return Output::createFromProcessStdIn(doGetUnpackCommand(p), doGetUnpackArguments(p, fi.absoluteFilePath()), wd);
+    return Output::createFromProcessStdIn(doGetUnpackCommand(p), doGetUnpackArguments(p, fi.absoluteFilePath()), wd, file);
 }
 
 // static
