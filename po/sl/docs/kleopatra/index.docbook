@@ -1,0 +1,4030 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>KWatchGnuPG</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>Priročnik za &kleopatra;</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>Razvijalec</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>Razvijalec</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>Razvijalec</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>Razvijalec</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>Razvijalec</contrib>
+</othercredit>
+
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Peter</firstname
+><surname
+>Žaucer</surname
+><affiliation
+><address
+><email
+>peter.zaucer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>04.07.2013</date>
+<releaseinfo
+>2.1.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kleopatra; je orodje za upravljanje <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> in <ulink url="https://en.wikipedia.org/wiki /Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> potrdila. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Kapp</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>certificate</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>Uvod</title>
+
+<para
+>&kleopatra; je &kde; orodje za upravljanje <ulink url="https://en.wikipedia.org/wiki/X.509"
+>&x509;</ulink
+> in <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>&openpgp;</ulink
+> potrdila v <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>&gpgsm;</ulink
+> in <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>&gpg;</ulink
+> predalih za ključe in za pridobivanje potrdil iz &ldap; in drugih strežnikov potrdil.</para>
+
+<para
+>&kleopatra; lahko zaženete iz menija &kmail;a <menuchoice
+><guimenu
+>Orodja</guimenu
+> <guimenuitem
+>Upravitelj potrdil</guimenuitem
+></menuchoice
+> ali pa iz ukazne vrstice. Izvršljiva datoteka kleopatre se imenuje <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>Ta program je poimenovan po Kleopatri, slavni egipčanski faraonji, ki je živela v času Julija Cezarja, s katerim je imela otroka, Caesariona, ki ni bil priznan kot njegov dedič.</para>
+
+<para
+>Ime je bilo izbrano, ker ta program izvira iz <ulink url="https://www.gnupg.org/aegypten2/"
+>&Auml;gypten projektov</ulink
+> (&Auml;gypten je nemško za Egipt). &kleopatra; je nemško črkovanje Kleopatre.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>Glavne funkcije</title>
+
+<sect1 id="functions-view"
+><title
+>Ogled lokalne ključavnice</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>Glavna funkcija programa &kleopatra; je prikazovanje in urejanje vsebine lokalnega predala s tipkami, kar je podobno &gpg;-jevemu konceptu obeskov za ključe, čeprav te analogije ne bi smeli preveč raztegovati.</para>
+
+<para
+>Glavno okno je razdeljeno na veliko območje s seznamom ključev, ki ga sestavlja več zavihkov, menijska vrstica in <link linkend="functions-search"
+>iskalna vrstica</link
+> na vrhu ter vrstica stanja na dnu.</para>
+
+<para
+>Vsaka vrstica na seznamu ključev ustreza enemu potrdilu, označenem s tako imenovano <guilabel
+>Zadevo &dn;</guilabel
+>. &dn; je akronim za <quote
+>Distinguished Name</quote
+>, hierarhični identifikator, podobno kot pot datotečnega sistema z nenavadno sintakso, ki naj bi globalno enolično identificiral dano potrdilo.</para>
+
+<para
+>Da bi bili (javni) ključi veljavni in torej uporabni, morajo biti podpisani z &ca; (Organizacijo za potrjevanje). Ti podpisi se imenujejo potrdila, vendar se običajno izraza <quote
+>certifikat</quote
+> in <quote
+>(javni) ključ</quote
+> uporabljata zamenljivo in tudi v tem priročniku med njima ne bomo razlikovali, razen če je to izrecno navedeno .</para>
+
+<para
+>&ca;-ji morajo biti podpisani s strani drugih &ca;-jev, da so veljavni. Seveda se mora to nekje končati, zato najvišja raven &ca; (korenska-&ca;) podpiše svoj ključ sam s seboj (to se imenuje samopodpis). Korenskim potrdilom je tako treba ročno dodeliti veljavnost (običajno imenovano zaupanje), npr. po primerjavi prstnega odtisa s tistim na spletni strani &ca;. To običajno naredi skrbnik sistema ali prodajalec izdelka, ki uporablja potrdila, vendar lahko to stori uporabnik prek vmesnika ukazne vrstice &gpgsm;.</para>
+
+<para
+>Če želite videti, katera od potrdil so korenska, preklopite v način hierarhičnega seznama ključev s <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>Podrobnosti katerega koli potrdila si lahko ogledate tako, da ga dvokliknete ali uporabite <xref linkend="view-certificate-details"/>. To odpre pogovorno okno, ki prikazuje najpogostejše lastnosti potrdila, njegovo verigo potrdil (tj. verigo izdajateljev do korena-&ca;) in izpis vseh informacij, ki jih lahko zaledje pridobi iz potrdila.</para>
+
+<para
+>Če spremenite ključavnico brez uporabe programa &kleopatra; (npr. z vmesnikom ukazne vrstice &gpgsm;), lahko pogled osvežite z <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>Iskanje in uvoz potrdil</title>
+
+<para
+>Največkrat boste nova potrdila pridobili s preverjanjem podpisov v e-poštnih sporočilih, saj so potrdila večinoma vdelana v podpise, narejene z njimi. Če pa morate poslati pošto nekomu, s katerim še niste bili v stiku, morate pridobiti potrdilo iz &ldap; mape (čeprav lahko <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+> &gpgsm;</ulink
+> to stori samodejno) ali iz datoteke. Po prejemu &ca; odgovora na vašo zahtevo za potrdilo morate uvoziti svoj certifikat.</para>
+
+<para
+>Za iskanje potrdila v &ldap; izberite <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Poišči potrdila na strežniku</guimenuitem
+></menuchoice
+> in v vrstico vnesite besedilo (npr. ime osebe, za katero želite potrdilo) uredite pogovorno okno <guilabel
+>Iskanje potrdila strežnika ključev</guilabel
+>, nato kliknite gumb <guilabel
+>Išči</guilabel
+>. Rezultati bodo prikazani na seznamu ključev pod iskalno vrstico, kjer lahko izberete potrdila in si jih ogledate tako, da kliknete gumb <guibutton
+>Podrobnosti</guibutton
+> ali jih prenesete z <guibutton
+>Uvozi</guibutton
+> v lokalni predalnik za ključe.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>Konfigurirate lahko seznam &ldap; strežnikov za iskanje na strani <link linkend="configuration-directory-services"
+><guilabel
+>Imeniške storitve</guilabel
+></link
+> v pogovornem oknu za konfiguracijo programa &kleopatra;.</para>
+
+<para
+>Če ste potrdilo prejeli kot datoteko, poskusite <xref linkend="file-import-certificates"/>. &gpgsm; mora razumeti format datoteke potrdila; seznam podprtih formatov datotek najdete v priročniku &gpgsm;.</para>
+
+<para
+>Če niste <link linkend="functions-newkey"
+>ustvarili svojega para ključev z &gpgsm;</link
+>, morate tudi ročno uvoziti javni ključ (in skrivni ključ) iz datoteke PKCS#12, ki ste jo dobili iz &ca;. To lahko storite v ukazni vrstici z <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>filename</filename
+> </command
+></userinput
+></link
+> ali znotraj &kleopatra; z <xref linkend="file-import-certificates"/>, tako kot bi to storili za <quote
+>običajna</quote
+> potrdila.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>Ustvarjanje novih parov ključev</title>
+
+<para
+>Postavka menija <xref linkend="file-new-key-pair"/> zažene <guilabel
+>Čarovnika za ustvarjanje para ključev</guilabel
+>, ki vas bo vodil skozi številne korake za ustvarjanje zahteve za potrdilo.</para>
+<para
+>Kadarkoli končate s korakom v čarovniku, pritisnite <guibutton
+>Naprej</guibutton
+>, da se premaknete na naslednji korak (ali <guibutton
+>Nazaj</guibutton
+>, da pregledate korake, ki so že dokončani). Ustvarjanje zahteve za potrdilo lahko kadar koli prekličete s pritiskom na gumb <guibutton
+>Prekliči</guibutton
+>. </para>
+<para
+>Na prvi strani čarovnika izberite vrsto potrdila, ki ga želite ustvariti:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>Ustvarite osebni par ključev OpenPGP</guilabel
+></term>
+<listitem
+><para
+>&openpgp; pari ključev so ustvarjeni lokalno in potrjeni s strani vaših prijateljev in znancev. Ni centralnega overitelja potrdil; namesto tega vsak posameznik ustvari osebni Web Of Trust (mrežo zaupanja) s certificiranjem parov ključev drugega uporabnika s svojim certifikatom.</para>
+<para
+>Vnesti morate <guilabel
+>Ime</guilabel
+>, <guilabel
+>E-pošto</guilabel
+> in neobvezno <guilabel
+>Komentar</guilabel
+>.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Ustvarite osebni par ključev X.509 in zahtevo za potrdilo</guilabel
+></term>
+<listitem>
+<para
+>&x509; pari ključev so ustvarjeni lokalno, vendar centralno certificirani s strani certifikacijskega organa (&ca;). &ca;ji lahko certificirajo druge &ca;je, s čimer ustvarijo osrednjo, hierarhično verigo zaupanja.</para>
+<para
+>Naslednji korak v čarovniku je vnos osebnih podatkov za potrdilo. Polja za izpolnitev so: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>Splošno ime (CN):</guilabel
+> Vaše ime;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>E-poštni naslov (EMAIL):</guilabel
+> Vaš e-poštni naslov; poskrbite, da boste to pravilno vnesli &mdash; to bo naslov, na katerega bodo ljudje pošiljali pošto, ko bodo uporabljali vaše potrdilo.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Lokacija (L):</guilabel
+> Mesto, v katerem živite;</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organizacijska enota (OU):</guilabel
+> Organizacijska enota, v kateri ste (na primer "Logistika");</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Organizacija (O):</guilabel
+> Organizacija, ki jo predstavljate (na primer podjetje, za katerega delate);</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>Koda države (C):</guilabel
+> Dvočrkovna koda države, v kateri živite (na primer "SI");</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>Naslednji korak v čarovniku je izbira, ali želite potrdilo shraniti v datoteko ali ga poslati neposredno v &ca;. Določiti boste morali ime datoteke ali e-poštni naslov, na katerega želite poslati zahtevo za potrdilo. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>Preklic ključa</title>
+
+<para
+>Par ključev, ki je potekel, je mogoče vrniti v operativno stanje, če imate dostop do zasebnega ključa in gesla. Če želite zanesljivo narediti ključ neuporaben, ga morate preklicati. Preklic se izvede tako, da se ključu doda poseben preklicni podpis.</para>
+
+<para
+>Ta preklicni podpis je shranjen v ločeni datoteki. To datoteko je mogoče pozneje uvoziti v datoteko s certifikati in jo nato priložiti ključu, zaradi česar postane neuporabna. Upoštevajte, da za uvoz tega podpisa v ključ ni potrebno geslo. Zato morate ta preklicni podpis shraniti na varno mesto, običajno na mesto, ki se razlikuje od vašega para ključev. Priporočljivo je, da uporabite mesto, ki ni ločeno od računalnika, kopirajte ga na zunanjo napravo za shranjevanje, kot je ključek USB, ali ga natisnite.</para>
+
+<para
+>&kleopatra; ne nudi funkcije za ustvarjanje takega preklicanega podpisa kadar koli, vendar lahko to storite z &kde; aplikacijo &kgpg; tako, da izberete <menuchoice
+><guimenu
+>Ključi</guimenu
+> <guimenuitem
+>Prekliči ključ</guimenuitem
+></menuchoice
+> in po želji takoj uvozite podpis za preklic v vaš obesek ključev.</para>
+
+<para
+>Alternativni način generiranja potrdila o preklicu je uporaba &gpg; neposredno iz ukazne vrstice: <userinput
+>gpg --output <replaceable
+>preklicni_certifikat</replaceable
+>.asc --gen-revoke <replaceable
+>vaš_ključ</replaceable
+></userinput
+>. Argument <replaceable
+>vaš_ključ</replaceable
+> mora biti specifikator ključa, bodisi ID ključa vašega primarnega para ključev ali kateri koli del ID-ja uporabnika, ki identificira vaš par ključev.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>Referenca menija</title>
+
+<sect1 id="menufile"
+><title
+>Meni Datotek</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Novo potrdilo...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Ustvari nov par ključev (javni in zasebni)</action
+> in omogoči pošiljanje javnega dela overitelju (&ca;) v podpis. Dobljeno potrdilo se vam nato pošlje nazaj ali shrani v &ldap; strežnik, ki ga lahko prenesete v svoj lokalni predal s ključi, kjer ga lahko uporabite za podpisovanje in dešifriranje pošte.</para>
+
+<para
+>Ta način delovanja se imenuje <quote
+>decentralizirano ustvarjanje ključev</quote
+>, saj so vsi ključi ustvarjeni lokalno. &kleopatra; (in &gpgsm;) ne podpirajo <quote
+>centraliziranega generiranja ključev</quote
+> neposredno, lahko pa uvozite skupek javnih/skrivnih ključev, ki ga prejmete iz &ca; v formatu PKCS#12 prek <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Iskanje potrdil v strežniku...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Išče in uvaža potrdila s strežnikov potrdil v lokalni predal s ključi.</action
+> Za podrobnosti glejte <xref linkend="functions-search"/>. </para>
+            <para
+>Da bo to delovalo, morate imeti konfigurirane ključne strežnike. Za več podrobnosti glejte <xref linkend="configuration-directory-services"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Uvozi potrdila...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Uvozi potrdila in/ali tajne ključe iz datotek v lokalni predal s ključi.</action
+> Za podrobnosti glejte <xref linkend="functions-search"/>. </para>
+            <para
+>Format datoteke potrdila mora podpirati &gpgsm;/&gpg;. Glejte &gpgsm; in &gpg; priročnike za seznam podprtih formatov. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Izvozi potrdila...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Izvozi izbrana potrdila v datoteko.</action>
+            </para>
+            <para
+>Pripona imena datoteke, ki jo izberete za ime izvozne datoteke, določa obliko izvozne datoteke: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>Za &openpgp; potrdila bosta, <filename class="extension"
+>gpg</filename
+> in <filename class="extension"
+>pgp</filename
+> povzročila binarno datoteko, medtem ko bo <filename class="extension"
+>asc</filename
+> povzročil &ascii;-oklepno datoteko. </para>
+              </listitem>
+              <listitem>
+                <para
+>Za &smime; potrdila, bo <filename class="extension"
+>der</filename
+> povzročilo binarno, &der;-kodirano datoteko, medtem ko bo <filename class="extension"
+>pem</filename
+> povzročilo &ascii;-oklepno datoteko. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>Razen če je izbranih več potrdil bo, &kleopatra; kot ime izvozne datoteke predlagala <filename
+><replaceable
+>prstni odtis</replaceable
+>.{asc,pem}</filename
+>. </para>
+            <para
+>Ta funkcija je na voljo samo, če je izbrano eno ali več potrdil. </para>
+            <note>
+              <para
+>Ta funkcija izvozi samo javne ključe, tudi če je skrivni ključ na voljo. Za izvoz skrivnih ključev v datoteko uporabite <xref linkend="file-export-secret-key"/>. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Izvoz skrivnih ključev...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Izvozi tajni ključ v datoteko.</action>
+            </para>
+            <para
+>V pogovornem oknu, ki se odpre, lahko izberete, ali želite ustvariti binarno ali &ascii;-oklepno izvozno datoteko (<guilabel
+>ASCII oklep</guilabel
+>). Nato kliknite ikono mape na desni strani besedilnega polja <guilabel
+>Izhodna datoteka</guilabel
+> ter izberite mapo in ime izvozne datoteke. Pri izvozu &smime; skrivnih ključev, lahko izberete tudi <guilabel
+>Nabor znakov gesla</guilabel
+>. Oglejte si razpravo o možnosti <option
+>--p12-charset&nbsp;<replaceable
+>charset</replaceable
+></option
+> v &gpgsm; priročniku za več podrobnosti. </para>
+            <para
+>Ta funkcija je na voljo le, če je izbran natanko en certifikat in je na voljo skrivni ključ tega certifikata. </para>
+            <warning>
+              <para
+>To funkcijo je treba uporabljati le redko, če pa jo je, jo je treba skrbno načrtovati. Načrtovanje selitve tajnega ključa med drugim vključuje izbiro transportnega medija in varno brisanje ključnih podatkov na starem stroju, pa tudi na transportnem mediju. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Izvozi potrdila v strežnik...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Objavi izbrana potrdila na strežniške ključe</action
+> (samo &openpgp;). </para>
+            <para
+>Potrdilo je poslano na strežnik potrdil, konfiguriran za &openpgp; (npr.&nbsp;<xref linkend="configuration-directory-services"/>), če je to nastavljeno, sicer na <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>Ta funkcija je na voljo le, če je vsaj en &openpgp; (in nobeno potrdilo &smime;) izbran. </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>Ko so bili &openpgp; certifikati izvoženi v javni imeniški strežnik, jih je skoraj nemogoče znova odstraniti. Preden izvozite svoje potrdilo v javni imeniški strežnik, se prepričajte, da ste ustvarili potrdilo o preklicu, da ga lahko pozneje po potrebi prekličete. </para>
+            </note>
+            <note>
+              <para
+>Večina javnih &openpgp; strežnikov potrdil sinhronizirajo potrdila med seboj, zato nima smisla pošiljati več kot enemu. </para>
+              <para
+>Lahko se zgodi, da iskanje na strežniku potrdil ne prinese nobenih rezultatov, čeprav ste potrdilo pravkar poslali tja. To je zato, ker večina naslovov javnih strežnikov ključev uporablja <acronym
+>DNS</acronym
+> krožno za uravnoteženje obremenitve več naprav. Te naprave se med seboj sinhronizirajo, vendar običajno le vsakih 24 ur. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Dešifriraj/preveri datoteke...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Dešifrira datoteke in/ali preveri podpise</action
+> nad datotekami. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Podpiši/šifriraj datotek...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Podpiše in/ali šifrira datoteke.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Zapri</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Zapre glavno okno programa &kleopatra;</action
+> Kadar koli ga lahko obnovite z ikono v sistemski vrstici. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Zapri</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Konča program &kleopatra;.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>Ogled menija</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Pogled</guimenu
+><guimenuitem
+>Ponovni prikaz</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Osveži seznam potrdil.</action>
+            </para>
+            <para
+>Uporaba te funkcije običajno ni potrebna, saj &kleopatra; spremlja datotečni sistem glede sprememb in po potrebi samodejno osveži seznam potrdil. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Esc;</keycombo
+></shortcut
+> <guimenu
+>Pogled</guimenu
+><guimenuitem
+>Ustavi operacijo</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Ustavi (prekliče) vse čakajoče operacije,</action
+> npr. iskanje, seznam ključev ali prenos. </para>
+            <para
+>Ta funkcija je na voljo le, če je aktivna vsaj ena operacija. </para>
+            <note>
+              <para
+>Zaradi omejitev zaledja bodo včasih operacije tako obvisele, da jih ta funkcija ne bo mogla preklicati takoj ali sploh. </para>
+              <para
+>V takih primerih je edini način za vzpostavitev reda ta, da ustavite &scdaemon;, &dirmngr;, &gpgsm; in &gpg; procese v tem vrstnem redu prek orodij operacijskega sistema (<command
+>vrh</command
+>, Task-Manager itd.), dokler se operacija ne odblokira. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>Ogled</guimenu
+><guimenuitem
+>Podrobnosti o potrdilu</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Prikaže podrobnosti trenutno izbranega potrdila.</action
+></para>
+
+<para
+>Ta funkcija je na voljo samo, če je izbran natanko en certifikat.</para>
+
+<para
+>Ta funkcija je na voljo tudi tako, da neposredno dvokliknete ustrezni element v pogledu seznama.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Hierarhični seznam potrdil</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Preklaplja med hierarhičnim in ravnim načinom seznama potrdil. </action
+></para>
+
+<para
+>V hierarhičnem načinu so potrdila urejena v razmerju izdajatelj/subjekt, tako da je enostavno videti, kateri certifikacijski hierarhiji pripada dano potrdilo, vendar je dano potrdilo na začetku težje najti (čeprav lahko seveda uporabite <link linkend=" functions-search"
+>iskalno vrstico</link
+>).</para>
+
+<para
+>V ploščatem načinu so vsa potrdila prikazana na ploščatem seznamu, razvrščena po abecedi. V tem načinu je določeno potrdilo preprosto najti, vendar ni neposredno jasno, kateremu korenskemu potrdilu pripada.</para>
+
+            <para
+>Ta funkcija preklopi hierarhični način na zavihek, tj. vsak zavihek ima svoje hierarhično stanje. To je zato, da imate lahko pri roki pavšalni in hierarhični seznam, vsakega v svojem zavihku. </para>
+
+            <note>
+              <para
+>Hierarhični prikaz je trenutno implementiran samo za &smime; potrdila. Med razvijalci obstaja nesoglasje glede pravilnega načina prikaza &openpgp; potrdila hierarhično (v bistvu, <quote
+>nadrejeni je podpisnik</quote
+> ali <quote
+>nadrejeni je tisti, ki prejme podpisano datoteko</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Razširi vse</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Razširi vse elemente seznama v pogledu seznama potrdil,</action
+>tj. naredi vse elemente vidne.</para>
+
+<para
+>To je privzeto pri vstopu v način hierarhičnega seznama tipk.</para>
+
+<para
+>Seveda lahko še vedno razširite in strnete vsak posamezen element.</para>
+
+<para
+>Ta funkcija je na voljo samo, če je vklopljen <xref linkend="view-hierarchical-key-list"/>.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>Pogled</guimenu
+><guimenuitem
+>Strni vse</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Strni vse elemente seznama v pogledu seznama potrdil,</action
+> tj. skrije vse razen elementov najvišje ravni.</para>
+
+<para
+>Seveda lahko še vedno razširite in strnete vsak posamezen element.</para>
+
+<para
+>Ta funkcija je na voljo samo, če je vklopljen <xref linkend="view-hierarchical-key-list"/>.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>Meni potrdil</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Spremeni zaupanje lastnika...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Spremeni zaupanje lastnika izbranega &openpgp; potrdila.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Ta funkcija je na voljo le, če je natanko eno &openpgp; potrdilo izbrano. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Zaupanja vredno korensko potrdilo</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Označi to (&smime;) korensko potrdilo kot zaupanja vredno.</action>
+            </para>
+            <para
+>Na nek način je to enakovredno <xref linkend="certificates-change-owner-trust"/> za &smime; korenska potrdila. Izbirate pa lahko le med &mdash; v &openpgp; izrazema &mdash;<quote
+>skrajno</quote
+> zaupanje in <quote
+>nikoli ne zaupati</quote
+>. </para>
+            <note>
+              <para
+>Zaledje (preko &gpgagent;) bo ob času uvoza korenskega potrdila vprašalo, ali naj zaupa uvoženemu korenskemu potrdilu. Vendar mora biti ta funkcija izrecno omogočena v konfiguraciji zaledja (<option
+>allow-mark-trusted</option
+> v <filename
+>gpg-agent.conf</filename
+> ali <menuchoice
+><guimenu
+>GnuPG&nbsp;System </guimenu
+> <guisubmenu
+>GPG&nbsp;Agent</guisubmenu
+> <guimenuitem
+>Omogoči strankam, da označijo ključe kot "zaupanja vredne"</guimenuitem
+></menuchoice
+> ali <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>S/MIME&nbsp;Validation</guimenu
+> <guimenuitem
+>Omogoči označevanje korenskih potrdil kot zaupanja vrednih</guimenuitem
+></menuchoice
+></link
+> pod <xref linkend="configuration"/> ). </para>
+              <para
+>Omogočanje te funkcije v ozadju lahko povzroči pojavna okna &pinentry; ob neprimernem času (npr. pri preverjanju podpisov) in lahko tako blokira nenadzorovano obdelavo e-pošte. Iz tega razloga in ker je zaželeno, da lahko ponovno <emphasis
+>ne zaupamo</emphasis
+> zaupanja vrednemu korenskemu potrdilu, &kleopatra; omogoča ročno nastavitev zaupanja. </para>
+            </note>
+            <warning>
+              <para
+>Zaradi pomanjkanja zaledne podpore za to funkcijo mora &kleopatra; delovati neposredno na &gpgsm; zbirki podatkov zaupanja (<filename
+>trustlist.txt</filename
+>). Ko uporabljate to funkcijo, se prepričajte, da ne potekajo druge kripto operacije, ki bi lahko tekmovale z programom &kleopatra; za spremembe te baze podatkov. </para>
+            </warning>
+            <para
+>Ta funkcija je na voljo le, če je izbrano natanko eno &smime; korensko potrdilo in to potrdilo še ni zaupanja vredno. </para>
+            <para
+>Za razveljavitev te funkcije uporabite <xref linkend="certificates-distrust-root"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Ne zaupaj korenskemu potrdilu</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Označi to (&smime;) korensko potrdilo kot nezaupljivo.</action>
+            </para>
+            <para
+>Ta funkcija je na voljo le, če je izbrano natanko eno &smime; korensko potrdilo in je to potrdilo trenutno zaupanja vredno. </para>
+            <para
+>Uporablja se za razveljavitev <xref linkend="certificates-trust-root"/>. Glejte tam za podrobnosti. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Potrdi potrdilo...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Omogoča vam, da potrdite drugo &openpgp; potrdilo.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>Ta funkcija je na voljo le, če je izbrano natanko eno &openpgp; potrdilo. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Spremeni datum poteka...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Omogoča spreminjanje datuma poteka vašega &openpgp; potrdila.</action>
+            </para>
+            <para
+>S to funkcijo podaljšajte življenjsko dobo vašega &openpgp; potrdila kot alternativo ustvarjanju novega ali uporabi neomejene življenjske dobe (<quote
+>nikoli ne poteče</quote
+>). </para>
+            <para
+>Ta funkcija je na voljo le, če je izbrano natanko eno &openpgp; potrdilo in je skrivni ključ na voljo za to potrdilo. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Spremeni geslo...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Omogoča spreminjanje gesla vašega tajnega ključa.</action>
+            </para>
+            <para
+>Ta funkcija je na voljo le, če je izbrano točno eno potrdilo in je za to potrdilo na voljo tajni ključ. Zahteva zelo nedavno zaledje, saj smo implementacijo spremenili z neposrednega klicanja &gpg; in &gpgsm; na &gpgme;. </para>
+            <note>
+              <para
+>Iz varnostnih razlogov zahteva &pinentry; tako staro kot novo geslo, ločen postopek. Odvisno od platforme, na kateri delujete, in od kakovosti &pinentry; implementacije na tej platformi, se lahko zgodi, da se v ozadju pojavi &pinentry; okno. Torej, če izberete to funkcijo in se nič ne zgodi, preverite opravilno vrstico operacijskega sistema, če je &pinentry; okno odprto v ozadju. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Dodaj ID uporabnika...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Omogoča dodajanje novega uporabniškega ID-ja vašemu &openpgp; potrdilu.</action>
+            </para>
+            <para
+>Uporabite to za dodajanje novih identitet obstoječemu potrdilu kot alternativo ustvarjanju novega para ključev. &openpgp; ID uporabnika ima naslednjo obliko: </para>
+            <programlisting
+><replaceable
+>Pravo&nbsp;Ime</replaceable
+>&nbsp;<optional
+>(<replaceable
+>Komentar</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>E-pošta</replaceable
+>&gt;</programlisting>
+            <para
+>V pogovornem oknu, ki se prikaže, ko izberete to funkcijo, vas bo program &kleopatra; vprašal za vsakega od treh parametrov (<replaceable
+>Pravo&nbsp;Ime</replaceable
+>, <replaceable
+>Komentar</replaceable
+> in <replaceable
+>E-pošto</replaceable
+>) posebej in prikazal rezultat v predogledu. </para>
+            <note>
+              <para
+>Za te parametre veljajo enake skrbniške omejitve kot za nova potrdila. Za podrobnosti glejte <xref linkend="functions-newkey"/> in <xref linkend="admin-certificate-request-wizard"/>. </para>
+            </note>
+            <para
+>Ta funkcija je na voljo le, če je natanko eno &openpgp; potrdilo izbrano in je skrivni ključ na voljo za to potrdilo. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Del</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Izbriši</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Izbriše izbrana potrdila</action
+> iz lokalnega obeska ključev. </para>
+            <para
+>S to funkcijo odstranite neuporabljene ključe iz lokalnega predala s ključi. Ker pa so potrdila običajno priložena podpisanim e-poštnim sporočilom, lahko preverjanje e-poštnega sporočila povzroči, da se ključ, ki je bil pravkar odstranjen, vrne v lokalni nabiralnik s ključi. Zato je verjetno najbolje, da se tej funkciji čim bolj izogibate. Ko se izgubite, uporabite <link linkend="functions-search"
+>iskalno vrstico</link
+> ali funkcijo <xref linkend="view-hierarchical-key-list"/>, da ponovno pridobite nadzor nad množico potrdil. </para>
+            <warning>
+              <para
+>Od zgoraj navedenega obstaja ena izjema: Ko izbrišete enega od svojih potrdil, izbrišete skrivni ključ skupaj z njim. To pomeni, da ne boste mogli brati pretekle komunikacije, šifrirane do vas s tem potrdilom, razen če imate nekje varnostno kopijo. </para>
+              <para
+>program &kleopatra; vas bo opozoril, ko boste poskušali izbrisati skrivni ključ. </para>
+            </warning>
+            <para
+>Zaradi hierarhične narave &smime; potrdila, če izbrišete &smime; potrdilo izdajatelja (&ca; potrdilo), bodo izbrisani tudi vsi subjekti.<footnote
+><para
+>To je enako kot datotečni sistem: ko izbrišete mapo, izbrišete tudi vse datoteke in mape v njej.</para
+></footnote>
+            </para>
+            <para
+>Ta funkcija je seveda na voljo le, če ste izbrali vsaj en certifikat. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>Potrdila</guimenu
+><guimenuitem
+>Izpis potrdila</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Prikaže vse informacije, ki jih ima &gpgsm; o izbranem (&smime;) potrdilu.</action>
+            </para>
+            <para
+>Oglejte si razpravo o <option
+>--dump-key&nbsp;<replaceable
+>ključu</replaceable
+></option
+> v &gpgsm; priročniku za podrobnosti o izhodu. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>Meni Orodij</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Pregledovalnik dnevnikov GnuPG...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Zažene <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>, orodje za predstavitev rezultatov odpravljanja napak &gnupg; aplikacije. Če podpisovanje, šifriranje ali preverjanje skrivnostno prenehajo delovati, lahko ugotovite, zakaj, če pogledate dnevnik. </para>
+            <para
+>Ta funkcija ni na voljo v &Windows;ih, ker osnovni mehanizmi niso implementirani v ozadju te platforme. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Osveži potrdila OpenPGP</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Osveži vsa &openpgp; potrdila</action
+> z izvedbo <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> Po uspešnem zaključku ukaza bo vaša lokalna shramba ključev odražala najnovejše spremembe v zvezi z veljavnostjo &openpgp; potrdila. </para>
+            <para
+>Glejte opombo pod <xref linkend="certificates-refresh-x509"/> za nekaj opozoril. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Osveži potrdila X.509</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>Osveži vsa &smime; potrdila</action
+> z izvajanjem <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> Po uspešnem zaključku ukaza bo vaša lokalna shramba ključev odražala zadnje spremembe v zvezi z veljavnostjo &smime; potrdila. </para>
+            <note>
+              <para
+>Osvežitev &x509; ali &openpgp; potrdil pomeni prenos vseh potrdil in &crl;jev da preverite, ali je bilo katero od njih medtem preklicano. </para>
+              <para
+>To lahko močno obremeni vaše lastne omrežne povezave in omrežne povezave drugih oseb ter lahko traja do eno uro ali več, odvisno od vaše omrežne povezave in števila potrdil, ki jih je treba preveriti. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Uvozi CRL iz datoteke...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Omogoča vam ročni uvoz &crl; iz datotek.</action>
+            </para>
+            <para
+>Običajno zaledje pregledno obravnava sezname preklicanih potrdil (&crl;ov), vendar je včasih lahko koristno &crl; uvoziti ročno v lokalni &crl; predpomnilnik. </para>
+            <note>
+              <para
+>Za pravilno delovanje &crl; uvoza, mora biti &dirmngr; orodje v iskalnem <envar
+>PATH</envar
+>u. Če je ta element menija onemogočen, se morate obrniti na skrbnika sistema in ga prositi, da namesti &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Počisti predpomnilnik CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Počisti &gpgsm; &crl; predpomnilnik.</action
+></para>
+
+<para
+>Tega verjetno nikoli ne boste potrebovali. Lahko vsilite osvežitev &crl; predpomnilnika tako, da izberete vsa potrdila in namesto tega uporabite <xref linkend="certificates-refresh-x509"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>Orodja</guimenu
+><guimenuitem
+>Izpis predpomnilnika CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Prikaže podrobno vsebino datoteke &gpgsm; &crl; predpomnilnik.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>Meni z nastavitvami</title>
+
+<para
+>&kleopatra; ima privzeti &kde; Meni <guimenu
+>Nastavitve</guimenu
+>, kot je opisano v <ulink url="help:/fundamentals/menus.html#menus-settings"
+>&kde; Osnove</ulink
+> z enim dodatnim vnosom:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>Nastavitve</guimenu
+><guimenuitem
+>Izvedi samotestiranje</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>Izvede niz samotestiranja in predstavi njihov rezultat.</action>
+            </para>
+            <para
+>To je isti niz testov, ki se privzeto izvaja ob zagonu. Če ste onemogočili samopreizkuse ob zagonu, jih lahko znova omogočite tukaj. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>Okenski meni</title>
+<para
+>Meni <guimenu
+>Okno</guimenu
+> omogoča upravljanje zavihkov. Z uporabo elementov v tem meniju lahko preimenujete zavihek, dodate nov zavihek, podvojite trenutni zavihek, zaprete trenutni zavihek in premaknete trenutni zavihek v levo ali desno.</para>
+
+<para
+>S klikom z desnim klikom miške na zavihek se odpre kontekstni meni, kjer lahko tudi izberete ista dejanja.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>Meni pomoči</title>
+
+<para
+>&kleopatra; ima privzeti &kde; Meni <guimenu
+>Pomoč</guimenu
+>, kot je opisano v <ulink url="help:/fundamentals/menus.html#menus-help"
+>&kde; Osnove</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>Referenca možnosti ukazne vrstice</title>
+
+<para
+>Samo možnosti, specifične za program &kleopatra; so navedene tukaj. Kot pri vseh &kde; aplikacijah, lahko dobite celoten seznam možnosti z izdajo ukaza <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>argument</replaceable
+></term>
+<listitem>
+<para
+>Lokacija vtičnice, ki jo strežnik uporabniškega vmesnika posluša</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>Zaženi samo strežnik UI, skrij glavno okno</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>Uporabite &openpgp; za naslednjo operacijo</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>Uporabite CMS (&x509;, S/&MIME;) za naslednjo operacijo</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>Določa datoteko ali &URL; iz katerega uvozite potrdila (ali tajne ključe).</action
+></para>
+
+<para
+>To je ekvivalent ukazne vrstice <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>Šifriraj datoteko(e)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>Podpiši datoteko(e)</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>Šifrirajte in/ali podpišite datoteko(e). Enako kot <option
+>--sign-encrypt</option
+>, ne uporabljajte</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>Dešifriranje datotek(e)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>Preveri datoteko/podpis</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>Dešifriranje in/ali preverjanje datotek</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>Konfiguriranje programa &kleopatra;</title>
+
+    <para
+>Do pogovornega okna za konfiguracijo programa &kleopatra; lahko dostopate preko <menuchoice
+><guimenu
+>Nastavitve</guimenu
+><guimenuitem
+>Konfiguriraj program &kleopatra;...</guimenuitem
+></menuchoice
+> </para>
+    <para
+>Vsaka njegova stran je opisana v spodnjih razdelkih. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>Konfiguriranje imeniških storitev</title>
+
+      <para
+>Na tej strani lahko konfigurirate, katere &ldap; strežnike uporabiti za &smime; iskanja potrdil in katere strežnike ključev uporabiti za &openpgp; iskanja certifikatov. </para>
+      <note>
+        <para
+>To je preprosto uporabniku prijaznejša različica istih nastavitev, ki jih najdete tudi v <xref linkend="configuration-gnupg-system"/>. Vse, kar lahko konfigurirate tukaj, lahko konfigurirate tudi tam. </para>
+      </note>
+      <note>
+        <title
+>Opomba o nastavitvah proxy strežnika</title>
+        <para
+>Nastavitve proxyja je mogoče konfigurirati za &http; in &ldap; v <xref linkend="configuration-smime-validation"/>, vendar samo za &gpgsm;. Za &gpg; zaradi zapletenosti možnosti strežnika ključev v &gpg; in pomanjkanje ustrezne podpore zanje v &gpgconf;, morate trenutno neposredno spremeniti konfiguracijsko datoteko <filename
+>gpg.conf</filename
+>. Glejte &gpg; priročnik za podrobnosti. Program &kleopatra; bo ohranil takšne nastavitve, vendar še ne dovoljuje njihovega spreminjanja v &GUI;. </para>
+      </note>
+      <para
+>The <guilabel
+>Directory services</guilabel
+> table shows which servers are currently configured. Double-click on a cell in the table to change parameters of existing server entries. </para>
+      <para
+>Pomen stolpcev v tabeli je naslednji: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>Shema</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>Določa omrežni protokol, ki se uporablja za dostop do strežnika. Pogosto uporabljene sheme vključujejo <guilabel
+>ldap</guilabel
+> (in njegov z &ssl; zavarovanim brat <guilabel
+>ldaps</guilabel
+>) za &ldap; strežnike (skupni protokol za &smime;; edini, ki ga podpira &gpgsm;), in <guilabel
+>hkp</guilabel
+>, protokol strežnika ključev Horowitz, dandanes običajno &http; Keyserver Protocol, protokol, ki temelji na &http; in ki skoraj vse javne &openpgp; podpora za strežnike ključev. </para>
+            <para
+>Glejte &gpg; in &gpgsm; priročniki za seznam podprtih shem. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>Ime strežnika</guilabel
+></term>
+          <listitem>
+            <para
+>Ime domene strežnika, npr. <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>Vrata strežnika</guilabel
+></term>
+          <listitem>
+            <para
+>Omrežna vrata, ki jih strežnik posluša. </para>
+            <para
+>To se samodejno spremeni v privzeta vrata, ko spremenite <xref linkend="configuration-directory-services-scheme"/>, razen če so bila na začetku nastavljena na nekatera nestandardna vrata. Če ste spremenili privzeta vrata in jih ne morete obnoviti, poskusite <xref linkend="configuration-directory-services-scheme"/> nastaviti na <userinput
+>http</userinput
+> in <xref linkend="configuration-directory-services-server-port"/> na <userinput
+>80</userinput
+> (privzeto za &http;), nato pa ga vzemite od tam. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Osnovni DN</guilabel
+></term>
+          <listitem>
+            <para
+>Osnovni DN (samo za &ldap; in &ldaps;), npr. koren &ldap; hierarhije, iz katere je treba začeti. To se pogosto imenuje tudi <quote
+>iskalni koren</quote
+> ali <quote
+>iskalna osnova</quote
+>. </para>
+            <para
+>Običajno je videti kot <userinput
+>c=de,o=Foo</userinput
+>, podan kot del datoteke &ldap; &URL;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>Uporabniško ime</guilabel
+></term>
+          <listitem>
+            <para
+>Uporabniško ime, če obstaja, za prijavo v strežnik. </para>
+            <para
+>Ta stolpec je prikazan le, če je označena možnost <guilabel
+>Pokaži podatke o uporabniku in geslu</guilabel
+> (pod tabelo). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>Geslo</guilabel
+></term>
+          <listitem>
+            <para
+>Geslo, če obstaja, za prijavo v strežnik. </para>
+            <para
+>Ta stolpec je prikazan le, če je označena možnost <guilabel
+>Pokaži podatke o uporabniku in geslu</guilabel
+> (pod tabelo). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>Preverite ta stolpec, če naj se ta vnos uporabi za &x509; (&smime;) iskanja potrdil. </para>
+            <para
+>Samo &ldap; (in &ldaps;) strežniki so podprti za &smime;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>Preverite ta stolpec, če naj se ta vnos uporabi za &openpgp; iskanje certifikatov. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>Konfigurirate lahko poljubno število &smime; (&x509;) strežnikov, kot želite, vendar samo en &openpgp; strežnik je dovoljen kadar koli. &GUI; bo to uveljavil. </para>
+      <para
+>Če želite dodati nov strežnik, kliknite gumb <guibutton
+>Novo</guibutton
+>. To podvoji izbrani vnos, če obstaja, ali pa vstavi privzeti &openpgp; strežnik. Nato lahko nastavite <xref linkend="configuration-directory-services-server-name"/>, <xref linkend="configuration-directory-services-server-port"/>, <xref linkend="configuration-directory-services-base-dn"/> in običajno <xref linkend="configuration-directory-services-password"/> in <xref linkend="configuration-directory-services-user-name"/>, oba sta potrebna le, če strežnik zahteva avtentikacijo. </para>
+      <para
+>Če želite neposredno vnesti vnos za &x509; potrdila, uporabite <menuchoice
+><guimenu
+>Novo</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+>; uporabite <menuchoice
+><guimenu
+>Novo</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> za &openpgp;. </para>
+      <para
+>Če želite odstraniti strežnik s seznama iskanja, ga izberite na seznamu in pritisnite gumb <guibutton
+>Izbriši</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>Če želite nastaviti &ldap; časovno omejitev, npr. najdaljši čas, ki ga bo zaledje čakalo na odgovor strežnika, preprosto uporabite ustrezno vnosno polje z oznako <guilabel
+>Časovna omejitev LDAP (minute:sekunde)</guilabel
+>. </para>
+      <para
+>Če ima eden od vaših strežnikov veliko podatkovno bazo, tako da celo razumna iskanja, kot je <userinput
+>Smith</userinput
+>, dosežejo <guilabel
+>največje število elementov, ki jih vrne poizvedba</guilabel
+>, boste morda želeli povečati to omejitev. Preprosto lahko ugotovite, ali med iskanjem dosežete mejo, saj se v tem primeru prikaže pogovorno okno, ki vam pove, da so bili rezultati okrnjeni. </para>
+      <note>
+        <para
+>Nekateri strežniki lahko uvedejo lastne omejitve glede števila elementov, ki jih vrne poizvedba. V tem primeru povečanje omejitve tukaj ne bo povzročilo več vrnjenih artiklov. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>Konfiguriranje videza</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>Konfiguriranje <guilabel
+>Namigov orodij</guilabel
+></title>
+
+        <para
+>Na glavnem seznamu potrdil programa &kleopatra; lahko prikaže podrobnosti o potrdilu v opisu orodja. Prikazane informacije so enake kot na zavihku <guilabel
+>Pregled</guilabel
+> pogovornega okna <guilabel
+>Podrobnosti o potrdilu</guilabel
+>. Namige orodij pa je mogoče omejiti tako, da prikazujejo samo podnabor informacij za manj podrobno izkušnjo. </para>
+        <note>
+          <para
+><guilabel
+>Key-ID</guilabel
+> je <emphasis
+>vedno</emphasis
+> prikazan. To zagotavlja, da se opisi orodij za različna potrdila dejansko razlikujejo (to je še posebej pomembno, če je izbran samo <xref linkend="tooltips-validity"/>). </para>
+        </note>
+        <para
+>Neodvisno lahko omogočite ali onemogočite naslednje nize informacij: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>Pokaži veljavnost</guilabel
+></term>
+            <listitem>
+              <para
+>Prikazuje informacije o veljavnosti potrdila: njegov trenutni status, izdajatelj-&dn; (samo &smime;), datumi poteka (če obstajajo) in oznake uporabe potrdila. </para>
+              <para
+>Primer: <programlisting
+><!--
+                  -->Ta certifikat je trenutno veljaven.
+<!--              -->Izdajatelj:            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Veljavnost:          od 25.08.2009 10:42 do 19.10.2010 10:42
+<!--              -->Uporaba certifikata: Podpisovanje E-pošte in datotek, kriptiranje E-pošte in datotek
+<!--              -->ID-ključa:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>Pokaži informacije o lastniku</guilabel
+></term>
+            <listitem>
+              <para
+>Prikazuje informacije o lastniku potrdila: subject-&dn; (samo &smime;), ID-ji uporabnikov (vključno z e-poštnimi naslovi) in zaupanje lastnika (samo &openpgp;). </para>
+              <para
+>&openpgp; primer: <programlisting
+><!--
+                  -->ID-uporabnika:           Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->ID-ključa:            C6BF6664
+<!--              -->Zaupanje uporabnika:        ultimate<!--
+                  --></programlisting
+> &smime; primer: <programlisting
+><!--
+                  -->Subjekt:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->a.k.a.:            Gpg4winUserA@test.hq
+<!--              -->ID-ključa:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>Prikaži tehnične podrobnosti</guilabel
+></term>
+            <listitem>
+              <para
+>Prikazuje tehnične podatke o potrdilu: serijsko številko (samo &smime;), vrsto, prstni odtis in mesto shranjevanja. </para>
+              <para
+>Primer: <programlisting
+><!--
+                  -->Serijaska številka:     27
+<!--              -->Tip certifikata:  1,024-bit RSA (na voljo je skrivni certifikat)
+<!--              -->ID-ključa:            DC9D9E43
+<!--              -->Prstni odtis:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Shranjeno:            na tem računalniku<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>Konfiguriranje <guilabel
+>Kategorij potrdil</guilabel
+></title>
+
+        <para
+>Program &kleopatra; omogoča prilagajanje videza potrdil v pogledu seznama. To vključuje prikaz majhne ikone, lahko pa vplivate tudi na barve ospredja (besedilo) in ozadja ter pisave. </para>
+        <para
+>Vsaki kategoriji potrdila na seznamu je dodeljen niz barv, ikona (neobvezno) in pisava, v kateri so prikazana potrdila iz te kategorije. Seznam kategorij deluje tudi kot predogled nastavitev. Kategorije lahko poljubno določi skrbnik ali napredni uporabnik, glejte <xref linkend="admin-key-filters"/> v <xref linkend="admin"/>. </para>
+        <para
+>Če želite nastaviti ali spremeniti ikono kategorije, jo izberite na seznamu in pritisnite gumb <guibutton
+>Nastavi ikono...</guibutton
+>. Pojavila se bo standardno &kde; pogovorno okno za izbiro ikone, kjer lahko izberete obstoječo ikono iz okna &kde; zbirke ali naložite zbirko po meri. </para>
+        <para
+>Če želite znova odstraniti ikono, morate pritisniti gumb <guibutton
+>Privzeti videz</guibutton
+>. </para>
+        <para
+>Če želite spremeniti barvo besedila (tj. ospredja) kategorije, jo izberite na seznamu in pritisnite gumb <guibutton
+>Nastavi barvo besedila...</guibutton
+>. Pojavilo se bo standardno &kde; pogovorno okno za izbiro barve, kjer lahko izberete obstoječo barvo ali ustvarite novo. </para>
+        <para
+>Spreminjanje barve ozadja se izvede na enak način, namesto tega samo pritisnite <guibutton
+>Nastavi barvo ozadja...</guibutton
+>. </para>
+        <para
+>Če želite spremeniti pisavo, imate v bistvu dve možnosti: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>Spremenite standardno pisavo, ki se uporablja za vse poglede seznamov v &kde;. </para>
+          </listitem>
+          <listitem>
+            <para
+>Uporabite pisavo po meri. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>Prva možnost ima to prednost, da bo pisava sledila izbranemu slogu v &kde;, medtem ko vam slednja omogoča popoln nadzor nad uporabljeno pisavo. Izbira je vaša. </para>
+        <para
+>Če želite uporabiti spremenjeno standardno pisavo, izberite kategorijo na seznamu in označite ali počistite modifikatorje pisave <guilabel
+>Ležeče</guilabel
+>, <guilabel
+>Krepko</guilabel
+> in/ali <guilabel
+>Prečrtano</guilabel
+> . Na seznamu kategorij lahko takoj vidite učinek na pisavo. </para>
+        <para
+>Če želite uporabiti pisavo po meri, pritisnite gumb <guibutton
+>Nastavi pisavo...</guibutton
+>. Prikaže standardno &kde; pogovorno okno za izbiro pisave, kjer lahko izberete novo pisavo. </para>
+        <note>
+          <para
+>Še vedno lahko uporabite modifikatorje pisave za spreminjanje pisave po meri, tako kot za spreminjanje standardne pisave. </para>
+        </note>
+        <para
+>Če želite preklopiti nazaj na standardno pisavo, morate pritisniti gumb <guibutton
+>Privzeti videz</guibutton
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>Konfiguriranje <guilabel
+>Vrstni red atributov DN</guilabel
+></title>
+
+<para
+>Čeprav so &dn;-ji hierarhični, vrstni red posameznih komponent (imenovanih relativni &dn;-ji (RDN) ali &dn; atributi) ni definiran. Vrstni red, v katerem so prikazani atributi, je torej stvar osebnega okusa ali politike podjetja, zato ga je mogoče konfigurirati v programu &kleopatra;.</para>
+
+<note
+><para
+>Ta nastavitev ne velja le za program &kleopatra;, ampak za vse aplikacije, ki uporabljajo &kleopatra; tehnologijo. V času tega pisanja to vključuje &kmail;, &kaddressbook;, kot tudi sama sebe, seveda.</para
+></note>
+
+<para
+>Ta konfiguracijska stran je v bistvu sestavljena iz dveh seznamov, enega za znane atribute (<guilabel
+>Razpoložljivi atributi</guilabel
+>) in enega, ki opisuje <guilabel
+>Trenutni vrstni red atributov</guilabel
+>.</para>
+
+<para
+>Oba seznama vsebujeta vnose, opisane s kratko obliko atributa (npr. <guilabel
+>CN</guilabel
+>) in črkovano obliko (<guilabel
+>Splošno ime</guilabel
+>).</para>
+
+<para
+>Seznam <guilabel
+>Razpoložljivi atributi</guilabel
+> je vedno razvrščen po abecedi, medtem ko vrstni red seznama <guilabel
+>Trenutni vrstni red atributov</guilabel
+> odraža konfiguriran &dn; vrstni red atributov: prvi atribut na seznamu je tudi prvi prikazan.</para>
+
+<para
+>Sploh so prikazani samo atributi, ki so izrecno navedeni na seznamu <guilabel
+>Trenutni vrstni red atributov</guilabel
+>. Ostalo je privzeto skrito.</para>
+
+<para
+>Vendar, če je vnos nadomestnega znaka <guilabel
+>_X_</guilabel
+> (<guilabel
+>Vsi drugi</guilabel
+>) na <quote
+>trenutnem</quote
+> seznamu, so vstavljeni vsi neuvrščeni atributi (znani ali ne) na točko kjer se nahaja <guilabel
+>_X_</guilabel
+>, v njihovem izvirnem relativnem vrstnem redu.</para>
+
+<para
+>Majhen primer bo pomagal, da bo to bolj jasno:</para>
+
+<informalexample>
+<para
+>Glede na &dn;</para>
+<blockquote>
+<para
+>O=&kde;, C=US, CN=Dave Devel, X-BAR=foo, OU=&kleopatra;, X-FOO=bar, </para>
+</blockquote>
+<para
+>privzeti vrstni red atributov <quote
+>CN, L, _X_, OU, O, C</quote
+> bo ustvaril naslednje oblikovano &dn;:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+<para
+>medtem ko bo <quote
+>CN, L, OU, O, C</quote
+> ustvaril</para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=&kleopatra;, O=&kde;, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>Če želite dodati atribut na seznam vrstnega reda prikaza, ga izberite na seznamu <guilabel
+>Razpoložljivi atributi</guilabel
+> in pritisnite gumb <guilabel
+>Dodaj v trenutni vrstni red atributov</guilabel
+>.</para>
+
+<para
+>Če želite odstraniti atribut s seznama vrstnega reda prikaza, ga izberite na seznamu <guilabel
+>Trenutni vrstni red atributov</guilabel
+> in pritisnite gumb <guilabel
+>Odstrani iz trenutnega vrstnega reda atributov</guilabel
+>.</para>
+
+<para
+>Če želite premakniti atribut na začetek (konec), ga izberite na seznamu <guilabel
+>Trenutni vrstni red atributov</guilabel
+> in pritisnite gumb<guilabel
+>Premakni na vrh</guilabel
+> (<guilabel
+>Premakni na dno</guilabel
+>).</para>
+
+<para
+>Če želite premakniti atribut gor (dol) samo za eno režo, ga izberite na seznamu <guilabel
+>Trenutni vrstni red atributov</guilabel
+> in pritisnite gumb<guilabel
+>Premakni enega gor</guilabel
+> (<guilabel
+>Premakni enega navzdol</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>Konfiguriranje kripto operacij</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>Konfiguriranje <guilabel
+>E-poštnih operacij</guilabel
+></title>
+
+        <para
+>Tukaj lahko konfigurirate nekatere vidike e-poštnih operacij kleopatrinega &uiserver;ja. Trenutno lahko samo konfigurirate, ali želite uporabiti <quote
+>Hitri način</quote
+> za posamično podpisovanje in šifriranje e-pošte. </para>
+        <para
+>Ko je omogočen <quote
+>Hitri način</quote
+>, pri podpisovanju (šifriranju) e-poštnih sporočil ni prikazano nobeno pogovorno okno, razen če obstaja spor, ki ga je treba ročno razrešiti. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>Konfiguriranje <guilabel
+>datotečnih operacij</guilabel
+></title>
+
+        <para
+>Tukaj lahko konfigurirate nekatere vidike datotečnih operacij kleopatrinega &uiserver;ja. Trenutno lahko izberete samo program kontrolne vsote za <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>Uporabite <guilabel
+>Program kontrolne vsote za uporabo</guilabel
+>, da izberete, kateri od nastavljenih programov kontrolne vsote naj bo uporabljen pri ustvarjanju datotek kontrolne vsote. </para>
+        <para
+>Pri preverjanju kontrolnih vsot se samodejno najde program za uporabo na podlagi imen najdenih datotek s kontrolnimi vsotami. </para>
+        <note>
+          <para
+>Skrbnik in izkušeni uporabnik lahko popolnoma določita, kateri programi za kontrolne vsote naj bodo na voljo programu &kleopatra; prek tako imenovanih <quote
+>Definicij kontrolne vsote</quote
+> v konfiguracijski datoteki. Za podrobnosti glejte <xref linkend="admin-checksum-definitions"/> v <xref linkend="admin"/>. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>Konfiguriranje vidikov S/&MIME; Validacije</title>
+
+      <para
+>Na tej strani lahko konfigurirate nekatere vidike preverjanja &smime; potrdila. </para>
+      <note>
+        <para
+>Večinoma je to preprosto uporabniku prijaznejša različica istih nastavitev, ki jih najdete tudi v <xref linkend="configuration-gnupg-system"/>. Vse, kar lahko konfigurirate tukaj, lahko konfigurirate tudi tam, z izjemo <xref linkend="configuration-smime-validation-refresh-interval"/>, ki je specifičen za program &kleopatra;. </para>
+      </note>
+      <para
+>Pomen možnosti je naslednji: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>Konfiguriranje intervalnega preverjanja potrdila</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>Preverite veljavnost potrdila vsakih <replaceable
+>N</replaceable
+> ur</guilabel
+></term>
+            <listitem>
+              <para
+>Ta možnost omogoča intervalno preverjanje veljavnosti certifikata. Izberete lahko tudi interval preverjanja (v urah). Učinek intervalnega preverjanja je enak kot <xref linkend="view-redisplay"/>; ni možnosti za intervalno razporejanje <xref linkend="certificates-refresh-openpgp"/> ali <xref linkend="certificates-refresh-x509"/>. </para>
+              <note>
+                <para
+>Preverjanje veljavnosti se izvaja implicitno vsakič, ko se pomembne datoteke v <filename
+>~/.gnupg</filename
+> spremenijo. Ta možnost, podobno kot <xref linkend="certificates-refresh-openpgp"/> in <xref linkend="certificates-refresh-x509"/>, torej vpliva le na zunanje dejavnike veljavnosti potrdila. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>Konfiguriranje metode preverjanja</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>Preverjanje potrdil z uporabo CRL-jev</guilabel
+></term>
+            <listitem>
+              <para
+>Če je ta možnost izbrana, so &smime; potrdila potrjena s seznami preklicanih potrdil (&crl;ji). </para>
+              <para
+>Glejte <xref linkend="configuration-smime-validation-use-ocsp"/> za alternativni način preverjanja veljavnosti potrdila. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>Potrdi potrdila na spletu (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>Če je ta možnost izbrana, se &smime; potrdila preverjajo na spletu s protokolom o statusu spletnih potrdil (&ocsp;). </para>
+              <warning>
+                <para
+>Pri izbiri te metode se zahteva pošlje strežniku &ca; bolj ali manj vsakič, ko pošljete ali prejmete kriptografsko sporočilo, s čimer teoretično omogočite agenciji za izdajo potrdil, da sledi, s kom izmenjujete (npr.) pošto. </para>
+              </warning>
+              <para
+>Če želite uporabiti to metodo, morate vnesti &URL; od &ocsp; odzivnika v <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>Oglejte si <xref linkend="configuration-smime-validation-use-ocsp"/> za bolj tradicionalno metodo preverjanja veljavnosti potrdila, ki ne razkrije informacij o tem, s kom izmenjujete sporočila. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>URL odzivnika OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>Tukaj vnesite naslov strežnika za spletno preverjanje potrdil (&ocsp; odzivnik). &URL; se običajno začne z <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>Podpis odzivnika OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>Tukaj izberite potrdilo, s katerim &ocsp; strežnik podpiše svoje odgovore. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>Prezri storitveni URL potrdil</guilabel
+></term>
+            <listitem>
+              <para
+>Vsako &smime; potrdilo običajno vsebuje &URL; njegovega izdajatelja &ocsp; odzivnik (<xref linkend="certificates-dump-certificate"/> bo razkril, ali ga dano potrdilo vsebuje). </para>
+              <para
+>Če označite to možnost, bo &gpgsm; ignoriral te &URL;je in uporabljal samo tistega, ki je konfiguriran zgoraj. </para>
+              <para
+>Uporabite to za npr. uveljaviti uporabo &ocsp; zastopnika. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>Konfiguriranje možnosti preverjanja</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>Ne preverjajte pravilnikov o potrdilih</guilabel
+></term>
+            <listitem>
+              <para
+>Privzeto je da &gpgsm; uporablja datoteko <filename
+>~/.gnupg/policies.txt</filename
+> za preverjanje, ali je pravilnik o potrdilu dovoljen. Če je ta možnost izbrana, pravilniki niso označeni. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>Nikoli se ne posvetuj s CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Če je ta možnost označena, se seznami preklicanih potrdil nikoli ne uporabijo za preverjanje &smime; potrdila. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>Dovoli označevanje korenskih potrdil kot zaupanja vrednih</guilabel
+></term>
+            <listitem>
+            <para
+>Če je ta možnost označena, medtem ko se korensko &ca; potrdilo uvaža, boste morali potrditi njegov prstni odtis in navesti, ali menite, da je to korensko potrdilo zaupanja vredno. </para>
+              <para
+>Korensko potrdilo mora biti zaupanja vredno, preden potrdila, ki jih je potrdilo, postanejo zaupanja vredna, vendar lahkotno dovoljevanje zaupanja vrednim korenskim potrdilom v vašo shrambo potrdil bo ogrozilo varnost sistema. </para>
+              <note>
+                <para
+>Omogočanje te funkcije v ozadju lahko povzroči pojavna okna &pinentry; ob neprimernem času (npr. pri preverjanju podpisov) in lahko tako blokira nenadzorovano obdelavo e-pošte. Iz tega razloga in ker je zaželeno, da lahko ponovno <emphasis
+>ne zaupamo</emphasis
+> zaupanja vrednemu korenskemu potrdilu, &kleopatra; omogoča ročno nastavitev zaupanja z uporabo <xref linkend="certificates-trust-root"/> in <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>Ta nastavitev tukaj ne vpliva na funkcijo programa &kleopatra;. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>Pridobite manjkajoča potrdila izdajatelja</guilabel
+></term>
+            <listitem>
+              <para
+>Če je ta možnost označena, se po potrebi pridobijo manjkajoča potrdila izdajatelja (to velja za obe metodi preverjanja, &crl; in &ocsp;). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>Konfiguriranje &http; možnosti zahtevanja</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>Ne izvajajte nobenih zahtev HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Popolnoma onemogoči uporabo &http; za &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>Prezri distribucijsko točko potrdil HTTP CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Ko iščete lokacijo &crl;, potrdilo ki ga je treba preizkusiti, običajno vsebuje tisto, kar je znano kot <quote
+>&crl; vnosi distribucijske točke</quote
+> (<acronym
+>DP</acronym
+>), ki so &URL;ji ki opisujejo način dostopa do &crl;. Uporabljen je prvi najdeni vnos <acronym
+>DP</acronym
+>. </para>
+              <para
+>S to možnostjo se ne bodo vpošteali vsi vnosi, ki uporabljajo &http; shemo pri iskanju ustreznega <acronym
+>DP</acronym
+>ja. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>Uporabi sistemski proxy HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Če je ta možnost izbrana, bo vrednost &http; proxy, prikazan na desni (ki prihaja iz spremenljivke okolja <envar
+>http_proxy</envar
+>), uporabljena za vse &http; prošnje. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>Uporabite ta proxy za zahteve HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>Če sistemski proxy ni nastavljen ali morate za &gpgsm; uporabiti drug proxy, lahko tukaj vnesete njegovo lokacijo. </para>
+              <para
+>Uporabljal se bo za vse &HTTP; zahteve v zvezi s S/&MIME;. </para>
+              <para
+>Sintaksa je <userinput
+><replaceable
+>gostitelj</replaceable
+><literal
+>:</literal
+><replaceable
+>vrata</replaceable
+></userinput
+>, npr. <userinput
+>myproxy.nowhere.com:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>Konfiguriranje &ldap; možnosti zahtevanja</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>Ne izvajajte nobenih zahtev LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Popolnoma onemogoči uporabo &ldap; za &smime;. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>Ignorirajte distribucijsko točko potrdil LDAP CRL</guilabel
+></term>
+            <listitem>
+              <para
+>Ko iščete lokacijo &crl;, potrdilo, ki ga je treba preizkusiti, običajno vsebuje tako imenovane vnose »&crl; vnosi distribucijske točke« (<acronym
+>DP</acronym
+>), ki &URL; opisujejo pot do dostopa do &crl;. Uporabljen je prvi najdeni vnos <acronym
+>DP</acronym
+>. </para>
+              <para
+>S to možnostjo se ne bodo vpoštevali vsi vnosi, ki uporabljajo &ldap; sheme pri iskanju ustreznega <acronym
+>DP</acronym
+>ja. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>Primarni gostitelj za zahteve LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>Vnos &ldap; strežnika tukaj bo naredil to da gredo vse &ldap; zahteve najprej na ta strežnik. Natančneje, ta nastavitev preglasi vse navedene <replaceable
+>gostitelj</replaceable
+> in <replaceable
+>vrata</replaceable
+> dele v &ldap; &URL;ju in bo uporabljen tudi, če sta <replaceable
+>gostitelj</replaceable
+> in <replaceable
+>vrata</replaceable
+> izpuščena iz &URL;. </para>
+              <para
+>Drugi &ldap; strežniki bodo uporabljeni le, če povezava s <quote
+>proxy</quote
+> ni uspela. Sintaksa je <userinput
+><replaceable
+>gostitelj</replaceable
+></userinput
+> ali <userinput
+><replaceable
+>gostitelj</replaceable
+><literal
+>:</literal
+><replaceable
+>vrata</replaceable
+></userinput
+> . Če so <replaceable
+>vrata</replaceable
+> izpuščena, se uporabijo vrata 389 (standardna &ldap; vrata). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>Konfiguriranje &gnupg; sistema</title>
+
+      <para
+>Ta del pogovornega okna je samodejno ustvarjen iz izhoda <command
+>gpgconf <option
+>--list-components</option
+></command
+> in za vsako <replaceable
+>komponento</replaceable
+>, ki jo vrne zgornji ukaz , rezultat <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>komponenta</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>Najbolj uporabne od teh možnosti so bile podvojene kot ločene strani v konfiguracijskem pogovornem oknu programa &kleopatra;. Oglejte si <xref linkend="configuration-directory-services"/> in <xref linkend="configuration-smime-validation"/> za dve pogovorni strani, ki vsebujeta izbrane možnosti iz tega dela pogovornega okna. </para>
+      </note>
+      <para
+>Natančna vsebina tega dela pogovornega okna je odvisna od različice &gnupg; ozadja, ki ste ga namestili, in potencialno platformo, na kateri delujete. Tako bomo razpravljali le o splošni postavitvi pogovornega okna, vključno s preslikavo iz &gpgconf; možnosti v &kleopatra; &GUI; nadzor. </para>
+      <para
+>&gpgconf; vrne informacije o konfiguraciji za več komponent. Znotraj vsake komponente so posamezne možnosti združene v skupine. </para>
+      <para
+>&kleopatra; prikaže en zavihek na komponento, ki jo poroča &gpgconf;; skupine vodi s strani vodoravne črte, ki prikazuje ime skupine, vrnjeno iz &gpgconf;. </para>
+      <para
+>Vsaka &gpgconf; možnost ima vrsto. Razen nekaterih dobro znanih možnosti, ki jih &kleopatra; podpira z specializiranimi kontrolami za boljšo uporabniško izkušnjo, preslikavo med &gpgconf; vrstami in kontrolami kleopatre so naslednje: </para>
+      <table id="table-gpgconf-types">
+	<title
+>Preslikava iz &gpgconf; vrste v &GUI; kontrole</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>tip &gpgconf;</entry>
+              <entry namest="lists" nameend="non-lists"
+>nadzor programa &kleopatra;</entry>
+            </row>
+            <row>
+	      <entry
+>za sezname</entry>
+	      <entry
+>za ne-sezname</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>nobeden</literal
+></entry>
+	      <entry
+>Spinbox (<quote
+>count</quote
+>-semantics)</entry>
+	      <entry
+>Potrditveno polje</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>niz</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>Lineedit</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>Lineedit (neformatirano)</entry>
+              <entry morerows="1"
+>Spinbox</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ime poti</literal
+></entry>
+              <entry
+>&NA;</entry>
+              <entry
+>specializiran nadzor</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>ldap server</literal
+></entry>
+              <entry
+>specializiran nadzor</entry>
+              <entry
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>prstni odtis ključa</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>&NA;</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>javni ključ</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>skrivni ključ</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>seznam vzdevkov</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>Glejte &gpgconf; priročnik za več informacij o tem, kaj lahko tukaj konfigurirate in kako. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>Vodnik za skrbnike</title>
+
+<para
+>Ta vodnik za skrbnike opisuje načine prilagajanja programa &kleopatra; ki niso dostopne prek &GUI;ja, ampak samo prek konfiguracijskih datotek.</para>
+
+<para
+>Predpostavlja se, da je bralec seznanjen s tehnologijo, ki se uporablja za &kde; konfiguracijo aplikacije, vključno s postavitvijo, lokacijo datotečnega sistema in kaskadnim povezovanjem &kde; konfiguracijske datoteke, kot tudi ogrodje KIOSK.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>Prilagajanje čarovnika za ustvarjanje potrdila</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>Prilagajanje &dn; polj</title>
+
+<para
+>&kleopatra; vam omogoča, da prilagodite polja, ki jih lahko uporabnik vnese, da ustvari svoje potrdilo.</para>
+
+<para
+>Ustvarite skupino z imenom <literal
+>CertificateCreationWizard</literal
+> v <filename
+>kleopatrarc</filename
+> celotnega sistema. Če želite vrstni red atributov po meri ali če želite, da se prikažejo samo določeni elementi, ustvarite ključ z imenom <varname
+>DNAttributeOrder</varname
+>. Argument je eden ali več od <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+> Če želite inicializirati polja z določeno vrednostjo, napišite nekaj takega kot Attribute=vrednost. Če želite, da se atribut obravnava kot obvezen, dodajte klicaj (npr. <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>, kar je privzeta konfiguracija) .</para>
+
+<para
+>Uporaba modifikatorja načina <acronym
+>KIOSK</acronym
+> <varname
+>$e</varname
+> omogoča pridobivanje vrednosti iz spremenljivk okolja ali iz ovrednotenega skripta ali binarne datoteke. Če poleg tega želite onemogočiti urejanje zadevnega polja, uporabite modifikator <varname
+>$i</varname
+>. Če želite onemogočiti uporabo gumba <guibutton
+>Vstavi moj naslov</guibutton
+>, nastavite <varname
+>ShowSetWhoAmI</varname
+> na false.</para>
+
+<tip
+><para
+>Zaradi narave &kde; ogrodja <acronym
+>KIOSK</acronym
+> z uporabo nespremenljive zastavice (<varname
+>$i</varname
+>) uporabniku onemogoča preglasitev zastavice. To je predvideno vedenje. <varname
+>$i</varname
+> in <varname
+>$e</varname
+> lahko uporabite z vsemi drugimi konfiguracijskimi ključi v &kde;, tudi aplikacije.</para
+></tip>
+
+<para
+>Naslednji primer opisuje možne prilagoditve:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;Prepove kopiranja osebnih podatkov iz imenika in lokalnega prepisovanja
+ShowSetWhoAmI[$i]=false
+
+;nastavi ime upoprabnika na $USER
+CN[$e]=$USER
+
+;nastavi ime podjetja na "My Company", prepove urejanje
+O[$i]=My Company
+
+;nastavi ime oddelka na vrednost vrnjeno iz skripta
+OU[$ei]=$(lookup_dept_from_ip)
+
+; nastavi državo na DE, ampak dovoli spremembe s strani uporabnika
+C=DE
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>Omejitev vrst ključev, ki jih uporabnik lahko ustvari</title>
+
+        <para
+>&kleopatra; omogoča tudi omejitev vrste potrdil, ki jih uporabnik lahko ustvari. Upoštevajte pa, da je tem omejitvam preprost način, da ustvarite eno v ukazni vrstici. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>Algoritmi javnih ključev</title>
+
+          <para
+>Če želite omejiti uporabo algoritma javnega ključa, dodajte konfiguracijski ključ <varname
+>PGPKeyType</varname
+> (in <varname
+>CMSKeyType</varname
+>, vendar je za <acronym
+>CMS</acronym
+> vseeno podprt samo <acronym
+>RSA</acronym
+>) v razdelek <literal
+>CertificateCreationWizard</literal
+> datoteke <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>Dovoljene vrednosti so <literal
+>RSA</literal
+> za ključe <acronym
+>RSA</acronym
+>, <literal
+>DAS</literal
+> za ključe <acronym
+>DSA</acronym
+> (samo za znak) in <literal 
+>DSA+ELG</literal
+> za ključ <acronym
+>DSA</acronym
+> (samo za znakovni ključ) s podključem Elgamal za šifriranje. </para>
+
+          <para
+>Privzeto je prebrano iz &gpgconf; ali drugače iz <literal
+>RSA</literal
+>, če &gpgconf; ne zagotavlja privzete vrednosti. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>Velikost javnega ključa</title>
+
+          <para
+>Če želite omejiti razpoložljive velikosti ključev za javni algoritem, dodajte konfiguracijski ključ <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>KeySizes</varname
+> (kjer je <replaceable
+>ALG</replaceable
+> lahko <literal
+>RSA </literal
+>, <literal
+>DSA</literal
+> ali <literal
+>ELG</literal
+>) v razdelek <literal
+>CertificateCreationWizard</literal
+> datoteke <filename
+>kleopatrarc</filename
+>, ki vsebuje seznam, ločen z vejicami velikosti ključev (v bitih). Privzeto vrednost lahko navedete tako, da pred velikostjo ključa dodate vezaj (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>Zgornje bi omejilo dovoljene velikosti ključev <acronym
+>RSA</acronym
+> na 1536, 2048 in 3072, pri čemer je 2048 privzeto. </para>
+
+          <para
+>Poleg samih velikosti lahko določite tudi oznake za vsako od velikosti. Preprosto nastavite konfiguracijski ključ <varname
+><replaceable
+>ALG</replaceable
+>KeySizeLabels</varname
+> na seznam oznak, ločenih z vejicami. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = šibek,normalen,močen
+            </programlisting>
+          </para>
+
+          <para
+>Zgornje bi v povezavi s prejšnjim primerom natisnilo nekaj takega kot naslednje možnosti za izbiro: <programlisting
+>šibek (1536 bits)
+              normalen (2048 bits)
+              močen (3072 bits)
+            </programlisting>
+          </para>
+
+          <para
+>Privzete vrednosti so, kot da bi veljalo naslednje: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>Ustvarjanje in urejanje ključnih kategorij</title>
+
+      <para
+>&kleopatra; omogoča uporabniku, da konfigurira <link linkend="configuration-appearance-certificate-filters"
+>vizualni videz</link
+> ključev na podlagi koncepta, imenovanega <guilabel
+>Ključne kategorije</guilabel
+>. <guilabel
+>Ključne kategorije</guilabel
+> se uporabljajo tudi za filtriranje seznama potrdil. Ta razdelek opisuje, kako lahko uredite razpoložljive kategorije in dodate nove. </para>
+
+      <para
+>Ko poskuša najti kategorijo, ki ji ključ pripada, &kleopatra; poskuša uskladiti ključ z zaporedjem ključnih filtrov, konfiguriranih v <filename
+>libkleopatrarc</filename
+>. Prvi, ki se ujema, definira kategorijo na podlagi koncepta <emphasis
+>specifičnosti</emphasis
+>, ki je podrobneje pojasnjen spodaj. </para>
+
+      <para
+>Vsak ključni filter je definiran v konfiguracijski skupini z imenom <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>, kjer je <replaceable
+>n</replaceable
+> število, ki se začne od <literal
+>0</literal
+>. </para>
+
+      <para
+>Edini obvezni ključi v skupini <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+> so <varname
+>Ime</varname
+>, ki vsebuje ime kategorije, kot je prikazano v <link linkend=" configuration-appearance-certificate-filters"
+>konfiguracijskem pogovornem oknu</link
+> in <varname
+>id</varname
+>, ki se uporablja kot referenca za filter v drugih razdelkih konfiguracije (kot je <literal
+>Pogled #<replaceable
+> n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> navaja vse ključe, ki določajo lastnosti prikaza ključev, ki pripadajo tej kategoriji (tj. tiste ključe, ki jih je mogoče prilagoditi v <link linkend="configuration-appearance-certificate-filters"
+>konfiguracijskem pogovornem oknu</link
+>), medtem ko <xref linkend="table-key-filters-criteria"/> navaja vse ključe, ki določajo kriterije, s katerimi se filter ujema s ključi. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>Ključi za konfiguracijo filtra ključev, ki določajo lastnosti zaslona</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Konfiguracijski ključ</entry>
+	      <entry
+>Tip</entry>
+	      <entry
+>Opis</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>barva-ozadja</varname
+></entry>
+	      <entry
+>barva</entry>
+	      <entry
+>Uporabljena barva ozadja. Če manjka, je privzeta barva ozadja, ki je globalno definirana za poglede seznama. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>barva-ospredja</varname
+></entry>
+	      <entry
+>barva</entry>
+	      <entry
+>Barva ospredja za uporabo. Če manjka, je privzeta barva ospredja, ki je globalno definirana za poglede seznama. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>pisava</varname
+></entry>
+	      <entry
+>pisava</entry>
+	      <entry
+>Uporabljena pisava po meri. Pisava bo pomanjšana na velikost, konfigurirano za poglede seznama, uporabljeni pa bodo vsi atributi pisave (glejte spodaj). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>krepka-pisava</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Če je nastavljeno na <literal
+>true</literal
+> in <varname
+>pisava</varname
+> ni nastavljena, uporablja privzeto pisavo pogleda seznama z dodanim krepkim slogom pisave (če je na voljo). Prezrto, če je prisotna tudi <varname
+>pisava</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>poševna-pisava</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Podobno kot <varname
+>krepka-pisava</varname
+>, vendar za slog pisave ležeče namesto krepko. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>prečrtana-pisava</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>Če je <literal
+>true</literal
+>, nariše sredinsko črto čez pisavo. Uporabljeno tudi, če je nastavljena <varname
+>pisava</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>ikona</varname
+></entry>
+	      <entry
+>besedilo</entry>
+	      <entry
+>Ime ikone za prikaz v prvem stolpcu. Še ni implementirano. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>Ključi za konfiguracijo filtra ključev, ki določajo kriterije filtra</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>Konfiguracijski ključ</entry>
+	      <entry
+>Tip</entry>
+	      <entry
+>Če je navedeno, se filter ujema, ko...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>je-preklican</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ je bil preklican.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>kontekst-ujemanja</varname
+></entry>
+	      <entry
+>kontekst<footnote
+> <para
+>Kontekst je oštevilčenje z naslednjimi dovoljenimi vrednostmi: <literal
+>videz</literal
+>, <literal
+>filtriranje</literal
+> in <literal
+>vsak</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>kontekst, v katerem se ta filter ujema.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-potekel</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ je potekel.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-onemogočen</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>uporabnik je ključ onemogočil (označil za neuporabo). Prezrt za &smime; ključe. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-korensko-potrdilo</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ je korensko potrdilo. Prezrto za &openpgp; ključe. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>lahko-šifrira</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ se lahko uporablja za šifriranje. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>lahko-podpiše</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ se lahko uporablja za podpis. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>lahko-potrdi</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ se lahko uporablja za podpisovanje (potrjevanje) drugih ključev. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>lahko-avtentificira</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ se lahko uporablja za avtentikacijo (npr. kot potrdilo odjemalca <acronym
+>TLS</acronym
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-kvalificiran</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ se lahko uporablja za izdelavo kvalificiranih podpisov (kot določa nemški zakon o digitalnem podpisu). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-kartični-ključ</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključno gradivo je shranjeno na pametni kartici (namesto na računalniku). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>ima-skrivni-ključ</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>skrivni ključ za ta par ključev je na voljo. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>je-openpgp-ključ</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ je &openpgp; ključ (<literal
+>true</literal
+>) ali &smime; ključ (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>bil-potrjeno</varname
+></entry>
+	      <entry
+>boolean</entry>
+	      <entry
+>ključ je bil preverjen. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>predpona</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>veljavnost<footnote
+> <para
+>Veljavnost je (urejeno) oštevilčenje z naslednjimi dovoljenimi vrednostmi: <literal
+>neznano</literal
+>, <literal
+>nedefinirano</literal
+>, <literal
+>nikoli</literal
+>, <literal
+>obrobno</literal
+>, <literal
+>poln</literal
+>, <literal
+>končni</literal
+>. Oglejte si &gpg; in &gpgsm; priročnike za podrobno razlago.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>ključ ima natanko (<replaceable
+>predpona</replaceable
+>&nbsp;=&nbsp;<literal
+>je</literal
+>), ima karkoli drugega kot (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>ni</literal
+>), ima najmanj (<replaceable
+>predpona</replaceable
+>&nbsp;=&nbsp;<literal
+>je-končno</literal
+>) ali ima največ (<replaceable
+>predpona</replaceable
+>&nbsp;=&nbsp;<literal
+>je-največ</literal
+>) lastniško zaupanje, podano kot vrednost konfiguracijskega ključa. Če je v eni skupini več kot en ključ <varname
+><replaceable
+>predpona</replaceable
+>-ownertrust</varname
+> (z različnimi vrednostmi <replaceable
+>predpona</replaceable
+>), je vedenje nedefinirano. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>predpona</replaceable
+>-veljavnost</varname
+></entry>
+	      <entry
+>veljavnost</entry>
+	      <entry
+>Enako kot <varname
+><replaceable
+>predpona</replaceable
+>-ownertrust</varname
+>, vendar za veljavnost ključa namesto lastniškega zaupanja. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>Nekateri bolj zanimivi kriteriji, kot je <varname
+>je-preklican</varname
+> ali <varname
+>je-potekel</varname
+>, bodo delovali samo na <emphasis
+>preverjenih</emphasis
+> ključih, zato se privzeto, samo potrjeni ključi preverijo glede preklica in poteka, čeprav lahko ta dodatna preverjanja prosto odstranite. </para>
+      </note>
+
+      <para
+>Poleg zgoraj navedenih konfiguracijskih ključev ima lahko filter ključev tudi <varname
+>id</varname
+> in <varname
+>konteksti-ujemanja</varname
+>. </para>
+
+      <para
+>Z uporabo <varname
+>id</varname
+> filtra, ki je privzeto ime konfiguracijske skupine filtra, če ni podano ali je prazno, se lahko sklicujete na ključni filter drugje v konfiguraciji, npr. v kleopatrinih konfiguracijah pogleda. &kleopatra; ne interpretira <varname
+>id</varname
+>ja, zato lahko uporabite poljuben niz, če je unikaten. </para>
+
+      <para
+><varname
+>konteksti-ujemanja</varname
+> omejuje uporabnost filtra. Trenutno sta definirana dva konteksta: Kontekst <literal
+>videz</literal
+> se uporablja pri definiranju barv in lastnosti pisave za poglede. Kontekst <literal
+>filtriranja</literal
+> se uporablja za selektivno vključitev (in izključitev) potrdila iz pogledov. <literal
+>vsak</literal
+> se lahko uporablja za označevanje vseh trenutno definiranih kontekstov in je privzeta vrednost, če <varname
+>konteksti-ujemanja</varname
+> ni podan ali kako drugače ne proizvaja kontekstov. To zagotavlja, da noben ključni filter ne more <quote
+>mrtev</quote
+>, tj. brez kontekstov, v katerih bi ga uporabili. </para>
+
+      <para
+>Format vnosa je seznam žetonov, ločenih z nebesednimi znaki. Pred vsakim žetonom je izbirno predpona s klicajem (<literal
+>!</literal
+>), ki označuje zanikanje. Žetoni delujejo po vrstnem redu na notranjem seznamu kontekstov, ki se začne prazen. To je najbolje razloženo s primerom: <literal
+>kateri koli !appearance</literal
+> je enak kot <literal
+>filtriranje</literal
+> in <literal
+>videz !appearance</literal
+> proizvaja prazen niz, kot je <literal
+>!any</literal
+>. Vendar bosta zadnja dva interno nadomeščena z <literal
+>any</literal
+>, ker sploh ne proizvajata kontekstov. </para>
+
+      <para
+>Na splošno se kriteriji, ki niso podani (tj. vnos konfiguracije ni nastavljen), ne preverjajo. Če je podan kriterij, se preveri, ali se mora ujemati, da se filter kot celota ujema, tj. kriteriji so združeni z IN. </para>
+
+      <para
+>Vsak filter ima implicirano <quote
+>specifičnost</quote
+>, ki se uporablja za razvrščanje vseh ujemajočih se filtrov. Bolj specifični filter zmaga pred manj specifičnimi. Če imata dva filtra enako specifičnost, zmaga tisti, ki je prvi v konfiguracijski datoteki. Specifičnost filtra je sorazmerna s številom kriterijev, ki jih vsebuje. </para>
+
+      <example>
+	<title
+>Primeri ključnih filtrov</title>
+	<para
+>Če želite preveriti vsa potekla, vendar nepreklicana korenska potrdila, bi uporabili filter ključev, definiran na naslednji način: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Filter ključev #<replaceable
+>n</replaceable
+>]
+Name=potekel, ampak ni preklican
+je-bil-potrjen=true
+je-potekel=true
+je-preklican=false
+je-korenski-certifikat=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>Za preverjanje vseh onemogočenih &openpgp; ključev (ki jih kleopatra še ne podpira) z lastniškim zaupanjem vsaj <quote
+>mejno</quote
+>, bi uporabili: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Ime=onemogočeni ključi OpenPGP z obrobnim ali boljšim lastniškim zaupanjem
+je-openpgp=true
+je-onemogočen=true
+je-vsaj-lastniško-zaupanje=mejno
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>Konfiguriranje arhivarjev za uporabo s podpisovanjem/šifriranjem datotek</title>
+
+      <para
+>&kleopatra; omogoča skrbniku (in naprednemu uporabniku), da konfigurira seznam arhivarjev, ki so predstavljeni v pogovornem oknu podpiši/šifriraj datoteke. </para>
+
+      <para
+>Vsak arhivar je definiran v <filename
+>libkleopatrarc</filename
+> kot ločena skupina <literal
+>Arhiviraj&nbsp;Definicija&nbsp;#<replaceable
+>n</replaceable
+></literal
+> z naslednjimi obveznimi ključi: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>razširitve</literal
+></term>
+          <listitem>
+            <para
+>Seznam končnic imen datotek, ločenih z vejicami, ki običajno označujejo to obliko arhiva. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Enolični ID, ki se uporablja za notranjo identifikacijo tega arhivarja. Če ste v dvomih, uporabite ime ukaza. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>Ime</literal
+> (prevedeno)</term>
+          <listitem>
+            <para
+>Uporabniku vidno ime tega arhivarja, kot je prikazano v ustreznem spustnem meniju pogovornega okna podpiši/šifriraj datoteke. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-ukaz</literal
+></term>
+          <listitem>
+            <para
+>Dejanski ukaz za arhiviranje datotek. Uporabite lahko kateri koli ukaz, če za njegovo izvedbo ni potrebna lupina. Programsko datoteko poiščete s spremenljivko okolja <envar
+>PATH</envar
+>, razen če uporabite absolutno pot do datoteke. Citiranje je podprto, kot če bi bila uporabljena lupina: <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>Ker je poševnica nazaj (<literal
+>\</literal
+>) ubežni znak v &kde; konfiguracijskih datotek, jih morate podvojiti, ko se pojavijo v imenih poti: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> Vendar za sam ukaz (v nasprotju z njegovimi argumenti), lahko uporabite samo poševnice (<literal
+>/</literal
+>) kot ločila poti na vseh platformah: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> To ni podprto v argumentih, saj večina &Windows; programov uporabljajo poševnico naprej za možnosti. Naslednje na primer ne bo delovalo, ker je <literal
+>C:/myarchivescript.bat</literal
+> argument za <command
+>cmd.exe</command
+> in <literal
+>/</literal
+> ni pretvorjen v <literal
+>\</literal
+> v argumentih samo ukazi: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> To mora biti namesto tega zapisano kot: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>Vhodno ime datoteke Posredovanje za <literal
+>pack-command</literal
+></title>
+
+      <para
+>Obstajajo trije načini za posredovanje imen datotek ukazu pack. Za vsakega od teh <literal
+>pack-command</literal
+>ov zagotavlja posebno sintakso: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>Kot argumente ukazne vrstice.</para>
+            <para
+>Primer (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> Primer (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> V tem primeru se imena datotek posredujejo na ukazno vrstico, tako kot pri uporabi ukazne vrstice. &kleopatra; ne uporablja ukazne lupine za izvedbo ukaza. Zato je to varen način posredovanja imen datotek, vendar lahko na nekaterih platformah naleti na omejitve dolžine ukazne vrstice. Dobesedni <literal
+>%f</literal
+>, če je prisoten, se nadomesti z imeni datotek za arhiviranje. V nasprotnem primeru so imena datotek dodana ukazni vrstici. Tako bi lahko zgornji primer zip enakovredno zapisal takole: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>Prek standardnega vstopa, ločeno z novimi vrsticami: pred <literal
+>|</literal
+>.</para>
+            <para
+>Primer (&GNU;-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> Primer (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> V tem primeru , so imena datotek posredovana arhivatorju na <acronym
+>stdin</acronym
+>, eno na vrstico. S tem se izognete težavam na platformah, ki postavljajo nizko omejitev števila dovoljenih argumentov ukazne vrstice, vendar ne uspe, če imena datotek dejansko vsebujejo nove vrstice. </para>
+            <note>
+              <para
+>&kleopatra; trenutno podpira samo <acronym
+>LF</acronym
+> kot ločilo za novo vrstico, ne pa <acronym
+>CRLF</acronym
+>. To se lahko spremeni v prihodnjih različicah na podlagi povratnih informacij uporabnikov. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>Preko standardnega vhoda, ločenega z NUL-bajti: pred <literal
+>0|</literal
+>.</para>
+            <para
+>Primer (&GNU;-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> To je enako kot zgoraj, le da se za ločevanje imen datotek uporabljajo NUL bajti. Ker so NUL bajti v imenih datotek prepovedani, je to najbolj robusten način posredovanja imen datotek, vendar ga ne podpirajo vsi arhivi. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>Konfiguriranje programov za kontrolne vsote za uporabo z ustvarjanjem/preverjanjem kontrolnih vsot</title>
+
+      <para
+>&kleopatra; omogoča skrbniku (in izkušenemu uporabniku), da konfigurira seznam programov za preverjanje vsote, med katerimi lahko uporabnik izbira v konfiguracijskem pogovornem oknu in da &kleopatra; lahko samodejno zazna, ko se zahteva, da preveri kontrolno vsoto dane datoteke. </para>
+
+      <note>
+        <para
+>Da bi ga lahko uporabljal program &kleopatra;, mora biti izhod programov za kontrolne vsote (tako zapisana datoteka s kontrolno vsoto kot tudi izhod na <acronym
+>stdout</acronym
+> pri preverjanju kontrolnih vsot) združljiv z &GNU; <command
+>md5sum</command
+> in <command
+>sha1sum</command
+>. </para>
+
+        <para
+>Natančneje, datoteka s kontrolno vsoto mora temeljiti na vrstici, pri čemer ima vsaka vrstica naslednjo obliko: <programlisting
+><replaceable
+>CHECKSUM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>FILENAME</replaceable
+></programlisting
+>, kjer je <replaceable
+>CHECKSUM</replaceable
+> sestavljen samo iz šestnajstiških znakov. Če <replaceable
+>FILENAME</replaceable
+> vsebuje znak za novo vrstico, se mora vrstica namesto tega glasiti: <programlisting
+>\<replaceable
+>CHECKSUM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>ESCAPED-FILENAME</replaceable
+></programlisting
+>, kjer je <replaceable
+>ESCAPED-FILENAME</replaceable
+> ime datoteke z novimi vrsticami, zamenjanimi z <literal
+>\n</literal
+>ji, in poševnicami nazaj (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>Podobno mora biti izhod <xref linkend="checksum-definition-verify-command"/> v obliki <programlisting
+><replaceable
+>FILENAME</replaceable
+> ( ': OK' | ': FAILED' )</programlisting 
+> ločeno z novo vrstico. Nove vrstice in drugi znaki <emphasis
+>niso</emphasis
+> ubežni v izpisu.<footnote
+> <para
+>Da, ti programi niso bili napisani z mislijo na grafične vmesnike in program &kleopatra; ne bo uspel pravilno razčleniti patoloških imen datotek, ki vsebujejo »:&nbsp;OK« in novo vrstico. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>Vsak program kontrolne vsote je definiran v <filename
+>libkleopatrarc</filename
+> kot ločena skupina <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+> z naslednjimi obveznimi ključi: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>vzorci-datotek</literal
+></term>
+          <listitem>
+            <para
+>Seznam regularnih izrazov, ki opisujejo, katere datoteke je treba obravnavati kot datoteke kontrolne vsote za ta program kontrolne vsote. Sintaksa je tista, ki se uporablja za sezname nizov v &kde; konfiguracijskih datotekah. <note
+> <para
+> Ker regularni izrazi običajno vsebujejo poševnice nazaj, je treba v konfiguracijski datoteki paziti, da jim pravilno ubežite. Priporočljiva je uporaba orodja za urejanje konfiguracijske datoteke. </para
+> </note
+> Platforma določa, ali se vzorci obravnavajo med velikimi ali malimi črkami. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>izhodna-datoteka</literal
+></term>
+          <listitem>
+            <para
+>Tipično ime izhodne datoteke za ta program za preverjanje vsote (seveda se mora ujemati z enim od <xref linkend="checksum-definition-file-patterns"/>). To je tisto, kar bo program &kleopatra; uporabil kot izhodno ime datoteke pri ustvarjanju datotek s kontrolno vsoto te vrste. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>Enolični ID, ki se uporablja za interno identifikacijo tega programa kontrolne vsote. Če ste v dvomih, uporabite ime ukaza. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>Ime</literal
+> (prevedeno)</term>
+          <listitem>
+            <para
+>Uporabniku vidno ime tega programa kontrolne vsote, kot je prikazano v spustnem meniju v konfiguracijskem pogovornem oknu programa &kleopatra;. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>ustvari-ukaz</literal
+></term>
+          <listitem>
+            <para
+>Dejanski ukaz, s katerim ustvarite datoteke s kontrolno vsoto. Sintaksa, omejitve in možnosti posredovanja argumentov so enake, kot je opisano za <xref linkend="archive-definition-pack-command"/> v <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>ukaz-za-preverjanje</literal
+></term>
+          <listitem>
+            <para
+>Enako kot <xref linkend="checksum-definition-create-command"/>, vendar za preverjanje kontrolne vsote. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>Tu je popoln primer: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[de]=sha1sum (GNU)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>Zasluge in licenca</title>
+
+<para
+>&kleopatra; avtorske pravice 2002 &Steffen.Hansen;, &Matthias.Kalle.Dalheimer; in &Jesper.Pedersen;., avtorske pravice 2004 &Daniel.Molkentin;, avtorske pravice 2004, 2007, 2008, 2009, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<para
+>Avtorske pravice za dokumentacijo 2002 &Steffen.Hansen;, avtorske pravice 2004 &Daniel.Molkentin;, avtorske pravice 2004, 2010 Klar&auml;lvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>Sodelovalci</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>Prevod: Matjaž Jeran<email
+>matjaz.jeran@amis.net</email
+>in Peter Žaucer<email
+>peter.zaucer@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->
