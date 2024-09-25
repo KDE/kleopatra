@@ -239,12 +239,7 @@ public:
                 continue;
             }
 
-            GpgME::Key key;
-            if (strlen(recipient.keyID()) < 16) {
-                key = KeyCache::instance()->findByShortKeyID(recipient.keyID());
-            } else {
-                key = KeyCache::instance()->findByKeyIDOrFingerprint(recipient.keyID());
-            }
+            GpgME::Key key = KeyCache::instance()->findByKeyIDOrFingerprint(recipient.keyID());
 
             if (key.isNull()) {
                 std::vector<std::string> subids;
