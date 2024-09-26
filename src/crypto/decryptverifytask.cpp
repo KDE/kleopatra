@@ -133,17 +133,6 @@ static QString renderKeyLink(const QString &fpr, const QString &text)
     return QStringLiteral("<a href=\"key:%1\">%2</a>").arg(fpr, text);
 }
 
-static QString renderKey(const Key &key)
-{
-    if (key.isNull()) {
-        return i18n("Unknown certificate");
-    }
-
-    return renderKeyLink(
-        QLatin1StringView(key.primaryFingerprint()),
-        i18nc("User ID (Key ID)", "%1 (%2)").arg(Formatting::prettyNameAndEMail(key).toHtmlEscaped(), Formatting::prettyID(key.subkey(0).keyID())));
-}
-
 static QString renderKeyEMailOnlyNameAsFallback(const Key &key)
 {
     if (key.isNull()) {
@@ -330,12 +319,16 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
 
     if (err.isCanceled()) {
         return i18n("<b>Decryption canceled.</b>");
+    } else if (result.error().code() == GPG_ERR_NO_SECKEY) {
+        return i18nc("@info",
+                     "<b>Decryption not possible: %1</b><br />The data was not encrypted for any secret key in your certificate list.",
+                     Formatting::errorAsString(err));
     } else if (result.isLegacyCipherNoMDC()) {
         return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
     } else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
-        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
+        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err));
     }
     return i18n("<b>Decryption succeeded.</b>");
 }
@@ -385,22 +378,18 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
         return {};
     }
 
-    if (knownRecipients.empty()) {
-        return QLatin1StringView("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1StringView("</i>");
-    }
-
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
 
     if (numRecipients == 1) {
-        details += QLatin1Char(' ') + renderKey(knownRecipients.front());
+        details += QLatin1Char(' ') + Formatting::summaryLine(knownRecipients.front()).toHtmlEscaped();
     } else {
         details += QLatin1StringView("<ul>");
         for (const Key &key : knownRecipients) {
-            details += QLatin1StringView("<li>") + renderKey(key) + QLatin1StringView("</li>");
+            details += QLatin1StringView("<li>") + Formatting::summaryLine(key).toHtmlEscaped() + QLatin1StringView("</li>");
         }
         if (knownRecipients.size() < numRecipients) {
-            details += QLatin1StringView("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
-                + QLatin1StringView("</i></li>");
+            details += QLatin1StringView("<li>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
+                + QLatin1StringView("</li>");
         }
         details += QLatin1StringView("</ul>");
     }
@@ -419,6 +408,9 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res,
     }
 
     if (res.isNull() || res.error() || res.error().isCanceled()) {
+        if (res.error().code() == GPG_ERR_NO_SECKEY && recipients.empty()) {
+            return {};
+        }
         return formatRecipientsDetails(recipients, res.numRecipients());
     }
 
