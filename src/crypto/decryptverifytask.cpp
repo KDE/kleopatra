@@ -483,12 +483,16 @@ static QString formatDecryptionResultOverview(const DecryptionResult &result, co
 
     if (err.isCanceled()) {
         return i18n("<b>Decryption canceled.</b>");
+    } else if (result.error().code() == GPG_ERR_NO_SECKEY) {
+        return i18nc("@info",
+                     "<b>Decryption not possible: %1</b><br />The data was not encrypted for any secret key in your certificate list.",
+                     Formatting::errorAsString(err));
     } else if (result.isLegacyCipherNoMDC()) {
         return i18n("<b>Decryption failed: %1.</b>", i18n("No integrity protection (MDC)."));
     } else if (!errorString.isEmpty()) {
         return i18n("<b>Decryption failed: %1.</b>", errorString.toHtmlEscaped());
     } else if (err) {
-        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err).toHtmlEscaped());
+        return i18n("<b>Decryption failed: %1.</b>", Formatting::errorAsString(err));
     }
     return i18n("<b>Decryption succeeded.</b>");
 }
@@ -576,22 +580,18 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
         return {};
     }
 
-    if (knownRecipients.empty()) {
-        return QLatin1String("<i>") + i18np("One unknown recipient.", "%1 unknown recipients.", numRecipients) + QLatin1String("</i>");
-    }
-
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
 
     if (numRecipients == 1) {
-        details += QLatin1Char(' ') + renderKey(knownRecipients.front());
+        details += QLatin1Char(' ') + Formatting::summaryLine(knownRecipients.front()).toHtmlEscaped();
     } else {
         details += QLatin1String("<ul>");
         for (const Key &key : knownRecipients) {
-            details += QLatin1String("<li>") + renderKey(key) + QLatin1String("</li>");
+            details += QLatin1String("<li>") + Formatting::summaryLine(key).toHtmlEscaped() + QLatin1String("</li>");
         }
         if (knownRecipients.size() < numRecipients) {
-            details += QLatin1String("<li><i>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
-                + QLatin1String("</i></li>");
+            details += QLatin1String("<li>") + i18np("One unknown recipient", "%1 unknown recipients", numRecipients - knownRecipients.size())
+                + QLatin1String("</li>");
         }
         details += QLatin1String("</ul>");
     }
@@ -610,6 +610,9 @@ static QString formatDecryptionResultDetails(const DecryptionResult &res,
     }
 
     if (res.isNull() || res.error() || res.error().isCanceled()) {
+        if (res.error().code() == GPG_ERR_NO_SECKEY && recipients.empty()) {
+            return {};
+        }
         return formatRecipientsDetails(recipients, res.numRecipients());
     }
 
