@@ -545,13 +545,13 @@ QString proposeFilename(const Subkey &subkey)
     if (name.isEmpty()) {
         name = Formatting::prettyEMail(key);
     }
-    const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
-    const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
+    const auto keyID = Formatting::prettyKeyID(key.keyID());
+    const auto subkeyID = Formatting::prettyKeyID(subkey.keyID());
     const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1StringView{"_"});
     /* Not translated so it's better to use in tutorials etc. */
-    filename = ((shortKeyID == shortSubkeyID) //
-                    ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, shortKeyID, usage)
-                    : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage));
+    filename = ((keyID == subkeyID) //
+                    ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, keyID, usage)
+                    : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, keyID, subkeyID, usage));
     filename.replace(u'/', u'_');
 
     return QDir{ApplicationState::lastUsedExportDirectory()}.filePath(filename + gnupgPrivateKeyBackupExtension());

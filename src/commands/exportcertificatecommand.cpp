@@ -242,7 +242,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
         /* Not translated so it's better to use in tutorials etc. */
         proposedFileName += QStringLiteral("%1_%2_public.%3")
                                 .arg(name)
-                                .arg(Formatting::prettyKeyID(key.shortKeyID()))
+                                .arg(Formatting::prettyKeyID(key.keyID()))
                                 .arg(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt));
     }
     if (protocol == GpgME::CMS) {

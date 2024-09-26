@@ -136,7 +136,7 @@ QMimeData *KeyExportDragHandler::mimeData(const QModelIndexList &indexes) const
             keyName = Formatting::prettyEMail(key);
         }
         name = QStringLiteral("%1_%2_public.%3")
-                   .arg(keyName, Formatting::prettyKeyID(key.shortKeyID()), pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
+                   .arg(keyName, Formatting::prettyKeyID(key.keyID()), pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
     } else {
         name = i18nc("A generic filename for exported certificates", "certificates.%1", pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
     }

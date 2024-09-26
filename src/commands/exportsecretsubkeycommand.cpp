@@ -55,11 +55,11 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
         if (name.isEmpty()) {
             name = Formatting::prettyEMail(key);
         }
-        const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
-        const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
+        const auto keyID = Formatting::prettyKeyID(key.keyID());
+        const auto subkeyID = Formatting::prettyKeyID(subkey.keyID());
         const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1StringView{"_"});
         /* Not translated so it's better to use in tutorials etc. */
-        filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(name, shortKeyID, shortSubkeyID, usage);
+        filename = QStringView{u"%1_%2_SECRET_SUBKEY_%3_%4"}.arg(name, keyID, subkeyID, usage);
     } else {
         filename = i18nc("Generic filename for exported subkeys", "subkeys");
     }

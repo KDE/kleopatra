@@ -195,7 +195,7 @@ void CertificateToCardCommand::Private::start()
             name = Formatting::prettyEMail(key());
         }
 
-        auto filename = QStringLiteral("%1_%2_secret.asc").arg(name, Formatting::prettyKeyID(key().shortKeyID()));
+        auto filename = QStringLiteral("%1_%2_secret.asc").arg(name, Formatting::prettyKeyID(key().keyID()));
         const auto dir = QDir{QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)};
         if (dir.exists(filename)) {
             filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir.path()), filename);

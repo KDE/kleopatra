@@ -76,9 +76,9 @@ QString proposeFilename(const Key &key)
     if (name.isEmpty()) {
         name = Formatting::prettyEMail(key);
     }
-    const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
+    const auto keyID = Formatting::prettyKeyID(key.keyID());
     /* Not translated so it's better to use in tutorials etc. */
-    filename = QStringView{u"%1_%2_SECRET"}.arg(name, shortKeyID);
+    filename = QStringView{u"%1_%2_SECRET"}.arg(name, keyID);
     filename.replace(u'/', u'_');
 
     return ApplicationState::lastUsedExportDirectory() + u'/' + filename + u'.' + certificateFileExtension(key.protocol());

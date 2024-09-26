@@ -161,7 +161,7 @@ void ExportPaperKeyCommand::Private::startPaperKey(const QByteArray &data)
     QPrinter printer;
 
     const auto key = this->key();
-    printer.setDocName(QStringLiteral("0x%1-sec").arg(QString::fromLatin1(key.shortKeyID())));
+    printer.setDocName(QStringLiteral("0x%1-sec").arg(QString::fromLatin1(key.keyID())));
     QPrintDialog printDialog(&printer, parentWidgetOrView());
     printDialog.setWindowTitle(i18nc("@title:window", "Print Secret Key"));
 

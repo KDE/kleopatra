@@ -285,7 +285,7 @@ void RevokeKeyCommand::Private::exportFinished(const Error &error, const QByteAr
         name = Formatting::prettyEMail(key);
     }
 
-    auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
+    auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.keyID()));
     const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
         filename = KFileUtils::suggestName(QUrl::fromLocalFile(dir), filename);
