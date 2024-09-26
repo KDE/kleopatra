@@ -1066,7 +1066,7 @@ void KeyListController::updateConfig()
 
 void KeyListController::Private::updateActions(KActionCollection *collection)
 {
-    if (ToggleCertificateEnabledCommand::isSupported()) {
+    if (ToggleCertificateEnabledCommand::isSupported() && q->currentView()) {
         auto key = q->currentView()->selectionModel()->currentIndex().data(KeyList::KeyRole).value<GpgME::Key>();
         if (key.isNull() || !key.primaryFingerprint()) {
             return;
