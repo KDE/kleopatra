@@ -120,6 +120,7 @@ private:
     QLineEdit *lineEdit;
     QComboBox *combo;
     QPushButton *certifyButton;
+    int comboSavedIndex = -1;
 };
 
 SearchBar::Private::Private(SearchBar *qq)
@@ -157,6 +158,16 @@ SearchBar::Private::Private(SearchBar *qq)
 
     proxyModel->sort(0, Qt::AscendingOrder);
     combo->setModel(proxyModel);
+
+    connect(proxyModel, &QAbstractItemModel::modelAboutToBeReset, q, [this]() {
+        comboSavedIndex = combo->currentIndex();
+    });
+
+    connect(proxyModel, &QAbstractItemModel::modelReset, q, [this]() {
+        if (comboSavedIndex != -1) {
+            combo->setCurrentIndex(comboSavedIndex);
+        }
+    });
 
     Q_SET_OBJECT_NAME(layout);
     Q_SET_OBJECT_NAME(lineEdit);
