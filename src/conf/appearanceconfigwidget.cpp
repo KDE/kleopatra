@@ -12,8 +12,6 @@
 
 #include "appearanceconfigwidget.h"
 
-#include "pluralhandlingspinbox.h"
-
 #include <settings.h>
 #include <tooltippreferences.h>
 
@@ -26,6 +24,7 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KIconDialog>
+#include <KLocalization>
 #include <KLocalizedString>
 #include <KMessageWidget>
 #include <KSeparator>
@@ -41,6 +40,7 @@
 #include <QLabel>
 #include <QListWidget>
 #include <QRegularExpression>
+#include <QSpinBox>
 #include <QString>
 #include <QVBoxLayout>
 
@@ -323,8 +323,8 @@ public:
     QCheckBox *tooltipOwnerCheckBox;
     QCheckBox *tooltipDetailsCheckBox;
     QCheckBox *showExpirationCheckBox;
-    PluralHandlingSpinBox *ownCertificateThresholdSpinBox;
-    PluralHandlingSpinBox *otherCertificateThresholdSpinBox;
+    QSpinBox *ownCertificateThresholdSpinBox;
+    QSpinBox *otherCertificateThresholdSpinBox;
 
     void setupUi(QWidget *parent)
     {
@@ -365,13 +365,13 @@ public:
                 const ExpiryCheckerConfig expiryConfig;
                 {
                     auto label = new QLabel{i18nc("@label:spinbox", "Threshold for own certificates:"), tab};
-                    ownCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+                    ownCertificateThresholdSpinBox = new QSpinBox{tab};
                     label->setBuddy(ownCertificateThresholdSpinBox);
                     const auto configItem = expiryConfig.ownKeyThresholdInDaysItem();
                     ownCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
                     ownCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
                     ownCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
-                    ownCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+                    KLocalization::setupSpinBoxFormatString(ownCertificateThresholdSpinBox, ki18ncp("@item:valuesuffix", "%v day", "%v days"));
                     ownCertificateThresholdSpinBox->setToolTip(
                         i18nc("@info:tooltip", "Select the number of days you want to be warned in advance, if your own certificate is about to expire soon."));
                     gridLayout->addWidget(label, 0, 0);
@@ -379,13 +379,13 @@ public:
                 }
                 {
                     auto label = new QLabel{i18nc("@label:spinbox", "Threshold for other certificates:"), tab};
-                    otherCertificateThresholdSpinBox = new PluralHandlingSpinBox{tab};
+                    otherCertificateThresholdSpinBox = new QSpinBox{tab};
                     label->setBuddy(otherCertificateThresholdSpinBox);
                     const auto configItem = expiryConfig.otherKeyThresholdInDaysItem();
                     otherCertificateThresholdSpinBox->setMinimum(configItem->minValue().toInt());
                     otherCertificateThresholdSpinBox->setMaximum(configItem->maxValue().toInt());
                     otherCertificateThresholdSpinBox->setSpecialValueText(i18nc("@item never show expiry notification", "never"));
-                    otherCertificateThresholdSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " day", " days"));
+                    KLocalization::setupSpinBoxFormatString(otherCertificateThresholdSpinBox, ki18ncp("@item:valuesuffix", "%v day", "%v days"));
                     otherCertificateThresholdSpinBox->setToolTip(
                         i18nc("@info:tooltip",
                               "Select the number of days you want to be warned in advance, if another person's certificate is about to expire soon."));

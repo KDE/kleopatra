@@ -13,8 +13,8 @@
 
 class QCheckBox;
 class QComboBox;
-class KPluralHandlingSpinBox;
 class QDialogButtonBox;
+class QSpinBox;
 namespace Kleo
 {
 class FileNameRequester;
@@ -42,7 +42,7 @@ private:
     Kleo::FileNameRequester *mExeED;
     Kleo::FileNameRequester *mSocketED;
     QComboBox *mLogLevelCB;
-    KPluralHandlingSpinBox *mLoglenSB;
+    QSpinBox *mLoglenSB;
     QCheckBox *mWordWrapCB;
     QDialogButtonBox *mButtonBox;
 };

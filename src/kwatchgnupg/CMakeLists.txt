@@ -3,7 +3,6 @@
 set(kwatchgnupg_version 1.0)
 
 find_package(KF6Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
-find_package(KF6TextWidgets ${KF_MIN_VERSION} CONFIG REQUIRED)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kwatchgnupg.h.in ${CMAKE_CURRENT_BINARY_DIR}/version-kwatchgnupg.h)
 
@@ -44,7 +43,7 @@ target_link_libraries(kwatchgnupg
   KF6::DBusAddons
   KF6::XmlGui
   KF6::Notifications
-  KF6::TextWidgets
+  KF6::I18n
   KF6::IconThemes
   KPim6::Libkleo
   KF6::CoreAddons

@@ -16,8 +16,8 @@
 #include <Libkleo/FileNameRequester>
 
 #include <KConfig>
+#include <KLocalization>
 #include <KLocalizedString>
-#include <KPluralHandlingSpinBox>
 
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -27,6 +27,7 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QPushButton>
+#include <QSpinBox>
 #include <QVBoxLayout>
 
 static const char *log_levels[] = {"none", "basic", "advanced", "expert", "guru"};
@@ -118,10 +119,10 @@ KWatchGnuPGConfig::KWatchGnuPGConfig(QWidget *parent)
     row = -1;
 
     ++row;
-    mLoglenSB = new KPluralHandlingSpinBox(group);
+    mLoglenSB = new QSpinBox(group);
     mLoglenSB->setRange(0, 1000000);
     mLoglenSB->setSingleStep(100);
-    mLoglenSB->setSuffix(ki18ncp("history size spinbox suffix", " line", " lines"));
+    KLocalization::setupSpinBoxFormatString(mLoglenSB, ki18ncp("history size spinbox suffix", "%v line", "%v lines"));
     mLoglenSB->setSpecialValueText(i18n("unlimited"));
     label = new QLabel(i18nc("@label:textbox", "&History size:"), group);
     label->setBuddy(mLoglenSB);
