@@ -307,8 +307,8 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
         return;
     }
 
-    if (url.host() == QStringLiteral("lookupcertificate")) {
-        auto cmd = new Kleo::Commands::LookupCertificatesCommand(url.path().mid(1), nullptr);
+    if (url.scheme() == QStringLiteral("certificate")) {
+        auto cmd = new Kleo::Commands::LookupCertificatesCommand(url.path(), nullptr);
         connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled, q, [this]() {
             m_importCanceled = true;
         });
