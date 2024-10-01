@@ -163,8 +163,8 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
 
     if (verify) {
         if (errorCode == GPG_ERR_NO_ERROR) {
-            return xi18nc("Verified signature for <file> in <file>",
-                          "Verified signature for <filename>%1</filename> in <filename>%2</filename>",
+            return xi18nc("Verified <file> with signature in <file>",
+                          "Verified <filename>%1</filename> with signature in <filename>%2</filename>",
                           output,
                           input);
         }
@@ -172,7 +172,7 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
     }
 
     if (errorCode == GPG_ERR_NO_ERROR) {
-        return xi18nc("Decrypted <file> from <file>", "Decrypted <filename>%1</filename> from <filename>%2</filename>", output, input);
+        return xi18nc("Decrypted <file> and saved it as <file>", "Decrypted <filename>%1</filename> and saved it as <filename>%2</filename>", input, output);
     } else if (errorCode == GPG_ERR_NO_SECKEY) {
         return xi18nc("Unable to decrypt <file>", "Unable to decrypt <filename>%1</filename>", input);
     }
