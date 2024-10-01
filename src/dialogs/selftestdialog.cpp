@@ -162,7 +162,6 @@ public:
         : QSortFilterProxyModel(parent)
         , m_showAll(true)
     {
-        setDynamicSortFilter(true);
     }
 
     bool showAll() const
