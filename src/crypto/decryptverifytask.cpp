@@ -156,15 +156,9 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
                           output,
                           input);
         } else if (errorCode == GPG_ERR_NO_SECKEY) {
-            return xi18nc("Unable to decrypt and verify <file> from <file>",
-                          "Unable to decrypt and verify <filename>%1</filename> from <filename>%2</filename>",
-                          output,
-                          input);
+            return xi18nc("Unable to decrypt and verify <file>", "Unable to decrypt and verify <filename>%1</filename>", input);
         }
-        return xi18nc("Failed to decrypt and verify <file> from <file>",
-                      "Failed to decrypt and verify <filename>%1</filename> from <filename>%2</filename>",
-                      output,
-                      input);
+        return xi18nc("Failed to decrypt and verify <file>", "Failed to decrypt and verify <filename>%1</filename>", input);
     }
 
     if (verify) {
@@ -174,18 +168,15 @@ static QString formatInputOutputLabel(const QString &input, const QString &outpu
                           output,
                           input);
         }
-        return xi18nc("Failed to verify signature for <file> in <file>",
-                      "Failed to verify signature for <filename>%1</filename> in <filename>%2</filename>",
-                      output,
-                      input);
+        return xi18nc("Failed to verify <file>", "Failed to verify <filename>%1</filename>", input);
     }
 
     if (errorCode == GPG_ERR_NO_ERROR) {
         return xi18nc("Decrypted <file> from <file>", "Decrypted <filename>%1</filename> from <filename>%2</filename>", output, input);
     } else if (errorCode == GPG_ERR_NO_SECKEY) {
-        return xi18nc("Unable to decrypt <file> from <file>", "Unable to decrypt <filename>%1</filename> from <filename>%2</filename>", output, input);
+        return xi18nc("Unable to decrypt <file>", "Unable to decrypt <filename>%1</filename>", input);
     }
-    return xi18nc("Failed to decrypt <file> from <file>", "Failed to decrypt <filename>%1</filename> from <filename>%2</filename>", output, input);
+    return xi18nc("Failed to decrypt <file>", "Failed to decrypt <filename>%1</filename>", input);
 }
 
 static bool IsErrorOrCanceled(const GpgME::Error &err)
