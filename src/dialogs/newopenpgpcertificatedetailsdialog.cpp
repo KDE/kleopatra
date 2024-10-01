@@ -310,6 +310,9 @@ private:
         if (!emailError.isEmpty()) {
             errors.push_back(emailError);
         }
+        if (!Kleo::isValidExpirationDate(expiryDate())) {
+            errors.push_back(Kleo::validityPeriodHint());
+        }
         if (errors.size() > 1) {
             KMessageBox::errorList(q, i18n("There is a problem."), errors);
         } else if (!errors.empty()) {
