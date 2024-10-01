@@ -52,8 +52,8 @@ QString formatInputOutputLabel(const QString &input, const QString &output, bool
     Q_ASSERT(sign || encrypt);
     if (sign && encrypt) {
         if (outputDeleted) {
-            return xi18nc("Failed to sign and encrypt <file> as <file>",
-                          "Failed to sign and encrypt <filename>%1</filename> as <filename>%2</filename>",
+            return xi18nc("Failed to sign and encrypt <file>",
+                          "Failed to sign and encrypt <filename>%1</filename>",
                           input.toHtmlEscaped(),
                           output.toHtmlEscaped());
         } else {
@@ -64,24 +64,21 @@ QString formatInputOutputLabel(const QString &input, const QString &output, bool
         }
     } else if (sign) {
         if (outputDeleted) {
-            return xi18nc("Failed to sign <file> as <file>",
-                          "Failed to sign <filename>%1</filename> as <filename>%2</filename>",
-                          input.toHtmlEscaped(),
-                          output.toHtmlEscaped());
+            return xi18nc("Failed to sign <file>", "Failed to sign <filename>%1</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
         } else {
-            return xi18nc("Signed <file> as <file>",
-                          "Signed <filename>%1</filename> as <filename>%2</filename>",
+            return xi18nc("Signed <file> and saved the signature in <file>",
+                          "Signed <filename>%1</filename> and saved the signature in <filename>%2</filename>",
                           input.toHtmlEscaped(),
                           output.toHtmlEscaped());
         }
     }
     if (outputDeleted) {
-        return xi18nc("Failed to encrypt <file> as <file>",
-                      "Failed to encrypt <filename>%1</filename> as <filename>%2</filename>",
-                      input.toHtmlEscaped(),
-                      output.toHtmlEscaped());
+        return xi18nc("Failed to encrypt <file>", "Failed to encrypt <filename>%1</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
     }
-    return xi18nc("Encrypted <file> as <file>", "Encrypted <filename>%1</filename> as <filename>%2</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
+    return xi18nc("Encrypted <file> and saved it as <file>",
+                  "Encrypted <filename>%1</filename> and saved it as <filename>%2</filename>",
+                  input.toHtmlEscaped(),
+                  output.toHtmlEscaped());
 }
 
 class ErrorResult : public Task::Result
