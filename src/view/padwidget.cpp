@@ -346,6 +346,7 @@ public:
             mProgressLabel->setVisible(false);
             return;
         }
+        task->setIsNotepad(true);
 
         connect(task, &Task::result, q, [this, task](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
             qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->error().code();
@@ -406,6 +407,7 @@ public:
         auto task = new SignEncryptTask();
         task->setInput(input);
         task->setOutput(output);
+        task->setIsNotepad(true);
 
         const auto sigKey = mSigEncWidget->signUserId().parent();
 

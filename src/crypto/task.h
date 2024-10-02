@@ -126,6 +126,9 @@ public:
     }
     virtual ContentType viewableContentType() const;
 
+    bool isNotepad() const;
+    void setIsNotepad(bool isNotepad);
+
 protected:
     static QString makeOverview(const QString &msg);
 

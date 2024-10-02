@@ -202,6 +202,7 @@ public:
     Private()
     {
     }
+    bool m_isNotepad = false;
 };
 
 Task::Result::Result()
@@ -225,6 +226,16 @@ Task::Result::ContentType Task::Result::viewableContentType() const
 QString Task::Result::makeOverview(const QString &msg)
 {
     return QLatin1StringView("<b>") + msg + QLatin1StringView("</b>");
+}
+
+bool Task::Result::isNotepad() const
+{
+    return d->m_isNotepad;
+}
+
+void Task::Result::setIsNotepad(bool isNotepad)
+{
+    d->m_isNotepad = isNotepad;
 }
 
 #include "moc_task_p.cpp"
