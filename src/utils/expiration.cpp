@@ -142,10 +142,6 @@ void Kleo::setUpExpirationDateComboBox(KDateComboBox *dateCB, const Kleo::DateRa
                        | KDateComboBox::WarnOnInvalid);
     const auto hintAndErrorMessage = validityPeriodHint(dateRange, dateCB);
     dateCB->setDateRange(dateRange.minimum, dateRange.maximum.isValid() ? dateRange.maximum : maximumAllowedDate(), hintAndErrorMessage, hintAndErrorMessage);
-    if (dateRange.minimum == dateRange.maximum) {
-        // only one date is allowed, so that changing it no sense
-        dateCB->setEnabled(false);
-    }
     dateCB->setToolTip(hintAndErrorMessage);
     const QDate today = QDate::currentDate();
     dateCB->setDateMap({
