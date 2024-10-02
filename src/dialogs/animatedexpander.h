@@ -21,10 +21,14 @@ class AnimatedExpander : public QWidget
     Q_OBJECT
 public:
     explicit AnimatedExpander(const QString &title, const QString &accessibleTitle = {}, QWidget *parent = nullptr);
+
     void setContentLayout(QLayout *contentLayout);
+
     bool isExpanded() const;
     void setExpanded(bool expanded);
+
     int contentHeight() const;
+    int contentWidth() const;
 
 Q_SIGNALS:
     void startExpanding();
