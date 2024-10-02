@@ -79,8 +79,17 @@ QDate defaultExpirationDate(ExpirationOnUnlimitedValidity onUnlimitedValidity);
 bool isValidExpirationDate(const QDate &date);
 
 /**
- * Returns a hint which dates are valid expiration dates for the date
- * combo box \p dateCB.
+ * Returns a text which can be used as label for a date combo box.
+ *
+ * If the allowed range for the expiration date is not empty then the text
+ * "Valid until (between MIN_DATE and MAX_DATE):" is returned. Otherwise,
+ * "Valid until (MIN_DATE):" is returned.
+ */
+QString validUntilLabel();
+
+/**
+ * Returns a hint which dates are valid expiration dates for a date
+ * combo box.
  * The hint can be used as tool tip or as error message when the user
  * entered an invalid date.
  */

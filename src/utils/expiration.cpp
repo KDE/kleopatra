@@ -84,7 +84,7 @@ bool Kleo::isValidExpirationDate(const QDate &date)
     }
 }
 
-static QString dateToString(const QDate &date, QWidget *widget)
+static QString dateToString(const QDate &date, QWidget *widget = nullptr)
 {
     // workaround for QLocale using "yy" way too often for years
     // stolen from KDateComboBox
@@ -94,6 +94,19 @@ static QString dateToString(const QDate &date, QWidget *widget)
                                  .replace(QLatin1String{"yy"}, QLatin1String{"yyyy"})
                                  .replace(QLatin1String{"yyyyyyyy"}, QLatin1String{"yyyy"}));
     return locale.toString(date, dateFormat);
+}
+
+QString Kleo::validUntilLabel()
+{
+    const auto dateRange = expirationDateRange();
+    if (dateRange.minimum == dateRange.maximum) {
+        return i18nc("@label Valid until (<a date>):", "Valid until (%1):", dateToString(dateRange.minimum));
+    } else {
+        return i18nc("@label ... (between <a date> and <another date>):",
+                     "Valid until (between %1 and %2):",
+                     dateToString(dateRange.minimum),
+                     dateToString(dateRange.maximum.isValid() ? dateRange.maximum : maximumAllowedDate()));
+    }
 }
 
 static QString validityPeriodHint(const Kleo::DateRange &dateRange, QWidget *widget)
