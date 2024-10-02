@@ -88,6 +88,9 @@ public:
     QGpgME::Job *job() const;
     void setJob(QGpgME::Job *job);
 
+    void setIsNotepad(bool isNotepad);
+    bool isNotepad() const;
+
 private:
     class Private;
     const std::unique_ptr<Private> d;
@@ -266,7 +269,8 @@ private:
                         const QString &outputLabel,
                         const AuditLogEntry &auditLog,
                         Task *parentTask,
-                        const KMime::Types::Mailbox &informativeSender);
+                        const KMime::Types::Mailbox &informativeSender,
+                        bool isNotepad);
 
 private:
     class Private;

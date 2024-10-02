@@ -66,6 +66,8 @@ public:
     QString label() const override;
     QString tag() const override;
 
+    void setIsNotepad(bool isNotepad);
+
 private:
     void doStart() override;
     unsigned long long inputSize() const override;

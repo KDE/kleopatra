@@ -302,6 +302,7 @@ private:
     QString outputFileName;
     std::vector<Key> signers;
     std::vector<Key> recipients;
+    bool isNotepad = false;
 
     bool sign : 1;
     bool encrypt : 1;
@@ -885,11 +886,31 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 
     const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
     const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
-    q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog)));
+    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog));
+    result->setIsNotepad(isNotepad);
+    q->emitResult(result);
 }
 
 QString SignEncryptFilesResult::overview() const
 {
+    if (isNotepad()) {
+        if (!m_sresult.isNull() && m_sresult.error()) {
+            return i18nc("@info", "Failed to sign the notepad: %1", Formatting::errorAsString(m_sresult.error()));
+        }
+        if (!m_eresult.isNull() && m_eresult.error()) {
+            return i18nc("@info", "Failed to encrypt the notepad: %1", Formatting::errorAsString(m_eresult.error()));
+        }
+
+        if (!m_sresult.isNull() && !m_eresult.isNull()) {
+            return i18nc("@info", "Successfully encrypted and signed the notepad");
+        } else if (!m_eresult.isNull()) {
+            return i18nc("@info", "Successfully encrypted the notepad");
+        } else {
+            return i18nc("@info", "Successfully signed the notepad");
+        }
+        return {};
+    }
+
     const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
     return files + QLatin1StringView(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
@@ -938,6 +959,11 @@ Task::Result::VisualCode SignEncryptFilesResult::code() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
+}
+
+void SignEncryptTask::setIsNotepad(bool isNotepad)
+{
+    d->isNotepad = isNotepad;
 }
 
 #include "moc_signencrypttask.cpp"
