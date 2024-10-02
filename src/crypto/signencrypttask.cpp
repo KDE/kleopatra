@@ -52,31 +52,28 @@ QString formatInputOutputLabel(const QString &input, const QString &output, bool
     Q_ASSERT(sign || encrypt);
     if (sign && encrypt) {
         if (outputDeleted) {
-            return xi18nc("Failed to sign and encrypt <file>",
-                          "Failed to sign and encrypt <filename>%1</filename>",
-                          input.toHtmlEscaped(),
-                          output.toHtmlEscaped());
+            return xi18nc("Failed to sign and encrypt <file>", "Failed to sign and encrypt %1", input.toHtmlEscaped(), output.toHtmlEscaped());
         } else {
             return xi18nc("Signed and encrypted <file> as <file>",
-                          "Signed and encrypted <filename>%1</filename> as <filename>%2</filename>",
+                          "Signed and encrypted %1 as <filename>%2</filename>",
                           input.toHtmlEscaped(),
                           output.toHtmlEscaped());
         }
     } else if (sign) {
         if (outputDeleted) {
-            return xi18nc("Failed to sign <file>", "Failed to sign <filename>%1</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
+            return xi18nc("Failed to sign <file>", "Failed to sign %1", input.toHtmlEscaped(), output.toHtmlEscaped());
         } else {
             return xi18nc("Signed <file> and saved the signature in <file>",
-                          "Signed <filename>%1</filename> and saved the signature in <filename>%2</filename>",
+                          "Signed %1 and saved the signature in <filename>%2</filename>",
                           input.toHtmlEscaped(),
                           output.toHtmlEscaped());
         }
     }
     if (outputDeleted) {
-        return xi18nc("Failed to encrypt <file>", "Failed to encrypt <filename>%1</filename>", input.toHtmlEscaped(), output.toHtmlEscaped());
+        return xi18nc("Failed to encrypt <file>", "Failed to encrypt %1", input.toHtmlEscaped(), output.toHtmlEscaped());
     }
     return xi18nc("Encrypted <file> and saved it as <file>",
-                  "Encrypted <filename>%1</filename> and saved it as <filename>%2</filename>",
+                  "Encrypted %1 and saved it as <filename>%2</filename>",
                   input.toHtmlEscaped(),
                   output.toHtmlEscaped());
 }
@@ -552,19 +549,26 @@ void SignEncryptTask::doStart()
 
 QString SignEncryptTask::Private::inputLabel() const
 {
+    if (!inputFileNames.empty()) {
+        if (inputFileNames.size() == 1) {
+            return xi18n("<filename>%1</filename>", inputFileNames[0]);
+        } else if (inputFileNames.size() == 2) {
+            return xi18n("<filename>%1</filename> and <filename>%2</filename>", inputFileNames[0], inputFileNames[1]);
+        } else if (inputFileNames.size() > 2) {
+            return xi18np("<filename>%2</filename> and %1 other", "<filename>%2</filename> and %1 others", inputFileNames.size() - 1, inputFileNames[0]);
+        }
+    }
+
     if (input) {
         return input->label();
     }
-    if (!inputFileNames.empty()) {
-        const auto firstFile = QFileInfo{inputFileNames.front()}.fileName();
-        return inputFileNames.size() == 1 ? firstFile : i18nc("<name of first file>, ...", "%1, ...", firstFile);
-    }
+
     return {};
 }
 
 QString SignEncryptTask::Private::outputLabel() const
 {
-    return output ? output->label() : QFileInfo{outputFileName}.fileName();
+    return QFileInfo{outputFileName}.fileName();
 }
 
 bool SignEncryptTask::Private::removeExistingOutputFile()
