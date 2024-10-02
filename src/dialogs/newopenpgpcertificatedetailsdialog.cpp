@@ -21,7 +21,6 @@
 #include "utils/keyparameters.h"
 #include "utils/scrollarea.h"
 
-#include <kdatecombobox.h>
 #include <settings.h>
 
 #include <Libkleo/Compat>
@@ -121,7 +120,7 @@ class NewOpenPGPCertificateDetailsDialog::Private
             {
                 auto hbox = new QHBoxLayout;
 
-                expiryCB = new QCheckBox{i18nc("@option:check", "Valid until:"), dialog};
+                expiryCB = new QCheckBox{Kleo::validUntilLabel(), dialog};
                 hbox->addWidget(expiryCB);
 
                 expiryDE = new KDateComboBox(dialog);
@@ -236,7 +235,7 @@ public:
         });
         updateTechnicalParameters(); // set key parameters to default values for OpenPGP
         connect(ui.expander, &AnimatedExpander::startExpanding, q, [this]() {
-            q->resize(q->sizeHint().width() + 20, q->sizeHint().height() + ui.expander->contentHeight() + 20);
+            q->resize(std::max(q->sizeHint().width(), ui.expander->contentWidth()) + 20, q->sizeHint().height() + ui.expander->contentHeight() + 20);
         });
     }
 
@@ -358,7 +357,7 @@ NewOpenPGPCertificateDetailsDialog::NewOpenPGPCertificateDetailsDialog(QWidget *
     : QDialog{parent, f}
     , d(new Private{this})
 {
-    resize(sizeHint().width() + 20, sizeHint().height() + 20);
+    resize(std::max(sizeHint().width(), d->ui.expander->contentWidth()) + 20, sizeHint().height() + 20);
 }
 
 NewOpenPGPCertificateDetailsDialog::~NewOpenPGPCertificateDetailsDialog() = default;
