@@ -38,12 +38,13 @@
 #include <QButtonGroup>
 #include <QFontDatabase>
 #include <QFontMetrics>
+#include <QFrame>
 #include <QLabel>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRadioButton>
+#include <QSplitter>
 #include <QStyle>
-#include <QTabWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
 
@@ -95,13 +96,25 @@ public:
         , mImportProto(GpgME::UnknownProtocol)
     {
         auto vLay = new QVBoxLayout(q);
+        vLay->setContentsMargins({});
+        vLay->setSpacing(0);
 
         auto btnLay = new QHBoxLayout;
+        btnLay->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
+        btnLay->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutTopMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutRightMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutBottomMargin));
         vLay->addLayout(btnLay);
         btnLay->addWidget(mCryptBtn);
         btnLay->addWidget(mDecryptBtn);
         btnLay->addWidget(mImportBtn);
         btnLay->addWidget(mRevertBtn);
+
+        auto separator = new QFrame(q);
+        separator->setFrameStyle(QFrame::HLine);
+        separator->setMaximumHeight(1);
+        vLay->addWidget(separator);
 
         mRevertBtn->setVisible(false);
 
@@ -132,10 +145,11 @@ public:
         mStatusLay->addLayout(progLay);
         vLay->addLayout(mStatusLay, 0);
 
-        auto tabWidget = new QTabWidget;
-        vLay->addWidget(tabWidget, 1);
+        auto splitterWidget = new QSplitter;
+        splitterWidget->setChildrenCollapsible(false);
+        vLay->addWidget(splitterWidget, 1);
 
-        tabWidget->addTab(mEdit, QIcon::fromTheme(QStringLiteral("edittext")), i18n("Notepad"));
+        splitterWidget->addWidget(mEdit);
 
         // The recipients area
         auto recipientsWidget = new QWidget;
@@ -152,7 +166,7 @@ public:
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
-        tabWidget->addTab(recipientsWidget, QIcon::fromTheme(QStringLiteral("contact-new-symbolic")), i18n("Recipients"));
+        splitterWidget->addWidget(recipientsWidget);
 
         mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
 
