@@ -44,13 +44,15 @@ struct about_data {
 };
 
 static const about_data authors[] = {
-    {kli18n("Andre Heinecke"), kli18n("Current Maintainer"), "aheinecke@gnupg.org", nullptr},
-    {kli18n("Marc Mutz"), kli18n("Former Maintainer"), "mutz@kde.org", nullptr},
-    {kli18n("Steffen Hansen"), kli18n("Former Maintainer"), "hansen@kde.org", nullptr},
-    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author"), "kalle@kde.org", nullptr},
+    {kli18n("Andre Heinecke (g10 Code)"), kli18n("Developer"), "aheinecke@gnupg.org", nullptr},
+    {kli18n("Ingo Klöcker (g10 Code)"), kli18n("Developer"), "dev@ingo-kloecker.de", nullptr},
+    {kli18n("Tobias Fella (g10 Code)"), kli18n("Developer"), "tobias.fella@gnupg.com", nullptr},
 };
 
 static const about_data credits[] = {
+    {kli18n("Marc Mutz"), kli18n("Former Maintainer"), "mutz@kde.org", nullptr},
+    {kli18n("Steffen Hansen"), kli18n("Former Maintainer"), "hansen@kde.org", nullptr},
+    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author"), "kalle@kde.org", nullptr},
     {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration"), "faure@kde.org", nullptr},
     {kli18n("Michel Boyer de la Giroday"),
      kli18n("Key-state dependent colors and fonts in the certificates list"),
