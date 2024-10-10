@@ -4,6 +4,8 @@
 
 #include "debugdialog.h"
 
+#include "settings.h"
+
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -23,15 +25,8 @@
 
 using namespace Kleo;
 
-struct DebugCommand {
-    // If name is empty, the command itself will be shown.
-    QString name;
-    QString command;
-};
-
-std::vector<DebugCommand> commands = {
-    {QStringLiteral("gpgconf -X"), QStringLiteral("gpgconf -X")},
-};
+// To add a new command, add a "<name>:<command>" line to kleoaptradebugcommandsrc
+// <name> will be shown in the combobox, <command> will be executed
 
 class DebugDialog::Private
 {
@@ -59,16 +54,31 @@ DebugDialog::DebugDialog(QWidget *parent)
 {
     auto layout = new QVBoxLayout(this);
 
+    auto commandLayout = new QHBoxLayout(this);
+
     setWindowTitle(i18nc("@title:window", "GnuPG Configuration Overview"));
 
     d->commandCombo = new QComboBox;
-    for (const auto &command : commands) {
-        d->commandCombo->addItem(command.name.isEmpty() ? command.command : command.name, command.command);
+    d->commandCombo->setEditable(Settings{}.allowCustomDebugCommands());
+    d->commandCombo->setInsertPolicy(QComboBox::NoInsert);
+
+    auto commandsConfig = KSharedConfig::openConfig(QStringLiteral("kleopatradebugcommandsrc"));
+    auto group = commandsConfig->group(QStringLiteral("Commands"));
+
+    for (const auto &command : group.keyList()) {
+        d->commandCombo->addItem(command, group.readEntry(command, QString()));
     }
-    connect(d->commandCombo, &QComboBox::currentTextChanged, this, [this]() {
+    connect(d->commandCombo, &QComboBox::activated, this, [this]() {
         d->runCommand();
     });
-    layout->addWidget(d->commandCombo);
+
+    commandLayout->addWidget(d->commandCombo, 1);
+    auto runButton = new QPushButton(i18nc("@action:button", "Run Command"));
+    connect(runButton, &QPushButton::clicked, this, [this]() {
+        d->runCommand();
+    });
+    commandLayout->addWidget(runButton);
+    layout->addLayout(commandLayout);
 
     d->exitCodeLabel = new QLabel({});
     layout->addWidget(d->exitCodeLabel);
@@ -109,9 +119,15 @@ DebugDialog::DebugDialog(QWidget *parent)
 
 void DebugDialog::Private::runCommand()
 {
+    QString text;
+    if (commandCombo->currentText() == commandCombo->currentData(Qt::DisplayRole).toString()) {
+        text = commandCombo->currentData(Qt::UserRole).toString();
+    } else {
+        text = commandCombo->currentText();
+    }
+
     auto process = new QProcess(q);
-    const auto parts = commandCombo->currentData().toString().split(QLatin1Char(' '));
-    process->start(parts[0], parts.mid(1));
+    const auto parts = text.split(QLatin1Char(' '));
     connect(process, &QProcess::finished, q, [this, process]() {
         exitCodeLabel->setText(i18nc("@info", "Exit code: %1", process->exitCode()));
         if (process->exitCode() == 0) {
@@ -127,6 +143,12 @@ void DebugDialog::Private::runCommand()
         }
         process->deleteLater();
     });
+    connect(process, &QProcess::errorOccurred, q, [this, process]() {
+        outputEdit->setTextColor(KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color());
+        outputEdit->setText(process->errorString());
+    });
+    outputEdit->clear();
+    process->start(parts[0], parts.mid(1));
 }
 
 DebugDialog::~DebugDialog() = default;
