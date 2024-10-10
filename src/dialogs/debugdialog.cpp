@@ -4,6 +4,10 @@
 
 #include "debugdialog.h"
 
+#include "kleopatra_debug.h"
+
+#include "settings.h"
+
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -23,15 +27,11 @@
 
 using namespace Kleo;
 
-struct DebugCommand {
-    // If name is empty, the command itself will be shown.
-    QString name;
-    QString command;
-};
+using namespace Qt::Literals::StringLiterals;
 
-std::vector<DebugCommand> commands = {
-    {QStringLiteral("gpgconf -X"), QStringLiteral("gpgconf -X")},
-};
+// To add a new command, add a "<index>;<name>=<command>" line to kleopatradebugcommandsrc
+// <name> will be shown in the combobox, <command> will be executed.
+// The commands will be sorted by <index>
 
 class DebugDialog::Private
 {
@@ -59,16 +59,59 @@ DebugDialog::DebugDialog(QWidget *parent)
 {
     auto layout = new QVBoxLayout(this);
 
+    auto commandLayout = new QHBoxLayout;
+
     setWindowTitle(i18nc("@title:window", "GnuPG Configuration Overview"));
 
     d->commandCombo = new QComboBox;
-    for (const auto &command : commands) {
-        d->commandCombo->addItem(command.name.isEmpty() ? command.command : command.name, command.command);
+    d->commandCombo->setEditable(Settings{}.allowCustomDebugCommands());
+    d->commandCombo->setInsertPolicy(QComboBox::InsertAtBottom);
+
+    auto commandsConfig = KSharedConfig::openConfig(QStringLiteral("kleopatradebugcommandsrc"));
+    auto group = commandsConfig->group(QStringLiteral("DebugCommands"));
+
+    struct Command {
+        int index;
+        QString name;
+        QString command;
+    };
+
+    QList<Command> commands;
+    for (const auto &key : group.keyList()) {
+        const auto split = key.split(u';');
+        if (split.size() != 2) {
+            qCWarning(KLEOPATRA_LOG) << "Invalid command" << key;
+            continue;
+        }
+        commands.append({split[0].toInt(), split[1], group.readEntry(key, QString())});
     }
-    connect(d->commandCombo, &QComboBox::currentTextChanged, this, [this]() {
+
+    std::ranges::sort(commands, {}, &Command::index);
+
+    for (const auto &command : commands) {
+        d->commandCombo->addItem(command.name, command.command);
+    }
+    connect(d->commandCombo, &QComboBox::activated, this, [this]() {
         d->runCommand();
     });
-    layout->addWidget(d->commandCombo);
+
+    commandLayout->addWidget(d->commandCombo, 1);
+    auto runButton = new QPushButton(i18nc("@action:button", "Run Command"));
+    connect(runButton, &QPushButton::clicked, this, [this]() {
+        // This is roughly a manual implementation of the InsertAtBottom behavior of the combobox. The combobox only only inserts an item
+        // when pressing Enter, which isn't very discoverable, hence the button.
+        if (const auto index = d->commandCombo->findData(QVariant::fromValue(d->commandCombo->currentText()), Qt::UserRole); index != -1) {
+            d->commandCombo->setCurrentIndex(index);
+        } else if (const auto index = d->commandCombo->findData(QVariant::fromValue(d->commandCombo->currentText()), Qt::DisplayRole); index != -1) {
+            d->commandCombo->setCurrentIndex(index);
+        } else {
+            d->commandCombo->addItem(d->commandCombo->currentText(), d->commandCombo->currentText());
+            d->commandCombo->setCurrentIndex(d->commandCombo->count() - 1);
+        }
+        d->runCommand();
+    });
+    commandLayout->addWidget(runButton);
+    layout->addLayout(commandLayout);
 
     d->exitCodeLabel = new QLabel({});
     layout->addWidget(d->exitCodeLabel);
@@ -87,9 +130,11 @@ DebugDialog::DebugDialog(QWidget *parent)
         });
         copyButton->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
 
-        auto saveButton = buttonBox->addButton(QDialogButtonBox::Save);
+        auto saveButton = buttonBox->addButton(i18nc("@action:button", "Save to File"), QDialogButtonBox::ActionRole);
         connect(saveButton, &QPushButton::clicked, this, [this]() {
-            QFileDialog::saveFileContent(d->outputEdit->toPlainText().toUtf8(), QStringLiteral("kleopatra_debug_%1.txt").arg(d->commandCombo->currentText()));
+            auto text = d->commandCombo->currentText();
+            text.replace(QRegularExpression(u"[^a-zA-Z0-9-]"_s), u"_"_s);
+            QFileDialog::saveFileContent(d->outputEdit->toPlainText().toUtf8(), QStringLiteral("kleopatra_debug_%1.txt").arg(text));
         });
 
         auto closeButton = buttonBox->addButton(QDialogButtonBox::Close);
@@ -109,9 +154,15 @@ DebugDialog::DebugDialog(QWidget *parent)
 
 void DebugDialog::Private::runCommand()
 {
+    QString text;
+    text = commandCombo->currentData(Qt::UserRole).toString();
+    if (text.isEmpty()) {
+        text = commandCombo->currentData(Qt::DisplayRole).toString();
+    }
+
     auto process = new QProcess(q);
-    const auto parts = commandCombo->currentData().toString().split(QLatin1Char(' '));
-    process->start(parts[0], parts.mid(1));
+    const auto parts = text.split(QLatin1Char(' '));
+    exitCodeLabel->setText({});
     connect(process, &QProcess::finished, q, [this, process]() {
         exitCodeLabel->setText(i18nc("@info", "Exit code: %1", process->exitCode()));
         if (process->exitCode() == 0) {
@@ -127,6 +178,12 @@ void DebugDialog::Private::runCommand()
         }
         process->deleteLater();
     });
+    connect(process, &QProcess::errorOccurred, q, [this, process]() {
+        outputEdit->setTextColor(KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color());
+        outputEdit->setText(process->errorString());
+    });
+    outputEdit->clear();
+    process->start(parts[0], parts.mid(1));
 }
 
 DebugDialog::~DebugDialog() = default;

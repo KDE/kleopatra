@@ -639,3 +639,5 @@ install(
         data/kleopatra_decryptverifyfolders.desktop
   DESTINATION ${KDE_INSTALL_DATADIR}/kio/servicemenus
 )
+
+install(FILES kleopatradebugcommandsrc DESTINATION ${KDE_INSTALL_CONFDIR})
