@@ -166,6 +166,12 @@ public:
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
+
+        mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        auto hLay = new QHBoxLayout;
+        hLay->addStretch();
+        hLay->addWidget(mCryptBtn);
+        recipientsVLay->addLayout(hLay);
         splitterWidget->addWidget(recipientsWidget);
 
         mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
