@@ -99,6 +99,18 @@ public:
         vLay->setContentsMargins({});
         vLay->setSpacing(0);
 
+        mMessageWidget->setMessageType(KMessageWidget::Warning);
+        mMessageWidget->setIcon(q->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, q));
+        mMessageWidget->setText(i18n("Signing and encryption is not possible."));
+        mMessageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                          "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
+                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
+                                          DeVSCompliance::name(true)));
+        mMessageWidget->setCloseButtonVisible(false);
+        mMessageWidget->setVisible(false);
+        mMessageWidget->setPosition(KMessageWidget::Position::Header);
+        vLay->addWidget(mMessageWidget);
+
         auto btnLay = new QHBoxLayout;
         btnLay->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
         btnLay->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
@@ -121,17 +133,6 @@ public:
         btnLay->addWidget(mAdditionalInfoLabel);
 
         btnLay->addStretch(-1);
-
-        mMessageWidget->setMessageType(KMessageWidget::Warning);
-        mMessageWidget->setIcon(q->style()->standardIcon(QStyle::SP_MessageBoxWarning, nullptr, q));
-        mMessageWidget->setText(i18n("Signing and encryption is not possible."));
-        mMessageWidget->setToolTip(xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                          "<para>You cannot use <application>Kleopatra</application> for signing or encryption "
-                                          "because the <application>GnuPG</application> system used by <application>Kleopatra</application> is not %1.</para>",
-                                          DeVSCompliance::name(true)));
-        mMessageWidget->setCloseButtonVisible(false);
-        mMessageWidget->setVisible(false);
-        vLay->addWidget(mMessageWidget);
 
         mProgressBar->setRange(0, 0);
         mProgressBar->setVisible(false);
