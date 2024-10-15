@@ -267,29 +267,9 @@ unsigned int FileInput::classification() const
     return classify(m_fileName);
 }
 
-std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command)
-{
-    return std::shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current()));
-}
-
-std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args)
-{
-    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current()));
-}
-
 std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd)
 {
     return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, wd));
-}
-
-std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QByteArray &stdin_)
-{
-    return std::shared_ptr<Input>(new ProcessStdOutInput(command, QStringList(), QDir::current(), stdin_));
-}
-
-std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QByteArray &stdin_)
-{
-    return std::shared_ptr<Input>(new ProcessStdOutInput(command, args, QDir::current(), stdin_));
 }
 
 std::shared_ptr<Input> Input::createFromProcessStdOut(const QString &command, const QStringList &args, const QDir &wd, const QByteArray &stdin_)
