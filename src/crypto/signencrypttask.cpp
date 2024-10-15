@@ -110,32 +110,6 @@ struct LabelAndError {
 class SignEncryptFilesResult : public Task::Result
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr, const LabelAndError &input, const LabelAndError &output, bool outputCreated, const AuditLogEntry &auditLog)
-        : Task::Result()
-        , m_sresult(sr)
-        , m_input{input}
-        , m_output{output}
-        , m_outputCreated(outputCreated)
-        , m_auditLog(auditLog)
-    {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
-        Q_ASSERT(!m_sresult.isNull());
-    }
-    SignEncryptFilesResult(const EncryptionResult &er,
-                           const LabelAndError &input,
-                           const LabelAndError &output,
-                           bool outputCreated,
-                           const AuditLogEntry &auditLog)
-        : Task::Result()
-        , m_eresult(er)
-        , m_input{input}
-        , m_output{output}
-        , m_outputCreated(outputCreated)
-        , m_auditLog(auditLog)
-    {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
-        Q_ASSERT(!m_eresult.isNull());
-    }
     SignEncryptFilesResult(const SigningResult &sr,
                            const EncryptionResult &er,
                            const LabelAndError &input,
