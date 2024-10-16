@@ -45,6 +45,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
+#include <KSeparator>
 #include <KSharedConfig>
 
 using namespace Kleo;
@@ -168,16 +169,26 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     /* The signature selection */
     {
-        auto sigGrp = new QGroupBox{i18nc("@title:group", "Prove authenticity (sign)"), this};
+        auto vLay = new QVBoxLayout;
+        vLay->setSpacing(0);
         d->mSigChk = new QCheckBox{i18n("Sign as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
+        auto checkFont = d->mSigChk->font();
+        checkFont.setWeight(QFont::DemiBold);
+        d->mSigChk->setFont(checkFont);
+        vLay->addWidget(d->mSigChk);
+
+        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
+        lay->addLayout(vLay);
 
         d->mSigSelect = new UserIDSelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
+        lay->addWidget(d->mSigSelect);
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};
         d->mSignKeyExpiryMessage->setVisible(false);
+        lay->addWidget(d->mSignKeyExpiryMessage);
 
         connect(d->mSigSelect, &UserIDSelectionCombo::certificateSelectionRequested, this, [this]() {
             ownCertificateSelectionRequested(CertificateSelectionDialog::SignOnly, d->mSigSelect);
@@ -186,13 +197,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
         });
-
-        auto groupLayout = new QGridLayout{sigGrp};
-        groupLayout->setColumnStretch(1, 1);
-        groupLayout->addWidget(d->mSigChk, 0, 0);
-        groupLayout->addWidget(d->mSigSelect, 0, 1);
-        groupLayout->addWidget(d->mSignKeyExpiryMessage, 1, 1);
-        lay->addWidget(sigGrp);
 
         connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSigSelect->setEnabled(checked);
@@ -203,21 +207,34 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
         });
+
+        lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
     }
 
     // Recipient selection
     {
-        auto encBox = new QGroupBox{i18nc("@title:group", "Encrypt"), this};
-        auto encBoxLay = new QVBoxLayout{encBox};
-        auto recipientGrid = new QGridLayout;
-        int row = 0;
-
         // Own key
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        auto checkFont = d->mEncSelfChk->font();
+        checkFont.setWeight(QFont::DemiBold);
+        d->mEncSelfChk->setFont(checkFont);
+
+        auto vLay = new QVBoxLayout;
+        vLay->setSpacing(0);
+        vLay->addWidget(d->mEncSelfChk);
+
+        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
+        lay->addLayout(vLay);
+
         d->mSelfSelect = new UserIDSelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
+        lay->addWidget(d->mSelfSelect);
+
+        d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
+        d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
+        lay->addWidget(d->mEncryptToSelfKeyExpiryMessage);
 
         connect(d->mSelfSelect, &UserIDSelectionCombo::certificateSelectionRequested, this, [this]() {
             ownCertificateSelectionRequested(CertificateSelectionDialog::EncryptOnly, d->mSelfSelect);
@@ -226,51 +243,49 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
         });
+        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
+            d->mSelfSelect->setEnabled(checked);
+        });
 
-        d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
-        d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
-        recipientGrid->addWidget(d->mEncSelfChk, row, 0);
-        recipientGrid->addWidget(d->mSelfSelect, row, 1);
-        row++;
-        recipientGrid->addWidget(d->mEncryptToSelfKeyExpiryMessage, row, 1);
+        lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
         // Checkbox for other keys
-        row++;
         d->mEncOtherLabel = new QLabel(i18nc("@label", "Encrypt for others:"), this);
         d->mEncOtherLabel->setEnabled(havePublicKeys && !symmetricOnly);
-        recipientGrid->addWidget(d->mEncOtherLabel, row, 0, Qt::AlignTop | Qt::AlignRight);
+        d->mEncOtherLabel->setFont(checkFont);
+        vLay = new QVBoxLayout;
+        vLay->setSpacing(0);
+        vLay->addWidget(d->mEncOtherLabel);
+
+        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
+        lay->addLayout(vLay);
+
         d->mRecpLayout = new QVBoxLayout;
-        recipientGrid->addLayout(d->mRecpLayout, row, 1);
-        recipientGrid->setRowStretch(row + 1, 1);
-
-        // Scroll area for other keys
-        auto recipientWidget = new QWidget;
-        auto recipientScroll = new QScrollArea;
-        recipientWidget->setLayout(recipientGrid);
-        recipientScroll->setWidget(recipientWidget);
-        recipientScroll->setWidgetResizable(true);
-        recipientScroll->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-        recipientScroll->setFrameStyle(QFrame::NoFrame);
-        recipientScroll->setFocusPolicy(Qt::NoFocus);
-        recipientGrid->setContentsMargins(0, 0, 0, 0);
-        encBoxLay->addWidget(recipientScroll, 1);
-
-        auto bar = recipientScroll->verticalScrollBar();
-        connect(bar, &QScrollBar::rangeChanged, this, [bar](int, int max) {
-            bar->setValue(max);
-        });
+        lay->addLayout(d->mRecpLayout);
 
         d->addRecipientWidget();
 
+        lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
+
         // Checkbox for password
-        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password. Anyone you share the password with can read the data."));
+        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password."));
+        d->mSymmetric->setFont(checkFont);
         d->mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                         "Anyone who has the password can read the data without any secret key. "
                                         "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
         d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
         d->mSymmetric->setEnabled(!publicKeyOnly);
-        encBoxLay->addWidget(d->mSymmetric);
+        vLay = new QVBoxLayout;
+        vLay->setSpacing(0);
+        vLay->addWidget(d->mSymmetric);
+
+        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
+        lay->addLayout(vLay);
+
+        lay->addWidget(new QLabel(i18nc("@info", "Anyone you share the password with can read the data.")));
+
+        lay->addStretch();
 
         // Connect it
         connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
@@ -310,8 +325,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
         // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
         d->mSigChk->setMinimumWidth(qMax(d->mEncOtherLabel->width(), d->mEncSelfChk->width()));
-
-        lay->addWidget(encBox);
     }
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
