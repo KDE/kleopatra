@@ -29,6 +29,7 @@
 #include <Libkleo/GnuPG>
 
 #include "commands/importcertificatefromdatacommand.h"
+#include "utils/scrollarea.h"
 
 #include <gpgme++/data.h>
 #include <gpgme++/decryptionresult.h>
@@ -154,21 +155,29 @@ public:
         splitterWidget->setStretchFactor(0, 1);
 
         // The recipients area
+        auto scrollArea = new Kleo::ScrollArea;
         auto recipientsWidget = new QWidget;
-        auto recipientsVLay = new QVBoxLayout(recipientsWidget);
+        scrollArea->setWidget(recipientsWidget);
         auto protocolSelectionLay = new QHBoxLayout;
+        auto recipientsVLay = new QVBoxLayout(recipientsWidget);
 
         bool pgpOnly = KeyCache::instance()->pgpOnly();
         if (!pgpOnly) {
+            auto titleLay = new QVBoxLayout;
+            titleLay->setSpacing(0);
+            auto protocolLabel = new QLabel(i18nc("@label", "Protocol:"));
+            auto font = protocolLabel->font();
+            font.setWeight(QFont::DemiBold);
+            protocolLabel->setFont(font);
+
+            titleLay->addWidget(protocolLabel);
+            titleLay->addWidget(new KSeparator(Qt::Horizontal, q));
+
+            recipientsVLay->addLayout(titleLay);
             recipientsVLay->addLayout(protocolSelectionLay);
+            recipientsVLay->addSpacing(q->style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
         }
 
-        auto protocolLabel = new QLabel(i18nc("@label:textbox", "Protocol:"));
-        auto font = protocolLabel->font();
-        font.setWeight(QFont::DemiBold);
-        protocolLabel->setFont(font);
-        protocolSelectionLay->addWidget(protocolLabel);
-        protocolSelectionLay->addStretch(-1);
         // Once S/MIME is supported add radio for S/MIME here.
 
         recipientsVLay->addWidget(mSigEncWidget);
@@ -178,7 +187,7 @@ public:
         hLay->addStretch();
         hLay->addWidget(mCryptBtn);
         recipientsVLay->addLayout(hLay);
-        splitterWidget->addWidget(recipientsWidget);
+        splitterWidget->addWidget(scrollArea);
 
         mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
 
