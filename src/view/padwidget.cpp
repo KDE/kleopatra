@@ -53,6 +53,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
+#include <KSeparator>
 #include <KSharedConfig>
 
 using namespace Kleo;
@@ -123,9 +124,7 @@ public:
         btnLay->addWidget(mImportBtn);
         btnLay->addWidget(mRevertBtn);
 
-        auto separator = new QFrame(q);
-        separator->setFrameStyle(QFrame::HLine);
-        separator->setMaximumHeight(1);
+        auto separator = new KSeparator(Qt::Horizontal, q);
         vLay->addWidget(separator);
 
         mRevertBtn->setVisible(false);
