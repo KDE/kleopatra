@@ -163,17 +163,12 @@ public:
 
         bool pgpOnly = KeyCache::instance()->pgpOnly();
         if (!pgpOnly) {
-            auto titleLay = new QVBoxLayout;
-            titleLay->setSpacing(0);
             auto protocolLabel = new QLabel(i18nc("@label", "Protocol:"));
             auto font = protocolLabel->font();
             font.setWeight(QFont::DemiBold);
             protocolLabel->setFont(font);
+            recipientsVLay->addWidget(protocolLabel);
 
-            titleLay->addWidget(protocolLabel);
-            titleLay->addWidget(new KSeparator(Qt::Horizontal, q));
-
-            recipientsVLay->addLayout(titleLay);
             recipientsVLay->addLayout(protocolSelectionLay);
             recipientsVLay->addSpacing(q->style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
         }

@@ -169,18 +169,13 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     /* The signature selection */
     {
-        auto vLay = new QVBoxLayout;
-        vLay->setSpacing(0);
-        d->mSigChk = new QCheckBox{i18n("Sign as:"), this};
+        d->mSigChk = new QCheckBox{i18n("&Sign as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
         auto checkFont = d->mSigChk->font();
         checkFont.setWeight(QFont::DemiBold);
         d->mSigChk->setFont(checkFont);
-        vLay->addWidget(d->mSigChk);
-
-        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
-        lay->addLayout(vLay);
+        lay->addWidget(d->mSigChk);
 
         d->mSigSelect = new UserIDSelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
@@ -220,13 +215,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         auto checkFont = d->mEncSelfChk->font();
         checkFont.setWeight(QFont::DemiBold);
         d->mEncSelfChk->setFont(checkFont);
-
-        auto vLay = new QVBoxLayout;
-        vLay->setSpacing(0);
-        vLay->addWidget(d->mEncSelfChk);
-
-        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
-        lay->addLayout(vLay);
+        lay->addWidget(d->mEncSelfChk);
 
         d->mSelfSelect = new UserIDSelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
@@ -253,12 +242,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mEncOtherLabel = new QLabel(i18nc("@label", "Encrypt for others:"), this);
         d->mEncOtherLabel->setEnabled(havePublicKeys && !symmetricOnly);
         d->mEncOtherLabel->setFont(checkFont);
-        vLay = new QVBoxLayout;
-        vLay->setSpacing(0);
-        vLay->addWidget(d->mEncOtherLabel);
-
-        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
-        lay->addLayout(vLay);
+        lay->addWidget(d->mEncOtherLabel);
 
         d->mRecpLayout = new QVBoxLayout;
         lay->addLayout(d->mRecpLayout);
@@ -268,7 +252,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
         // Checkbox for password
-        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password."));
+        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password:"));
         d->mSymmetric->setFont(checkFont);
         d->mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
@@ -276,12 +260,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                                         "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
         d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
         d->mSymmetric->setEnabled(!publicKeyOnly);
-        vLay = new QVBoxLayout;
-        vLay->setSpacing(0);
-        vLay->addWidget(d->mSymmetric);
-
-        vLay->addWidget(new KSeparator(Qt::Horizontal, this));
-        lay->addLayout(vLay);
+        lay->addWidget(d->mSymmetric);
 
         lay->addWidget(new QLabel(i18nc("@info", "Anyone you share the password with can read the data.")));
 
@@ -354,6 +333,11 @@ void SignEncryptWidget::setEncryptForMeText(const QString &text)
     d->mEncSelfChk->setText(text);
 }
 
+void SignEncryptWidget::setEncryptForOthersText(const QString &text)
+{
+    d->mEncOtherLabel->setText(text);
+}
+
 void SignEncryptWidget::setEncryptWithPasswordText(const QString &text)
 {
     d->mSymmetric->setText(text);
@@ -374,6 +358,9 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !FileOperationsPreferences().symmetricEncryptionOnly());
     recipient.expiryMessage->setVisible(false);
+    if (!after) {
+        mEncOtherLabel->setBuddy(recipient.edit);
+    }
     if (static_cast<unsigned>(index / 2) < mRecpWidgets.size()) {
         mRecpWidgets.insert(mRecpWidgets.begin() + index / 2, recipient);
     } else {
