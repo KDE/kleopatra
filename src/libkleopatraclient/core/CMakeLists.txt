@@ -16,17 +16,11 @@ ecm_qt_declare_logging_category(_kleopatraclientcore_common_SRCS HEADER libkleop
 
 add_library(kleopatraclientcore
   ${_kleopatraclientcore_extra_SRCS}
-  initialization.cpp
   command.cpp
   selectcertificatecommand.cpp
-  signencryptfilescommand.cpp
-  decryptverifyfilescommand.cpp
   libkleopatraclientcore_debug.cpp
-  initialization.h
   command.h
   selectcertificatecommand.h
-  signencryptfilescommand.h
-  decryptverifyfilescommand.h
   libkleopatraclientcore_debug.h
   ${_kleopatraclientcore_common_SRCS}
 )
