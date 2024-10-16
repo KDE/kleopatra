@@ -151,6 +151,7 @@ public:
         vLay->addWidget(splitterWidget, 1);
 
         splitterWidget->addWidget(mEdit);
+        splitterWidget->setStretchFactor(0, 1);
 
         // The recipients area
         auto recipientsWidget = new QWidget;
