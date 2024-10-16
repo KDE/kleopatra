@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-16 00:41+0000\n"
 "PO-Revision-Date: 2024-10-01 18:01+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -4656,7 +4656,7 @@ msgid "Error while running %1: %2"
 msgstr "Fout bij het uitvoeren van %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:357
 #: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4872,8 +4872,8 @@ msgid "<b>Decryption succeeded.</b>"
 msgstr "<b> Ontcijfering geslaagd.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
-#: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:879
+#: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
+#: src/crypto/signencrypttask.cpp:853
 #, kde-format
 msgid "Input error: %1"
 msgstr "Uitvoerfout: %1"
@@ -5062,7 +5062,7 @@ msgstr "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgid "User cancel"
 msgstr "Gebruiker annuleren"
 
-#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:193
+#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:167
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Versleuteling geannuleerd."
@@ -5072,7 +5072,7 @@ msgstr "Versleuteling geannuleerd."
 msgid "Encryption failed: %1"
 msgstr "Versleuteling mislukt: %1"
 
-#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:200
+#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:174
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Versleuteling geslaagd."
@@ -6124,7 +6124,7 @@ msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "Oproep naar EncryptEMailController::protocolAsString() is dubbelzinnig."
 
-#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:176
+#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:150
 #, kde-format
 msgid "Signing canceled."
 msgstr "Ondertekening geannuleerd."
@@ -6134,7 +6134,7 @@ msgstr "Ondertekening geannuleerd."
 msgid "Signing failed: %1"
 msgstr "Ondertekening mislukt: %1"
 
-#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:182
+#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:156
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Ondertekening geslaagd."
@@ -6193,59 +6193,59 @@ msgstr ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:180
+#: src/crypto/signencrypttask.cpp:154
 #, kde-format
 msgid "Signing failed."
 msgstr "Ondertekenen is mislukt."
 
-#: src/crypto/signencrypttask.cpp:197
+#: src/crypto/signencrypttask.cpp:171
 #, kde-format
 msgid "Encryption failed."
 msgstr "Versleutelen is mislukt."
 
-#: src/crypto/signencrypttask.cpp:225
+#: src/crypto/signencrypttask.cpp:199
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Ondertekenen en versleuteling geslaagd."
 
-#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:216 src/crypto/signencrypttask.cpp:233
 #, kde-format
 msgid "Output error: %1"
 msgstr "Uitvoerfout: %1"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:240
 #, kde-format
 msgid " Encryption succeeded."
 msgstr "Versleuteling geslaagd."
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:252
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>Ondertekenen/versleutelen geannuleerd.</b>"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:252
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr " %1: Ondertekenen/versleutelen mislukt."
 
-#: src/crypto/signencrypttask.cpp:281
+#: src/crypto/signencrypttask.cpp:255
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:482
+#: src/crypto/signencrypttask.cpp:456
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Kan protocol voor taak niet bepalen"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:507
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:745 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6254,19 +6254,19 @@ msgstr ""
 "Kan de gemeenschappelijke basismap voor deze bestanden niet vinden:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:762
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Ondertekend en versleuteld archief wordt aangemaakt ..."
 
-#: src/crypto/signencrypttask.cpp:778
+#: src/crypto/signencrypttask.cpp:752
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Versleuteld archief wordt aangemaakt ..."
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:768
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11349,34 +11349,34 @@ msgstr "Kon bestand \"%1\" niet openen om te lezen"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Bestand \"%1\" is reeds geopend, maar niet om te lezen"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:741
+#: src/utils/input.cpp:306 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "Commando niet gespecificeerd"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
+#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Kon %1-proces niet starten: %2"
 
-#: src/utils/input.cpp:342
+#: src/utils/input.cpp:322
 #, kde-format
 msgid "Failed to write input to %1 process: %2"
 msgstr "Invoer naar proces %1 schrijven is mislukt: %2"
 
-#: src/utils/input.cpp:355
+#: src/utils/input.cpp:335
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file1 ...\""
 msgid "Output of %1 ..."
 msgstr "Uitvoer van %1 ..."
 
-#: src/utils/input.cpp:357
+#: src/utils/input.cpp:337
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file\""
 msgid "Output of %1"
 msgstr "Uitvoer van %1"
 
-#: src/utils/input.cpp:375
+#: src/utils/input.cpp:355
 #, kde-format
 msgid ""
 "Error while running %1:\n"
@@ -11385,22 +11385,22 @@ msgstr ""
 "Fout bij het uitvoeren van %1:\n"
 "%2"
 
-#: src/utils/input.cpp:415
+#: src/utils/input.cpp:395
 #, kde-format
 msgid "Could not open clipboard for reading"
 msgstr "Kon klembord niet openen"
 
-#: src/utils/input.cpp:427
+#: src/utils/input.cpp:407
 #, kde-format
 msgid "Clipboard contents"
 msgstr "Klembordinhoud"
 
-#: src/utils/input.cpp:429
+#: src/utils/input.cpp:409
 #, kde-format
 msgid "FindBuffer contents"
 msgstr "Zoekbufferinhoud"
 
-#: src/utils/input.cpp:431
+#: src/utils/input.cpp:411
 #, kde-format
 msgid "Current selection"
 msgstr "Huidige selectie"

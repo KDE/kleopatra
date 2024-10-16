@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-02 00:40+0000\n"
+"POT-Creation-Date: 2024-10-16 00:41+0000\n"
 "PO-Revision-Date: 2024-09-17 10:20+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
@@ -4712,7 +4712,7 @@ msgid "Error while running %1: %2"
 msgstr "Fehler während der Ausführung von %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
-#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:377
+#: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:357
 #: src/utils/output.cpp:772
 #, kde-format
 msgid "Failed to execute %1: %2"
@@ -4929,8 +4929,8 @@ msgid "<b>Decryption succeeded.</b>"
 msgstr "<b>Entschlüsseln abgeschlossen.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
-#: src/crypto/signencrypttask.cpp:240 src/crypto/signencrypttask.cpp:257
-#: src/crypto/signencrypttask.cpp:879
+#: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
+#: src/crypto/signencrypttask.cpp:853
 #, kde-format
 msgid "Input error: %1"
 msgstr "Eingabefehler: %1"
@@ -5120,7 +5120,7 @@ msgstr ""
 msgid "User cancel"
 msgstr "Abbruch durch Benutzer"
 
-#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:193
+#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:167
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Verschlüsseln abgebrochen."
@@ -5130,7 +5130,7 @@ msgstr "Verschlüsseln abgebrochen."
 msgid "Encryption failed: %1"
 msgstr "Verschlüsseln fehlgeschlagen: %1"
 
-#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:200
+#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:174
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Verschlüsseln abgeschlossen."
@@ -6184,7 +6184,7 @@ msgstr ""
 "Der Aufruf von NewSignEncryptEMailController::protocolAsString() ist nicht "
 "eindeutig."
 
-#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:176
+#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:150
 #, kde-format
 msgid "Signing canceled."
 msgstr "Signieren abgebrochen."
@@ -6194,7 +6194,7 @@ msgstr "Signieren abgebrochen."
 msgid "Signing failed: %1"
 msgstr "Signieren fehlgeschlagen: %1"
 
-#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:182
+#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:156
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Signieren abgeschlossen."
@@ -6253,59 +6253,59 @@ msgstr ""
 "Unbekannte Ausnahme in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared aufgetreten"
 
-#: src/crypto/signencrypttask.cpp:180
+#: src/crypto/signencrypttask.cpp:154
 #, kde-format
 msgid "Signing failed."
 msgstr "Signieren fehlgeschlagen."
 
-#: src/crypto/signencrypttask.cpp:197
+#: src/crypto/signencrypttask.cpp:171
 #, kde-format
 msgid "Encryption failed."
 msgstr "Verschlüsseln fehlgeschlagen."
 
-#: src/crypto/signencrypttask.cpp:225
+#: src/crypto/signencrypttask.cpp:199
 #, kde-format
 msgid "Signing and encryption succeeded."
 msgstr "Kombiniertes Signieren/Verschlüsseln abgeschlossen."
 
-#: src/crypto/signencrypttask.cpp:242 src/crypto/signencrypttask.cpp:259
+#: src/crypto/signencrypttask.cpp:216 src/crypto/signencrypttask.cpp:233
 #, kde-format
 msgid "Output error: %1"
 msgstr "Ausgabefehler: %1"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:240
 #, kde-format
 msgid " Encryption succeeded."
 msgstr "Verschlüsseln abgeschlossen."
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:252
 #, kde-format
 msgid "%1: <b>Sign/encrypt canceled.</b>"
 msgstr "%1: <b>Signieren/Entschlüsseln abgebrochen.</b>"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:252
 #, kde-format
 msgid " %1: Sign/encrypt failed."
 msgstr "%1: Signieren/Verschlüsseln fehlgeschlagen."
 
-#: src/crypto/signencrypttask.cpp:281
+#: src/crypto/signencrypttask.cpp:255
 #, kde-format
 msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:482
+#: src/crypto/signencrypttask.cpp:456
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Für diese Operation kann kein Protokoll ermittelt werden"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:507
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, …"
 
-#: src/crypto/signencrypttask.cpp:745 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6315,19 +6315,19 @@ msgstr ""
 "werden:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:762
+#: src/crypto/signencrypttask.cpp:736
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Signiertes und verschlüsseltes Archiv wird erstellt …"
 
-#: src/crypto/signencrypttask.cpp:778
+#: src/crypto/signencrypttask.cpp:752
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Verschlüsseltes Archiv wird erstellt …"
 
-#: src/crypto/signencrypttask.cpp:794
+#: src/crypto/signencrypttask.cpp:768
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
@@ -11435,34 +11435,34 @@ msgstr "Die Datei „%1“ lässt sich nicht zum Lesen öffnen"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Die Datei „%1“ ist bereits geöffnet, aber nicht zum Lesen"
 
-#: src/utils/input.cpp:326 src/utils/output.cpp:741
+#: src/utils/input.cpp:306 src/utils/output.cpp:741
 #, kde-format
 msgid "Command not specified"
 msgstr "Kein Befehl angegeben"
 
-#: src/utils/input.cpp:333 src/utils/input.cpp:337 src/utils/output.cpp:746
+#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:746
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Prozess „%1“ kann nicht gestartet werden: %2"
 
-#: src/utils/input.cpp:342
+#: src/utils/input.cpp:322
 #, kde-format
 msgid "Failed to write input to %1 process: %2"
 msgstr "Fehler bei der Eingabe zum Prozess %1: %2"
 
-#: src/utils/input.cpp:355
+#: src/utils/input.cpp:335
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file1 ...\""
 msgid "Output of %1 ..."
 msgstr "Ausgabe von %1 …"
 
-#: src/utils/input.cpp:357
+#: src/utils/input.cpp:337
 #, kde-format
 msgctxt "e.g. \"Output of tar xf - file\""
 msgid "Output of %1"
 msgstr "Ausgabe von %1"
 
-#: src/utils/input.cpp:375
+#: src/utils/input.cpp:355
 #, kde-format
 msgid ""
 "Error while running %1:\n"
@@ -11471,22 +11471,22 @@ msgstr ""
 "Fehler während der Ausführung von %1:\n"
 "%2"
 
-#: src/utils/input.cpp:415
+#: src/utils/input.cpp:395
 #, kde-format
 msgid "Could not open clipboard for reading"
 msgstr "Die Zwischenablage lässt sich nicht zum Lesen öffnen"
 
-#: src/utils/input.cpp:427
+#: src/utils/input.cpp:407
 #, kde-format
 msgid "Clipboard contents"
 msgstr "Inhalt der Zwischenablage"
 
-#: src/utils/input.cpp:429
+#: src/utils/input.cpp:409
 #, kde-format
 msgid "FindBuffer contents"
 msgstr "Inhalt des Suche-Speichers"
 
-#: src/utils/input.cpp:431
+#: src/utils/input.cpp:411
 #, kde-format
 msgid "Current selection"
 msgstr "Aktuelle Auswahl"
