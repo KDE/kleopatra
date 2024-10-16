@@ -15,20 +15,20 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KleoException>
 #include <Libkleo/SystemInfo>
 
+#include "commands/importcertificatefromdatacommand.h"
+#include "crypto/decryptverifytask.h"
 #include "crypto/gui/resultitemwidget.h"
 #include "crypto/gui/signencryptwidget.h"
-
-#include "crypto/decryptverifytask.h"
 #include "crypto/signencrypttask.h"
+#include "utils/gui-helper.h"
 #include "utils/input.h"
 #include "utils/output.h"
-#include <Libkleo/GnuPG>
-
-#include "commands/importcertificatefromdatacommand.h"
+#include "utils/scrollarea.h"
 
 #include <gpgme++/data.h>
 #include <gpgme++/decryptionresult.h>
@@ -88,7 +88,7 @@ public:
         , mRevertBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("edit-undo")), i18n("Revert")))
         , mMessageWidget{new KMessageWidget}
         , mAdditionalInfoLabel(new QLabel)
-        , mSigEncWidget(new SignEncryptWidget(nullptr, true))
+        , mSigEncWidget(nullptr)
         , mProgressBar(new QProgressBar)
         , mProgressLabel(new QLabel)
         , mLastResultWidget(nullptr)
@@ -149,51 +149,36 @@ public:
         splitterWidget->setChildrenCollapsible(false);
         vLay->addWidget(splitterWidget, 1);
 
+        mEdit->setTabChangesFocus(true);
         splitterWidget->addWidget(mEdit);
         splitterWidget->setStretchFactor(0, 1);
 
         // The recipients area
+        auto scrollArea = new Kleo::ScrollArea;
+        scrollArea->setFocusPolicy(Qt::NoFocus);
         auto recipientsWidget = new QWidget;
-        auto recipientsVLay = new QVBoxLayout(recipientsWidget);
+        scrollArea->setWidget(recipientsWidget);
         auto protocolSelectionLay = new QHBoxLayout;
+        auto recipientsVLay = new QVBoxLayout(recipientsWidget);
 
         bool pgpOnly = KeyCache::instance()->pgpOnly();
-        if (!pgpOnly) {
+        if (!pgpOnly && Settings{}.cmsEnabled()) {
+            auto protocolLabel = new QLabel(i18nc("@label", "Protocol:"));
+            auto font = protocolLabel->font();
+            font.setWeight(QFont::DemiBold);
+            protocolLabel->setFont(font);
+            recipientsVLay->addWidget(protocolLabel);
+
             recipientsVLay->addLayout(protocolSelectionLay);
-        }
+            recipientsVLay->addSpacing(q->style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
-        auto protocolLabel = new QLabel(i18nc("@label:textbox", "Protocol:"));
-        auto font = protocolLabel->font();
-        font.setWeight(QFont::DemiBold);
-        protocolLabel->setFont(font);
-        protocolSelectionLay->addWidget(protocolLabel);
-        protocolSelectionLay->addStretch(-1);
-        recipientsVLay->addWidget(mSigEncWidget);
-
-        mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        auto hLay = new QHBoxLayout;
-        hLay->addStretch();
-        hLay->addWidget(mCryptBtn);
-        recipientsVLay->addLayout(hLay);
-        splitterWidget->addWidget(recipientsWidget);
-
-        mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
-
-        auto fixedFont = QFont(QStringLiteral("Monospace"));
-        fixedFont.setStyleHint(QFont::TypeWriter);
-
-        mEdit->setFont(fixedFont);
-        mEdit->setAcceptRichText(false);
-        mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
-
-        if (KeyCache::instance()->pgpOnly() || !Settings{}.cmsEnabled()) {
-            mSigEncWidget->setProtocol(GpgME::OpenPGP);
-        } else {
             auto grp = new QButtonGroup(q);
-            auto mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
-            auto mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
+            mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
+            mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
             grp->addButton(mPGPRB);
             grp->addButton(mCMSRB);
+
+            mSigEncWidget = new SignEncryptWidget(nullptr, true);
 
             KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Notepad"));
             if (config.readEntry("wasCMS", false)) {
@@ -216,7 +201,27 @@ public:
                     mSigEncWidget->setProtocol(GpgME::CMS);
                 }
             });
+        } else {
+            mSigEncWidget = new SignEncryptWidget(nullptr, true);
+            mSigEncWidget->setProtocol(GpgME::OpenPGP);
         }
+        recipientsVLay->addWidget(mSigEncWidget);
+
+        mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        auto hLay = new QHBoxLayout;
+        hLay->addStretch();
+        hLay->addWidget(mCryptBtn);
+        recipientsVLay->addLayout(hLay);
+        splitterWidget->addWidget(scrollArea);
+
+        mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
+
+        auto fixedFont = QFont(QStringLiteral("Monospace"));
+        fixedFont.setStyleHint(QFont::TypeWriter);
+
+        mEdit->setFont(fixedFont);
+        mEdit->setAcceptRichText(false);
+        mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
         updateButtons();
 
