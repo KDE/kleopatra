@@ -35,6 +35,7 @@
 
 #include <QGpgME/DataProvider>
 
+#include <QAccessible>
 #include <QButtonGroup>
 #include <QFontDatabase>
 #include <QFontMetrics>
@@ -522,6 +523,11 @@ public:
                 mCryptBtn->setEnabled(false);
             }
             mMessageWidget->setVisible(!DeVSCompliance::isCompliant());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+            if (mMessageWidget->isVisible() && QAccessible::isActive()) {
+                mMessageWidget->setFocus();
+            }
+#endif
         }
     }
 
