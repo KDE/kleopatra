@@ -171,7 +171,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     {
         auto vLay = new QVBoxLayout;
         vLay->setSpacing(0);
-        d->mSigChk = new QCheckBox{i18n("Sign as:"), this};
+        d->mSigChk = new QCheckBox{i18n("&Sign as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
         auto checkFont = d->mSigChk->font();
@@ -268,7 +268,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
         // Checkbox for password
-        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password."));
+        d->mSymmetric = new QCheckBox(i18nc("@option:check", "Encrypt with password:"));
         d->mSymmetric->setFont(checkFont);
         d->mSymmetric->setToolTip(i18nc("Tooltip information for symmetric encryption",
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
@@ -354,6 +354,11 @@ void SignEncryptWidget::setEncryptForMeText(const QString &text)
     d->mEncSelfChk->setText(text);
 }
 
+void SignEncryptWidget::setEncryptForOthersText(const QString &text)
+{
+    d->mEncOtherLabel->setText(text);
+}
+
 void SignEncryptWidget::setEncryptWithPasswordText(const QString &text)
 {
     d->mSymmetric->setText(text);
@@ -374,6 +379,9 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !FileOperationsPreferences().symmetricEncryptionOnly());
     recipient.expiryMessage->setVisible(false);
+    if (!after) {
+        mEncOtherLabel->setBuddy(recipient.edit);
+    }
     if (static_cast<unsigned>(index / 2) < mRecpWidgets.size()) {
         mRecpWidgets.insert(mRecpWidgets.begin() + index / 2, recipient);
     } else {
