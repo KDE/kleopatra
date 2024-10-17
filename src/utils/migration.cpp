@@ -32,7 +32,7 @@ static void migrateGroupState(const QString &configName, const QString &name)
         auto group = KConfigGroup(config, g);
         auto newGroup = KConfigGroup(newConfig, QStringLiteral("%1:View %2").arg(name, QUuid::createUuid().toString()));
         for (const auto &key : group.keyList()) {
-            if (key == QStringLiteral("column-sizes")) {
+            if (key == QLatin1StringView("column-sizes")) {
                 newGroup.writeEntry("ColumnWidths", group.readEntry(key));
             } else if (!groupStateIgnoredKeys.contains(key)) {
                 newGroup.writeEntry(key, group.readEntry(key));

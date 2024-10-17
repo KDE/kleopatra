@@ -366,7 +366,7 @@ public:
         restoreLayout(defaultSize);
 
         for (auto i = 0; i < filtersProxyModel->rowCount(); ++i) {
-            if (filtersProxyModel->index(i, 0).data(KeyFilterManager::FilterIdRole).toString() == QStringLiteral("CanEncryptFilter")) {
+            if (filtersProxyModel->index(i, 0).data(KeyFilterManager::FilterIdRole).toString() == QLatin1StringView("CanEncryptFilter")) {
                 ui.combo->setCurrentIndex(i);
                 break;
             };

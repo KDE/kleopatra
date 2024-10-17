@@ -159,7 +159,7 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
             if (!mUseKeyServerCheckBox->isChecked()) {
                 mOpenPGPKeyserverEdit.widget()->setText(QStringLiteral("none"));
                 Q_EMIT q->changed();
-            } else if (mOpenPGPKeyserverEdit.widget()->text() == QStringLiteral("none")) {
+            } else if (mOpenPGPKeyserverEdit.widget()->text() == QLatin1StringView("none")) {
                 mOpenPGPKeyserverEdit.widget()->setText({});
                 Q_EMIT q->changed();
             }

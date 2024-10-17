@@ -54,14 +54,14 @@ public:
         }
 #endif
 
-        if (mimeType == QStringLiteral("text/uri-list")) {
+        if (mimeType == QLatin1StringView("text/uri-list")) {
             file->open();
             file->write(pgpData + smimeData);
             file->close();
             return QUrl(QStringLiteral("file://%1").arg(file->fileName()));
-        } else if (mimeType == QStringLiteral("application/pgp-keys")) {
+        } else if (mimeType == QLatin1StringView("application/pgp-keys")) {
             return pgpData;
-        } else if (mimeType == QStringLiteral("text/plain")) {
+        } else if (mimeType == QLatin1StringView("text/plain")) {
             QByteArray data = pgpData + smimeData;
             return data;
         }
