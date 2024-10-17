@@ -139,6 +139,6 @@ protected:
     explicit Command(const GpgME::Key &key, Private *pp);
 };
 
-}
+Q_DECLARE_OPERATORS_FOR_FLAGS(Command::Restrictions)
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Command::Restrictions)
+}

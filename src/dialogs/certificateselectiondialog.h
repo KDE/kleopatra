@@ -98,7 +98,6 @@ private:
     const std::unique_ptr<Private> d;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(CertificateSelectionDialog::Options)
 }
 }
-
-Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::Dialogs::CertificateSelectionDialog::Options)

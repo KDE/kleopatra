@@ -89,6 +89,7 @@ private:
     TreeWidget *mTreeWidget = nullptr;
     ProgressOverlay *mTreeViewOverlay = nullptr;
 };
-} // namespace Kleo
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(Kleo::CardKeysView::Options)
+Q_DECLARE_OPERATORS_FOR_FLAGS(CardKeysView::Options)
+
+} // namespace Kleo
