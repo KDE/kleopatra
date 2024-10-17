@@ -211,16 +211,16 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
 {
     QString text;
     if (result.error() || !result.fingerprint()) {
-        text = xi18n(
-            "<para>The creation of a new OpenPGP certificate failed.</para>"
-            "<para>Error: <message>%1</message></para>",
-            Formatting::errorAsString(result.error()));
+        text = xi18nc("@info",
+                      "<para>The creation of a new OpenPGP certificate failed.</para>"
+                      "<para>Error: <message>%1</message></para>",
+                      Formatting::errorAsString(result.error()));
     } else {
         // no error and we have a fingerprint, but there was no corresponding key in the key ring
-        text = xi18n(
-            "<para>A new OpenPGP certificate was created successfully, but it has not been found in the key ring.</para>"
-            "<para>Fingerprint of the new certificate:<nl/>%1</para>",
-            Formatting::prettyID(result.fingerprint()));
+        text = xi18nc("@info",
+                      "<para>A new OpenPGP certificate was created successfully, but it has not been found in the key ring.</para>"
+                      "<para>Fingerprint of the new certificate:<nl/>%1</para>",
+                      Formatting::prettyID(result.fingerprint()));
     }
 
     auto dialog = new QDialog;
