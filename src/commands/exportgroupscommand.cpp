@@ -157,7 +157,7 @@ void ExportGroupsCommand::Private::start()
 
     // remove/overwrite existing file
     if (QFile::exists(filename) && !QFile::remove(filename)) {
-        error(xi18n("Cannot overwrite existing <filename>%1</filename>.", filename), i18nc("@title:window", "Export Failed"));
+        error(xi18nc("@info", "Cannot overwrite existing <filename>%1</filename>.", filename), i18nc("@title:window", "Export Failed"));
         finished();
         return;
     }
@@ -229,7 +229,7 @@ bool ExportGroupsCommand::Private::exportGroups()
 {
     const auto result = writeKeyGroups(filename, groups);
     if (result != WriteKeyGroups::Success) {
-        error(xi18n("Writing groups to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
+        error(xi18nc("@info", "Writing groups to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
     }
     return result == WriteKeyGroups::Success;
 }
@@ -270,14 +270,14 @@ void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, con
 
     QFile f{filename};
     if (!f.open(QIODevice::WriteOnly | QIODevice::Append)) {
-        error(xi18n("Cannot open file <filename>%1</filename> for writing.", filename), i18nc("@title:window", "Export Failed"));
+        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename), i18nc("@title:window", "Export Failed"));
         finishedIfLastJob(job);
         return;
     }
 
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
-        error(xi18n("Writing certificates to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
+        error(xi18nc("@info", "Writing certificates to file <filename>%1</filename> failed.", filename), i18nc("@title:window", "Export Failed"));
     }
 
     finishedIfLastJob(job);
@@ -285,9 +285,10 @@ void ExportGroupsCommand::Private::onExportJobResult(const QGpgME::Job *job, con
 
 void ExportGroupsCommand::Private::showError(const GpgME::Error &err)
 {
-    error(xi18n("<para>An error occurred during the export:</para>"
-                "<para><message>%1</message></para>",
-                Formatting::errorAsString(err)),
+    error(xi18nc("@info",
+                 "<para>An error occurred during the export:</para>"
+                 "<para><message>%1</message></para>",
+                 Formatting::errorAsString(err)),
           i18nc("@title:window", "Export Failed"));
 }
 

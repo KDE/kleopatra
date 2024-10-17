@@ -197,10 +197,10 @@ void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult
     }
 
     if (!key.isNull()) {
-        success(
-            xi18n("<para>A new OpenPGP certificate was created successfully.</para>"
-                  "<para>Fingerprint of the new certificate: %1</para>",
-                  Formatting::prettyID(key.primaryFingerprint())));
+        success(xi18nc("@info",
+                       "<para>A new OpenPGP certificate was created successfully.</para>"
+                       "<para>Fingerprint of the new certificate: %1</para>",
+                       Formatting::prettyID(key.primaryFingerprint())));
         finished();
     } else {
         showErrorDialog(result);

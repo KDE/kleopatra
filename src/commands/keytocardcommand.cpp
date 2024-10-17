@@ -618,7 +618,7 @@ std::vector<QByteArray> KeyToCardCommand::Private::readSecretKeyFile()
 
     QFile file{path};
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        error(xi18n("Cannot open the private key file <filename>%1</filename> for reading.", path));
+        error(xi18nc("@info", "Cannot open the private key file <filename>%1</filename> for reading.", path));
         return {};
     }
 
@@ -627,7 +627,7 @@ std::vector<QByteArray> KeyToCardCommand::Private::readSecretKeyFile()
         lines.push_back(file.readLine());
     }
     if (lines.empty()) {
-        error(xi18n("The private key file <filename>%1</filename> is empty.", path));
+        error(xi18nc("@info", "The private key file <filename>%1</filename> is empty.", path));
     }
     return lines;
 }
@@ -637,14 +637,14 @@ bool KeyToCardCommand::Private::writeSecretKeyBackup(const QString &filename, co
     QSaveFile file{filename};
     // open the file in binary format because we want to write Unix line endings
     if (!file.open(QIODevice::WriteOnly)) {
-        error(xi18n("Cannot open the file <filename>%1</filename> for writing.", filename));
+        error(xi18nc("@info", "Cannot open the file <filename>%1</filename> for writing.", filename));
         return false;
     }
     for (const auto &line : keydata) {
         file.write(line);
     }
     if (!file.commit()) {
-        error(xi18n("Writing the backup of the secret key to <filename>%1</filename> failed.", filename));
+        error(xi18nc("@info", "Writing the backup of the secret key to <filename>%1</filename> failed.", filename));
         return false;
     };
     return true;

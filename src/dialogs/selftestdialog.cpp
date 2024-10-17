@@ -338,8 +338,9 @@ private:
             auto mainLayout = new QVBoxLayout{qq};
 
             {
-                auto label = new QLabel{xi18n("<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
-                                              "<para>Note that all but the first failure might be due to prior tests failing.</para>"),
+                auto label = new QLabel{xi18nc("@info",
+                                               "<para>These are the results of the Kleopatra self-test suite. Click on a test for details.</para>"
+                                               "<para>Note that all but the first failure might be due to prior tests failing.</para>"),
                                         qq};
                 label->setWordWrap(true);
                 labelHelper.addLabel(label);

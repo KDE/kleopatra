@@ -149,9 +149,10 @@ void AutoDecryptVerifyFilesController::Private::exec()
         // Since GpgME 1.7.0 Classification is supposed to be reliable
         // so we really can't do anything with this data.
         reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                    xi18n("Failed to find encrypted or signed data in one or more files.<nl/>"
-                          "You can manually select what to do with the files now.<nl/>"
-                          "If they contain signed or encrypted data please report a bug (see Help->Report Bug)."));
+                    xi18nc("@info",
+                           "Failed to find encrypted or signed data in one or more files.<nl/>"
+                           "You can manually select what to do with the files now.<nl/>"
+                           "If they contain signed or encrypted data please report a bug (see Help->Report Bug)."));
         auto cmd = new Commands::DecryptVerifyFilesCommand(undetected, nullptr, true);
         cmd->start();
     }
@@ -236,7 +237,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
         qCDebug(KLEOPATRA_LOG) << "classified" << cFile.fileName << "as" << printableClassification(cFile.classification);
 
         if (!fi.isReadable()) {
-            reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), xi18n("Cannot open <filename>%1</filename> for reading.", cFile.fileName));
+            reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT), xi18nc("@info", "Cannot open <filename>%1</filename> for reading.", cFile.fileName));
             continue;
         }
 
@@ -244,7 +245,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             // Trying to verify a certificate. Possible because extensions are often similar
             // for PGP Keys.
             reportError(makeGnuPGError(GPG_ERR_ASS_NO_INPUT),
-                        xi18n("The file <filename>%1</filename> contains certificates and can't be decrypted or verified.", cFile.fileName));
+                        xi18nc("@info", "The file <filename>%1</filename> contains certificates and can't be decrypted or verified.", cFile.fileName));
             qCDebug(KLEOPATRA_LOG) << "reported error";
             continue;
         }
@@ -294,9 +295,10 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
             // Detached signature, try to find data or ask the user.
             QString signedDataFileName = cFile.baseName;
             if (!QFile::exists(signedDataFileName)) {
-                signedDataFileName = QFileDialog::getOpenFileName(nullptr,
-                                                                  xi18n("Select the file to verify with the signature <filename>%1</filename>", fi.fileName()),
-                                                                  fi.path());
+                signedDataFileName =
+                    QFileDialog::getOpenFileName(nullptr,
+                                                 xi18nc("@title:window", "Select the file to verify with the signature <filename>%1</filename>", fi.fileName()),
+                                                 fi.path());
             }
             if (signedDataFileName.isEmpty()) {
                 qCDebug(KLEOPATRA_LOG) << "No signed data selected. Verify aborted.";
@@ -631,10 +633,10 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
                 // we switch "Yes" and "No" because Yes is default, but saving with embedded file name could be dangerous
                 const auto answer = KMessageBox::questionTwoActionsCancel(
                     m_dialog,
-                    xi18n("Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
+                    xi18nc("@info", "Shall the file be saved with the original file name <filename>%1</filename>?", embeddedFileName),
                     i18nc("@title:window", "Use Original File Name?"),
-                    KGuiItem(xi18n("No, Save As <filename>%1</filename>", fi.fileName())),
-                    KGuiItem(xi18n("Yes, Save As <filename>%1</filename>", embeddedFileName)));
+                    KGuiItem(xi18nc("@action:button", "No, Save As <filename>%1</filename>", fi.fileName())),
+                    KGuiItem(xi18nc("@action:button", "Yes, Save As <filename>%1</filename>", embeddedFileName)));
                 if (answer == KMessageBox::Cancel) {
                     qCDebug(KLEOPATRA_LOG) << "Saving canceled for:" << inpath;
                     continue;
@@ -657,7 +659,7 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
                 case OverwritePolicy::Overwrite: {
                     // overwrite existing file
                     if (!QFile::remove(outpath)) {
-                        reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to delete <filename>%1</filename>.", outpath));
+                        reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18nc("@info", "Failed to delete <filename>%1</filename>.", outpath));
                         continue;
                     }
                     break;
@@ -677,7 +679,8 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
                 };
             }
             if (!QFile::rename(inpath, outpath)) {
-                reportError(makeGnuPGError(GPG_ERR_GENERAL), xi18n("Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));
+                reportError(makeGnuPGError(GPG_ERR_GENERAL),
+                            xi18nc("@info", "Failed to move <filename>%1</filename> to <filename>%2</filename>.", inpath, outpath));
             }
         }
     }

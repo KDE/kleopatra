@@ -119,13 +119,14 @@ void GenRevokeCommand::doStart()
         }
         const QFileInfo fi{mOutputFileName};
         if (fi.exists()) {
-            auto sel = KMessageBox::questionTwoActions(d->parentWidgetOrView(),
-                                                       xi18n("The file <filename>%1</filename> already exists. Do you wish to overwrite it?", fi.fileName()),
-                                                       i18nc("@title:window", "Overwrite File?"),
-                                                       KStandardGuiItem::overwrite(),
-                                                       KStandardGuiItem::cancel(),
-                                                       {},
-                                                       KMessageBox::Notify | KMessageBox::Dangerous);
+            auto sel =
+                KMessageBox::questionTwoActions(d->parentWidgetOrView(),
+                                                xi18nc("@info", "The file <filename>%1</filename> already exists. Do you wish to overwrite it?", fi.fileName()),
+                                                i18nc("@title:window", "Overwrite File?"),
+                                                KStandardGuiItem::overwrite(),
+                                                KStandardGuiItem::cancel(),
+                                                {},
+                                                KMessageBox::Notify | KMessageBox::Dangerous);
             if (sel == KMessageBox::ButtonCode::SecondaryAction) {
                 proposedFileName = mOutputFileName;
                 mOutputFileName.clear();

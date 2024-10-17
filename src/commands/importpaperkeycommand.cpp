@@ -83,7 +83,7 @@ void ImportPaperKeyCommand::exportResult(const GpgME::Error &err, const QByteArr
     QFile input(mFileName);
 
     if (!input.open(QIODevice::ReadOnly)) {
-        d->error(xi18n("Cannot open <filename>%1</filename> for reading.", mFileName), errorCaption());
+        d->error(xi18nc("@info", "Cannot open <filename>%1</filename> for reading.", mFileName), errorCaption());
         d->finished();
         return;
     }

@@ -161,7 +161,7 @@ int main(int argc, char **argv)
                                                       "breaking file permissions in the GnuPG data folder.</para>"
                                                       "<para>To manage keys for other users please manage them as a normal user and "
                                                       "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>")
-                                                   + xi18n("<para>Are you sure that you want to continue?</para>"),
+                                                   + xi18nc("@info", "<para>Are you sure that you want to continue?</para>"),
                                                i18nc("@title", "Running as Administrator"))
             != KMessageBox::Continue) {
             return EXIT_FAILURE;

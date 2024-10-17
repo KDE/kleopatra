@@ -495,7 +495,7 @@ static QString process(const Dir &dir, bool *fatal)
         return QString();
     }
 
-    return xi18n("Failed to overwrite <filename>%1</filename>.", dir.sumFile);
+    return xi18nc("@info", "Failed to overwrite <filename>%1</filename>.", dir.sumFile);
 }
 
 namespace

@@ -218,9 +218,10 @@ public:
 
         const QString app = KAboutData::applicationData().displayName();
         const int rc = KMessageBox::questionTwoActionsCancel(q,
-                                                             xi18n("<application>%1</application> may be used by other applications as a service.<nl/>"
-                                                                   "You may instead want to close this window without exiting <application>%1</application>.",
-                                                                   app),
+                                                             xi18nc("@info",
+                                                                    "<application>%1</application> may be used by other applications as a service.<nl/>"
+                                                                    "You may instead want to close this window without exiting <application>%1</application>.",
+                                                                    app),
                                                              i18nc("@title:window", "Really Quit?"),
                                                              KStandardGuiItem_close(),
                                                              KStandardGuiItem_quit(),
