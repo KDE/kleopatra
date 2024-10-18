@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-16 00:41+0000\n"
+"POT-Creation-Date: 2024-10-18 00:40+0000\n"
 "PO-Revision-Date: 2024-09-19 22:12+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -1514,7 +1514,7 @@ msgstr "Ομάδες πιστοποιητικών (*%1)"
 #: src/commands/exportgroupscommand.cpp:232
 #: src/commands/exportgroupscommand.cpp:273
 #: src/commands/exportgroupscommand.cpp:280
-#: src/commands/exportgroupscommand.cpp:291
+#: src/commands/exportgroupscommand.cpp:292
 #: src/commands/exportsecretsubkeycommand.cpp:213
 #: src/commands/exportsecretsubkeycommand.cpp:220
 #: src/commands/exportsecretsubkeycommand.cpp:232
@@ -1525,7 +1525,9 @@ msgid "Export Failed"
 msgstr "Αποτυχία εξαγωγής"
 
 #: src/commands/exportgroupscommand.cpp:160
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot overwrite existing <filename>%1</filename>."
+msgctxt "@info"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Αποτυχία αντικατάστασης <filename>%1</filename>."
 
@@ -1587,7 +1589,9 @@ msgid "Export Groups"
 msgstr "Σφάλμα εξαγωγής"
 
 #: src/commands/exportgroupscommand.cpp:232
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Writing groups to file <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "Η εγγραφή των ομάδων στο αρχείο <filename>%1</filename> απέτυχε."
 
@@ -1597,18 +1601,25 @@ msgid "Exporting certificate groups..."
 msgstr "Εξαγωγή ομάδων πιστοποιητικών..."
 
 #: src/commands/exportgroupscommand.cpp:273
+#: src/commands/exportsecretkeycommand.cpp:253
+#: src/commands/exportsecretsubkeycommand.cpp:220
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Αδυναμία ανοίγματος αρχείου <filename>%1</filename> για εγγραφή."
+msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για εγγραφή."
 
 #: src/commands/exportgroupscommand.cpp:280
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Writing certificates to file <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
 "Η εγγραφή των πιστοποιητικών στο αρχείο <filename>%1</filename> απέτυχε."
 
-#: src/commands/exportgroupscommand.cpp:288
+#: src/commands/exportgroupscommand.cpp:289
+#: src/commands/exportsecretsubkeycommand.cpp:245
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
@@ -1878,13 +1889,6 @@ msgstr ""
 "Το αποτέλεσμα της λήψης εφεδρικού αντιγράφου είναι κενό. Ίσως εισάγατε μια "
 "κενή ή λανθασμένη κωδική φράση."
 
-#: src/commands/exportsecretkeycommand.cpp:253
-#: src/commands/exportsecretsubkeycommand.cpp:220
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για εγγραφή."
-
 #: src/commands/exportsecretkeycommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
@@ -1950,16 +1954,6 @@ msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "Η εξαγωγή του υποκλειδιού έγινε με επιτυχία."
 msgstr[1] "Η εξαγωγή %1 υποκλειδιών έγινε με επιτυχία."
-
-#: src/commands/exportsecretsubkeycommand.cpp:245
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred during the export:</para><para><message>%1</"
-"message></para>"
-msgstr ""
-"<para>Παρουσιάστηκε σφάλμα κατά την εξαγωγή:</para><para><message>%1</"
-"message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:190
 #, fuzzy, kde-format
@@ -2111,21 +2105,25 @@ msgstr "Δημιουργία πιστοποιητικού ανάκλησης"
 msgid "Revocation Certificates "
 msgstr "Πιστοποιητικά ανάκλησης "
 
-#: src/commands/genrevokecommand.cpp:123
-#, kde-kuit-format
+#: src/commands/genrevokecommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr ""
 "Το αρχείο με όνομα <filename>%1</filename> υπάρχει ήδη. Επιθυμείτε σίγουρα "
 "την αντικατάστασή του;"
 
-#: src/commands/genrevokecommand.cpp:124
+#: src/commands/genrevokecommand.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr "Αντικατάσταση αρχείου;"
 
-#: src/commands/genrevokecommand.cpp:184
+#: src/commands/genrevokecommand.cpp:185
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -2599,8 +2597,10 @@ msgid "Import CRL Finished"
 msgstr "Ολοκλήρωση εισαγωγής CRL"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
+msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Αδυναμία ανοίγματος του <filename>%1</filename> για ανάγνωση."
 
@@ -2848,24 +2848,34 @@ msgid "Secret Key Backup Files"
 msgstr "Αρχεία αντιγράφου ασφαλείας μυστικού κλειδιού"
 
 #: src/commands/keytocardcommand.cpp:621
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Cannot open the private key file <filename>%1</filename> for reading."
+msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
 "Αδυναμία ανοίγματος του αρχείου ιδιωτικού κλειδιού <filename>%1</filename> "
 "για ανάγνωση."
 
 #: src/commands/keytocardcommand.cpp:630
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "The private key file <filename>%1</filename> is empty."
+msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Το αρχείο ιδιωτικού κλειδιού <filename>%1</filename> είναι κενό."
 
 #: src/commands/keytocardcommand.cpp:640
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open the file <filename>%1</filename> for writing."
+msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Αδυναμία ανοίγματος του αρχείου <filename>%1</filename> για εγγραφή."
 
 #: src/commands/keytocardcommand.cpp:647
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Writing the backup of the secret key to <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 "Η εγγραφή του αντιγράφου ασφαλείας του μυστικού κλειδιού στο <filename>%1</"
@@ -3043,7 +3053,11 @@ msgstr ""
 "αριθμών. Αυτό μπορεί να διαρκέσει αρκετά λεπτά..."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:201
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully.</"
+#| "para><para>Fingerprint of the new certificate: %1</para>"
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
 "para><para>Fingerprint of the new certificate: %1</para>"
@@ -3052,7 +3066,11 @@ msgstr ""
 "δακτυλικό αποτύπωμα του νέου πιστοποιητικού: %1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:215
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>The creation of a new OpenPGP certificate failed.</"
+#| "para><para>Error: <message>%1</message></para>"
+msgctxt "@info"
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
@@ -3061,7 +3079,12 @@ msgstr ""
 "para><para>Σφάλμα: <message>%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:221
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully, but it has not "
+#| "been found in the key ring.</para><para>Fingerprint of the new "
+#| "certificate:<nl/>%1</para>"
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
@@ -4632,8 +4655,13 @@ msgstr ""
 "Η σύνταξη είναι \"ΥΠΟΛΟΓΙΣΤΗΣ\" ή \"ΥΠΟΛΟΓΙΣΤΗΣ:ΘΥΡΑ\". Αν δεν οριστεί η "
 "ΘΥΡΑ, θα χρησιμοποιηθεί η 389 (η τυπική θύρα LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:152
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
 "manually select what to do with the files now.<nl/>If they contain signed or "
@@ -4644,8 +4672,12 @@ msgstr ""
 "με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
 "κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:248
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> contains certificates and can't be "
+#| "decrypted or verified."
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
@@ -4653,13 +4685,15 @@ msgstr ""
 "Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
 "αποκρυπτογραφηθεί ή να επαληθευθεί."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:298
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:300
+#, fuzzy, kde-kuit-format
+#| msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
 "Επιλέξτε το αρχείο για επιβεβαίωση με την υπογραφή <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:612
+#: src/crypto/autodecryptverifyfilescontroller.cpp:614
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4669,7 +4703,7 @@ msgstr ""
 "<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:622
+#: src/crypto/autodecryptverifyfilescontroller.cpp:624
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4679,37 +4713,49 @@ msgstr ""
 "<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Shall the file be saved with the original file name <filename>%1</"
+#| "filename>?"
+msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 "Να γίνει αποθήκευση του αρχείου με το αρχικό όνομα αρχείου <filename>%1</"
 "filename>;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Χρήση αρχικού ονόματος αρχείου;"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:636
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:638
+#, fuzzy, kde-kuit-format
+#| msgid "No, Save As <filename>%1</filename>"
+msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Όχι, αποθήκευση ως <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:637
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:639
+#, fuzzy, kde-kuit-format
+#| msgid "Yes, Save As <filename>%1</filename>"
+msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ναι, αποθήκευση ως <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:660
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:662
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:680
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:683
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
@@ -4779,7 +4825,9 @@ msgid "Failed to execute %1: %2"
 msgstr "Αποτυχία εκτέλεσης %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to overwrite <filename>%1</filename>."
+msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
 msgstr "Αποτυχία αντικατάστασης <filename>%1</filename>."
 
@@ -7349,7 +7397,7 @@ msgid ""
 "continue:</para>"
 msgstr ""
 
-#: src/dialogs/debugdialog.cpp:62
+#: src/dialogs/debugdialog.cpp:64
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "%1 Configuration Check"
@@ -7357,14 +7405,28 @@ msgctxt "@title:window"
 msgid "GnuPG Configuration Overview"
 msgstr "Έλεγχος διαμόρφωσης %1"
 
-#: src/dialogs/debugdialog.cpp:84
+#: src/dialogs/debugdialog.cpp:99
+#, fuzzy, kde-format
+#| msgid "GnuPG Command&line"
+msgctxt "@action:button"
+msgid "Run Command"
+msgstr "Γραμμή εντο&λής GnuPG"
+
+#: src/dialogs/debugdialog.cpp:127
 #, fuzzy, kde-format
 #| msgid "Clipboard"
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Πρόχειρο"
 
-#: src/dialogs/debugdialog.cpp:116
+#: src/dialogs/debugdialog.cpp:133
+#, fuzzy, kde-format
+#| msgid "Save Log to File"
+msgctxt "@action:button"
+msgid "Save to File"
+msgstr "Αποθήκευση αρχείου καταγραφής"
+
+#: src/dialogs/debugdialog.cpp:167
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -7990,8 +8052,13 @@ msgstr "Αποτέλεσμα"
 msgid "(select test first)"
 msgstr "(επιλέξτε πρώτα κείμενο)"
 
-#: src/dialogs/selftestdialog.cpp:341
-#, kde-kuit-format
+#: src/dialogs/selftestdialog.cpp:342
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>These are the results of the Kleopatra self-test suite. Click on a "
+#| "test for details.</para><para>Note that all but the first failure might "
+#| "be due to prior tests failing.</para>"
+msgctxt "@info"
 msgid ""
 "<para>These are the results of the Kleopatra self-test suite. Click on a "
 "test for details.</para><para>Note that all but the first failure might be "
@@ -8002,54 +8069,54 @@ msgstr ""
 "εκτός της πρώτης αποτυχίας μπορεί να είναι αποτυχίες από προηγούμενους "
 "ελέγχους.</para>"
 
-#: src/dialogs/selftestdialog.cpp:359
+#: src/dialogs/selftestdialog.cpp:360
 #, kde-format
 msgid "test results"
 msgstr "αποτελέσματα ελέγχου"
 
-#: src/dialogs/selftestdialog.cpp:373
+#: src/dialogs/selftestdialog.cpp:374
 #, kde-format
 msgctxt "@title:group"
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: src/dialogs/selftestdialog.cpp:397
+#: src/dialogs/selftestdialog.cpp:398
 #, kde-format
 msgctxt "@title:group"
 msgid "Proposed Corrective Action"
 msgstr "Προτεινόμενη διορθωτική ενέργεια"
 
-#: src/dialogs/selftestdialog.cpp:422
+#: src/dialogs/selftestdialog.cpp:423
 #, kde-format
 msgctxt "@action:button"
 msgid "Do It"
 msgstr "Εκτέλεση"
 
-#: src/dialogs/selftestdialog.cpp:434
+#: src/dialogs/selftestdialog.cpp:435
 #, kde-format
 msgctxt "@option:check"
 msgid "Show all test results"
 msgstr "Εμφάνιση όλων των αποτελεσμάτων ελέγχου"
 
-#: src/dialogs/selftestdialog.cpp:438
+#: src/dialogs/selftestdialog.cpp:439
 #, kde-format
 msgctxt "@option:check"
 msgid "Run these tests at startup"
 msgstr "Εκτέλεση αυτών των ελέγχων κατά την εκκίνηση"
 
-#: src/dialogs/selftestdialog.cpp:444
+#: src/dialogs/selftestdialog.cpp:445
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Συνέχεια"
 
-#: src/dialogs/selftestdialog.cpp:445
+#: src/dialogs/selftestdialog.cpp:446
 #, kde-format
 msgctxt "@action:button"
 msgid "Rerun Tests"
 msgstr "Επανεκτέλεση ελέγχων"
 
-#: src/dialogs/selftestdialog.cpp:456
+#: src/dialogs/selftestdialog.cpp:457
 #, kde-format
 msgctxt "@title:window"
 msgid "Self Test"
@@ -9397,6 +9464,12 @@ msgstr ""
 msgid "Disable profile settings"
 msgstr "Απενεργοποίηση ρυθμίσεων προφίλ"
 
+#. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
+#: src/kcfg/settings.kcfg:215
+#, kde-format
+msgid "Allow custom debug commands"
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/smimevalidationpreferences.kcfg:6
 #, kde-format
@@ -9789,7 +9862,9 @@ msgstr ""
 "\\gnupg</filename> με κατάλληλα δικαιώματα.</para>"
 
 #: src/main.cpp:164
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "<para>Are you sure that you want to continue?</para>"
+msgctxt "@info"
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Θέλετε πράγματι να συνεχίσετε;</para>"
 
@@ -9841,8 +9916,13 @@ msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Κλείσιμο &μόνο του παραθύρου"
 
-#: src/mainwindow.cpp:221
-#, kde-kuit-format
+#: src/mainwindow.cpp:222
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<application>%1</application> may be used by other applications as a "
+#| "service.<nl/>You may instead want to close this window without exiting "
+#| "<application>%1</application>."
+msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
 "<nl/>You may instead want to close this window without exiting <application>"
@@ -9852,13 +9932,13 @@ msgstr ""
 "εφαρμογές ως υπηρεσία.<nl/>Ίσως επιθυμείτε το κλείσιμο του παραθύρου αυτού "
 "χωρίς έξοδο από το <application>%1</application>."
 
-#: src/mainwindow.cpp:224
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Πραγματικά έξοδος;"
 
-#: src/mainwindow.cpp:311
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9867,29 +9947,29 @@ msgstr ""
 "Αδυναμία εκκίνησης του προβολέα καταγραφής GnuPG (kwatchgnupg). Παρακαλώ "
 "ελέγξτε την εγκατάστασή σας."
 
-#: src/mainwindow.cpp:313
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Σφάλμα εκκίνησης του KWatchGnuPG"
 
-#: src/mainwindow.cpp:573
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Προβολέας καταγραφής GnuPG"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:586
 #, fuzzy, kde-format
 #| msgid "Show GnuPG system configuration"
 msgid "Show GnuPG Configuration"
 msgstr "Εμφάνιση ρυθμίσεων συστήματος GnuPG"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Επανεκκίνηση διεργασιών παρασκηνίου"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9898,23 +9978,23 @@ msgid ""
 msgstr ""
 "Επανεκκινεί τις διεργασίες παρασκηνίου, π.χ. μετά από αλλαγές στις ρυθμίσεις."
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Έλεγχος για ενημερώσεις"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Εμφάνιση επισκόπησης πιστοποιητικού"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9922,52 +10002,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Σημειωματάριο"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Να εμφανίζεται το σημειωματάριο για (απο)κρυπτογράφηση και υπογραφή/"
 "επικύρωση κειμένου"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Έξυπνες κάρτες"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Εμφάνιση διαχείρισης έξυπνων καρτών"
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Εκτέλεση αυτοελέγχου"
 
-#: src/mainwindow.cpp:669
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Διαμόρφωση ομάδων..."
 
-#: src/mainwindow.cpp:681
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Ομάδες"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:723
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Ρύθμιση εστίασης σε γρήγορη αναζήτηση"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:735
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win σύνοψη"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:739
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9975,49 +10055,49 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:750
 #, fuzzy, kde-format
 #| msgid "Quick Encrypt EMail"
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Γρήγορη κρυπτογράφηση ηλ. αλληλογραφίας"
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:751
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:759
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Κρυπτογράφηση με βάση κωδικό"
 
-#: src/mainwindow.cpp:759
+#: src/mainwindow.cpp:760
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:767
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "Ομάδ&ες πιστοποιητικών"
 
-#: src/mainwindow.cpp:767
+#: src/mainwindow.cpp:768
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Κρυπτογράφηση Α&λληλογραφίας στο Outlook"
 
-#: src/mainwindow.cpp:777
+#: src/mainwindow.cpp:778
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10025,41 +10105,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:788
 #, kde-format
 msgid "&Certification Management"
 msgstr "Διαχείριση πιστοποίησης"
 
-#: src/mainwindow.cpp:788
+#: src/mainwindow.cpp:789
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:797
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Ρύθμιση έ&ξυπνων καρτών"
 
-#: src/mainwindow.cpp:797
+#: src/mainwindow.cpp:798
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:804
+#: src/mainwindow.cpp:805
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Γραμμή εντο&λής GnuPG"
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:815
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:815
+#: src/mainwindow.cpp:816
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -10071,12 +10151,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:824
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:824
+#: src/mainwindow.cpp:825
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -10088,7 +10168,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10097,7 +10177,7 @@ msgstr ""
 "Υπάρχουν ακόμη κάποιες διεργασίες παρασκηνίου σε εξέλιξη. Αυτές θα "
 "τερματιστούν κατά το κλείσιμο του παραθύρου. Θα συνεχίσετε;"
 
-#: src/mainwindow.cpp:854
+#: src/mainwindow.cpp:855
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Διεργασίες παρασκηνίου σε εξέλιξη"
@@ -13240,6 +13320,16 @@ msgstr ""
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
 
+#~ msgid "Cannot open file <filename>%1</filename> for writing."
+#~ msgstr "Αδυναμία ανοίγματος αρχείου <filename>%1</filename> για εγγραφή."
+
+#~ msgid ""
+#~ "<para>An error occurred during the export:</para><para><message>%1</"
+#~ "message></para>"
+#~ msgstr ""
+#~ "<para>Παρουσιάστηκε σφάλμα κατά την εξαγωγή:</para><para><message>%1</"
+#~ "message></para>"
+
 #~ msgctxt "User ID (Key ID)"
 #~ msgid "%1 (%2)"
 #~ msgstr "%1 (%2)"
@@ -16376,9 +16466,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Η διεργασία καταγραφής watchgnupg δεν εκτελείται.\n"
 #~ "Το παράθυρο καταγραφής δεν μπορεί να εμφανίσει χρήσιμες πληροφορίες."
-
-#~ msgid "Save Log to File"
-#~ msgstr "Αποθήκευση αρχείου καταγραφής"
 
 #~ msgid "Could not save file %1: %2"
 #~ msgstr "Αδυναμία αποθήκευσης στο αρχείο %1: %2"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-16 00:41+0000\n"
+"POT-Creation-Date: 2024-10-18 00:40+0000\n"
 "PO-Revision-Date: 2024-10-01 23:41+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -1462,7 +1462,7 @@ msgstr "Групи сертифікатів (*%1)"
 #: src/commands/exportgroupscommand.cpp:232
 #: src/commands/exportgroupscommand.cpp:273
 #: src/commands/exportgroupscommand.cpp:280
-#: src/commands/exportgroupscommand.cpp:291
+#: src/commands/exportgroupscommand.cpp:292
 #: src/commands/exportsecretsubkeycommand.cpp:213
 #: src/commands/exportsecretsubkeycommand.cpp:220
 #: src/commands/exportsecretsubkeycommand.cpp:232
@@ -1473,7 +1473,9 @@ msgid "Export Failed"
 msgstr "Не вдалося експортувати"
 
 #: src/commands/exportgroupscommand.cpp:160
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot overwrite existing <filename>%1</filename>."
+msgctxt "@info"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr "Не вдалося перезаписати наявний <filename>%1</filename>."
 
@@ -1524,7 +1526,9 @@ msgid "Export Groups"
 msgstr "Експортувати групи"
 
 #: src/commands/exportgroupscommand.cpp:232
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Writing groups to file <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "Не вдалося записати групи до файла <filename>%1</filename>."
 
@@ -1534,17 +1538,24 @@ msgid "Exporting certificate groups..."
 msgstr "Експорт груп сертифікатів…"
 
 #: src/commands/exportgroupscommand.cpp:273
+#: src/commands/exportsecretkeycommand.cpp:253
+#: src/commands/exportsecretsubkeycommand.cpp:220
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Не вдалося відкрити файл <filename>%1</filename> для запису."
 
 #: src/commands/exportgroupscommand.cpp:280
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Writing certificates to file <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr "Не вдалося записати сертифікати до файла <filename>%1</filename>."
 
-#: src/commands/exportgroupscommand.cpp:288
+#: src/commands/exportgroupscommand.cpp:289
+#: src/commands/exportsecretsubkeycommand.cpp:245
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
@@ -1805,13 +1816,6 @@ msgstr ""
 "Результат резервного копіювання є порожнім. Можливо, ви ввели порожній або "
 "помилковий пароль."
 
-#: src/commands/exportsecretkeycommand.cpp:253
-#: src/commands/exportsecretsubkeycommand.cpp:220
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr "Не вдалося відкрити файл <filename>%1</filename> для запису."
-
 #: src/commands/exportsecretkeycommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
@@ -1881,16 +1885,6 @@ msgstr[0] "Успішно експортовано %1 підключ."
 msgstr[1] "Успішно експортовано %1 підключі."
 msgstr[2] "Успішно експортовано %1 підключів."
 msgstr[3] "Успішно експортовано один підключ."
-
-#: src/commands/exportsecretsubkeycommand.cpp:245
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred during the export:</para><para><message>%1</"
-"message></para>"
-msgstr ""
-"<para>Під час експортування сталася помилка:</para><para><message>%1</"
-"message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:190
 #, kde-format
@@ -2040,19 +2034,23 @@ msgstr "Створити сертифікат відкликання"
 msgid "Revocation Certificates "
 msgstr "Сертифікати відкликання"
 
-#: src/commands/genrevokecommand.cpp:123
-#, kde-kuit-format
+#: src/commands/genrevokecommand.cpp:124
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
+#| "it?"
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr "Файл з назвою <filename>%1</filename> вже існує. Перезаписати його?"
 
-#: src/commands/genrevokecommand.cpp:124
+#: src/commands/genrevokecommand.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr "Перезаписати файл?"
 
-#: src/commands/genrevokecommand.cpp:184
+#: src/commands/genrevokecommand.cpp:185
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -2524,8 +2522,10 @@ msgid "Import CRL Finished"
 msgstr "Імпорт CRL завершено"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open <filename>%1</filename> for reading."
+msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "Не вдалося відкрити <filename>%1</filename> для читання."
 
@@ -2764,23 +2764,33 @@ msgid "Secret Key Backup Files"
 msgstr "Файли резервних копій закритого ключа"
 
 #: src/commands/keytocardcommand.cpp:621
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Cannot open the private key file <filename>%1</filename> for reading."
+msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
 "Не вдалося відкрити файл закритого ключа <filename>%1</filename> для читання."
 
 #: src/commands/keytocardcommand.cpp:630
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "The private key file <filename>%1</filename> is empty."
+msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Файл закритого ключа <filename>%1</filename> є порожнім."
 
 #: src/commands/keytocardcommand.cpp:640
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot open the file <filename>%1</filename> for writing."
+msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Не вдалося відкрити файл <filename>%1</filename> для запису."
 
 #: src/commands/keytocardcommand.cpp:647
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Writing the backup of the secret key to <filename>%1</filename> failed."
+msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 "Не вдалося записати резервну копію закритого ключа до <filename>%1</"
@@ -2948,7 +2958,11 @@ msgstr ""
 "може тривати декілька хвилин…"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:201
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully.</"
+#| "para><para>Fingerprint of the new certificate: %1</para>"
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
 "para><para>Fingerprint of the new certificate: %1</para>"
@@ -2957,7 +2971,11 @@ msgstr ""
 "сертифіката: %1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:215
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>The creation of a new OpenPGP certificate failed.</"
+#| "para><para>Error: <message>%1</message></para>"
+msgctxt "@info"
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
@@ -2966,7 +2984,12 @@ msgstr ""
 "%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:221
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>A new OpenPGP certificate was created successfully, but it has not "
+#| "been found in the key ring.</para><para>Fingerprint of the new "
+#| "certificate:<nl/>%1</para>"
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
@@ -4548,8 +4571,13 @@ msgstr ""
 "Синтаксис адреси такий: «ВУЗОЛ» або «ВУЗОЛ:ПОРТ». Якщо ПОРТ не вказано, буде "
 "використано порт 389 (стандартний порт LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:152
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:153
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
 "manually select what to do with the files now.<nl/>If they contain signed or "
@@ -4561,8 +4589,12 @@ msgstr ""
 "повідомте розробникам цієї програми про ваду (див. пункт меню Довідка → "
 "Надіслати звіт про помилку)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:248
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file <filename>%1</filename> contains certificates and can't be "
+#| "decrypted or verified."
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
@@ -4570,14 +4602,16 @@ msgstr ""
 "Якщо файл <filename>%1</filename> містить сертифікати і не може бути "
 "розшифрований або перевірений."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:298
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:300
+#, fuzzy, kde-kuit-format
+#| msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
 "Виберіть файл, який слід перевірити за допомогою підпису <filename>%1</"
 "filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:612
+#: src/crypto/autodecryptverifyfilescontroller.cpp:614
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4587,7 +4621,7 @@ msgstr ""
 "<para>Не вдалося пересунути <filename>%1</filename> до <filename>%2</"
 "filename>.</para><para><message>%3</message></para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:622
+#: src/crypto/autodecryptverifyfilescontroller.cpp:624
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4597,35 +4631,47 @@ msgstr ""
 "<para>Не вдалося пересунути <filename>%1</filename> до <filename>%2</"
 "filename>.</para>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Shall the file be saved with the original file name <filename>%1</"
+#| "filename>?"
+msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Чи слід зберегти файл із початковою назвою — <filename>%1</filename>?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Скористатися початковою назвою файла?"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:636
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:638
+#, fuzzy, kde-kuit-format
+#| msgid "No, Save As <filename>%1</filename>"
+msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Ні, зберегти як <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:637
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:639
+#, fuzzy, kde-kuit-format
+#| msgid "Yes, Save As <filename>%1</filename>"
+msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Так, зберегти як <filename>%1</filename>"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:660
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:662
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Не вдалося вилучити <filename>%1</filename>."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:680
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:683
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
 "Не вдалося пересунути <filename>%1</filename> до <filename>%2</filename>."
@@ -4695,7 +4741,9 @@ msgid "Failed to execute %1: %2"
 msgstr "Не вдалося виконати %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to overwrite <filename>%1</filename>."
+msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
 msgstr "Не вдалося перезаписати <filename>%1</filename>."
 
@@ -7239,19 +7287,33 @@ msgstr ""
 "картка: <emphasis>%2</emphasis></para><para>Виберіть один з таких варіантів "
 "для продовження:</para>"
 
-#: src/dialogs/debugdialog.cpp:62
+#: src/dialogs/debugdialog.cpp:64
 #, kde-format
 msgctxt "@title:window"
 msgid "GnuPG Configuration Overview"
 msgstr "Огляд налаштувань GnuPG"
 
-#: src/dialogs/debugdialog.cpp:84
+#: src/dialogs/debugdialog.cpp:99
+#, fuzzy, kde-format
+#| msgid "GnuPG Command&line"
+msgctxt "@action:button"
+msgid "Run Command"
+msgstr "Кома&ндний рядок GnuPG"
+
+#: src/dialogs/debugdialog.cpp:127
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Скопіювати до буфера"
 
-#: src/dialogs/debugdialog.cpp:116
+#: src/dialogs/debugdialog.cpp:133
+#, fuzzy, kde-format
+#| msgid "Select File"
+msgctxt "@action:button"
+msgid "Save to File"
+msgstr "Виберіть файл"
+
+#: src/dialogs/debugdialog.cpp:167
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -7889,8 +7951,13 @@ msgstr "Результат"
 msgid "(select test first)"
 msgstr "(спочатку виберіть перевірку)"
 
-#: src/dialogs/selftestdialog.cpp:341
-#, kde-kuit-format
+#: src/dialogs/selftestdialog.cpp:342
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<para>These are the results of the Kleopatra self-test suite. Click on a "
+#| "test for details.</para><para>Note that all but the first failure might "
+#| "be due to prior tests failing.</para>"
+msgctxt "@info"
 msgid ""
 "<para>These are the results of the Kleopatra self-test suite. Click on a "
 "test for details.</para><para>Note that all but the first failure might be "
@@ -7900,54 +7967,54 @@ msgstr ""
 "дізнатися після натискання кнопки «Тест».</para><para>Зауважте, що всі, "
 "окрім першої, помилки можуть бути наслідками першої з помилок.</para>"
 
-#: src/dialogs/selftestdialog.cpp:359
+#: src/dialogs/selftestdialog.cpp:360
 #, kde-format
 msgid "test results"
 msgstr "результати тестів"
 
-#: src/dialogs/selftestdialog.cpp:373
+#: src/dialogs/selftestdialog.cpp:374
 #, kde-format
 msgctxt "@title:group"
 msgid "Details"
 msgstr "Подробиці"
 
-#: src/dialogs/selftestdialog.cpp:397
+#: src/dialogs/selftestdialog.cpp:398
 #, kde-format
 msgctxt "@title:group"
 msgid "Proposed Corrective Action"
 msgstr "Пропонована дія з виправлення"
 
-#: src/dialogs/selftestdialog.cpp:422
+#: src/dialogs/selftestdialog.cpp:423
 #, kde-format
 msgctxt "@action:button"
 msgid "Do It"
 msgstr "Зробити це"
 
-#: src/dialogs/selftestdialog.cpp:434
+#: src/dialogs/selftestdialog.cpp:435
 #, kde-format
 msgctxt "@option:check"
 msgid "Show all test results"
 msgstr "Показати результати всіх тестів"
 
-#: src/dialogs/selftestdialog.cpp:438
+#: src/dialogs/selftestdialog.cpp:439
 #, kde-format
 msgctxt "@option:check"
 msgid "Run these tests at startup"
 msgstr "Запускати ці перевірки після запуску програми"
 
-#: src/dialogs/selftestdialog.cpp:444
+#: src/dialogs/selftestdialog.cpp:445
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Продовжити"
 
-#: src/dialogs/selftestdialog.cpp:445
+#: src/dialogs/selftestdialog.cpp:446
 #, kde-format
 msgctxt "@action:button"
 msgid "Rerun Tests"
 msgstr "Перезапустити перевірки"
 
-#: src/dialogs/selftestdialog.cpp:456
+#: src/dialogs/selftestdialog.cpp:457
 #, kde-format
 msgctxt "@title:window"
 msgid "Self Test"
@@ -9273,6 +9340,12 @@ msgstr ""
 msgid "Disable profile settings"
 msgstr "Вимкнути параметри профілю"
 
+#. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
+#: src/kcfg/settings.kcfg:215
+#, kde-format
+msgid "Allow custom debug commands"
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/smimevalidationpreferences.kcfg:6
 #, kde-format
@@ -9669,7 +9742,9 @@ msgstr ""
 "правами доступу.</para>"
 
 #: src/main.cpp:164
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "<para>Are you sure that you want to continue?</para>"
+msgctxt "@info"
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Ви справді хочете продовжити виконання дії?</para>"
 
@@ -9721,8 +9796,13 @@ msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Просто &закрити вікно"
 
-#: src/mainwindow.cpp:221
-#, kde-kuit-format
+#: src/mainwindow.cpp:222
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<application>%1</application> may be used by other applications as a "
+#| "service.<nl/>You may instead want to close this window without exiting "
+#| "<application>%1</application>."
+msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
 "<nl/>You may instead want to close this window without exiting <application>"
@@ -9732,13 +9812,13 @@ msgstr ""
 "служба.<nl/>Отже, ви можете просто закрити це вікно без виходу з "
 "<application>%1</application>."
 
-#: src/mainwindow.cpp:224
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Справді вийти?"
 
-#: src/mainwindow.cpp:311
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9747,28 +9827,28 @@ msgstr ""
 "Не вдалося запустити переглядач журналу GnuPG (kwatchgnupg). Будь ласка, "
 "перевірте встановлені вами компоненти."
 
-#: src/mainwindow.cpp:313
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Помилка під час запуску KWatchGnuPG"
 
-#: src/mainwindow.cpp:573
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Переглядач журналу GnuPG"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:586
 #, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "Показати налаштування GnuPG"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Перезапустити фонові процеси"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9777,23 +9857,23 @@ msgid ""
 msgstr ""
 "Перезапустити фонові процеси після, наприклад, внесення змін до налаштувань."
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Перевірити наявність оновлень"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Сертифікати"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Показувати огляд сертифіката"
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9801,52 +9881,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Нотатник"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Показувати панель нотатника для шифрування/розшифрування та підписування/"
 "перевірки тексту"
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Картки пам'яті"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Показувати панель керування картками пам'яті"
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Виконати самоперевірку"
 
-#: src/mainwindow.cpp:669
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Налаштувати групи…"
 
-#: src/mainwindow.cpp:681
+#: src/mainwindow.cpp:682
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:723
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус до поля швидкого пошуку"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:735
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Довідник з gpg4win"
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:739
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9854,48 +9934,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:750
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Короткі настанови щодо шифрування і підписування"
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:751
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:759
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Шифрування на основі пароля"
 
-#: src/mainwindow.cpp:759
+#: src/mainwindow.cpp:760
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:767
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Групи сертифікатів"
 
-#: src/mainwindow.cpp:767
+#: src/mainwindow.cpp:768
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Ш&ифрування пошти в Outlook"
 
-#: src/mainwindow.cpp:777
+#: src/mainwindow.cpp:778
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9903,41 +9983,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:788
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Керування сертифікацією"
 
-#: src/mainwindow.cpp:788
+#: src/mainwindow.cpp:789
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:797
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Налаштування с&марткарток"
 
-#: src/mainwindow.cpp:797
+#: src/mainwindow.cpp:798
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:804
+#: src/mainwindow.cpp:805
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Кома&ндний рядок GnuPG"
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:815
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Підручник щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:815
+#: src/mainwindow.cpp:816
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9945,12 +10025,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:824
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "Безпечні дії щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:824
+#: src/mainwindow.cpp:825
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9958,7 +10038,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9967,7 +10047,7 @@ msgstr ""
 "Все ще виконуються деякі фонові дії. Їх буде припинено, якщо ви закриєте "
 "вікно. Продовжувати?"
 
-#: src/mainwindow.cpp:854
+#: src/mainwindow.cpp:855
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"
@@ -13037,6 +13117,16 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgid "Cannot open file <filename>%1</filename> for writing."
+#~ msgstr "Не вдалося відкрити файл <filename>%1</filename> для запису."
+
+#~ msgid ""
+#~ "<para>An error occurred during the export:</para><para><message>%1</"
+#~ "message></para>"
+#~ msgstr ""
+#~ "<para>Під час експортування сталася помилка:</para><para><message>%1</"
+#~ "message></para>"
 
 #~ msgctxt "User ID (Key ID)"
 #~ msgid "%1 (%2)"

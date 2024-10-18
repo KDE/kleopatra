@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-16 00:41+0000\n"
+"POT-Creation-Date: 2024-10-18 00:40+0000\n"
 "PO-Revision-Date: 2024-07-06 16:15+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -1391,7 +1391,7 @@ msgstr ""
 #: src/commands/exportgroupscommand.cpp:232
 #: src/commands/exportgroupscommand.cpp:273
 #: src/commands/exportgroupscommand.cpp:280
-#: src/commands/exportgroupscommand.cpp:291
+#: src/commands/exportgroupscommand.cpp:292
 #: src/commands/exportsecretsubkeycommand.cpp:213
 #: src/commands/exportsecretsubkeycommand.cpp:220
 #: src/commands/exportsecretsubkeycommand.cpp:232
@@ -1403,6 +1403,7 @@ msgstr ""
 
 #: src/commands/exportgroupscommand.cpp:160
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr ""
 
@@ -1446,9 +1447,12 @@ msgid "Export Groups"
 msgstr "Feil ved import av CRL"
 
 #: src/commands/exportgroupscommand.cpp:232
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr ""
+"Klarte ikkje kopiera mellombels fil <filename>%1</filename> til fila "
+"<filename>%2</filename>: <message>%3</message>"
 
 #: src/commands/exportgroupscommand.cpp:255
 #, kde-format
@@ -1456,17 +1460,25 @@ msgid "Exporting certificate groups..."
 msgstr ""
 
 #: src/commands/exportgroupscommand.cpp:273
+#: src/commands/exportsecretkeycommand.cpp:253
+#: src/commands/exportsecretsubkeycommand.cpp:220
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr ""
 
 #: src/commands/exportgroupscommand.cpp:280
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
+"Klarte ikkje kopiera mellombels fil <filename>%1</filename> til fila "
+"<filename>%2</filename>: <message>%3</message>"
 
-#: src/commands/exportgroupscommand.cpp:288
+#: src/commands/exportgroupscommand.cpp:289
+#: src/commands/exportsecretsubkeycommand.cpp:245
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>An error occurred during the export:</para><para><message>%1</"
 "message></para>"
@@ -1687,13 +1699,6 @@ msgid ""
 "passphrase."
 msgstr ""
 
-#: src/commands/exportsecretkeycommand.cpp:253
-#: src/commands/exportsecretsubkeycommand.cpp:220
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot open file <filename>%1</filename> for writing."
-msgstr ""
-
 #: src/commands/exportsecretkeycommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
@@ -1755,14 +1760,6 @@ msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] ""
 msgstr[1] ""
-
-#: src/commands/exportsecretsubkeycommand.cpp:245
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>An error occurred during the export:</para><para><message>%1</"
-"message></para>"
-msgstr ""
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:190
 #, fuzzy, kde-format
@@ -1893,19 +1890,20 @@ msgstr ""
 msgid "Revocation Certificates "
 msgstr ""
 
-#: src/commands/genrevokecommand.cpp:123
+#: src/commands/genrevokecommand.cpp:124
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr ""
 
-#: src/commands/genrevokecommand.cpp:124
+#: src/commands/genrevokecommand.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite File?"
 msgstr ""
 
-#: src/commands/genrevokecommand.cpp:184
+#: src/commands/genrevokecommand.cpp:185
 #, kde-format
 msgctxt "@title:window"
 msgid "Error creating revocation certificate"
@@ -2361,10 +2359,12 @@ msgid "Import CRL Finished"
 msgstr "Importering av CRL fullført"
 
 #: src/commands/importpaperkeycommand.cpp:86
-#: src/crypto/autodecryptverifyfilescontroller.cpp:239
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file \"%1\" for reading"
+msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
-msgstr ""
+msgstr "Klarte ikkje opna fila «%1» for lesing"
 
 #: src/commands/importpaperkeycommand.cpp:135
 #, kde-format
@@ -2576,21 +2576,25 @@ msgstr ""
 
 #: src/commands/keytocardcommand.cpp:621
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:630
 #, kde-kuit-format
+msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:640
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp:647
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 
@@ -2743,20 +2747,25 @@ msgstr ""
 
 #: src/commands/newopenpgpcertificatecommand.cpp:201
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
 
 #: src/commands/newopenpgpcertificatecommand.cpp:215
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
+"<para>Det oppstod ein feil ved henting av sertifikat: <message>%1</message></"
+"para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:221
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
@@ -4169,27 +4178,30 @@ msgid ""
 "(standard LDAP port) is used."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:152
+#: src/crypto/autodecryptverifyfilescontroller.cpp:153
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
 "manually select what to do with the files now.<nl/>If they contain signed or "
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:247
+#: src/crypto/autodecryptverifyfilescontroller.cpp:248
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:298
+#: src/crypto/autodecryptverifyfilescontroller.cpp:300
 #, kde-kuit-format
+msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:612
+#: src/crypto/autodecryptverifyfilescontroller.cpp:614
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4197,7 +4209,7 @@ msgid ""
 "para><para><message>%3</message></para>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:622
+#: src/crypto/autodecryptverifyfilescontroller.cpp:624
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4205,37 +4217,44 @@ msgid ""
 "para>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
+#: src/crypto/autodecryptverifyfilescontroller.cpp:636
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
+#: src/crypto/autodecryptverifyfilescontroller.cpp:637
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:636
+#: src/crypto/autodecryptverifyfilescontroller.cpp:638
 #, kde-kuit-format
+msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:637
+#: src/crypto/autodecryptverifyfilescontroller.cpp:639
 #, kde-kuit-format
+msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:660
+#: src/crypto/autodecryptverifyfilescontroller.cpp:662
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr ""
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:680
-#, kde-kuit-format
+#: src/crypto/autodecryptverifyfilescontroller.cpp:683
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
+"Klarte ikkje kopiera mellombels fil <filename>%1</filename> til fila "
+"<filename>%2</filename>: <message>%3</message>"
 
 #: src/crypto/createchecksumscontroller.cpp:61
 #, kde-format
@@ -4300,6 +4319,7 @@ msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp:498
 #, kde-kuit-format
+msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
 msgstr ""
 
@@ -6716,19 +6736,32 @@ msgid ""
 "continue:</para>"
 msgstr ""
 
-#: src/dialogs/debugdialog.cpp:62
+#: src/dialogs/debugdialog.cpp:64
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "GnuPG Configuration Overview"
 msgstr "%1-oppsettkontroll"
 
-#: src/dialogs/debugdialog.cpp:84
+#: src/dialogs/debugdialog.cpp:99
+#, kde-format
+msgctxt "@action:button"
+msgid "Run Command"
+msgstr ""
+
+#: src/dialogs/debugdialog.cpp:127
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Copy to Clipboard"
 msgstr "Utklippstavle"
 
-#: src/dialogs/debugdialog.cpp:116
+#: src/dialogs/debugdialog.cpp:133
+#, fuzzy, kde-format
+#| msgid "Select File"
+msgctxt "@action:button"
+msgid "Save to File"
+msgstr "Vel fil"
+
+#: src/dialogs/debugdialog.cpp:167
 #, kde-format
 msgctxt "@info"
 msgid "Exit code: %1"
@@ -7297,62 +7330,63 @@ msgstr "Resultat"
 msgid "(select test first)"
 msgstr "(vel først test)"
 
-#: src/dialogs/selftestdialog.cpp:341
+#: src/dialogs/selftestdialog.cpp:342
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<para>These are the results of the Kleopatra self-test suite. Click on a "
 "test for details.</para><para>Note that all but the first failure might be "
 "due to prior tests failing.</para>"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:359
+#: src/dialogs/selftestdialog.cpp:360
 #, kde-format
 msgid "test results"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:373
+#: src/dialogs/selftestdialog.cpp:374
 #, kde-format
 msgctxt "@title:group"
 msgid "Details"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:397
+#: src/dialogs/selftestdialog.cpp:398
 #, kde-format
 msgctxt "@title:group"
 msgid "Proposed Corrective Action"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:422
+#: src/dialogs/selftestdialog.cpp:423
 #, kde-format
 msgctxt "@action:button"
 msgid "Do It"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:434
+#: src/dialogs/selftestdialog.cpp:435
 #, kde-format
 msgctxt "@option:check"
 msgid "Show all test results"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:438
+#: src/dialogs/selftestdialog.cpp:439
 #, kde-format
 msgctxt "@option:check"
 msgid "Run these tests at startup"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:444
+#: src/dialogs/selftestdialog.cpp:445
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:445
+#: src/dialogs/selftestdialog.cpp:446
 #, kde-format
 msgctxt "@action:button"
 msgid "Rerun Tests"
 msgstr ""
 
-#: src/dialogs/selftestdialog.cpp:456
+#: src/dialogs/selftestdialog.cpp:457
 #, kde-format
 msgctxt "@title:window"
 msgid "Self Test"
@@ -8527,6 +8561,12 @@ msgstr ""
 msgid "Disable profile settings"
 msgstr ""
 
+#. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
+#: src/kcfg/settings.kcfg:215
+#, kde-format
+msgid "Allow custom debug commands"
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/smimevalidationpreferences.kcfg:6
 #, kde-format
@@ -8903,6 +8943,7 @@ msgstr ""
 
 #: src/main.cpp:164
 #, kde-kuit-format
+msgctxt "@info"
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr ""
 
@@ -8948,21 +8989,22 @@ msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr ""
 
-#: src/mainwindow.cpp:221
+#: src/mainwindow.cpp:222
 #, kde-kuit-format
+msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
 "<nl/>You may instead want to close this window without exiting <application>"
 "%1</application>."
 msgstr ""
 
-#: src/mainwindow.cpp:224
+#: src/mainwindow.cpp:225
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr ""
 
-#: src/mainwindow.cpp:311
+#: src/mainwindow.cpp:312
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -8971,28 +9013,28 @@ msgstr ""
 "Klarte ikkje starta GnuPG-loggvisaren (kwatchgnupg). Sjå til at alt er rett "
 "installert."
 
-#: src/mainwindow.cpp:313
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Klarte ikkje starta KWatchGnuPG"
 
-#: src/mainwindow.cpp:573
+#: src/mainwindow.cpp:574
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG-loggvisar"
 
-#: src/mainwindow.cpp:585
+#: src/mainwindow.cpp:586
 #, fuzzy, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "%1-oppsettkontroll"
 
-#: src/mainwindow.cpp:598
+#: src/mainwindow.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr ""
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9000,23 +9042,23 @@ msgid ""
 "configuration."
 msgstr ""
 
-#: src/mainwindow.cpp:611
+#: src/mainwindow.cpp:612
 #, kde-format
 msgid "Check for updates"
 msgstr "Sjå etter oppdateringar"
 
-#: src/mainwindow.cpp:624
+#: src/mainwindow.cpp:625
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr ""
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgid "Show certificate overview"
 msgstr ""
 
-#: src/mainwindow.cpp:635
+#: src/mainwindow.cpp:636
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9024,50 +9066,50 @@ msgctxt ""
 msgid "Notepad"
 msgstr ""
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 
-#: src/mainwindow.cpp:646
+#: src/mainwindow.cpp:647
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr ""
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgid "Show smartcard management"
 msgstr ""
 
-#: src/mainwindow.cpp:658
+#: src/mainwindow.cpp:659
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Utfør sjølvtest"
 
-#: src/mainwindow.cpp:669
+#: src/mainwindow.cpp:670
 #, kde-format
 msgid "Configure Groups..."
 msgstr ""
 
-#: src/mainwindow.cpp:681
+#: src/mainwindow.cpp:682
 #, fuzzy, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Feil ved import av CRL"
 
-#: src/mainwindow.cpp:722
+#: src/mainwindow.cpp:723
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fokuser på snøggsøk"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:735
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr ""
 
-#: src/mainwindow.cpp:738
+#: src/mainwindow.cpp:739
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9075,48 +9117,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:749
+#: src/mainwindow.cpp:750
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr ""
 
-#: src/mainwindow.cpp:750
+#: src/mainwindow.cpp:751
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:758
+#: src/mainwindow.cpp:759
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr ""
 
-#: src/mainwindow.cpp:759
+#: src/mainwindow.cpp:760
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:766
+#: src/mainwindow.cpp:767
 #, fuzzy, kde-format
 msgid "Certificate &Groups"
 msgstr "Sertifikatimport"
 
-#: src/mainwindow.cpp:767
+#: src/mainwindow.cpp:768
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:776
+#: src/mainwindow.cpp:777
 #, fuzzy, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Krypteringsval"
 
-#: src/mainwindow.cpp:777
+#: src/mainwindow.cpp:778
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9124,41 +9166,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:787
+#: src/mainwindow.cpp:788
 #, kde-format
 msgid "&Certification Management"
 msgstr ""
 
-#: src/mainwindow.cpp:788
+#: src/mainwindow.cpp:789
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:796
+#: src/mainwindow.cpp:797
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr ""
 
-#: src/mainwindow.cpp:797
+#: src/mainwindow.cpp:798
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:804
+#: src/mainwindow.cpp:805
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:814
+#: src/mainwindow.cpp:815
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:815
+#: src/mainwindow.cpp:816
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9166,12 +9208,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:823
+#: src/mainwindow.cpp:824
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:824
+#: src/mainwindow.cpp:825
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -9179,7 +9221,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -9188,7 +9230,7 @@ msgstr ""
 "Det er framleis nokre bakgrunnsoperasjonar som køyrer. Desse vert avslutta "
 "når du lukkar vindauget. Vil du halda fram?"
 
-#: src/mainwindow.cpp:854
+#: src/mainwindow.cpp:855
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Oppgåver i bakgrunnen"
