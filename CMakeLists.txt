@@ -189,7 +189,7 @@ include_directories(
 )
 
 add_definitions(-DQT_NO_CONTEXTLESS_CONNECT)
-ecm_set_disabled_deprecation_versions(QT 6.7.2 KF 6.4.0)
+ecm_set_disabled_deprecation_versions(QT 6.8.0 KF 6.4.0)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-missing-braces -Wno-parentheses -Wno-ignored-qualifiers")
