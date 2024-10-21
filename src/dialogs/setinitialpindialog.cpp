@@ -15,7 +15,6 @@
 
 #include <Libkleo/Formatting>
 
-#include <KIconLoader>
 #include <KLocalizedString>
 
 #include <QIcon>
@@ -41,22 +40,19 @@ const char *icons[] = {
     "", // Unknown
     "", // NotSet
     "security-medium", // AlreadySet
-    "movie-process-working-kde", // Ongoing
+    "view-refresh", // Ongoing
     "security-high", // Ok
     "security-low", // Failed
 };
 
 static_assert(sizeof icons / sizeof(*icons) == NumStates, "");
-static_assert(sizeof("movie-") == 7, "");
 
 static void update_widget(State state, bool delay, QLabel *resultLB, QLabel *lb, QPushButton *pb, QLabel *statusLB)
 {
     Q_ASSERT(state >= 0);
     Q_ASSERT(state < NumStates);
     const char *icon = icons[state];
-    if (qstrncmp(icon, "movie-", sizeof("movie-") - 1) == 0) {
-        resultLB->setMovie(KIconLoader::global()->loadMovie(QLatin1StringView(icon + sizeof("movie-")), KIconLoader::NoGroup));
-    } else if (icon && *icon) {
+    if (icon && *icon) {
         resultLB->setPixmap(QIcon::fromTheme(QLatin1StringView(icon)).pixmap(32));
     } else {
         resultLB->setPixmap(QPixmap());
