@@ -709,12 +709,9 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
 
 Task::Result::ContentType DecryptVerifyResult::viewableContentType() const
 {
-#if QGPGME_SUPPORTS_IS_MIME
     if (decryptionResult().isMime()) {
         return Task::Result::ContentType::Mime;
     }
-#endif
-
     if (fileName().endsWith(QStringLiteral("openpgp-encrypted-message"))) {
         return Task::Result::ContentType::Mime;
     }

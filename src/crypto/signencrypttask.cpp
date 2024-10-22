@@ -11,7 +11,6 @@
 
 #include "signencrypttask.h"
 
-#include <utils/gpgme-compat.h>
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
@@ -22,6 +21,7 @@
 #include <Libkleo/KleoException>
 #include <Libkleo/Stl_Util>
 
+#include <QGpgME/Debug>
 #include <QGpgME/EncryptArchiveJob>
 #include <QGpgME/EncryptJob>
 #include <QGpgME/Protocol>

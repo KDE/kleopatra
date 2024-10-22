@@ -25,9 +25,7 @@
 #include <QGpgME/Protocol>
 #include <QGpgME/ReceiveKeysJob>
 #include <QGpgME/RefreshKeysJob>
-#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 #include <QGpgME/WKDRefreshJob>
-#endif
 
 #include <gpgme++/importresult.h>
 
@@ -54,9 +52,7 @@ public:
 
     std::unique_ptr<QGpgME::ReceiveKeysJob> startKeyserverJob();
     std::unique_ptr<QGpgME::RefreshKeysJob> startSMIMEJob();
-#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
     std::unique_ptr<QGpgME::WKDRefreshJob> startWKDRefreshJob();
-#endif
 
     void onKeyserverJobResult(const ImportResult &result);
     void onWKDRefreshJobResult(const ImportResult &result);
@@ -131,9 +127,7 @@ void RefreshCertificatesCommand::Private::start()
         } else {
             keyserverResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
         }
-#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
         wkdRefreshJob = startWKDRefreshJob();
-#endif
     }
 
     if (!pgpRefreshJob && !smimeRefreshJob && !wkdRefreshJob) {
@@ -200,7 +194,6 @@ std::unique_ptr<QGpgME::RefreshKeysJob> RefreshCertificatesCommand::Private::sta
     return refreshJob;
 }
 
-#if QGPGME_SUPPORTS_WKD_REFRESH_JOB
 std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificatesCommand::Private::startWKDRefreshJob()
 {
     std::unique_ptr<QGpgME::WKDRefreshJob> refreshJob{QGpgME::openpgp()->wkdRefreshJob()};
@@ -256,7 +249,6 @@ std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificatesCommand::Private::star
 
     return refreshJob;
 }
-#endif
 
 namespace
 {
