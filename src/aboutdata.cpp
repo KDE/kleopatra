@@ -38,29 +38,26 @@ static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
 
 struct about_data {
     const KLazyLocalizedString name;
-    const KLazyLocalizedString desc;
-    const char *email;
-    const char *web;
+    const KLazyLocalizedString description;
 };
 
-static const about_data authors[] = {
-    {kli18n("Andre Heinecke"), kli18n("Current Maintainer"), "aheinecke@gnupg.org", nullptr},
-    {kli18n("Marc Mutz"), kli18n("Former Maintainer"), "mutz@kde.org", nullptr},
-    {kli18n("Steffen Hansen"), kli18n("Former Maintainer"), "hansen@kde.org", nullptr},
-    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author"), "kalle@kde.org", nullptr},
-};
+static constexpr auto authors = std::to_array<about_data>({
+    {kli18n("Ingo Klöcker"), kli18n("Maintainer")},
+    {kli18n("Tobias Fella"), kli18n("Developer")},
+    {kli18n("Andre Heinecke"), kli18n("Former Maintainer")},
+    {kli18n("Marc Mutz"), kli18n("Former Maintainer")},
+    {kli18n("Steffen Hansen"), kli18n("Former Maintainer")},
+});
 
-static const about_data credits[] = {
-    {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration"), "faure@kde.org", nullptr},
-    {kli18n("Michel Boyer de la Giroday"),
-     kli18n("Key-state dependent colors and fonts in the certificates list"),
-     "michel@klaralvdalens-datakonsult.se",
-     nullptr},
-    {kli18n("Thomas Moenicke"), kli18n("Artwork"), "tm@php-qt.org", nullptr},
-    {kli18n("Frank Osterfeld"), kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs"), "osterfeld@kde.org", nullptr},
-    {kli18n("Karl-Heinz Zimmer"), kli18n("DN display ordering support, infrastructure"), "khz@kde.org", nullptr},
-    {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance"), "montel@kde.org", nullptr},
-};
+static constexpr auto credits = std::to_array<about_data>({
+    {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author")},
+    {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration")},
+    {kli18n("Michel Boyer de la Giroday"), kli18n("Key-state dependent colors and fonts in the certificates list")},
+    {kli18n("Thomas Moenicke"), kli18n("Artwork")},
+    {kli18n("Frank Osterfeld"), kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs")},
+    {kli18n("Karl-Heinz Zimmer"), kli18n("DN display ordering support, infrastructure")},
+    {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance")},
+});
 
 static void updateAboutDataFromSettings(KAboutData *about, const QSettings *settings)
 {
@@ -127,28 +124,22 @@ AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
                  i18n("Kleopatra"),
                  QLatin1String(kleopatra_version),
-                 i18n("Certificate Manager and Unified Crypto GUI"),
+                 i18n("Certificate manager and cryptography app"),
                  KAboutLicense::GPL,
-                 i18n("(c) 2002 Steffen\u00A0Hansen, Matthias\u00A0Kalle\u00A0Dalheimer, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB\n"
-                      "(c) 2004, 2007, 2008, 2009 Marc\u00A0Mutz, Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB") //
-                     + QLatin1Char('\n') //
-                     + i18n("(c) 2016-2018 Intevation GmbH") //
-                     + QLatin1Char('\n') //
-                     + i18n("(c) 2010-%1 The Kleopatra developers, g10 Code GmbH", QStringLiteral("2023")))
+                 i18nc("@info:credit", "(C) %1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) %1 The Kleopatra developers", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) 2018 Intevation GmbH") + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) 2009 Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB"))
 {
     using ::authors;
     using ::credits;
-    for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
-        addAuthor(KLocalizedString(authors[i].name).toString(),
-                  KLocalizedString(authors[i].desc).toString(),
-                  QLatin1String(authors[i].email),
-                  QLatin1String(authors[i].web));
+
+    for (const auto &author : authors) {
+        addAuthor(author.name.toString(), author.description.toString());
     }
-    for (unsigned int i = 0; i < sizeof credits / sizeof *credits; ++i) {
-        addCredit(KLocalizedString(credits[i].name).toString(),
-                  KLocalizedString(credits[i].desc).toString(),
-                  QLatin1String(credits[i].email),
-                  QLatin1String(credits[i].web));
+
+    for (const auto &credit : credits) {
+        addCredit(credit.name.toString(), credit.description.toString());
     }
 
     loadCustomAboutData(this);
