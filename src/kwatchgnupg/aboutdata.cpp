@@ -27,9 +27,9 @@ static constexpr auto authors = std::to_array<about_data>({
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kwatchgnupg"),
-                 i18n("KWatchGnuPG"),
+                 i18nc("@title", "GnuPG Log Viewer"),
                  QLatin1StringView(KWATCHGNUPG_VERSION_STRING),
-                 i18n("GnuPG log viewer"),
+                 i18nc("@info", "Viewer for GnuPG daemon and application logs"),
                  KAboutLicense::GPL,
                  i18nc("@info:credit", "(C) %1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
                      + i18n("(C) 2004 Klar\xC3\xA4lvdalens Datakonsult AB\n"))
