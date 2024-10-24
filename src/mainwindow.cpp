@@ -573,7 +573,7 @@ void MainWindow::Private::setupActions()
             "tools_start_kwatchgnupg",
             i18n("GnuPG Log Viewer"),
             QString(),
-            "kwatchgnupg",
+            "org.kde.kwatchgnupg",
             q,
             [this](bool) {
                 gnupgLogViewer();

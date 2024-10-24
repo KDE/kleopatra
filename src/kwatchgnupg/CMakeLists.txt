@@ -33,6 +33,10 @@ if(WIN32)
   set(kwatchgnupg_SRCS ${kwatchgnupg_SRCS} ../utils/gnupg-registry.c)
 endif()
 
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/*-apps-org.kde.kwatchgnupg.*")
+ecm_add_app_icon(kwatchgnupg_SRCS ICONS ${ICONS_SRCS})
+ecm_install_icons(ICONS ${ICONS_SRCS} DESTINATION share/icons)
+
 add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
     set_target_properties(kwatchgnupg PROPERTIES UNITY_BUILD ON)
@@ -44,7 +48,7 @@ target_link_libraries(kwatchgnupg
   KF6::XmlGui
   KF6::Notifications
   KF6::I18n
-  KF6::IconThemes
+  KF6::GuiAddons
   KPim6::Libkleo
   KF6::CoreAddons
   KF6::Crash
@@ -52,7 +56,4 @@ target_link_libraries(kwatchgnupg
 )
 
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
-
-install(FILES images/kwatchgnupg.png images/kwatchgnupg2.png DESTINATION ${KDE_INSTALL_DATADIR}/kwatchgnupg/pics)
-install(FILES images/kwatchgnupg.png DESTINATION ${KDE_INSTALL_FULL_ICONDIR}/hicolor/22x22/apps)
 install(FILES org.kde.kwatchgnupg.desktop DESTINATION ${KDE_INSTALL_APPDIR})

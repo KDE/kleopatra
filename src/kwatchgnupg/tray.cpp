@@ -14,7 +14,7 @@
 #include "kwatchgnupgmainwin.h"
 
 #include "kwatchgnupg_debug.h"
-#include <KIconLoader>
+#include <KIconUtils>
 #include <KLocalizedString>
 
 KWatchGnuPGTray::KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin)
@@ -23,10 +23,9 @@ KWatchGnuPGTray::KWatchGnuPGTray(KWatchGnuPGMainWindow *mainwin)
     qCDebug(KWATCHGNUPG_LOG) << "KWatchGnuPGTray::KWatchGnuPGTray";
 
     setObjectName(QLatin1StringView("KWatchGnuPG Tray Window"));
-    KIconLoader::global()->addAppDir(QStringLiteral("kwatchgnupg"));
 
-    mNormalPix.addPixmap(KIconLoader::global()->loadIcon(QStringLiteral("kwatchgnupg"), KIconLoader::Panel));
-    mAttentionPix.addPixmap(KIconLoader::global()->loadIcon(QStringLiteral("kwatchgnupg2"), KIconLoader::Panel));
+    mNormalPix = QIcon::fromTheme(QStringLiteral("org.kde.kwatchgnupg")); // TODO create symbolic version
+    mAttentionPix = QIcon(KIconUtils::addOverlay(mNormalPix, QIcon::fromTheme(QStringLiteral("emblem-information")), Qt::BottomLeftCorner).pixmap(48));
     setToolTipTitle(i18n("KWatchGnuPG Log Viewer"));
 }
 

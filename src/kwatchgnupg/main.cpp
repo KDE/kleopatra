@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 
     AboutData aboutData;
     KAboutData::setApplicationData(aboutData);
+    QGuiApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("org.kde.kwatchgnupg")));
 
     KCrash::initialize();
 

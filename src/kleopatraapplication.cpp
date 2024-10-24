@@ -89,7 +89,6 @@ using namespace Kleo::Commands;
 static void add_resources()
 {
     KIconLoader::global()->addAppDir(QStringLiteral("libkleopatra"));
-    KIconLoader::global()->addAppDir(QStringLiteral("kwatchgnupg"));
 }
 
 static QList<QByteArray> default_logging_options()
