@@ -34,8 +34,6 @@
 #define VERSION_RELPATH "/../VERSION"
 #endif
 
-static const char kleopatra_version[] = KLEOPATRA_VERSION_STRING;
-
 struct about_data {
     const KLazyLocalizedString name;
     const KLazyLocalizedString description;
@@ -59,21 +57,21 @@ static constexpr auto credits = std::to_array<about_data>({
     {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance")},
 });
 
-static void updateAboutDataFromSettings(KAboutData *about, const QSettings *settings)
+static void updateAboutDataFromSettings(KAboutData &about, const QSettings *settings)
 {
-    if (!about || !settings) {
+    if (!settings) {
         return;
     }
-    about->setDisplayName(settings->value(QStringLiteral("displayName"), about->displayName()).toString());
-    about->setProductName(settings->value(QStringLiteral("productName"), about->productName()).toByteArray());
-    about->setComponentName(settings->value(QStringLiteral("componentName"), about->componentName()).toString());
-    about->setShortDescription(settings->value(QStringLiteral("shortDescription"), about->shortDescription()).toString());
-    about->setHomepage(settings->value(QStringLiteral("homepage"), about->homepage()).toString());
-    about->setBugAddress(settings->value(QStringLiteral("bugAddress"), about->bugAddress()).toByteArray());
-    about->setVersion(settings->value(QStringLiteral("version"), about->version()).toByteArray());
-    about->setOtherText(settings->value(QStringLiteral("otherText"), about->otherText()).toString());
-    about->setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about->copyrightStatement()).toString());
-    about->setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about->desktopFileName()).toString());
+    about.setDisplayName(settings->value(QStringLiteral("displayName"), about.displayName()).toString());
+    about.setProductName(settings->value(QStringLiteral("productName"), about.productName()).toByteArray());
+    about.setComponentName(settings->value(QStringLiteral("componentName"), about.componentName()).toString());
+    about.setShortDescription(settings->value(QStringLiteral("shortDescription"), about.shortDescription()).toString());
+    about.setHomepage(settings->value(QStringLiteral("homepage"), about.homepage()).toString());
+    about.setBugAddress(settings->value(QStringLiteral("bugAddress"), about.bugAddress()).toByteArray());
+    about.setVersion(settings->value(QStringLiteral("version"), about.version()).toByteArray());
+    about.setOtherText(settings->value(QStringLiteral("otherText"), about.otherText()).toString());
+    about.setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about.copyrightStatement()).toString());
+    about.setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about.desktopFileName()).toString());
 }
 
 // Extend the about data with the used GnuPG Version since this can
@@ -101,7 +99,7 @@ static void loadBackendVersions()
 
 // This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
 // can put in their own about data information.
-static void loadCustomAboutData(KAboutData *about)
+static void loadCustomAboutData(KAboutData &about)
 {
     const QStringList searchPaths = {Kleo::gnupgInstallPath()};
     const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
@@ -122,7 +120,7 @@ static void loadCustomAboutData(KAboutData *about)
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
                  i18n("Kleopatra"),
-                 QLatin1StringView(kleopatra_version),
+                 QLatin1StringView(KLEOPATRA_VERSION_STRING),
                  i18n("Certificate manager and cryptography app"),
                  KAboutLicense::GPL,
                  i18nc("@info:credit", "(C) %1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
@@ -141,5 +139,5 @@ AboutData::AboutData()
         addCredit(credit.name.toString(), credit.description.toString());
     }
 
-    loadCustomAboutData(this);
+    loadCustomAboutData(*this);
 }
