@@ -12,34 +12,30 @@
 #include <version-kwatchgnupg.h>
 
 #include <KLocalizedString>
+#include <array>
 
 #include <KLazyLocalizedString>
 
 struct about_data {
     const KLazyLocalizedString name;
     const KLazyLocalizedString desc;
-    const char *email;
-    const char *web;
 };
 
-static const about_data authors[] = {
-    {kli18n("Steffen Hansen"), kli18n("Original Author"), "hansen@kde.org", nullptr},
-};
+static constexpr auto authors = std::to_array<about_data>({
+    {kli18n("Steffen Hansen"), kli18n("Original Author")},
+});
 
 AboutData::AboutData()
     : KAboutData(QStringLiteral("kwatchgnupg"),
                  i18n("KWatchGnuPG"),
-                 QStringLiteral(KWATCHGNUPG_VERSION_STRING),
+                 QLatin1StringView(KWATCHGNUPG_VERSION_STRING),
                  i18n("GnuPG log viewer"),
                  KAboutLicense::GPL,
-                 i18n("(c) 2004 Klar\xC3\xA4lvdalens Datakonsult AB\n"))
+                 i18nc("@info:credit", "(C) %1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18n("(C) 2004 Klar\xC3\xA4lvdalens Datakonsult AB\n"))
 {
     using ::authors;
-    // using ::credits;
-    for (unsigned int i = 0; i < sizeof authors / sizeof *authors; ++i) {
-        addAuthor(KLocalizedString(authors[i].name).toString(),
-                  KLocalizedString(authors[i].desc).toString(),
-                  QLatin1StringView(authors[i].email),
-                  QLatin1StringView(authors[i].web));
+    for (const auto &author : authors) {
+        addAuthor(KLocalizedString(author.name).toString(), KLocalizedString(author.desc).toString());
     }
 }
