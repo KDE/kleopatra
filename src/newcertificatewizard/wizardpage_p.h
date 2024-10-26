@@ -55,9 +55,7 @@ protected:
 
 protected:
 #define FIELD(type, name)                                                                                                                                      \
-    type name() const                                                                                                                                          \
-    {                                                                                                                                                          \
-        return field(QStringLiteral(#name)).value<type>();                                                                                                     \
+    type name() const {return field(QStringLiteral(#name)).value<type>();                                                                                      \
     }
     FIELD(bool, signingAllowed)
     FIELD(bool, encryptionAllowed)

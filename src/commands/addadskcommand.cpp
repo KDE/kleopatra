@@ -123,12 +123,13 @@ AddADSKCommand::~AddADSKCommand() = default;
 
 void AddADSKCommand::doStart()
 {
-    auto code = KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
-                                                   i18nc("@info",
-                                                         "By adding an ADSK to your certificate, you allow the owner of the ADSK to decrypt all new messages that "
-                                                         "are encrypted for your certificate. Do you want to add the ADSK specified in the GnuPG configuration to your certificate?"),
-                                                   i18nc("@title:dialog", "Add ADSK"),
-                                                   KGuiItem(i18n("Add ADSK"), QStringLiteral("dialog-ok")));
+    auto code = KMessageBox::warningContinueCancel(
+        d->parentWidgetOrView(),
+        i18nc("@info",
+              "By adding an ADSK to your certificate, you allow the owner of the ADSK to decrypt all new messages that "
+              "are encrypted for your certificate. Do you want to add the ADSK specified in the GnuPG configuration to your certificate?"),
+        i18nc("@title:dialog", "Add ADSK"),
+        KGuiItem(i18n("Add ADSK"), QStringLiteral("dialog-ok")));
     if (code == KMessageBox::Cancel) {
         canceled();
         return;

@@ -89,17 +89,17 @@ static CertificateSelectionDialog *create_signing_certificate_selection_dialog(Q
 static QString make_top_label_conflict_text(bool sign, bool enc)
 {
     return sign && enc ? i18n(
-               "Kleopatra cannot unambiguously determine matching certificates "
-               "for all recipients/senders of the message.\n"
-               "Please select the correct certificates for each recipient:")
+                             "Kleopatra cannot unambiguously determine matching certificates "
+                             "for all recipients/senders of the message.\n"
+                             "Please select the correct certificates for each recipient:")
         : sign ? i18n(
-              "Kleopatra cannot unambiguously determine matching certificates "
-              "for the sender of the message.\n"
-              "Please select the correct certificates for the sender:")
+                     "Kleopatra cannot unambiguously determine matching certificates "
+                     "for the sender of the message.\n"
+                     "Please select the correct certificates for the sender:")
         : enc ? i18n(
-              "Kleopatra cannot unambiguously determine matching certificates "
-              "for all recipients of the message.\n"
-              "Please select the correct certificates for each recipient:")
+                    "Kleopatra cannot unambiguously determine matching certificates "
+                    "for all recipients of the message.\n"
+                    "Please select the correct certificates for each recipient:")
               : (kleo_assert_fail(sign || enc), QString());
 }
 

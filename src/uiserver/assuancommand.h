@@ -229,7 +229,11 @@ public:
     static int makeError(int code);
 
     // convenience methods:
-    enum Mode { NoMode, EMail, FileManager };
+    enum Mode {
+        NoMode,
+        EMail,
+        FileManager
+    };
     Mode checkMode() const;
 
     enum CheckProtocolOption {

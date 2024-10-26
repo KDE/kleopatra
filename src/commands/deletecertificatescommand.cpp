@@ -143,7 +143,12 @@ DeleteCertificatesCommand::~DeleteCertificatesCommand()
 namespace
 {
 
-enum Action { Nothing = 0, Failure = 1, ClearCMS = 2, ClearPGP = 4 };
+enum Action {
+    Nothing = 0,
+    Failure = 1,
+    ClearCMS = 2,
+    ClearPGP = 4
+};
 
 // const unsigned int errorCase =
 //    openpgp.empty() << 3U | d->canDelete( OpenPGP ) << 2U |

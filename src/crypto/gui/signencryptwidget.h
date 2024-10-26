@@ -33,7 +33,12 @@ class SignEncryptWidget : public QWidget
 {
     Q_OBJECT
 public:
-    enum Operation { NoOperation = 0x00, Sign = 0x01, Encrypt = 0x02, SignAndEncrypt = Sign | Encrypt };
+    enum Operation {
+        NoOperation = 0x00,
+        Sign = 0x01,
+        Encrypt = 0x02,
+        SignAndEncrypt = Sign | Encrypt
+    };
     Q_DECLARE_FLAGS(Operations, Operation)
 
     /** If cmsSigEncExclusive is true CMS operations can be

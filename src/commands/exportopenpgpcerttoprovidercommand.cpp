@@ -13,9 +13,9 @@
 #include "exportopenpgpcerttoprovidercommand.h"
 
 #ifdef MAILAKONADI_ENABLED
+#include <Akonadi/MessageQueueJob>
 #include <KIdentityManagementCore/Identity>
 #include <KIdentityManagementCore/IdentityManager>
-#include <Akonadi/MessageQueueJob>
 #include <MailTransport/TransportManager>
 #endif // MAILAKONADI_ENABLED
 

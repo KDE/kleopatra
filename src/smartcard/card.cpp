@@ -29,7 +29,7 @@ static QString formatVersion(int value)
     const unsigned int a = ((value >> 24) & 0xff);
     const unsigned int b = ((value >> 16) & 0xff);
     const unsigned int c = ((value >> 8) & 0xff);
-    const unsigned int d = ((value)&0xff);
+    const unsigned int d = ((value) & 0xff);
     if (a) {
         return QStringLiteral("%1.%2.%3.%4").arg(QString::number(a), QString::number(b), QString::number(c), QString::number(d));
     } else if (b) {

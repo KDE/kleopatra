@@ -240,9 +240,9 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     const QColor linkColor = SystemInfo::isHighContrastModeActive() ? QColor{} : txtColor;
     const QString styleSheet = SystemInfo::isHighContrastModeActive()
         ? QStringLiteral(
-            "QFrame,QLabel { margin: 0px; }"
-            "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
-            "QLabel { padding: 5px; border-radius: 3px }")
+              "QFrame,QLabel { margin: 0px; }"
+              "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
+              "QLabel { padding: 5px; border-radius: 3px }")
         : QStringLiteral(
               "QFrame,QLabel { background-color: %1; margin: 0px; }"
               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"

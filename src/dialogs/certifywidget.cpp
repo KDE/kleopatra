@@ -138,7 +138,9 @@ struct UserIDCheckState {
 class CertifyWidget::Private
 {
 public:
-    enum Role { UserIdRole = Qt::UserRole };
+    enum Role {
+        UserIdRole = Qt::UserRole
+    };
     enum Mode {
         SingleCertification,
         BulkCertification,

@@ -802,11 +802,12 @@ static ImportedGroup storeGroup(const KeyGroup &group, const QString &id, QWidge
     if (std::ranges::any_of(group.keys(), [](const auto &key) {
             return !Kleo::keyHasEncrypt(key);
         })) {
-        KMessageBox::information(parent,
-                                 xi18nc("@info",
-                                        "<para>The imported group</para><para><emphasis>%1</emphasis></para><para>contains certificates that cannot be used for encryption. "
-                                        "This may lead to unexpected results.</para>",
-                                        group.name()));
+        KMessageBox::information(
+            parent,
+            xi18nc("@info",
+                   "<para>The imported group</para><para><emphasis>%1</emphasis></para><para>contains certificates that cannot be used for encryption. "
+                   "This may lead to unexpected results.</para>",
+                   group.name()));
     }
     const auto status = KeyCache::instance()->group(group.id()).isNull() ? ImportedGroup::Status::New : ImportedGroup::Status::Updated;
     if (status == ImportedGroup::Status::New) {

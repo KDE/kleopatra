@@ -221,8 +221,7 @@ static std::string switchApp(std::shared_ptr<Context> &gpgAgent, const std::stri
         return appName;
     }
     qCWarning(KLEOPATRA_LOG) << "switchApp():" << command << "returned" << statusLines << "(expected:"
-                             << "SERIALNO " + serialNumber + ' ' + appName + "..."
-                             << ")";
+                             << "SERIALNO " + serialNumber + ' ' + appName + "..." << ")";
     return std::string();
 }
 
