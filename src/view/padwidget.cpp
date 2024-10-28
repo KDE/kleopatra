@@ -302,7 +302,7 @@ public:
 
         if (result->error()) {
             if (!result->errorString().isEmpty()) {
-                KMessageBox::error(q, result->errorString(), i18nc("@title", "Error in crypto action"));
+                KMessageBox::error(q, result->errorString());
             }
         } else if (!result->error().isCanceled()) {
             mEdit->setPlainText(QString::fromUtf8(mOutputData));
@@ -340,7 +340,7 @@ public:
         try {
             task->autodetectProtocolFromInput();
         } catch (const Kleo::Exception &e) {
-            KMessageBox::error(q, e.message(), i18nc("@title", "Error in crypto action"));
+            KMessageBox::error(q, e.message());
             updateButtons();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
