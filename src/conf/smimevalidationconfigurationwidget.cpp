@@ -56,7 +56,6 @@ public:
 
         connect(ui.doNotCheckCertPolicyCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.neverConsultCB, &QCheckBox::toggled, q, changedSignal);
-        connect(ui.allowMarkTrustedCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.fetchMissingCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.ignoreServiceURLCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.ignoreHTTPDPCB, &QCheckBox::toggled, q, changedSignal);
@@ -143,10 +142,7 @@ struct SMIMECryptoConfigEntries {
         , mEnableOCSPsendingConfigEntry(configEntry("dirmngr", "allow-ocsp", CryptoConfigEntry::ArgType_None))
         , mDoNotCheckCertPolicyConfigEntry(configEntry("gpgsm", "disable-policy-checks", CryptoConfigEntry::ArgType_None))
         , mNeverConsultConfigEntry(configEntry("gpgsm", "disable-crl-checks", CryptoConfigEntry::ArgType_None))
-        , mAllowMarkTrustedConfigEntry(
-              configEntry("gpg-agent", "allow-mark-trusted", CryptoConfigEntry::ArgType_None, DoNotShowError)) // legacy entry -> ignore error
         , mFetchMissingConfigEntry(configEntry("gpgsm", "auto-issuer-key-retrieve", CryptoConfigEntry::ArgType_None))
-        , mNoAllowMarkTrustedConfigEntry(configEntry("gpg-agent", "no-allow-mark-trusted", CryptoConfigEntry::ArgType_None))
         // dirmngr-0.9.0 options
         , mIgnoreServiceURLEntry(configEntry("dirmngr", "ignore-ocsp-service-url", CryptoConfigEntry::ArgType_None))
         , mIgnoreHTTPDPEntry(configEntry("dirmngr", "ignore-http-dp", CryptoConfigEntry::ArgType_None))
@@ -171,10 +167,7 @@ struct SMIMECryptoConfigEntries {
     CryptoConfigEntry *const mEnableOCSPsendingConfigEntry;
     CryptoConfigEntry *const mDoNotCheckCertPolicyConfigEntry;
     CryptoConfigEntry *const mNeverConsultConfigEntry;
-    CryptoConfigEntry *const mAllowMarkTrustedConfigEntry;
     CryptoConfigEntry *const mFetchMissingConfigEntry;
-    // gnupg 2.0.17+ option that should inhibit allow-mark-trusted display
-    CryptoConfigEntry *const mNoAllowMarkTrustedConfigEntry;
     // dirmngr-0.9.0 options
     CryptoConfigEntry *const mIgnoreServiceURLEntry;
     CryptoConfigEntry *const mIgnoreHTTPDPEntry;
@@ -241,13 +234,6 @@ void SMimeValidationConfigurationWidget::load()
         d->ui.neverConsultCB->setChecked(e.mNeverConsultConfigEntry->boolValue());
     }
     d->ui.neverConsultCB->setEnabled(e.mNeverConsultConfigEntry && !e.mNeverConsultConfigEntry->isReadOnly());
-    if (e.mNoAllowMarkTrustedConfigEntry) {
-        d->ui.allowMarkTrustedCB->hide(); // this option was only here to _enable_ allow-mark-trusted, and makes no sense if it's already default on
-    }
-    if (e.mAllowMarkTrustedConfigEntry) {
-        d->ui.allowMarkTrustedCB->setChecked(e.mAllowMarkTrustedConfigEntry->boolValue());
-    }
-    d->ui.allowMarkTrustedCB->setEnabled(e.mAllowMarkTrustedConfigEntry && !e.mAllowMarkTrustedConfigEntry->isReadOnly());
     if (e.mFetchMissingConfigEntry) {
         d->ui.fetchMissingCB->setChecked(e.mFetchMissingConfigEntry->boolValue());
     }
@@ -333,7 +319,6 @@ void SMimeValidationConfigurationWidget::save() const
 
     saveCheckBoxToKleoEntry(d->ui.doNotCheckCertPolicyCB, e.mDoNotCheckCertPolicyConfigEntry);
     saveCheckBoxToKleoEntry(d->ui.neverConsultCB, e.mNeverConsultConfigEntry);
-    saveCheckBoxToKleoEntry(d->ui.allowMarkTrustedCB, e.mAllowMarkTrustedConfigEntry);
     saveCheckBoxToKleoEntry(d->ui.fetchMissingCB, e.mFetchMissingConfigEntry);
 
     QString txt = d->ui.OCSPResponderURL->text();
