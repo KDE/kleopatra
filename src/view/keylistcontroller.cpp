@@ -59,6 +59,7 @@
 #include "commands/togglecertificateenabledcommand.h"
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/CryptoConfig>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
@@ -633,27 +634,25 @@ void KeyListController::createActions(KActionCollection *coll)
         nullptr,
         {},
     };
-
+    static const action_data certificates_trust_root_action_data = {
+        "certificates_trust_root",
+        i18n("Trust Root Certificate"),
+        QString(),
+        nullptr,
+        nullptr,
+        nullptr,
+        QString(),
+    };
+    static const action_data certificates_distrust_root_action_data = {
+        "certificates_distrust_root",
+        i18n("Distrust Root Certificate"),
+        QString(),
+        nullptr,
+        nullptr,
+        nullptr,
+        QString(),
+    };
     static const std::vector<action_data> cms_action_data = {
-        // Certificate menu
-        {
-            "certificates_trust_root",
-            i18n("Trust Root Certificate"),
-            QString(),
-            nullptr,
-            nullptr,
-            nullptr,
-            QString(),
-        },
-        {
-            "certificates_distrust_root",
-            i18n("Distrust Root Certificate"),
-            QString(),
-            nullptr,
-            nullptr,
-            nullptr,
-            QString(),
-        },
         {
             "certificates_dump_certificate",
             i18n("Technical Details"),
@@ -705,10 +704,15 @@ void KeyListController::createActions(KActionCollection *coll)
     std::vector<action_data> action_data = common_and_openpgp_action_data;
 
     if (const Kleo::Settings settings{}; settings.cmsEnabled()) {
+        action_data.reserve(action_data.size() + 3 + cms_action_data.size());
         if (settings.cmsCertificateCreationAllowed()) {
             action_data.push_back(cms_create_csr_action_data);
         }
-        action_data.reserve(action_data.size() + cms_action_data.size());
+        if (!getCryptoConfigBoolValue("gpg-agent", "no-allow-mark-trusted")) {
+            // user is allowed to mark certificates as trusted or not trusted
+            action_data.push_back(certificates_trust_root_action_data);
+            action_data.push_back(certificates_distrust_root_action_data);
+        }
         ranges::copy(cms_action_data, std::back_inserter(action_data));
     }
 
@@ -746,9 +750,12 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<DetailsCommand>(coll->action(QStringLiteral("view_certificate_details")));
 
     registerActionForCommand<ChangeOwnerTrustCommand>(coll->action(QStringLiteral("certificates_change_owner_trust")));
-    registerActionForCommand<TrustRootCommand>(coll->action(QStringLiteral("certificates_trust_root")));
-    registerActionForCommand<DistrustRootCommand>(coll->action(QStringLiteral("certificates_distrust_root")));
-
+    if (auto action = coll->action(QStringLiteral("certificates_trust_root"))) {
+        registerActionForCommand<TrustRootCommand>(action);
+    }
+    if (auto action = coll->action(QStringLiteral("certificates_distrust_root"))) {
+        registerActionForCommand<DistrustRootCommand>(action);
+    }
     if (ToggleCertificateEnabledCommand::isSupported()) {
         registerActionForCommand<ToggleCertificateEnabledCommand>(coll->action(QStringLiteral("certificates_disable")));
     }

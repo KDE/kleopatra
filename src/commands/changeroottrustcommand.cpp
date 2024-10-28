@@ -12,6 +12,7 @@
 #include "changeroottrustcommand.h"
 #include "command_p.h"
 
+#include <Libkleo/CryptoConfig>
 #include <Libkleo/Dn>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
@@ -70,13 +71,13 @@ private:
     void slotOperationFinished()
     {
         KeyCache::mutableInstance()->enableFileSystemWatcher(true);
-        if (error.isEmpty()) {
+        if (errorText.isEmpty()) {
             KeyCache::mutableInstance()->reload(GpgME::CMS);
         } else
-            Command::Private::error(i18n("Failed to update the trust database:\n"
-                                         "%1",
-                                         error),
-                                    i18n("Root Trust Update Failed"));
+            error(i18n("Failed to update the trust database:\n"
+                       "%1",
+                       errorText),
+                  i18n("Root Trust Update Failed"));
         Command::Private::finished();
     }
 
@@ -85,7 +86,7 @@ private:
     Key::OwnerTrust trust;
     QString trustListFile;
     QString gpgConfPath;
-    QString error;
+    QString errorText;
     volatile bool canceled;
 };
 
@@ -161,6 +162,12 @@ QString ChangeRootTrustCommand::trustListFile() const
 
 void ChangeRootTrustCommand::doStart()
 {
+    if (getCryptoConfigBoolValue("gpg-agent", "no-allow-mark-trusted")) {
+        d->error(i18nc("@info", "You are not allowed to mark certificates as trusted or not trusted."));
+        d->Command::Private::finished();
+        return;
+    }
+
     const std::vector<Key> keys = d->keys();
     Key key;
     if (keys.size() == 1) {
@@ -208,7 +215,7 @@ void ChangeRootTrustCommand::Private::run()
 
     locker.relock();
 
-    this->error = err;
+    errorText = err;
 }
 
 static QString add_colons(const QString &fpr)
