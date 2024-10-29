@@ -228,7 +228,8 @@ Page::Page(const KConfigGroup &group, KeyTreeView::Options options, QWidget *par
 
 void Page::init()
 {
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+// check for GpgME >= 1.24.0
+#if GPGME_VERSION_NUMBER >= 0x011800 && !defined(Q_OS_WIN)
     view()->setDragDropMode(QAbstractItemView::DragOnly);
     view()->setDragEnabled(true);
 #endif
