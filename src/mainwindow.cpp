@@ -452,7 +452,8 @@ MainWindow::Private::Private(MainWindow *qq)
     Q_SET_OBJECT_NAME(flatModel);
     Q_SET_OBJECT_NAME(hierarchicalModel);
 
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
+// check for GpgME >= 1.24.0
+#if GPGME_VERSION_NUMBER >= 0x011800 && !defined(Q_OS_WIN)
     auto keyExportDragHandler = std::make_shared<KeyExportDragHandler>();
     flatModel->setDragHandler(keyExportDragHandler);
     hierarchicalModel->setDragHandler(keyExportDragHandler);
