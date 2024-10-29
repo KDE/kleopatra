@@ -48,11 +48,11 @@ private:
     }
 
 public:
-    explicit Private(ChangeRootTrustCommand *qq, KeyListController *c)
+    explicit Private(ChangeRootTrustCommand *qq, GpgME::Key::OwnerTrust trust_, KeyListController *c)
         : QThread()
         , Command::Private(qq, c)
         , mutex()
-        , trust(Key::Ultimate)
+        , trust(trust_)
         , trustListFile(QDir(gnupgHomeDirectory()).absoluteFilePath(QStringLiteral("trustlist.txt")))
         , canceled(false)
     {
@@ -102,63 +102,13 @@ const ChangeRootTrustCommand::Private *ChangeRootTrustCommand::d_func() const
 #define q q_func()
 #define d d_func()
 
-ChangeRootTrustCommand::ChangeRootTrustCommand(KeyListController *p)
-    : Command(new Private(this, p))
+ChangeRootTrustCommand::ChangeRootTrustCommand(GpgME::Key::OwnerTrust trust, QAbstractItemView *v, KeyListController *p)
+    : Command(v, new Private(this, trust, p))
 {
     d->init();
 }
 
-ChangeRootTrustCommand::ChangeRootTrustCommand(QAbstractItemView *v, KeyListController *p)
-    : Command(v, new Private(this, p))
-{
-    d->init();
-}
-
-ChangeRootTrustCommand::ChangeRootTrustCommand(const GpgME::Key &key, KeyListController *p)
-    : Command(new Private(this, p))
-{
-    Q_ASSERT(!key.isNull());
-    d->init();
-    setKey(key);
-}
-
-ChangeRootTrustCommand::ChangeRootTrustCommand(const GpgME::Key &key, QAbstractItemView *v, KeyListController *p)
-    : Command(v, new Private(this, p))
-{
-    Q_ASSERT(!key.isNull());
-    d->init();
-    setKey(key);
-}
-
-ChangeRootTrustCommand::~ChangeRootTrustCommand()
-{
-}
-
-void ChangeRootTrustCommand::setTrust(Key::OwnerTrust trust)
-{
-    Q_ASSERT(!d->isRunning());
-    const QMutexLocker locker(&d->mutex);
-    d->trust = trust;
-}
-
-Key::OwnerTrust ChangeRootTrustCommand::trust() const
-{
-    const QMutexLocker locker(&d->mutex);
-    return d->trust;
-}
-
-void ChangeRootTrustCommand::setTrustListFile(const QString &trustListFile)
-{
-    Q_ASSERT(!d->isRunning());
-    const QMutexLocker locker(&d->mutex);
-    d->trustListFile = trustListFile;
-}
-
-QString ChangeRootTrustCommand::trustListFile() const
-{
-    const QMutexLocker locker(&d->mutex);
-    return d->trustListFile;
-}
+ChangeRootTrustCommand::~ChangeRootTrustCommand() = default;
 
 void ChangeRootTrustCommand::doStart()
 {

@@ -21,18 +21,11 @@ namespace Commands
 class ChangeRootTrustCommand : public Command
 {
     Q_OBJECT
+protected:
+    ChangeRootTrustCommand(GpgME::Key::OwnerTrust trust, QAbstractItemView *view, KeyListController *parent);
+
 public:
-    explicit ChangeRootTrustCommand(KeyListController *parent);
-    explicit ChangeRootTrustCommand(QAbstractItemView *view, KeyListController *parent);
-    explicit ChangeRootTrustCommand(const GpgME::Key &key, KeyListController *parent);
-    explicit ChangeRootTrustCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent);
     ~ChangeRootTrustCommand() override;
-
-    void setTrust(GpgME::Key::OwnerTrust trust);
-    GpgME::Key::OwnerTrust trust() const;
-
-    void setTrustListFile(const QString &file);
-    QString trustListFile() const;
 
     /* reimp */ static Restrictions restrictions()
     {
@@ -52,25 +45,9 @@ private:
 class TrustRootCommand : public ChangeRootTrustCommand
 {
 public:
-    explicit TrustRootCommand(KeyListController *parent)
-        : ChangeRootTrustCommand(parent)
+    TrustRootCommand(QAbstractItemView *view, KeyListController *parent)
+        : ChangeRootTrustCommand(GpgME::Key::Ultimate, view, parent)
     {
-        setTrust(GpgME::Key::Ultimate);
-    }
-    explicit TrustRootCommand(QAbstractItemView *view, KeyListController *parent)
-        : ChangeRootTrustCommand(view, parent)
-    {
-        setTrust(GpgME::Key::Ultimate);
-    }
-    explicit TrustRootCommand(const GpgME::Key &key, KeyListController *parent)
-        : ChangeRootTrustCommand(key, parent)
-    {
-        setTrust(GpgME::Key::Ultimate);
-    }
-    explicit TrustRootCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent)
-        : ChangeRootTrustCommand(key, view, parent)
-    {
-        setTrust(GpgME::Key::Ultimate);
     }
 
     /* reimp */ static Restrictions restrictions()
@@ -82,25 +59,9 @@ public:
 class DistrustRootCommand : public ChangeRootTrustCommand
 {
 public:
-    explicit DistrustRootCommand(KeyListController *parent)
-        : ChangeRootTrustCommand(parent)
+    DistrustRootCommand(QAbstractItemView *view, KeyListController *parent)
+        : ChangeRootTrustCommand(GpgME::Key::Never, view, parent)
     {
-        setTrust(GpgME::Key::Never);
-    }
-    explicit DistrustRootCommand(QAbstractItemView *view, KeyListController *parent)
-        : ChangeRootTrustCommand(view, parent)
-    {
-        setTrust(GpgME::Key::Never);
-    }
-    explicit DistrustRootCommand(const GpgME::Key &key, KeyListController *parent)
-        : ChangeRootTrustCommand(key, parent)
-    {
-        setTrust(GpgME::Key::Never);
-    }
-    explicit DistrustRootCommand(const GpgME::Key &key, QAbstractItemView *view, KeyListController *parent)
-        : ChangeRootTrustCommand(key, view, parent)
-    {
-        setTrust(GpgME::Key::Never);
     }
 
     /* reimp */ static Restrictions restrictions()
