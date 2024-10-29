@@ -37,7 +37,6 @@
 
 #include <QAccessible>
 #include <QButtonGroup>
-#include <QFontDatabase>
 #include <QFontMetrics>
 #include <QFrame>
 #include <QLabel>
@@ -169,8 +168,6 @@ public:
         protocolLabel->setFont(font);
         protocolSelectionLay->addWidget(protocolLabel);
         protocolSelectionLay->addStretch(-1);
-        // Once S/MIME is supported add radio for S/MIME here.
-
         recipientsVLay->addWidget(mSigEncWidget);
 
         mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -184,8 +181,6 @@ public:
 
         auto fixedFont = QFont(QStringLiteral("Monospace"));
         fixedFont.setStyleHint(QFont::TypeWriter);
-        // This does not work well
-        // QFontDatabase::systemFont(QFontDatabase::FixedFont);
 
         mEdit->setFont(fixedFont);
         mEdit->setAcceptRichText(false);
