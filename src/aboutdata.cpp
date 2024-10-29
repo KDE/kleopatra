@@ -48,7 +48,7 @@ static constexpr auto authors = std::to_array<about_data>({
 });
 
 static constexpr auto credits = std::to_array<about_data>({
-    {kli18n("Alexander Kulbartsch"), kli18nc("@info:credit", "Smartcard view redesign, certificate view redesign and user experience")},
+    {kli18n("Alexander Kulbartsch"), kli18nc("@info:credit", "UX redesign of smartcard view and certificate details")},
     {kli18n("Carl Schwan"), kli18nc("@info:credit", "Mail viewer")},
     {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration")},
     {kli18n("Frank Osterfeld"), kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs")},
