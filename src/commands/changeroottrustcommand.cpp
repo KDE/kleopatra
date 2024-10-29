@@ -33,6 +33,8 @@
 
 #include <gpgme++/key.h>
 
+#include <algorithm>
+
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
@@ -81,6 +83,8 @@ private:
         Command::Private::finished();
     }
 
+    bool confirmOperation(const Key &key);
+
 private:
     mutable QMutex mutex;
     Key::OwnerTrust trust;
@@ -126,7 +130,7 @@ void ChangeRootTrustCommand::doStart()
         qCWarning(KLEOPATRA_LOG) << "can only work with one certificate at a time";
     }
 
-    if (key.isNull()) {
+    if (key.isNull() || !d->confirmOperation(key)) {
         d->Command::Private::finished();
         return;
     }
@@ -184,6 +188,61 @@ static QString add_colons(const QString &fpr)
         result.chop(1);
     }
     return result;
+}
+
+static KLocalizedString joinAsIndentedLines(const QStringList &strings)
+{
+    KLocalizedString result = kxi18nc("@info needed for technical reasons; RTL-languages may have to put the %1 in front", "&nbsp;&nbsp;&nbsp;&nbsp;%1");
+    if (strings.empty()) {
+        return result.subs(QString{});
+    }
+    result = result.subs(strings.front());
+    return std::accumulate(std::next(strings.begin()), strings.end(), result, [](KLocalizedString temp, const QString &line) {
+        return kxi18nc(
+                   "@info used for concatenating multiple lines of indented text with line breaks; "
+                   "RTL-languages may have to put the %2 before the non-breaking space entities",
+                   "%1<nl/>&nbsp;&nbsp;&nbsp;&nbsp;%2")
+            .subs(temp)
+            .subs(line);
+    });
+}
+
+bool ChangeRootTrustCommand::Private::confirmOperation(const Key &key)
+{
+    const QStringList certificateAttributes = DN(key.userID(0).id()).prettyAttributes();
+    const KLocalizedString certificateInfo = joinAsIndentedLines(certificateAttributes);
+    {
+        const QString question = (trust == GpgME::Key::Ultimate) //
+            ? xi18nc("@info", "<para>Do you ultimately trust</para><para>%1</para><para>to correctly certify user certificates?</para>", certificateInfo) //
+            : xi18nc("@info", "<para>Do you distrust</para><para>%1</para><para>to correctly certify user certificates?</para>", certificateInfo);
+        const QString title = (trust == GpgME::Key::Ultimate) //
+            ? i18nc("@title:window", "Trust Root Certificate") //
+            : i18nc("@title:window", "Distrust Root Certificate");
+        const auto answer =
+            KMessageBox::questionTwoActions(parentWidgetOrView(), question, title, KGuiItem(i18nc("@action:button", "Yes")), KStandardGuiItem::cancel());
+        if (answer != KMessageBox::ButtonCode::PrimaryAction) {
+            return false;
+        }
+    }
+
+    if (trust == GpgME::Key::Ultimate) {
+        const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
+                                                            xi18nc("@info",
+                                                                   "<para>Please verify that the certificate identified as:</para>"
+                                                                   "<para>%1</para>"
+                                                                   "<para>has the SHA-1 fingerprint:</para>"
+                                                                   "<para>%2</para>",
+                                                                   certificateInfo,
+                                                                   add_colons(QString::fromLatin1(key.primaryFingerprint()))),
+                                                            i18nc("@title:window", "Verify Fingerprint"),
+                                                            KGuiItem(i18nc("@action:button", "Correct")),
+                                                            KGuiItem(i18nc("@action:button", "Wrong")));
+        if (answer != KMessageBox::ButtonCode::PrimaryAction) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 namespace
