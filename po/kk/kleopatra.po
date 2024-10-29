@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -990,7 +990,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN-код сәтті орнатылды."
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -999,37 +999,44 @@ msgstr ""
 "Сенімдіер қорын жаңарту жаңылысы:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Түбір сенімділерді жаңарту жаңылысы"
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+#| msgid "Create a personal X.509 key pair and certification request "
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr "Дербес X.509 қос кілтіңізді жасау және куәландыруын сұрау "
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Бар \"%1\" деген файл оқуға ашылмады: %2"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "\"%1\" деген файл оқуға-жазуға ашылмады: %2"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "\"%1\" деген файлға шектейтін рұқсаттары орнатылмады: %2"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "%1 файлын соңғы орнына жілжыту жаңылысы, %2: %3"
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "gpgconf орөндайтын файлы табылмады"
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "\"gpgconf --reload gpg-agent\" жаңылысы: %1"
@@ -2266,8 +2273,8 @@ msgstr "Алмасу буфері"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr ""
@@ -4439,19 +4446,19 @@ msgstr "Смарт-карта"
 msgid "Cannot be configured with Kleopatra"
 msgstr ""
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Бұл параметр dirmngr >= 0.9.0 қажет етеді"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "прокси жоқ"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(жүйенің қазіргісі: %1)"
@@ -5177,7 +5184,7 @@ msgstr "<b>Шифрды шешу сәтті өтті.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, kde-format
 msgid "Input error: %1"
 msgstr "Кіріс қатесі: %1"
@@ -5256,31 +5263,64 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "%1 орындау жаңылысы: %2"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "%1 орындау жаңылысы: %2"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+#| msgid "certificate"
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "куәлік"
+
+#: src/crypto/decryptverifytask.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:763
+#, kde-format
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Ерекше жағдайы: %1"
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Ерекше жағдай орын алды"
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5289,13 +5329,13 @@ msgstr ""
 "Бұның шифры S/MIME ме, әлде OpenPGP ма, анық айырылмады, мүмкін, бірінші де, "
 "екінші де емес шығар?"
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, fuzzy, kde-format
 #| msgid "Decrypting: %1..."
 msgid "Decrypting %1..."
 msgstr "%1 шифрын шешу..."
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5304,12 +5344,12 @@ msgstr ""
 "Бұның шифры S/MIME ме, әлде OpenPGP ма, анық айырылмады, мүмкін, мүлдем "
 "шифрлы мәтін емес шығар?"
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "%1 шифрын шешу..."
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5318,13 +5358,13 @@ msgstr ""
 "Бұның қолтаңбасы S/MIME ме, әлде OpenPGP ма, анық айырылмады, мүмкін, мүлдем "
 "қолтаңба емес шығар?"
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "Тексеріліп жатқаны: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5338,13 +5378,13 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "Тексеріліп жатқан қолтаңба: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6595,18 +6635,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Тапсырманың протоколы анықталмады"
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6615,14 +6655,14 @@ msgstr ""
 "Келесі файлдарының ортақ негіз каталогы табылмады:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Файл(дар)ды қолтаңбалау және/не шифрлау"
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6630,13 +6670,47 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Кілтті жасау..."
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Кілтті жасау..."
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "%1 орындау жаңылысы: %2"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "%1 орындау жаңылысы: %2"
+
+#: src/crypto/signencrypttask.cpp:905
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:907
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Key Pair Successfully Created"
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "Екі сыңар кілт сәтті құрылды"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -12304,290 +12378,290 @@ msgstr "Серверден куәлікті алу..."
 msgid "Loading certificate cache..."
 msgstr "Куәлік кэшін жүктеу..."
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, fuzzy, kde-format
 #| msgid "New Key Pair..."
 msgid "New OpenPGP Key Pair..."
 msgstr "Жаңа қос кілттер..."
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgid "Create a new OpenPGP certificate"
 msgstr "OpenPGP куәліктері"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Export..."
 msgstr "Эспорт"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Publish on Server..."
 msgstr "Серверінде куәліктерді қарастыру..."
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Publish at Mail Provider..."
 msgstr "Серверінде куәліктерді қарастыру..."
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgid "Backup Secret Keys..."
 msgstr "Құпия кілттерін экспорттау..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, fuzzy, kde-format
 #| msgid "Export Secret Keys..."
 msgid "Print Secret Key..."
 msgstr "Құпия кілттерін экспорттау..."
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Lookup on Server..."
 msgstr "Серверінде куәліктерді қарастыру..."
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Search for Certificate by fingerprint"
 msgid "Search for certificates in internal directory"
 msgstr "Куәлікті бақылу тізбегінен іздеу"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, fuzzy, kde-format
 #| msgid "Search for Certificate by fingerprint"
 msgid "Search for certificates on %1"
 msgstr "Куәлікті бақылу тізбегінен іздеу"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import..."
 msgstr "импорт"
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
 msgid "Import a certificate from a file"
 msgstr "%1 дегеннен куәліктер импортталды"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Шифрын шешу/Тексеру"
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Decrypt and/or verify files"
 msgstr "Файлд(ард)ың шифрын шешу не/және тексеру"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Қолтаңбалау/Шифрлау"
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Encrypt and/or sign files"
 msgstr "Файлд(ард)ың шифрын шешу не/және тексеру"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, fuzzy, kde-format
 #| msgid "Sign/Encrypt Files..."
 msgid "Sign/Encrypt Folder..."
 msgstr "Файлдарды қолтаңбалау/шифрлау"
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Encrypt and/or sign folders"
 msgstr "Файлд(ард)ың шифрын шешу не/және тексеру"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Бақылау қосынды файлдарын құру"
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Бақылау қосынды файлдарын тексеру"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr "Қайта корсету"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr "Амалды тоқтату"
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Details"
 msgstr "Егжей-тегжейі"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certificate..."
 msgstr "Осы куәліктің күшін жою..."
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr "Өшіру"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Delete selected certificates"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 #| msgid "Save Certificate"
 msgid "Update Certificates"
 msgstr "Куәлікті сақтау"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Update selected certificates"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, fuzzy, kde-format
 #| msgid "Certify..."
 msgid "Certify..."
 msgstr "Растау..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "Certify the validity of the selected certificate"
 msgstr "Қолтаңбаның жарамдылы тексеруге келмейді."
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certification..."
 msgstr "Осы куәліктің күшін жою..."
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "Revoke the certification of the selected certificate"
 msgstr "Қолтаңбаның жарамдылы тексеруге келмейді."
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Иеснің сенімділігін өзгерту..."
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Қолтаңбаның жарамдылы тексеруге келмейді."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Паролін өзгерту..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Пайдаланушы-ID-н қосу..."
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "%1 баптауы..."
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Қолтаңбаның жарамдылы тексеруге келмейді."
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Куәлікті таңдаңыз"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP куәліктерін жаңарту"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Delete Certificates"
@@ -12595,7 +12669,7 @@ msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Куәліктерді өшіру"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12604,55 +12678,55 @@ msgid ""
 "They are still listed in the certificate list."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME куәліктері"
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Дербес X.509 қос кілтіңізді жасау және куәландыруын сұрау "
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Түбір куәлігін сенімді қылу"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Түбір куәлігін сенімсіз қылу"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, kde-format
 msgid "Technical Details"
 msgstr "Техникалық егжей-тегжейі"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME куәліктері"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL кэшін тазалау"
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL кэшін дамп ету"
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL тізімін файлдан импорттау..."
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
@@ -12758,7 +12832,7 @@ msgstr "Шифрлау параметрлері"
 msgid "Decrypt / Verify"
 msgstr "&Шифрын шешу/Тексеру"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12769,34 +12843,34 @@ msgid ""
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Қолтаңбалау доғарылды"
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Шифрлау доғарылды."
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Қолтаңбалау мен шифрлау сәтті өтті."
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Importing..."
 msgstr "импорт"
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -12804,7 +12878,7 @@ msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Қолтаңбалау && шифрлау"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -12812,7 +12886,7 @@ msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Қолтаңбалау && шифрлау"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -14731,12 +14805,6 @@ msgstr ""
 #~ msgctxt "Placeholder is the number of a slot on a smart card"
 #~ msgid "Authentication (%1)"
 #~ msgstr "Аутентификациялау"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "%1 орындау жаңылысы: %2"
 
 #, fuzzy
 #~| msgid ""

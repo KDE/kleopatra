@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -925,7 +925,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN が変更できました。"
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -934,37 +934,44 @@ msgstr ""
 "信頼データベースの更新に失敗:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "ルート信頼の更新に失敗"
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+#| msgid "You are not allowed to create S/MIME certificate signing requests."
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr "S/MIME 証明書署名要求の作成は許されていません。"
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "ファイル \"%1\" を読み取りのために開けませんでした: %2"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "ファイル \"%1\" を読み取り・書き込みのために開けませんでした: %2"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "ファイル %1 に制限許可情報を設定できませんでした: %2"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "ファイル %1 を最終的な場所 %2 に移動するのに失敗: %3"
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "gpgconf 実行ファイルが見つかりませんでした"
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "\"gpgconf --reload gpg-agent\" が失敗: %1"
@@ -2178,8 +2185,8 @@ msgstr "クリップボード"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr "ノートパッド"
@@ -4273,19 +4280,19 @@ msgstr "使用するスマートカード・リーダ:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Kleopatra では設定できません"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "このオプションは dirmngr >= 0.9.0 を必要とします"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "プロキシなし"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(現在のシステム設定: %1)"
@@ -4977,7 +4984,7 @@ msgstr "<b>復号に成功しました。</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, kde-format
 msgid "Input error: %1"
 msgstr "入力エラー: %1"
@@ -5061,31 +5068,67 @@ msgstr ""
 "ファイルが操作されていないと自信があるのであれば、復号を強制された際に再暗号"
 "化すべきです。"
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+#| msgctxt "%1 is error message"
+#| msgid "Failed to export: '%1'"
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "エクスポート失敗: '%1'"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+#| msgctxt "%1 is error message"
+#| msgid "Failed to export: '%1'"
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "エクスポート失敗: '%1'"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "新しい鍵をこのカードのために生成できました。"
+
+#: src/crypto/decryptverifytask.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:763
+#, kde-format
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "例外を検出: %1"
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "未知の例外を検出"
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5094,13 +5137,13 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。暗号でも署名でも"
 "ないかもしれません?"
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, fuzzy, kde-format
 #| msgid "Decrypting: %1..."
 msgid "Decrypting %1..."
 msgstr "復号: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5109,12 +5152,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。まったくもって暗"
 "号でも署名でもないかもしれません?"
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "復号: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5123,13 +5166,13 @@ msgstr ""
 "S/MIME か OpenPGP 署名のどちらか決定できませんでした。署名でないかもしれませ"
 "ん?"
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "検証: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature in progress. The first file contains "
@@ -5141,13 +5184,13 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> を <filename>%2</filename> で検証中..."
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "署名を検証: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6357,18 +6400,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: %2"
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "タスクに使用するプロトコルを判断できません"
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6377,7 +6420,7 @@ msgstr ""
 "このファイルに共通なベースのディレクトリが見つかりません:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, fuzzy, kde-format
 #| msgctxt "Lineedit accessible name"
 #| msgid "OpenPGP signed and encrypted file"
@@ -6385,7 +6428,7 @@ msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "OpenPGP 署名/暗号化のファイル"
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
@@ -6393,13 +6436,50 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "鍵ペアを作成中..."
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key Pair..."
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "鍵ペアを作成中..."
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+#| msgid "Failed to send file path %1: %2"
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "ファイルパス %1 の送信に失敗: %2"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+#| msgctxt "%1 is error message"
+#| msgid "Failed to export: '%1'"
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "エクスポート失敗: '%1'"
+
+#: src/crypto/signencrypttask.cpp:905
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated an OpenPGP key from the card keys."
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr "カード鍵から OpenPGP 鍵の作成ができました。"
+
+#: src/crypto/signencrypttask.cpp:907
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Key successfully generated."
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "鍵が作成できました。"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -12020,49 +12100,49 @@ msgstr "証明書のキャッシュを読み込み中..."
 msgid "Loading certificate cache..."
 msgstr "証明書のキャッシュを読み込み中..."
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "新しい OpenPGP 鍵ペアを作成"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "新しい OpenPGP 証明書を作成"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Export..."
 msgstr "エクスポート..."
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "選択された証明書(公開鍵をファイルにエクスポート"
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, kde-format
 msgid "Publish on Server..."
 msgstr "サーバへ公開..."
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, fuzzy, kde-format
 #| msgid "Publish the selected certificate (public key) on a public keyserver"
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "選択された証明書 (公開鍵)を公開鍵サーバに公開"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, fuzzy, kde-format
 #| msgid "Publish the selected certificate (public key) on a public keyserver"
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "選択された証明書 (公開鍵)を公開鍵サーバに公開"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "メールプロバイダへ公開..."
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -12071,218 +12151,218 @@ msgstr ""
 "選択された証明書 (公開鍵)をメールプロバイダのウェブ鍵ディレクトリで(提供され"
 "ている場合に)公開"
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "秘密鍵をバックアップ..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "秘密鍵を印刷..."
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "サーバでルックアップ..."
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
 msgid "Search for certificates in internal directory"
 msgstr "鍵サーバでの証明書の検索"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
 msgid "Search for certificates on %1"
 msgstr "鍵サーバでの証明書の検索"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "インポート..."
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "証明書をファイルからインポートする"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "復号/検証..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "ファイルを復号/検証"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "署名/暗号化..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "ファイルを暗号化/署名"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "フォルダを署名/暗号化..."
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "フォルダを暗号化/署名"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "チェックサムファイルを作成..."
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "チェックサムファイルを検証..."
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr "再表示"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr "操作を停止"
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Details"
 msgstr "詳細"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "証明書を取消..."
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "選択した OpenPGP 証明書を取消"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr "削除"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "選択した証明書を削除"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 #| msgctxt "@title:tab"
 #| msgid "Imported Certificates"
 msgid "Update Certificates"
 msgstr "インポートした証明書"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgid "Update selected certificates"
 msgstr "選択した証明書を削除"
 
 # 証明書に署名
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Certify..."
 msgstr "保証..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "選択した証明書の有効性を保証する。"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "保証の取消..."
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "選択した証明書の保証を取消。"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "有効期間の終了を変更..."
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "保証の力を変更..."
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "選択した証明書の保証の力を与える/取り消す"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "パスフレーズを変更..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgid "Add User ID..."
 msgstr "ユーザ ID を追加..."
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 #| msgid "Configure Groups..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "グループを設定..."
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, fuzzy, kde-format
 #| msgid "Certify the validity of the selected certificate"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "選択した証明書の有効性を保証する。"
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, fuzzy, kde-format
 #| msgid "Delete selected certificates"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "選択した証明書を削除"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP 証明書を更新"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Delete Certificates"
@@ -12290,7 +12370,7 @@ msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "証明書の削除"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12299,52 +12379,52 @@ msgid ""
 "They are still listed in the certificate list."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "新しい S/MIME 証明要求..."
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "新しい S/MIME 証明書署名要求 (CSR) を作成"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "ルート証明書を信頼する"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "ルート証明書を信頼しない"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, kde-format
 msgid "Technical Details"
 msgstr "技術的な詳細"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME 証明書を更新"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL キャッシュをクリア"
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL キャッシュをダンプ"
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL をファイルからインポート..."
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Select Certificate"
@@ -12445,7 +12525,7 @@ msgstr "Crypto 動作のエラー"
 msgid "Decrypt / Verify"
 msgstr "復号 / 検証"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12459,42 +12539,42 @@ msgstr ""
 "めに使えません。<application>Kleopatra</application>が使う"
 "<application>GnuPG</application>システムが %1 でないためです。</para>"
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "ノートパッドに署名..."
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "ノートパッドを暗号化..."
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "ノートパッドの署名と暗号化..."
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, kde-format
 msgid "Importing..."
 msgstr "インポート..."
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "ノートパッドに署名"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "ノートパッドの暗号化"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

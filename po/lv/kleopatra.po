@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
 "PO-Revision-Date: 2011-08-24 09:59+0300\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -985,7 +985,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN iestatīts veiksmīgi."
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -994,37 +994,44 @@ msgstr ""
 "Neizdevās atjaunināt uzticamības datubāzi:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Saknes uzticamības atjaunināšana neizdevās"
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+#| msgid "Create a personal X.509 key pair and certification request "
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr "Izveidot personīgo X.509 atslēgu pāri un sertificēšanas pieprasījumu "
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Neizdevās atvērt eksistējošo failu \"%1\" lasīšanai: %2"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Neizdevās atvērt failu \"%1\" lasīšanai un rakstīšanai: %2"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Neizdevās iestatīt ierobežojošas atļaujas failam %1: %2"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Neizdevās pārvietot failu %1 uz tā gala mērķi, %2: %3"
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "Nevar atrast gpgconf izpildāmo failu"
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "\"gpgconf --reload gpg-agent\" neizdevās: %1"
@@ -2282,8 +2289,8 @@ msgstr "Starpliktuve"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr ""
@@ -4476,19 +4483,19 @@ msgstr "SmartCard"
 msgid "Cannot be configured with Kleopatra"
 msgstr ""
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Šai iespējai nepieciešams dirmngr >= 0.9.0"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "bez starpniekservera"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Pašreizējais sistēmas iestatījums: %1)"
@@ -5256,7 +5263,7 @@ msgstr "<b>Atšifrēšana veiksmīga.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, fuzzy, kde-format
 #| msgid "Input file:"
 msgid "Input error: %1"
@@ -5339,31 +5346,64 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "Neizdevās izpildīt %1: %2"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "Neizdevās izpildīt %1: %2"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+#| msgid "certificate"
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "sertifikāts"
+
+#: src/crypto/decryptverifytask.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:763
+#, kde-format
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Notverts izņēmums: %1"
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Notverts nezināms izņēmums"
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5372,13 +5412,13 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir S/MIME vai OpenPGP paraksts/šifrēts teksts - "
 "varbūt neviens no tiem?"
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, fuzzy, kde-format
 #| msgid "Decrypting: %1..."
 msgid "Decrypting %1..."
 msgstr "Atšifrē: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5387,12 +5427,12 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir šifrēts ar S/MIME vai OpenPGP - varbūt tas "
 "nemaz nav šifrēts teksts?"
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Atšifrē: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5401,13 +5441,13 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir S/MIME vai an OpenPGP paraksts - varbūt tas "
 "nemaz nav paraksts?"
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, fuzzy, kde-format
 #| msgid "Verifying: %1..."
 msgid "Verifying %1..."
 msgstr "Pārbauda: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5421,13 +5461,13 @@ msgstr ""
 "Neizdevās nokopēt pagaidu failu <filename>%1</filename> uz failu <filename>"
 "%2</filename>: <message>%3</message>"
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, fuzzy, kde-format
 #| msgid "Verifying signature: %1..."
 msgid "Verifying signature %1..."
 msgstr "Pārbauda parakstu: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6706,18 +6746,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Nevar noteikt uzdevumam vajadzīgo protokolu"
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6726,14 +6766,14 @@ msgstr ""
 "Neizdevās atrast kopīgo bāzes mapi šiem failiem:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, fuzzy, kde-format
 #| msgid "Sign/Encrypt Files"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Parakstīt/Šifrēt failus"
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -6741,13 +6781,47 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Izveido atslēgu..."
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Izveido atslēgu..."
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "Neizdevās izpildīt %1: %2"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "Neizdevās izpildīt %1: %2"
+
+#: src/crypto/signencrypttask.cpp:905
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:907
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Key Pair Successfully Created"
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "Atslēgu pāris veiksmīgi izveidots"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -12494,80 +12568,80 @@ msgstr "Ielādē sertifikātu kešatmiņu..."
 msgid "Loading certificate cache..."
 msgstr "Ielādē sertifikātu kešatmiņu..."
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create Key"
 msgid "New OpenPGP Key Pair..."
 msgstr "Izveidot atslēgu"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, fuzzy, kde-format
 #| msgid "OpenPGP Certificates"
 msgid "Create a new OpenPGP certificate"
 msgstr "OpenPGP sertifikāti"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Export..."
 msgstr "Eksportēt"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Publish on Server..."
 msgstr "Sameklēt sertifikātus uz servera..."
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Publish at Mail Provider..."
 msgstr "Sameklēt sertifikātus uz servera..."
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, fuzzy, kde-format
 #| msgid "Export Secret Certificate..."
 msgid "Backup Secret Keys..."
 msgstr "Eksportēt slepeno sertifikātu..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, fuzzy, kde-format
 #| msgid "Export Secret Certificate..."
 msgid "Print Secret Key..."
 msgstr "Eksportēt slepeno sertifikātu..."
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "Lookup Certificates on Server..."
 msgid "Lookup on Server..."
 msgstr "Sameklēt sertifikātus uz servera..."
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid ""
 #| "Certificate created successfully.\n"
@@ -12577,7 +12651,7 @@ msgstr ""
 "Sertifikāts veiksmīgi izveidots.\n"
 "Nospiedums: %1"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, fuzzy, kde-format
 #| msgid ""
 #| "Certificate created successfully.\n"
@@ -12587,211 +12661,211 @@ msgstr ""
 "Sertifikāts veiksmīgi izveidots.\n"
 "Nospiedums: %1"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import..."
 msgstr "Importēt"
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "Imported Certificates from %1"
 msgid "Import a certificate from a file"
 msgstr "Importētie sertifikāti no %1"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Atšifrēt/Pārbaudīt..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Decrypt and/or verify files"
 msgstr "Atšifrēt un/vai pārbaudīt failu(s)"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Parakstīt/šifrēt..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Encrypt and/or sign files"
 msgstr "Atšifrēt un/vai pārbaudīt failu(s)"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, fuzzy, kde-format
 #| msgid "Sign/Encrypt Files..."
 msgid "Sign/Encrypt Folder..."
 msgstr "Parakstīt/Šifrēt failus..."
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify file(s)"
 msgid "Encrypt and/or sign folders"
 msgstr "Atšifrēt un/vai pārbaudīt failu(s)"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Create Checksum Progress"
 msgid "Create Checksum Files..."
 msgstr "Kontrolsummas izveidošanas progress"
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Verify Checksum Results"
 msgid "Verify Checksum Files..."
 msgstr "Pārbaudīt kontrolsummas rezultātus"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr "Pārzīmēt"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr "Apturēt darbību"
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Details"
 msgstr "Detaļas"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certificate..."
 msgstr "Atsaukt šo sertifikātu..."
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr "Dzēst"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Delete selected certificates"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 #| msgctxt "@title:tab"
 #| msgid "Imported Certificates"
 msgid "Update Certificates"
 msgstr "Importētie sertifikāti"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgid "Update selected certificates"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, fuzzy, kde-format
 #| msgid "Certify..."
 msgid "Certify..."
 msgstr "Sertificēt..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "Certify the validity of the selected certificate"
 msgstr "Paraksta derīgumu nevar apstiprināt."
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, fuzzy, kde-format
 #| msgid "Revoke This Certificate..."
 msgid "Revoke Certification..."
 msgstr "Atsaukt šo sertifikātu..."
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgid "Revoke the certification of the selected certificate"
 msgstr "Paraksta derīgumu nevar apstiprināt."
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, fuzzy, kde-format
 #| msgid "Change Owner Trust..."
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Mainīt īpašnieka uzticību..."
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Paraksta derīgumu nevar apstiprināt."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Mainīt paroles frāzi..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, fuzzy, kde-format
 #| msgid "Add User-ID..."
 msgid "Add User ID..."
 msgstr "Pievienot lietotāja ID..."
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 #| msgid "&Configure %1..."
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "&Konfigurēt %1..."
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, fuzzy, kde-format
 #| msgid "The validity of the signature cannot be verified."
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Paraksta derīgumu nevar apstiprināt."
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, fuzzy, kde-format
 #| msgid "Please select a certificate"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Lūdzu, izvēlieties sertifikātu"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Atsvaidzināt OpenPGP sertifikātus"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgctxt "@title:window"
 #| msgid "Delete Certificates"
@@ -12799,7 +12873,7 @@ msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Dzēst sertifikātus"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12808,55 +12882,55 @@ msgid ""
 "They are still listed in the certificate list."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME sertifikāti"
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Izveidot personīgo X.509 atslēgu pāri un sertificēšanas pieprasījumu "
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Uzticēties saknes sertifikātam"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Neuzticēties saknes sertifikātam"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, kde-format
 msgid "Technical Details"
 msgstr "Tehniskās detaļas"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME sertifikāti"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Iztīrīt CRL kešatmiņu"
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Veikt CRL kešatmiņas izmeti"
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importēt CRL no faila..."
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
@@ -12962,7 +13036,7 @@ msgstr "Šifrēšanas opcijas"
 msgid "Decrypt / Verify"
 msgstr "Atšifrēt/Pārbau&dīt"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12973,34 +13047,34 @@ msgid ""
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Parakstīšana atcelta."
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Šifrēšana atcelta."
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Parakstīšana un šifrēšana izdevās."
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Importing..."
 msgstr "Importēt"
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -13008,7 +13082,7 @@ msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Parakstīt un šifrēt"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -13016,7 +13090,7 @@ msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Parakstīt un šifrēt"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -14975,12 +15049,6 @@ msgstr ""
 #~ msgctxt "Placeholder is the number of a slot on a smart card"
 #~ msgid "Authentication (%1)"
 #~ msgstr "Autentificēšana"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Neizdevās izpildīt %1: %2"
 
 #, fuzzy
 #~| msgid ""

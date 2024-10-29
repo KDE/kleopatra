@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
 "PO-Revision-Date: 2024-10-26 17:32+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -890,7 +890,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN ondo aldatu da."
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -899,37 +899,44 @@ msgstr ""
 "Konfiantza datu-basea eguneratzea huts egin du:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Erroko konfiantza eguneratzea huts egin du"
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+#| msgid "You are not allowed to create S/MIME certificate signing requests."
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr "Ez duzu S/MIME ziurtagiria sinatzeko eskaera bat sortzeko baimenik."
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Ezin du existitzen den \"%1\" fitxategia irakurtzeko ireki: %2"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Ezin du \"%1\" fitxategia irakurtzeko eta idazteko ireki: %2"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Ezin ditu %1 fitxategian baimen murriztaileak ezarri: %2"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "%1 fitxategia bere azken helmugara, %2, eramatea huts egin du: %3"
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "Ezin izan du «gpgconf» exekutagarria aurkitu"
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "\"gpgconf --reload gpg-agent\" huts egin du: %1"
@@ -2117,8 +2124,8 @@ msgstr "Arbela"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr "Ohar-bloka"
@@ -4188,19 +4195,19 @@ msgstr "Erabili beharreko txartel adimendun irakurlea:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Ezin da Kleopatrarekin konfiguratu"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr "Aukera horrek «dirmngr» >= 0.9.0 behar du"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "ordezkaririk gabe"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Sistemaren uneko ezarpena: %1)"
@@ -4887,7 +4894,7 @@ msgstr "<b>Deszifratzea ondo egin da.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, kde-format
 msgid "Input error: %1"
 msgstr "Sarrera-errorea: %1"
@@ -4973,31 +4980,69 @@ msgstr ""
 "Fitxategia ez dela manipulatu ziur bazaude, deszifratzera behartu ondoren, "
 "berriz zifratu beharko zenuke."
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "Ezin izan da ziurtagiria sortu: %1"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "Ezin izan da ziurtagiria sortu: %1"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
+
+#: src/crypto/decryptverifytask.cpp:760
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
+
+#: src/crypto/decryptverifytask.cpp:763
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Harrapatutako salbuespena: %1"
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Salbuespen ezezaguna harrapatu da"
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5006,12 +5051,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP sinadura/zifratutako-testua bat den "
 "- agian ez da ez zifratutako testua ez eta sinadura bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "%1 deszifratzen..."
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5020,12 +5065,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP-zifratutako-testua zen - agian ez da "
 "zifratutako testu bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Deszifratzen: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5034,12 +5079,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP sinadura bat den - agian ez da "
 "sinadura bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 egiaztatzen..."
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5047,12 +5092,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> <filename>%2</filename>(e)rekin egiaztatzen..."
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "%1 sinadura egiaztatzen..."
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6239,41 +6284,79 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Ezin du atazarako protokoloa zehaztu"
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr "Ezin du fitxategi horietarako oinarrizko direktorio komuna aurkitu: %1"
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Sinatutako eta zifratutako artxiboa sortzen..."
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Zifratutako artxiboa sortzen..."
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Sinatutako artxiboa sortzen..."
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "Ezin izan da ziurtagiria sortu: %1"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "Ezin izan da ziurtagiria sortu: %1"
+
+#: src/crypto/signencrypttask.cpp:905
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
+
+#: src/crypto/signencrypttask.cpp:907
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "Gakoa txartelera ondo kopiatu da."
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -11770,48 +11853,48 @@ msgstr "Txartel-adimenduneko ziurtagiriak irakurtzen..."
 msgid "Loading certificate cache..."
 msgstr "Ziurtagiri cachea zamatzen..."
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "OpenPGP gako-pare berria..."
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Sortu OpenPGP ziurtagiri berri bat"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Export..."
 msgstr "Esportatu..."
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Esportatu hautatutako ziurtagiria (gako publikoa) fitxategira"
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Argitaratu zerbitzarian..."
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Argitaratu hautatutako ziurtagiria (gako publikoa) barneko direktorioan"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Argitaratu hautatutako ziurtagiria (gako publikoa) %1(e)an"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Argitaratu posta hornitzailean..."
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11820,215 +11903,215 @@ msgstr ""
 "Argitaratu hautatutako ziurtagiria (gako publikoa) posta hornitzailearen Web "
 "gako direktorioan, eskainiz gero"
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Egin gako sekretuen babes-kopia..."
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Inprimatu gako sekretua..."
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Bilatu zerbitzarian..."
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, kde-format
 msgid "Search for certificates in internal directory"
 msgstr "Bilatu ziurtagiriak barneko direktoriora"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, kde-format
 msgid "Search for certificates on %1"
 msgstr "Bilatu ziurtagiriak %1(e)an"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Inportatu..."
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Inportatu ziurtagiri bat fitxategi batetik"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Deszifratu/Egiaztatu..."
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Deszifratu eta/edo egiaztatu fitxategiak"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Sinatu/Zifratu..."
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Zifratu eta/edo sinatu fitxategiak"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Sinatu/zifratu karpeta..."
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Zifratu eta/edo sinatu karpetak"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Sortu egiaztapen-batura fitxategiak..."
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Egiaztatu egiaztapen-batura fitxategiak..."
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr "Berriz azaldu"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr "Gelditu eragiketa"
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Details"
 msgstr "Xehetasunak"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Indargabetu ziurtagiria..."
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Indargabetu hautatutako OpenPGP ziurtagiria"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Ezabatu hautatutako ziurtagiriak"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Update Certificates"
 msgstr "Eguneratu ziurtagiriak"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Eguneratu hautatutako ziurtagiriak"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Certify..."
 msgstr "Ziurtatu..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Ziurtatu hautatutako ziurtagiriaren baliozkotasuna"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Indargabetu ziurtapena..."
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Indargabetu hautatutako ziurtagiriaren ziurtapena"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Aldatu baliotasun ardiaren bukaera..."
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Aldatu ziurtapenaren eskumena..."
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Eman edo indargabetu hautatutako ziurtagiriaren ziurtatzeko eskumena"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Aldatu pasaesaldia..."
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgid "Add User ID..."
 msgstr "Gehitu erabiltzaile-IDa..."
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Sortu taldea..."
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Sortu talde bat hautatutako ziurtagirietatik"
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Kopiatu txartelera"
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Kopiatu hautatutako ziurtagiriak txartel-adimendun batera"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Berritu OpenPGP ziurtagiriak"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Kopiatu"
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Ezgaitu ziurtagiria"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12040,52 +12123,52 @@ msgstr ""
 "ziurtagiri bat hautatzerakoan.\n"
 "Ziurtagirien zerrendan ordea ageri dira."
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "S/MIME ziurtapen eskaera berria..."
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Sortu S/MIME ziurtagiria sinatzeko eskaera berri bat (CSR)"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Erro ziurtagiriarekiko konfiantza izan"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Konfiantza kendu erro ziurtagirian"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, kde-format
 msgid "Technical Details"
 msgstr "Xehetasun teknikoak"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Berritu S/MIME ziurtagiriak"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Garbitu CRL cachea"
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Irauli CRL cachea"
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Inportatu CRL fitxategitik..."
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable Certificate"
@@ -12180,7 +12263,7 @@ msgstr "Errorea ekintza kriptografikoan"
 msgid "Decrypt / Verify"
 msgstr "Deszifratu / Egiaztatu"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12194,42 +12277,42 @@ msgstr ""
 "zifratzeko erabili, <application>Kleopatra</application>k erabilitako "
 "<application>GnuPG</application> sistema ez delako %1.</para>"
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Ohar-bloka sinatzen..."
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Ohar-bloka zifratzen..."
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Ohar-bloka sinatzen eta zifratzen..."
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, kde-format
 msgid "Importing..."
 msgstr "Inportatzen..."
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Sinatu Ohar-bloka"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Zifratu Ohar-bloka"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -13862,10 +13945,6 @@ msgstr ""
 #~ msgid "Keep Key"
 #~ msgstr "Mantendu gakoa"
 
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Gakoa txartelera ondo kopiatu da."
-
 #~ msgid ""
 #~ "The file <b>%1</b> already exists.\n"
 #~ "Overwrite?"
@@ -14162,12 +14241,6 @@ msgstr ""
 #~ msgctxt "Placeholder is the number of a slot on a smart card"
 #~ msgid "Authentication (%1)"
 #~ msgstr "Ziurtagiriaren informazioa"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Ezin izan da ziurtagiria sortu: %1"
 
 #, fuzzy
 #~| msgid ""

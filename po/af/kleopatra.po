@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kpgpcertmanager VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
 "PO-Revision-Date: 2002-11-07 11:35+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -840,44 +840,50 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
 "%1"
 msgstr ""
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr ""
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr "Genereer Sertifikaat"
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, fuzzy, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Kon nie genereer sertifikaat"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, fuzzy, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Kon nie genereer sertifikaat"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, fuzzy, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Kon nie genereer sertifikaat"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr ""
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr ""
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr ""
@@ -1948,8 +1954,8 @@ msgstr ""
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr ""
@@ -3845,19 +3851,19 @@ msgstr ""
 msgid "Cannot be configured with Kleopatra"
 msgstr ""
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr ""
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr ""
@@ -4473,7 +4479,7 @@ msgstr "Kies Sertifikaat Lêer"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, kde-format
 msgid "Input error: %1"
 msgstr ""
@@ -4553,68 +4559,98 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "Kon nie genereer sertifikaat"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "Kon nie genereer sertifikaat"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "Sertifikate"
+
+#: src/crypto/decryptverifytask.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:763
+#, kde-format
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Decrypting %1..."
 msgstr "Details"
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid "Verifying %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4622,12 +4658,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Kon nie genereer sertifikaat"
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, fuzzy, kde-format
 msgid "Verifying signature %1..."
 msgstr "Nuwe Sertifikaat"
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -5773,41 +5809,71 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Sertifikaat Genereering"
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr ""
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "Kon nie genereer sertifikaat"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "Kon nie genereer sertifikaat"
+
+#: src/crypto/signencrypttask.cpp:905
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:907
+#, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "Kies Sertifikaat Lêer"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -10977,271 +11043,271 @@ msgstr "Uitbrei Sertifikaat"
 msgid "Loading certificate cache..."
 msgstr "Uitbrei Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Create a new OpenPGP certificate"
 msgstr "Sertifikaat Bestuurder Fout"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, fuzzy, kde-format
 msgid "Export..."
 msgstr "Uitbrei Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Publish on Server..."
 msgstr "Sertifikaat Bestuurder Fout"
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, fuzzy, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, fuzzy, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Publish at Mail Provider..."
 msgstr "Sertifikaat Bestuurder Fout"
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, fuzzy, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Uitbrei Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, fuzzy, kde-format
 msgid "Print Secret Key..."
 msgstr "Uitbrei Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "Lookup on Server..."
 msgstr "Sertifikaat Bestuurder Fout"
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, fuzzy, kde-format
 #| msgid "Search for external certificates initially"
 msgid "Search for certificates in internal directory"
 msgstr "Soektog vir eksterne sertifikate aanvanklik"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, fuzzy, kde-format
 #| msgid "Search for external certificates initially"
 msgid "Search for certificates on %1"
 msgstr "Soektog vir eksterne sertifikate aanvanklik"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, fuzzy, kde-format
 msgid "Import..."
 msgstr "In voer"
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, fuzzy, kde-format
 msgid "Import a certificate from a file"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Decrypt/Verify..."
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, fuzzy, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Sertifikaat Genereering"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, fuzzy, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Sertifikaat Genereering"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, fuzzy, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Sertifikaat Genereering"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Details"
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, fuzzy, kde-format
 msgid "Revoke Certificate..."
 msgstr "Nuwe Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, fuzzy, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, fuzzy, kde-format
 msgid "Delete selected certificates"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 msgid "Update Certificates"
 msgstr "Nuwe Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, fuzzy, kde-format
 msgid "Update selected certificates"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, fuzzy, kde-format
 #| msgid "&Details"
 msgid "Certify..."
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, fuzzy, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, fuzzy, kde-format
 msgid "Revoke Certification..."
 msgstr "Nuwe Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, fuzzy, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Nuwe Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, fuzzy, kde-format
 msgid "Add User ID..."
 msgstr "Aka"
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, fuzzy, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -11250,52 +11316,52 @@ msgid ""
 "They are still listed in the certificate list."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, fuzzy, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, fuzzy, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Genereer Sertifikaat"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, fuzzy, kde-format
 msgid "Trust Root Certificate"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, fuzzy, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, fuzzy, kde-format
 msgid "Technical Details"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, fuzzy, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, fuzzy, kde-format
 msgid "Import CRL From File..."
 msgstr "Sertifikate"
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
@@ -11392,7 +11458,7 @@ msgstr "Sertifikaat Genereering"
 msgid "Decrypt / Verify"
 msgstr "Details"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11403,42 +11469,42 @@ msgid ""
 "<application>Kleopatra</application> is not %1.</para>"
 msgstr ""
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Sertifikaat Genereering"
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Kies Sertifikaat Lêer"
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, fuzzy, kde-format
 msgid "Importing..."
 msgstr "In voer"
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Sertifikaat Genereering"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Sertifikaat Genereering"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -12624,11 +12690,6 @@ msgstr ""
 #~ msgctxt "Placeholder is the number of a slot on a smart card"
 #~ msgid "Authentication (%1)"
 #~ msgstr "Sertifikaat Informasie"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Kon nie genereer sertifikaat"
 
 #, fuzzy
 #~| msgid "Certificate Manager Error"

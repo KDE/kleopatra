@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-27 00:40+0000\n"
-"PO-Revision-Date: 2024-10-07 16:57+0200\n"
+"POT-Creation-Date: 2024-10-29 00:40+0000\n"
+"PO-Revision-Date: 2024-10-22 16:08+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
 "Language: de\n"
@@ -34,16 +34,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
-"Deutsches KDE-Übersetzerteam, Luc de Louw, Matthias Kalle Dalheimer, Andre "
-"Heinecke"
+msgstr "Deutsches KDE-Übersetzerteam"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
-"kde-i18n-de@kde.org,luc@delouw.ch, kalle@klaralvdalens-datakonsult.se, "
-"aheinecke@gnupg.org"
+msgstr "kde-i18n-de@kde.org"
 
 #: src/aboutdata.cpp:43
 msgid "Ingo Klöcker"
@@ -905,7 +901,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN erfolgreich geändert."
 
-#: src/commands/changeroottrustcommand.cpp:76
+#: src/commands/changeroottrustcommand.cpp:77
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -914,40 +910,49 @@ msgstr ""
 "Fehler beim Aktualisieren der Vertrauensdatenbank:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:79
+#: src/commands/changeroottrustcommand.cpp:80
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr ""
 "Aktualisierung der Vertrauenswürdigkeit des Wurzelzertifikats fehlgeschlagen"
 
-#: src/commands/changeroottrustcommand.cpp:264
+#: src/commands/changeroottrustcommand.cpp:166
+#, fuzzy, kde-format
+#| msgid "You are not allowed to create S/MIME certificate signing requests."
+msgctxt "@info"
+msgid "You are not allowed to mark certificates as trusted or not trusted."
+msgstr ""
+"Sie sind nicht berechtigt, Signieranfragen für S/MIME-Zertifikate zu "
+"erstellen."
+
+#: src/commands/changeroottrustcommand.cpp:271
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Die vorhandene Datei „%1“ lässt sich nicht zum Lesen öffnen: %2"
 
-#: src/commands/changeroottrustcommand.cpp:292
+#: src/commands/changeroottrustcommand.cpp:299
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Die Datei „%1“ lässt sich nicht zum Lesen und Schreiben öffnen: %2"
 
-#: src/commands/changeroottrustcommand.cpp:295
+#: src/commands/changeroottrustcommand.cpp:302
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr ""
 "Für die Datei %1 können keine restriktiven Zugriffsrechte eingestellt "
 "werden: %2"
 
-#: src/commands/changeroottrustcommand.cpp:355
+#: src/commands/changeroottrustcommand.cpp:362
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Verschieben der Datei %1 nach %2 fehlgeschlagen: %3"
 
-#: src/commands/changeroottrustcommand.cpp:364
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "Die ausführbare Datei „gpgconf“ wurde nicht gefunden"
 
-#: src/commands/changeroottrustcommand.cpp:375
+#: src/commands/changeroottrustcommand.cpp:382
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "„gpgconf --reload gpg-agent“ ist fehlgeschlagen: %1"
@@ -1535,8 +1540,7 @@ msgid "Export Failed"
 msgstr "Exportieren fehlgeschlagen"
 
 #: src/commands/exportgroupscommand.cpp:160
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot overwrite existing <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot overwrite existing <filename>%1</filename>."
 msgstr ""
@@ -1591,8 +1595,7 @@ msgid "Export Groups"
 msgstr "Gruppen exportieren"
 
 #: src/commands/exportgroupscommand.cpp:232
-#, fuzzy, kde-kuit-format
-#| msgid "Writing groups to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr "Schreiben der Gruppen in Datei <filename>%1</filename> fehlgeschlagen."
@@ -1611,8 +1614,7 @@ msgid "Cannot open file <filename>%1</filename> for writing."
 msgstr "Datei <filename>%1</filename> lässt sich nicht zum Schreiben öffnen."
 
 #: src/commands/exportgroupscommand.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgid "Writing certificates to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
@@ -2095,16 +2097,12 @@ msgid "Revocation Certificates "
 msgstr "Widerrufszertifikate "
 
 #: src/commands/genrevokecommand.cpp:124
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> already exists. Do you wish to overwrite "
-#| "it?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
 msgstr ""
-"Es existiert bereits eine Datei namens „%1“. Möchten Sie sie wirklich "
-"überschreiben?"
+"Es existiert bereits eine Datei namens „%1“. Möchten Sie sie überschreiben?"
 
 #: src/commands/genrevokecommand.cpp:125
 #, kde-format
@@ -2168,8 +2166,8 @@ msgstr "Zwischenablage"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
 #: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:403
-#: src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
+#: src/view/padwidget.cpp:405
 #, kde-format
 msgid "Notepad"
 msgstr "Notizblock"
@@ -2587,8 +2585,7 @@ msgstr "Sperrlisten-Import abgeschlossen"
 
 #: src/commands/importpaperkeycommand.cpp:86
 #: src/crypto/autodecryptverifyfilescontroller.cpp:240
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
 msgstr "<filename>%1</filename> lässt sich nicht zum Lesen öffnen."
@@ -2832,9 +2829,7 @@ msgid "Secret Key Backup Files"
 msgstr "Backupdateien für geheime Schlüssel"
 
 #: src/commands/keytocardcommand.cpp:621
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Cannot open the private key file <filename>%1</filename> for reading."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
@@ -2842,23 +2837,19 @@ msgstr ""
 "Lesen öffnen."
 
 #: src/commands/keytocardcommand.cpp:630
-#, fuzzy, kde-kuit-format
-#| msgid "The private key file <filename>%1</filename> is empty."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "Die geheime Schlüsseldatei <filename>%1</filename> ist leer."
 
 #: src/commands/keytocardcommand.cpp:640
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot open the file <filename>%1</filename> for writing."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "Datei <filename>%1</filename> lässt sich nicht zum Schreiben öffnen."
 
 #: src/commands/keytocardcommand.cpp:647
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Writing the backup of the secret key to <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
@@ -3032,23 +3023,17 @@ msgstr ""
 "einige Minuten dauern …"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:201
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>A new OpenPGP certificate was created successfully.</"
-#| "para><para>Fingerprint of the new certificate: %1</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
-"<para>Neues OpenPGP Zertifikat erfolgreich erstellt.</para> "
-"<para>Fingerabdruck des neuen Zertifikats: %1</para>"
+"<para>Neues OpenPGP Zertifikat erfolgreich erstellt.</"
+"para><para>Fingerabdruck des neuen Zertifikats: %1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:215
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>The creation of a new OpenPGP certificate failed.</"
-#| "para><para>Error: <message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The creation of a new OpenPGP certificate failed.</para><para>Error: "
@@ -3058,11 +3043,7 @@ msgstr ""
 "para><para>Fehler: <message>%1</message></para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:221
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>A new OpenPGP certificate was created successfully, but it has not "
-#| "been found in the key ring.</para><para>Fingerprint of the new "
-#| "certificate:<nl/>%1</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>A new OpenPGP certificate was created successfully, but it has not "
@@ -4289,20 +4270,20 @@ msgstr "Zu verwendender Smartcard-Leser:"
 msgid "Cannot be configured with Kleopatra"
 msgstr "Kann nicht mit Kleopatra konfiguriert werden"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:120
+#: src/conf/smimevalidationconfigurationwidget.cpp:119
 #, kde-format
 msgid "This option requires dirmngr >= 0.9.0"
 msgstr ""
 "Diese Option erfordert das Programm „dirmgr“ in Version 0.9.0 oder neuer"
 
 #. i18n: ectx: property (text), widget (QLabel, systemHTTPProxy)
-#: src/conf/smimevalidationconfigurationwidget.cpp:274
+#: src/conf/smimevalidationconfigurationwidget.cpp:260
 #: src/conf/smimevalidationconfigurationwidget.ui:208
 #, kde-format
 msgid "no proxy"
 msgstr "kein Proxy"
 
-#: src/conf/smimevalidationconfigurationwidget.cpp:276
+#: src/conf/smimevalidationconfigurationwidget.cpp:262
 #, kde-format
 msgid "(Current system setting: %1)"
 msgstr "(Aktuelle Systemeinstellung: %1)"
@@ -4630,11 +4611,7 @@ msgstr ""
 "wird Port 389 (Standard für LDAP) verwendet."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:153
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
-#| "manually select what to do with the files now.<nl/>If they contain signed "
-#| "or encrypted data please report a bug (see Help->Report Bug)."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>You can "
@@ -4642,15 +4619,12 @@ msgid ""
 "encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 "Fehler bei der automatischen Eingabeerkennung in einer oder mehreren Dateien."
-"<nl/>Sie können nun manuell auswählen wie Sie mit diesen Dateien umgehen "
-"wollen.<nl/>Wenn Sie signierte oder verschlüsselte Daten enthalten, "
-"berichten Sie bitte einen Fehler (Siehe Hilfe->Fehlerbericht erstellen)."
+"<nl/>Sie können manuell auswählen, wie Sie mit diesen Dateien umgehen wollen."
+"<nl/>Sollten sie signierte oder verschlüsselte Daten enthalten, berichten "
+"Sie bitte einen Fehler (Siehe Hilfe->Fehlerbericht erstellen)."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:248
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file <filename>%1</filename> contains certificates and can't be "
-#| "decrypted or verified."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
@@ -4660,8 +4634,7 @@ msgstr ""
 "entschlüsselt oder verifiziert werden."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:300
-#, fuzzy, kde-kuit-format
-#| msgid "Select the file to verify with the signature <filename>%1</filename>"
+#, kde-kuit-format
 msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -4689,10 +4662,7 @@ msgstr ""
 "verschoben werden.</para>"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:636
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Shall the file be saved with the original file name <filename>%1</"
-#| "filename>?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -4707,33 +4677,29 @@ msgid "Use Original File Name?"
 msgstr "Ursprünglichen Dateinamen verwenden?"
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:638
-#, fuzzy, kde-kuit-format
-#| msgid "No, Save As <filename>%1</filename>"
+#, kde-kuit-format
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nein, als <filename>%1</filename> abspeichern."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:639
-#, fuzzy, kde-kuit-format
-#| msgid "Yes, Save As <filename>%1</filename>"
+#, kde-kuit-format
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Ja, als <filename>%1</filename> abspeichern."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:662
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
-msgstr "Die Datei <filename>%1</filename> kann nicht gelöscht werden."
+msgstr "Die Datei <filename>%1</filename> konnte nicht gelöscht werden."
 
 #: src/crypto/autodecryptverifyfilescontroller.cpp:683
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
-"Die Datei <filename>%1</filename> kann nicht nach <filename>%2</filename> "
+"Die Datei <filename>%1</filename> konnte nicht nach <filename>%2</filename> "
 "verschoben werden."
 
 #: src/crypto/createchecksumscontroller.cpp:61
@@ -4801,8 +4767,7 @@ msgid "Failed to execute %1: %2"
 msgstr "%1 kann nicht ausgeführt werden: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:498
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to overwrite <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
 msgstr "Überschreiben der Datei <filename>%1</filename> ist fehlgeschlagen."
@@ -5016,7 +4981,7 @@ msgstr "<b>Entschlüsseln abgeschlossen.</b>"
 
 #: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
 #: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:853
+#: src/crypto/signencrypttask.cpp:854
 #, kde-format
 msgid "Input error: %1"
 msgstr "Eingabefehler: %1"
@@ -5103,31 +5068,70 @@ msgstr ""
 "Wenn Sie zuversichtlich sind, dass die Datei nicht manipuliert wurde, "
 "sollten Sie diese nach dem erzwungenen Entschlüsseln neu verschlüsseln."
 
-#: src/crypto/decryptverifytask.cpp:746
+#: src/crypto/decryptverifytask.cpp:750
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to decrypt the notepad: %1"
+msgstr "Der Schlüssel %1 kann nicht gelöscht werden"
+
+#: src/crypto/decryptverifytask.cpp:753
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to verify the notepad: %1"
+msgstr "Der Schlüssel %1 kann nicht gelöscht werden"
+
+#: src/crypto/decryptverifytask.cpp:757
+#, fuzzy, kde-format
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted and verified the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
+
+#: src/crypto/decryptverifytask.cpp:760
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
+
+#: src/crypto/decryptverifytask.cpp:763
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully verified the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
+
+#: src/crypto/decryptverifytask.cpp:780
 #, kde-format
 msgctxt "label: result example: foo.sig: Verification failed. "
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/decryptverifytask.cpp:904 src/crypto/decryptverifytask.cpp:1112
-#: src/crypto/decryptverifytask.cpp:1191 src/crypto/decryptverifytask.cpp:1292
-#: src/crypto/decryptverifytask.cpp:1344 src/crypto/decryptverifytask.cpp:1512
-#: src/crypto/decryptverifytask.cpp:1588 src/crypto/decryptverifytask.cpp:1732
+#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
+#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
+#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Ausnahme aufgetreten: %1"
 
-#: src/crypto/decryptverifytask.cpp:907 src/crypto/decryptverifytask.cpp:1114
-#: src/crypto/decryptverifytask.cpp:1194 src/crypto/decryptverifytask.cpp:1294
-#: src/crypto/decryptverifytask.cpp:1347 src/crypto/decryptverifytask.cpp:1514
-#: src/crypto/decryptverifytask.cpp:1590 src/crypto/decryptverifytask.cpp:1734
+#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
+#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
+#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Unbekannte Ausnahme aufgetreten"
 
-#: src/crypto/decryptverifytask.cpp:961
+#: src/crypto/decryptverifytask.cpp:996
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5136,12 +5140,12 @@ msgstr ""
 "Es kann nicht ermittelt werden, ob es sich um eine S/MIME-/OpenPGP-Signatur "
 "oder verschlüsselten Text handelt – möglicherweise ist es weder noch?"
 
-#: src/crypto/decryptverifytask.cpp:969
+#: src/crypto/decryptverifytask.cpp:1004
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "%1 wird entschlüsselt …"
 
-#: src/crypto/decryptverifytask.cpp:1247
+#: src/crypto/decryptverifytask.cpp:1282
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5151,12 +5155,12 @@ msgstr ""
 "Verschlüsselung handelte – möglicherweise handelt es sich nicht um "
 "verschlüsselten Inhalt?"
 
-#: src/crypto/decryptverifytask.cpp:1255
+#: src/crypto/decryptverifytask.cpp:1290
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Entschlüsselung: %1 …"
 
-#: src/crypto/decryptverifytask.cpp:1401 src/crypto/decryptverifytask.cpp:1652
+#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5165,12 +5169,12 @@ msgstr ""
 "Es kann nicht ermittelt werden ob es sich um eine S/MIME-/OpenPGP-Signatur "
 "handelt – möglicherweise handelt es sich nicht um eine Signatur?"
 
-#: src/crypto/decryptverifytask.cpp:1409
+#: src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 wird geprüft …"
 
-#: src/crypto/decryptverifytask.cpp:1670
+#: src/crypto/decryptverifytask.cpp:1705
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5178,12 +5182,12 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> wird mit <filename>%2</filename> geprüft …"
 
-#: src/crypto/decryptverifytask.cpp:1674
+#: src/crypto/decryptverifytask.cpp:1709
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Signatur wird geprüft: %1 …"
 
-#: src/crypto/decryptverifytask.cpp:1685
+#: src/crypto/decryptverifytask.cpp:1720
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature summary. The first file contains the "
@@ -6380,18 +6384,18 @@ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
 msgid "%1: <b>%2</b>"
 msgstr "%1: <b>%2</b>"
 
-#: src/crypto/signencrypttask.cpp:456
+#: src/crypto/signencrypttask.cpp:457
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Für diese Operation kann kein Protokoll ermittelt werden"
 
-#: src/crypto/signencrypttask.cpp:507
+#: src/crypto/signencrypttask.cpp:508
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, …"
 
-#: src/crypto/signencrypttask.cpp:719 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6401,23 +6405,63 @@ msgstr ""
 "werden:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:736
+#: src/crypto/signencrypttask.cpp:737
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Signiertes und verschlüsseltes Archiv wird erstellt …"
 
-#: src/crypto/signencrypttask.cpp:752
+#: src/crypto/signencrypttask.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Verschlüsseltes Archiv wird erstellt …"
 
-#: src/crypto/signencrypttask.cpp:768
+#: src/crypto/signencrypttask.cpp:769
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Signiertes Archiv wird erstellt …"
+
+#: src/crypto/signencrypttask.cpp:898
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to sign the notepad: %1"
+msgstr "Der Schlüssel %1 kann nicht gelöscht werden"
+
+#: src/crypto/signencrypttask.cpp:901
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to encrypt the notepad: %1"
+msgstr "Der Schlüssel %1 kann nicht gelöscht werden"
+
+#: src/crypto/signencrypttask.cpp:905
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully encrypted and signed the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
+
+#: src/crypto/signencrypttask.cpp:907
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully encrypted the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
+
+#: src/crypto/signencrypttask.cpp:909
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully signed the notepad"
+msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -7356,11 +7400,10 @@ msgid "GnuPG Configuration Overview"
 msgstr "GnuPG Konfigurationsübersicht"
 
 #: src/dialogs/debugdialog.cpp:99
-#, fuzzy, kde-format
-#| msgid "GnuPG Command&line"
+#, kde-format
 msgctxt "@action:button"
 msgid "Run Command"
-msgstr "GnuPG-&Befehlszeile"
+msgstr "Befehl ausführen"
 
 #: src/dialogs/debugdialog.cpp:127
 #, kde-format
@@ -7369,11 +7412,10 @@ msgid "Copy to Clipboard"
 msgstr "Kopieren"
 
 #: src/dialogs/debugdialog.cpp:133
-#, fuzzy, kde-format
-#| msgid "Save Log to File"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save to File"
-msgstr "In Protokolldatei speichern"
+msgstr "In Datei speichern"
 
 #: src/dialogs/debugdialog.cpp:167
 #, kde-format
@@ -7981,11 +8023,7 @@ msgid "(select test first)"
 msgstr "(bitte erst einen Test auswählen)"
 
 #: src/dialogs/selftestdialog.cpp:342
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<para>These are the results of the Kleopatra self-test suite. Click on a "
-#| "test for details.</para><para>Note that all but the first failure might "
-#| "be due to prior tests failing.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>These are the results of the Kleopatra self-test suite. Click on a "
@@ -7993,7 +8031,7 @@ msgid ""
 "due to prior tests failing.</para>"
 msgstr ""
 "<p>Dies sind die Ergebnisse des Kleopatra-Selbsttests. Klicken Sie einen "
-"Test an, um Details einzublenden.</p><p>Beachten Sie, dass alle außer dem "
+"Test an, um Details anzuzeigen.</p><p>Beachten Sie, dass alle außer dem "
 "ersten Fehler durch frühere Fehler verursacht sein können.</p>"
 
 #: src/dialogs/selftestdialog.cpp:360
@@ -9370,7 +9408,7 @@ msgstr "Profileinstellungen deaktivieren"
 #: src/kcfg/settings.kcfg:215
 #, kde-format
 msgid "Allow custom debug commands"
-msgstr ""
+msgstr "Konfiguration der Debug-Befehle zulassen"
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/smimevalidationpreferences.kcfg:6
@@ -9764,8 +9802,7 @@ msgstr ""
 "Dateirechten.</para>"
 
 #: src/main.cpp:164
-#, fuzzy, kde-kuit-format
-#| msgid "<para>Are you sure that you want to continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Möchten Sie wirklich fortfahren?</para>"
@@ -9819,11 +9856,7 @@ msgid "Only &Close Window"
 msgstr "Nur das Fenster sch&ließen"
 
 #: src/mainwindow.cpp:222
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<application>%1</application> may be used by other applications as a "
-#| "service.<nl/>You may instead want to close this window without exiting "
-#| "<application>%1</application>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
@@ -9832,7 +9865,7 @@ msgid ""
 msgstr ""
 "<application>%1</application> könnte auch von anderen Programmen als Dienst "
 "benutzt werden.\n"
-"Vielleicht schließen Sie lieber nur dieses Fenster, statt <application>%1</"
+"Vielleicht schließen Sie besser nur dieses Fenster, statt <application>%1</"
 "application> zu beenden."
 
 #: src/mainwindow.cpp:225
@@ -11958,51 +11991,51 @@ msgstr "Zertifikate werden von Smartcard importiert …"
 msgid "Loading certificate cache..."
 msgstr "Zertifikat-Zwischenspeicher wird geladen …"
 
-#: src/view/keylistcontroller.cpp:332
+#: src/view/keylistcontroller.cpp:333
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Neues OpenPGP-Schlüsselpaar …"
 
-#: src/view/keylistcontroller.cpp:333
+#: src/view/keylistcontroller.cpp:334
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Ein neues OpenPGP-Zertifikat erstellen"
 
-#: src/view/keylistcontroller.cpp:341
+#: src/view/keylistcontroller.cpp:342
 #, kde-format
 msgid "Export..."
 msgstr "Exportieren …"
 
-#: src/view/keylistcontroller.cpp:342
+#: src/view/keylistcontroller.cpp:343
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 "Das ausgewählte Zertifikat (öffentlicher Schlüssel) in eine Datei exportieren"
 
-#: src/view/keylistcontroller.cpp:350
+#: src/view/keylistcontroller.cpp:351
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Auf Server veröffentlichen …"
 
-#: src/view/keylistcontroller.cpp:352
+#: src/view/keylistcontroller.cpp:353
 #, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Das ausgewählte Zertifikat (öffentlicher Schlüssel) in einem internen "
 "Verzeichnis veröffentlichen"
 
-#: src/view/keylistcontroller.cpp:353
+#: src/view/keylistcontroller.cpp:354
 #, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr ""
 "Das ausgewählte Zertifikat (öffentlicher Schlüssel) auf %1 veröffentlichen"
 
-#: src/view/keylistcontroller.cpp:362
+#: src/view/keylistcontroller.cpp:363
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Bei Mailanbieter veröffentlichen …"
 
-#: src/view/keylistcontroller.cpp:363
+#: src/view/keylistcontroller.cpp:364
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -12011,216 +12044,216 @@ msgstr ""
 "Das ausgewählte Zertifikat (öffentlicher Schlüssel) auf einem "
 "Schlüsselserver des Mailanbieters veröffentlichen, falls möglich"
 
-#: src/view/keylistcontroller.cpp:372
+#: src/view/keylistcontroller.cpp:373
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Sicherungskopie geheimer Schlüssel erstellen …"
 
-#: src/view/keylistcontroller.cpp:381
+#: src/view/keylistcontroller.cpp:382
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Geheimen Schlüssel drucken …"
 
-#: src/view/keylistcontroller.cpp:390
+#: src/view/keylistcontroller.cpp:391
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Auf Server suchen …"
 
-#: src/view/keylistcontroller.cpp:392
+#: src/view/keylistcontroller.cpp:393
 #, kde-format
 msgid "Search for certificates in internal directory"
 msgstr "Nach Zertifikaten suchen in internem Verzeichnis"
 
-#: src/view/keylistcontroller.cpp:393
+#: src/view/keylistcontroller.cpp:394
 #, kde-format
 msgid "Search for certificates on %1"
 msgstr "Nach Zertifikaten suchen auf %1"
 
-#: src/view/keylistcontroller.cpp:401 src/view/welcomewidget.cpp:137
+#: src/view/keylistcontroller.cpp:402 src/view/welcomewidget.cpp:137
 #, kde-format
 msgid "Import..."
 msgstr "Importieren …"
 
-#: src/view/keylistcontroller.cpp:402
+#: src/view/keylistcontroller.cpp:403
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Ein Zertifikat aus einer Datei importieren"
 
-#: src/view/keylistcontroller.cpp:410
+#: src/view/keylistcontroller.cpp:411
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "&Entschlüsseln/Überprüfen …"
 
-#: src/view/keylistcontroller.cpp:411
+#: src/view/keylistcontroller.cpp:412
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Dateien entschlüsseln/prüfen"
 
-#: src/view/keylistcontroller.cpp:419
+#: src/view/keylistcontroller.cpp:420
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Signieren/Verschlüsseln …"
 
-#: src/view/keylistcontroller.cpp:420
+#: src/view/keylistcontroller.cpp:421
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Dateien verschlüsseln/signieren"
 
-#: src/view/keylistcontroller.cpp:428
+#: src/view/keylistcontroller.cpp:429
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Ordner signieren/verschlüsseln …"
 
-#: src/view/keylistcontroller.cpp:429
+#: src/view/keylistcontroller.cpp:430
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Ordner verschlüsseln/signieren"
 
-#: src/view/keylistcontroller.cpp:437
+#: src/view/keylistcontroller.cpp:438
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Prüfsummendateien erstellen …"
 
-#: src/view/keylistcontroller.cpp:446
+#: src/view/keylistcontroller.cpp:447
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Prüfsummen-Dateien verifizieren …"
 
-#: src/view/keylistcontroller.cpp:456
+#: src/view/keylistcontroller.cpp:457
 #, kde-format
 msgid "Redisplay"
 msgstr "Aktualisieren"
 
-#: src/view/keylistcontroller.cpp:465
+#: src/view/keylistcontroller.cpp:466
 #, kde-format
 msgid "Stop Operation"
 msgstr "Vorgang abbrechen"
 
-#: src/view/keylistcontroller.cpp:478
+#: src/view/keylistcontroller.cpp:479
 #, kde-format
 msgid "Details"
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Zertifikat widerrufen …"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Das ausgewählte OpenPGP-Zertifikate widerrufen"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Delete"
 msgstr "Löschen"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Ausgewählte Zertifikate löschen"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Update Certificates"
 msgstr "Zertifikate aktualisieren"
 
-#: src/view/keylistcontroller.cpp:507
+#: src/view/keylistcontroller.cpp:508
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Ausgewählte Zertifikate aktualisieren"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Certify..."
 msgstr "Beglaubigen …"
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:517
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Die Gültigkeit des ausgewählten Zertifikats bestätigen"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Beglaubigung zurückziehen …"
 
-#: src/view/keylistcontroller.cpp:525
+#: src/view/keylistcontroller.cpp:526
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Die Beglaubigung des ausgewählten Zertifikats zurückrufen"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Ablaufdatum ändern …"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Beglaubigungsvertrauen ändern …"
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:544
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr ""
 "Dem ausgewählten Zertifikats Beglaubigungsvertrauen geben oder entziehen."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Passwort ändern …"
 
-#: src/view/keylistcontroller.cpp:560
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgid "Add User ID..."
 msgstr "Benutzerkennung hinzufügen …"
 
-#: src/view/keylistcontroller.cpp:569
+#: src/view/keylistcontroller.cpp:570
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Gruppe anlegen …"
 
-#: src/view/keylistcontroller.cpp:570
+#: src/view/keylistcontroller.cpp:571
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Eine Gruppe aus den ausgewählten Zertifikaten erstellen"
 
-#: src/view/keylistcontroller.cpp:578
+#: src/view/keylistcontroller.cpp:579
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Auf Karte kopieren"
 
-#: src/view/keylistcontroller.cpp:579
+#: src/view/keylistcontroller.cpp:580
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Das ausgewählte Zertifikat auf eine Smartcard kopieren"
 
-#: src/view/keylistcontroller.cpp:588
+#: src/view/keylistcontroller.cpp:589
 #, kde-format
 msgid "Refresh OpenPGP Certificates"
 msgstr "OpenPGP-Zertifikate aktualisieren"
 
-#: src/view/keylistcontroller.cpp:598
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Kopieren"
 
-#: src/view/keylistcontroller.cpp:616 src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:617 src/view/keylistcontroller.cpp:1155
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Zertifikat deaktivieren"
 
-#: src/view/keylistcontroller.cpp:618
+#: src/view/keylistcontroller.cpp:619
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12232,52 +12265,52 @@ msgstr ""
 "signiert oder für das verschlüsselt werden soll, nicht angeboten.\n"
 "Sie werden jedoch weiterhin in der Zertifikatsliste aufgeführt."
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Neue S/MIME-Zertifikatsanfrage …"
 
-#: src/view/keylistcontroller.cpp:630
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Eine neue S/MIME Zertifikatsanfrage (CSR) erstellen"
 
-#: src/view/keylistcontroller.cpp:641
+#: src/view/keylistcontroller.cpp:639
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Wurzelzertifikat vertrauen"
 
-#: src/view/keylistcontroller.cpp:650
+#: src/view/keylistcontroller.cpp:648
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Wurzelzertifikat nicht vertrauen"
 
-#: src/view/keylistcontroller.cpp:659
+#: src/view/keylistcontroller.cpp:658
 #, kde-format
 msgid "Technical Details"
 msgstr "Technische Details"
 
-#: src/view/keylistcontroller.cpp:669
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "S/MIME-Zertifikate aktualisieren"
 
-#: src/view/keylistcontroller.cpp:678
+#: src/view/keylistcontroller.cpp:677
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Sperrlisten-Zwischenspeicher leeren"
 
-#: src/view/keylistcontroller.cpp:687
+#: src/view/keylistcontroller.cpp:686
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Sperrlisten-Zwischenspeicher ausgeben"
 
-#: src/view/keylistcontroller.cpp:696
+#: src/view/keylistcontroller.cpp:695
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Sperrliste aus Datei importieren …"
 
-#: src/view/keylistcontroller.cpp:1148
+#: src/view/keylistcontroller.cpp:1155
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable Certificate"
@@ -12373,7 +12406,7 @@ msgstr "Fehler bei der kryptographischen Aktion"
 msgid "Decrypt / Verify"
 msgstr "Entschlüsseln/prüfen"
 
-#: src/view/padwidget.cpp:383
+#: src/view/padwidget.cpp:384
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12388,42 +12421,42 @@ msgstr ""
 "application> verwendete <application>GnuPG</application>-System nicht %1 ist."
 "</para>"
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:394
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Notizblock signieren …"
 
-#: src/view/padwidget.cpp:396
+#: src/view/padwidget.cpp:397
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Notizblock verschlüsseln…"
 
-#: src/view/padwidget.cpp:399
+#: src/view/padwidget.cpp:400
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Notizblock signieren/verschlüsseln…"
 
-#: src/view/padwidget.cpp:444
+#: src/view/padwidget.cpp:446
 #, kde-format
 msgid "Importing..."
 msgstr "Wird importiert …"
 
-#: src/view/padwidget.cpp:483
+#: src/view/padwidget.cpp:485
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Signiere Notizblock"
 
-#: src/view/padwidget.cpp:486
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Verschlüssele Notizblock"
 
-#: src/view/padwidget.cpp:490
+#: src/view/padwidget.cpp:492
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -14091,10 +14124,6 @@ msgstr ""
 #~ msgid "Keep Key"
 #~ msgstr "Schlüssel behalten"
 
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key to the card."
-#~ msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
-
 #~ msgid ""
 #~ "The file <b>%1</b> already exists.\n"
 #~ "Overwrite?"
@@ -14514,10 +14543,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "Successfully copied the key pair to the card."
 #~ msgstr "Das Schlüsselpaar wurde erfolgreich auf die Karte kopiert."
-
-#~ msgctxt "@info"
-#~ msgid "Failed to delete the key: %1"
-#~ msgstr "Der Schlüssel %1 kann nicht gelöscht werden"
 
 #~ msgid ""
 #~ "<p>An error occurred while trying to change the certification trust for "
@@ -15304,11 +15329,6 @@ msgstr ""
 #~ "placeholder 2 is the identifier of a slot on a smart card"
 #~ msgid "%1 (%2)"
 #~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgid "Successfully copied the key to the card."
-#~ msgid "Successfully copied the certificate to the card."
-#~ msgstr "Der Schlüssel wurde erfolgreich auf die Karte kopiert."
 
 #~ msgctxt "@info"
 #~ msgid "Code successfully changed."
