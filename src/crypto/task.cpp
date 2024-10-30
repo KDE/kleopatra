@@ -21,7 +21,6 @@
 
 #include <gpg-error.h>
 
-#include <KIconLoader>
 #include <KLocalizedString>
 
 using namespace Kleo;

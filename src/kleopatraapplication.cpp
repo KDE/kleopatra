@@ -59,7 +59,6 @@
 #endif
 
 #include "kleopatra_debug.h"
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KWindowSystem>
@@ -86,9 +85,13 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 
+using namespace Qt::Literals::StringLiterals;
+
 static void add_resources()
 {
-    KIconLoader::global()->addAppDir(QStringLiteral("libkleopatra"));
+    const QStringList iconDirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, u"libkleopatra/pics"_s, QStandardPaths::LocateDirectory);
+    // qCDebug(KLEOPATRA_LOG) << "Adding icon search paths:" << iconDirs;
+    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << iconDirs);
 }
 
 static QList<QByteArray> default_logging_options()
