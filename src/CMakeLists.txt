@@ -16,6 +16,7 @@ add_subdirectory(conf)
 if(WIN32)
   set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_win.cpp)
   set(_kleopatra_extra_SRCS
+      pics/gpg4win.qrc
       selftest/registrycheck.cpp selftest/registrycheck.h
       utils/gnupg-registry.c
       utils/userinfo_win.cpp

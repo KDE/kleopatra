@@ -3,7 +3,6 @@
 if (WIN32)
 install(FILES
   gpg4win-compact.png
-  gpg4win.png
   DESTINATION ${KDE_INSTALL_DATADIR}/kleopatra/pics
 )
 endif()

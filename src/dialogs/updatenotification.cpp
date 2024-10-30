@@ -31,7 +31,6 @@
 
 #include <KAboutData>
 #include <KConfigGroup>
-#include <KIconLoader>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
@@ -44,6 +43,8 @@
 #include <gpgme++/swdbresult.h>
 
 using namespace Kleo;
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -181,9 +182,7 @@ UpdateNotification::UpdateNotification(QWidget *parent, const QString &version)
 
     setAttribute(Qt::WA_QuitOnClose, false);
 
-    KIconLoader *const il = KIconLoader::global();
-    const QString iconPath = il->iconPath(QStringLiteral("gpg4win"), KIconLoader::User);
-    logo->setPixmap(QIcon(iconPath).pixmap(100, 100));
+    logo->setPixmap(QPixmap{u":/gpg4win/gpg4win.png"_s}.scaled(100, 100, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     auto label = new HtmlLabel;
     const QString boldVersion = QStringLiteral("<b>%1</b>").arg(version);
