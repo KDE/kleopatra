@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 add_subdirectory(icons)
 add_subdirectory(mimetypes)
+add_subdirectory(pics)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

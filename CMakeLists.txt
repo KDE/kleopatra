@@ -217,7 +217,6 @@ if (USE_UNITY_CMAKE_SUPPORT)
 endif()
 
 
-add_subdirectory(pics)
 add_subdirectory(src)
 
 if(BUILD_TESTING)
