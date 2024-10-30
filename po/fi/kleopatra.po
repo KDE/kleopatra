@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-29 00:40+0000\n"
+"POT-Creation-Date: 2024-10-30 00:40+0000\n"
 "PO-Revision-Date: 2024-03-11 16:36+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: src/aboutdata.cpp:51
 msgctxt "@info:credit"
-msgid "Smartcard view redesign, certificate view redesign and user experience"
+msgid "UX redesign of smartcard view and certificate details"
 msgstr ""
 
 #: src/aboutdata.cpp:52
@@ -910,7 +910,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN-koodin vaihto onnistui."
 
-#: src/commands/changeroottrustcommand.cpp:77
+#: src/commands/changeroottrustcommand.cpp:79
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -919,44 +919,126 @@ msgstr ""
 "Luottamustietokannan päivitys epäonnistui:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:80
+#: src/commands/changeroottrustcommand.cpp:82
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Juuriluottamuksen päivitys epäonnistui"
 
-#: src/commands/changeroottrustcommand.cpp:166
+#: src/commands/changeroottrustcommand.cpp:120
 #, fuzzy, kde-format
 #| msgid "You are not allowed to create S/MIME certificate signing requests."
 msgctxt "@info"
 msgid "You are not allowed to mark certificates as trusted or not trusted."
 msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
 
-#: src/commands/changeroottrustcommand.cpp:271
+#: src/commands/changeroottrustcommand.cpp:195
+#, kde-kuit-format
+msgctxt ""
+"@info needed for technical reasons; RTL-languages may have to put the %1 in "
+"front"
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;%1"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:204
+#, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of indented text with line "
+"breaks; RTL-languages may have to put the %2 before the non-breaking space "
+"entities"
+msgid "%1<nl/>&nbsp;&nbsp;&nbsp;&nbsp;%2"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:216
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you ultimately trust</para><para>%1</para><para>to correctly "
+"certify user certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:217
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you distrust</para><para>%1</para><para>to correctly certify user "
+"certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:219
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@title:window"
+msgid "Trust Root Certificate"
+msgstr "Luota juurivarmenteeseen"
+
+#: src/commands/changeroottrustcommand.cpp:220
+#, fuzzy, kde-format
+#| msgid "Distrust Root Certificate"
+msgctxt "@title:window"
+msgid "Distrust Root Certificate"
+msgstr "Älä luota juurivarmenteeseen"
+
+#: src/commands/changeroottrustcommand.cpp:222
+#, fuzzy, kde-format
+#| msgid "Years"
+msgctxt "@action:button"
+msgid "Yes"
+msgstr "vuotta"
+
+#: src/commands/changeroottrustcommand.cpp:231
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Please verify that the certificate identified as:</para><para>%1</"
+"para><para>has the SHA-1 fingerprint:</para><para>%2</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Fingerprint"
+msgctxt "@title:window"
+msgid "Verify Fingerprint"
+msgstr "Sormenjälki"
+
+#: src/commands/changeroottrustcommand.cpp:238
+#, kde-format
+msgctxt "@action:button"
+msgid "Correct"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:239
+#, kde-format
+msgctxt "@action:button"
+msgid "Wrong"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:280
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Olemassa olevaa tiedostoa ”%1” ei saatu auki lukua varten: %2"
 
-#: src/commands/changeroottrustcommand.cpp:299
+#: src/commands/changeroottrustcommand.cpp:308
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Tiedostoa ”%1” ei saatu auki lukua ja kirjoitusta varten: %2"
 
-#: src/commands/changeroottrustcommand.cpp:302
+#: src/commands/changeroottrustcommand.cpp:311
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Tiedoston %1 oikeuksia ei voi rajoittaa: %2"
 
-#: src/commands/changeroottrustcommand.cpp:362
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Tiedoston %1 siirto lopulliseen kohteeseensa %2 epäonnistui: %3"
 
-#: src/commands/changeroottrustcommand.cpp:371
+#: src/commands/changeroottrustcommand.cpp:380
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "gpgconf-ohjelmatiedostoa ei löytynyt"
 
-#: src/commands/changeroottrustcommand.cpp:382
+#: src/commands/changeroottrustcommand.cpp:391
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "”gpgconf --reload gpg-agent” epäonnistui: %1"
@@ -9953,24 +10035,24 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "KWatchGnuPG:n käynnistäminen epäonnistui"
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:575
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "GnuPG:n lokikatselin"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:587
 #, fuzzy, kde-format
 #| msgid "Show GnuPG system configuration"
 msgid "Show GnuPG Configuration"
 msgstr "Näytä GnuPG-järjestelmäasetukset"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Käynnistä taustaprosessit uudelleen"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:601
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9978,23 +10060,23 @@ msgid ""
 "configuration."
 msgstr "Käynnistä taustaprosessit uudelleen esim. asetusten muututtua."
 
-#: src/mainwindow.cpp:612
+#: src/mainwindow.cpp:613
 #, kde-format
 msgid "Check for updates"
 msgstr "Tarkista päivitykset"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Varmenteet"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Näytä varmenteen tiedot"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -10002,53 +10084,53 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Muistikirja"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:638
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Näytä näppäimistö tekstin salaamiseksi, salauksen purkamiseksi, "
 "allekirjoittamiseksi tai allekirjoituksen tarkistamiseksi"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Älykortit"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Näytä älykorttien hallinta"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Suorita itsetestaus"
 
-#: src/mainwindow.cpp:670
+#: src/mainwindow.cpp:671
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Ryhmäasetukset…"
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Ryhmät"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:720
 #, fuzzy, kde-format
 #| msgid "Set Focus to Quick Search"
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Kohdista pikahakuun"
 
-#: src/mainwindow.cpp:731
+#: src/mainwindow.cpp:732
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win Compendium"
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:736
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10056,52 +10138,52 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:747
 #, fuzzy, kde-format
 #| msgid "Quick Encrypt EMail"
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Pikasalaa sähköposti"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:748
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:756
 #, fuzzy, kde-format
 #| msgid "&Password-based encryption"
 msgid "&Password-based Encryption"
 msgstr "&Salasanapohjainen salaus"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:757
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:764
 #, fuzzy, kde-format
 #| msgid "Certificate Groups"
 msgid "Certificate &Groups"
 msgstr "Varmenneryhmät"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:774
 #, fuzzy, kde-format
 #| msgid "&Mail encryption in Outlook"
 msgid "&Mail Encryption in Outlook"
 msgstr "P&ostin salaus Outlookissa"
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:775
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10109,42 +10191,42 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:785
 #, kde-format
 msgid "&Certification Management"
 msgstr "Varmenteiden hallinta"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:786
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:793
+#: src/mainwindow.cpp:794
 #, fuzzy, kde-format
 #| msgid "&Smartcard setup"
 msgid "&Smartcard Setup"
 msgstr "&Älykortin asetus"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:795
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:801
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "&GnuPG-komentorivi"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:812
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:813
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -10156,12 +10238,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:820
+#: src/mainwindow.cpp:821
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:821
+#: src/mainwindow.cpp:822
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "Only available in German and English. Leave to English for other "
@@ -10173,7 +10255,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10573-ENG_secops-20220207.pdf"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:849
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10182,7 +10264,7 @@ msgstr ""
 "Taustalla on yhä tehtäviä käynnissä. Nämä lopetetaan, jos suljet ikkunan. "
 "Jatketaanko?"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Käynnissä olevat taustatehtävät"
@@ -12500,12 +12582,6 @@ msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/view/padwidget.cpp:305 src/view/padwidget.cpp:343
-#, kde-format
-msgctxt "@title"
-msgid "Error in crypto action"
-msgstr "Salaustoimenpiteen virhe"
-
 #: src/view/padwidget.cpp:323
 #, kde-format
 msgid "Decrypt / Verify"
@@ -13180,88 +13256,88 @@ msgid "No matching certificate was found in directory service."
 msgstr ""
 "Vastaavia varmenteita ei löytynyt.<br/>Tuo varmenne napsauttamalla tästä."
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "Rename Tab"
 msgstr "Muuta välilehden nimeä"
 
 # Tämä liittyy välilehden nimen muuttamiseen eikä uuden välilehden luomiseen, siis ei ”Uuden välilehden nimi” vaan näin
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "New tab title:"
 msgstr "Välilehden uusi nimi:"
 
-#: src/view/tabwidget.cpp:865
+#: src/view/tabwidget.cpp:866
 #, kde-format
 msgid "New Tab"
 msgstr "Uusi välilehti"
 
-#: src/view/tabwidget.cpp:866
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "Open a new tab"
 msgstr "Avaa uusi välilehti"
 
-#: src/view/tabwidget.cpp:880
+#: src/view/tabwidget.cpp:881
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Muuta välilehden nimeä…"
 
-#: src/view/tabwidget.cpp:881
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename this tab"
 msgstr "Muuta tämän välilehden nimeä"
 
-#: src/view/tabwidget.cpp:893
+#: src/view/tabwidget.cpp:894
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Monista välilehti"
 
-#: src/view/tabwidget.cpp:894
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Monista tämä välilehti"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Close Tab"
 msgstr "Sulje välilehti"
 
-#: src/view/tabwidget.cpp:905
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close this tab"
 msgstr "Sulje tämä välilehti"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Siirrä välilehteä vasemmas"
 
-#: src/view/tabwidget.cpp:918
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move this tab left"
 msgstr "Siirrä välilehteä vasemmas"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Siirrä välilehteä oikeammas"
 
-#: src/view/tabwidget.cpp:931
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move this tab right"
 msgstr "Siirrä välilehteä oikeammas"
 
-#: src/view/tabwidget.cpp:943
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Hierarkinen varmenneluettelo"
 
-#: src/view/tabwidget.cpp:956
+#: src/view/tabwidget.cpp:957
 #, kde-format
 msgid "Expand All"
 msgstr "Laajenna kaikki"
 
-#: src/view/tabwidget.cpp:969
+#: src/view/tabwidget.cpp:970
 #, kde-format
 msgid "Collapse All"
 msgstr "Kokoa kaikki"
@@ -13345,6 +13421,10 @@ msgid ""
 msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
+
+#~ msgctxt "@title"
+#~ msgid "Error in crypto action"
+#~ msgstr "Salaustoimenpiteen virhe"
 
 #~ msgid "Current Maintainer"
 #~ msgstr "Nykyinen ylläpitäjä"
@@ -14512,9 +14592,6 @@ msgstr ""
 
 #~ msgid "Months"
 #~ msgstr "kuukautta"
-
-#~ msgid "Years"
-#~ msgstr "vuotta"
 
 #~ msgctxt "... between today and <another date>."
 #~ msgid "The validity period must end between today and %1."

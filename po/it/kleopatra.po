@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-29 00:40+0000\n"
+"POT-Creation-Date: 2024-10-30 00:40+0000\n"
 "PO-Revision-Date: 2024-10-25 17:24+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -68,10 +68,8 @@ msgstr "Alexander Kulbartsch"
 
 #: src/aboutdata.cpp:51
 msgctxt "@info:credit"
-msgid "Smartcard view redesign, certificate view redesign and user experience"
+msgid "UX redesign of smartcard view and certificate details"
 msgstr ""
-"Riprogettazione della vista delle smart card, riprogettazione della vista "
-"del certificato ed esperienza utente"
 
 #: src/aboutdata.cpp:52
 msgid "Carl Schwan"
@@ -887,7 +885,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "PIN modificato correttamente."
 
-#: src/commands/changeroottrustcommand.cpp:77
+#: src/commands/changeroottrustcommand.cpp:79
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -896,12 +894,12 @@ msgstr ""
 "Aggiornamento della banca dati di fiducia non riuscito:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:80
+#: src/commands/changeroottrustcommand.cpp:82
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Aggiornamento della fiducia radice non riuscito"
 
-#: src/commands/changeroottrustcommand.cpp:166
+#: src/commands/changeroottrustcommand.cpp:120
 #, fuzzy, kde-format
 #| msgid "You are not allowed to create S/MIME certificate signing requests."
 msgctxt "@info"
@@ -909,32 +907,114 @@ msgid "You are not allowed to mark certificates as trusted or not trusted."
 msgstr ""
 "Non è ti consentito di creare richieste di firma di certificati S/MIME."
 
-#: src/commands/changeroottrustcommand.cpp:271
+#: src/commands/changeroottrustcommand.cpp:195
+#, kde-kuit-format
+msgctxt ""
+"@info needed for technical reasons; RTL-languages may have to put the %1 in "
+"front"
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;%1"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:204
+#, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of indented text with line "
+"breaks; RTL-languages may have to put the %2 before the non-breaking space "
+"entities"
+msgid "%1<nl/>&nbsp;&nbsp;&nbsp;&nbsp;%2"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:216
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you ultimately trust</para><para>%1</para><para>to correctly "
+"certify user certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:217
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you distrust</para><para>%1</para><para>to correctly certify user "
+"certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:219
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@title:window"
+msgid "Trust Root Certificate"
+msgstr "Fidati del certificato radice"
+
+#: src/commands/changeroottrustcommand.cpp:220
+#, fuzzy, kde-format
+#| msgid "Distrust Root Certificate"
+msgctxt "@title:window"
+msgid "Distrust Root Certificate"
+msgstr "Togli fiducia al certificato radice"
+
+#: src/commands/changeroottrustcommand.cpp:222
+#, fuzzy, kde-format
+#| msgid "Years"
+msgctxt "@action:button"
+msgid "Yes"
+msgstr "Anni"
+
+#: src/commands/changeroottrustcommand.cpp:231
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Please verify that the certificate identified as:</para><para>%1</"
+"para><para>has the SHA-1 fingerprint:</para><para>%2</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Fingerprint"
+msgctxt "@title:window"
+msgid "Verify Fingerprint"
+msgstr "Impronta digitale"
+
+#: src/commands/changeroottrustcommand.cpp:238
+#, kde-format
+msgctxt "@action:button"
+msgid "Correct"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:239
+#, kde-format
+msgctxt "@action:button"
+msgid "Wrong"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:280
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Impossibile accedere al file «%1» in lettura: %2"
 
-#: src/commands/changeroottrustcommand.cpp:299
+#: src/commands/changeroottrustcommand.cpp:308
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Impossibile accedere al file «%1» in lettura e scrittura: %2"
 
-#: src/commands/changeroottrustcommand.cpp:302
+#: src/commands/changeroottrustcommand.cpp:311
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Impossibile impostare permissioni restrittive sul file %1: %2"
 
-#: src/commands/changeroottrustcommand.cpp:362
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Spostamento del file %1 alla sua destinazione finale, %2: %3"
 
-#: src/commands/changeroottrustcommand.cpp:371
+#: src/commands/changeroottrustcommand.cpp:380
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "Impossibile trovare l'eseguibile di gpgconf"
 
-#: src/commands/changeroottrustcommand.cpp:382
+#: src/commands/changeroottrustcommand.cpp:391
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "«gpgconf --reload gpg-agent» non riuscito: %1"
@@ -9808,23 +9888,23 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "Errore di avvio di KWatchGnuPG"
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:575
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Visualizzatore log di GnuPG"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:587
 #, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "Mostra la configurazione GnuPG"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Riavvia i processi in background"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:601
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9834,23 +9914,23 @@ msgstr ""
 "Riavvia i processi in background, ad es. dopo aver apportato modifiche alla "
 "configurazione."
 
-#: src/mainwindow.cpp:612
+#: src/mainwindow.cpp:613
 #, kde-format
 msgid "Check for updates"
 msgstr "Controlla aggiornamenti"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificati"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Mostra riepilogo del certificato"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9858,51 +9938,51 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Blocco note"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:638
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Mostra il blocco note per cifrare/decifrare e firmare/verificare il testo"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Smart card"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Mostra la gestione delle smart card"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Esegui l'autodiagnosi"
 
-#: src/mainwindow.cpp:670
+#: src/mainwindow.cpp:671
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Configura gruppi..."
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Gruppi"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:720
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Imposta il fuoco sulla ricerca veloce"
 
-#: src/mainwindow.cpp:731
+#: src/mainwindow.cpp:732
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Compendio di Gpg4win"
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:736
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9910,48 +9990,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Guida rapida cifratura e firma"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:748
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:756
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Cifratura basata su &password"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:757
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:764
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Gruppi di certificati"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Cifratura dei &messaggi in Outlook"
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:775
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9959,41 +10039,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:785
 #, kde-format
 msgid "&Certification Management"
 msgstr "Gestione dei &certificati"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:786
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:793
+#: src/mainwindow.cpp:794
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Configurazione delle &smart card"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:795
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:801
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Riga di co&mando di GnuPG"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:812
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Manuale per l'approvazione VS-NfD"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:813
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10001,12 +10081,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:820
+#: src/mainwindow.cpp:821
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps per l'approvazione VS-NfD"
 
-#: src/mainwindow.cpp:821
+#: src/mainwindow.cpp:822
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10014,7 +10094,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:849
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10023,7 +10103,7 @@ msgstr ""
 "C'è ancora qualche operazione in sottofondo in esecuzione. Queste verranno "
 "interrotte quando la finestra verrà chiusa. Vuoi procedere lo stesso?"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Operazioni in sottofondo in esecuzione"
@@ -12311,12 +12391,6 @@ msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/view/padwidget.cpp:305 src/view/padwidget.cpp:343
-#, kde-format
-msgctxt "@title"
-msgid "Error in crypto action"
-msgstr "Errore nell'azione di cifratura"
-
 #: src/view/padwidget.cpp:323
 #, kde-format
 msgid "Decrypt / Verify"
@@ -12935,87 +13009,87 @@ msgstr ""
 msgid "No matching certificate was found in directory service."
 msgstr "Nessun certificato corrispondente trovato nel servizio di directory."
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "Rename Tab"
 msgstr "Rinomina scheda"
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "New tab title:"
 msgstr "Nuovo titolo della scheda:"
 
-#: src/view/tabwidget.cpp:865
+#: src/view/tabwidget.cpp:866
 #, kde-format
 msgid "New Tab"
 msgstr "Nuova scheda"
 
-#: src/view/tabwidget.cpp:866
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "Open a new tab"
 msgstr "Apri una nuova scheda"
 
-#: src/view/tabwidget.cpp:880
+#: src/view/tabwidget.cpp:881
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Rinomina scheda..."
 
-#: src/view/tabwidget.cpp:881
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename this tab"
 msgstr "Rinomina questa scheda"
 
-#: src/view/tabwidget.cpp:893
+#: src/view/tabwidget.cpp:894
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Duplica scheda"
 
-#: src/view/tabwidget.cpp:894
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Duplica la scheda attuale"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Close Tab"
 msgstr "Chiudi la scheda"
 
-#: src/view/tabwidget.cpp:905
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close this tab"
 msgstr "Chiudi questa scheda"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Sposta la scheda a sinistra"
 
-#: src/view/tabwidget.cpp:918
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move this tab left"
 msgstr "Sposta questa scheda a sinistra"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Sposta la scheda a destra"
 
-#: src/view/tabwidget.cpp:931
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move this tab right"
 msgstr "Sposta questa scheda a destra"
 
-#: src/view/tabwidget.cpp:943
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Lista gerarchica dei certificati"
 
-#: src/view/tabwidget.cpp:956
+#: src/view/tabwidget.cpp:957
 #, kde-format
 msgid "Expand All"
 msgstr "Espandi tutto"
 
-#: src/view/tabwidget.cpp:969
+#: src/view/tabwidget.cpp:970
 #, kde-format
 msgid "Collapse All"
 msgstr "Contrai tutto"
@@ -13100,6 +13174,17 @@ msgid ""
 msgstr ""
 "Importa il certificato da un file.<nl/>Per importare da un server delle "
 "chiavi pubblico usa invece <interface>Cerca sul server</interface>."
+
+#~ msgctxt "@info:credit"
+#~ msgid ""
+#~ "Smartcard view redesign, certificate view redesign and user experience"
+#~ msgstr ""
+#~ "Riprogettazione della vista delle smart card, riprogettazione della vista "
+#~ "del certificato ed esperienza utente"
+
+#~ msgctxt "@title"
+#~ msgid "Error in crypto action"
+#~ msgstr "Errore nell'azione di cifratura"
 
 #~ msgid "Current Maintainer"
 #~ msgstr "Responsabile attuale"
@@ -14272,9 +14357,6 @@ msgstr ""
 
 #~ msgid "Months"
 #~ msgstr "Mesi"
-
-#~ msgid "Years"
-#~ msgstr "Anni"
 
 #~ msgctxt "... between today and <another date>."
 #~ msgid "The validity period must end between today and %1."

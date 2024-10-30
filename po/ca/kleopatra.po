@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-29 00:40+0000\n"
-"PO-Revision-Date: 2024-10-26 18:17+0200\n"
+"POT-Creation-Date: 2024-10-30 00:40+0000\n"
+"PO-Revision-Date: 2024-10-29 10:17+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -71,10 +71,8 @@ msgstr "Alexander Kulbartsch"
 
 #: src/aboutdata.cpp:51
 msgctxt "@info:credit"
-msgid "Smartcard view redesign, certificate view redesign and user experience"
+msgid "UX redesign of smartcard view and certificate details"
 msgstr ""
-"Redisseny de la vista de targetes intel·ligents, redisseny de la vista de "
-"certificats i experiència d'usuari"
 
 #: src/aboutdata.cpp:52
 msgid "Carl Schwan"
@@ -893,7 +891,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "El PIN s'ha canviat correctament."
 
-#: src/commands/changeroottrustcommand.cpp:77
+#: src/commands/changeroottrustcommand.cpp:79
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -902,45 +900,124 @@ msgstr ""
 "Ha fallat en actualitzar la base de dades de confiança:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:80
+#: src/commands/changeroottrustcommand.cpp:82
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Ha fallat en actualitzar la confiança de l'arrel"
 
-#: src/commands/changeroottrustcommand.cpp:166
-#, fuzzy, kde-format
-#| msgid "You are not allowed to create S/MIME certificate signing requests."
+#: src/commands/changeroottrustcommand.cpp:120
+#, kde-format
 msgctxt "@info"
 msgid "You are not allowed to mark certificates as trusted or not trusted."
-msgstr ""
-"No es permet que creeu sol·licituds de signatura del certificat S/MIME."
+msgstr "No es permet que marqueu certificats com a fiables o no fiables."
 
-#: src/commands/changeroottrustcommand.cpp:271
+#: src/commands/changeroottrustcommand.cpp:195
+#, kde-kuit-format
+msgctxt ""
+"@info needed for technical reasons; RTL-languages may have to put the %1 in "
+"front"
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;%1"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:204
+#, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of indented text with line "
+"breaks; RTL-languages may have to put the %2 before the non-breaking space "
+"entities"
+msgid "%1<nl/>&nbsp;&nbsp;&nbsp;&nbsp;%2"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:216
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you ultimately trust</para><para>%1</para><para>to correctly "
+"certify user certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:217
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you distrust</para><para>%1</para><para>to correctly certify user "
+"certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:219
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@title:window"
+msgid "Trust Root Certificate"
+msgstr "Confia en el certificat arrel"
+
+#: src/commands/changeroottrustcommand.cpp:220
+#, fuzzy, kde-format
+#| msgid "Distrust Root Certificate"
+msgctxt "@title:window"
+msgid "Distrust Root Certificate"
+msgstr "Desconfia del certificat arrel"
+
+#: src/commands/changeroottrustcommand.cpp:222
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:231
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Please verify that the certificate identified as:</para><para>%1</"
+"para><para>has the SHA-1 fingerprint:</para><para>%2</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Fingerprint"
+msgctxt "@title:window"
+msgid "Verify Fingerprint"
+msgstr "Empremta digital"
+
+#: src/commands/changeroottrustcommand.cpp:238
+#, kde-format
+msgctxt "@action:button"
+msgid "Correct"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:239
+#, kde-format
+msgctxt "@action:button"
+msgid "Wrong"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:280
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "No s'ha pogut obrir el fitxer existent «%1» per a lectura: %2"
 
-#: src/commands/changeroottrustcommand.cpp:299
+#: src/commands/changeroottrustcommand.cpp:308
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "No s'ha pogut obrir el fitxer «%1» per a lectura i escriptura: %2"
 
-#: src/commands/changeroottrustcommand.cpp:302
+#: src/commands/changeroottrustcommand.cpp:311
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "No s'han pogut establir permisos restrictius en el fitxer %1: %2"
 
-#: src/commands/changeroottrustcommand.cpp:362
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Ha fallat en moure el fitxer %1 a la seva destinació final, %2: %3"
 
-#: src/commands/changeroottrustcommand.cpp:371
+#: src/commands/changeroottrustcommand.cpp:380
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "No s'ha pogut trobar l'executable «gpgconf»"
 
-#: src/commands/changeroottrustcommand.cpp:382
+#: src/commands/changeroottrustcommand.cpp:391
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "Ha fallat «gpgconf --reload gpg-agent»: %1"
@@ -5014,43 +5091,34 @@ msgstr ""
 "encriptar-lo després de forçar el desencriptatge."
 
 #: src/crypto/decryptverifytask.cpp:750
-#, fuzzy, kde-format
-#| msgctxt "%1 is error message"
-#| msgid "Failed to export: '%1'"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
-msgstr "Ha fallat en exportar: %1"
+msgstr "Ha fallat en desencriptar el bloc de notes: %1"
 
 #: src/crypto/decryptverifytask.cpp:753
-#, fuzzy, kde-format
-#| msgctxt "%1 is error message"
-#| msgid "Failed to export: '%1'"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
-msgstr "Ha fallat en exportar: %1"
+msgstr "Ha fallat en verificar el bloc de notes: %1"
 
 #: src/crypto/decryptverifytask.cpp:757
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Successfully generated new card keys and a certificate for this card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
-msgstr ""
-"S'han generat correctament les claus noves i un certificat per a aquesta "
-"targeta."
+msgstr "S'ha desencriptat i verificat correctament el bloc de notes"
 
 #: src/crypto/decryptverifytask.cpp:760
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
-msgstr ""
+msgstr "S'ha desencriptat correctament el bloc de notes"
 
 #: src/crypto/decryptverifytask.cpp:763
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
-msgstr ""
+msgstr "S'ha verificat correctament el bloc de notes"
 
 #: src/crypto/decryptverifytask.cpp:780
 #, kde-format
@@ -6356,43 +6424,34 @@ msgid "Creating signed archive ..."
 msgstr "S'està creant un arxiu signat..."
 
 #: src/crypto/signencrypttask.cpp:898
-#, fuzzy, kde-format
-#| msgid "Failed to send file path %1: %2"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
-msgstr "Ha fallat en enviar el camí del fitxer %1: %2"
+msgstr "Ha fallat en signar el bloc de notes: %1"
 
 #: src/crypto/signencrypttask.cpp:901
-#, fuzzy, kde-format
-#| msgctxt "%1 is error message"
-#| msgid "Failed to export: '%1'"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
-msgstr "Ha fallat en exportar: %1"
+msgstr "Ha fallat en encriptar el bloc de notes: %1"
 
 #: src/crypto/signencrypttask.cpp:905
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully generated an OpenPGP key from the card keys."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
-msgstr ""
-"S'ha generat correctament una clau OpenPGP a partir de les claus de la "
-"targeta."
+msgstr "S'ha encriptat i signat correctament el bloc de notes"
 
 #: src/crypto/signencrypttask.cpp:907
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
-msgstr ""
+msgstr "S'ha encriptat correctament el bloc de notes"
 
 #: src/crypto/signencrypttask.cpp:909
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Key successfully generated."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
-msgstr "S'ha generat correctament la clau."
+msgstr "S'ha signat correctament el bloc de notes"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -9808,23 +9867,23 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "Error en iniciar el KWatchGnuPG"
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:575
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Visualitzador del registre de GnuPG"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:587
 #, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "Mostra la configuració del GnuPG"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Reinicia els processos en segon pla"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:601
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9834,23 +9893,23 @@ msgstr ""
 "Reinicia els processos en segon pla, p. ex. després de fer canvis a la "
 "configuració."
 
-#: src/mainwindow.cpp:612
+#: src/mainwindow.cpp:613
 #, kde-format
 msgid "Check for updates"
 msgstr "Comprova si hi ha actualitzacions"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certificats"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Mostra un resum del certificat"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9858,52 +9917,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Bloc de notes"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:638
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Mostra una àrea per al text d'encriptatge/desencriptatge i signatura/"
 "verificació"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Targetes intel·ligents"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Mostra la gestió de targetes intel·ligents"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Executa una autocomprovació"
 
-#: src/mainwindow.cpp:670
+#: src/mainwindow.cpp:671
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Configura els grups..."
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grups"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:720
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Estableix el focus a la cerca ràpida"
 
-#: src/mainwindow.cpp:731
+#: src/mainwindow.cpp:732
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Compendi del Gpg4win"
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:736
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9911,48 +9970,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "Guia &ràpida d'encriptatge i signatura"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:748
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:756
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Encriptatge basat en contra&senyes"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:757
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:764
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Grups de certificats"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Encriptatge de &correu a l'Outlook"
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:775
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -9960,41 +10019,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:785
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Gestió de certificats"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:786
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:793
+#: src/mainwindow.cpp:794
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Configuració de &targetes intel·ligents"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:795
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:801
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "&Línia d'ordres del GnuPG"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:812
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Manual per a l'aprovació de VS-NfD (anglès)"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:813
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10002,12 +10061,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:820
+#: src/mainwindow.cpp:821
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps per a l'aprovació de VS-NfD (anglès)"
 
-#: src/mainwindow.cpp:821
+#: src/mainwindow.cpp:822
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10015,7 +10074,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:849
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10024,7 +10083,7 @@ msgstr ""
 "Encara hi ha algunes operacions en curs en segon pla. Es finalitzaran en "
 "tancar la finestra. Continuo?"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tasques en curs en segon pla"
@@ -12322,12 +12381,6 @@ msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/view/padwidget.cpp:305 src/view/padwidget.cpp:343
-#, kde-format
-msgctxt "@title"
-msgid "Error in crypto action"
-msgstr "Error en l'acció de criptografia"
-
 #: src/view/padwidget.cpp:323
 #, kde-format
 msgid "Decrypt / Verify"
@@ -12951,87 +13004,87 @@ msgstr ""
 msgid "No matching certificate was found in directory service."
 msgstr "No s'ha trobat cap certificat coincident en el servei de directori."
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "Rename Tab"
 msgstr "Reanomena la pestanya"
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "New tab title:"
 msgstr "Títol nou de la pestanya:"
 
-#: src/view/tabwidget.cpp:865
+#: src/view/tabwidget.cpp:866
 #, kde-format
 msgid "New Tab"
 msgstr "Pestanya nova"
 
-#: src/view/tabwidget.cpp:866
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "Open a new tab"
 msgstr "Obre una pestanya nova"
 
-#: src/view/tabwidget.cpp:880
+#: src/view/tabwidget.cpp:881
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Reanomena la pestanya..."
 
-#: src/view/tabwidget.cpp:881
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename this tab"
 msgstr "Reanomena aquesta pestanya"
 
-#: src/view/tabwidget.cpp:893
+#: src/view/tabwidget.cpp:894
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Duplica la pestanya"
 
-#: src/view/tabwidget.cpp:894
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Duplica aquesta pestanya"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Close Tab"
 msgstr "Tanca la pestanya"
 
-#: src/view/tabwidget.cpp:905
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close this tab"
 msgstr "Tanca aquesta pestanya"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Mou la pestanya a l'esquerra"
 
-#: src/view/tabwidget.cpp:918
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move this tab left"
 msgstr "Mou aquesta pestanya a l'esquerra"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Mou la pestanya a la dreta"
 
-#: src/view/tabwidget.cpp:931
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move this tab right"
 msgstr "Mou aquesta pestanya a la dreta"
 
-#: src/view/tabwidget.cpp:943
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Llista jeràrquica de certificats"
 
-#: src/view/tabwidget.cpp:956
+#: src/view/tabwidget.cpp:957
 #, kde-format
 msgid "Expand All"
 msgstr "Expandeix-ho tot"
 
-#: src/view/tabwidget.cpp:969
+#: src/view/tabwidget.cpp:970
 #, kde-format
 msgid "Collapse All"
 msgstr "Redueix-ho tot"
@@ -13114,6 +13167,17 @@ msgid ""
 msgstr ""
 "Importa un certificat a partir d'un fitxer.<nl/>Per a importar des d'un "
 "servidor de claus públiques useu <interface>Cerca al servidor</interface>."
+
+#~ msgctxt "@info:credit"
+#~ msgid ""
+#~ "Smartcard view redesign, certificate view redesign and user experience"
+#~ msgstr ""
+#~ "Redisseny de la vista de targetes intel·ligents, redisseny de la vista de "
+#~ "certificats i experiència d'usuari"
+
+#~ msgctxt "@title"
+#~ msgid "Error in crypto action"
+#~ msgstr "Error en l'acció de criptografia"
 
 #~ msgid "Current Maintainer"
 #~ msgstr "Mantenidor actual"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-29 00:40+0000\n"
-"PO-Revision-Date: 2024-10-25 18:32+0300\n"
+"POT-Creation-Date: 2024-10-30 00:40+0000\n"
+"PO-Revision-Date: 2024-10-29 09:07+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -70,10 +70,8 @@ msgstr "Alexander Kulbartsch"
 
 #: src/aboutdata.cpp:51
 msgctxt "@info:credit"
-msgid "Smartcard view redesign, certificate view redesign and user experience"
+msgid "UX redesign of smartcard view and certificate details"
 msgstr ""
-"Перепланування панелі перегляду карток пам'яті, сертифікатів та принципів "
-"роботи з користувачем"
 
 #: src/aboutdata.cpp:52
 msgid "Carl Schwan"
@@ -891,7 +889,7 @@ msgctxt "@info"
 msgid "PIN changed successfully."
 msgstr "Код PIN успішно змінено."
 
-#: src/commands/changeroottrustcommand.cpp:77
+#: src/commands/changeroottrustcommand.cpp:79
 #, kde-format
 msgid ""
 "Failed to update the trust database:\n"
@@ -900,45 +898,126 @@ msgstr ""
 "Не вдалося оновити базу даних надійних сертифікатів:\n"
 "%1"
 
-#: src/commands/changeroottrustcommand.cpp:80
+#: src/commands/changeroottrustcommand.cpp:82
 #, kde-format
 msgid "Root Trust Update Failed"
 msgstr "Помилка оновлення кореневих надійних сертифікатів"
 
-#: src/commands/changeroottrustcommand.cpp:166
-#, fuzzy, kde-format
-#| msgid "You are not allowed to create S/MIME certificate signing requests."
+#: src/commands/changeroottrustcommand.cpp:120
+#, kde-format
 msgctxt "@info"
 msgid "You are not allowed to mark certificates as trusted or not trusted."
 msgstr ""
-"У вас немає прав для створення запитів щодо підписування сертифікатів S/MIME."
+"У вас немає прав для позначення сертифікатів як довірених або недовірених."
 
-#: src/commands/changeroottrustcommand.cpp:271
+#: src/commands/changeroottrustcommand.cpp:195
+#, kde-kuit-format
+msgctxt ""
+"@info needed for technical reasons; RTL-languages may have to put the %1 in "
+"front"
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;%1"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:204
+#, kde-kuit-format
+msgctxt ""
+"@info used for concatenating multiple lines of indented text with line "
+"breaks; RTL-languages may have to put the %2 before the non-breaking space "
+"entities"
+msgid "%1<nl/>&nbsp;&nbsp;&nbsp;&nbsp;%2"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:216
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you ultimately trust</para><para>%1</para><para>to correctly "
+"certify user certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:217
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you distrust</para><para>%1</para><para>to correctly certify user "
+"certificates?</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:219
+#, fuzzy, kde-format
+#| msgid "Trust Root Certificate"
+msgctxt "@title:window"
+msgid "Trust Root Certificate"
+msgstr "Встановити надійність кореневого сертифіката"
+
+#: src/commands/changeroottrustcommand.cpp:220
+#, fuzzy, kde-format
+#| msgid "Distrust Root Certificate"
+msgctxt "@title:window"
+msgid "Distrust Root Certificate"
+msgstr "Скасувати надійність кореневого сертифіката"
+
+#: src/commands/changeroottrustcommand.cpp:222
+#, fuzzy, kde-format
+#| msgid "Years"
+msgctxt "@action:button"
+msgid "Yes"
+msgstr "роки"
+
+#: src/commands/changeroottrustcommand.cpp:231
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Please verify that the certificate identified as:</para><para>%1</"
+"para><para>has the SHA-1 fingerprint:</para><para>%2</para>"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Fingerprint"
+msgctxt "@title:window"
+msgid "Verify Fingerprint"
+msgstr "Відбиток"
+
+#: src/commands/changeroottrustcommand.cpp:238
+#, kde-format
+msgctxt "@action:button"
+msgid "Correct"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:239
+#, kde-format
+msgctxt "@action:button"
+msgid "Wrong"
+msgstr ""
+
+#: src/commands/changeroottrustcommand.cpp:280
 #, kde-format
 msgid "Cannot open existing file \"%1\" for reading: %2"
 msgstr "Не вдалося відкрити файл «%1» для читання: %2"
 
-#: src/commands/changeroottrustcommand.cpp:299
+#: src/commands/changeroottrustcommand.cpp:308
 #, kde-format
 msgid "Cannot open file \"%1\" for reading and writing: %2"
 msgstr "Не вдалося відкрити файл «%1» для читання і запису: %2"
 
-#: src/commands/changeroottrustcommand.cpp:302
+#: src/commands/changeroottrustcommand.cpp:311
 #, kde-format
 msgid "Cannot set restrictive permissions on file %1: %2"
 msgstr "Не вдалося встановити обмеження доступу до файла %1: %2"
 
-#: src/commands/changeroottrustcommand.cpp:362
+#: src/commands/changeroottrustcommand.cpp:371
 #, kde-format
 msgid "Failed to move file %1 to its final destination, %2: %3"
 msgstr "Не вдалося пересунути файл %1 на місце призначення, %2: %3"
 
-#: src/commands/changeroottrustcommand.cpp:371
+#: src/commands/changeroottrustcommand.cpp:380
 #, kde-format
 msgid "Could not find gpgconf executable"
 msgstr "Не вдалося знайти виконуваний файл gpgconf"
 
-#: src/commands/changeroottrustcommand.cpp:382
+#: src/commands/changeroottrustcommand.cpp:391
 #, kde-format
 msgid "\"gpgconf --reload gpg-agent\" failed: %1"
 msgstr "Помилка під час виконання \"gpgconf --reload gpg-agent\": %1"
@@ -5052,43 +5131,34 @@ msgstr ""
 "вам слід повторно зашифрувати його після примусового розшифровування."
 
 #: src/crypto/decryptverifytask.cpp:750
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to delete the key: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
-msgstr "Не вдалося вилучити ключ: %1"
+msgstr "Не вдалося розшифрувати нотатник: %1"
 
 #: src/crypto/decryptverifytask.cpp:753
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to delete the key: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
-msgstr "Не вдалося вилучити ключ: %1"
+msgstr "Не вдалося перевірити нотатник: %1"
 
 #: src/crypto/decryptverifytask.cpp:757
-#, fuzzy, kde-format
-#| msgid "Successfully copied the certificate to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
-msgstr "Сертифікат успішно скопійовано на картку."
+msgstr "Нотатник успішно розшифровано і перевірено."
 
 #: src/crypto/decryptverifytask.cpp:760
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
-msgstr "Ключ успішно скопійовано на картку."
+msgstr "Нотатник успішно розшифровано."
 
 #: src/crypto/decryptverifytask.cpp:763
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
-msgstr "Ключ успішно скопійовано на картку."
+msgstr "Нотатник успішно перевірено."
 
 #: src/crypto/decryptverifytask.cpp:780
 #, kde-format
@@ -6398,44 +6468,34 @@ msgid "Creating signed archive ..."
 msgstr "Створюємо підписаний архів…"
 
 #: src/crypto/signencrypttask.cpp:898
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to delete the key: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
-msgstr "Не вдалося вилучити ключ: %1"
+msgstr "Не вдалося підписати нотатник: %1"
 
 #: src/crypto/signencrypttask.cpp:901
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to delete the key: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
-msgstr "Не вдалося вилучити ключ: %1"
+msgstr "Не вдалося зашифрувати нотатник: %1"
 
 #: src/crypto/signencrypttask.cpp:905
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
-msgstr "Ключ успішно скопійовано на картку."
+msgstr "Нотатник успішно зашифровано і підписано"
 
 #: src/crypto/signencrypttask.cpp:907
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
-msgstr "Ключ успішно скопійовано на картку."
+msgstr "Нотатник успішно зашифровано"
 
 #: src/crypto/signencrypttask.cpp:909
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully copied the key to the card."
+#, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
-msgstr "Ключ успішно скопійовано на картку."
+msgstr "Нотатник успішно підписано"
 
 #: src/crypto/task.cpp:177
 #, kde-format
@@ -9902,23 +9962,23 @@ msgstr ""
 msgid "Error Starting KWatchGnuPG"
 msgstr "Помилка під час запуску KWatchGnuPG"
 
-#: src/mainwindow.cpp:574
+#: src/mainwindow.cpp:575
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Переглядач журналу GnuPG"
 
-#: src/mainwindow.cpp:586
+#: src/mainwindow.cpp:587
 #, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "Показати налаштування GnuPG"
 
-#: src/mainwindow.cpp:599
+#: src/mainwindow.cpp:600
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Перезапустити фонові процеси"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:601
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9927,23 +9987,23 @@ msgid ""
 msgstr ""
 "Перезапустити фонові процеси після, наприклад, внесення змін до налаштувань."
 
-#: src/mainwindow.cpp:612
+#: src/mainwindow.cpp:613
 #, kde-format
 msgid "Check for updates"
 msgstr "Перевірити наявність оновлень"
 
-#: src/mainwindow.cpp:625
+#: src/mainwindow.cpp:626
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Сертифікати"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:627
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Показувати огляд сертифіката"
 
-#: src/mainwindow.cpp:636
+#: src/mainwindow.cpp:637
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9951,52 +10011,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Нотатник"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:638
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Показувати панель нотатника для шифрування/розшифрування та підписування/"
 "перевірки тексту"
 
-#: src/mainwindow.cpp:647
+#: src/mainwindow.cpp:648
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Картки пам'яті"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:649
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Показувати панель керування картками пам'яті"
 
-#: src/mainwindow.cpp:659
+#: src/mainwindow.cpp:660
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Виконати самоперевірку"
 
-#: src/mainwindow.cpp:670
+#: src/mainwindow.cpp:671
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Налаштувати групи…"
 
-#: src/mainwindow.cpp:682
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Групи"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:720
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Перевести фокус до поля швидкого пошуку"
 
-#: src/mainwindow.cpp:731
+#: src/mainwindow.cpp:732
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Довідник з gpg4win"
 
-#: src/mainwindow.cpp:735
+#: src/mainwindow.cpp:736
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10004,48 +10064,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:747
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Короткі настанови щодо шифрування і підписування"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:748
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:756
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Шифрування на основі пароля"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:757
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:763
+#: src/mainwindow.cpp:764
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Групи сертифікатів"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:765
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:773
+#: src/mainwindow.cpp:774
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Ш&ифрування пошти в Outlook"
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:775
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10053,41 +10113,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:785
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Керування сертифікацією"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:786
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:793
+#: src/mainwindow.cpp:794
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "Налаштування с&марткарток"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:795
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:801
+#: src/mainwindow.cpp:802
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Кома&ндний рядок GnuPG"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:812
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Підручник щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:813
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10095,12 +10155,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:820
+#: src/mainwindow.cpp:821
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "Безпечні дії щодо затвердження VS-NfD"
 
-#: src/mainwindow.cpp:821
+#: src/mainwindow.cpp:822
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10108,7 +10168,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:848
+#: src/mainwindow.cpp:849
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10117,7 +10177,7 @@ msgstr ""
 "Все ще виконуються деякі фонові дії. Їх буде припинено, якщо ви закриєте "
 "вікно. Продовжувати?"
 
-#: src/mainwindow.cpp:851
+#: src/mainwindow.cpp:852
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Виконуються фонові завдання"
@@ -12399,12 +12459,6 @@ msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/view/padwidget.cpp:305 src/view/padwidget.cpp:343
-#, kde-format
-msgctxt "@title"
-msgid "Error in crypto action"
-msgstr "Помилка під час дії з шифрування"
-
 #: src/view/padwidget.cpp:323
 #, kde-format
 msgid "Decrypt / Verify"
@@ -13024,87 +13078,87 @@ msgstr "У службі каталогів знайдено декілька в�
 msgid "No matching certificate was found in directory service."
 msgstr "У службі каталогів не знайдено відповідних сертифікатів."
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "Rename Tab"
 msgstr "Перейменувати вкладку"
 
-#: src/view/tabwidget.cpp:661
+#: src/view/tabwidget.cpp:662
 #, kde-format
 msgid "New tab title:"
 msgstr "Нова назва вкладки:"
 
-#: src/view/tabwidget.cpp:865
+#: src/view/tabwidget.cpp:866
 #, kde-format
 msgid "New Tab"
 msgstr "Створити вкладку"
 
-#: src/view/tabwidget.cpp:866
+#: src/view/tabwidget.cpp:867
 #, kde-format
 msgid "Open a new tab"
 msgstr "Відкрити нову вкладку"
 
-#: src/view/tabwidget.cpp:880
+#: src/view/tabwidget.cpp:881
 #, kde-format
 msgid "Rename Tab..."
 msgstr "Перейменувати вкладку…"
 
-#: src/view/tabwidget.cpp:881
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Rename this tab"
 msgstr "Перейменувати цю вкладку"
 
-#: src/view/tabwidget.cpp:893
+#: src/view/tabwidget.cpp:894
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "Дублювати вкладку"
 
-#: src/view/tabwidget.cpp:894
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "Дублювати цю вкладку"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:905
 #, kde-format
 msgid "Close Tab"
 msgstr "Закрити вкладку"
 
-#: src/view/tabwidget.cpp:905
+#: src/view/tabwidget.cpp:906
 #, kde-format
 msgid "Close this tab"
 msgstr "Закрити цю вкладку"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:918
 #, kde-format
 msgid "Move Tab Left"
 msgstr "Пересунути вкладку ліворуч"
 
-#: src/view/tabwidget.cpp:918
+#: src/view/tabwidget.cpp:919
 #, kde-format
 msgid "Move this tab left"
 msgstr "Пересунути цю вкладку лівіше"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:931
 #, kde-format
 msgid "Move Tab Right"
 msgstr "Пересунути вкладку праворуч"
 
-#: src/view/tabwidget.cpp:931
+#: src/view/tabwidget.cpp:932
 #, kde-format
 msgid "Move this tab right"
 msgstr "Пересунути цю вкладку правіше"
 
-#: src/view/tabwidget.cpp:943
+#: src/view/tabwidget.cpp:944
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "Ієрархічний список сертифікатів"
 
-#: src/view/tabwidget.cpp:956
+#: src/view/tabwidget.cpp:957
 #, kde-format
 msgid "Expand All"
 msgstr "Розгорнути всі"
 
-#: src/view/tabwidget.cpp:969
+#: src/view/tabwidget.cpp:970
 #, kde-format
 msgid "Collapse All"
 msgstr "Згорнути всі"
@@ -13187,6 +13241,17 @@ msgid ""
 msgstr ""
 "Імпортувати сертифікат з файла.<nl/>Щоб імпортувати дані з сервера відкритих "
 "ключів, скористайтеся пунктом <interface>Шукати на сервері</interface>."
+
+#~ msgctxt "@info:credit"
+#~ msgid ""
+#~ "Smartcard view redesign, certificate view redesign and user experience"
+#~ msgstr ""
+#~ "Перепланування панелі перегляду карток пам'яті, сертифікатів та принципів "
+#~ "роботи з користувачем"
+
+#~ msgctxt "@title"
+#~ msgid "Error in crypto action"
+#~ msgstr "Помилка під час дії з шифрування"
 
 #~ msgid "Current Maintainer"
 #~ msgstr "Поточний супровід"
@@ -14362,9 +14427,6 @@ msgstr ""
 
 #~ msgid "Months"
 #~ msgstr "місяці"
-
-#~ msgid "Years"
-#~ msgstr "роки"
 
 #~ msgctxt "... between today and <another date>."
 #~ msgid "The validity period must end between today and %1."
