@@ -11,10 +11,13 @@
 
 #include <config-kleopatra.h>
 
+#include "kleopatra_debug.h"
+
 #include "signencryptfileswizard.h"
 #include "signencryptwidget.h"
 
 #include "newresultpage.h"
+#include "utils/scrollarea.h"
 
 #include <fileoperationspreferences.h>
 #include <settings.h>
@@ -24,15 +27,15 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
+#include <KSeparator>
 #include <KSharedConfig>
 
-#include "kleopatra_debug.h"
 #include <Libkleo/Compliance>
+#include <Libkleo/FileNameRequester>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/SystemInfo>
 
-#include <Libkleo/FileNameRequester>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QIcon>
@@ -143,26 +146,39 @@ public:
         , mSingleFile{true}
     {
         setTitle(i18nc("@title", "Sign / Encrypt Files"));
-        auto vLay = new QVBoxLayout(this);
-        vLay->setContentsMargins(0, 0, 0, 0);
+
+        auto mainLayout = new QVBoxLayout(this);
+        mainLayout->setContentsMargins({});
+        auto scrollArea = new Kleo::ScrollArea;
+        mainLayout->addWidget(scrollArea);
+
+        auto wrapper = new QWidget;
+        scrollArea->setWidget(wrapper);
+        auto vLay = new QVBoxLayout(wrapper);
+        vLay->setContentsMargins({});
+
         if (!Settings{}.cmsEnabled()) {
             mWidget->setProtocol(GpgME::OpenPGP);
         }
         mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage", "&Sign as:"));
         mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage", "Encrypt for &me:"));
-        mWidget->setEncryptWithPasswordText(
-            i18nc("@option:check on SignEncryptPage", "Encrypt with &password. Anyone you share the password with can read the data."));
+        mWidget->setEncryptForOthersText(i18nc("@label on SignEncryptPage", "Encrypt for &others:"));
+        mWidget->setEncryptWithPasswordText(i18nc("@option:check on SignEncryptPage", "Encrypt with &password:"));
         vLay->addWidget(mWidget);
         connect(mWidget, &SignEncryptWidget::operationChanged, this, &SigEncPage::updateCommitButton);
         connect(mWidget, &SignEncryptWidget::keysChanged, this, &SigEncPage::updateFileWidgets);
 
-        auto outputGrp = new QGroupBox(i18nc("@title:group", "Output"));
-        outputGrp->setLayout(mOutLayout);
+        vLay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
+
+        vLay->addLayout(mOutLayout);
 
         mPlaceholderWidget = new QLabel(i18nc("@label:textbox", "Please select an action."));
         mOutLayout->addWidget(mPlaceholderWidget);
 
         mOutputLabel = new QLabel(i18nc("@label on SignEncryptPage", "Output &files/folder:"));
+        auto font = mOutputLabel->font();
+        font.setWeight(QFont::DemiBold);
+        mOutputLabel->setFont(font);
         mOutLayout->addWidget(mOutputLabel);
 
         createRequesters(mOutLayout);
@@ -175,8 +191,6 @@ public:
             mArchive = !mUseOutputDir && !mSingleFile;
             updateFileWidgets();
         });
-
-        vLay->addWidget(outputGrp);
 
         auto messageWidget = new KMessageWidget;
         messageWidget->setMessageType(KMessageWidget::Error);
@@ -191,6 +205,7 @@ public:
         vLay->addWidget(messageWidget);
 
         setMinimumHeight(300);
+        vLay->addStretch();
     }
 
     void setEncryptionPreset(bool value)

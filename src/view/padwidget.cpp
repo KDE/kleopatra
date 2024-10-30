@@ -149,7 +149,6 @@ public:
         splitterWidget->setChildrenCollapsible(false);
         vLay->addWidget(splitterWidget, 1);
 
-        mEdit->setTabChangesFocus(true);
         splitterWidget->addWidget(mEdit);
         splitterWidget->setStretchFactor(0, 1);
 
