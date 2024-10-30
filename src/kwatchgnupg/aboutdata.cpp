@@ -31,8 +31,8 @@ AboutData::AboutData()
                  QLatin1StringView(KWATCHGNUPG_VERSION_STRING),
                  i18nc("@info", "Viewer for GnuPG daemon and application logs"),
                  KAboutLicense::GPL,
-                 i18nc("@info:credit", "(C) 2019-%1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
-                     + i18n("(C) 2001-2004 Klar\xC3\xA4lvdalens Datakonsult AB\n"))
+                 i18nc("@info:credit", "\u00A9 2019-%1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18n("\u00A9 2001-2004 Klar\u00E4lvdalens Datakonsult AB\n"))
 {
     using ::authors;
     for (const auto &author : authors) {
