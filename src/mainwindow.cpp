@@ -108,6 +108,8 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace GpgME;
 
+using namespace Qt::Literals::StringLiterals;
+
 static KGuiItem KStandardGuiItem_quit()
 {
     static const QString app = KAboutData::applicationData().displayName();
@@ -728,7 +730,7 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
     /* Add additional help actions for documentation */
-    const auto compendium = new DocAction(QIcon::fromTheme(QStringLiteral("gpg4win-compact")),
+    const auto compendium = new DocAction(QIcon{u":/gpg4win/gpg4win-compact"_s},
                                           i18n("Gpg4win Compendium"),
                                           i18nc("The Gpg4win compendium is only available"
                                                 "at this point (24.7.2017) in german and english."
