@@ -125,10 +125,10 @@ AboutData::AboutData()
                  QLatin1StringView(KLEOPATRA_VERSION_STRING),
                  i18n("Certificate manager and cryptography app"),
                  KAboutLicense::GPL,
-                 i18nc("@info:credit", "(C) %1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
-                     + i18nc("@info:credit", "(C) %1 The Kleopatra developers", QStringLiteral("2024")) + QLatin1Char('\n')
-                     + i18nc("@info:credit", "(C) 2018 Intevation GmbH") + QLatin1Char('\n')
-                     + i18nc("@info:credit", "(C) 2009 Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB"))
+                 i18nc("@info:credit", "(C) 2019-%1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) 2001-%1 The Kleopatra developers", QStringLiteral("2024")) + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) 2016-2018 Intevation GmbH") + QLatin1Char('\n')
+                     + i18nc("@info:credit", "(C) 2001-2017 Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB"))
 {
     using ::authors;
     using ::credits;
