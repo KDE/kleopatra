@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1693945 $
+# Version: $Revision: 1694034 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-30 00:40+0000\n"
+"POT-Creation-Date: 2024-10-31 00:41+0000\n"
 "PO-Revision-Date: 2024-10-26 12:54+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -159,27 +159,35 @@ msgid "Certificate manager and cryptography app"
 msgstr "Aplikacja do certyfikatów i kryptografii"
 
 #: src/aboutdata.cpp:128
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:credit"
+#| msgid "(C) %1 g10 Code GmbH"
 msgctxt "@info:credit"
-msgid "(C) %1 g10 Code GmbH"
+msgid "© 2019-%1 g10 Code GmbH"
 msgstr "(C) %1 g10 Code GmbH"
 
 #: src/aboutdata.cpp:129
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:credit"
+#| msgid "(C) %1 The Kleopatra developers"
 msgctxt "@info:credit"
-msgid "(C) %1 The Kleopatra developers"
+msgid "© 2001-%1 The Kleopatra developers"
 msgstr "(C) %1 Programiści Kleopatry"
 
 #: src/aboutdata.cpp:130
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:credit"
+#| msgid "(C) 2018 Intevation GmbH"
 msgctxt "@info:credit"
-msgid "(C) 2018 Intevation GmbH"
+msgid "© 2016-2018 Intevation GmbH"
 msgstr "(C) 2018 Intevation GmbH"
 
 #: src/aboutdata.cpp:131
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info:credit"
+#| msgid "(C) 2009 Klarälvdalens Datakonsult AB"
 msgctxt "@info:credit"
-msgid "(C) 2009 Klarälvdalens Datakonsult AB"
+msgid "© 2001-2017 Klarälvdalens Datakonsult AB"
 msgstr "(C) 2009 Klarälvdalens Datakonsult AB"
 
 #: src/commands/addadskcommand.cpp:106
@@ -2208,9 +2216,8 @@ msgid "Clipboard"
 msgstr "Schowek"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:138 src/view/padwidget.cpp:324
-#: src/view/padwidget.cpp:325 src/view/padwidget.cpp:404
-#: src/view/padwidget.cpp:405
+#: src/view/padwidget.cpp:349 src/view/padwidget.cpp:350
+#: src/view/padwidget.cpp:429 src/view/padwidget.cpp:430
 #, kde-format
 msgid "Notepad"
 msgstr "Notatnik"
@@ -3017,7 +3024,7 @@ msgid "No Directory Servers Configured"
 msgstr "Nie ustawiono żadnych usług katalogowych"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:105
-#: src/kleopatraapplication.cpp:528
+#: src/kleopatraapplication.cpp:531
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Nie możesz tworzyć żądań podpisania certyfikatu S/MIME."
@@ -4736,7 +4743,7 @@ msgstr ""
 "sprawdzające, nie może to być ich mieszanina."
 
 #: src/crypto/createchecksumscontroller.cpp:289
-#: src/dialogs/updatenotification.cpp:76
+#: src/dialogs/updatenotification.cpp:77
 #, kde-format
 msgid "Cancel"
 msgstr "Anuluj"
@@ -5679,69 +5686,72 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "Wybierz certyfikaty dla wiadomości \"%1\""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:145
+#: src/crypto/gui/signencryptfileswizard.cpp:148
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "Podpisz / zaszyfruj pliki"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:151
+#: src/crypto/gui/signencryptfileswizard.cpp:163
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "Podpi&sz jako:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:152
+#: src/crypto/gui/signencryptfileswizard.cpp:164
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "Zaszyfruj dla &mnie:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:154
-#, kde-format
+#: src/crypto/gui/signencryptfileswizard.cpp:165
+#, fuzzy, kde-format
+#| msgctxt "@option:check on SignEncryptPage"
+#| msgid "Encrypt for &others:"
+msgctxt "@label on SignEncryptPage"
+msgid "Encrypt for &others:"
+msgstr "&Zaszyfruj dla innych:"
+
+#: src/crypto/gui/signencryptfileswizard.cpp:166
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Encrypt Notepad"
 msgctxt "@option:check on SignEncryptPage"
-msgid ""
-"Encrypt with &password. Anyone you share the password with can read the data."
-msgstr "Z&aszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
+msgid "Encrypt with &password:"
+msgstr "Zaszyfruj notatnik"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:159
-#, kde-format
-msgctxt "@title:group"
-msgid "Output"
-msgstr "Wynik"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:162
+#: src/crypto/gui/signencryptfileswizard.cpp:175
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "Wybierz działanie."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:165
+#: src/crypto/gui/signencryptfileswizard.cpp:178
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "&Pliki/katalog wynikowy:"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:170
+#: src/crypto/gui/signencryptfileswizard.cpp:186
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "&Zaszyfruj / podpisz każdy plik osobno."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:171
+#: src/crypto/gui/signencryptfileswizard.cpp:187
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr ""
 "Przechowuj każdy plik osobno zamiast tworzyć archiwum dla nich wszystkich."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:184
+#: src/crypto/gui/signencryptfileswizard.cpp:198
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
 "Nieprawidłowe ustawienia zgodności dla podpisywania i szyfrowania plików."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfileswizard.cpp:200
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5755,7 +5765,7 @@ msgstr ""
 "podpisywania, czy szyfrowania plików, bo <application>GnuPG</application>, "
 "którego używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:253
+#: src/crypto/gui/signencryptfileswizard.cpp:268
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5769,7 +5779,7 @@ msgstr ""
 "podpisywania, czy szyfrowania plików, bo <application>GnuPG</application>, "
 "którego używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:273
+#: src/crypto/gui/signencryptfileswizard.cpp:288
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5788,13 +5798,13 @@ msgstr ""
 "przypadku, przyszłe wersje Kleopatra również będą obsługiwały oddzielone "
 "podpisy .</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:278
+#: src/crypto/gui/signencryptfileswizard.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "Ostrzeżenie niezwykłego podpisu"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:297
+#: src/crypto/gui/signencryptfileswizard.cpp:312
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5807,205 +5817,196 @@ msgstr ""
 "nie możesz odszyfrować tych danych po ich zaszyfrowaniu.</"
 "para><para>Kontynuować, czy przerwać aby zmienić listę odbiorców?</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:300
+#: src/crypto/gui/signencryptfileswizard.cpp:315
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "Ostrzeżenie: szyfrowanie do siebie"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:343
+#: src/crypto/gui/signencryptfileswizard.cpp:358
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "Jest to nazwa pliku podpisu S/MIME."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:344
+#: src/crypto/gui/signencryptfileswizard.cpp:359
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "Plik podpisu S/MIME"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:345
+#: src/crypto/gui/signencryptfileswizard.cpp:360
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "Podpisy S/MIME (*.p7s)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:346
+#: src/crypto/gui/signencryptfileswizard.cpp:361
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "Podpisy S/MIME (*.p7s *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:351
+#: src/crypto/gui/signencryptfileswizard.cpp:366
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "Jest to nazwa pliku odłączonego podpisu OpenPGP."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:352
+#: src/crypto/gui/signencryptfileswizard.cpp:367
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "Plik podpisu OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:353
+#: src/crypto/gui/signencryptfileswizard.cpp:368
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "Podpisy OpenPGP (*.sig *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:354
+#: src/crypto/gui/signencryptfileswizard.cpp:369
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "Podpisy OpenPGP (*.asc *.sig)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:359
+#: src/crypto/gui/signencryptfileswizard.cpp:374
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "Jest to nazwa pliku podpisanego i zaszyfrowanego OpenPGP."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:360
+#: src/crypto/gui/signencryptfileswizard.cpp:375
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "Plik podpisany i zaszyfrowany OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfileswizard.cpp:376
+#: src/crypto/gui/signencryptfileswizard.cpp:384
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr "Pliki OpenPGP (*.gpg *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:362
-#: src/crypto/gui/signencryptfileswizard.cpp:370
+#: src/crypto/gui/signencryptfileswizard.cpp:377
+#: src/crypto/gui/signencryptfileswizard.cpp:385
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr "Pliki OpenPGP (*.asc)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:367
+#: src/crypto/gui/signencryptfileswizard.cpp:382
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "Jest to nazwa pliku zaszyfrowanego OpenPGP."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:368
+#: src/crypto/gui/signencryptfileswizard.cpp:383
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "Plik zaszyfrowany OpenPGP"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:375
+#: src/crypto/gui/signencryptfileswizard.cpp:390
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "Jest to nazwa pliku zaszyfrowanego S/MIME."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:376
+#: src/crypto/gui/signencryptfileswizard.cpp:391
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "Plik zaszyfrowany S/MIME"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
+#: src/crypto/gui/signencryptfileswizard.cpp:392
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "Pliki S/MIME (*.p7m)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:378
+#: src/crypto/gui/signencryptfileswizard.cpp:393
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "Pliki S/MIME (*.p7m *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:383
+#: src/crypto/gui/signencryptfileswizard.cpp:398
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr "Pliki wynikowe będą zapisane do tego katalogu."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:384
+#: src/crypto/gui/signencryptfileswizard.cpp:399
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "Katalog wyniku"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:446
+#: src/crypto/gui/signencryptfileswizard.cpp:461
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Podpisz"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:449
+#: src/crypto/gui/signencryptfileswizard.cpp:464
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Zaszyfruj"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:452
+#: src/crypto/gui/signencryptfileswizard.cpp:467
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Podpisz / zaszyfruj"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:465
+#: src/crypto/gui/signencryptfileswizard.cpp:480
 #, kde-format
 msgid "Next"
 msgstr "Następny"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:534
+#: src/crypto/gui/signencryptfileswizard.cpp:549
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "Wyniki"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:535
+#: src/crypto/gui/signencryptfileswizard.cpp:550
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Tu jest pokazany stan i postęp operacji kryptograficznych."
 
-#: src/crypto/gui/signencryptwidget.cpp:171
-#, kde-format
-msgctxt "@title:group"
-msgid "Prove authenticity (sign)"
-msgstr "Potwierdź autentyczność (podpisz)"
-
 #: src/crypto/gui/signencryptwidget.cpp:172
-#, kde-format
-msgid "Sign as:"
-msgstr "Podpisz jako:"
+#, fuzzy, kde-format
+#| msgctxt "@option:check on SignEncryptPage"
+#| msgid "&Sign as:"
+msgid "&Sign as:"
+msgstr "Podpi&sz jako:"
 
-#: src/crypto/gui/signencryptwidget.cpp:210
-#, kde-format
-msgctxt "@title:group"
-msgid "Encrypt"
-msgstr "Szyfrowanie"
-
-#: src/crypto/gui/signencryptwidget.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:212
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Zaszyfruj dla mnie:"
 
-#: src/crypto/gui/signencryptwidget.cpp:239
+#: src/crypto/gui/signencryptwidget.cpp:242
 #, kde-format
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "Zaszyfruj dla innych:"
 
-#: src/crypto/gui/signencryptwidget.cpp:266
-#, kde-format
+#: src/crypto/gui/signencryptwidget.cpp:255
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Encrypt Notepad"
 msgctxt "@option:check"
-msgid ""
-"Encrypt with password. Anyone you share the password with can read the data."
-msgstr "Zaszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
+msgid "Encrypt with password:"
+msgstr "Zaszyfruj notatnik"
 
-#: src/crypto/gui/signencryptwidget.cpp:268
+#: src/crypto/gui/signencryptwidget.cpp:258
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -6019,48 +6020,58 @@ msgstr ""
 "<b>mniej bezpiecznym</b> niż kryptografia kluczem publicznym; nawet przy "
 "bardzo silnym haśle."
 
-#: src/crypto/gui/signencryptwidget.cpp:361
+#: src/crypto/gui/signencryptwidget.cpp:265
+#, fuzzy, kde-format
+#| msgctxt "@option:check"
+#| msgid ""
+#| "Encrypt with password. Anyone you share the password with can read the "
+#| "data."
+msgctxt "@info"
+msgid "Anyone you share the password with can read the data."
+msgstr "Zaszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
+
+#: src/crypto/gui/signencryptwidget.cpp:358
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "klucz odbiorcy"
 
-#: src/crypto/gui/signencryptwidget.cpp:429
+#: src/crypto/gui/signencryptwidget.cpp:433
 #, kde-format
 msgid "Usable for Signing"
 msgstr "Nadający się do podpisywania"
 
-#: src/crypto/gui/signencryptwidget.cpp:430
+#: src/crypto/gui/signencryptwidget.cpp:434
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr "Certyfikaty, których można używać do podpisywania"
 
-#: src/crypto/gui/signencryptwidget.cpp:433
-#: src/crypto/gui/signencryptwidget.cpp:467 src/dialogs/editgroupdialog.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:437
+#: src/crypto/gui/signencryptwidget.cpp:471 src/dialogs/editgroupdialog.cpp:221
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "Nadający się do szyfrowania"
 
-#: src/crypto/gui/signencryptwidget.cpp:434
-#: src/crypto/gui/signencryptwidget.cpp:468 src/dialogs/editgroupdialog.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:438
+#: src/crypto/gui/signencryptwidget.cpp:472 src/dialogs/editgroupdialog.cpp:222
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr "Certyfikaty, których można używać do szyfrowania"
 
-#: src/crypto/gui/signencryptwidget.cpp:655
-#: src/crypto/gui/signencryptwidget.cpp:933
+#: src/crypto/gui/signencryptwidget.cpp:659
+#: src/crypto/gui/signencryptwidget.cpp:937
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Ten certyfikat wygasł."
 
-#: src/crypto/gui/signencryptwidget.cpp:658
+#: src/crypto/gui/signencryptwidget.cpp:662
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Ten certyfikat wygasa dzisiaj."
 
-#: src/crypto/gui/signencryptwidget.cpp:660
+#: src/crypto/gui/signencryptwidget.cpp:664
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6069,30 +6080,30 @@ msgstr[0] "Ten certyfikat wygaśnie jutro."
 msgstr[1] "Ten certyfikat wygaśnie za %1 dni."
 msgstr[2] "Ten certyfikat wygaśnie za %1 dni."
 
-#: src/crypto/gui/signencryptwidget.cpp:665
+#: src/crypto/gui/signencryptwidget.cpp:669
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Tego certyfikatu nie można używać do szyfrowania."
 
-#: src/crypto/gui/signencryptwidget.cpp:667
+#: src/crypto/gui/signencryptwidget.cpp:671
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Tego certyfikatu nie można używać do podpisywania."
 
-#: src/crypto/gui/signencryptwidget.cpp:896
+#: src/crypto/gui/signencryptwidget.cpp:900
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Nie można znaleźć żadnego klucza dla następujących odbiorców:"
 
-#: src/crypto/gui/signencryptwidget.cpp:898
+#: src/crypto/gui/signencryptwidget.cpp:902
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Nie można było znaleźć pewnych kluczy"
 
-#: src/crypto/gui/signencryptwidget.cpp:936
+#: src/crypto/gui/signencryptwidget.cpp:940
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -6444,7 +6455,7 @@ msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Pomyślnie skopiowano klucz na kartę."
 
-#: src/crypto/task.cpp:177
+#: src/crypto/task.cpp:176
 #, kde-format
 msgid "Unknown exception in Task::start()"
 msgstr "Nieznany wyjątek w Task::start()"
@@ -8324,30 +8335,30 @@ msgstr "nieznane"
 msgid "Issuer Certificate Not Found (%1)"
 msgstr "Nie znaleziono wystawcy certyfikatu (%1)"
 
-#: src/dialogs/updatenotification.cpp:76
+#: src/dialogs/updatenotification.cpp:77
 #, kde-format
 msgid "Searching for updates..."
 msgstr "Szukanie uaktualnień..."
 
-#: src/dialogs/updatenotification.cpp:165
+#: src/dialogs/updatenotification.cpp:166
 #, kde-format
 msgctxt "@info"
 msgid "No update found in the available version database."
 msgstr "Nie znaleziono uaktualnienia w dostępnej wersji bazy danych."
 
-#: src/dialogs/updatenotification.cpp:165
+#: src/dialogs/updatenotification.cpp:166
 #, kde-format
 msgctxt "@title"
 msgid "Up to date"
 msgstr "Aktualne"
 
-#: src/dialogs/updatenotification.cpp:190
+#: src/dialogs/updatenotification.cpp:189
 #, kde-format
 msgctxt "%1 is the version number"
 msgid "Version %1 is available."
 msgstr "Dostępna wersja %1."
 
-#: src/dialogs/updatenotification.cpp:191
+#: src/dialogs/updatenotification.cpp:190
 #, kde-format
 msgctxt "Link to NEWS style changelog"
 msgid ""
@@ -8357,19 +8368,19 @@ msgstr ""
 "Dowiedz się o <a href=\"https://www.gpg4win.org/change-history.html\">nowych "
 "możliwościach</a>."
 
-#: src/dialogs/updatenotification.cpp:195
+#: src/dialogs/updatenotification.cpp:194
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Available"
 msgstr "Dostępne uaktualnienie"
 
-#: src/dialogs/updatenotification.cpp:200
+#: src/dialogs/updatenotification.cpp:199
 #, kde-format
 msgctxt "@option:check"
 msgid "Show this notification for future updates."
 msgstr "Pokaż to powiadomienie dla przyszłych uaktualnień."
 
-#: src/dialogs/updatenotification.cpp:207
+#: src/dialogs/updatenotification.cpp:206
 #, kde-format
 msgctxt "@action:button"
 msgid "&Get update"
@@ -9612,48 +9623,48 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Ciąg znaków lub odcisk klucza do zapytań i wyszukiwania"
 
-#: src/kleopatraapplication.cpp:424
+#: src/kleopatraapplication.cpp:427
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Nie można wykonać polecenia"
 
-#: src/kleopatraapplication.cpp:466
+#: src/kleopatraapplication.cpp:469
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Niejednoznaczny protokół: --openpgp oraz --cms"
 
-#: src/kleopatraapplication.cpp:500
+#: src/kleopatraapplication.cpp:503
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Nie podano tekstu do wyszukania dla --search"
 
-#: src/kleopatraapplication.cpp:511
+#: src/kleopatraapplication.cpp:514
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Nie podano odcisku klucza dla --query"
 
-#: src/kleopatraapplication.cpp:572
+#: src/kleopatraapplication.cpp:575
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Niejednoznaczne polecenia \"%1\" oraz \"%2\""
 
-#: src/kleopatraapplication.cpp:579
+#: src/kleopatraapplication.cpp:582
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Nie podano plików dla polecenia \"%1\""
 
-#: src/kleopatraapplication.cpp:593
+#: src/kleopatraapplication.cpp:596
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Nie można odczytać \"%1\""
 
-#: src/kleopatraapplication.cpp:877
+#: src/kleopatraapplication.cpp:880
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Otwieranie odnośników zewnętrznych jest odgórnie zabronione."
 
-#: src/kleopatraapplication.cpp:877
+#: src/kleopatraapplication.cpp:880
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
@@ -9806,19 +9817,19 @@ msgstr ""
 msgid "Invalid arguments: %1"
 msgstr "Nieprawidłowe argumenty: \"%1\""
 
-#: src/mainwindow.cpp:115
+#: src/mainwindow.cpp:117
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "&Quit <application>%1</application>"
 msgstr "&Zakończ <application>%1</application>"
 
-#: src/mainwindow.cpp:122
+#: src/mainwindow.cpp:124
 #, kde-format
 msgctxt "@action:button"
 msgid "Only &Close Window"
 msgstr "Zamknij &tylko okno"
 
-#: src/mainwindow.cpp:222
+#: src/mainwindow.cpp:224
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9830,13 +9841,13 @@ msgstr ""
 "programy. <nl/>Zamiast tego możesz chcieć zamknąć to okno bez wychodzenia z "
 "<application>%1</application>."
 
-#: src/mainwindow.cpp:225
+#: src/mainwindow.cpp:227
 #, kde-format
 msgctxt "@title:window"
 msgid "Really Quit?"
 msgstr "Czy na pewno zakończyć?"
 
-#: src/mainwindow.cpp:312
+#: src/mainwindow.cpp:314
 #, kde-format
 msgid ""
 "Could not start the GnuPG Log Viewer (kwatchgnupg). Please check your "
@@ -9845,28 +9856,28 @@ msgstr ""
 "Nie można uruchomić przeglądarki dziennika GnuPG (kwatchgnupg). Sprawdź "
 "swoją instalację."
 
-#: src/mainwindow.cpp:314
+#: src/mainwindow.cpp:316
 #, kde-format
 msgid "Error Starting KWatchGnuPG"
 msgstr "Błąd podczas uruchamiania KWatchGnuPG"
 
-#: src/mainwindow.cpp:575
+#: src/mainwindow.cpp:577
 #, kde-format
 msgid "GnuPG Log Viewer"
 msgstr "Przeglądarka dziennika GnuPG"
 
-#: src/mainwindow.cpp:587
+#: src/mainwindow.cpp:589
 #, kde-format
 msgid "Show GnuPG Configuration"
 msgstr "Pokaż ustawienia GnuPG"
 
-#: src/mainwindow.cpp:600
+#: src/mainwindow.cpp:602
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Restart Background Processes"
 msgstr "Uruchom ponownie działania w tle"
 
-#: src/mainwindow.cpp:601
+#: src/mainwindow.cpp:603
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -9875,23 +9886,23 @@ msgid ""
 msgstr ""
 "Uruchom ponownie działania w tle, np. po dokonaniu zmian w ustawieniach."
 
-#: src/mainwindow.cpp:613
+#: src/mainwindow.cpp:615
 #, kde-format
 msgid "Check for updates"
 msgstr "Szukaj uaktualnień"
 
-#: src/mainwindow.cpp:626
+#: src/mainwindow.cpp:628
 #, kde-format
 msgctxt "@action show certificate overview"
 msgid "Certificates"
 msgstr "Certyfikaty"
 
-#: src/mainwindow.cpp:627
+#: src/mainwindow.cpp:629
 #, kde-format
 msgid "Show certificate overview"
 msgstr "Pokaż przegląd certyfikatów"
 
-#: src/mainwindow.cpp:637
+#: src/mainwindow.cpp:639
 #, kde-format
 msgctxt ""
 "@action show input / output area for encrypting/signing resp. decrypting/"
@@ -9899,52 +9910,52 @@ msgctxt ""
 msgid "Notepad"
 msgstr "Notatnik"
 
-#: src/mainwindow.cpp:638
+#: src/mainwindow.cpp:640
 #, kde-format
 msgid "Show pad for encrypting/decrypting and signing/verifying text"
 msgstr ""
 "Pokaż płytkę do szyfrowania/odszyfrowywania oraz podpisywania/potwierdzania "
 "tekstu"
 
-#: src/mainwindow.cpp:648
+#: src/mainwindow.cpp:650
 #, kde-format
 msgctxt "@action show smartcard management view"
 msgid "Smartcards"
 msgstr "Karta inteligentna"
 
-#: src/mainwindow.cpp:649
+#: src/mainwindow.cpp:651
 #, kde-format
 msgid "Show smartcard management"
 msgstr "Pokaż zarządzanie kartami inteligentnymi"
 
-#: src/mainwindow.cpp:660
+#: src/mainwindow.cpp:662
 #, kde-format
 msgid "Perform Self-Test"
 msgstr "Przeprowadź samo-diagnozę"
 
-#: src/mainwindow.cpp:671
+#: src/mainwindow.cpp:673
 #, kde-format
 msgid "Configure Groups..."
 msgstr "Ustawienia grup..."
 
-#: src/mainwindow.cpp:683
+#: src/mainwindow.cpp:685
 #, kde-format
 msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Grupy"
 
-#: src/mainwindow.cpp:720
+#: src/mainwindow.cpp:722
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Przełącz na pole szybkiego wyszukiwania"
 
-#: src/mainwindow.cpp:732
+#: src/mainwindow.cpp:734
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Kompedium Gpg4win"
 
-#: src/mainwindow.cpp:736
+#: src/mainwindow.cpp:738
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -9952,48 +9963,48 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-en.pdf"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:749
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Szybki przewodnik po szyfrowaniu i podpisywaniu"
 
-#: src/mainwindow.cpp:748
+#: src/mainwindow.cpp:750
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:758
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Szyfrowanie na &podstawie hasła"
 
-#: src/mainwindow.cpp:757
+#: src/mainwindow.cpp:759
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:764
+#: src/mainwindow.cpp:766
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "&Grupy certyfikatów"
 
-#: src/mainwindow.cpp:765
+#: src/mainwindow.cpp:767
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:774
+#: src/mainwindow.cpp:776
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "&Szyfrowanie poczty w Outlooku"
 
-#: src/mainwindow.cpp:775
+#: src/mainwindow.cpp:777
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10001,41 +10012,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:785
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid "&Certification Management"
 msgstr "Zarządzanie &certyfikacją"
 
-#: src/mainwindow.cpp:786
+#: src/mainwindow.cpp:788
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:794
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "U&stawienia karty inteligentnej"
 
-#: src/mainwindow.cpp:795
+#: src/mainwindow.cpp:797
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:802
+#: src/mainwindow.cpp:804
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "Wiersz po&leceń GnuPG"
 
-#: src/mainwindow.cpp:812
+#: src/mainwindow.cpp:814
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Podręcznik do zatwierdzania przez VS-NfD"
 
-#: src/mainwindow.cpp:813
+#: src/mainwindow.cpp:815
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10043,12 +10054,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:821
+#: src/mainwindow.cpp:823
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps do zatwierdzania przez VS-NfD"
 
-#: src/mainwindow.cpp:822
+#: src/mainwindow.cpp:824
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10056,7 +10067,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:849
+#: src/mainwindow.cpp:851
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10065,7 +10076,7 @@ msgstr ""
 "W tyle wykonują się jeszcze pewne operacje. Po zamknięciu okna zostaną "
 "zatrzymane. Czy kontynuować?"
 
-#: src/mainwindow.cpp:852
+#: src/mainwindow.cpp:854
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Zadania uruchomione w tle"
@@ -12260,32 +12271,32 @@ msgstr "Hierarchiczny wykaz certyfikatów"
 msgid "List of certificates"
 msgstr "Wykaz certyfikatów"
 
-#: src/view/padwidget.cpp:83
+#: src/view/padwidget.cpp:85
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Podpisz / zaszyfruj notatnik"
 
-#: src/view/padwidget.cpp:84
+#: src/view/padwidget.cpp:86
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Odszyfruj / sprawdź notatnik"
 
-#: src/view/padwidget.cpp:85
+#: src/view/padwidget.cpp:87
 #, kde-format
 msgid "Import Notepad"
 msgstr "Importuj notatnik"
 
-#: src/view/padwidget.cpp:86
+#: src/view/padwidget.cpp:88
 #, kde-format
 msgid "Revert"
 msgstr "Wycofaj"
 
-#: src/view/padwidget.cpp:114
+#: src/view/padwidget.cpp:105
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Podpisywanie i szyfrowanie jest niemożliwe."
 
-#: src/view/padwidget.cpp:116
+#: src/view/padwidget.cpp:107
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12299,41 +12310,38 @@ msgstr ""
 "podpisywania, czy szyfrowania, bo <application>GnuPG</application>, którego "
 "używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/view/padwidget.cpp:150
-#, kde-format
-msgctxt "@label:textbox"
-msgid "<h3>Protocol:</h3>"
-msgstr "<h3>Protokół:</h3>"
+#: src/view/padwidget.cpp:165
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Protocol"
+msgctxt "@label"
+msgid "Protocol:"
+msgstr "Protokół"
 
-#: src/view/padwidget.cpp:155
-#, kde-format
-msgid "Recipients"
-msgstr "Adresaci"
-
-#: src/view/padwidget.cpp:157
-#, kde-format
-msgctxt "@info:placeholder"
-msgid "Enter a message to encrypt or decrypt..."
-msgstr "Wpisz wiadomość do zaszyfrowania lub odszyfrowania..."
-
-#: src/view/padwidget.cpp:172
+#: src/view/padwidget.cpp:175
 #, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
-#: src/view/padwidget.cpp:173
+#: src/view/padwidget.cpp:176
 #, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/view/padwidget.cpp:323
+#: src/view/padwidget.cpp:216
+#, kde-format
+msgctxt "@info:placeholder"
+msgid "Enter a message to encrypt or decrypt..."
+msgstr "Wpisz wiadomość do zaszyfrowania lub odszyfrowania..."
+
+#: src/view/padwidget.cpp:348
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "Odszyfruj / sprawdź"
 
-#: src/view/padwidget.cpp:384
+#: src/view/padwidget.cpp:409
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12347,42 +12355,42 @@ msgstr ""
 "podpisywania, czy szyfrowania, bo <application>GnuPG</application>, którego "
 "używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/view/padwidget.cpp:394
+#: src/view/padwidget.cpp:419
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Podpisywanie notatnika..."
 
-#: src/view/padwidget.cpp:397
+#: src/view/padwidget.cpp:422
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Szyfrowanie notatnika..."
 
-#: src/view/padwidget.cpp:400
+#: src/view/padwidget.cpp:425
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Podpisywanie i szyfrowanie notatnika..."
 
-#: src/view/padwidget.cpp:446
+#: src/view/padwidget.cpp:471
 #, kde-format
 msgid "Importing..."
 msgstr "Importowanie..."
 
-#: src/view/padwidget.cpp:485
+#: src/view/padwidget.cpp:510
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Podpisz notatnik"
 
-#: src/view/padwidget.cpp:488
+#: src/view/padwidget.cpp:513
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Zaszyfruj notatnik"
 
-#: src/view/padwidget.cpp:492
+#: src/view/padwidget.cpp:517
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -13110,6 +13118,34 @@ msgstr ""
 "publicznego serwera kluczy wybierz <interface>Wyszukaj na serwerze</"
 "interface>."
 
+#~ msgctxt "@option:check on SignEncryptPage"
+#~ msgid ""
+#~ "Encrypt with &password. Anyone you share the password with can read the "
+#~ "data."
+#~ msgstr "Z&aszyfruj hasłem. Każdy, kto zna hasło, będzie mógł odczytać dane."
+
+#~ msgctxt "@title:group"
+#~ msgid "Output"
+#~ msgstr "Wynik"
+
+#~ msgctxt "@title:group"
+#~ msgid "Prove authenticity (sign)"
+#~ msgstr "Potwierdź autentyczność (podpisz)"
+
+#~ msgid "Sign as:"
+#~ msgstr "Podpisz jako:"
+
+#~ msgctxt "@title:group"
+#~ msgid "Encrypt"
+#~ msgstr "Szyfrowanie"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "<h3>Protocol:</h3>"
+#~ msgstr "<h3>Protokół:</h3>"
+
+#~ msgid "Recipients"
+#~ msgstr "Adresaci"
+
 #~ msgctxt "@info:credit"
 #~ msgid ""
 #~ "Smartcard view redesign, certificate view redesign and user experience"
@@ -13536,10 +13572,6 @@ msgstr ""
 #~ msgctxt "@info:tooltip"
 #~ msgid "Enable display and usage of tags attached to certificates."
 #~ msgstr "Włącz wyświetlanie i użycie znaczników przypisanych certyfikatom."
-
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "Encrypt for &others:"
-#~ msgstr "&Zaszyfruj dla innych:"
 
 #~ msgid "Use tags"
 #~ msgstr "Użyj znaczników"
