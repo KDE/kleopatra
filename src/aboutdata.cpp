@@ -129,9 +129,10 @@ AboutData::AboutData()
                  i18n("Certificate manager and cryptography app"),
                  KAboutLicense::GPL,
                  i18nc("@info:credit", "\u00A9 2019-%1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
-                     + i18nc("@info:credit", "\u00A9 2001-%1 The Kleopatra developers", QStringLiteral("2024")) + QLatin1Char('\n')
-                     + i18nc("@info:credit", "\u00A9 2016-2018 Intevation GmbH") + QLatin1Char('\n')
-                     + i18nc("@info:credit", "\u00A9 2001-2017 Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB"))
+                     + i18nc("@info:credit", "\u00A9 2015-2018 Intevation GmbH") + QLatin1Char('\n')
+                     + i18nc("@info:credit", "\u00A9 2015-2018 Bundesamt für Sicherheit in der Informationstechnik") + QLatin1Char('\n')
+                     + i18nc("@info:credit", "\u00A9 2001-2010 Klar\u00E4lvdalens\u00A0Datakonsult\u00A0AB") + QLatin1Char('\n')
+                     + i18nc("@info:credit", "\u00A9 2001-%1 The Kleopatra developers", QStringLiteral("2024")))
 {
     using ::authors;
     using ::credits;
