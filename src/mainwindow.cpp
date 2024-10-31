@@ -481,7 +481,12 @@ MainWindow::Private::Private(MainWindow *qq)
             qputenv("PINENTRY_GEOM_HINT", QUrl::toPercentEncoding(token));
         }
     });
-    q->exportWindow();
+    QMetaObject::invokeMethod(
+        q,
+        [this]() {
+            q->exportWindow();
+        },
+        Qt::QueuedConnection);
 #endif
 
     setupActions();
