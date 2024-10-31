@@ -16,7 +16,7 @@
 #include <gpgme.h>
 
 #include <KLocalizedString>
-#include <KStandardAction>
+#include <KStandardActions>
 
 #include <QClipboard>
 #include <QGuiApplication>
@@ -82,7 +82,7 @@ public:
             connect(revokersTree, &QTreeWidget::customContextMenuRequested, widget, [widget, this](const auto &pos) {
                 auto menu = new QMenu;
                 menu->setAttribute(Qt::WA_DeleteOnClose, true);
-                menu->addAction(KStandardAction::copy(
+                menu->addAction(KStandardActions::copy(
                     widget,
                     [this]() {
                         QGuiApplication::clipboard()->setText(revokersTree->currentIndex().data(Kleo::ClipboardRole).toString());

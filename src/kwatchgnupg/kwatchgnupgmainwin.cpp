@@ -83,12 +83,12 @@ void KWatchGnuPGMainWindow::createActions()
     action->setText(i18n("C&lear History"));
     connect(action, &QAction::triggered, this, &KWatchGnuPGMainWindow::slotClear);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_L));
-    (void)KStandardAction::saveAs(this, &KWatchGnuPGMainWindow::slotSaveAs, actionCollection());
-    (void)KStandardAction::close(this, &KWatchGnuPGMainWindow::close, actionCollection());
-    (void)KStandardAction::quit(this, &KWatchGnuPGMainWindow::slotQuit, actionCollection());
-    (void)KStandardAction::preferences(this, &KWatchGnuPGMainWindow::slotConfigure, actionCollection());
-    (void)KStandardAction::keyBindings(this, &KWatchGnuPGMainWindow::configureShortcuts, actionCollection());
-    (void)KStandardAction::configureToolbars(this, &KWatchGnuPGMainWindow::slotConfigureToolbars, actionCollection());
+    (void)KStandardActions::saveAs(this, &KWatchGnuPGMainWindow::slotSaveAs, actionCollection());
+    (void)KStandardActions::close(this, &KWatchGnuPGMainWindow::close, actionCollection());
+    (void)KStandardActions::quit(this, &KWatchGnuPGMainWindow::slotQuit, actionCollection());
+    (void)KStandardActions::preferences(this, &KWatchGnuPGMainWindow::slotConfigure, actionCollection());
+    (void)KStandardActions::keyBindings(this, &KWatchGnuPGMainWindow::configureShortcuts, actionCollection());
+    (void)KStandardActions::configureToolbars(this, &KWatchGnuPGMainWindow::slotConfigureToolbars, actionCollection());
 }
 
 void KWatchGnuPGMainWindow::configureShortcuts()

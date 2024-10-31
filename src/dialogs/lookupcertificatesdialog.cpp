@@ -24,7 +24,7 @@
 #include <KLocalizedString>
 #include <KSeparator>
 #include <KSharedConfig>
-#include <KStandardAction>
+#include <KStandardActions>
 
 #include <QClipboard>
 #include <QDialogButtonBox>
@@ -251,7 +251,7 @@ private:
             connect(resultTV, &QTreeView::customContextMenuRequested, dialog, [this, dialog](const auto &pos) {
                 auto menu = new QMenu;
                 menu->setAttribute(Qt::WA_DeleteOnClose, true);
-                menu->addAction(KStandardAction::copy(
+                menu->addAction(KStandardActions::copy(
                     dialog,
                     [dialog]() {
                         dialog->d->copySelectedValue();

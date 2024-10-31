@@ -43,7 +43,7 @@
 
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KStandardAction>
+#include <KStandardActions>
 #include <qnamespace.h>
 
 static int tagsColumn;
@@ -241,7 +241,7 @@ void KeyTreeView::init()
         connect(m_view, &KeyTreeView::customContextMenuRequested, this, [this](const auto &pos) {
             auto menu = new QMenu;
             menu->setAttribute(Qt::WA_DeleteOnClose, true);
-            menu->addAction(KStandardAction::copy(
+            menu->addAction(KStandardActions::copy(
                 this,
                 [this]() {
                     QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
