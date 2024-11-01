@@ -503,6 +503,8 @@ TabWidget::Private::Private(TabWidget *qq, KeyTreeView::Options options)
     newTabButton = new QToolButton{q};
 
     tabWidget = new QTabWidget{q};
+    tabWidget->tabBar()->setDocumentMode(true);
+    tabWidget->tabBar()->setExpanding(false);
     Q_SET_OBJECT_NAME(tabWidget);
 
     layout->addWidget(tabWidget);

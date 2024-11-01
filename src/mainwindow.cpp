@@ -58,26 +58,27 @@
 #include <KHelpMenu>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KSeparator>
 #include <KShortcutsDialog>
 #include <KStandardAction>
 #include <KStandardGuiItem>
 #include <KToolBar>
 #include <KXMLGUIFactory>
-#include <QAction>
-#include <QApplication>
-#include <QLineEdit>
-#include <QSize>
 
 #include <QAbstractItemView>
+#include <QAction>
+#include <QApplication>
 #include <QCloseEvent>
 #include <QDesktopServices>
 #include <QDir>
 #include <QLabel>
+#include <QLineEdit>
 #include <QMenu>
 #include <QMimeData>
 #include <QPixmap>
 #include <QProcess>
 #include <QSettings>
+#include <QSize>
 #include <QStackedWidget>
 #include <QStatusBar>
 #include <QTimer>
@@ -167,9 +168,11 @@ private:
         {
             auto vbox = new QVBoxLayout{q};
             vbox->setSpacing(0);
+            vbox->setContentsMargins({});
 
             searchBar = new SearchBar{q};
             vbox->addWidget(searchBar);
+            vbox->addWidget(new KSeparator(q));
             tabWidget = new TabWidget{KeyTreeView::Option::NoDefaultContextMenu, q};
             vbox->addWidget(tabWidget);
 

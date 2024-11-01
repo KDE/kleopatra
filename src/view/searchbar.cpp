@@ -127,7 +127,6 @@ SearchBar::Private::Private(SearchBar *qq)
     : q(qq)
 {
     auto layout = new QHBoxLayout(q);
-    layout->setContentsMargins(0, 0, 0, 0);
     lineEdit = new QLineEdit(q);
     lineEdit->setClearButtonEnabled(true);
     lineEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter search term"));
