@@ -117,7 +117,7 @@ ChangeRootTrustCommand::~ChangeRootTrustCommand() = default;
 void ChangeRootTrustCommand::doStart()
 {
     if (getCryptoConfigBoolValue("gpg-agent", "no-allow-mark-trusted")) {
-        d->error(i18nc("@info", "You are not allowed to mark root certificates as trusted or not trusted."));
+        d->error(i18nc("@info", "You are not allowed to mark certificates as trusted or not trusted."));
         d->Command::Private::finished();
         return;
     }
