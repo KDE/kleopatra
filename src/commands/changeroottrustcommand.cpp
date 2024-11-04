@@ -75,11 +75,12 @@ private:
         KeyCache::mutableInstance()->enableFileSystemWatcher(true);
         if (errorText.isEmpty()) {
             KeyCache::mutableInstance()->reload(GpgME::CMS);
-        } else
-            error(i18n("Failed to update the trust database:\n"
-                       "%1",
-                       errorText),
-                  i18n("Root Trust Update Failed"));
+            if (trust == Key::Undefined) {
+                success(i18nc("@info", "The certificate has been marked as not trusted because the fingerprint did not match."));
+            }
+        } else {
+            error(i18n("Failed to update the trust database:\n%1", errorText));
+        }
         Command::Private::finished();
     }
 
@@ -156,7 +157,8 @@ void ChangeRootTrustCommand::Private::run()
     const auto key = keys().front();
     const QString fpr = QString::fromLatin1(key.primaryFingerprint());
     const auto dn = DN(key.userID(0).id());
-    const Key::OwnerTrust trust = this->trust;
+    // Undefined means "fingerprint didn't match" -> do not trust this certificate
+    const Key::OwnerTrust trust = this->trust == Key::Undefined ? Key::Never : this->trust;
     const QString trustListFile = this->trustListFile;
     const QString gpgConfPath = this->gpgConfPath;
 
@@ -226,18 +228,21 @@ bool ChangeRootTrustCommand::Private::confirmOperation(const Key &key)
     }
 
     if (trust == GpgME::Key::Ultimate) {
-        const auto answer = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                                            xi18nc("@info",
-                                                                   "<para>Please verify that the certificate identified as:</para>"
-                                                                   "<para>%1</para>"
-                                                                   "<para>has the SHA-1 fingerprint:</para>"
-                                                                   "<para>%2</para>",
-                                                                   certificateInfo,
-                                                                   add_colons(QString::fromLatin1(key.primaryFingerprint()))),
-                                                            i18nc("@title:window", "Verify Fingerprint"),
-                                                            KGuiItem(i18nc("@action:button", "Correct")),
-                                                            KGuiItem(i18nc("@action:button", "Wrong")));
-        if (answer != KMessageBox::ButtonCode::PrimaryAction) {
+        const auto answer = KMessageBox::questionTwoActionsCancel(parentWidgetOrView(),
+                                                                  xi18nc("@info",
+                                                                         "<para>Please verify that the certificate identified as:</para>"
+                                                                         "<para>%1</para>"
+                                                                         "<para>has the SHA-1 fingerprint:</para>"
+                                                                         "<para>%2</para>",
+                                                                         certificateInfo,
+                                                                         add_colons(QString::fromLatin1(key.primaryFingerprint()))),
+                                                                  i18nc("@title:window", "Verify Fingerprint"),
+                                                                  KGuiItem(i18nc("@action:button", "Correct")),
+                                                                  KGuiItem(i18nc("@action:button", "Wrong")));
+        if (answer == KMessageBox::ButtonCode::SecondaryAction) {
+            // we use trust value Undefined to signal a wrong fingerprint
+            trust = GpgME::Key::Undefined;
+        } else if (answer != KMessageBox::ButtonCode::PrimaryAction) {
             return false;
         }
     }
