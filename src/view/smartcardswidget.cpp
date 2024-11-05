@@ -402,12 +402,16 @@ void SmartCardsWidget::Private::cardRemoved(const std::string &serialNumber, con
 
 void SmartCardsWidget::Private::enableCurrentWidget()
 {
-    mTabWidget->currentWidget()->setEnabled(true);
+    if (auto w = mTabWidget->currentWidget()) {
+        w->setEnabled(true);
+    }
 }
 
 void SmartCardsWidget::Private::disableCurrentWidget()
 {
-    mTabWidget->currentWidget()->setEnabled(false);
+    if (auto w = mTabWidget->currentWidget()) {
+        w->setEnabled(false);
+    }
 }
 
 void SmartCardsWidget::Private::startCommand(Command *cmd)
