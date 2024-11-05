@@ -30,9 +30,11 @@ class DeVsComplianceCheck : public SelfTestImplementation
 {
 public:
     explicit DeVsComplianceCheck()
-        : SelfTestImplementation(i18nc("@title %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                       "%1?",
-                                       DeVSCompliance::name(true)))
+        : SelfTestImplementation(DeVSCompliance::isActive()
+                                     ? i18nc("@title %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
+                                             "%1?",
+                                             DeVSCompliance::name(true))
+                                     : i18nc("@title", "Compliance Check"))
     {
         runTest();
     }
@@ -41,9 +43,7 @@ public:
     {
         m_skipped = !DeVSCompliance::isActive();
         if (m_skipped) {
-            m_explanation = xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
-                                   "<para><application>GnuPG</application> is not configured for %1.</para>",
-                                   DeVSCompliance::name(true));
+            m_explanation = xi18nc("@info", "<para><application>GnuPG</application> is not configured for <icode>de-vs</icode> compliance.</para>");
             return;
         }
 
