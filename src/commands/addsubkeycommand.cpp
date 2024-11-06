@@ -106,8 +106,7 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
 
 void AddSubkeyCommand::Private::slotDialogRejected()
 {
-    Q_EMIT q->canceled();
-    finished();
+    canceled();
 }
 
 void AddSubkeyCommand::Private::slotResult(const Error &err)

@@ -183,16 +183,14 @@ void CertifyCertificateCommand::doStart()
             QMetaObject::invokeMethod(cmd, &NewOpenPGPCertificateCommand::start, Qt::QueuedConnection);
             loop.exec();
         } else {
-            Q_EMIT(canceled());
-            d->finished();
+            d->canceled();
             return;
         }
 
         // Check again for secret keys
         if (!findAnyGoodKey()) {
             qCDebug(KLEOPATRA_LOG) << "Sec Keys still empty after keygen.";
-            Q_EMIT(canceled());
-            d->finished();
+            d->canceled();
             return;
         }
     }
@@ -216,8 +214,7 @@ void CertifyCertificateCommand::doStart()
 
 void CertifyCertificateCommand::Private::slotDialogRejected()
 {
-    Q_EMIT q->canceled();
-    finished();
+    canceled();
 }
 
 void CertifyCertificateCommand::Private::slotResult(const Error &err)

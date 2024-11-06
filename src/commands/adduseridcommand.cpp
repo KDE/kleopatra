@@ -135,8 +135,7 @@ void AddUserIDCommand::Private::slotDialogAccepted()
 
 void AddUserIDCommand::Private::slotDialogRejected()
 {
-    Q_EMIT q->canceled();
-    finished();
+    canceled();
 }
 
 void AddUserIDCommand::Private::slotResult(const Error &err)

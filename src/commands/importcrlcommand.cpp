@@ -150,8 +150,7 @@ void ImportCrlCommand::doStart()
     }
 #endif // QT_NO_FILEDIALOG
     if (d->files.empty()) {
-        Q_EMIT canceled();
-        d->finished();
+        d->canceled();
         return;
     }
 

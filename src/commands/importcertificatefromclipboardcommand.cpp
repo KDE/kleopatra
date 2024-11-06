@@ -94,8 +94,7 @@ ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand()
 void ImportCertificateFromClipboardCommand::doStart()
 {
     if (!d->ensureHaveClipboard()) {
-        Q_EMIT canceled();
-        d->finished();
+        d->canceled();
         return;
     }
 
