@@ -130,7 +130,7 @@ void AddADSKCommand::doStart()
                                                    i18nc("@title:dialog", "Add ADSK"),
                                                    KGuiItem(i18n("Add ADSK"), QStringLiteral("dialog-ok")));
     if (code == KMessageBox::Cancel) {
-        canceled();
+        d->canceled();
         return;
     }
     d->createJob();
