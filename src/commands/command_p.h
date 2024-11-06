@@ -65,7 +65,7 @@ public:
 
     void finished()
     {
-        Q_EMIT q->finished();
+        Q_EMIT q->finished(QPrivateSignal{});
         doFinish();
         if (autoDelete) {
             q->deleteLater();
@@ -74,7 +74,7 @@ public:
 
     void canceled()
     {
-        Q_EMIT q->canceled();
+        Q_EMIT q->canceled(QPrivateSignal{});
         finished();
     }
 

@@ -115,8 +115,8 @@ public Q_SLOTS:
 Q_SIGNALS:
     void info(const QString &message, int timeout = 0);
     void progress(int current, int total);
-    void finished();
-    void canceled();
+    void finished(QPrivateSignal);
+    void canceled(QPrivateSignal);
 
 private:
     virtual void doStart() = 0;

@@ -222,7 +222,7 @@ void Command::cancel()
 {
     qCDebug(KLEOPATRA_LOG) << metaObject()->className();
     doCancel();
-    Q_EMIT canceled();
+    Q_EMIT canceled(QPrivateSignal{});
 }
 
 void Command::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
