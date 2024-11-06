@@ -96,20 +96,20 @@ void ExportPaperKeyCommand::doStart()
                                   " printable version of your secret key.</para>"
                                   "<para>Please make sure it is installed.</para>"),
                            i18nc("@title", "Failed to find PaperKey executable."));
-        finished();
+        d->finished();
         return;
     }
     const auto key = d->key();
 
     if (key.isNull()) {
-        finished();
+        d->finished();
         return;
     }
 
     std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretKeyExportJob(false)};
     connect(exportJob.get(), &QGpgME::ExportJob::result, this, [this](const GpgME::Error &err, const QByteArray &keyData) {
         if (err.isCanceled()) {
-            finished();
+            d->finished();
             return;
         }
 
@@ -118,7 +118,7 @@ void ExportPaperKeyCommand::doStart()
                             "<para>An error occurred during export of the secret key:</para>"
                             "<para><message>%1</message></para>",
                             Formatting::errorAsString(err)));
-            finished();
+            d->finished();
             return;
         }
         d->startPaperKey(keyData);
@@ -130,7 +130,7 @@ void ExportPaperKeyCommand::doStart()
                         "<para>An error occurred during export of the secret key:</para>"
                         "<para><message>%1</message></para>",
                         Formatting::errorAsString(err)));
-        finished();
+        d->finished();
         return;
     }
     d->job = exportJob.release();
