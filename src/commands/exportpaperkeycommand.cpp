@@ -102,16 +102,17 @@ void ExportPaperKeyCommand::doStart()
 
     std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretKeyExportJob(false)};
     connect(exportJob.get(), &QGpgME::ExportJob::result, this, [this](const GpgME::Error &err, const QByteArray &keyData) {
-        if (err.isCanceled()) {
-            d->finished();
-            return;
-        }
-
         if (err) {
             d->error(xi18nc("@info",
                             "<para>An error occurred during export of the secret key:</para>"
                             "<para><message>%1</message></para>",
                             Formatting::errorAsString(err)));
+            d->finished();
+            return;
+        }
+        if (err.isCanceled() || keyData.isEmpty()) {
+            // if keyData is empty even though no error was reported then we assume that the user canceled the operation;
+            // unfortunately, the gpgme job doesn't report a canceled operation (see T7373 and T7374)
             d->finished();
             return;
         }
