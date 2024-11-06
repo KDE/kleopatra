@@ -170,7 +170,7 @@ void SetInitialPinCommand::doStart()
     if (!nksCard) {
         d->error(i18n("Failed to find the NetKey card with the serial number: %1", QString::fromStdString(d->serialNumber())));
         d->dialog->close();
-        finished();
+        d->finished();
         return;
     }
 
