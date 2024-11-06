@@ -715,16 +715,6 @@ void FileOutput::doFinalize()
     throw Exception(errno ? gpg_error_from_errno(errno) : gpg_error(GPG_ERR_EIO), i18n(R"(Could not rename file "%1" to "%2")", tmpFileName, m_fileName));
 }
 
-std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command)
-{
-    return std::shared_ptr<Output>(new ProcessStdInOutput(command, QStringList(), QDir::current()));
-}
-
-std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args)
-{
-    return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, QDir::current()));
-}
-
 std::shared_ptr<Output> Output::createFromProcessStdIn(const QString &command, const QStringList &args, const QDir &wd)
 {
     return std::shared_ptr<Output>(new ProcessStdInOutput(command, args, wd));
