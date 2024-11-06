@@ -65,7 +65,7 @@ private:
     QStringList files;
     QProcess process;
     QByteArray errorBuffer;
-    bool canceled;
+    bool wasCanceled;
     bool firstRun;
 };
 
@@ -86,7 +86,7 @@ ImportCrlCommand::Private::Private(ImportCrlCommand *qq, KeyListController *c)
     , files()
     , process()
     , errorBuffer()
-    , canceled(false)
+    , wasCanceled(false)
     , firstRun(true)
 {
     process.setProgram(gpgSmPath());
@@ -178,7 +178,7 @@ void ImportCrlCommand::doStart()
 
 void ImportCrlCommand::doCancel()
 {
-    d->canceled = true;
+    d->wasCanceled = true;
     if (d->process.state() != QProcess::NotRunning) {
         d->process.terminate();
         QTimer::singleShot(PROCESS_TERMINATE_TIMEOUT, &d->process, &QProcess::kill);
@@ -187,7 +187,7 @@ void ImportCrlCommand::doCancel()
 
 void ImportCrlCommand::Private::slotProcessFinished(int code, QProcess::ExitStatus status)
 {
-    if (!canceled) {
+    if (!wasCanceled) {
         if (status == QProcess::CrashExit)
             error(i18n("The GpgSM process that tried to import the CRL file "
                        "ended prematurely because of an unexpected error. "
