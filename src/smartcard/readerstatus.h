@@ -79,7 +79,7 @@ public:
 public Q_SLOTS:
     void updateStatus();
     void updateCard(const std::string &serialNumber, const std::string &appName);
-    void learnCards(GpgME::Protocol protocol);
+    void learnCard(const std::string &serialNumber, const std::string &appName);
     void startMonitoring();
 
 Q_SIGNALS:
@@ -91,8 +91,8 @@ Q_SIGNALS:
     void updateCardsStarted();
     void updateCardStarted(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
-    void startingLearnCards(GpgME::Protocol protocol);
-    void cardsLearned(GpgME::Protocol protocol);
+    void startingLearnCard(const std::string &serialNumber, const std::string &appName);
+    void cardLearned(const std::string &serialNumber, const std::string &appName);
     void startOfGpgAgentRequested();
 
 private:
@@ -100,8 +100,8 @@ private:
     void onUpdateCardsStarted();
     void onUpdateCardStarted(const std::string &serialNumber, const std::string &appName);
     void onUpdateFinished();
-    void onStartingLearnCards(GpgME::Protocol protocol);
-    void onCardsLearned(GpgME::Protocol protocol);
+    void onStartingLearnCard(const std::string &serialNumber, const std::string &appName);
+    void onCardLearned(const std::string &serialNumber, const std::string &appName);
 
     class Private;
     std::shared_ptr<Private> d;

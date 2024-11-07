@@ -47,6 +47,8 @@
 
 #include "kleopatra_debug.h"
 
+#include <set>
+
 using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
@@ -78,6 +80,9 @@ static QDebug operator<<(QDebug s, const std::vector<std::pair<std::string, std:
 struct CardApp {
     std::string serialNumber;
     std::string appName;
+
+    // define default comparison for usage with std::set
+    auto operator<=>(const CardApp &) const = default;
 };
 
 static void
@@ -726,7 +731,7 @@ struct Transaction {
     AssuanTransaction *assuanTransaction;
 };
 
-static const Transaction learnCMSTransaction = {{"__all__", "__cms__"}, "__learn__", nullptr, nullptr, nullptr};
+static const QByteArray learnCardTransactionCommand = "__learn__";
 static const Transaction updateTransaction = {{"__all__", "__all__"}, "__update__", nullptr, nullptr, nullptr};
 static const Transaction quitTransaction = {{"__all__", "__all__"}, "__quit__", nullptr, nullptr, nullptr};
 
@@ -785,8 +790,8 @@ Q_SIGNALS:
     void updateCardStarted(const std::string &serialNumber, const std::string &appName);
     void updateFinished();
     void oneTransactionFinished(const GpgME::Error &err);
-    void startingLearnCards(GpgME::Protocol protocol);
-    void cardsLearned(GpgME::Protocol protocol);
+    void startingLearnCard(const std::string &serialNumber, const std::string &appName);
+    void cardLearned(const std::string &serialNumber, const std::string &appName);
 
 public Q_SLOTS:
     void deviceStatusChanged(const QByteArray &details)
@@ -799,12 +804,6 @@ public Q_SLOTS:
     {
         qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::ping()";
         addTransaction(updateTransaction);
-    }
-
-    void learnCardsCMS()
-    {
-        qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread[GUI]::learnCardsCMS()";
-        addTransaction(learnCMSTransaction);
     }
 
     void stop()
@@ -832,7 +831,7 @@ private Q_SLOTS:
     }
 
 private:
-    void learnCMSCards()
+    void learnCard(const std::string &serialNumber, const std::string &appName)
     {
         QProcess process;
         connect(&process, &QProcess::readyReadStandardOutput, &process, [&process]() {
@@ -998,10 +997,10 @@ private:
                 }
 
                 Q_EMIT updateFinished();
-            } else if (nullSlot && command == learnCMSTransaction.command) {
-                Q_EMIT startingLearnCards(GpgME::CMS);
-                learnCMSCards();
-                Q_EMIT cardsLearned(GpgME::CMS);
+            } else if (nullSlot && command == learnCardTransactionCommand) {
+                Q_EMIT startingLearnCard(cardApp.serialNumber, cardApp.appName);
+                learnCard(cardApp.serialNumber, cardApp.appName);
+                Q_EMIT cardLearned(cardApp.serialNumber, cardApp.appName);
             } else {
                 GpgME::Error err;
                 if (gpgHasMultiCardMultiAppSupport()) {
@@ -1060,8 +1059,8 @@ public:
         connect(this, &::ReaderStatusThread::updateCardStarted, q, &ReaderStatus::onUpdateCardStarted);
         connect(this, &::ReaderStatusThread::updateFinished, q, &ReaderStatus::onUpdateFinished);
         connect(this, &::ReaderStatusThread::firstCardWithNullPinChanged, q, &ReaderStatus::firstCardWithNullPinChanged);
-        connect(this, &::ReaderStatusThread::startingLearnCards, q, &ReaderStatus::onStartingLearnCards);
-        connect(this, &::ReaderStatusThread::cardsLearned, q, &ReaderStatus::onCardsLearned);
+        connect(this, &::ReaderStatusThread::startingLearnCard, q, &ReaderStatus::onStartingLearnCard);
+        connect(this, &::ReaderStatusThread::cardLearned, q, &ReaderStatus::onCardLearned);
 
         if (DeviceInfoWatcher::isSupported()) {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using new DeviceInfoWatcher";
@@ -1100,7 +1099,7 @@ private:
     DeviceInfoWatcher devInfoWatcher;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
     Action currentAction = NoAction;
-    bool learnCMSTransactionScheduled = false;
+    std::set<CardApp> learnCardTransactionScheduled;
 };
 
 ReaderStatus::ReaderStatus(QObject *parent)
@@ -1192,14 +1191,14 @@ void ReaderStatus::updateCard(const std::string &serialNumber, const std::string
     d->addTransaction(t);
 }
 
-void ReaderStatus::learnCards(GpgME::Protocol protocol)
+void ReaderStatus::learnCard(const std::string &serialNumber, const std::string &appName)
 {
-    qCDebug(KLEOPATRA_LOG) << __func__ << "- procotol:" << Formatting::displayName(protocol);
-    if (protocol == GpgME::CMS && !d->learnCMSTransactionScheduled) {
-        d->learnCMSTransactionScheduled = true;
-        d->learnCardsCMS();
-    } else {
-        qCDebug(KLEOPATRA_LOG) << __func__ << "unsupported protocol";
+    qCDebug(KLEOPATRA_LOG) << __func__ << "- card app:" << appName << serialNumber;
+    if (!d->learnCardTransactionScheduled.contains({serialNumber, appName})) {
+        d->learnCardTransactionScheduled.insert({serialNumber, appName});
+        const CardApp cardApp = {serialNumber, appName};
+        const Transaction t = {cardApp, learnCardTransactionCommand, nullptr, nullptr, nullptr};
+        d->addTransaction(t);
     }
 }
 
@@ -1304,24 +1303,24 @@ void ReaderStatus::onUpdateFinished()
     Q_EMIT updateFinished();
 }
 
-void ReaderStatus::onStartingLearnCards(GpgME::Protocol protocol)
+void ReaderStatus::onStartingLearnCard(const std::string &serialNumber, const std::string &appName)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     setCurrentAction(LearnCards);
     // suspend automatic refreshes of the key cache while smart card keys are learned
     d->keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
-    Q_EMIT startingLearnCards(protocol);
+    Q_EMIT startingLearnCard(serialNumber, appName);
 }
 
-void ReaderStatus::onCardsLearned(GpgME::Protocol protocol)
+void ReaderStatus::onCardLearned(const std::string &serialNumber, const std::string &appName)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     setCurrentAction(NoAction);
-    Q_EMIT cardsLearned(protocol);
-    d->learnCMSTransactionScheduled = false;
+    Q_EMIT cardLearned(serialNumber, appName);
+    d->learnCardTransactionScheduled.erase({serialNumber, appName});
     d->keyCacheAutoRefreshSuspension.reset();
     // force a reload of the key cache to ensure that all learned certificates are loaded
-    KeyCache::mutableInstance()->reload(protocol, KeyCache::ForceReload);
+    KeyCache::mutableInstance()->reload(Protocol::CMS, KeyCache::ForceReload);
 }
 
 std::shared_ptr<Card> ReaderStatus::getCardWithKeyRef(const std::string &serialNumber, const std::string &keyRef) const

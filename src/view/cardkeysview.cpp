@@ -740,10 +740,12 @@ void CardKeysView::learnCard()
     qCDebug(KLEOPATRA_LOG) << __func__;
     mTreeViewOverlay->setText(i18nc("@info", "Reading certificates from smart card ..."));
     mTreeViewOverlay->showOverlay();
-    ReaderStatus::mutableInstance()->learnCards(GpgME::CMS);
-    connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, this, [this]() {
-        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::cardsLearned";
-        mTreeViewOverlay->hideOverlay();
+    ReaderStatus::mutableInstance()->learnCard(mCard->serialNumber(), mCard->appName());
+    connect(ReaderStatus::instance(), &ReaderStatus::cardLearned, this, [this](const std::string &serialNumber, const std::string &appName) {
+        qCDebug(KLEOPATRA_LOG) << "ReaderStatus::cardLearned" << appName << serialNumber;
+        if (serialNumber == mCard->serialNumber() && appName == mCard->appName()) {
+            mTreeViewOverlay->hideOverlay();
+        }
     });
 }
 

@@ -108,10 +108,10 @@ void SmartCardWindow::Private::setUpStatusBar()
     connect(ReaderStatus::instance(), &ReaderStatus::updateFinished, q, [this]() {
         statusMessage->clearMessage();
     });
-    connect(ReaderStatus::instance(), &ReaderStatus::startingLearnCards, q, [this]() {
+    connect(ReaderStatus::instance(), &ReaderStatus::startingLearnCard, q, [this]() {
         statusMessage->showMessage(i18nc("@info:status", "Importing certificates from smart cards..."));
     });
-    connect(ReaderStatus::instance(), &ReaderStatus::cardsLearned, q, [this]() {
+    connect(ReaderStatus::instance(), &ReaderStatus::cardLearned, q, [this]() {
         statusMessage->clearMessage();
     });
 
