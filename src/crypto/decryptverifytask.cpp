@@ -67,6 +67,7 @@ using namespace Kleo::Crypto;
 using namespace Kleo;
 using namespace GpgME;
 using namespace KMime::Types;
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -287,10 +288,12 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
     QString text;
     if (sigs.size() == 1) {
         text = i18n("Valid signature by %1.", renderKeyEMailOnlyNameAsFallback(sigs[0].key()));
-        if (info.conflicts())
-            text += i18nc("@info The placeholder is a link to the certificate. The text of the link is the translated work 'certificate'",
-                          "<br/>Warning: The sender's mail address is not stored in the %1 used for signing.",
-                          renderKeyLink(QLatin1StringView(sigs[0].key().primaryFingerprint()), i18n("certificate")));
+        if (info.conflicts()) {
+            text += "<br />"_L1
+                + i18nc("@info",
+                        "Warning: The sender's mail address is not stored in the <a href=\"key:%1\">certificate</a> used for signing.",
+                        QString::fromLatin1(sigs[0].key().primaryFingerprint()));
+        }
     } else {
         text = i18np("Valid signature.", "%1 valid signatures.", sigs.size());
         if (info.conflicts()) {
