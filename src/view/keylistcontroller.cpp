@@ -86,6 +86,7 @@ using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
+using namespace Qt::Literals::StringLiterals;
 
 namespace ranges = std::ranges;
 
@@ -615,9 +616,9 @@ void KeyListController::createActions(KActionCollection *coll)
         common_and_openpgp_action_data.push_back(action_data{
             "certificates_disable",
             i18nc("@action:inmenu", "Disable Certificate"),
-            i18nc("@action:tooltip",
-                  "Disabled certificates are not offered when selecting a certificate to sign with or to encrypt for.\nThey are still listed in the "
-                  "certificate list."),
+            "<html>"_L1 + i18nc("@action:tooltip",
+                                           "Disabled certificates are not offered when selecting a certificate to sign with or to encrypt for. They are not "
+                                           "shown in the certificate list with most filters.") + "</html>"_L1,
             nullptr,
             nullptr,
             nullptr,
