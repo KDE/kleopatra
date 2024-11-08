@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-07 00:40+0000\n"
-"PO-Revision-Date: 2024-11-02 02:30+0100\n"
+"POT-Creation-Date: 2024-11-08 00:41+0000\n"
+"PO-Revision-Date: 2024-11-07 02:10+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -908,6 +908,8 @@ msgid ""
 "The certificate has been marked as not trusted because the fingerprint did "
 "not match."
 msgstr ""
+"El certificado ha sido marcado como no fiable porque la huella digital no "
+"coincide."
 
 #: src/commands/changeroottrustcommand.cpp:82
 #, kde-format
@@ -2225,7 +2227,7 @@ msgstr ""
 "portapapeles."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:786
+#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
 msgstr "Portapapeles"
@@ -4790,14 +4792,14 @@ msgid "Create Checksum Progress"
 msgstr "Creación de suma de verificación en curso"
 
 #: src/crypto/createchecksumscontroller.cpp:487
-#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:760
+#: src/crypto/verifychecksumscontroller.cpp:474 src/utils/output.cpp:756
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Error mientras se ejecutaba %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:489
 #: src/crypto/verifychecksumscontroller.cpp:476 src/utils/input.cpp:357
-#: src/utils/output.cpp:762
+#: src/utils/output.cpp:758
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Ha fallado al ejecutar %1: %2"
@@ -4911,115 +4913,197 @@ msgstr "Descifrar/verificar archivos"
 msgid "Unknown certificate"
 msgstr "Certificado desconocido"
 
-#: src/crypto/decryptverifytask.cpp:156 src/crypto/signencrypttask.cpp:53
-#, kde-format
-msgctxt "Input file --> Output file (rarr is arrow"
-msgid "%1 &rarr; %2"
-msgstr "%1 &rarr; %2"
-
-#: src/crypto/decryptverifytask.cpp:277
-#, kde-format
-msgid "<b>Verification canceled.</b>"
+#: src/crypto/decryptverifytask.cpp:264
+#, fuzzy, kde-format
+#| msgid "<b>Verification canceled.</b>"
+msgid "Verification canceled."
 msgstr "<b>Verificación cancelada</b>"
 
-#: src/crypto/decryptverifytask.cpp:279
-#, kde-format
-msgid "<b>Verification failed: %1.</b>"
-msgstr "<b>La verificación falló: %1</b>"
-
-#: src/crypto/decryptverifytask.cpp:285
-#, kde-format
-msgid "<b>No signatures found.</b>"
+#: src/crypto/decryptverifytask.cpp:272
+#, fuzzy, kde-format
+#| msgid "<b>No signatures found.</b>"
+msgid "No signatures found."
 msgstr "<b>No se hallaron firmas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:290
-#, kde-format
-msgid "<b>Invalid signature.</b>"
-msgid_plural "<b>%1 invalid signatures.</b>"
+#: src/crypto/decryptverifytask.cpp:277
+#, fuzzy, kde-format
+#| msgid "<b>Invalid signature.</b>"
+#| msgid_plural "<b>%1 invalid signatures.</b>"
+msgid "Invalid signature."
+msgid_plural "%1 invalid signatures."
 msgstr[0] "<b>Firma no válida</b>"
 msgstr[1] "<b>%1 firmas no válidas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:296
-#, kde-format
-msgid "<b>The data could not be verified.</b>"
-msgid_plural "<b>%1 signatures could not be verified.</b>"
+#: src/crypto/decryptverifytask.cpp:283
+#, fuzzy, kde-format
+#| msgid "<b>The data could not be verified.</b>"
+#| msgid_plural "<b>%1 signatures could not be verified.</b>"
+msgid "The data could not be verified."
+msgid_plural "%1 signatures could not be verified."
 msgstr[0] "<b>No se han podido verificar los datos.</b>"
 msgstr[1] "<b>No se han podido verificar %1 firmas.</b>"
 
-#: src/crypto/decryptverifytask.cpp:302
-#, kde-format
-msgid "<b>Valid signature by %1</b>"
+#: src/crypto/decryptverifytask.cpp:289
+#, fuzzy, kde-format
+#| msgid "<b>Valid signature by %1</b>"
+msgid "Valid signature by %1."
 msgstr "<b>Firma válida por %1</b>"
 
-#: src/crypto/decryptverifytask.cpp:304
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:292
+#, fuzzy, kde-format
+#| msgid ""
+#| "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 "
+#| "used for signing."
+msgctxt ""
+"@info The placeholder is a link to the certificate. The text of the link is "
+"the translated work 'certificate'"
 msgid ""
-"<br/><b>Warning:</b> The sender's mail address is not stored in the %1 used "
-"for signing."
+"<br/>Warning: The sender's mail address is not stored in the %1 used for "
+"signing."
 msgstr ""
 "<br/><b>Advertencia:</b> La dirección de correo del remitente no está "
 "almacenada en la %1 usada para firmar."
 
-#: src/crypto/decryptverifytask.cpp:305
+#: src/crypto/decryptverifytask.cpp:293
 #, kde-format
 msgid "certificate"
 msgstr "certificado"
 
-#: src/crypto/decryptverifytask.cpp:307
-#, kde-format
-msgid "<b>Valid signature.</b>"
-msgid_plural "<b>%1 valid signatures.</b>"
-msgstr[0] "<b>Firma válida.</b>"
-msgstr[1] "<b>%1 firmas válidas.</b>"
+#: src/crypto/decryptverifytask.cpp:295
+#, fuzzy, kde-format
+#| msgid "Bad signature"
+msgid "Valid signature."
+msgid_plural "%1 valid signatures."
+msgstr[0] "Firma negativa"
+msgstr[1] "Firma negativa"
 
-#: src/crypto/decryptverifytask.cpp:309
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:297
+#, fuzzy, kde-format
+#| msgid ""
+#| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
+#| "certificates used for signing."
 msgid ""
-"<br/><b>Warning:</b> The sender's mail address is not stored in the "
-"certificates used for signing."
+"<br/>Warning: The sender's mail address is not stored in the certificates "
+"used for signing."
 msgstr ""
 "<br/><b>Advertencia:</b> La dirección de correo del remitente no está "
 "almacenada en los certificados usados para la firma."
 
-#: src/crypto/decryptverifytask.cpp:321
-#, kde-format
-msgid "<b>Decryption canceled.</b>"
-msgstr "<b>Descifrado cancelado.</b>"
+#: src/crypto/decryptverifytask.cpp:309
+#, fuzzy, kde-format
+#| msgid "Encryption canceled."
+msgid "Decryption canceled."
+msgstr "Cifrado cancelado."
 
-#: src/crypto/decryptverifytask.cpp:324
-#, kde-format
-msgctxt "@info"
-msgid ""
-"<b>Decryption not possible: %1</b><br />The data was not encrypted for any "
-"secret key in your certificate list."
-msgstr ""
-"<b>No se puede descifrar: %1</b><br />Los datos no se cifraron para ninguna "
-"de las claves secretas que hay en su lista de certificados."
-
-#: src/crypto/decryptverifytask.cpp:327
+#: src/crypto/decryptverifytask.cpp:313
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Sin protección de identidad (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:327 src/crypto/decryptverifytask.cpp:329
-#: src/crypto/decryptverifytask.cpp:331
-#, kde-format
-msgid "<b>Decryption failed: %1.</b>"
-msgstr "<b>Descifrado fallido: %1.</b>"
+#: src/crypto/decryptverifytask.cpp:343
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
+#| "any secret key in your certificate list."
+msgctxt ""
+"@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
+"encrypted for any secret key in your certificate list."
+msgid ""
+"Unable to decrypt and verify <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis><nl />The data was not encrypted for any secret "
+"key in your certificate list."
+msgstr ""
+"<b>No se puede descifrar: %1</b><br />Los datos no se cifraron para ninguna "
+"de las claves secretas que hay en su lista de certificados."
 
-#: src/crypto/decryptverifytask.cpp:333
-#, kde-format
-msgid "<b>Decryption succeeded.</b>"
-msgstr "<b>Descifrado correctamente.</b>"
+#: src/crypto/decryptverifytask.cpp:350
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to decrypt and verify <file>: <reason>"
+msgid ""
+"Failed to decrypt and verify <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:357 src/crypto/decryptverifytask.cpp:407
-#: src/crypto/signencrypttask.cpp:214 src/crypto/signencrypttask.cpp:231
-#: src/crypto/signencrypttask.cpp:854
+#: src/crypto/decryptverifytask.cpp:355
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgid ""
+"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
+"filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp:363
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to verify <file>: <reason>"
+msgid ""
+"Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
+"emphasis>"
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/decryptverifytask.cpp:368
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with signature in <file>."
+msgid ""
+"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp:375
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
+#| "any secret key in your certificate list."
+msgctxt ""
+"@info Unable to decrypt <file>: <reason><nl />The data was not encrypted for "
+"any secret key in your certificate list."
+msgid ""
+"Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+"emphasis><nl />The data was not encrypted for any secret key in your "
+"certificate list."
+msgstr ""
+"<b>No se puede descifrar: %1</b><br />Los datos no se cifraron para ninguna "
+"de las claves secretas que hay en su lista de certificados."
+
+#: src/crypto/decryptverifytask.cpp:382
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info Failed to decrypt <file>: <reason>"
+msgid "Failed to decrypt <filename>%1</filename>: %2"
+msgstr "Ha fallado al borrar <filename>%1</filename>."
+
+#: src/crypto/decryptverifytask.cpp:387
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully decrypted <file> as <file>."
+msgid ""
+"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp:413 src/crypto/decryptverifytask.cpp:463
+#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
+#: src/crypto/signencrypttask.cpp:934
 #, kde-format
 msgid "Input error: %1"
 msgstr "Error de entrada: %1"
 
-#: src/crypto/decryptverifytask.cpp:368
+#: src/crypto/decryptverifytask.cpp:424
 #, kde-format
 msgid ""
 "<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
@@ -5027,27 +5111,27 @@ msgstr ""
 "<p>La dirección del remitente %1 no está almacenada en el certificado. "
 "Almacenada: %2</p>"
 
-#: src/crypto/decryptverifytask.cpp:370
+#: src/crypto/decryptverifytask.cpp:426
 #, kde-format
 msgctxt "separator for a list of e-mail addresses"
 msgid ", "
 msgstr ", "
 
-#: src/crypto/decryptverifytask.cpp:381
+#: src/crypto/decryptverifytask.cpp:437
 #, kde-format
 msgid "Recipient:"
 msgid_plural "Recipients:"
 msgstr[0] "Destinatario:"
 msgstr[1] "Destinatarios:"
 
-#: src/crypto/decryptverifytask.cpp:391
+#: src/crypto/decryptverifytask.cpp:447
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
 msgstr[0] "Un destinatario desconocido"
 msgstr[1] "%1 destinatarios desconocidos"
 
-#: src/crypto/decryptverifytask.cpp:421
+#: src/crypto/decryptverifytask.cpp:477
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5055,7 +5139,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "El descrifrado es %1."
 
-#: src/crypto/decryptverifytask.cpp:424
+#: src/crypto/decryptverifytask.cpp:480
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5063,12 +5147,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "El descifrado <b>no es</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:435
+#: src/crypto/decryptverifytask.cpp:491
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Nombre de archivo incrustado:  '%1'"
 
-#: src/crypto/decryptverifytask.cpp:442
+#: src/crypto/decryptverifytask.cpp:498
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5077,7 +5161,7 @@ msgstr ""
 "<b>Nota:</b> No puede estar seguro de quién ha cifrado este mensaje, ya que "
 "no está firmado."
 
-#: src/crypto/decryptverifytask.cpp:447
+#: src/crypto/decryptverifytask.cpp:503
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5089,7 +5173,7 @@ msgstr ""
 "sea ilegítimo. Esto es debido a que la protección de integridad no se usaba "
 "ampliamente."
 
-#: src/crypto/decryptverifytask.cpp:452
+#: src/crypto/decryptverifytask.cpp:508
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5101,61 +5185,55 @@ msgstr ""
 "Si confía en que el archivo no ha sido manipulado, debería volver a cifrarlo "
 "antes de forzar el descifrado."
 
-#: src/crypto/decryptverifytask.cpp:750
+#: src/crypto/decryptverifytask.cpp:798
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "El descifrado del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:753
+#: src/crypto/decryptverifytask.cpp:801
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "La verificación del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:757
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "El bloc de notas se ha descifrado y verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:760
+#: src/crypto/decryptverifytask.cpp:808
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "El bloc de notas se ha descifrado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:763
+#: src/crypto/decryptverifytask.cpp:811
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "El bloc de notas se ha verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:780
-#, kde-format
-msgctxt "label: result example: foo.sig: Verification failed. "
-msgid "%1: %2"
-msgstr "%1: %2"
-
-#: src/crypto/decryptverifytask.cpp:939 src/crypto/decryptverifytask.cpp:1147
-#: src/crypto/decryptverifytask.cpp:1226 src/crypto/decryptverifytask.cpp:1327
-#: src/crypto/decryptverifytask.cpp:1379 src/crypto/decryptverifytask.cpp:1547
-#: src/crypto/decryptverifytask.cpp:1623 src/crypto/decryptverifytask.cpp:1767
+#: src/crypto/decryptverifytask.cpp:975 src/crypto/decryptverifytask.cpp:1183
+#: src/crypto/decryptverifytask.cpp:1263 src/crypto/decryptverifytask.cpp:1364
+#: src/crypto/decryptverifytask.cpp:1416 src/crypto/decryptverifytask.cpp:1584
+#: src/crypto/decryptverifytask.cpp:1661 src/crypto/decryptverifytask.cpp:1795
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Se detectó excepción: %1"
 
-#: src/crypto/decryptverifytask.cpp:942 src/crypto/decryptverifytask.cpp:1149
-#: src/crypto/decryptverifytask.cpp:1229 src/crypto/decryptverifytask.cpp:1329
-#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1549
-#: src/crypto/decryptverifytask.cpp:1625 src/crypto/decryptverifytask.cpp:1769
+#: src/crypto/decryptverifytask.cpp:978 src/crypto/decryptverifytask.cpp:1185
+#: src/crypto/decryptverifytask.cpp:1266 src/crypto/decryptverifytask.cpp:1366
+#: src/crypto/decryptverifytask.cpp:1419 src/crypto/decryptverifytask.cpp:1586
+#: src/crypto/decryptverifytask.cpp:1663 src/crypto/decryptverifytask.cpp:1797
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Se detectó excepción desconocida"
 
-#: src/crypto/decryptverifytask.cpp:996
+#: src/crypto/decryptverifytask.cpp:1032
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5164,12 +5242,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado ni firma?"
 
-#: src/crypto/decryptverifytask.cpp:1004
+#: src/crypto/decryptverifytask.cpp:1040
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Descifrando %1..."
 
-#: src/crypto/decryptverifytask.cpp:1282
+#: src/crypto/decryptverifytask.cpp:1319
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5178,12 +5256,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1290
+#: src/crypto/decryptverifytask.cpp:1327
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Descifrando: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1436 src/crypto/decryptverifytask.cpp:1687
+#: src/crypto/decryptverifytask.cpp:1473 src/crypto/decryptverifytask.cpp:1725
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5192,12 +5270,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es una firma después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1444
+#: src/crypto/decryptverifytask.cpp:1481
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Verificando %1..."
 
-#: src/crypto/decryptverifytask.cpp:1705
+#: src/crypto/decryptverifytask.cpp:1743
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5205,18 +5283,10 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verificando <filename>%1</filename> con <filename>%2</filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1709
+#: src/crypto/decryptverifytask.cpp:1747
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Verificando firma %1..."
-
-#: src/crypto/decryptverifytask.cpp:1720
-#, kde-kuit-format
-msgctxt ""
-"Verification of a detached signature summary. The first file contains the "
-"data.The second file is signature."
-msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
 
 #: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
@@ -5231,7 +5301,7 @@ msgstr "Llamada a EncryptEMailController::protocolAsString() es ambigua."
 msgid "User cancel"
 msgstr "Cancelación del usuario"
 
-#: src/crypto/encryptemailtask.cpp:65 src/crypto/signencrypttask.cpp:167
+#: src/crypto/encryptemailtask.cpp:65
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Cifrado cancelado."
@@ -5241,7 +5311,7 @@ msgstr "Cifrado cancelado."
 msgid "Encryption failed: %1"
 msgstr "El cifrado falló: %1"
 
-#: src/crypto/encryptemailtask.cpp:72 src/crypto/signencrypttask.cpp:174
+#: src/crypto/encryptemailtask.cpp:72
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Cifrado correctamente."
@@ -6273,7 +6343,7 @@ msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "La llamada a NewSignEncryptEMailController::protocolAsString() es ambigua."
 
-#: src/crypto/signemailtask.cpp:68 src/crypto/signencrypttask.cpp:150
+#: src/crypto/signemailtask.cpp:68
 #, kde-format
 msgid "Signing canceled."
 msgstr "Firma cancelada."
@@ -6283,7 +6353,7 @@ msgstr "Firma cancelada."
 msgid "Signing failed: %1"
 msgstr "Firmado falló: %1"
 
-#: src/crypto/signemailtask.cpp:75 src/crypto/signencrypttask.cpp:156
+#: src/crypto/signemailtask.cpp:75
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Firmado correctamente."
@@ -6342,59 +6412,293 @@ msgstr ""
 "Excepción desconocida en SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:154
-#, kde-format
-msgid "Signing failed."
-msgstr "La firma ha fallado."
-
-#: src/crypto/signencrypttask.cpp:171
-#, kde-format
-msgid "Encryption failed."
-msgstr "El cifrado ha fallado."
-
-#: src/crypto/signencrypttask.cpp:199
-#, kde-format
-msgid "Signing and encryption succeeded."
+#: src/crypto/signencrypttask.cpp:150
+#, fuzzy, kde-format
+#| msgid "Signing and encryption succeeded."
+msgctxt "@info"
+msgid "Signing and encryption canceled."
 msgstr "Firmado y cifrado correctamente."
 
-#: src/crypto/signencrypttask.cpp:216 src/crypto/signencrypttask.cpp:233
+#: src/crypto/signencrypttask.cpp:153
+#, fuzzy, kde-format
+#| msgid "Signing canceled."
+msgctxt "@info"
+msgid "Signing canceled."
+msgstr "Firma cancelada."
+
+#: src/crypto/signencrypttask.cpp:156
+#, fuzzy, kde-format
+#| msgid "Encryption canceled."
+msgctxt "@info"
+msgid "Encryption canceled."
+msgstr "Cifrado cancelado."
+
+#: src/crypto/signencrypttask.cpp:162
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to sign and encrypt <file>: <reason>"
+msgid ""
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
+"%2</emphasis>"
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp:168
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para>"
+msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
+msgid ""
+"Failed to sign and encrypt <filename>%1</filename> and <filename>%2</"
+"filename>: <emphasis strong='true'>%3</emphasis>"
+msgstr ""
+"<para>Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+"</para>"
+
+#: src/crypto/signencrypttask.cpp:174
+#, kde-kuit-format
+msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
+msgid ""
+"Failed to sign and encrypt <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
+msgid_plural ""
+"Failed to sign and encrypt <filename>%2</filename> and %1 others: <emphasis "
+"strong='true'>%3</emphasis>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/crypto/signencrypttask.cpp:184
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to sign <file>: <reason>"
+msgid ""
+"Failed to sign <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp:190
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para>"
+msgctxt "@info Failed to sign <file> and <file>: <reason>"
+msgid ""
+"Failed to sign <filename>%1</filename> and <filename>%2</filename>: "
+"<emphasis strong='true'>%3</emphasis>"
+msgstr ""
+"<para>Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+"</para>"
+
+#: src/crypto/signencrypttask.cpp:196
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
+msgid ""
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
+"%3</emphasis>"
+msgid_plural ""
+"Failed to sign <filename>%2</filename> and %1 others: <emphasis "
+"strong='true'>%3</emphasis>"
+msgstr[0] ""
+"Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+msgstr[1] ""
+"Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp:206
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to encrypt <file>: <reason>"
+msgid ""
+"Failed to encrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+"emphasis>"
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp:212
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para>"
+msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
+msgid ""
+"Failed to encrypt <filename>%1</filename> and <filename>%2</filename>: "
+"<emphasis strong='true'>%3</emphasis>"
+msgstr ""
+"<para>Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+"</para>"
+
+#: src/crypto/signencrypttask.cpp:218
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
+msgid ""
+"Failed to encrypt <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
+msgid_plural ""
+"Failed to encrypt <filename>%2</filename> and %1 others: <emphasis "
+"strong='true'>%3</emphasis>"
+msgstr[0] ""
+"Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+msgstr[1] ""
+"Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp:228
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt ""
+"@info Successfully signed and encrypted <file> and saved it as <file>."
+msgid ""
+"Successfully signed and encrypted <filename>%1</filename> and saved it as "
+"<filename>%2</filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:234
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt ""
+"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"<file>."
+msgid ""
+"Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
+"filename> and saved it as <filename>%3</filename>."
+msgstr ""
+"No se ha podido copiar el archivo temporal <filename>%1</filename> al "
+"archivo <filename>%2</filename>: <message>%3</message>"
+
+#: src/crypto/signencrypttask.cpp:240
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt ""
+"@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
+msgid ""
+"Successfully signed and encrypted <filename>%2</filename> and %1 other and "
+"saved it as <filename>%3</filename>."
+msgid_plural ""
+"Successfully signed and encrypted <filename>%2</filename> and %1 others and "
+"saved it as <filename>%3</filename>."
+msgstr[0] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+msgstr[1] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:250
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully signed <file> and saved the signature in <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved the signature in "
+"<filename>%2</filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:256
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt ""
+"@info Successfully signed <file> and <file> and saved the signature in "
+"<file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
+"saved the signature in <filename>%3</filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:262
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt ""
+"@info Successfully signed <file> and <n> other(s) and saved the signature in "
+"<file>."
+msgid ""
+"Successfully signed <filename>%2</filename> and %1 other and saved the "
+"signature in <filename>%3</filename>."
+msgid_plural ""
+"Successfully signed <filename>%2</filename> and %1 others and saved the "
+"signature in <filename>%3</filename>."
+msgstr[0] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+msgstr[1] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:271
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully encrypted <file> and saved it as <file>."
+msgid ""
+"Successfully encrypted <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:277
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt ""
+"@info Successfully encrypted <file> and <file> and saved it as <file>."
+msgid ""
+"Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
+"and saved it as <filename>%3</filename>."
+msgstr ""
+"No se ha podido copiar el archivo temporal <filename>%1</filename> al "
+"archivo <filename>%2</filename>: <message>%3</message>"
+
+#: src/crypto/signencrypttask.cpp:283
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt ""
+"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+msgid ""
+"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
+"<filename>%3</filename>."
+msgid_plural ""
+"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
+"<filename>%3</filename>."
+msgstr[0] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+msgstr[1] "Verificado <filename>%1</filename> con <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp:304 src/crypto/signencrypttask.cpp:321
 #, kde-format
 msgid "Output error: %1"
 msgstr "Error de salida: %1"
 
-#: src/crypto/signencrypttask.cpp:240
-#, kde-format
-msgid " Encryption succeeded."
-msgstr " Cifrado correctamente."
-
-#: src/crypto/signencrypttask.cpp:252
-#, kde-format
-msgid "%1: <b>Sign/encrypt canceled.</b>"
-msgstr "%1: <b>Firma/cifrado cancelado.</b>"
-
-#: src/crypto/signencrypttask.cpp:252
-#, kde-format
-msgid " %1: Sign/encrypt failed."
-msgstr " %1: Cifrado/firma han fallado."
-
-#: src/crypto/signencrypttask.cpp:255
-#, kde-format
-msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
-msgid "%1: <b>%2</b>"
-msgstr "%1: <b>%2</b>"
-
-#: src/crypto/signencrypttask.cpp:457
+#: src/crypto/signencrypttask.cpp:538
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "No se puede determinar el protocolo para la tarea"
 
-#: src/crypto/signencrypttask.cpp:508
+#: src/crypto/signencrypttask.cpp:589
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:720 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:801 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6403,49 +6707,49 @@ msgstr ""
 "No es posible encontrar la base común del directorio para estos archivos:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:737
+#: src/crypto/signencrypttask.cpp:818
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Creando archivo firmado y cifrado..."
 
-#: src/crypto/signencrypttask.cpp:753
+#: src/crypto/signencrypttask.cpp:834
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Creando archivo cifrado..."
 
-#: src/crypto/signencrypttask.cpp:769
+#: src/crypto/signencrypttask.cpp:850
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Creando archivo firmado..."
 
-#: src/crypto/signencrypttask.cpp:898
+#: src/crypto/signencrypttask.cpp:977
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "La firma del bloc de notas ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:901
+#: src/crypto/signencrypttask.cpp:980
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "El cifrado del bloc de notas ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:905
+#: src/crypto/signencrypttask.cpp:984
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "El bloc de notas se ha cifrado y firmado con éxito"
 
-#: src/crypto/signencrypttask.cpp:907
+#: src/crypto/signencrypttask.cpp:986
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "El bloc de notas se ha cifrado con éxito"
 
-#: src/crypto/signencrypttask.cpp:909
+#: src/crypto/signencrypttask.cpp:988
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
@@ -10423,25 +10727,20 @@ msgid "%1?"
 msgstr "¿%1?"
 
 #: src/selftest/compliancecheck.cpp:37
-#, fuzzy, kde-format
-#| msgid "Compliance:"
+#, kde-format
 msgctxt "@title"
 msgid "Compliance Check"
-msgstr "Cumplimiento:"
+msgstr "Comprobación de conformidad"
 
 #: src/selftest/compliancecheck.cpp:46
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#| "RESTRICTED compliant or VS-NfD compliant"
-#| msgid ""
-#| "<para><application>GnuPG</application> is not configured for %1.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>GnuPG</application> is not configured for <icode>de-vs</"
 "icode> compliance.</para>"
 msgstr ""
-"<para><application>GnuPG</application> no se ha configurado para %1.</para>"
+"<para><application>GnuPG</application> no está configurado para conformidad "
+"con <icode>de-vs</icode>.</para>"
 
 #: src/selftest/compliancecheck.cpp:57
 #, kde-kuit-format
@@ -11569,12 +11868,12 @@ msgstr "No se ha podido abrir el archivo «%1» para lectura"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "El archivo «%1» ya está abierto, pero no para lectura"
 
-#: src/utils/input.cpp:306 src/utils/output.cpp:731
+#: src/utils/input.cpp:306 src/utils/output.cpp:736
 #, kde-format
 msgid "Command not specified"
 msgstr "Orden no especificada"
 
-#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:736
+#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:741
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "No se ha podido iniciar el proceso %1: %2"
@@ -11666,33 +11965,33 @@ msgstr ""
 "Error de registro. No se ha podido abrir el archivo de registro «%1» para "
 "escritura."
 
-#: src/utils/output.cpp:307
+#: src/utils/output.cpp:309
 #, kde-format
 msgid "No output device"
 msgstr "Ningún dispositivo de salida"
 
-#: src/utils/output.cpp:527
+#: src/utils/output.cpp:530
 #, kde-format
 msgid "Could not open FD %1 for writing"
 msgstr "No se ha podido abrir FD %1 para escritura"
 
-#: src/utils/output.cpp:551
+#: src/utils/output.cpp:554
 #, kde-format
 msgid "Could not create temporary file for output \"%1\""
 msgstr "No se ha podido crear el archivo temporario para salida «%1»"
 
-#: src/utils/output.cpp:589
+#: src/utils/output.cpp:592
 #, kde-format
 msgctxt "@title:window"
 msgid "File Already Exists"
 msgstr "El archivo ya existe"
 
-#: src/utils/output.cpp:681
+#: src/utils/output.cpp:684
 #, kde-format
 msgid "Overwriting declined"
 msgstr "Sobrescritura declinada"
 
-#: src/utils/output.cpp:686
+#: src/utils/output.cpp:689
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Could not remove file <filename>%1</filename> for overwriting."
@@ -11700,39 +11999,27 @@ msgstr ""
 "No se ha podido eliminar el archivo <filename>%1</filename> para "
 "sobrescribirlo."
 
-#: src/utils/output.cpp:715
+#: src/utils/output.cpp:718
 #, kde-format
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "No se ha podido cambiar el nombre del archivo «%1» a «%2»"
 
-#: src/utils/output.cpp:747
-#, kde-format
-msgctxt "e.g. \"Input to tar xf - file1 ...\""
-msgid "Input to %1 ..."
-msgstr "Entrada a %1..."
-
-#: src/utils/output.cpp:749
-#, kde-format
-msgctxt "e.g. \"Input to tar xf - file\""
-msgid "Input to %1"
-msgstr "Entrada a %1"
-
-#: src/utils/output.cpp:779
+#: src/utils/output.cpp:775
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "No se ha podido escribir al portapapeles"
 
-#: src/utils/output.cpp:788
+#: src/utils/output.cpp:784
 #, kde-format
 msgid "Find buffer"
 msgstr "Buscar búfer"
 
-#: src/utils/output.cpp:790
+#: src/utils/output.cpp:786
 #, kde-format
 msgid "Selection"
 msgstr "Selección"
 
-#: src/utils/output.cpp:803
+#: src/utils/output.cpp:799
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "No se ha podido hallar el portapapeles"
@@ -13159,6 +13446,58 @@ msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
 
+#~ msgctxt "Input file --> Output file (rarr is arrow"
+#~ msgid "%1 &rarr; %2"
+#~ msgstr "%1 &rarr; %2"
+
+#~ msgid "<b>Verification failed: %1.</b>"
+#~ msgstr "<b>La verificación falló: %1</b>"
+
+#~ msgid "<b>Valid signature.</b>"
+#~ msgid_plural "<b>%1 valid signatures.</b>"
+#~ msgstr[0] "<b>Firma válida.</b>"
+#~ msgstr[1] "<b>%1 firmas válidas.</b>"
+
+#~ msgid "<b>Decryption canceled.</b>"
+#~ msgstr "<b>Descifrado cancelado.</b>"
+
+#~ msgid "<b>Decryption failed: %1.</b>"
+#~ msgstr "<b>Descifrado fallido: %1.</b>"
+
+#~ msgid "<b>Decryption succeeded.</b>"
+#~ msgstr "<b>Descifrado correctamente.</b>"
+
+#~ msgctxt "label: result example: foo.sig: Verification failed. "
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgid "Signing failed."
+#~ msgstr "La firma ha fallado."
+
+#~ msgid "Encryption failed."
+#~ msgstr "El cifrado ha fallado."
+
+#~ msgid " Encryption succeeded."
+#~ msgstr " Cifrado correctamente."
+
+#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
+#~ msgstr "%1: <b>Firma/cifrado cancelado.</b>"
+
+#~ msgid " %1: Sign/encrypt failed."
+#~ msgstr " %1: Cifrado/firma han fallado."
+
+#~ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
+#~ msgid "%1: <b>%2</b>"
+#~ msgstr "%1: <b>%2</b>"
+
+#~ msgctxt "e.g. \"Input to tar xf - file1 ...\""
+#~ msgid "Input to %1 ..."
+#~ msgstr "Entrada a %1..."
+
+#~ msgctxt "e.g. \"Input to tar xf - file\""
+#~ msgid "Input to %1"
+#~ msgstr "Entrada a %1"
+
 #~ msgid "Root Trust Update Failed"
 #~ msgstr "Ha fallado al actualizar la raíz de confianza"
 
@@ -13280,9 +13619,6 @@ msgstr ""
 
 #~ msgid "System error"
 #~ msgstr "Error del sistema"
-
-#~ msgid "Bad signature"
-#~ msgstr "Firma negativa"
 
 #~ msgid ""
 #~ "The signature is valid but the trust in the certificate's validity is "
