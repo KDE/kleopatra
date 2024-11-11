@@ -185,6 +185,7 @@ void DebugDialog::Private::runCommand()
         outputEdit->setText(process->errorString());
     });
     outputEdit->clear();
+    process->setStandardInputFile(QProcess::nullDevice());
     process->start(parts[0], parts.mid(1));
 }
 
