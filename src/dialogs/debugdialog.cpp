@@ -163,7 +163,7 @@ void DebugDialog::Private::runCommand()
     auto process = new QProcess(q);
     const auto parts = text.split(QLatin1Char(' '));
     exitCodeLabel->setText({});
-    connect(process, &QProcess::finished, q, [this, process]() {
+    connect(process, &QProcess::finished, outputEdit, [this, process]() {
         exitCodeLabel->setText(i18nc("@info", "Exit code: %1", process->exitCode()));
         if (process->exitCode() == 0) {
             outputEdit->setTextColor(KColorScheme(QPalette::Current, KColorScheme::View).foreground(KColorScheme::NormalText).color());
@@ -178,7 +178,7 @@ void DebugDialog::Private::runCommand()
         }
         process->deleteLater();
     });
-    connect(process, &QProcess::errorOccurred, q, [this, process]() {
+    connect(process, &QProcess::errorOccurred, outputEdit, [this, process]() {
         outputEdit->setTextColor(KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color());
         outputEdit->setText(process->errorString());
     });
