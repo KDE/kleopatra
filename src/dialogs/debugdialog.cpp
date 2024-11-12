@@ -99,6 +99,7 @@ DebugDialog::DebugDialog(QWidget *parent)
 
     commandLayout->addWidget(d->commandCombo, 1);
     auto runButton = new QPushButton(i18nc("@action:button", "Run Command"));
+    runButton->setAutoDefault(false);
     connect(runButton, &QPushButton::clicked, this, [this]() {
         // This is roughly a manual implementation of the InsertAtBottom behavior of the combobox. The combobox only only inserts an item
         // when pressing Enter, which isn't very discoverable, hence the button.
