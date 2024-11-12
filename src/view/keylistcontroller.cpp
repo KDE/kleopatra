@@ -16,6 +16,7 @@
 #include <smartcard/readerstatus.h>
 
 #include <utils/action_data.h>
+#include <utils/qt6compat.h>
 
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
