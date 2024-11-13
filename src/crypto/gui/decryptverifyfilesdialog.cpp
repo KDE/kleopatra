@@ -27,13 +27,12 @@
 #include <QVBoxLayout>
 #include <QWindow>
 
-#include <vector>
-
 #include <KConfigGroup>
 #include <KLocalizedContext>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KSharedConfig>
+#include <KTitleWidget>
 #include <MimeTreeParserWidgets/MessageViewerDialog>
 
 using namespace Kleo;
@@ -52,6 +51,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
     auto outputLayout = new QHBoxLayout;
 
     m_outputLocationFNR = new FileNameRequester;
+    m_outputLocationFNR->setButtonHint(i18nc("@info:tooltip", "Choose output folder"));
     auto outLabel = new QLabel(i18nc("@label:textbox", "&Output folder:"));
     outLabel->setBuddy(m_outputLocationFNR);
     outputLayout->addWidget(outLabel);
@@ -103,6 +103,16 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
         m_buttonBox->addButton(m_saveButton);
         m_buttonBox->button(m_saveButton)->setEnabled(false);
     }
+
+    m_finishedWidget = new KTitleWidget;
+    m_finishedWidget->setText(i18nc("@title", "Finished"));
+    m_progressLabelLayout->addWidget(m_finishedWidget);
+    m_finishedWidget->setVisible(false);
+
+    m_progressLabel = new QLabel;
+    m_progressLabel->setTextFormat(Qt::RichText);
+    m_progressLabel->setWordWrap(true);
+    m_progressLabelLayout->addWidget(m_progressLabel);
 }
 
 DecryptVerifyFilesDialog::~DecryptVerifyFilesDialog()
@@ -117,13 +127,10 @@ void DecryptVerifyFilesDialog::allDone()
     Q_ASSERT(m_tasks);
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
-    for (const auto &i : m_progressLabelByTag.keys()) {
-        if (!i.isEmpty()) {
-            m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
-        } else {
-            m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
-        }
-    }
+    m_progressBar->setVisible(false);
+
+    m_progressLabel->setVisible(false);
+    m_finishedWidget->setVisible(true);
 
     if (m_tasks->allTasksHaveErrors()) {
         return;
@@ -139,33 +146,13 @@ void DecryptVerifyFilesDialog::allDone()
 void DecryptVerifyFilesDialog::started(const std::shared_ptr<Task> &task)
 {
     Q_ASSERT(task);
-    const auto tag = task->tag();
-    auto label = labelForTag(tag);
-    Q_ASSERT(label);
-    if (tag.isEmpty()) {
-        label->setText(i18nc("number, operation description", "Operation %1: %2", m_tasks->numberOfCompletedTasks() + 1, task->label()));
-    } else {
-        label->setText(i18nc(R"(tag( "OpenPGP" or "CMS"),  operation description)", "%1: %2", tag, task->label()));
-    }
+    m_progressLabel->setText(task->label());
     if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->button(m_saveButton)->setEnabled(false);
     } else if (m_buttonBox->button(QDialogButtonBox::Ok)) {
         m_buttonBox->removeButton(m_buttonBox->button(QDialogButtonBox::Ok));
         m_buttonBox->addButton(QDialogButtonBox::Close);
     }
-}
-
-QLabel *DecryptVerifyFilesDialog::labelForTag(const QString &tag)
-{
-    if (QLabel *const label = m_progressLabelByTag.value(tag)) {
-        return label;
-    }
-    auto label = new QLabel;
-    label->setTextFormat(Qt::RichText);
-    label->setWordWrap(true);
-    m_progressLabelLayout->addWidget(label);
-    m_progressLabelByTag.insert(tag, label);
-    return label;
 }
 
 void DecryptVerifyFilesDialog::progress(int progress, int total)

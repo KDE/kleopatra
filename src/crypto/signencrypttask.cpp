@@ -72,10 +72,6 @@ public:
     {
         return m_errString;
     }
-    VisualCode code() const override
-    {
-        return NeutralError;
-    }
     AuditLogEntry auditLog() const override
     {
         return m_auditLog;
@@ -123,7 +119,6 @@ public:
     QString details() const override;
     GpgME::Error error() const override;
     QString errorString() const override;
-    VisualCode code() const override;
     AuditLogEntry auditLog() const override;
 
 private:
@@ -1030,14 +1025,6 @@ QString SignEncryptFilesResult::errorString() const
 
     return sign ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) //
                 : makeResultDetails(m_eresult, m_input.errorString, m_output.errorString);
-}
-
-Task::Result::VisualCode SignEncryptFilesResult::code() const
-{
-    if (m_sresult.error().isCanceled() || m_eresult.error().isCanceled()) {
-        return Warning;
-    }
-    return (m_sresult.error().code() || m_eresult.error().code()) ? NeutralError : NeutralSuccess;
 }
 
 AuditLogEntry SignEncryptFilesResult::auditLog() const

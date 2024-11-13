@@ -56,7 +56,6 @@ public:
     QString details() const override;
     GpgME::Error error() const override;
     QString errorString() const override;
-    VisualCode code() const override;
     AuditLogEntry auditLog() const override;
 };
 
@@ -271,14 +270,6 @@ GpgME::Error SignEMailResult::error() const
 QString SignEMailResult::errorString() const
 {
     return hasError() ? makeResultString(m_result) : QString();
-}
-
-Task::Result::VisualCode SignEMailResult::code() const
-{
-    if (m_result.error().isCanceled()) {
-        return Warning;
-    }
-    return m_result.error().code() ? NeutralError : NeutralSuccess;
 }
 
 AuditLogEntry SignEMailResult::auditLog() const
