@@ -56,10 +56,6 @@ public:
     {
         return m_details;
     }
-    VisualCode code() const override
-    {
-        return NeutralError;
-    }
     AuditLogEntry auditLog() const override
     {
         return AuditLogEntry();

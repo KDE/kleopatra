@@ -53,7 +53,6 @@ public:
     QString details() const override;
     GpgME::Error error() const override;
     QString errorString() const override;
-    VisualCode code() const override;
     AuditLogEntry auditLog() const override;
 };
 
@@ -225,14 +224,6 @@ QString EncryptEMailResult::errorString() const
 AuditLogEntry EncryptEMailResult::auditLog() const
 {
     return m_auditLog;
-}
-
-Task::Result::VisualCode EncryptEMailResult::code() const
-{
-    if (m_result.error().isCanceled()) {
-        return Warning;
-    }
-    return m_result.error().code() ? NeutralError : NeutralSuccess;
 }
 
 #include "moc_encryptemailtask.cpp"

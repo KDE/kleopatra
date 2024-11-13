@@ -15,7 +15,6 @@
 #include "resultitemwidget.h"
 
 #include "commands/command.h"
-#include "commands/importcertificatefromfilecommand.h"
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
 #include "view/htmllabel.h"
@@ -52,28 +51,12 @@ static QColor colorForVisualCode(Task::Result::VisualCode code)
     switch (code) {
     case Task::Result::AllGood:
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color();
-    case Task::Result::NeutralError:
     case Task::Result::Warning:
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     case Task::Result::Danger:
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color();
-    case Task::Result::NeutralSuccess:
     default:
-        return QColor(0x00, 0x80, 0xFF); // light blue
-    }
-}
-static QColor txtColorForVisualCode(Task::Result::VisualCode code)
-{
-    switch (code) {
-    case Task::Result::AllGood:
-    case Task::Result::NeutralError:
-    case Task::Result::Warning:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();
-    case Task::Result::Danger:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
-    case Task::Result::NeutralSuccess:
-    default:
-        return QColor(0xFF, 0xFF, 0xFF); // white
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     }
 }
 }
@@ -93,7 +76,6 @@ public:
     void slotLinkActivated(const QString &);
     void updateShowDetailsLabel();
 
-    void addKeyImportButton(QBoxLayout *lay, bool search);
     void addIgnoreMDCButton(QBoxLayout *lay);
 
     void oneImportFinished();
@@ -148,74 +130,6 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
     lay->addWidget(btn);
 }
 
-void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
-{
-    if (!m_result || !lay) {
-        return;
-    }
-
-    const auto dvResult = dynamic_cast<const DecryptVerifyResult *>(m_result.get());
-    if (!dvResult) {
-        return;
-    }
-    const auto verifyResult = dvResult->verificationResult();
-
-    if (verifyResult.isNull()) {
-        return;
-    }
-
-    for (const auto &sig : verifyResult.signatures()) {
-        if (!(sig.summary() & GpgME::Signature::KeyMissing)) {
-            continue;
-        }
-
-        auto btn = new QPushButton;
-        QString suffix;
-        const auto keyid = QLatin1StringView(sig.fingerprint());
-        if (verifyResult.numSignatures() > 1) {
-            suffix = QLatin1Char(' ') + keyid;
-        }
-        btn = new QPushButton(search ? i18nc("1 is optional keyid. No space is intended as it can be empty.", "Search%1", suffix)
-                                     : i18nc("1 is optional keyid. No space is intended as it can be empty.", "Import%1", suffix));
-
-        if (search) {
-            btn->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
-            connect(btn, &QPushButton::clicked, q, [this, btn, keyid]() {
-                btn->setEnabled(false);
-                m_importCanceled = false;
-                auto cmd = new Kleo::Commands::LookupCertificatesCommand(keyid, nullptr);
-                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled, q, [this]() {
-                    m_importCanceled = true;
-                });
-                connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished, q, [this, btn]() {
-                    btn->setEnabled(true);
-                    oneImportFinished();
-                });
-                cmd->setParentWidget(q);
-                cmd->start();
-            });
-        } else {
-            btn->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-import")));
-            connect(btn, &QPushButton::clicked, q, [this, btn]() {
-                btn->setEnabled(false);
-                m_importCanceled = false;
-                auto cmd = new Kleo::ImportCertificateFromFileCommand();
-                connect(cmd, &Kleo::ImportCertificateFromFileCommand::canceled, q, [this]() {
-                    m_importCanceled = true;
-                });
-                connect(cmd, &Kleo::ImportCertificateFromFileCommand::finished, q, [this, btn]() {
-                    btn->setEnabled(true);
-                    oneImportFinished();
-                });
-                cmd->setParentWidget(q);
-                cmd->start();
-            });
-        }
-        btn->setFixedSize(btn->sizeHint());
-        lay->addWidget(btn);
-    }
-}
-
 static QUrl auditlog_url_template()
 {
     QUrl url(QStringLiteral("kleoresultitem://showauditlog"));
@@ -235,9 +149,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     : QWidget(parent, flags)
     , d(new Private(result, this))
 {
-    const QColor color = colorForVisualCode(d->m_result->code());
-    const QColor txtColor = txtColorForVisualCode(d->m_result->code());
-    const QColor linkColor = SystemInfo::isHighContrastModeActive() ? QColor{} : txtColor;
+    const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     const QString styleSheet = SystemInfo::isHighContrastModeActive()
         ? QStringLiteral(
               "QFrame,QLabel { margin: 0px; }"
@@ -246,37 +158,31 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
         : QStringLiteral(
               "QFrame,QLabel { background-color: %1; margin: 0px; }"
               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
-              "QLabel { color: %3; padding: 5px; border-radius: 3px }")
+              "QLabel { padding: 5px; border-radius: 3px }")
               .arg(color.name())
-              .arg(color.darker(150).name())
-              .arg(txtColor.name());
+              .arg(color.darker(150).name());
     auto topLayout = new QVBoxLayout(this);
     auto frame = new QFrame;
     frame->setObjectName(QLatin1StringView("resultFrame"));
     frame->setStyleSheet(styleSheet);
     topLayout->addWidget(frame);
-    auto layout = new QHBoxLayout(frame);
-    auto vlay = new QVBoxLayout();
+    auto vlay = new QVBoxLayout(frame);
+    auto layout = new QHBoxLayout();
     auto overview = new HtmlLabel;
     overview->setWordWrap(true);
     overview->setHtml(d->m_result->overview());
     overview->setStyleSheet(styleSheet);
-    overview->setLinkColor(linkColor);
     setFocusPolicy(overview->focusPolicy());
     setFocusProxy(overview);
     connect(overview, &QLabel::linkActivated, this, [this](const auto &link) {
         d->slotLinkActivated(link);
     });
 
-    vlay->addWidget(overview);
-    layout->addLayout(vlay);
+    layout->addWidget(overview);
+    vlay->addLayout(layout);
 
     auto actionLayout = new QVBoxLayout;
     layout->addLayout(actionLayout);
-
-    d->addKeyImportButton(actionLayout, false);
-    // TODO: Only show if auto-key-retrieve is not set.
-    d->addKeyImportButton(actionLayout, true);
 
     d->addIgnoreMDCButton(actionLayout);
 
@@ -286,17 +192,47 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     });
     actionLayout->addWidget(d->m_auditLogLabel);
     d->m_auditLogLabel->setStyleSheet(styleSheet);
-    d->m_auditLogLabel->setLinkColor(linkColor);
 
-    auto detailsLabel = new HtmlLabel;
-    detailsLabel->setWordWrap(true);
-    detailsLabel->setHtml(d->m_result->details());
-    detailsLabel->setStyleSheet(styleSheet);
-    detailsLabel->setLinkColor(linkColor);
-    connect(detailsLabel, &QLabel::linkActivated, this, [this](const auto &link) {
-        d->slotLinkActivated(link);
-    });
-    vlay->addWidget(detailsLabel);
+    for (const auto &detail : d->m_result.get()->detailsList()) {
+        auto frame = new QFrame;
+        auto row = new QHBoxLayout(frame);
+
+        auto iconLabel = new QLabel;
+        QString icon;
+        if (detail.code == Task::Result::AllGood) {
+            icon = QStringLiteral("data-success");
+        } else if (detail.code == Task::Result::Warning) {
+            icon = QStringLiteral("data-warning");
+        } else {
+            icon = QStringLiteral("data-error");
+        }
+        iconLabel->setPixmap(QIcon::fromTheme(icon).pixmap(32, 32));
+        row->addWidget(iconLabel, 0);
+
+        auto detailsLabel = new HtmlLabel;
+        detailsLabel->setWordWrap(true);
+        detailsLabel->setHtml(detail.details);
+        iconLabel->setStyleSheet(QStringLiteral("QLabel {border-width: 0; }"));
+        auto color = colorForVisualCode(detail.code);
+
+        const QString styleSheet = SystemInfo::isHighContrastModeActive()
+            ? QStringLiteral(
+                  "QFrame { margin: 0px; }"
+                  "QFrame { padding: 5px; border-radius: 3px }")
+            : QStringLiteral(
+                  "QFrame { background-color: %1; margin: 0px; }"
+                  "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
+                  .arg(color.name())
+                  .arg(color.darker(150).name());
+        frame->setStyleSheet(styleSheet);
+        detailsLabel->setStyleSheet(QStringLiteral("QLabel {border-width: 0; }"));
+        connect(detailsLabel, &QLabel::linkActivated, this, [this](const auto &link) {
+            d->slotLinkActivated(link);
+        });
+
+        row->addWidget(detailsLabel, 1);
+        vlay->addWidget(frame);
+    }
 
     d->m_showButton = new QPushButton;
     d->m_showButton->setVisible(false);
@@ -362,6 +298,19 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
 
     if (url.host() == QLatin1StringView("showauditlog")) {
         q->showAuditLog();
+        return;
+    }
+
+    if (url.scheme() == QStringLiteral("certificate")) {
+        auto cmd = new Kleo::Commands::LookupCertificatesCommand(url.path(), nullptr);
+        connect(cmd, &Kleo::Commands::LookupCertificatesCommand::canceled, q, [this]() {
+            m_importCanceled = true;
+        });
+        connect(cmd, &Kleo::Commands::LookupCertificatesCommand::finished, q, [this]() {
+            oneImportFinished();
+        });
+        cmd->setParentWidget(q);
+        cmd->start();
         return;
     }
     qCWarning(KLEOPATRA_LOG) << "Unexpected link scheme: " << link;

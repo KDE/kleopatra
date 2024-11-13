@@ -56,13 +56,10 @@ protected:
     void readConfig();
     void writeConfig();
 
-protected:
-    QLabel *labelForTag(const QString &tag);
-
 private:
     std::shared_ptr<TaskCollection> m_tasks;
     QProgressBar *m_progressBar;
-    QHash<QString, QLabel *> m_progressLabelByTag;
+    QLabel *m_progressLabel;
     QVBoxLayout *m_progressLabelLayout;
     int m_lastErrorItemIndex;
     ResultListWidget *m_resultList;

@@ -104,8 +104,6 @@ public:
         AllGood,
         Warning,
         Danger,
-        NeutralSuccess,
-        NeutralError,
     };
 
     enum class ContentType {
@@ -114,17 +112,25 @@ public:
         Mbox,
     };
 
+    struct ResultListItem {
+        QString details;
+        Task::Result::VisualCode code;
+    };
+
     virtual QString overview() const = 0;
     virtual QString details() const = 0;
     virtual GpgME::Error error() const = 0;
     virtual QString errorString() const = 0;
-    virtual VisualCode code() const = 0;
     virtual AuditLogEntry auditLog() const = 0;
     virtual QPointer<Task> parentTask() const
     {
         return QPointer<Task>();
     }
     virtual ContentType viewableContentType() const;
+    virtual QList<Task::Result::ResultListItem> detailsList() const
+    {
+        return {};
+    };
 
     bool isNotepad() const;
     void setIsNotepad(bool isNotepad);

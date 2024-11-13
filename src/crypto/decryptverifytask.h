@@ -244,10 +244,10 @@ public:
     QString details() const override;
     GpgME::Error error() const override;
     QString errorString() const override;
-    VisualCode code() const override;
     AuditLogEntry auditLog() const override;
     QPointer<Task> parentTask() const override;
     Task::Result::ContentType viewableContentType() const override;
+    QList<Task::Result::ResultListItem> detailsList() const override;
 
     GpgME::VerificationResult verificationResult() const;
     GpgME::DecryptionResult decryptionResult() const;
@@ -258,8 +258,7 @@ private:
     DecryptVerifyResult(const DecryptVerifyResult &);
     DecryptVerifyResult &operator=(const DecryptVerifyResult &other);
 
-    DecryptVerifyResult(DecryptVerifyOperation op,
-                        const GpgME::VerificationResult &vr,
+    DecryptVerifyResult(const GpgME::VerificationResult &vr,
                         const GpgME::DecryptionResult &dr,
                         const QByteArray &stuff,
                         const QString &fileName,
