@@ -774,6 +774,11 @@ Task::Result::ContentType DecryptVerifyResult::viewableContentType() const
     if (decryptionResult().isMime()) {
         return Task::Result::ContentType::Mime;
     }
+
+    if (fileName().isEmpty()) {
+        return Task::Result::ContentType::None;
+    }
+
     if (fileName().endsWith(QStringLiteral("openpgp-encrypted-message"))) {
         return Task::Result::ContentType::Mime;
     }
@@ -990,7 +995,7 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
         return;
     }
 
-    q->emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output ? m_output->fileName() : QString{}, auditLog));
+    q->emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output ? m_output->fileName() : m_outputFilePath, auditLog));
 }
 
 DecryptVerifyTask::DecryptVerifyTask(QObject *parent)
