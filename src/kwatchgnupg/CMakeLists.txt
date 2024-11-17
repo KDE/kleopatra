@@ -35,7 +35,7 @@ endif()
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/images/*-apps-org.kde.kwatchgnupg.*")
 ecm_add_app_icon(kwatchgnupg_SRCS ICONS ${ICONS_SRCS})
-ecm_install_icons(ICONS ${ICONS_SRCS} DESTINATION share/icons)
+ecm_install_icons(ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR})
 
 add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
 if (COMPILE_WITH_UNITY_CMAKE_SUPPORT)
