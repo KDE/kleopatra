@@ -82,16 +82,18 @@ static void loadBackendVersions()
 {
     auto thread = QThread::create([]() {
         STARTUP_TIMING << "Checking backend versions";
-        const auto backendVersions = Kleo::backendVersionInfo();
+        const auto backendComponents = Kleo::backendComponents();
         STARTUP_TIMING << "backend versions checked";
-        if (!backendVersions.empty()) {
-            QMetaObject::invokeMethod(qApp, [backendVersions]() {
+        if (!backendComponents.empty()) {
+            QMetaObject::invokeMethod(qApp, [backendComponents]() {
                 auto about = KAboutData::applicationData();
-                about.setOtherText(i18nc("Preceeds a list of applications/libraries used by Kleopatra", "Uses:") //
-                                   + QLatin1StringView{"<ul><li>"} //
-                                   + backendVersions.join(QLatin1StringView{"</li><li>"}) //
-                                   + QLatin1StringView{"</li></ul>"} //
-                                   + about.otherText());
+                for (const auto &component : backendComponents) {
+#if KCOREADDONS_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+                    about.addComponent(component);
+#else
+                    about.addComponent(component.name(), component.description(), component.version(), component.webAddress() /*, component.license() */);
+#endif
+                }
                 KAboutData::setApplicationData(about);
             });
         }
