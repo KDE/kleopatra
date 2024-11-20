@@ -1121,7 +1121,7 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
         return;
     }
 
-    q->emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output ? m_output->fileName() : QString{}, auditLog));
+    q->emitResult(q->fromDecryptVerifyResult(dr, vr, plainText, m_output ? m_output->fileName() : m_outputFilePath, auditLog));
 }
 
 DecryptVerifyTask::DecryptVerifyTask(QObject *parent)
