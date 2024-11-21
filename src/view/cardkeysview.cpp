@@ -523,7 +523,13 @@ void CardKeysView::updateKeyList()
                 Q_ASSERT(firstSetUp);
                 insertTreeWidgetItem(slotIndex, keyInfo, Subkey{});
             } else {
-                updateTreeWidgetItem(items.front(), keyInfo, Subkey{});
+                auto firstItem = items.front();
+                updateTreeWidgetItem(firstItem, keyInfo, Subkey{});
+                if (auto button = qobject_cast<QToolButton *>(mTreeWidget->itemWidget(firstItem, Actions))) {
+                    if (button->defaultAction()) {
+                        updateAction(button->defaultAction(), firstItem, mCard.get());
+                    }
+                }
                 for (int i = 1; i < int(items.size()); ++i) {
                     auto item = items.at(i);
                     qCDebug(KLEOPATRA_LOG) << __func__ << "deleting item - slot:" << item->slotIndex() << "certificate:" << item->subkey().parent();
@@ -539,8 +545,14 @@ void CardKeysView::updateKeyList()
             } else if (items.front()->subkey().isNull()) {
                 // the second most simple case: slot with no associated subkeys -> slot with one or more associated subkeys
                 Q_ASSERT(items.size() == 1);
-                updateTreeWidgetItem(items.front(), keyInfo, subkeys.front());
-                const int itemIndex = mTreeWidget->indexOfTopLevelItem(items.front());
+                auto firstItem = items.front();
+                updateTreeWidgetItem(firstItem, keyInfo, subkeys.front());
+                if (auto button = qobject_cast<QToolButton *>(mTreeWidget->itemWidget(firstItem, Actions))) {
+                    if (button->defaultAction()) {
+                        updateAction(button->defaultAction(), firstItem, mCard.get());
+                    }
+                }
+                const int itemIndex = mTreeWidget->indexOfTopLevelItem(firstItem);
                 for (int i = 1; i < int(subkeys.size()); ++i) {
                     insertTreeWidgetItem(slotIndex, keyInfo, subkeys.at(i), itemIndex + i);
                 }
