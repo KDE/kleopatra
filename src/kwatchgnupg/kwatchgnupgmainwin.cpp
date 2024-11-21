@@ -2,7 +2,7 @@
     kwatchgnupgmainwin.cpp
 
     This file is part of Kleopatra, the KDE keymanager
-    SPDX-FileCopyrightText: 2001, 2002, 2004 Klar �vdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2001, 2002, 2004 Klarälvdalens Datakonsult AB
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -13,7 +13,6 @@
 
 #include "kwatchgnupg.h"
 #include "kwatchgnupgconfig.h"
-#include "tray.h"
 
 #include <QGpgME/CryptoConfig>
 #include <QGpgME/Protocol>
@@ -51,23 +50,20 @@ KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
 
     setCentralWidget(mCentralWidget);
 
-    mWatcher = new KProcess;
+    mWatcher = new KProcess{this};
     connect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
     connect(mWatcher, &QProcess::readyReadStandardOutput, this, &KWatchGnuPGMainWindow::slotReadStdout);
 
     slotReadConfig();
-    mSysTray = new KWatchGnuPGTray(this);
-    QAction *act = mSysTray->action(QStringLiteral("quit"));
-    if (act) {
-        connect(act, &QAction::triggered, this, &KWatchGnuPGMainWindow::slotQuit);
-    }
 
     setAutoSaveSettings();
 }
 
 KWatchGnuPGMainWindow::~KWatchGnuPGMainWindow()
 {
-    delete mWatcher;
+    disconnect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
+    mWatcher->kill();
+    mWatcher->waitForFinished(); // to avoid QProcess's warning "Destroyed while process ("watchgnupg") is still running."
 }
 
 void KWatchGnuPGMainWindow::slotClear()
@@ -84,8 +80,7 @@ void KWatchGnuPGMainWindow::createActions()
     connect(action, &QAction::triggered, this, &KWatchGnuPGMainWindow::slotClear);
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_L));
     (void)KStandardActions::saveAs(this, &KWatchGnuPGMainWindow::slotSaveAs, actionCollection());
-    (void)KStandardActions::close(this, &KWatchGnuPGMainWindow::close, actionCollection());
-    (void)KStandardActions::quit(this, &KWatchGnuPGMainWindow::slotQuit, actionCollection());
+    (void)KStandardActions::quit(qApp, &QCoreApplication::quit, actionCollection());
     (void)KStandardActions::preferences(this, &KWatchGnuPGMainWindow::slotConfigure, actionCollection());
     (void)KStandardActions::keyBindings(this, &KWatchGnuPGMainWindow::configureShortcuts, actionCollection());
     (void)KStandardActions::configureToolbars(this, &KWatchGnuPGMainWindow::slotConfigureToolbars, actionCollection());
@@ -200,18 +195,7 @@ void KWatchGnuPGMainWindow::slotReadStdout()
         }
         mCentralWidget->append(str);
         mCentralWidget->ensureCursorVisible();
-        if (!isVisible()) {
-            // Change tray icon to show something happened
-            // PENDING(steffen)
-            mSysTray->setAttention(true);
-        }
     }
-}
-
-void KWatchGnuPGMainWindow::show()
-{
-    mSysTray->setAttention(false);
-    KMainWindow::show();
 }
 
 void KWatchGnuPGMainWindow::slotSaveAs()
@@ -225,13 +209,6 @@ void KWatchGnuPGMainWindow::slotSaveAs()
         QTextStream(&file) << mCentralWidget->document()->toPlainText();
     } else
         KMessageBox::information(this, i18n("Could not save file %1: %2", filename, file.errorString()));
-}
-
-void KWatchGnuPGMainWindow::slotQuit()
-{
-    disconnect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
-    mWatcher->kill();
-    qApp->quit();
 }
 
 void KWatchGnuPGMainWindow::slotConfigure()
@@ -252,15 +229,6 @@ void KWatchGnuPGMainWindow::slotReadConfig()
     mCentralWidget->document()->setMaximumBlockCount(maxLogLen < 1 ? -1 : maxLogLen);
     setGnuPGConfig();
     startWatcher();
-}
-
-bool KWatchGnuPGMainWindow::queryClose()
-{
-    if (!qApp->isSavingSession()) {
-        hide();
-        return false;
-    }
-    return KMainWindow::queryClose();
 }
 
 #include "moc_kwatchgnupgmainwin.cpp"

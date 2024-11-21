@@ -9,10 +9,10 @@
 
 #pragma once
 
-#include <QProcess>
-#include <kxmlguiwindow.h>
+#include <KXmlGuiWindow>
 
-class KWatchGnuPGTray;
+#include <QProcess>
+
 class KWatchGnuPGConfig;
 class KProcess;
 class QTextEdit;
@@ -29,19 +29,12 @@ private Q_SLOTS:
     void slotReadStdout();
 
     void slotSaveAs();
-    void slotQuit();
     void slotClear();
 
     void slotConfigure();
     void slotConfigureToolbars();
     void configureShortcuts();
     void slotReadConfig();
-
-public Q_SLOTS:
-    /* reimp */ void show();
-
-protected:
-    bool queryClose() override;
 
 private:
     void createActions();
@@ -51,6 +44,5 @@ private:
     KProcess *mWatcher;
 
     QTextEdit *mCentralWidget;
-    KWatchGnuPGTray *mSysTray;
     KWatchGnuPGConfig *mConfig;
 };
