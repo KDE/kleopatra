@@ -12,13 +12,11 @@ set(kwatchgnupg_SRCS
   kwatchgnupgmainwin.cpp
   kwatchgnupgconfig.cpp
   aboutdata.cpp
-  tray.cpp
   ../utils/kuniqueservice.h
   ../kleopatra_debug.h
   kwatchgnupgmainwin.h
   kwatchgnupgconfig.h
   aboutdata.h
-  tray.h
   main.cpp
   kwatchgnupg.qrc
 )
@@ -52,7 +50,6 @@ target_link_libraries(kwatchgnupg
   KPim6::Libkleo
   KF6::CoreAddons
   KF6::Crash
-  KF6::StatusNotifierItem
 )
 
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
