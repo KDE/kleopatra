@@ -169,7 +169,6 @@ void AutoDecryptVerifyFilesController::Private::exec()
     }
     coll->setTasks(m_runnableTasks);
     m_dialog = new DecryptVerifyFilesDialog(coll);
-    m_dialog->setAttribute(Qt::WA_DeleteOnClose);
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
     q->applyWindowID(m_dialog);
 
@@ -685,6 +684,7 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
         }
     }
     q->emitDoneOrError();
+    m_dialog->deleteLater();
 }
 
 #include "moc_autodecryptverifyfilescontroller.cpp"
