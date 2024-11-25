@@ -185,7 +185,6 @@ void KleoPageConfigDialog::slotHelpClicked()
 
 void KleoPageConfigDialog::addModule(const QString &name, const QString &docPath, const QString &icon, KleoConfigModule *module)
 {
-    mModules << module;
     module->load();
     auto item = addPage(module, name);
     item->setIcon(QIcon::fromTheme(icon));

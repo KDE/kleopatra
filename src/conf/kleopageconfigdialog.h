@@ -50,7 +50,6 @@ private:
     void clientChanged();
     void apply();
 
-    QList<Kleo::Config::KleoConfigModule *> mModules;
     QSet<Kleo::Config::KleoConfigModule *> mChangedModules;
     QMap<QString, QString> mHelpUrls;
 };
