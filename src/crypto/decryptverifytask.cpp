@@ -382,7 +382,7 @@ static QString formatResultLine(const QString &input,
     }
     if (error.code() != GPG_ERR_NO_ERROR) {
         return xi18nc("@info Failed to decrypt <file>: <reason>",
-                      "Failed to decrypt <filename>%1</filename>: %2",
+                      "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>",
                       input,
                       formatDecryptionResultOverview(decryptionResult));
     }
