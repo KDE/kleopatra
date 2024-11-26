@@ -475,21 +475,26 @@ static void readKeyPairInfoFromPIVCard(const std::string &keyRef, PIVCard *pivCa
     pivCard->setCardInfo(keyPairInfoLines);
 }
 
-static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)
+static std::string readCertificateFromCard(const std::string &keyRef, const std::shared_ptr<Context> &gpg_agent)
 {
     Error err;
     const std::string command = std::string("SCD READCERT ") + keyRef;
     const std::string certificateData = Assuan::sendDataCommand(gpg_agent, command.c_str(), err);
     if (err && err.code() != GPG_ERR_NOT_FOUND) {
-        qCWarning(KLEOPATRA_LOG) << "Running" << command << "failed:" << err;
-        return;
+        qCWarning(KLEOPATRA_LOG) << __func__ << "Running" << command << "failed:" << err;
+        return {};
     }
-    if (certificateData.empty()) {
-        qCDebug(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): No certificate stored on card";
-        return;
+    qCDebug(KLEOPATRA_LOG) << __func__ << "(" << QString::fromStdString(keyRef) << "):" //
+                           << (certificateData.empty() ? "No certificate stored on card" : "Found certificate stored on card");
+    return certificateData;
+}
+
+static void readCertificateFromPIVCard(const std::string &keyRef, PIVCard *pivCard, const std::shared_ptr<Context> &gpg_agent)
+{
+    const std::string certificateData = readCertificateFromCard(keyRef, gpg_agent);
+    if (!certificateData.empty()) {
+        pivCard->setCertificateData(keyRef, certificateData);
     }
-    qCDebug(KLEOPATRA_LOG) << "readCertificateFromPIVCard(" << QString::fromStdString(keyRef) << "): Found certificate stored on card";
-    pivCard->setCertificateData(keyRef, certificateData);
 }
 
 static void handle_piv_card(std::shared_ptr<Card> &ci, std::shared_ptr<Context> &gpg_agent)
