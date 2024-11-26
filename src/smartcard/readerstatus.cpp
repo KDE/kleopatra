@@ -22,12 +22,16 @@
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/StringUtils>
 
 #include <QGpgME/Debug>
+#include <QGpgME/ImportJob>
+#include <QGpgME/Protocol>
 
 #include <gpgme++/context.h>
 #include <gpgme++/defaultassuantransaction.h>
 #include <gpgme++/engineinfo.h>
+#include <gpgme++/importresult.h>
 
 #include <gpg-error.h>
 
@@ -726,6 +730,119 @@ static std::vector<std::shared_ptr<Card>> update_cardinfo(std::shared_ptr<Contex
     }
     return cards;
 }
+
+namespace
+{
+struct CertInfo {
+    int certType = -1;
+    std::string keyref;
+};
+
+static QDebug operator<<(QDebug s, const CertInfo &certInfo)
+{
+    return s << "CertInfo(" << certInfo.certType << ',' << certInfo.keyref << ')';
+}
+}
+
+static CertInfo parseCertInfoLine(std::string_view line)
+{
+    CertInfo result;
+    const std::vector<std::string_view> parts = Kleo::split(line, ' ', 3);
+    if (parts.size() < 2) {
+        qCWarning(KLEOPATRA_LOG) << "Invalid CERTINFO status line (too few values)" << line;
+        return result;
+    }
+    const auto certType = Kleo::svToInt(parts.front());
+    if (!certType) {
+        qCWarning(KLEOPATRA_LOG) << "Invalid CERTINFO status line (invalid CERTTYPE)" << line;
+        return result;
+    }
+    return {certType.value(), std::string{parts[1]}};
+}
+
+static std::vector<CertInfo> parseCertInfoLines(const std::vector<std::pair<std::string, std::string>> &statusLines)
+{
+    std::vector<CertInfo> certInfos;
+    Kleo::transform_if(
+        statusLines,
+        std::back_inserter(certInfos),
+        [](const auto &statusLine) {
+            return parseCertInfoLine(statusLine.second);
+        },
+        [](const auto &statusLine) {
+            return statusLine.first == "CERTINFO";
+        });
+    // remove invalid and unknown values
+    Kleo::erase_if(certInfos, [](const auto &certInfo) {
+        return certInfo.certType <= 0;
+    });
+    return certInfos;
+}
+
+static void importCardCertificates(std::shared_ptr<Context> &gpgAgent)
+{
+    Error err;
+
+    // retrieve information about the certificates stored on the card
+    const auto statusLines = Assuan::sendStatusLinesCommand(gpgAgent, "SCD LEARN --force", err);
+    if (err) {
+        return;
+    }
+    auto certInfos = parseCertInfoLines(statusLines);
+    // remove certificate information for unsupported certificate types (see gpg-agent's agent_handle_learn)
+    Kleo::erase_if(certInfos, [](const CertInfo &certInfo) {
+        return (certInfo.certType != 100) && (certInfo.certType != 101) && (certInfo.certType != 102) && (certInfo.certType != 111);
+    });
+    // sort the certificate information by certificate types in the same order as gpg-agent's agent_handle_learn, i.e.
+    //   111, /* Root CA */
+    //   101, /* trusted */
+    //   102, /* useful */
+    //   100, /* regular */
+    const auto certInfoIsLessThan = [](const CertInfo &lhs, const CertInfo &rhs) {
+        // first condition puts 111 and 101 before 102 and 100 and second condition puts the certs in the two groups in the right order
+        return ((lhs.certType & 0x01) > (rhs.certType & 0x01)) || (lhs.certType > rhs.certType);
+    };
+    std::sort(certInfos.begin(), certInfos.end(), certInfoIsLessThan);
+
+    for (const CertInfo &certInfo : certInfos) {
+        const std::string certificateData = readCertificateFromCard(certInfo.keyref, gpgAgent);
+        if (certificateData.empty()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "No certificate data retrieved from the card for slot" << certInfo.keyref;
+            continue;
+        }
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Retrieved certificate data from the card for slot" << certInfo.keyref;
+
+        const auto job = std::unique_ptr<QGpgME::ImportJob>(QGpgME::smime()->importJob());
+        const ImportResult result = job->exec(QByteArray::fromStdString(certificateData));
+        if (result.error()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Import of certificate data failed:" << result.error();
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Imported certificate data: considered:" << result.numConsidered() << "imported:" << result.numImported();
+        }
+    }
+}
+
+static void learnCard(const std::string &serialNumber, const std::string &appName, std::shared_ptr<Context> &gpgAgent)
+{
+    Error err;
+    if (gpgHasMultiCardMultiAppSupport()) {
+        switchCard(gpgAgent, serialNumber, err);
+        if (!err) {
+            switchApp(gpgAgent, serialNumber, appName, err);
+        }
+        if (err) {
+            return;
+        }
+    }
+
+    importCardCertificates(gpgAgent);
+
+    if (gpgHasMultiCardMultiAppSupport() && appName != OpenPGPCard::AppName) {
+        // switch the card app back to OpenPGP; errors are ignored
+        GpgME::Error dummy;
+        switchCardBackToOpenPGPApp(gpgAgent, serialNumber, dummy);
+    }
+}
 } // namespace
 
 struct Transaction {
@@ -742,16 +859,6 @@ static const Transaction quitTransaction = {{"__all__", "__all__"}, "__quit__", 
 
 namespace
 {
-static void logProcessOutput(const char *prefix, const char *label, const QByteArray &output)
-{
-    if (output.isEmpty()) {
-        return;
-    }
-    for (const auto &line : output.split('\n')) {
-        qCDebug(KLEOPATRA_LOG) << prefix << label << line;
-    }
-}
-
 class ReaderStatusThread : public QThread
 {
     Q_OBJECT
@@ -836,37 +943,6 @@ private Q_SLOTS:
     }
 
 private:
-    void learnCard(const std::string &serialNumber, const std::string &appName)
-    {
-        QProcess process;
-        connect(&process, &QProcess::readyReadStandardOutput, &process, [&process]() {
-            logProcessOutput("learnCMSCards", "stdout:", process.readAllStandardOutput());
-        });
-        connect(&process, &QProcess::readyReadStandardError, &process, [&process]() {
-            logProcessOutput("learnCMSCards", "stderr:", process.readAllStandardError());
-        });
-
-        process.start(gpgSmPath(), {QStringLiteral("--learn-card"), QStringLiteral("-v")});
-        qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '});
-        if (!process.waitForStarted()) {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Starting" << process.program() << "failed";
-            return;
-        }
-        // ensure that gpgsm doesn't wait for input
-        process.closeWriteChannel();
-
-        const bool success = process.waitForFinished(60000); // 60 seconds should be more than enough
-
-        logProcessOutput(__func__, "stdout:", process.readAllStandardOutput());
-        logProcessOutput(__func__, "stderr:", process.readAllStandardError());
-        if (success) {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '}) << "succeeded";
-        } else {
-            qCDebug(KLEOPATRA_LOG) << __func__ << "Running" << process.program() << process.arguments().join(QLatin1Char{' '})
-                                   << "failed; error:" << process.error() << ", exit code:" << process.exitCode();
-        }
-    }
-
     void run() override
     {
         while (true) {
@@ -1004,7 +1080,7 @@ private:
                 Q_EMIT updateFinished();
             } else if (nullSlot && command == learnCardTransactionCommand) {
                 Q_EMIT startingLearnCard(cardApp.serialNumber, cardApp.appName);
-                learnCard(cardApp.serialNumber, cardApp.appName);
+                learnCard(cardApp.serialNumber, cardApp.appName, gpgAgent);
                 Q_EMIT cardLearned(cardApp.serialNumber, cardApp.appName);
             } else {
                 GpgME::Error err;
