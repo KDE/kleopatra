@@ -24,6 +24,13 @@ OverlayWidget::OverlayWidget(QWidget *baseWidget, QWidget *parent)
     , mBaseWidget(baseWidget)
 {
     new QVBoxLayout(this);
+
+    setAutoFillBackground(true);
+    auto widgetPalette = palette();
+    auto backgroundColor = widgetPalette.color(QPalette::Window);
+    backgroundColor.setAlphaF(0.8);
+    widgetPalette.setColor(QPalette::Window, backgroundColor);
+    setPalette(widgetPalette);
 }
 
 OverlayWidget::~OverlayWidget()
@@ -50,7 +57,6 @@ void OverlayWidget::showOverlay()
         return;
     }
     shown = true;
-    mBaseWidget->setEnabled(false);
     reposition();
     mBaseWidget->installEventFilter(this);
 }
@@ -63,7 +69,6 @@ void OverlayWidget::hideOverlay()
     shown = false;
     mBaseWidget->removeEventFilter(this);
     hide();
-    mBaseWidget->setEnabled(true);
 }
 
 bool OverlayWidget::eventFilter(QObject *object, QEvent *event)
