@@ -489,6 +489,7 @@ void LookupCertificatesCommand::Private::tryToFinishKeyLookup()
     }
     if (progress) {
         progress->setValue(progress->maximum());
+        progress->deleteLater();
     }
 
     if (keyListing.result.error() && !keyListing.result.error().isCanceled() && (keyListing.result.error().code() != GPG_ERR_NOT_FOUND)) {
