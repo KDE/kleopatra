@@ -264,9 +264,13 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         if (!SystemInfo::isHighContrastModeActive()) {
             if (auto bgColor = keyFilters->bgColor(key); bgColor.isValid()) {
                 item->setBackground(col, bgColor);
+            } else {
+                item->setBackground(col, {});
             }
             if (auto fgColor = keyFilters->fgColor(key); fgColor.isValid()) {
                 item->setForeground(col, fgColor);
+            } else {
+                item->setForeground(col, {});
             }
         }
     }
