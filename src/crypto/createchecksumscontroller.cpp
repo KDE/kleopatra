@@ -171,7 +171,7 @@ private:
 #ifndef QT_NO_PROGRESSDIALOG
         if (progressDialog) {
             progressDialog->setValue(progressDialog->maximum());
-            progressDialog->close();
+            progressDialog->accept();
         }
 #endif // QT_NO_PROGRESSDIALOG
         auto const dlg = new ResultDialog(created, errors);
@@ -304,7 +304,7 @@ void CreateChecksumsController::start()
 
 void CreateChecksumsController::cancel()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
     const QMutexLocker locker(&d->mutex);
     d->canceled = true;
 }
