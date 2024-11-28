@@ -68,7 +68,12 @@ protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
-    void updateKeyList();
+    enum UpdateKeyListOptions {
+        IgnoreMissingCertificates,
+        LearnMissingCertificates,
+    };
+
+    void updateKeyList(UpdateKeyListOptions options);
     void insertTreeWidgetItem(int slotIndex, const SmartCard::KeyPairInfo &keyInfo, const GpgME::Subkey &subkey, int treeIndex = -1);
     QToolButton *addActionsButton(CardKeysWidgetItem *item, SmartCard::AppType cardType);
     void ensureCertificatesAreValidated();

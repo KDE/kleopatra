@@ -463,7 +463,9 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
     mTreeViewOverlay = new ProgressOverlay{mTreeWidget, this};
     mTreeViewOverlay->hide();
 
-    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, &CardKeysView::updateKeyList);
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, this, [this]() {
+        updateKeyList(IgnoreMissingCertificates);
+    });
 }
 
 CardKeysView::~CardKeysView() = default;
@@ -472,7 +474,7 @@ void CardKeysView::setCard(const std::shared_ptr<const Card> &card)
 {
     mCard = card;
 
-    updateKeyList();
+    updateKeyList(LearnMissingCertificates);
 }
 
 std::string CardKeysView::currentCardSlot() const
@@ -503,7 +505,7 @@ bool CardKeysView::eventFilter(QObject *obj, QEvent *event)
     return QWidget::eventFilter(obj, event);
 }
 
-void CardKeysView::updateKeyList()
+void CardKeysView::updateKeyList(UpdateKeyListOptions options)
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
     const bool firstSetUp = (mTreeWidget->topLevelItemCount() == 0);
@@ -625,7 +627,7 @@ void CardKeysView::updateKeyList()
 
     ensureCertificatesAreValidated();
 
-    if (firstSetUp && canImportCertificates(mCard.get(), keyRefsWithoutSMimeCertificate)) {
+    if ((options == LearnMissingCertificates) && canImportCertificates(mCard.get(), keyRefsWithoutSMimeCertificate)) {
         // the card contains keys we don't know; try to learn them from the card
         learnCard();
     }
@@ -736,7 +738,7 @@ void CardKeysView::certificateValidationDone(const GpgME::KeyListResult &result,
             qCDebug(KLEOPATRA_LOG) << __func__ << "Didn't find validated certificate in certificate list:" << validatedCert;
         }
     }
-    updateKeyList();
+    updateKeyList(IgnoreMissingCertificates);
 }
 
 void CardKeysView::learnCard()
