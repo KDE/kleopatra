@@ -1021,10 +1021,8 @@ private:
                             qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "was added";
                             Q_EMIT cardAdded(serialNumber, appName);
                         } else {
-                            if (*newCard != **matchingOldCard) {
-                                qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
-                                Q_EMIT cardChanged(serialNumber, appName);
-                            }
+                            qCDebug(KLEOPATRA_LOG) << "ReaderStatusThread: Card" << serialNumber << "with app" << appName << "changed";
+                            Q_EMIT cardChanged(serialNumber, appName);
                             oldCards.erase(matchingOldCard);
                         }
                         if (newCard->hasNKSNullPin() && firstCardWithNullPin.empty()) {
