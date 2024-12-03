@@ -413,8 +413,9 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
 
 void CertificateLineEdit::Private::openDetailsDialog()
 {
-    if (!q->key().isNull()) {
-        auto cmd = new Commands::DetailsCommand{q->key()};
+    if (!q->key().isNull() || !q->userID().isNull()) {
+        const Key key = !q->key().isNull() ? q->key() : q->userID().parent();
+        auto cmd = new Commands::DetailsCommand{key};
         cmd->setParentWidget(q);
         cmd->start();
     } else if (!q->group().isNull()) {
