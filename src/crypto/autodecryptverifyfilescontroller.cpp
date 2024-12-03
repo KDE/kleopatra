@@ -170,9 +170,8 @@ void AutoDecryptVerifyFilesController::Private::exec()
     m_dialog = new DecryptVerifyFilesDialog(coll);
     m_dialog->setAttribute(Qt::WA_DeleteOnClose);
     m_dialog->setOutputLocation(heuristicBaseDirectory(m_passedFiles));
-    q->applyWindowID(m_dialog);
+    q->bringToForeground(m_dialog);
 
-    m_dialog->show();
     QTimer::singleShot(0, q, SLOT(schedule()));
     connect(m_dialog, &QDialog::finished, q, [this](auto result) {
         onDialogFinished(result);
