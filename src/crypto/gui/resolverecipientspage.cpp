@@ -658,9 +658,10 @@ void ResolveRecipientsPage::Private::writeSelectedCertificatesToPreferences()
     }
 }
 
-void ResolveRecipientsPage::onNext()
+bool ResolveRecipientsPage::onNext()
 {
     d->writeSelectedCertificatesToPreferences();
+    return true;
 }
 
 #include "moc_resolverecipientspage.cpp"

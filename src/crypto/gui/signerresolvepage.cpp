@@ -662,8 +662,9 @@ std::shared_ptr<SigningPreferences> SignerResolvePage::signingPreferences() cons
     return d->signingPreferences;
 }
 
-void SignerResolvePage::onNext()
+bool SignerResolvePage::onNext()
 {
+    return true;
 }
 
 #include "moc_signerresolvepage.cpp"

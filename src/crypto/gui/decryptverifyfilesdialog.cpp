@@ -16,6 +16,7 @@
 #include "crypto/gui/resultlistwidget.h"
 #include "crypto/gui/resultpage.h"
 #include "crypto/taskcollection.h"
+#include "utils/fileutils.h"
 #include "utils/path-helper.h"
 
 #include <Libkleo/FileNameRequester>
@@ -194,36 +195,7 @@ void DecryptVerifyFilesDialog::btnClicked(QAbstractButton *btn)
 
 void DecryptVerifyFilesDialog::checkAccept()
 {
-    const auto outLoc = outputLocation();
-    if (outLoc.isEmpty()) {
-        KMessageBox::information(this, i18n("Please select an output folder."), i18nc("@title:window", "No Output Folder"));
-        return;
-    }
-    const QFileInfo fi(outLoc);
-
-    if (!fi.exists()) {
-        qCDebug(KLEOPATRA_LOG) << "Output dir does not exist. Trying to create.";
-        const QDir dir(outLoc);
-        if (!dir.mkdir(outLoc)) {
-            KMessageBox::information(
-                this,
-                xi18nc("@info",
-                       "<para>Failed to create output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>",
-                       outLoc),
-                i18nc("@title:window", "Unusable Output Folder"));
-        } else {
-            accept();
-        }
-    } else if (!fi.isDir()) {
-        KMessageBox::information(this, i18n("Please select a different output folder."), i18nc("@title:window", "Invalid Output Folder"));
-    } else if (!Kleo::isWritable(fi)) {
-        KMessageBox::information(
-            this,
-            xi18nc("@info",
-                   "<para>Cannot write in the output folder <filename>%1</filename>.</para><para>Please select a different output folder.</para>",
-                   outLoc),
-            i18nc("@title:window", "Unusable Output Folder"));
-    } else {
+    if (Kleo::ensureOutputDirectoryExists(outputLocation(), this)) {
         accept();
     }
 }

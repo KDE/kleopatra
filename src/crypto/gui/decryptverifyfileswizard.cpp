@@ -12,6 +12,7 @@
 #include "decryptverifyfileswizard.h"
 
 #include "decryptverifyoperationwidget.h"
+#include "utils/fileutils.h"
 
 #include <crypto/gui/resultpage.h>
 #include <crypto/gui/wizardpage.h>
@@ -97,6 +98,11 @@ public:
             }
             return true;
         });
+    }
+
+    bool onNext() override
+    {
+        return Kleo::ensureOutputDirectoryExists(outputDirectory(), this);
     }
 
 private:
