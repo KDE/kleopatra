@@ -221,11 +221,10 @@ void SearchBar::setKeyFilter(const std::shared_ptr<KeyFilter> &kf)
     }
 
     auto index = d->combo->findData(kf->id());
-    if (index != -1) {
-        d->combo->setCurrentIndex(index);
-    } else {
-        d->combo->setCurrentIndex(0);
+    if (index == -1) {
+        index = d->combo->findData(QStringLiteral("all-certificates"));
     }
+    d->combo->setCurrentIndex(index);
 }
 
 // slot
