@@ -96,8 +96,9 @@
 
 #include <KSharedConfig>
 
-#ifdef Q_OS_UNIX
+#if __has_include(<KWaylandExtras>)
 #include <KWaylandExtras>
+#define HAVE_WAYLAND
 #endif
 
 #include <chrono>
@@ -475,7 +476,7 @@ MainWindow::Private::Private(MainWindow *qq)
     ui.searchTab->tabWidget()->setFlatModel(flatModel);
     ui.searchTab->tabWidget()->setHierarchicalModel(hierarchicalModel);
 
-#ifdef Q_OS_UNIX
+#ifdef HAVE_WAYLAND
     connect(KWaylandExtras::self(), &KWaylandExtras::windowExported, q, [this](const auto &window, const auto &token) {
         if (window == q->windowHandle()) {
             qputenv("PINENTRY_GEOM_HINT", QUrl::toPercentEncoding(token));
@@ -983,7 +984,7 @@ void MainWindow::saveProperties(KConfigGroup &cg)
 
 void MainWindow::exportWindow()
 {
-#ifdef Q_OS_UNIX
+#ifdef HAVE_WAYLAND
     (void)winId(); // Ensures that windowHandle() returns the window
     KWaylandExtras::self()->exportWindow(windowHandle());
 #endif
@@ -991,7 +992,7 @@ void MainWindow::exportWindow()
 
 void MainWindow::unexportWindow()
 {
-#ifdef Q_OS_UNIX
+#ifdef HAVE_WAYLAND
     KWaylandExtras::self()->unexportWindow(windowHandle());
 #endif
 }
