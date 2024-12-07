@@ -61,7 +61,7 @@ Q_SIGNALS:
     void windowTitleChanged(const QString &title);
 
 protected:
-    virtual void onNext();
+    virtual bool onNext();
 
 private:
     class Private;

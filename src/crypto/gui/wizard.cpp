@@ -260,7 +260,9 @@ void Wizard::next()
 {
     WizardPage *const current = currentPageWidget();
     if (current) {
-        current->onNext();
+        if (!current->onNext()) {
+            return;
+        }
     }
     onNext(d->currentId);
     auto it = Kleo::binary_find(d->pageOrder.begin(), d->pageOrder.end(), d->currentId);

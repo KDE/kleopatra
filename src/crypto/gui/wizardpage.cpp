@@ -127,8 +127,9 @@ WizardPage::~WizardPage()
 {
 }
 
-void WizardPage::onNext()
+bool WizardPage::onNext()
 {
+    return true;
 }
 
 #include "moc_wizardpage.cpp"

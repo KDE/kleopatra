@@ -441,6 +441,8 @@ set(_kleopatra_SRCS
   utils/emptypassphraseprovider.h
   utils/filedialog.cpp
   utils/filedialog.h
+  utils/fileutils.cpp
+  utils/fileutils.h
   utils/gui-helper.cpp
   utils/gui-helper.h
   utils/headerview.cpp

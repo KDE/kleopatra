@@ -106,7 +106,7 @@ public:
     std::shared_ptr<SigningPreferences> signingPreferences() const;
 
 private:
-    void onNext() override;
+    bool onNext() override;
 
 private:
     class Private;
