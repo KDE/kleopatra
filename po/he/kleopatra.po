@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-06 00:41+0000\n"
-"PO-Revision-Date: 2024-12-05 08:59+0200\n"
+"PO-Revision-Date: 2024-12-08 08:16+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -551,14 +551,14 @@ msgstr ""
 "para>"
 
 #: src/commands/certifygroupcommand.cpp:276
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] "קובץ רשימת ביטול התעודות יובא בהצלחה."
-msgstr[1] "קובץ רשימת ביטול התעודות יובא בהצלחה."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "אחד מתוך %2 אישורים הוסמך בהצלחה."
+msgstr[1] "שניים מתוך %2 אישורים הוסמך בהצלחה."
+msgstr[2] "%1 מתוך %2 אישורים הוסמך בהצלחה."
+msgstr[3] "%1 מתוך %2 אישורים הוסמך בהצלחה."
 
 #: src/commands/certifygroupcommand.cpp:294
 #, kde-format
@@ -633,6 +633,9 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>להעניק ל־‚%1’ את הסמכות לסמן אישורים בתור %2 בשמך?</"
+"para><para><emphasis>המשמעות היא שבעלי האישור הזה בודק כראוי טביעות אצבע "
+"ומאשר זהויות של אחרים.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:140
 #, kde-kuit-format
@@ -643,6 +646,9 @@ msgid ""
 "properly checks fingerprints and confirms the identities of others.</"
 "emphasis></para>"
 msgstr ""
+"<para>להעניק ל־‚%1’ את הסמכות לסמן אישורים בתור תקפים בשמך?</"
+"para><para><emphasis>המשמעות היא שבעלי האישור הזה בודק כראוי טביעות אצבע "
+"ומאשר זהויות של אחרים.</emphasis></para>"
 
 #: src/commands/changeownertrustcommand.cpp:146
 #, kde-format
@@ -663,6 +669,8 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as %2 for "
 "you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>לאישור ‚%1’ יש סמכות לסמן אישורים אחרים בתור %2 בשמך.</"
+"para><para>לשלול את הסמכות הזאת?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:162
 #, kde-kuit-format
@@ -671,6 +679,8 @@ msgid ""
 "<para>The certificate '%1' is empowered to mark other certificates as valid "
 "for you.</para><para>Do you want to revoke this power?</para>"
 msgstr ""
+"<para>לאישור ‚%1’ יש סמכות לסמן אישורים אחרים בתור תקפים בשמך.</"
+"para><para>לשלול את הסמכות הזאת?</para>"
 
 #: src/commands/changeownertrustcommand.cpp:167
 #, kde-format
@@ -820,7 +830,7 @@ msgstr "ה־PUK השתנה בהצלחה."
 #, kde-format
 msgctxt "@info"
 msgid "Unblocked and set a new PIN successfully."
-msgstr ""
+msgstr "החסימה שוחררה והוגדר קוד אישי (PIN) חדש בהצלחה."
 
 #: src/commands/changepincommand.cpp:190
 #, kde-format
@@ -1620,9 +1630,16 @@ msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
 msgstr[0] ""
+"ייצוא האישור לשרת מפתחות אינו אפשרי כיוון שהשימוש בשרתי מפתחות הושבת במפורש."
 msgstr[1] ""
+"ייצוא האישורים לשרת מפתחות אינו אפשרי כיוון שהשימוש בשרתי מפתחות הושבת "
+"במפורש."
 msgstr[2] ""
+"ייצוא האישורים לשרת מפתחות אינו אפשרי כיוון שהשימוש בשרתי מפתחות הושבת "
+"במפורש."
 msgstr[3] ""
+"ייצוא האישורים לשרת מפתחות אינו אפשרי כיוון שהשימוש בשרתי מפתחות הושבת "
+"במפורש."
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
 #, kde-kuit-format
@@ -2925,6 +2942,8 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+"<para>אישור OpenPGP חדש נוצר בהצלחה, אך הוא לא נמצא בצרור המפתחות.</"
+"para><para>טביעת האצבע של האישור החדש:<nl/>%1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:228
 #: src/crypto/newsignencryptemailcontroller.cpp:382
@@ -3377,6 +3396,9 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
+"<para>האישור נשלל בהצלחה והועלה לספרייה הפנימית.</para><para>האישור שנשלל "
+"נשמר אל <filename>%1</filename>.</para><para>יש לשלוח את הקובץ הזה לאלו "
+"שמתכתבים איתך עם הנחיות איך לייבא אותו.</para>"
 
 #: src/commands/revokekeycommand.cpp:333
 #, kde-kuit-format
@@ -3387,6 +3409,9 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
+"<para>האישור נשלל בהצלחה והועלה אל %1.</para><para>האישור שנשלל נשמר אל "
+"<filename>%2</filename>.</para><para>יש לשלוח את הקובץ הזה לאלו שמתכתבים "
+"איתך עם הנחיות איך לייבא אותו.</para>"
 
 #: src/commands/revokekeycommand.cpp:342
 #, kde-kuit-format
@@ -3397,6 +3422,9 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
+"<para>האישור נשלל בהצלחה.</para><para>האישור שנשלל נשמר אל <filename>%1</"
+"filename>.</para><para>יש לשלוח את הקובץ הזה לאלו שמתכתבים איתך עם הנחיות "
+"איך לייבא אותו.</para>"
 
 #: src/commands/revokeuseridcommand.cpp:125
 #, kde-kuit-format
@@ -3743,6 +3771,9 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
+"יש להגדיר את האפשרות הזאת כדי לקודד קבצים מוצפנים או חתומים כטקסט בקידוד "
+"base64. כדי שאפשר יהיה לפתוח אותם בעורך או לשלוח אותם בגוף הודעות. הבחירה "
+"בקידוד הזה תגדיל את הגודל בשליש."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
@@ -3803,7 +3834,7 @@ msgstr "יש להגדיר את האפשרות הזאת כדי להשבית הצ�
 #: src/conf/cryptooperationsconfigwidget.cpp:99
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
-msgstr ""
+msgstr "תוכנית סיכום ביקורת לשימוש בעת יצירת קובצי סיכום ביקורת:"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:104
 #, kde-format
@@ -3842,6 +3873,10 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"נא למלא את כתובת שרת המפתחות לשימוש לחיפוש אישורי OpenPGP ובעת העלאת אישורי "
+"OpenPGP. אם לא תצוין כתובת ייעשה שימוש בברירת מחדל פנימית. כדי להשבית את "
+"השימוש בשרת מפתחות OpenPGP יש למלא את הערך המיוחד <emphasis>none</emphasis> "
+"(ללא)."
 
 #: src/conf/dirservconfigpage.cpp:169
 #, kde-format
@@ -3857,12 +3892,12 @@ msgstr "שירותי ספרייה X.509"
 #: src/conf/dirservconfigpage.cpp:203
 #, kde-format
 msgid "LDAP &timeout (minutes:seconds):"
-msgstr ""
+msgstr "תום &זמן המתנה ל־LDAP (דקות:שניות - דקות בהתחלה):"
 
 #: src/conf/dirservconfigpage.cpp:212
 #, kde-format
 msgid "&Maximum number of items returned by query:"
-msgstr ""
+msgstr "מספר הפריטים המ&רבי להחזרה על ידי שאילתה:"
 
 #: src/conf/dirservconfigpage.cpp:220
 #, kde-format
