@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-10 00:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:40+0000\n"
 "PO-Revision-Date: 2024-11-12 19:56+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1018,7 +1018,7 @@ msgstr "„gpgconf --reload gpg-agent“ neizdevās: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -1238,12 +1238,12 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Atšifrēt/pārbaudīt datnes"
 
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Datņu atšifrēšanas/pārbaudes kļūda"
 
-#: src/commands/decryptverifyfilescommand.cpp:219
+#: src/commands/decryptverifyfilescommand.cpp:218
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Atlasiet vienu vai vairākas atšifrējamās/pārbaudāmās datnes"
@@ -4824,129 +4824,61 @@ msgid "No usable inputs found"
 msgstr "Nav atrasta derīga ievade"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "Atšifrēt/pārbaudīt datnes"
 
-#: src/crypto/decryptverifytask.cpp:140
+#: src/crypto/decryptverifytask.cpp:145
 #, kde-format
-msgid "Unknown certificate"
-msgstr "Nezināms sertifikāts"
+msgid "Recipient:"
+msgid_plural "Recipients:"
+msgstr[0] "Saņēmējs:"
+msgstr[1] "Saņēmēji:"
+msgstr[2] "Saņēmēju:"
 
-#: src/crypto/decryptverifytask.cpp:265
+#: src/crypto/decryptverifytask.cpp:149
 #, fuzzy, kde-format
-#| msgid "<b>Verification canceled.</b>"
-msgid "Verification canceled."
-msgstr "<b>Pārbaude ir atcelta.</b>"
-
-#: src/crypto/decryptverifytask.cpp:273
-#, fuzzy, kde-format
-#| msgid "<b>No signatures found.</b>"
-msgid "No signatures found."
-msgstr "<b>Paraksti nav atrasti.</b>"
-
-#: src/crypto/decryptverifytask.cpp:278
-#, fuzzy, kde-format
-#| msgid "<b>Invalid signature.</b>"
-#| msgid_plural "<b>%1 invalid signatures.</b>"
-msgid "Invalid signature."
-msgid_plural "%1 invalid signatures."
-msgstr[0] "<b>%1 nederīgs paraksts.</b>"
-msgstr[1] "<b>%1 nederīgi paraksti.</b>"
-msgstr[2] "<b>%1 nederīgu parakstu.</b>"
-
-#: src/crypto/decryptverifytask.cpp:284
-#, fuzzy, kde-format
-#| msgid "<b>The data could not be verified.</b>"
-#| msgid_plural "<b>%1 signatures could not be verified.</b>"
-msgid "The data could not be verified."
-msgid_plural "%1 signatures could not be verified."
-msgstr[0] "<b>%1 parakstu nevar pārbaudīt.</b>"
-msgstr[1] "<b>%1 parakstus nevar pārbaudīt.</b>"
-msgstr[2] "<b>%1 parakstu nevar pārbaudīt.</b>"
-
-#: src/crypto/decryptverifytask.cpp:290
-#, fuzzy, kde-format
-#| msgid "<b>Valid signature by %1</b>"
-msgid "Valid signature by %1."
-msgstr "<b>%1 derīgs paraksts.</b>"
-
-#: src/crypto/decryptverifytask.cpp:294
-#, fuzzy, kde-format
-#| msgid ""
-#| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#| "certificates used for signing."
+#| msgid "One unknown recipient"
+#| msgid_plural "%1 unknown recipients"
 msgctxt "@info"
-msgid ""
-"Warning: The sender's mail address is not stored in the <a href=\"key:"
-"%1\">certificate</a> used for signing."
-msgstr ""
-"<br/><b>Brīdinājums:</b> sūtītāja pasta adrese neglabājas sertifikātos, ko "
-"izmanto parakstīšanai."
+msgid "One unknown recipient"
+msgstr "%1 nezināms saņēmējs"
 
-#: src/crypto/decryptverifytask.cpp:298
-#, fuzzy, kde-format
-#| msgid "Bad signature"
-msgid "Valid signature."
-msgid_plural "%1 valid signatures."
-msgstr[0] "Nederīgs paraksts"
-msgstr[1] "Nederīgs paraksts"
-msgstr[2] "Nederīgs paraksts"
-
-#: src/crypto/decryptverifytask.cpp:300
-#, fuzzy, kde-format
-#| msgid ""
-#| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#| "certificates used for signing."
-msgid ""
-"<br/>Warning: The sender's mail address is not stored in the certificates "
-"used for signing."
-msgstr ""
-"<br/><b>Brīdinājums:</b> sūtītāja pasta adrese neglabājas sertifikātos, ko "
-"izmanto parakstīšanai."
-
-#: src/crypto/decryptverifytask.cpp:312
-#, fuzzy, kde-format
-#| msgid "Encryption canceled."
-msgid "Decryption canceled."
-msgstr "Šifrēšana atcelta."
-
-#: src/crypto/decryptverifytask.cpp:316
+#: src/crypto/decryptverifytask.cpp:159
 #, kde-format
-msgid "No integrity protection (MDC)."
-msgstr "Nav integritātes aizsardzības (MDC)."
+msgid "One unknown recipient"
+msgid_plural "%1 unknown recipients"
+msgstr[0] "%1 nezināms saņēmējs"
+msgstr[1] "%1 nezināmi saņēmēji"
+msgstr[2] "%1 nezināmu saņēmēju"
 
-#: src/crypto/decryptverifytask.cpp:346
+#: src/crypto/decryptverifytask.cpp:224
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing certificates to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Decryption and verification of <filename>%1</filename> canceled."
+msgstr "Neizdevās rakstīt sertifikātus datnē „<filename>%1</filename>“."
+
+#: src/crypto/decryptverifytask.cpp:226
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
-#| msgid ""
-#| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
-#| "any secret key in your certificate list."
-msgctxt ""
-"@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
-"encrypted for any secret key in your certificate list."
-msgid ""
-"Unable to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis><nl />The data was not encrypted for any secret "
-"key in your certificate list."
-msgstr ""
-"<b>Atšifrēšana nav iespējama: %1</b><br />Dati nav šifrēti nevienai "
-"slepenajai atslēgai sertifikātu sarakstā."
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info Unable to decrypt and verify <file>:"
+msgid "Unable to decrypt and verify <filename>%1</filename>:"
+msgstr "Neizdevās dzēst „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifytask.cpp:353
+#: src/crypto/decryptverifytask.cpp:228
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-msgid ""
-"Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis>"
-msgstr ""
-"Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info Failed to decrypt and verify <file>:"
+msgid "Failed to decrypt and verify <filename>%1</filename>:"
+msgstr "Neizdevās dzēst „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifytask.cpp:358
+#: src/crypto/decryptverifytask.cpp:231
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -4958,18 +4890,23 @@ msgid ""
 "filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/decryptverifytask.cpp:366
+#: src/crypto/decryptverifytask.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Verification of <filename>%1</filename> canceled."
+msgstr "Neizdevās rakstīt datnē „<filename>%1</filename>“."
+
+#: src/crypto/decryptverifytask.cpp:239
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgctxt "@info Failed to verify <file>: <reason>"
-msgid ""
-"Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
+#| msgid "Failed to overwrite <filename>%1</filename>."
+msgctxt "@info Failed to verify <file>:"
+msgid "Failed to verify <filename>%1</filename>:"
+msgstr "Neizdevās pārrakstīt „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifytask.cpp:371
+#: src/crypto/decryptverifytask.cpp:242
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -4980,35 +4917,31 @@ msgid ""
 "Verified <filename>%1</filename> with signature in <filename>%2</filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/decryptverifytask.cpp:378
+#: src/crypto/decryptverifytask.cpp:248
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Decryption of <filename>%1</filename> canceled."
+msgstr "Neizdevās rakstīt datnē „<filename>%1</filename>“."
+
+#: src/crypto/decryptverifytask.cpp:250
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
-#| msgid ""
-#| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
-#| "any secret key in your certificate list."
-msgctxt ""
-"@info Unable to decrypt <file>: <reason><nl />The data was not encrypted for "
-"any secret key in your certificate list."
-msgid ""
-"Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis><nl />The data was not encrypted for any secret key in your "
-"certificate list."
-msgstr ""
-"<b>Atšifrēšana nav iespējama: %1</b><br />Dati nav šifrēti nevienai "
-"slepenajai atslēgai sertifikātu sarakstā."
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info Unable to decrypt <file>:"
+msgid "Unable to decrypt <filename>%1</filename>:"
+msgstr "Neizdevās dzēst „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifytask.cpp:385
+#: src/crypto/decryptverifytask.cpp:252
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
-#| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgctxt "@info Failed to decrypt <file>: <reason>"
-msgid ""
-"Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
+#| msgid "Failed to delete <filename>%1</filename>."
+msgctxt "@info Failed to decrypt <file>:"
+msgid "Failed to decrypt <filename>%1</filename>:"
+msgstr "Neizdevās dzēst „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifytask.cpp:390
+#: src/crypto/decryptverifytask.cpp:255
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -5019,42 +4952,20 @@ msgid ""
 "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/decryptverifytask.cpp:416 src/crypto/decryptverifytask.cpp:466
-#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
-#: src/crypto/signencrypttask.cpp:934
-#, kde-format
-msgid "Input error: %1"
-msgstr "Ievades kļūda: %1"
+#: src/crypto/decryptverifytask.cpp:266
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "The data was encrypted to this key / certificate."
+msgctxt "@info"
+msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr "Dati ir šifrēti šai atslēgai / sertifikātam."
 
-#: src/crypto/decryptverifytask.cpp:427
+#: src/crypto/decryptverifytask.cpp:270
 #, kde-format
-msgid ""
-"<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
-msgstr "<p>Sūtītāja adrese „%1“ nav saglabāta sertifikātā. Saglabāta: „%2“</p>"
+msgid "No integrity protection (MDC)."
+msgstr "Nav integritātes aizsardzības (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:429
-#, kde-format
-msgctxt "separator for a list of e-mail addresses"
-msgid ", "
-msgstr ", "
-
-#: src/crypto/decryptverifytask.cpp:440
-#, kde-format
-msgid "Recipient:"
-msgid_plural "Recipients:"
-msgstr[0] "Saņēmējs:"
-msgstr[1] "Saņēmēji:"
-msgstr[2] "Saņēmēju:"
-
-#: src/crypto/decryptverifytask.cpp:450
-#, kde-format
-msgid "One unknown recipient"
-msgid_plural "%1 unknown recipients"
-msgstr[0] "%1 nezināms saņēmējs"
-msgstr[1] "%1 nezināmi saņēmēji"
-msgstr[2] "%1 nezināmu saņēmēju"
-
-#: src/crypto/decryptverifytask.cpp:480
+#: src/crypto/decryptverifytask.cpp:286
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5062,7 +4973,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Atšifrēšana ir %1."
 
-#: src/crypto/decryptverifytask.cpp:483
+#: src/crypto/decryptverifytask.cpp:289
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5070,12 +4981,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Atšifrēšana <b>nav</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Iegultās datnes nosaukums: %1"
 
-#: src/crypto/decryptverifytask.cpp:501
+#: src/crypto/decryptverifytask.cpp:305
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5084,7 +4995,7 @@ msgstr ""
 "<b>Ievērībai:</b> jūs nevarat uzzināt, kurš šo ziņu šifrēja, jo tā nav "
 "parakstīta."
 
-#: src/crypto/decryptverifytask.cpp:506
+#: src/crypto/decryptverifytask.cpp:311
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5095,7 +5006,7 @@ msgstr ""
 "<b>Padoms:</b> ja šī datne ir šifrēta pirms 2003. gada, iespējams, ka datne "
 "ir īsta. Tobrīd integritātes pārbaudi vēl tik plaši neizmantoja."
 
-#: src/crypto/decryptverifytask.cpp:511
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5107,55 +5018,68 @@ msgstr ""
 "Ja droši zināt, ka ar datni neviens nav manipulējis, mēģiniet to no jauna "
 "šifrēt pēc tās atšifrēšanas piespiedu kārtā."
 
-#: src/crypto/decryptverifytask.cpp:806
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "Neizdevās atšifrēt piezīmju blociņu: %1"
 
-#: src/crypto/decryptverifytask.cpp:809
+#: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "Neizdevās pārbaudīt piezīmju blociņu: %1"
 
-#: src/crypto/decryptverifytask.cpp:813
+#: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "Atšifrēts un pārbaudīts piezīmju blociņš"
 
-#: src/crypto/decryptverifytask.cpp:816
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "Atšifrēts piezīmju blociņš"
 
-#: src/crypto/decryptverifytask.cpp:819
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Piezīmju blociņš ir pārbaudīts"
 
-#: src/crypto/decryptverifytask.cpp:983 src/crypto/decryptverifytask.cpp:1191
-#: src/crypto/decryptverifytask.cpp:1271 src/crypto/decryptverifytask.cpp:1372
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1592
-#: src/crypto/decryptverifytask.cpp:1669 src/crypto/decryptverifytask.cpp:1803
+#: src/crypto/decryptverifytask.cpp:578
+#, fuzzy, kde-format
+#| msgid ""
+#| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
+#| "certificates used for signing."
+msgctxt "@info"
+msgid ""
+"Warning: The sender's mail address is not stored in the <a href=\"key:"
+"%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+"<br/><b>Brīdinājums:</b> sūtītāja pasta adrese neglabājas sertifikātos, ko "
+"izmanto parakstīšanai."
+
+#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
+#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
+#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Notverts izņēmums: %1"
 
-#: src/crypto/decryptverifytask.cpp:986 src/crypto/decryptverifytask.cpp:1193
-#: src/crypto/decryptverifytask.cpp:1274 src/crypto/decryptverifytask.cpp:1374
-#: src/crypto/decryptverifytask.cpp:1427 src/crypto/decryptverifytask.cpp:1594
-#: src/crypto/decryptverifytask.cpp:1671 src/crypto/decryptverifytask.cpp:1805
+#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
+#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
+#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Notverts nezināms izņēmums"
 
-#: src/crypto/decryptverifytask.cpp:1040
+#: src/crypto/decryptverifytask.cpp:775
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5164,12 +5088,12 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir S/MIME vai „OpenPGP“ paraksts/šifrēts teksts — "
 "varbūt neviens no tiem?"
 
-#: src/crypto/decryptverifytask.cpp:1048
+#: src/crypto/decryptverifytask.cpp:783
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Atšifrē „%1“..."
 
-#: src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1062
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5178,12 +5102,12 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir šifrēts ar S/MIME vai „OpenPGP“ — varbūt tas "
 "nemaz nav šifrēts teksts?"
 
-#: src/crypto/decryptverifytask.cpp:1335
+#: src/crypto/decryptverifytask.cpp:1070
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Atšifrē: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1481 src/crypto/decryptverifytask.cpp:1733
+#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5192,12 +5116,12 @@ msgstr ""
 "Neizdevās noteikt, vai šis ir S/MIME vai an „OpenPGP“ paraksts — varbūt tas "
 "nemaz nav paraksts?"
 
-#: src/crypto/decryptverifytask.cpp:1489
+#: src/crypto/decryptverifytask.cpp:1224
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Pārbauda %1..."
 
-#: src/crypto/decryptverifytask.cpp:1751
+#: src/crypto/decryptverifytask.cpp:1486
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5205,7 +5129,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Pārbauda „<filename>%1</filename>“ ar „<filename>%2</filename>“..."
 
-#: src/crypto/decryptverifytask.cpp:1755
+#: src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Pārbauda parakstu %1..."
@@ -5224,17 +5148,17 @@ msgstr ""
 msgid "User cancel"
 msgstr "Lietotāja atcelts"
 
-#: src/crypto/encryptemailtask.cpp:65
+#: src/crypto/encryptemailtask.cpp:64
 #, kde-format
 msgid "Encryption canceled."
 msgstr "Šifrēšana atcelta."
 
-#: src/crypto/encryptemailtask.cpp:69
+#: src/crypto/encryptemailtask.cpp:68
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr "Šifrēšana neizdevās: %1"
 
-#: src/crypto/encryptemailtask.cpp:72
+#: src/crypto/encryptemailtask.cpp:71
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "Šifrēšana veiksmīga."
@@ -5310,44 +5234,25 @@ msgstr "(vispirms izvēlieties starp „OpenPGP“ un S/MIME)"
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:53
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "No Output Folder"
+msgctxt "@info:tooltip"
+msgid "Choose output folder"
+msgstr "Nav izvades mapes"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Izvades mape:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Pārbaudīt datnes"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
-#, kde-format
-msgid "%1: All operations completed."
-msgstr "%1: visas darbības ir pabeigtas."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
-#, kde-format
-msgid "All operations completed."
-msgstr "Visas darbības ir pabeigtas."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:108
-#, kde-format
-msgctxt "number, operation description"
-msgid "Operation %1: %2"
-msgstr "Operācija %1: %2"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
-#, kde-format
-msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
-msgid "%1: %2"
-msgstr "%1: %2"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:212
 #, kde-format
@@ -5404,6 +5309,29 @@ msgstr "&Ievades datne ir arhīvs, atspiest ar:"
 msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "Šifrēt tekstu"
+
+#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
+#, kde-format
+msgid "%1: All operations completed."
+msgstr "%1: visas darbības ir pabeigtas."
+
+#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
+#, kde-format
+msgid "All operations completed."
+msgstr "Visas darbības ir pabeigtas."
+
+#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
+#: src/crypto/gui/resultpage.cpp:108
+#, kde-format
+msgctxt "number, operation description"
+msgid "Operation %1: %2"
+msgstr "Operācija %1: %2"
+
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
+#, kde-format
+msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
+msgid "%1: %2"
+msgstr "%1: %2"
 
 #: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:118
 #, kde-format
@@ -5478,30 +5406,18 @@ msgstr "Saņēmējs (%1)"
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>„GnuPG“ iestatījumos iepriekš definētie saņēmēji:</p>%1</qt>"
 
-#: src/crypto/gui/resultitemwidget.cpp:135
+#: src/crypto/gui/resultitemwidget.cpp:117
 #, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "Piespiedu atšifrēšana"
 
-#: src/crypto/gui/resultitemwidget.cpp:178
-#, kde-format
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Search%1"
-msgstr "Meklēt%1"
-
-#: src/crypto/gui/resultitemwidget.cpp:179
-#, kde-format
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Import%1"
-msgstr "Importēt%1"
-
-#: src/crypto/gui/resultitemwidget.cpp:228
+#: src/crypto/gui/resultitemwidget.cpp:142
 #, kde-format
 msgid "Diagnostics"
 msgstr "Diagnostika"
 
-#: src/crypto/gui/resultitemwidget.cpp:229
+#: src/crypto/gui/resultitemwidget.cpp:143
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
@@ -6211,17 +6127,17 @@ msgstr ""
 "Izsaukums uz „NewSignEncryptEMailController::protocolAsString()“ ir "
 "divdomīgs."
 
-#: src/crypto/signemailtask.cpp:68
+#: src/crypto/signemailtask.cpp:67
 #, kde-format
 msgid "Signing canceled."
 msgstr "Parakstīšana atcelta."
 
-#: src/crypto/signemailtask.cpp:72
+#: src/crypto/signemailtask.cpp:71
 #, kde-format
 msgid "Signing failed: %1"
 msgstr "Neizdevās parakstīt: %1"
 
-#: src/crypto/signemailtask.cpp:75
+#: src/crypto/signemailtask.cpp:74
 #, kde-format
 msgid "Signing succeeded."
 msgstr "Parakstīšanas izdevās."
@@ -6280,28 +6196,28 @@ msgstr ""
 "Notverts nezināms izņēmums ar „SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared“"
 
-#: src/crypto/signencrypttask.cpp:150
+#: src/crypto/signencrypttask.cpp:145
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Parakstīšana un šifrēšana izdevās."
 
-#: src/crypto/signencrypttask.cpp:153
+#: src/crypto/signencrypttask.cpp:148
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Parakstīšana atcelta."
 
-#: src/crypto/signencrypttask.cpp:156
+#: src/crypto/signencrypttask.cpp:151
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "Šifrēšana atcelta."
 
-#: src/crypto/signencrypttask.cpp:162
+#: src/crypto/signencrypttask.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -6312,7 +6228,7 @@ msgid ""
 msgstr ""
 "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
-#: src/crypto/signencrypttask.cpp:168
+#: src/crypto/signencrypttask.cpp:163
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6326,7 +6242,7 @@ msgstr ""
 "<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
 "filename>“.</para>"
 
-#: src/crypto/signencrypttask.cpp:174
+#: src/crypto/signencrypttask.cpp:169
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6339,7 +6255,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/crypto/signencrypttask.cpp:184
+#: src/crypto/signencrypttask.cpp:179
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -6349,7 +6265,7 @@ msgid ""
 msgstr ""
 "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
-#: src/crypto/signencrypttask.cpp:190
+#: src/crypto/signencrypttask.cpp:185
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6363,7 +6279,7 @@ msgstr ""
 "<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
 "filename>“.</para>"
 
-#: src/crypto/signencrypttask.cpp:196
+#: src/crypto/signencrypttask.cpp:191
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -6381,7 +6297,7 @@ msgstr[1] ""
 msgstr[2] ""
 "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
-#: src/crypto/signencrypttask.cpp:206
+#: src/crypto/signencrypttask.cpp:201
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -6392,7 +6308,7 @@ msgid ""
 msgstr ""
 "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
-#: src/crypto/signencrypttask.cpp:212
+#: src/crypto/signencrypttask.cpp:207
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6406,7 +6322,7 @@ msgstr ""
 "<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
 "filename>“.</para>"
 
-#: src/crypto/signencrypttask.cpp:218
+#: src/crypto/signencrypttask.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -6424,7 +6340,7 @@ msgstr[1] ""
 msgstr[2] ""
 "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
-#: src/crypto/signencrypttask.cpp:228
+#: src/crypto/signencrypttask.cpp:223
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6437,7 +6353,7 @@ msgid ""
 "<filename>%2</filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:234
+#: src/crypto/signencrypttask.cpp:229
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6453,7 +6369,7 @@ msgstr ""
 "Neizdevās nokopēt pagaidu datni „<filename>%1</filename>“ datnē „<filename>"
 "%2</filename>“: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:240
+#: src/crypto/signencrypttask.cpp:235
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6471,7 +6387,7 @@ msgstr[0] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filena
 msgstr[1] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 msgstr[2] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:250
+#: src/crypto/signencrypttask.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6483,7 +6399,7 @@ msgid ""
 "<filename>%2</filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:256
+#: src/crypto/signencrypttask.cpp:251
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6497,7 +6413,7 @@ msgid ""
 "saved the signature in <filename>%3</filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:262
+#: src/crypto/signencrypttask.cpp:257
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6516,7 +6432,7 @@ msgstr[0] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filena
 msgstr[1] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 msgstr[2] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:271
+#: src/crypto/signencrypttask.cpp:266
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6528,7 +6444,7 @@ msgid ""
 "filename>."
 msgstr "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:277
+#: src/crypto/signencrypttask.cpp:272
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6543,7 +6459,7 @@ msgstr ""
 "Neizdevās nokopēt pagaidu datni „<filename>%1</filename>“ datnē „<filename>"
 "%2</filename>“: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:283
+#: src/crypto/signencrypttask.cpp:278
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -6561,23 +6477,29 @@ msgstr[0] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filena
 msgstr[1] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 msgstr[2] "Pārbaudīja „<filename>%1</filename>“ ar „<filename>%2</filename>“"
 
-#: src/crypto/signencrypttask.cpp:304 src/crypto/signencrypttask.cpp:321
+#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
+#: src/crypto/signencrypttask.cpp:929
+#, kde-format
+msgid "Input error: %1"
+msgstr "Ievades kļūda: %1"
+
+#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
 #, kde-format
 msgid "Output error: %1"
 msgstr "Izvades kļūda: %1"
 
-#: src/crypto/signencrypttask.cpp:538
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Nevar noteikt uzdevumam vajadzīgo protokolu"
 
-#: src/crypto/signencrypttask.cpp:589
+#: src/crypto/signencrypttask.cpp:584
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:801 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6586,55 +6508,55 @@ msgstr ""
 "Neizdevās atrast kopīgo pamata mapi šīm datnēm:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:818
+#: src/crypto/signencrypttask.cpp:813
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Izveidot parakstītu un šifrētu arhīvu..."
 
-#: src/crypto/signencrypttask.cpp:834
+#: src/crypto/signencrypttask.cpp:829
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Veido šifrētu arhīvu..."
 
-#: src/crypto/signencrypttask.cpp:850
+#: src/crypto/signencrypttask.cpp:845
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Veido parakstītu arhīvu..."
 
-#: src/crypto/signencrypttask.cpp:977
+#: src/crypto/signencrypttask.cpp:972
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Neizdevās parakstīt piezīmju blociņu: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:975
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Neizdevās šifrēt piezīmju blociņu: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:979
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "Piezīmju blociņš ir šifrēts un parakstīts"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:981
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "Piezīmju blociņš ir šifrēts"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Parakstīts piezīmju blociņš"
 
-#: src/crypto/task.cpp:176
+#: src/crypto/task.cpp:172
 #, kde-format
 msgid "Unknown exception in Task::start()"
 msgstr "Nezināms „Task::start()“ izņēmums "
@@ -13333,12 +13255,148 @@ msgstr ""
 "Importēt sertifikātu no datnes.<nl/>Lai importētu no publiskā atslēgu "
 "servera, izmantojiet <interface>Uzmeklēt serverī</interface>."
 
+#~ msgid "Unknown certificate"
+#~ msgstr "Nezināms sertifikāts"
+
+#, fuzzy
+#~| msgid "<b>Verification canceled.</b>"
+#~ msgid "Verification canceled."
+#~ msgstr "<b>Pārbaude ir atcelta.</b>"
+
+#, fuzzy
+#~| msgid "<b>No signatures found.</b>"
+#~ msgid "No signatures found."
+#~ msgstr "<b>Paraksti nav atrasti.</b>"
+
+#, fuzzy
+#~| msgid "<b>Invalid signature.</b>"
+#~| msgid_plural "<b>%1 invalid signatures.</b>"
+#~ msgid "Invalid signature."
+#~ msgid_plural "%1 invalid signatures."
+#~ msgstr[0] "<b>%1 nederīgs paraksts.</b>"
+#~ msgstr[1] "<b>%1 nederīgi paraksti.</b>"
+#~ msgstr[2] "<b>%1 nederīgu parakstu.</b>"
+
+#, fuzzy
+#~| msgid "<b>The data could not be verified.</b>"
+#~| msgid_plural "<b>%1 signatures could not be verified.</b>"
+#~ msgid "The data could not be verified."
+#~ msgid_plural "%1 signatures could not be verified."
+#~ msgstr[0] "<b>%1 parakstu nevar pārbaudīt.</b>"
+#~ msgstr[1] "<b>%1 parakstus nevar pārbaudīt.</b>"
+#~ msgstr[2] "<b>%1 parakstu nevar pārbaudīt.</b>"
+
+#, fuzzy
+#~| msgid "<b>Valid signature by %1</b>"
+#~ msgid "Valid signature by %1."
+#~ msgstr "<b>%1 derīgs paraksts.</b>"
+
+#, fuzzy
+#~| msgid "Bad signature"
+#~ msgid "Valid signature."
+#~ msgid_plural "%1 valid signatures."
+#~ msgstr[0] "Nederīgs paraksts"
+#~ msgstr[1] "Nederīgs paraksts"
+#~ msgstr[2] "Nederīgs paraksts"
+
+#, fuzzy
+#~| msgid ""
+#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
+#~| "certificates used for signing."
+#~ msgid ""
+#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
+#~ "used for signing."
+#~ msgstr ""
+#~ "<br/><b>Brīdinājums:</b> sūtītāja pasta adrese neglabājas sertifikātos, "
+#~ "ko izmanto parakstīšanai."
+
+#, fuzzy
+#~| msgid "Encryption canceled."
+#~ msgid "Decryption canceled."
+#~ msgstr "Šifrēšana atcelta."
+
 #, fuzzy
 #~| msgctxt "@info"
-#~| msgid "Failed to delete <filename>%1</filename>."
+#~| msgid ""
+#~| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
+#~| "any secret key in your certificate list."
+#~ msgctxt ""
+#~ "@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
+#~ "encrypted for any secret key in your certificate list."
+#~ msgid ""
+#~ "Unable to decrypt and verify <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis><nl />The data was not encrypted for any "
+#~ "secret key in your certificate list."
+#~ msgstr ""
+#~ "<b>Atšifrēšana nav iespējama: %1</b><br />Dati nav šifrēti nevienai "
+#~ "slepenajai atslēgai sertifikātu sarakstā."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis>"
+#~ msgstr ""
+#~ "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
+#~ "filename>“."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+#~ msgctxt "@info Failed to verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
+#~ "filename>“."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "<b>Decryption not possible: %1</b><br />The data was not encrypted for "
+#~| "any secret key in your certificate list."
+#~ msgctxt ""
+#~ "@info Unable to decrypt <file>: <reason><nl />The data was not encrypted "
+#~ "for any secret key in your certificate list."
+#~ msgid ""
+#~ "Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis><nl />The data was not encrypted for any secret key in your "
+#~ "certificate list."
+#~ msgstr ""
+#~ "<b>Atšifrēšana nav iespējama: %1</b><br />Dati nav šifrēti nevienai "
+#~ "slepenajai atslēgai sertifikātu sarakstā."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 #~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid "Failed to decrypt <filename>%1</filename>: %2"
-#~ msgstr "Neizdevās dzēst „<filename>%1</filename>“."
+#~ msgid ""
+#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
+#~ "filename>“."
+
+#~ msgid ""
+#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
+#~ "p>"
+#~ msgstr ""
+#~ "<p>Sūtītāja adrese „%1“ nav saglabāta sertifikātā. Saglabāta: „%2“</p>"
+
+#~ msgctxt "separator for a list of e-mail addresses"
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Search%1"
+#~ msgstr "Meklēt%1"
+
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Import%1"
+#~ msgstr "Importēt%1"
 
 #~ msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 #~ msgid "Uses:"

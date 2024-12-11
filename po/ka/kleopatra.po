@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-10 00:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:40+0000\n"
 "PO-Revision-Date: 2024-11-27 04:01+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -1018,7 +1018,7 @@ msgstr "\"gpgconf --reload gpg-agent\" -ის შეცდომა: %1"
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -1240,12 +1240,12 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "გაშიფვრა/გადამოწმების შეცდომა"
 
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "ფაილების გაშიფვრა/გადამოწმების შეცდომა"
 
-#: src/commands/decryptverifyfilescommand.cpp:219
+#: src/commands/decryptverifyfilescommand.cpp:218
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "აირჩიეთ ერთი ან მეტი გასაშიფრი ან/და გადასამოწმებელი ფაილი"
@@ -4813,107 +4813,59 @@ msgid "No usable inputs found"
 msgstr "გამოყენებადი შეყვანილი აღმოჩენილი არაა"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "ფაილების გაშიფვრა/შემოწმება"
 
-#: src/crypto/decryptverifytask.cpp:140
+#: src/crypto/decryptverifytask.cpp:145
 #, kde-format
-msgid "Unknown certificate"
-msgstr "უცნობი სერთიფიკატი"
+msgid "Recipient:"
+msgid_plural "Recipients:"
+msgstr[0] "მიმღები:"
+msgstr[1] "მიმღები:"
 
-#: src/crypto/decryptverifytask.cpp:265
-#, kde-format
-msgid "Verification canceled."
-msgstr "გადამოწმება გაუქმდა."
-
-#: src/crypto/decryptverifytask.cpp:273
-#, kde-format
-msgid "No signatures found."
-msgstr "ხელმოწერები ვერ ვიპოვე."
-
-#: src/crypto/decryptverifytask.cpp:278
-#, kde-format
-msgid "Invalid signature."
-msgid_plural "%1 invalid signatures."
-msgstr[0] "არასწორი ხელმოწერა."
-msgstr[1] "%1 არასწორი ხელმოწერა."
-
-#: src/crypto/decryptverifytask.cpp:284
-#, kde-format
-msgid "The data could not be verified."
-msgid_plural "%1 signatures could not be verified."
-msgstr[0] "მონაცემების გადამოწმების შეცდომა."
-msgstr[1] "%1 ხელმოწერის გადამოწმების შეცდომა."
-
-#: src/crypto/decryptverifytask.cpp:290
-#, kde-format
-msgid "Valid signature by %1."
-msgstr "ხელმოწერა გადამოწმებულია %1-ის მიერ."
-
-#: src/crypto/decryptverifytask.cpp:294
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:149
+#, fuzzy, kde-format
+#| msgid "One unknown recipient"
+#| msgid_plural "%1 unknown recipients"
 msgctxt "@info"
-msgid ""
-"Warning: The sender's mail address is not stored in the <a href=\"key:"
-"%1\">certificate</a> used for signing."
-msgstr ""
-"გაფრთხილება: გამგზავნის ელფოსტის მისამართი ხელმოწერისთვის გამოყენებულ <a "
-"href=\"key:%1\">სერტიფიკატში</a> დამახსოვრებული არაა."
+msgid "One unknown recipient"
+msgstr "ერთი უცნობი მიმღები"
 
-#: src/crypto/decryptverifytask.cpp:298
+#: src/crypto/decryptverifytask.cpp:159
 #, kde-format
-msgid "Valid signature."
-msgid_plural "%1 valid signatures."
-msgstr[0] "სწორი ხელმოწერა."
-msgstr[1] "%1 სწორი ხელმოწერა."
+msgid "One unknown recipient"
+msgid_plural "%1 unknown recipients"
+msgstr[0] "ერთი უცნობი მიმღები"
+msgstr[1] "%1 უცნობი მიმღები"
 
-#: src/crypto/decryptverifytask.cpp:300
-#, kde-format
-msgid ""
-"<br/>Warning: The sender's mail address is not stored in the certificates "
-"used for signing."
-msgstr ""
-"<br/>გაფრთხილება: გამგზავნის ელფოსტის მისამართი ხელმოწერისთვის გამოყენებულ "
-"სერტიფიკატებში დამახსოვრებული არაა."
+#: src/crypto/decryptverifytask.cpp:224
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing certificates to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Decryption and verification of <filename>%1</filename> canceled."
+msgstr "სერტიფიკატების ფაილში <filename>%1</filename> ჩაწერა ჩავარდა."
 
-#: src/crypto/decryptverifytask.cpp:312
-#, kde-format
-msgid "Decryption canceled."
-msgstr "გაშიფვრა გაუქმებულია."
+#: src/crypto/decryptverifytask.cpp:226
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Failed to decrypt <file>: <reason>"
+#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+msgctxt "@info Unable to decrypt and verify <file>:"
+msgid "Unable to decrypt and verify <filename>%1</filename>:"
+msgstr "<filename>%1</filename>-ის გაშიფვრა ჩავარდა: %2"
 
-#: src/crypto/decryptverifytask.cpp:316
-#, kde-format
-msgid "No integrity protection (MDC)."
-msgstr "მთლიანობის შემოწმების (MDC) გარეშე."
+#: src/crypto/decryptverifytask.cpp:228
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Failed to decrypt <file>: <reason>"
+#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+msgctxt "@info Failed to decrypt and verify <file>:"
+msgid "Failed to decrypt and verify <filename>%1</filename>:"
+msgstr "<filename>%1</filename>-ის გაშიფვრა ჩავარდა: %2"
 
-#: src/crypto/decryptverifytask.cpp:346
-#, kde-kuit-format
-msgctxt ""
-"@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
-"encrypted for any secret key in your certificate list."
-msgid ""
-"Unable to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis><nl />The data was not encrypted for any secret "
-"key in your certificate list."
-msgstr ""
-"გაშიფვრა შეუძლებელია: <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis><nl />მონაცემები დაშიფრული არ იყო თქვენი სერტიფიკატების სიაში მყოფი "
-"არც ერთი საიდუმლო გასაღებისთვის."
-
-#: src/crypto/decryptverifytask.cpp:353
-#, kde-kuit-format
-msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-msgid ""
-"Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis>"
-msgstr ""
-"ჩავარდა გაშიფვრა და გადამოწმება ფაილისთვის <filename>%1</filename>: "
-"<emphasis strong='true'>%2</emphasis>"
-
-#: src/crypto/decryptverifytask.cpp:358
+#: src/crypto/decryptverifytask.cpp:231
 #, kde-kuit-format
 msgctxt "@info Successfully decrypted and verified <file> as <file>."
 msgid ""
@@ -4923,17 +4875,23 @@ msgstr ""
 "გაშიფვრა და გადამოწმება წარმატებულია ფაილისთვის <filename>%1</filename> "
 "როგორც <filename>%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:366
-#, kde-kuit-format
-msgctxt "@info Failed to verify <file>: <reason>"
-msgid ""
-"Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"ჩავარდა გადამოწმება ფაილისთვის <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis>"
+#: src/crypto/decryptverifytask.cpp:237
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Verification of <filename>%1</filename> canceled."
+msgstr "გასაღების ფაილში <filename>%1</filename> ჩაწერის შეცდომა."
 
-#: src/crypto/decryptverifytask.cpp:371
+#: src/crypto/decryptverifytask.cpp:239
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Failed to overwrite <filename>%1</filename>."
+msgctxt "@info Failed to verify <file>:"
+msgid "Failed to verify <filename>%1</filename>:"
+msgstr "<filename>%1</filename>-ის თავზე გადაწერის შეცდომა."
+
+#: src/crypto/decryptverifytask.cpp:242
 #, kde-kuit-format
 msgctxt "@info Verified <file> with signature in <file>."
 msgid ""
@@ -4942,31 +4900,31 @@ msgstr ""
 "გადამოწმებულია <filename>%1</filename> ხელმოწერით ფაილში <filename>%2</"
 "filename>."
 
-#: src/crypto/decryptverifytask.cpp:378
-#, kde-kuit-format
-msgctxt ""
-"@info Unable to decrypt <file>: <reason><nl />The data was not encrypted for "
-"any secret key in your certificate list."
-msgid ""
-"Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis><nl />The data was not encrypted for any secret key in your "
-"certificate list."
-msgstr ""
-"გაშიფვრა შეუძლებელია: <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis><nl />მონაცემები დაშიფრული არ იყო თქვენი სერტიფიკატების სიაში მყოფი "
-"არც ერთი საიდუმლო გასაღებისთვის."
+#: src/crypto/decryptverifytask.cpp:248
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Writing key to file <filename>%1</filename> failed."
+msgctxt "@info"
+msgid "Decryption of <filename>%1</filename> canceled."
+msgstr "გასაღების ფაილში <filename>%1</filename> ჩაწერის შეცდომა."
 
-#: src/crypto/decryptverifytask.cpp:385
-#, kde-kuit-format
-msgctxt "@info Failed to decrypt <file>: <reason>"
-msgid ""
-"Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"ჩავარდა გაშიფვრა ფაილისთვის <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+#: src/crypto/decryptverifytask.cpp:250
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Failed to decrypt <file>: <reason>"
+#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+msgctxt "@info Unable to decrypt <file>:"
+msgid "Unable to decrypt <filename>%1</filename>:"
+msgstr "<filename>%1</filename>-ის გაშიფვრა ჩავარდა: %2"
 
-#: src/crypto/decryptverifytask.cpp:390
+#: src/crypto/decryptverifytask.cpp:252
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Failed to decrypt <file>: <reason>"
+#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+msgctxt "@info Failed to decrypt <file>:"
+msgid "Failed to decrypt <filename>%1</filename>:"
+msgstr "<filename>%1</filename>-ის გაშიფვრა ჩავარდა: %2"
+
+#: src/crypto/decryptverifytask.cpp:255
 #, kde-kuit-format
 msgctxt "@info Successfully decrypted <file> as <file>."
 msgid ""
@@ -4975,42 +4933,20 @@ msgstr ""
 "გაშიფვრა წარმატებულია ფაილისთვის <filename>%1</filename> როგორც <filename>"
 "%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:416 src/crypto/decryptverifytask.cpp:466
-#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
-#: src/crypto/signencrypttask.cpp:934
-#, kde-format
-msgid "Input error: %1"
-msgstr "შეყვანის შეცდომა: %1"
+#: src/crypto/decryptverifytask.cpp:266
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "The data was encrypted to this key / certificate."
+msgctxt "@info"
+msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr "მონაცემები ამ გასაღები/სერტიფიკატითაა დაშიფრული."
 
-#: src/crypto/decryptverifytask.cpp:427
+#: src/crypto/decryptverifytask.cpp:270
 #, kde-format
-msgid ""
-"<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
-msgstr ""
-"<p>გამგზავნის მისამართი %1 სერტიფიკატში დამახსოვრებული არაა. "
-"დამახსოვრებულია: %2</p>"
+msgid "No integrity protection (MDC)."
+msgstr "მთლიანობის შემოწმების (MDC) გარეშე."
 
-#: src/crypto/decryptverifytask.cpp:429
-#, kde-format
-msgctxt "separator for a list of e-mail addresses"
-msgid ", "
-msgstr ", "
-
-#: src/crypto/decryptverifytask.cpp:440
-#, kde-format
-msgid "Recipient:"
-msgid_plural "Recipients:"
-msgstr[0] "მიმღები:"
-msgstr[1] "მიმღები:"
-
-#: src/crypto/decryptverifytask.cpp:450
-#, kde-format
-msgid "One unknown recipient"
-msgid_plural "%1 unknown recipients"
-msgstr[0] "ერთი უცნობი მიმღები"
-msgstr[1] "%1 უცნობი მიმღები"
-
-#: src/crypto/decryptverifytask.cpp:480
+#: src/crypto/decryptverifytask.cpp:286
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5018,7 +4954,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "გაშიფვრა %1-ა."
 
-#: src/crypto/decryptverifytask.cpp:483
+#: src/crypto/decryptverifytask.cpp:289
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5026,12 +4962,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "გაშიფვრა %1 <b>არაა</b>."
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "ჩაშენებული ფაილის სახელი: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:501
+#: src/crypto/decryptverifytask.cpp:305
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5040,7 +4976,7 @@ msgstr ""
 "<b>შენშვნა:</b> თქვენ ვერ იქნებით დარწმუნებული ვინ დაშიფრა ეს შეტყობინება, "
 "რადგან ის ხელმოწერილი არაა."
 
-#: src/crypto/decryptverifytask.cpp:506
+#: src/crypto/decryptverifytask.cpp:311
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5052,7 +4988,7 @@ msgstr ""
 "ნამდვილი იყოს.  იმიტომ, რომ წარსულში მთლიანობის დაცვა ფართოდ არ "
 "გამოიყენებოდა."
 
-#: src/crypto/decryptverifytask.cpp:511
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5064,55 +5000,69 @@ msgstr ""
 "თუ დარწმუნებული ბრძანდებით, რომ ფაილი არ შეცვლილა, ჯერ ჩართეთ ნაძალადევი "
 "დაშიფვრა, შემდეგ კი თავიდან დაშიფრეთ ის."
 
-#: src/crypto/decryptverifytask.cpp:806
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "ჩავარდა გაშიფვრა ბლოკნოტისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:809
+#: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "ჩავარდა გადამოწმება ბლოკნოტისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:813
+#: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "ბლოკნოტის გაშიფვრა და გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:816
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "ბლოკნოტის გაშიფვრა წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:819
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "ბლოკნოტის გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:983 src/crypto/decryptverifytask.cpp:1191
-#: src/crypto/decryptverifytask.cpp:1271 src/crypto/decryptverifytask.cpp:1372
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1592
-#: src/crypto/decryptverifytask.cpp:1669 src/crypto/decryptverifytask.cpp:1803
+#: src/crypto/decryptverifytask.cpp:578
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Warning: The sender's mail address is not stored in the <a href=\"key:"
+#| "%1\">certificate</a> used for signing."
+msgctxt "@info"
+msgid ""
+"Warning: The sender's mail address is not stored in the <a href=\"key:"
+"%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+"გაფრთხილება: გამგზავნის ელფოსტის მისამართი ხელმოწერისთვის გამოყენებულ <a "
+"href=\"key:%1\">სერტიფიკატში</a> დამახსოვრებული არაა."
+
+#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
+#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
+#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "ჩაჭერილია გამონაკლისი: %1"
 
-#: src/crypto/decryptverifytask.cpp:986 src/crypto/decryptverifytask.cpp:1193
-#: src/crypto/decryptverifytask.cpp:1274 src/crypto/decryptverifytask.cpp:1374
-#: src/crypto/decryptverifytask.cpp:1427 src/crypto/decryptverifytask.cpp:1594
-#: src/crypto/decryptverifytask.cpp:1671 src/crypto/decryptverifytask.cpp:1805
+#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
+#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
+#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "ჩაჭერილია უცნობი გამონაკლისი"
 
-#: src/crypto/decryptverifytask.cpp:1040
+#: src/crypto/decryptverifytask.cpp:775
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5121,12 +5071,12 @@ msgstr ""
 "ვერ გავარკვიე, ეს S/MIME ხელმოწერა/დაშიფრული ტექსტია, თუ OpenPGP - თუ ის არც "
 "ხელმოწერაა და არც შიფრი?"
 
-#: src/crypto/decryptverifytask.cpp:1048
+#: src/crypto/decryptverifytask.cpp:783
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "გაშიფვრა: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1062
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5134,12 +5084,12 @@ msgid ""
 msgstr ""
 "ვერ დავადგინე, ეს S/MIME-თია დაშიფრული, თუ OpenPGP-ით. თუ საერთოდ შიფრი არაა?"
 
-#: src/crypto/decryptverifytask.cpp:1335
+#: src/crypto/decryptverifytask.cpp:1070
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "გაშიფვრა: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1481 src/crypto/decryptverifytask.cpp:1733
+#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5147,12 +5097,12 @@ msgid ""
 msgstr ""
 "ვერ დავადგინე, ეს S/MIME ხელმოწერაა, თუ OpenPGP. თუ საერთოდ ხელმოწერა არაა?"
 
-#: src/crypto/decryptverifytask.cpp:1489
+#: src/crypto/decryptverifytask.cpp:1224
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1-ის გადამოწმება..."
 
-#: src/crypto/decryptverifytask.cpp:1751
+#: src/crypto/decryptverifytask.cpp:1486
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5160,7 +5110,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "გადამოწმება: <filename>%1</filename> <filename>%2</filename>-სთან...."
 
-#: src/crypto/decryptverifytask.cpp:1755
+#: src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "ხელმოწერის გადამოწმება: %1..."
@@ -5178,17 +5128,17 @@ msgstr "EncryptEMailController::protocolAsString()-ის გამოძახ�
 msgid "User cancel"
 msgstr "გაუქმდა მომხმარებლის მიერ"
 
-#: src/crypto/encryptemailtask.cpp:65
+#: src/crypto/encryptemailtask.cpp:64
 #, kde-format
 msgid "Encryption canceled."
 msgstr "დაშიფვრა გაუქმებულია."
 
-#: src/crypto/encryptemailtask.cpp:69
+#: src/crypto/encryptemailtask.cpp:68
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr "დაშიფვრის შეცდომა: %1"
 
-#: src/crypto/encryptemailtask.cpp:72
+#: src/crypto/encryptemailtask.cpp:71
 #, kde-format
 msgid "Encryption succeeded."
 msgstr "დაშიფვრა წარმატებულია."
@@ -5264,44 +5214,25 @@ msgstr "(ჯერ, აუცილებელია OpenPGP-სა და S/MI
 msgid "..."
 msgstr "..."
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:53
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "No Output Folder"
+msgctxt "@info:tooltip"
+msgid "Choose output folder"
+msgstr "გამოტანის საქაღალდის გარეშე"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&გამოტანის საქაღალდე:"
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "ფაილების გადამოწმება"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
-#, kde-format
-msgid "%1: All operations completed."
-msgstr "%1: ყველა ოპერაცის დასრულდა."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
-#, kde-format
-msgid "All operations completed."
-msgstr "ყველა ოპერაცია დასრულდა."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:108
-#, kde-format
-msgctxt "number, operation description"
-msgid "Operation %1: %2"
-msgstr "ოპერაცია %1: %2"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
-#, kde-format
-msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
-msgid "%1: %2"
-msgstr "%1: %2"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:212
 #, kde-format
@@ -5358,6 +5289,29 @@ msgstr "&შეყვანილი ფაილი არქივია. გ�
 msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "ტექსტის დაშიფრვა"
+
+#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
+#, kde-format
+msgid "%1: All operations completed."
+msgstr "%1: ყველა ოპერაცის დასრულდა."
+
+#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
+#, kde-format
+msgid "All operations completed."
+msgstr "ყველა ოპერაცია დასრულდა."
+
+#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
+#: src/crypto/gui/resultpage.cpp:108
+#, kde-format
+msgctxt "number, operation description"
+msgid "Operation %1: %2"
+msgstr "ოპერაცია %1: %2"
+
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
+#, kde-format
+msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
+msgid "%1: %2"
+msgstr "%1: %2"
 
 #: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:118
 #, kde-format
@@ -5432,30 +5386,18 @@ msgstr "მიმღები (%1)"
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG-ის პარამეტრებში წინასწარ-აღწერილი მიმღებები:</p>%1</qt>"
 
-#: src/crypto/gui/resultitemwidget.cpp:135
+#: src/crypto/gui/resultitemwidget.cpp:117
 #, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "ძალით გაშიფვრა"
 
-#: src/crypto/gui/resultitemwidget.cpp:178
-#, kde-format
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Search%1"
-msgstr "ძებნა%1"
-
-#: src/crypto/gui/resultitemwidget.cpp:179
-#, kde-format
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Import%1"
-msgstr "შემოტანა%1"
-
-#: src/crypto/gui/resultitemwidget.cpp:228
+#: src/crypto/gui/resultitemwidget.cpp:142
 #, kde-format
 msgid "Diagnostics"
 msgstr "დიაგნოსტიკა"
 
-#: src/crypto/gui/resultitemwidget.cpp:229
+#: src/crypto/gui/resultitemwidget.cpp:143
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
@@ -6169,17 +6111,17 @@ msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 "NewSignEncryptEMailController::protocolAsString()-ის გამოძახება ბუნდოვანია."
 
-#: src/crypto/signemailtask.cpp:68
+#: src/crypto/signemailtask.cpp:67
 #, kde-format
 msgid "Signing canceled."
 msgstr "ხელმოწერა გაუქმდა."
 
-#: src/crypto/signemailtask.cpp:72
+#: src/crypto/signemailtask.cpp:71
 #, kde-format
 msgid "Signing failed: %1"
 msgstr "ხელმოწერის შეცდომა: %1"
 
-#: src/crypto/signemailtask.cpp:75
+#: src/crypto/signemailtask.cpp:74
 #, kde-format
 msgid "Signing succeeded."
 msgstr "ხელმოწერა წარმატებულია."
@@ -6238,25 +6180,25 @@ msgstr ""
 "მოულოდნელი გამონაკლისი ფუნქციაში SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared"
 
-#: src/crypto/signencrypttask.cpp:150
+#: src/crypto/signencrypttask.cpp:145
 #, kde-format
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "ხელმოწერა და დაშიფვრა გაუქმდა."
 
-#: src/crypto/signencrypttask.cpp:153
+#: src/crypto/signencrypttask.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "ხელმოწერა გაუქმდა."
 
-#: src/crypto/signencrypttask.cpp:156
+#: src/crypto/signencrypttask.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "დაშიფვრა გაუქმებულია."
 
-#: src/crypto/signencrypttask.cpp:162
+#: src/crypto/signencrypttask.cpp:157
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
@@ -6266,7 +6208,7 @@ msgstr ""
 "ჩავარდა ხელმოწერა და დაშიფვრა ფაილისთვის <filename>%1</filename>: <emphasis "
 "strong='true'>%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:168
+#: src/crypto/signencrypttask.cpp:163
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6276,7 +6218,7 @@ msgstr ""
 "ჩავარდა ხელმოწერა და დაშიფვრა ფაილისთვის <filename>%1</filename> და "
 "<filename>%2</filename>: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:174
+#: src/crypto/signencrypttask.cpp:169
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6292,7 +6234,7 @@ msgstr[1] ""
 "ხელმოწერისა და დაშიფვრის შეცდომა ფაილისთვის <filename>%2</filename> და კიდევ "
 "%1: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:184
+#: src/crypto/signencrypttask.cpp:179
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
@@ -6301,7 +6243,7 @@ msgstr ""
 "ჩავარდა ხელმოწერა ფაილისთვის <filename>%1</filename>: <emphasis "
 "strong='true'>%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:190
+#: src/crypto/signencrypttask.cpp:185
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <file>: <reason>"
 msgid ""
@@ -6311,7 +6253,7 @@ msgstr ""
 "ჩავარდა ხელმოწერა ფაილისთვის <filename>%1</filename> და <filename>%2</"
 "filename>: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:196
+#: src/crypto/signencrypttask.cpp:191
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
@@ -6327,7 +6269,7 @@ msgstr[1] ""
 "ჩავარდა ხელმოწერა ფაილისთვის <filename>%2</filename> და კიდევ %1: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:206
+#: src/crypto/signencrypttask.cpp:201
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file>: <reason>"
 msgid ""
@@ -6337,7 +6279,7 @@ msgstr ""
 "ჩავარდა დაშიფვრა ფაილისთვის <filename>%1</filename>: <emphasis strong='true'>"
 "%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:212
+#: src/crypto/signencrypttask.cpp:207
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6347,7 +6289,7 @@ msgstr ""
 "ჩავარდა დაშიფვრა ფაილისთვის <filename>%1</filename> და <filename>%2</"
 "filename>: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:218
+#: src/crypto/signencrypttask.cpp:213
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6363,7 +6305,7 @@ msgstr[1] ""
 "ჩავარდა დაშიფვრა ფაილისთვის <filename>%2</filename> და კიდევ %1: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:228
+#: src/crypto/signencrypttask.cpp:223
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and saved it as <file>."
@@ -6374,7 +6316,7 @@ msgstr ""
 "ხელმოწერა და დაშიფვრა წარმატებით დასრულდა ფაილისთვის <filename>%1</filename> "
 "და შენახულია, როგორც ფაილი <filename>%2</filename>."
 
-#: src/crypto/signencrypttask.cpp:234
+#: src/crypto/signencrypttask.cpp:229
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6386,7 +6328,7 @@ msgstr ""
 "ხელმოწერა და დაშიფვრა წარმატებულია ფაილისთვის <filename>%1</filename> და "
 "<filename>%2</filename> და შენახულია, როგორც <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:240
+#: src/crypto/signencrypttask.cpp:235
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
@@ -6403,7 +6345,7 @@ msgstr[1] ""
 "ხელმოწერა და დაშიფვრა წარმატებულია ფაილისთვის <filename>%2</filename> და "
 "კიდევ %1 ფაილისთვის და შენახულია, როგორც <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:250
+#: src/crypto/signencrypttask.cpp:245
 #, kde-kuit-format
 msgctxt "@info Successfully signed <file> and saved the signature in <file>."
 msgid ""
@@ -6413,7 +6355,7 @@ msgstr ""
 "ხელმოწერა წარმატებულია ფაილისთვის <filename>%1</filename> და ხელმოწერა "
 "შენახულია ფაილში <filename>%2</filename>."
 
-#: src/crypto/signencrypttask.cpp:256
+#: src/crypto/signencrypttask.cpp:251
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <file> and saved the signature in "
@@ -6425,7 +6367,7 @@ msgstr ""
 "ხელმოწერა წარმატებულია ფაილისთვის <filename>%1</filename> და <filename>%2</"
 "filename> და ხელმოწერა შენახულია ფაილში <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:262
+#: src/crypto/signencrypttask.cpp:257
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <n> other(s) and saved the signature in "
@@ -6443,7 +6385,7 @@ msgstr[1] ""
 "ხელმოწერა წარმატებულია ფაილისთვის <filename>%2</filename> და კიდევ %1 და "
 "ხელმოწერა შენახულია ფაილში <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:271
+#: src/crypto/signencrypttask.cpp:266
 #, kde-kuit-format
 msgctxt "@info Successfully encrypted <file> and saved it as <file>."
 msgid ""
@@ -6453,7 +6395,7 @@ msgstr ""
 "დაშიფვრა წარმატებულია ფაილისთვის <filename>%1</filename> და შენახულია, "
 "როგორც <filename>%2</filename>."
 
-#: src/crypto/signencrypttask.cpp:277
+#: src/crypto/signencrypttask.cpp:272
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <file> and saved it as <file>."
@@ -6464,7 +6406,7 @@ msgstr ""
 "დაშიფვრა წარმატებულია ფაილისთვის <filename>%1</filename> და <filename>%2</"
 "filename> და შენახულია, როგორც <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:283
+#: src/crypto/signencrypttask.cpp:278
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
@@ -6481,23 +6423,29 @@ msgstr[1] ""
 "დაშიფვრა წარმატებულია ფაილისთვის <filename>%2</filename> და კიდევ %1 და "
 "შენახულია, როგორც <filename>%3</filename>."
 
-#: src/crypto/signencrypttask.cpp:304 src/crypto/signencrypttask.cpp:321
+#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
+#: src/crypto/signencrypttask.cpp:929
+#, kde-format
+msgid "Input error: %1"
+msgstr "შეყვანის შეცდომა: %1"
+
+#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
 #, kde-format
 msgid "Output error: %1"
 msgstr "გამოტანის შეცდომა: %1"
 
-#: src/crypto/signencrypttask.cpp:538
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "ამოცანისთვის პროტოკოლის დადგენა შეუძლებელია"
 
-#: src/crypto/signencrypttask.cpp:589
+#: src/crypto/signencrypttask.cpp:584
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:801 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6506,55 +6454,55 @@ msgstr ""
 "ვერ ვიპოვე საერთო ძირითადი საქაღალდე ფაილებისთვის:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:818
+#: src/crypto/signencrypttask.cpp:813
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "ხელმოწერილი და დაშიფრული არქივის შექმნა ..."
 
-#: src/crypto/signencrypttask.cpp:834
+#: src/crypto/signencrypttask.cpp:829
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "დაშიფრული არქივის შექმნა ..."
 
-#: src/crypto/signencrypttask.cpp:850
+#: src/crypto/signencrypttask.cpp:845
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "ხელმოწერილი არქივის შექმნა ..."
 
-#: src/crypto/signencrypttask.cpp:977
+#: src/crypto/signencrypttask.cpp:972
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "ჩავარდა ხელმოწერა ბლოკნოტისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:975
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "ჩავარდა დაშიფვრა ბლოკნოტისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:979
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "ბლოკნოტის დაშიფვრა და ხელმოწერა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:981
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "ბლოკნოტის დაშიფვრა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "ბლოკნოტის ხელმოწერა წარმატებულია"
 
-#: src/crypto/task.cpp:176
+#: src/crypto/task.cpp:172
 #, kde-format
 msgid "Unknown exception in Task::start()"
 msgstr "უცნობი გამონაკლისი ფუნქციაში Task::start()"
@@ -13222,9 +13170,109 @@ msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
 
+#~ msgid "Unknown certificate"
+#~ msgstr "უცნობი სერთიფიკატი"
+
+#~ msgid "Verification canceled."
+#~ msgstr "გადამოწმება გაუქმდა."
+
+#~ msgid "No signatures found."
+#~ msgstr "ხელმოწერები ვერ ვიპოვე."
+
+#~ msgid "Invalid signature."
+#~ msgid_plural "%1 invalid signatures."
+#~ msgstr[0] "არასწორი ხელმოწერა."
+#~ msgstr[1] "%1 არასწორი ხელმოწერა."
+
+#~ msgid "The data could not be verified."
+#~ msgid_plural "%1 signatures could not be verified."
+#~ msgstr[0] "მონაცემების გადამოწმების შეცდომა."
+#~ msgstr[1] "%1 ხელმოწერის გადამოწმების შეცდომა."
+
+#~ msgid "Valid signature by %1."
+#~ msgstr "ხელმოწერა გადამოწმებულია %1-ის მიერ."
+
+#~ msgid "Valid signature."
+#~ msgid_plural "%1 valid signatures."
+#~ msgstr[0] "სწორი ხელმოწერა."
+#~ msgstr[1] "%1 სწორი ხელმოწერა."
+
+#~ msgid ""
+#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
+#~ "used for signing."
+#~ msgstr ""
+#~ "<br/>გაფრთხილება: გამგზავნის ელფოსტის მისამართი ხელმოწერისთვის "
+#~ "გამოყენებულ სერტიფიკატებში დამახსოვრებული არაა."
+
+#~ msgid "Decryption canceled."
+#~ msgstr "გაშიფვრა გაუქმებულია."
+
+#~ msgctxt ""
+#~ "@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
+#~ "encrypted for any secret key in your certificate list."
+#~ msgid ""
+#~ "Unable to decrypt and verify <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis><nl />The data was not encrypted for any "
+#~ "secret key in your certificate list."
+#~ msgstr ""
+#~ "გაშიფვრა შეუძლებელია: <filename>%1</filename>: <emphasis strong='true'>"
+#~ "%2</emphasis><nl />მონაცემები დაშიფრული არ იყო თქვენი სერტიფიკატების "
+#~ "სიაში მყოფი არც ერთი საიდუმლო გასაღებისთვის."
+
+#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis>"
+#~ msgstr ""
+#~ "ჩავარდა გაშიფვრა და გადამოწმება ფაილისთვის <filename>%1</filename>: "
+#~ "<emphasis strong='true'>%2</emphasis>"
+
+#~ msgctxt "@info Failed to verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "ჩავარდა გადამოწმება ფაილისთვის <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis>"
+
+#~ msgctxt ""
+#~ "@info Unable to decrypt <file>: <reason><nl />The data was not encrypted "
+#~ "for any secret key in your certificate list."
+#~ msgid ""
+#~ "Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis><nl />The data was not encrypted for any secret key in your "
+#~ "certificate list."
+#~ msgstr ""
+#~ "გაშიფვრა შეუძლებელია: <filename>%1</filename>: <emphasis strong='true'>"
+#~ "%2</emphasis><nl />მონაცემები დაშიფრული არ იყო თქვენი სერტიფიკატების "
+#~ "სიაში მყოფი არც ერთი საიდუმლო გასაღებისთვის."
+
 #~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid "Failed to decrypt <filename>%1</filename>: %2"
-#~ msgstr "<filename>%1</filename>-ის გაშიფვრა ჩავარდა: %2"
+#~ msgid ""
+#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "ჩავარდა გაშიფვრა ფაილისთვის <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis>"
+
+#~ msgid ""
+#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
+#~ "p>"
+#~ msgstr ""
+#~ "<p>გამგზავნის მისამართი %1 სერტიფიკატში დამახსოვრებული არაა. "
+#~ "დამახსოვრებულია: %2</p>"
+
+#~ msgctxt "separator for a list of e-mail addresses"
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Search%1"
+#~ msgstr "ძებნა%1"
+
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Import%1"
+#~ msgstr "შემოტანა%1"
 
 #~ msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
 #~ msgid "Uses:"

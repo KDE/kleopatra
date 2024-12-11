@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-10 00:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:40+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -1090,7 +1090,7 @@ msgstr ""
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:155
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #: src/commands/encryptclipboardcommand.cpp:150
 #: src/commands/encryptclipboardcommand.cpp:162
 #: src/commands/signclipboardcommand.cpp:150
@@ -1320,12 +1320,12 @@ msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "در حال حذف کلیدها..."
 
-#: src/commands/decryptverifyfilescommand.cpp:206
+#: src/commands/decryptverifyfilescommand.cpp:205
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr ""
 
-#: src/commands/decryptverifyfilescommand.cpp:219
+#: src/commands/decryptverifyfilescommand.cpp:218
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr ""
@@ -4994,111 +4994,57 @@ msgid "No usable inputs found"
 msgstr ""
 
 #: src/crypto/decryptverifyfilescontroller.cpp:224
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:91
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:90
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
 msgid "Decrypt/Verify Files"
 msgstr "در حال حذف کلیدها..."
 
-#: src/crypto/decryptverifytask.cpp:140
+#: src/crypto/decryptverifytask.cpp:145
 #, fuzzy, kde-format
-#| msgid "Deleting CA Certificates"
-msgid "Unknown certificate"
-msgstr "حذف گواهی‌نامه‌های CA"
+#| msgid "Description"
+msgid "Recipient:"
+msgid_plural "Recipients:"
+msgstr[0] "توصیف"
+msgstr[1] ""
 
-#: src/crypto/decryptverifytask.cpp:265
+#: src/crypto/decryptverifytask.cpp:149
 #, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
-msgid "Verification canceled."
-msgstr "خرابی در بارگیری گواهی‌نامه"
-
-#: src/crypto/decryptverifytask.cpp:273
-#, fuzzy, kde-format
-#| msgid "New signatures:"
-msgid "No signatures found."
-msgstr "امضاهای جدید:"
-
-#: src/crypto/decryptverifytask.cpp:278
-#, fuzzy, kde-format
-#| msgid "New signatures:"
-msgid "Invalid signature."
-msgid_plural "%1 invalid signatures."
-msgstr[0] "امضاهای جدید:"
-msgstr[1] "امضاهای جدید:"
-
-#: src/crypto/decryptverifytask.cpp:284
-#, fuzzy, kde-format
-#| msgid "CRL cache cleared successfully."
-msgid "The data could not be verified."
-msgid_plural "%1 signatures could not be verified."
-msgstr[0] "نهانگاه CRL با موفقیت پاک شد."
-msgstr[1] "نهانگاه CRL با موفقیت پاک شد."
-
-#: src/crypto/decryptverifytask.cpp:290
-#, fuzzy, kde-format
-#| msgid "New signatures:"
-msgid "Valid signature by %1."
-msgstr "امضاهای جدید:"
-
-#: src/crypto/decryptverifytask.cpp:294
-#, kde-format
+#| msgid "Description"
 msgctxt "@info"
-msgid ""
-"Warning: The sender's mail address is not stored in the <a href=\"key:"
-"%1\">certificate</a> used for signing."
-msgstr ""
+msgid "One unknown recipient"
+msgstr "توصیف"
 
-#: src/crypto/decryptverifytask.cpp:298
-#, fuzzy, kde-format
-#| msgid "New signatures:"
-msgid "Valid signature."
-msgid_plural "%1 valid signatures."
-msgstr[0] "امضاهای جدید:"
-msgstr[1] "امضاهای جدید:"
-
-#: src/crypto/decryptverifytask.cpp:300
+#: src/crypto/decryptverifytask.cpp:159
 #, kde-format
-msgid ""
-"<br/>Warning: The sender's mail address is not stored in the certificates "
-"used for signing."
-msgstr ""
+msgid "One unknown recipient"
+msgid_plural "%1 unknown recipients"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/crypto/decryptverifytask.cpp:312
+#: src/crypto/decryptverifytask.cpp:224
 #, fuzzy, kde-format
-#| msgid "Certificate Download Failed"
-msgid "Decryption canceled."
-msgstr "خرابی در بارگیری گواهی‌نامه"
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Decryption and verification of <filename>%1</filename> canceled."
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/crypto/decryptverifytask.cpp:316
-#, kde-format
-msgid "No integrity protection (MDC)."
-msgstr ""
-
-#: src/crypto/decryptverifytask.cpp:346
-#, kde-kuit-format
-msgctxt ""
-"@info Unable to decrypt and verify <file>: <reason><nl />The data was not "
-"encrypted for any secret key in your certificate list."
-msgid ""
-"Unable to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis><nl />The data was not encrypted for any secret "
-"key in your certificate list."
-msgstr ""
-
-#: src/crypto/decryptverifytask.cpp:353
+#: src/crypto/decryptverifytask.cpp:226
 #, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-#| "%1</b></p></qt>"
-msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-msgid ""
-"Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-"strong='true'>%2</emphasis>"
-msgstr ""
-"<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info Unable to decrypt and verify <file>:"
+msgid "Unable to decrypt and verify <filename>%1</filename>:"
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/crypto/decryptverifytask.cpp:358
+#: src/crypto/decryptverifytask.cpp:228
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info Failed to decrypt and verify <file>:"
+msgid "Failed to decrypt and verify <filename>%1</filename>:"
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
+
+#: src/crypto/decryptverifytask.cpp:231
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -5110,19 +5056,21 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/decryptverifytask.cpp:366
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-#| "%1</b></p></qt>"
-msgctxt "@info Failed to verify <file>: <reason>"
-msgid ""
-"Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
+#: src/crypto/decryptverifytask.cpp:237
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Verification of <filename>%1</filename> canceled."
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/crypto/decryptverifytask.cpp:371
+#: src/crypto/decryptverifytask.cpp:239
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info Failed to verify <file>:"
+msgid "Failed to verify <filename>%1</filename>:"
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
+
+#: src/crypto/decryptverifytask.cpp:242
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -5133,30 +5081,28 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/decryptverifytask.cpp:378
-#, kde-kuit-format
-msgctxt ""
-"@info Unable to decrypt <file>: <reason><nl />The data was not encrypted for "
-"any secret key in your certificate list."
-msgid ""
-"Unable to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis><nl />The data was not encrypted for any secret key in your "
-"certificate list."
-msgstr ""
+#: src/crypto/decryptverifytask.cpp:248
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Decryption of <filename>%1</filename> canceled."
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/crypto/decryptverifytask.cpp:385
+#: src/crypto/decryptverifytask.cpp:250
 #, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-#| "%1</b></p></qt>"
-msgctxt "@info Failed to decrypt <file>: <reason>"
-msgid ""
-"Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-"emphasis>"
-msgstr ""
-"<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info Unable to decrypt <file>:"
+msgid "Unable to decrypt <filename>%1</filename>:"
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
 
-#: src/crypto/decryptverifytask.cpp:390
+#: src/crypto/decryptverifytask.cpp:252
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info Failed to decrypt <file>:"
+msgid "Failed to decrypt <filename>%1</filename>:"
+msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
+
+#: src/crypto/decryptverifytask.cpp:255
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -5167,41 +5113,18 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/decryptverifytask.cpp:416 src/crypto/decryptverifytask.cpp:466
-#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
-#: src/crypto/signencrypttask.cpp:934
+#: src/crypto/decryptverifytask.cpp:266
 #, kde-format
-msgid "Input error: %1"
+msgctxt "@info"
+msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:427
+#: src/crypto/decryptverifytask.cpp:270
 #, kde-format
-msgid ""
-"<p>The sender's address %1 is not stored in the certificate. Stored: %2</p>"
+msgid "No integrity protection (MDC)."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:429
-#, kde-format
-msgctxt "separator for a list of e-mail addresses"
-msgid ", "
-msgstr ""
-
-#: src/crypto/decryptverifytask.cpp:440
-#, fuzzy, kde-format
-#| msgid "Description"
-msgid "Recipient:"
-msgid_plural "Recipients:"
-msgstr[0] "توصیف"
-msgstr[1] ""
-
-#: src/crypto/decryptverifytask.cpp:450
-#, kde-format
-msgid "One unknown recipient"
-msgid_plural "%1 unknown recipients"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/crypto/decryptverifytask.cpp:480
+#: src/crypto/decryptverifytask.cpp:286
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgctxt ""
@@ -5210,7 +5133,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "امضاهای جدید:"
 
-#: src/crypto/decryptverifytask.cpp:483
+#: src/crypto/decryptverifytask.cpp:289
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgctxt ""
@@ -5219,19 +5142,19 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "امضاهای جدید:"
 
-#: src/crypto/decryptverifytask.cpp:494
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:501
+#: src/crypto/decryptverifytask.cpp:305
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:506
+#: src/crypto/decryptverifytask.cpp:311
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5240,7 +5163,7 @@ msgid ""
 "was not widely used."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:511
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5250,7 +5173,7 @@ msgid ""
 "it after you have forced the decryption."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:806
+#: src/crypto/decryptverifytask.cpp:532
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -5261,7 +5184,7 @@ msgstr ""
 "خرابی در اجرای gpgsm:\n"
 "%1"
 
-#: src/crypto/decryptverifytask.cpp:809
+#: src/crypto/decryptverifytask.cpp:535
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -5272,83 +5195,91 @@ msgstr ""
 "خرابی در اجرای gpgsm:\n"
 "%1"
 
-#: src/crypto/decryptverifytask.cpp:813
+#: src/crypto/decryptverifytask.cpp:539
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "&گواهی‌نامه‌ها‌"
 
-#: src/crypto/decryptverifytask.cpp:816
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:819
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:983 src/crypto/decryptverifytask.cpp:1191
-#: src/crypto/decryptverifytask.cpp:1271 src/crypto/decryptverifytask.cpp:1372
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1592
-#: src/crypto/decryptverifytask.cpp:1669 src/crypto/decryptverifytask.cpp:1803
+#: src/crypto/decryptverifytask.cpp:578
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Warning: The sender's mail address is not stored in the <a href=\"key:"
+"%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
+#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
+#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
 #, kde-format
 msgid "Caught exception: %1"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:986 src/crypto/decryptverifytask.cpp:1193
-#: src/crypto/decryptverifytask.cpp:1274 src/crypto/decryptverifytask.cpp:1374
-#: src/crypto/decryptverifytask.cpp:1427 src/crypto/decryptverifytask.cpp:1594
-#: src/crypto/decryptverifytask.cpp:1671 src/crypto/decryptverifytask.cpp:1805
+#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
+#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
+#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
+#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1040
+#: src/crypto/decryptverifytask.cpp:775
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1048
+#: src/crypto/decryptverifytask.cpp:783
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypting %1..."
 msgstr "در حال حذف کلیدها..."
 
-#: src/crypto/decryptverifytask.cpp:1327
+#: src/crypto/decryptverifytask.cpp:1062
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1335
+#: src/crypto/decryptverifytask.cpp:1070
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Decrypting: %1..."
 msgstr "در حال حذف کلیدها..."
 
-#: src/crypto/decryptverifytask.cpp:1481 src/crypto/decryptverifytask.cpp:1733
+#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1489
+#: src/crypto/decryptverifytask.cpp:1224
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgid "Verifying %1..."
 msgstr "در حال حذف کلیدها..."
 
-#: src/crypto/decryptverifytask.cpp:1751
+#: src/crypto/decryptverifytask.cpp:1486
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -5360,7 +5291,7 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/decryptverifytask.cpp:1755
+#: src/crypto/decryptverifytask.cpp:1490
 #, fuzzy, kde-format
 #| msgid "New signatures:"
 msgid "Verifying signature %1..."
@@ -5379,17 +5310,17 @@ msgstr ""
 msgid "User cancel"
 msgstr ""
 
-#: src/crypto/encryptemailtask.cpp:65
+#: src/crypto/encryptemailtask.cpp:64
 #, kde-format
 msgid "Encryption canceled."
 msgstr ""
 
-#: src/crypto/encryptemailtask.cpp:69
+#: src/crypto/encryptemailtask.cpp:68
 #, kde-format
 msgid "Encryption failed: %1"
 msgstr ""
 
-#: src/crypto/encryptemailtask.cpp:72
+#: src/crypto/encryptemailtask.cpp:71
 #, kde-format
 msgid "Encryption succeeded."
 msgstr ""
@@ -5476,48 +5407,29 @@ msgstr ""
 msgid "..."
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:55
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:53
+#, fuzzy, kde-format
+#| msgid ""
+#| "Failed to execute gpgsm:\n"
+#| "%1"
+msgctxt "@info:tooltip"
+msgid "Choose output folder"
+msgstr ""
+"خرابی در اجرای gpgsm:\n"
+"%1"
+
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:54
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr ""
 
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:98
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:97
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "در حال حذف کلیدها..."
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:122
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
-#, kde-format
-msgid "%1: All operations completed."
-msgstr ""
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:124
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
-#, kde-format
-msgid "All operations completed."
-msgstr ""
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:146
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:108
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
-msgctxt "number, operation description"
-msgid "Operation %1: %2"
-msgstr "ایست عمل"
-
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:148
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
-#, fuzzy, kde-format
-#| msgid "%1 bit"
-#| msgid_plural "%1 bits"
-msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
-msgid "%1: %2"
-msgstr "%1 بیت"
 
 #: src/crypto/gui/decryptverifyfileswizard.cpp:212
 #, kde-format
@@ -5574,6 +5486,32 @@ msgstr ""
 msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "فقط برای &رمزبندی‌"
+
+#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:89
+#, kde-format
+msgid "%1: All operations completed."
+msgstr ""
+
+#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:91
+#, kde-format
+msgid "All operations completed."
+msgstr ""
+
+#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
+#: src/crypto/gui/resultpage.cpp:108
+#, fuzzy, kde-format
+#| msgid "Stop Operation"
+msgctxt "number, operation description"
+msgid "Operation %1: %2"
+msgstr "ایست عمل"
+
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:110
+#, fuzzy, kde-format
+#| msgid "%1 bit"
+#| msgid_plural "%1 bits"
+msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
+msgid "%1: %2"
+msgstr "%1 بیت"
 
 #: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:118
 #, kde-format
@@ -5648,33 +5586,19 @@ msgstr ""
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr ""
 
-#: src/crypto/gui/resultitemwidget.cpp:135
+#: src/crypto/gui/resultitemwidget.cpp:117
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "فقط برای &رمزبندی‌"
 
-#: src/crypto/gui/resultitemwidget.cpp:178
-#, fuzzy, kde-format
-#| msgid "Search:"
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Search%1"
-msgstr "جستجو:"
-
-#: src/crypto/gui/resultitemwidget.cpp:179
-#, fuzzy, kde-format
-#| msgid "Imported:"
-msgctxt "1 is optional keyid. No space is intended as it can be empty."
-msgid "Import%1"
-msgstr "وارد‌شده:"
-
-#: src/crypto/gui/resultitemwidget.cpp:228
+#: src/crypto/gui/resultitemwidget.cpp:142
 #, kde-format
 msgid "Diagnostics"
 msgstr ""
 
-#: src/crypto/gui/resultitemwidget.cpp:229
+#: src/crypto/gui/resultitemwidget.cpp:143
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
@@ -6422,18 +6346,18 @@ msgstr ""
 msgid "Call to NewSignEncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:68
+#: src/crypto/signemailtask.cpp:67
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Signing canceled."
 msgstr "لغو‌شده."
 
-#: src/crypto/signemailtask.cpp:72
+#: src/crypto/signemailtask.cpp:71
 #, kde-format
 msgid "Signing failed: %1"
 msgstr ""
 
-#: src/crypto/signemailtask.cpp:75
+#: src/crypto/signemailtask.cpp:74
 #, kde-format
 msgid "Signing succeeded."
 msgstr ""
@@ -6490,28 +6414,28 @@ msgid ""
 "slotWizardOperationPrepared"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:150
+#: src/crypto/signencrypttask.cpp:145
 #, fuzzy, kde-format
 #| msgid "For signing &and encrypting"
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "برای امضا &و رمزبندی‌"
 
-#: src/crypto/signencrypttask.cpp:153
+#: src/crypto/signencrypttask.cpp:148
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "لغو‌شده."
 
-#: src/crypto/signencrypttask.cpp:156
+#: src/crypto/signencrypttask.cpp:151
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "خرابی در حذف گواهی‌نامه‌ها"
 
-#: src/crypto/signencrypttask.cpp:162
+#: src/crypto/signencrypttask.cpp:157
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6523,7 +6447,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:168
+#: src/crypto/signencrypttask.cpp:163
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6535,7 +6459,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:174
+#: src/crypto/signencrypttask.cpp:169
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6547,7 +6471,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/crypto/signencrypttask.cpp:184
+#: src/crypto/signencrypttask.cpp:179
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6558,7 +6482,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:190
+#: src/crypto/signencrypttask.cpp:185
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6570,7 +6494,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:196
+#: src/crypto/signencrypttask.cpp:191
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6587,7 +6511,7 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:206
+#: src/crypto/signencrypttask.cpp:201
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6599,7 +6523,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:212
+#: src/crypto/signencrypttask.cpp:207
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6611,7 +6535,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:218
+#: src/crypto/signencrypttask.cpp:213
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6628,7 +6552,7 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:228
+#: src/crypto/signencrypttask.cpp:223
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6641,7 +6565,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:234
+#: src/crypto/signencrypttask.cpp:229
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6651,7 +6575,7 @@ msgid ""
 "filename> and saved it as <filename>%3</filename>."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:240
+#: src/crypto/signencrypttask.cpp:235
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6669,7 +6593,7 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:250
+#: src/crypto/signencrypttask.cpp:245
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6681,7 +6605,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:256
+#: src/crypto/signencrypttask.cpp:251
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6695,7 +6619,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:262
+#: src/crypto/signencrypttask.cpp:257
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6714,7 +6638,7 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:271
+#: src/crypto/signencrypttask.cpp:266
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6726,7 +6650,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:277
+#: src/crypto/signencrypttask.cpp:272
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6739,7 +6663,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:283
+#: src/crypto/signencrypttask.cpp:278
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -6757,51 +6681,57 @@ msgstr[0] ""
 msgstr[1] ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:304 src/crypto/signencrypttask.cpp:321
+#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
+#: src/crypto/signencrypttask.cpp:929
+#, kde-format
+msgid "Input error: %1"
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
 #, kde-format
 msgid "Output error: %1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:538
+#: src/crypto/signencrypttask.cpp:533
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:589
+#: src/crypto/signencrypttask.cpp:584
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:801 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:818
+#: src/crypto/signencrypttask.cpp:813
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "در حال حذف کلیدها..."
 
-#: src/crypto/signencrypttask.cpp:834
+#: src/crypto/signencrypttask.cpp:829
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "واکشی کلیدها..."
 
-#: src/crypto/signencrypttask.cpp:850
+#: src/crypto/signencrypttask.cpp:845
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "واکشی کلیدها..."
 
-#: src/crypto/signencrypttask.cpp:977
+#: src/crypto/signencrypttask.cpp:972
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -6812,7 +6742,7 @@ msgstr ""
 "خرابی در اجرای gpgsm:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:975
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -6823,26 +6753,26 @@ msgstr ""
 "خرابی در اجرای gpgsm:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:979
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:981
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:983
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "کلیدهای سری وارد‌شده:"
 
-#: src/crypto/task.cpp:176
+#: src/crypto/task.cpp:172
 #, kde-format
 msgid "Unknown exception in Task::start()"
 msgstr ""
@@ -13603,10 +13533,98 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-#~| msgid "Could not generate certificate: %1"
+#~| msgid "Deleting CA Certificates"
+#~ msgid "Unknown certificate"
+#~ msgstr "حذف گواهی‌نامه‌های CA"
+
+#, fuzzy
+#~| msgid "Certificate Download Failed"
+#~ msgid "Verification canceled."
+#~ msgstr "خرابی در بارگیری گواهی‌نامه"
+
+#, fuzzy
+#~| msgid "New signatures:"
+#~ msgid "No signatures found."
+#~ msgstr "امضاهای جدید:"
+
+#, fuzzy
+#~| msgid "New signatures:"
+#~ msgid "Invalid signature."
+#~ msgid_plural "%1 invalid signatures."
+#~ msgstr[0] "امضاهای جدید:"
+#~ msgstr[1] "امضاهای جدید:"
+
+#, fuzzy
+#~| msgid "CRL cache cleared successfully."
+#~ msgid "The data could not be verified."
+#~ msgid_plural "%1 signatures could not be verified."
+#~ msgstr[0] "نهانگاه CRL با موفقیت پاک شد."
+#~ msgstr[1] "نهانگاه CRL با موفقیت پاک شد."
+
+#, fuzzy
+#~| msgid "New signatures:"
+#~ msgid "Valid signature by %1."
+#~ msgstr "امضاهای جدید:"
+
+#, fuzzy
+#~| msgid "New signatures:"
+#~ msgid "Valid signature."
+#~ msgid_plural "%1 valid signatures."
+#~ msgstr[0] "امضاهای جدید:"
+#~ msgstr[1] "امضاهای جدید:"
+
+#, fuzzy
+#~| msgid "Certificate Download Failed"
+#~ msgid "Decryption canceled."
+#~ msgstr "خرابی در بارگیری گواهی‌نامه"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificate:</"
+#~| "p><p><b>%1</b></p></qt>"
+#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
+#~ "strong='true'>%2</emphasis>"
+#~ msgstr ""
+#~ "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></"
+#~ "qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificate:</"
+#~| "p><p><b>%1</b></p></qt>"
+#~ msgctxt "@info Failed to verify <file>: <reason>"
+#~ msgid ""
+#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></"
+#~ "qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificate:</"
+#~| "p><p><b>%1</b></p></qt>"
 #~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid "Failed to decrypt <filename>%1</filename>: %2"
-#~ msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
+#~ msgid ""
+#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></"
+#~ "qt>"
+
+#, fuzzy
+#~| msgid "Search:"
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Search%1"
+#~ msgstr "جستجو:"
+
+#, fuzzy
+#~| msgid "Imported:"
+#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
+#~ msgid "Import%1"
+#~ msgstr "وارد‌شده:"
 
 #, fuzzy
 #~| msgid "&Certificates"
@@ -14390,15 +14408,6 @@ msgstr ""
 #~| msgid "Valid"
 #~ msgid "Valid for:"
 #~ msgstr "معتبر"
-
-#, fuzzy
-#~| msgid ""
-#~| "Failed to execute gpgsm:\n"
-#~| "%1"
-#~ msgid "Failed to create output folder."
-#~ msgstr ""
-#~ "خرابی در اجرای gpgsm:\n"
-#~ "%1"
 
 #, fuzzy
 #~| msgid "&Tools"
