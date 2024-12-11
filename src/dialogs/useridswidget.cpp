@@ -298,6 +298,7 @@ void UserIdsWidget::Private::setUpUserIDTable()
     }
     if (!userIDTable->restoreColumnLayout(QStringLiteral("UserIDTable"))) {
         userIDTable->hideColumn(Tags);
+        userIDTable->hideColumn(Origin);
     }
     userIDTable->resizeToContentsLimited();
 }
