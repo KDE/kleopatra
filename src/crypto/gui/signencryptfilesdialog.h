@@ -14,7 +14,7 @@
 
 #include <gpgme++/global.h>
 
-#include <QWizard>
+#include <QDialog>
 
 #include <QMap>
 
@@ -33,13 +33,13 @@ class TaskCollection;
 }
 }
 
-class ResultPage;
+class SignEncryptResultPage;
 class SigEncPage;
 
 namespace Kleo
 {
 
-class SignEncryptFilesWizard : public QWizard
+class SignEncryptFilesDialog : public QDialog
 {
     Q_OBJECT
 public:
@@ -52,8 +52,8 @@ public:
         Directory,
     };
 
-    explicit SignEncryptFilesWizard(QWidget *parent = nullptr, Qt::WindowFlags f = {});
-    ~SignEncryptFilesWizard() override;
+    explicit SignEncryptFilesDialog(QWidget *parent = nullptr, Qt::WindowFlags f = {});
+    ~SignEncryptFilesDialog() override;
 
     // Inputs
     void setSigningPreset(bool preset);
@@ -77,8 +77,6 @@ public:
     std::vector<GpgME::Key> resolvedSigners() const;
     bool encryptSymmetric() const;
 
-    void setLabelText(const QString &label);
-
 protected:
     void readConfig();
     void writeConfig();
@@ -86,12 +84,9 @@ protected:
 Q_SIGNALS:
     void operationPrepared();
 
-private Q_SLOTS:
-    void slotCurrentIdChanged(int);
-
 private:
     SigEncPage *mSigEncPage = nullptr;
-    ResultPage *mResultPage = nullptr;
+    SignEncryptResultPage *mResultPage = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
 };
