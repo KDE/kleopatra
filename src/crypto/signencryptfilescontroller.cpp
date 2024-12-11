@@ -16,7 +16,7 @@
 
 #include "signencrypttask.h"
 
-#include "crypto/gui/signencryptfileswizard.h"
+#include "crypto/gui/signencryptfilesdialog.h"
 #include "crypto/taskcollection.h"
 
 #include "fileoperationspreferences.h"
@@ -77,7 +77,7 @@ private:
 private:
     std::vector<std::shared_ptr<SignEncryptTask>> runnable, completed;
     std::shared_ptr<SignEncryptTask> cms, openpgp;
-    QPointer<SignEncryptFilesWizard> wizard;
+    QPointer<SignEncryptFilesDialog> wizard;
     QStringList files;
     unsigned int operation;
     Protocol protocol;
@@ -276,12 +276,12 @@ static QMap<int, QString> buildOutputNames(const QStringList &files, const bool 
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();
 
-    nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, ascii, true));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, ascii, false));
-    nameMap.insert(SignEncryptFilesWizard::CombinedPGP, baseNamePgp + extension(true, true, true, ascii, false));
-    nameMap.insert(SignEncryptFilesWizard::EncryptedPGP, baseNamePgp + extension(true, false, true, ascii, false));
-    nameMap.insert(SignEncryptFilesWizard::SignaturePGP, baseNamePgp + extension(true, true, false, ascii, true));
-    nameMap.insert(SignEncryptFilesWizard::Directory, heuristicBaseDirectory(files));
+    nameMap.insert(SignEncryptFilesDialog::SignatureCMS, baseNameCms + extension(false, true, false, ascii, true));
+    nameMap.insert(SignEncryptFilesDialog::EncryptedCMS, baseNameCms + extension(false, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesDialog::CombinedPGP, baseNamePgp + extension(true, true, true, ascii, false));
+    nameMap.insert(SignEncryptFilesDialog::EncryptedPGP, baseNamePgp + extension(true, false, true, ascii, false));
+    nameMap.insert(SignEncryptFilesDialog::SignaturePGP, baseNamePgp + extension(true, true, false, ascii, true));
+    nameMap.insert(SignEncryptFilesDialog::Directory, heuristicBaseDirectory(files));
     return nameMap;
 }
 
@@ -289,7 +289,7 @@ static QMap<int, QString> buildOutputNamesForDir(const QString &file, const QMap
 {
     QMap<int, QString> ret;
 
-    const QString dir = orig.value(SignEncryptFilesWizard::Directory);
+    const QString dir = orig.value(SignEncryptFilesDialog::Directory);
     if (dir.isEmpty()) {
         return orig;
     }
@@ -301,11 +301,11 @@ static QMap<int, QString> buildOutputNamesForDir(const QString &file, const QMap
     const FileOperationsPreferences prefs;
     const bool ascii = prefs.addASCIIArmor();
 
-    ret.insert(SignEncryptFilesWizard::SignatureCMS, baseName + extension(false, true, false, ascii, true));
-    ret.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + extension(false, false, true, ascii, false));
-    ret.insert(SignEncryptFilesWizard::CombinedPGP, baseName + extension(true, true, true, ascii, false));
-    ret.insert(SignEncryptFilesWizard::EncryptedPGP, baseName + extension(true, false, true, ascii, false));
-    ret.insert(SignEncryptFilesWizard::SignaturePGP, baseName + extension(true, true, false, ascii, true));
+    ret.insert(SignEncryptFilesDialog::SignatureCMS, baseName + extension(false, true, false, ascii, true));
+    ret.insert(SignEncryptFilesDialog::EncryptedCMS, baseName + extension(false, false, true, ascii, false));
+    ret.insert(SignEncryptFilesDialog::CombinedPGP, baseName + extension(true, true, true, ascii, false));
+    ret.insert(SignEncryptFilesDialog::EncryptedPGP, baseName + extension(true, false, true, ascii, false));
+    ret.insert(SignEncryptFilesDialog::SignaturePGP, baseName + extension(true, true, false, ascii, true));
     return ret;
 }
 
@@ -472,11 +472,11 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createSignEncryptTasksForFi
         // Symmetric encryption is only supported for PGP
         int outKind = 0;
         if ((!pgpRecipients.empty() || symmetric) && !pgpSigners.empty()) {
-            outKind = SignEncryptFilesWizard::CombinedPGP;
+            outKind = SignEncryptFilesDialog::CombinedPGP;
         } else if (!pgpRecipients.empty() || symmetric) {
-            outKind = SignEncryptFilesWizard::EncryptedPGP;
+            outKind = SignEncryptFilesDialog::EncryptedPGP;
         } else {
-            outKind = SignEncryptFilesWizard::SignaturePGP;
+            outKind = SignEncryptFilesDialog::SignaturePGP;
         }
         result.push_back(createSignEncryptTaskForFileInfo(fi, ascii, pgpRecipients, pgpSigners, outputNames[outKind], symmetric));
     }
@@ -486,11 +486,11 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createSignEncryptTasksForFi
         // then sign, or sign then encrypt. Ugly.
         if (!cmsSigners.empty()) {
             result.push_back(
-                createSignEncryptTaskForFileInfo(fi, ascii, std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesWizard::SignatureCMS], false));
+                createSignEncryptTaskForFileInfo(fi, ascii, std::vector<Key>(), cmsSigners, outputNames[SignEncryptFilesDialog::SignatureCMS], false));
         }
         if (!cmsRecipients.empty()) {
             result.push_back(
-                createSignEncryptTaskForFileInfo(fi, ascii, cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesWizard::EncryptedCMS], false));
+                createSignEncryptTaskForFileInfo(fi, ascii, cmsRecipients, std::vector<Key>(), outputNames[SignEncryptFilesDialog::EncryptedCMS], false));
         }
     }
 
@@ -518,11 +518,11 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createArchiveSignEncryptTas
     if (pgp || symmetric) {
         int outKind = 0;
         if ((!pgpRecipients.empty() || symmetric) && !pgpSigners.empty()) {
-            outKind = SignEncryptFilesWizard::CombinedPGP;
+            outKind = SignEncryptFilesDialog::CombinedPGP;
         } else if (!pgpRecipients.empty() || symmetric) {
-            outKind = SignEncryptFilesWizard::EncryptedPGP;
+            outKind = SignEncryptFilesDialog::EncryptedPGP;
         } else {
-            outKind = SignEncryptFilesWizard::SignaturePGP;
+            outKind = SignEncryptFilesDialog::SignaturePGP;
         }
         result.push_back(createArchiveSignEncryptTaskForFiles(files, ad, true, ascii, pgpRecipients, pgpSigners, outputNames[outKind], symmetric));
     }
@@ -534,7 +534,7 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createArchiveSignEncryptTas
                                                                   ascii,
                                                                   std::vector<Key>(),
                                                                   cmsSigners,
-                                                                  outputNames[SignEncryptFilesWizard::SignatureCMS],
+                                                                  outputNames[SignEncryptFilesDialog::SignatureCMS],
                                                                   false));
         }
         if (!cmsRecipients.empty()) {
@@ -544,7 +544,7 @@ static std::vector<std::shared_ptr<SignEncryptTask>> createArchiveSignEncryptTas
                                                                   ascii,
                                                                   cmsRecipients,
                                                                   std::vector<Key>(),
-                                                                  outputNames[SignEncryptFilesWizard::EncryptedCMS],
+                                                                  outputNames[SignEncryptFilesDialog::EncryptedCMS],
                                                                   false));
         }
     }
@@ -616,7 +616,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         kleo_assert(wizard);
         kleo_assert(!files.empty());
 
-        const bool archive = ((wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) //
+        const bool archive = ((wizard->outputNames().value(SignEncryptFilesDialog::Directory).isNull() && files.size() > 1) //
                               || ((operation & ArchiveMask) == ArchiveForced));
 
         const std::vector<Key> recipients = wizard->resolvedRecipients();
@@ -795,7 +795,7 @@ void SignEncryptFilesController::Private::ensureWizardCreated()
         return;
     }
 
-    std::unique_ptr<SignEncryptFilesWizard> w(new SignEncryptFilesWizard);
+    std::unique_ptr<SignEncryptFilesDialog> w(new SignEncryptFilesDialog);
     w->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);

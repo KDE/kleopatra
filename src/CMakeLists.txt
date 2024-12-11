@@ -271,8 +271,8 @@ set(_kleopatra_SRCS
   crypto/gui/signemailwizard.h
   crypto/gui/signencryptemailconflictdialog.cpp
   crypto/gui/signencryptemailconflictdialog.h
-  crypto/gui/signencryptfileswizard.cpp
-  crypto/gui/signencryptfileswizard.h
+  crypto/gui/signencryptfilesdialog.cpp
+  crypto/gui/signencryptfilesdialog.h
   crypto/gui/signencryptwidget.cpp
   crypto/gui/signencryptwidget.h
   crypto/gui/signencryptwizard.cpp
