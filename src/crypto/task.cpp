@@ -197,7 +197,7 @@ public:
     Private()
     {
     }
-    bool isNotepad = false;
+    Task::DataSource dataSource = Files;
 };
 
 Task::Result::Result()
@@ -223,14 +223,14 @@ QString Task::Result::makeOverview(const QString &msg)
     return QLatin1StringView("<b>") + msg + QLatin1StringView("</b>");
 }
 
-bool Task::Result::isNotepad() const
+Task::DataSource Task::Result::dataSource() const
 {
-    return d->isNotepad;
+    return d->dataSource;
 }
 
-void Task::Result::setIsNotepad(bool isNotepad)
+void Task::Result::setDataSource(Task::DataSource dataSource)
 {
-    d->isNotepad = isNotepad;
+    d->dataSource = dataSource;
 }
 
 #include "moc_task_p.cpp"

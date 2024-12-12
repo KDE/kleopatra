@@ -32,6 +32,12 @@ class Task : public QObject
 {
     Q_OBJECT
 public:
+    enum DataSource {
+        Files,
+        Notepad,
+        Clipboard,
+    };
+
     explicit Task(QObject *parent = nullptr);
     ~Task() override;
 
@@ -132,8 +138,8 @@ public:
         return {};
     };
 
-    bool isNotepad() const;
-    void setIsNotepad(bool isNotepad);
+    Task::DataSource dataSource() const;
+    void setDataSource(Task::DataSource dataSource);
 
 protected:
     static QString makeOverview(const QString &msg);

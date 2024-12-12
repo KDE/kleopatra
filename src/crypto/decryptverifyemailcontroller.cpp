@@ -85,7 +85,7 @@ class DecryptVerifyEMailController::Private
     DecryptVerifyEMailController *const q;
 
 public:
-    explicit Private(DecryptVerifyEMailController *qq);
+    explicit Private(DecryptVerifyEMailController *qq, Task::DataSource dataSource);
 
     void slotWizardCanceled();
     void schedule();
@@ -118,9 +118,10 @@ public:
     Protocol m_protocol;
     VerificationMode m_verificationMode;
     std::vector<KMime::Types::Mailbox> m_informativeSenders;
+    Task::DataSource m_dataSource;
 };
 
-DecryptVerifyEMailController::Private::Private(DecryptVerifyEMailController *qq)
+DecryptVerifyEMailController::Private::Private(DecryptVerifyEMailController *qq, Task::DataSource dataSource)
     : q(qq)
     , m_sessionId(0)
     , m_silent(false)
@@ -128,6 +129,7 @@ DecryptVerifyEMailController::Private::Private(DecryptVerifyEMailController *qq)
     , m_operation(DecryptVerify)
     , m_protocol(UnknownProtocol)
     , m_verificationMode(Detached)
+    , m_dataSource(dataSource)
 {
     qRegisterMetaType<VerificationResult>();
 }
@@ -321,6 +323,7 @@ std::vector<std::shared_ptr<AbstractDecryptVerifyTask>> DecryptVerifyEMailContro
             t->setInput(m_inputs.at(i));
             Q_ASSERT(numOutputs);
             t->setOutput(m_outputs.at(i));
+            t->setDataSource(m_dataSource);
             if (numInformativeSenders > 0) {
                 t->setInformativeSender(m_informativeSenders.at(i));
             }
@@ -342,15 +345,15 @@ void DecryptVerifyEMailController::Private::ensureWizardVisible()
     q->bringToForeground(m_wizard);
 }
 
-DecryptVerifyEMailController::DecryptVerifyEMailController(QObject *parent)
+DecryptVerifyEMailController::DecryptVerifyEMailController(QObject *parent, Task::DataSource dataSource)
     : Controller(parent)
-    , d(new Private(this))
+    , d(new Private(this, dataSource))
 {
 }
 
 DecryptVerifyEMailController::DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
     : Controller(ctx, parent)
-    , d(new Private(this))
+    , d(new Private(this, Task::Files))
 {
 }
 

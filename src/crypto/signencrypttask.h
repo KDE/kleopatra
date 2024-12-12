@@ -66,7 +66,7 @@ public:
     QString label() const override;
     QString tag() const override;
 
-    void setIsNotepad(bool isNotepad);
+    void setDataSource(Task::DataSource dataSource);
 
 private:
     void doStart() override;

@@ -43,7 +43,7 @@ class DecryptVerifyEMailController : public Controller
 {
     Q_OBJECT
 public:
-    explicit DecryptVerifyEMailController(QObject *parent = nullptr);
+    explicit DecryptVerifyEMailController(QObject *parent = nullptr, Task::DataSource dataSource = Task::Files);
     explicit DecryptVerifyEMailController(const std::shared_ptr<const ExecutionContext> &cmd, QObject *parent = nullptr);
 
     ~DecryptVerifyEMailController() override;

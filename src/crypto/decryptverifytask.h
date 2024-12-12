@@ -88,8 +88,8 @@ public:
     QGpgME::Job *job() const;
     void setJob(QGpgME::Job *job);
 
-    void setIsNotepad(bool isNotepad);
-    bool isNotepad() const;
+    void setDataSource(Task::DataSource dataSource);
+    Task::DataSource dataSource() const;
 
 private:
     class Private;
@@ -269,7 +269,7 @@ private:
                         const AuditLogEntry &auditLog,
                         Task *parentTask,
                         const KMime::Types::Mailbox &informativeSender,
-                        bool isNotepad);
+                        Task::DataSource dataSource);
 
 private:
     class Private;

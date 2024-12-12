@@ -78,7 +78,7 @@ DecryptVerifyClipboardCommand::Private::Private(DecryptVerifyClipboardCommand *q
     : Command::Private(qq, c)
     , shared_qq(qq, [](DecryptVerifyClipboardCommand *) {})
     , input()
-    , controller()
+    , controller({}, Task::DataSource::Clipboard)
 {
 }
 

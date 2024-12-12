@@ -378,7 +378,7 @@ private:
     QString outputFileName;
     std::vector<Key> signers;
     std::vector<Key> recipients;
-    bool isNotepad = false;
+    SignEncryptTask::DataSource dataSource;
 
     bool sign : 1;
     bool encrypt : 1;
@@ -961,13 +961,13 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
     const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}, inputFileNames};
     const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}, {}};
     auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, auditLog));
-    result->setIsNotepad(isNotepad);
+    result->setDataSource(dataSource);
     q->emitResult(result);
 }
 
 QString SignEncryptFilesResult::overview() const
 {
-    if (isNotepad()) {
+    if (dataSource() == Task::Notepad) {
         if (!m_sresult.isNull() && m_sresult.error()) {
             return i18nc("@info", "Failed to sign the notepad: %1", Formatting::errorAsString(m_sresult.error()));
         }
@@ -1032,9 +1032,9 @@ AuditLogEntry SignEncryptFilesResult::auditLog() const
     return m_auditLog;
 }
 
-void SignEncryptTask::setIsNotepad(bool isNotepad)
+void SignEncryptTask::setDataSource(Task::DataSource dataSource)
 {
-    d->isNotepad = isNotepad;
+    d->dataSource = dataSource;
 }
 
 #include "moc_signencrypttask.cpp"

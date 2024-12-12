@@ -183,7 +183,7 @@ public:
             const AuditLogEntry &auditLog,
             Task *parentTask,
             const Mailbox &informativeSender,
-            bool isNotepad,
+            Task::DataSource dataSource,
             DecryptVerifyResult *qq)
         : q(qq)
         , m_verificationResult(vr)
@@ -198,7 +198,7 @@ public:
         , m_parentTask(QPointer<Task>(parentTask))
         , m_informativeSender(informativeSender)
     {
-        q->setIsNotepad(isNotepad);
+        q->setDataSource(dataSource);
     }
 
     QString label() const
@@ -351,7 +351,7 @@ AbstractDecryptVerifyTask::fromDecryptResult(const DecryptionResult &dr, const Q
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResult(const GpgME::Error &err, const QString &what, const AuditLogEntry &auditLog)
@@ -367,7 +367,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptResul
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerifyResult(const DecryptionResult &dr,
@@ -388,7 +388,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromDecryptVerif
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 std::shared_ptr<DecryptVerifyResult>
@@ -405,7 +405,7 @@ AbstractDecryptVerifyTask::fromDecryptVerifyResult(const GpgME::Error &err, cons
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 std::shared_ptr<DecryptVerifyResult>
@@ -422,7 +422,7 @@ AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const VerificationResult &vr, 
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 std::shared_ptr<DecryptVerifyResult>
 AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
@@ -438,7 +438,7 @@ AbstractDecryptVerifyTask::fromVerifyOpaqueResult(const GpgME::Error &err, const
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetachedResult(const VerificationResult &vr, const AuditLogEntry &auditLog)
@@ -454,7 +454,7 @@ std::shared_ptr<DecryptVerifyResult> AbstractDecryptVerifyTask::fromVerifyDetach
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 std::shared_ptr<DecryptVerifyResult>
 AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, const QString &details, const AuditLogEntry &auditLog)
@@ -470,7 +470,7 @@ AbstractDecryptVerifyTask::fromVerifyDetachedResult(const GpgME::Error &err, con
                                                                         auditLog,
                                                                         this,
                                                                         informativeSender(),
-                                                                        isNotepad()));
+                                                                        dataSource()));
 }
 
 DecryptVerifyResult::DecryptVerifyResult(const VerificationResult &vr,
@@ -484,9 +484,9 @@ DecryptVerifyResult::DecryptVerifyResult(const VerificationResult &vr,
                                          const AuditLogEntry &auditLog,
                                          Task *parentTask,
                                          const Mailbox &informativeSender,
-                                         bool isNotepad)
+                                         Task::DataSource dataSource)
     : Task::Result()
-    , d(new Private(vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, isNotepad, this))
+    , d(new Private(vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, dataSource, this))
 {
 }
 
@@ -527,7 +527,7 @@ QString DecryptVerifyResult::overview() const
     const auto decrypting = !d->m_decryptionResult.isNull();
     const auto verifying = d->m_verificationResult.numSignatures() > 0;
 
-    if (isNotepad()) {
+    if (dataSource() == Task::Notepad) {
         if (decrypting && d->m_decryptionResult.error()) {
             return i18nc("@info", "Failed to decrypt the notepad: %1", Formatting::errorAsString(d->m_decryptionResult.error()));
         }
@@ -545,8 +545,25 @@ QString DecryptVerifyResult::overview() const
             return i18nc("@info", "Successfully verified the notepad");
         }
         return {};
-    }
+    } else if (dataSource() == Task::Clipboard) {
+        if (decrypting && d->m_decryptionResult.error()) {
+            return i18nc("@info", "Failed to decrypt the clipboard: %1", Formatting::errorAsString(d->m_decryptionResult.error()));
+        }
+        if (verifying && d->m_verificationResult.error()) {
+            return i18nc("@info", "Failed to verify the clipboard: %1", Formatting::errorAsString(d->m_verificationResult.error()));
+        }
 
+        if (decrypting && verifying) {
+            return i18nc("@info", "Successfully decrypted and verified the clipboard");
+        }
+        if (decrypting) {
+            return i18nc("@info", "Successfully decrypted the clipboard");
+        }
+        if (verifying) {
+            return i18nc("@info", "Successfully verified the clipboard");
+        }
+        return {};
+    }
     return d->label();
 }
 
@@ -627,7 +644,7 @@ class AbstractDecryptVerifyTask::Private
 public:
     Mailbox informativeSender;
     QPointer<QGpgME::Job> job;
-    bool isNotepad = false;
+    Task::DataSource dataSource = Task::Files;
 };
 
 AbstractDecryptVerifyTask::AbstractDecryptVerifyTask(QObject *parent)
@@ -1541,14 +1558,14 @@ void VerifyDetachedTask::doStart()
     }
 }
 
-void AbstractDecryptVerifyTask::setIsNotepad(bool isNotepad)
+void AbstractDecryptVerifyTask::setDataSource(Task::DataSource dataSource)
 {
-    d->isNotepad = isNotepad;
+    d->dataSource = dataSource;
 }
 
-bool AbstractDecryptVerifyTask::isNotepad() const
+Task::DataSource AbstractDecryptVerifyTask::dataSource() const
 {
-    return d->isNotepad;
+    return d->dataSource;
 }
 
 #include "moc_decryptverifytask.cpp"
