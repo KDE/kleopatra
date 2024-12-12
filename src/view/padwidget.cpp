@@ -92,8 +92,6 @@ public:
         , mProgressBar(new QProgressBar)
         , mProgressLabel(new QLabel)
         , mLastResultWidget(nullptr)
-        , mPGPRB(nullptr)
-        , mCMSRB(nullptr)
         , mImportProto(GpgME::UnknownProtocol)
     {
         auto vLay = new QVBoxLayout(q);
@@ -157,53 +155,9 @@ public:
         scrollArea->setFocusPolicy(Qt::NoFocus);
         auto recipientsWidget = new QWidget;
         scrollArea->setWidget(recipientsWidget);
-        auto protocolSelectionLay = new QHBoxLayout;
         auto recipientsVLay = new QVBoxLayout(recipientsWidget);
 
-        bool pgpOnly = KeyCache::instance()->pgpOnly();
-        if (!pgpOnly && Settings{}.cmsEnabled()) {
-            auto protocolLabel = new QLabel(i18nc("@label", "Protocol:"));
-            auto font = protocolLabel->font();
-            font.setWeight(QFont::DemiBold);
-            protocolLabel->setFont(font);
-            recipientsVLay->addWidget(protocolLabel);
-
-            recipientsVLay->addLayout(protocolSelectionLay);
-            recipientsVLay->addSpacing(q->style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
-
-            auto grp = new QButtonGroup(q);
-            mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
-            mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
-            grp->addButton(mPGPRB);
-            grp->addButton(mCMSRB);
-
-            mSigEncWidget = new SignEncryptWidget(nullptr, true);
-
-            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Notepad"));
-            if (config.readEntry("wasCMS", false)) {
-                mCMSRB->setChecked(true);
-                mSigEncWidget->setProtocol(GpgME::CMS);
-            } else {
-                mPGPRB->setChecked(true);
-                mSigEncWidget->setProtocol(GpgME::OpenPGP);
-            }
-
-            protocolSelectionLay->addWidget(mPGPRB);
-            protocolSelectionLay->addWidget(mCMSRB);
-            connect(mPGPRB, &QRadioButton::toggled, q, [this](bool value) {
-                if (value) {
-                    mSigEncWidget->setProtocol(GpgME::OpenPGP);
-                }
-            });
-            connect(mCMSRB, &QRadioButton::toggled, q, [this](bool value) {
-                if (value) {
-                    mSigEncWidget->setProtocol(GpgME::CMS);
-                }
-            });
-        } else {
-            mSigEncWidget = new SignEncryptWidget(nullptr, true);
-            mSigEncWidget->setProtocol(GpgME::OpenPGP);
-        }
+        mSigEncWidget = new SignEncryptWidget(nullptr, true);
         recipientsVLay->addWidget(mSigEncWidget);
 
         mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -310,19 +264,9 @@ public:
             });
         }
 
-        // Check result protocol
-        if (mPGPRB) {
-            auto proto = getProtocol(result);
-            if (proto == GpgME::UnknownProtocol) {
-                proto = mPGPRB->isChecked() ? GpgME::OpenPGP : GpgME::CMS;
-            } else if (proto == GpgME::OpenPGP) {
-                mPGPRB->setChecked(true);
-            } else if (proto == GpgME::CMS) {
-                mCMSRB->setChecked(true);
-            }
-
-            KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("Notepad"));
-            config.writeEntry("wasCMS", proto == GpgME::CMS);
+        const auto protocol = getProtocol(result);
+        if (protocol != GpgME::Protocol::UnknownProtocol) {
+            mSigEncWidget->setProtocol(protocol);
         }
 
         if (result->error()) {
@@ -552,8 +496,6 @@ private:
     QVBoxLayout *mStatusLay;
     ResultItemWidget *mLastResultWidget;
     QList<GpgME::Key> mAutoAddedKeys;
-    QRadioButton *mPGPRB;
-    QRadioButton *mCMSRB;
     GpgME::Protocol mImportProto;
 };
 

@@ -19,10 +19,12 @@
 
 #include "utils/gui-helper.h"
 
+#include <QButtonGroup>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QRadioButton>
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QVBoxLayout>
@@ -151,6 +153,8 @@ public:
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
     std::unique_ptr<ExpiryChecker> mExpiryChecker;
+    QRadioButton *mPGPRB;
+    QRadioButton *mCMSRB;
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
@@ -166,6 +170,41 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
     const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
     const bool publicKeyOnly = FileOperationsPreferences().publicKeyEncryptionOnly();
+
+    bool pgpOnly = KeyCache::instance()->pgpOnly();
+    if (!pgpOnly && Settings{}.cmsEnabled() && sigEncExclusive) {
+        auto protocolSelectionLay = new QHBoxLayout;
+        auto protocolLabel = new QLabel(i18nc("@label", "Protocol:"));
+        auto font = protocolLabel->font();
+        font.setWeight(QFont::DemiBold);
+        protocolLabel->setFont(font);
+        lay->addWidget(protocolLabel);
+
+        lay->addLayout(protocolSelectionLay);
+        lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
+
+        auto grp = new QButtonGroup;
+        d->mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
+        d->mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
+        grp->addButton(d->mPGPRB);
+        grp->addButton(d->mCMSRB);
+
+        protocolSelectionLay->addWidget(d->mPGPRB);
+        protocolSelectionLay->addWidget(d->mCMSRB);
+
+        connect(d->mPGPRB, &QRadioButton::toggled, this, [this](bool value) {
+            if (value) {
+                setProtocol(GpgME::OpenPGP);
+                KConfigGroup(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptWidget")).writeEntry("wasCMS", false);
+            }
+        });
+        connect(d->mCMSRB, &QRadioButton::toggled, this, [this](bool value) {
+            if (value) {
+                setProtocol(GpgME::CMS);
+                KConfigGroup(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptWidget")).writeEntry("wasCMS", true);
+            }
+        });
+    }
 
     /* The signature selection */
     {
@@ -315,6 +354,21 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mExpiryChecker.reset();
         d->updateAllExpiryMessages();
     });
+
+    if (!pgpOnly && Settings{}.cmsEnabled() && sigEncExclusive) {
+        KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptWidget"));
+        if (config.readEntry("wasCMS", false)) {
+            d->mCMSRB->setChecked(true);
+            setProtocol(GpgME::CMS);
+        } else {
+            d->mPGPRB->setChecked(true);
+            setProtocol(GpgME::OpenPGP);
+        }
+    }
+
+    if (pgpOnly || !Settings{}.cmsEnabled()) {
+        setProtocol(GpgME::OpenPGP);
+    }
 
     loadKeys();
     d->onProtocolChanged();
@@ -812,6 +866,11 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
         return;
     }
     d->mCurrentProto = proto;
+
+    if (d->mPGPRB) {
+        d->mPGPRB->setChecked(proto == GpgME::OpenPGP);
+        d->mCMSRB->setChecked(proto == GpgME::CMS);
+    }
     d->onProtocolChanged();
 }
 

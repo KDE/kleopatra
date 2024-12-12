@@ -41,9 +41,9 @@ public:
     };
     Q_DECLARE_FLAGS(Operations, Operation)
 
-    /** If cmsSigEncExclusive is true CMS operations can be
+    /** If exclusive is true, only one protocol can be used, and cms operations can be
      * done only either as sign or as encrypt */
-    explicit SignEncryptWidget(QWidget *parent = nullptr, bool cmsSigEncExclusive = false);
+    explicit SignEncryptWidget(QWidget *parent = nullptr, bool exclusive = false);
 
     ~SignEncryptWidget() override;
 
