@@ -236,10 +236,6 @@ public:
 
     bool validatePage()
     {
-        if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
-            return false;
-        }
-
         return mWidget->isComplete();
     }
 
@@ -322,6 +318,11 @@ public:
     bool isDeVsAndValid() const
     {
         return mWidget->isDeVsAndValid();
+    }
+
+    QString continueButtonText() const
+    {
+        return mWidget->continueButtonText();
     }
 
 private:
@@ -557,30 +558,17 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     });
 
     connect(mSigEncPage, &SigEncPage::checkReady, this, [this, okButton, labelButton](const auto op) {
-        QString label;
-        switch (op) {
-        case SignEncryptWidget::Sign:
-            label = i18nc("@action:button", "Sign");
-            break;
-        case SignEncryptWidget::Encrypt:
-            label = i18nc("@action:button", "Encrypt");
-            break;
-        case SignEncryptWidget::SignAndEncrypt:
-            label = i18nc("@action:button", "Sign / Encrypt");
-            break;
-        default:;
-        };
-        if (!label.isEmpty()) {
-            okButton->setText(label);
-            if (DeVSCompliance::isActive()) {
-                const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
-                DeVSCompliance::decorate(okButton, de_vs);
+        okButton->setText(mSigEncPage->continueButtonText());
+        if (mSigEncPage->validatePage() && DeVSCompliance::isActive()) {
+            const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
+            DeVSCompliance::decorate(okButton, de_vs);
 
-                okButton->setToolTip(DeVSCompliance::name(de_vs));
-                labelButton->setText(DeVSCompliance::name(de_vs));
-            }
+            okButton->setToolTip(DeVSCompliance::name(de_vs));
+            labelButton->setText(DeVSCompliance::name(de_vs));
         } else {
-            okButton->setText(i18nc("@action:button", "Next"));
+            if (labelButton) {
+                labelButton->setText({});
+            }
             okButton->setIcon(QIcon());
             okButton->setStyleSheet(QString());
         }

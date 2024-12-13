@@ -135,8 +135,6 @@ set(_kleopatra_SRCS
   commands/dumpcertificatecommand.h
   commands/dumpcrlcachecommand.cpp
   commands/dumpcrlcachecommand.h
-  commands/encryptclipboardcommand.cpp
-  commands/encryptclipboardcommand.h
   commands/exportcertificatecommand.cpp
   commands/exportcertificatecommand.h
   commands/exportgroupscommand.cpp
@@ -207,8 +205,8 @@ set(_kleopatra_SRCS
   commands/setpivcardapplicationadministrationkeycommand.h
   commands/setprimaryuseridcommand.cpp
   commands/setprimaryuseridcommand.h
-  commands/signclipboardcommand.cpp
-  commands/signclipboardcommand.h
+  commands/signencryptclipboardcommand.cpp
+  commands/signencryptclipboardcommand.h
   commands/signencryptfilescommand.cpp
   commands/signencryptfilescommand.h
   commands/signencryptfoldercommand.cpp
@@ -361,6 +359,8 @@ set(_kleopatra_SRCS
   dialogs/selftestdialog.h
   dialogs/setinitialpindialog.cpp
   dialogs/setinitialpindialog.h
+  dialogs/signencryptclipboarddialog.cpp
+  dialogs/signencryptclipboarddialog.h
   dialogs/smartcardwindow.cpp
   dialogs/smartcardwindow.h
   dialogs/subkeyswidget.cpp
