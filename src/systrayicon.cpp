@@ -21,10 +21,9 @@
 #include <utils/clipboardmenu.h>
 
 #include <commands/decryptverifyclipboardcommand.h>
-#include <commands/encryptclipboardcommand.h>
 #include <commands/importcertificatefromclipboardcommand.h>
 #include <commands/setinitialpincommand.h>
-#include <commands/signclipboardcommand.h>
+#include <commands/signencryptclipboardcommand.h>
 
 #include <KAboutApplicationDialog>
 #include <KAboutData>

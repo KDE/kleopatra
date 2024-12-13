@@ -115,6 +115,10 @@ public:
         an error message and returns false. */
     bool validate();
 
+    /** Text for the "continue" button, depending on the configured operation;
+     * e.g. "Encrypt", "Sign", "Sign / Encrypt". */
+    QString continueButtonText() const;
+
 protected Q_SLOTS:
     void updateOp();
     void recipientsChanged();

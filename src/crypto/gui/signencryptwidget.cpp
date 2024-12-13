@@ -922,6 +922,10 @@ static bool recipientIsOkay(const CertificateLineEdit *edit)
 
 bool SignEncryptWidget::isComplete() const
 {
+    if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
+        return false;
+    }
+
     if (currentOp() == NoOperation) {
         return false;
     }
@@ -1017,6 +1021,20 @@ void SignEncryptWidget::Private::updateAllExpiryMessages()
             updateExpiryMessages(recipient.expiryMessage, recipient.edit->userID(), ExpiryChecker::EncryptionKey);
         }
     }
+}
+
+QString SignEncryptWidget::continueButtonText() const
+{
+    switch (d->mOp) {
+    case SignEncryptWidget::Sign:
+        return i18nc("@action:button", "Sign");
+    case SignEncryptWidget::Encrypt:
+        return i18nc("@action:button", "Encrypt");
+    case SignEncryptWidget::SignAndEncrypt:
+        return i18nc("@action:button", "Sign / Encrypt");
+    default:
+        return i18nc("@action:button", "Next");
+    };
 }
 
 #include "moc_signencryptwidget.cpp"

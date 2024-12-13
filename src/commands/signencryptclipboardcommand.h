@@ -13,24 +13,19 @@
 
 #ifndef QT_NO_CLIPBOARD
 
-#include <utils/types.h>
-
-#include <gpgme++/global.h>
-
 namespace Kleo
 {
 namespace Commands
 {
 
-class SignClipboardCommand : public Command
+class SignEncryptClipboardCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit SignClipboardCommand(GpgME::Protocol protocol, QAbstractItemView *view, KeyListController *parent);
-    explicit SignClipboardCommand(GpgME::Protocol protocol, KeyListController *parent);
-    ~SignClipboardCommand() override;
+    explicit SignEncryptClipboardCommand(KeyListController *parent);
+    ~SignEncryptClipboardCommand() override;
 
-    static bool canSignCurrentClipboard();
+    static bool canSignEncryptCurrentClipboard();
 
 private:
     void doStart() override;
