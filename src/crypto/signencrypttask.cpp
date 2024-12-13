@@ -378,7 +378,7 @@ private:
     QString outputFileName;
     std::vector<Key> signers;
     std::vector<Key> recipients;
-    SignEncryptTask::DataSource dataSource;
+    SignEncryptTask::DataSource dataSource = SignEncryptTask::DataSource::Files;
 
     bool sign : 1;
     bool encrypt : 1;
