@@ -78,16 +78,11 @@ void ResultPage::Private::allDone()
 {
     Q_ASSERT(m_tasks);
     q->setAutoAdvance(!m_keepOpenCB->isChecked() && !m_tasks->errorOccurred());
-    m_progressBar->setRange(0, 100);
-    m_progressBar->setValue(100);
+    m_progressBar->setVisible(false);
     m_tasks.reset();
     const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
     for (const QString &i : progressLabelByTagKeys) {
-        if (!i.isEmpty()) {
-            m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
-        } else {
-            m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
-        }
+        m_progressLabelByTag.value(i)->clear();
     }
     Q_EMIT q->completeChanged();
 }

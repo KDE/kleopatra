@@ -31,20 +31,19 @@ public:
 
 private Q_SLOTS:
     void slotImportClipboard();
+    void slotSignEncryptClipboard();
+    void slotSignClipboard();
     void slotEncryptClipboard();
-    void slotOpenPGPSignClipboard();
-    void slotSMIMESignClipboard();
     void slotDecryptVerifyClipboard();
-    void slotEnableDisableActions();
 
 private:
     void startCommand(Kleo::Command *cmd);
 
     QPointer<KActionMenu> mClipboardMenu;
     QPointer<QAction> mImportClipboardAction;
+    QPointer<QAction> mSignClipboardAction;
     QPointer<QAction> mEncryptClipboardAction;
-    QPointer<QAction> mSmimeSignClipboardAction;
-    QPointer<QAction> mOpenPGPSignClipboardAction;
+    QPointer<QAction> mSignEncryptClipboardAction;
     QPointer<QAction> mDecryptVerifyClipboardAction;
     QPointer<MainWindow> mWindow;
 };
