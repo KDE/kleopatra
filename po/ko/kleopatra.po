@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-12 00:41+0000\n"
+"POT-Creation-Date: 2024-12-13 00:41+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -5557,25 +5557,19 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "\"%1\" 메시지 인증서 선택"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:148
-#, kde-format
-msgctxt "@title"
-msgid "Sign / Encrypt Files"
-msgstr "파일 서명/암호화"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:163
+#: src/crypto/gui/signencryptfilesdialog.cpp:156
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "다음으로 서명(&S):"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:164
+#: src/crypto/gui/signencryptfilesdialog.cpp:157
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "내 자신에게 암호화(&M):"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:165
+#: src/crypto/gui/signencryptfilesdialog.cpp:158
 #, fuzzy, kde-format
 #| msgctxt "@option:check on SignEncryptPage"
 #| msgid "Encrypt for &others:"
@@ -5583,7 +5577,7 @@ msgctxt "@label on SignEncryptPage"
 msgid "Encrypt for &others:"
 msgstr "다른 사람에게 암호화(&O):"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:166
+#: src/crypto/gui/signencryptfilesdialog.cpp:159
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Encrypt Notepad"
@@ -5591,38 +5585,38 @@ msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt with &password:"
 msgstr "메모장 암호화"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:175
+#: src/crypto/gui/signencryptfilesdialog.cpp:168
 #, fuzzy, kde-format
 #| msgid "Please select an action."
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "동작을 선택하십시오."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:178
+#: src/crypto/gui/signencryptfilesdialog.cpp:171
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "출력 파일/폴더(&F):"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfilesdialog.cpp:179
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "각각 파일을 개별적으로 암호화/서명합니다.(&E)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:187
+#: src/crypto/gui/signencryptfilesdialog.cpp:180
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr ""
 "모든 파일을 포함하는 압축 파일을 생성하는 대신 파일을 개별적으로 유지합니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:198
+#: src/crypto/gui/signencryptfilesdialog.cpp:191
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr "파일 서명 및 암호화에 필요한 준수 설정이 잘못되었습니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:200
+#: src/crypto/gui/signencryptfilesdialog.cpp:193
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5636,7 +5630,7 @@ msgstr ""
 "application> 시스템이 %1이(가) 아니므로 <application>Kleopatra</application>"
 "를 사용하여 파일에 서명하거나 암호화할 수 없습니다.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:268
+#: src/crypto/gui/signencryptfilesdialog.cpp:278
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5651,7 +5645,7 @@ msgstr ""
 "<application>Kleopatra</application>를 사용하여 파일에 서명하거나 암호화할 "
 "수 없습니다.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:288
+#: src/crypto/gui/signencryptfilesdialog.cpp:288
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5668,13 +5662,13 @@ msgstr ""
 "Kleopatra로 단일 압축 파일을 서명할 수도 있습니다.</para><para>Kleopatra의 차"
 "후 버전에서는 이러한 경우에도 분리된 서명을 처리할 수 있을 것입니다.</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:293
+#: src/crypto/gui/signencryptfilesdialog.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "자주 사용되지 않는 서명 경고"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:312
+#: src/crypto/gui/signencryptfilesdialog.cpp:307
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5688,168 +5682,205 @@ msgstr ""
 "니다.</para><para>계속 진행하시겠습니까? 아니면 취소하고 받는 사람을 다시 선"
 "택하시겠습니까?</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:315
+#: src/crypto/gui/signencryptfilesdialog.cpp:310
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "자기 자신에게 암호화 경고"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:358
+#: src/crypto/gui/signencryptfilesdialog.cpp:342
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "S/MIME 서명 파일 이름입니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:359
+#: src/crypto/gui/signencryptfilesdialog.cpp:343
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "S/MIME 서명 파일"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:360
+#: src/crypto/gui/signencryptfilesdialog.cpp:344
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "S/MIME 서명 (*.p7s)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
+#: src/crypto/gui/signencryptfilesdialog.cpp:345
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "S/MIME 서명 (*.p7s *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:366
+#: src/crypto/gui/signencryptfilesdialog.cpp:350
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "분리된 OpenPGP 서명 파일 이름입니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:367
+#: src/crypto/gui/signencryptfilesdialog.cpp:351
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "OpenPGP 서명 파일"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:368
+#: src/crypto/gui/signencryptfilesdialog.cpp:352
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "OpenPGP 서명 (*.sig *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfilesdialog.cpp:353
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "OpenPGP 서명 (*.asc *.sig)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:374
+#: src/crypto/gui/signencryptfilesdialog.cpp:358
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "OpenPGP로 서명 및 암호화된 파일 이름입니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:375
+#: src/crypto/gui/signencryptfilesdialog.cpp:359
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "OpenPGP로 서명 및 암호화된 파일"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:376
-#: src/crypto/gui/signencryptfileswizard.cpp:384
+#: src/crypto/gui/signencryptfilesdialog.cpp:360
+#: src/crypto/gui/signencryptfilesdialog.cpp:368
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr "OpenPGP 파일 (*.gpg *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
-#: src/crypto/gui/signencryptfileswizard.cpp:385
+#: src/crypto/gui/signencryptfilesdialog.cpp:361
+#: src/crypto/gui/signencryptfilesdialog.cpp:369
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr "OpenPGP 파일 (*.asc)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:382
+#: src/crypto/gui/signencryptfilesdialog.cpp:366
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "OpenPGP로 암호화된 파일 이름입니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:383
+#: src/crypto/gui/signencryptfilesdialog.cpp:367
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "OpenPGP로 암호화된 파일"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:390
+#: src/crypto/gui/signencryptfilesdialog.cpp:374
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "S/MIME으로 암호화된 파일 이름입니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:391
+#: src/crypto/gui/signencryptfilesdialog.cpp:375
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "S/MIME으로 암호화된 파일"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:392
+#: src/crypto/gui/signencryptfilesdialog.cpp:376
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "S/MIME 파일 (*.p7m)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:393
+#: src/crypto/gui/signencryptfilesdialog.cpp:377
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "S/MIME 파일 (*.p7m *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:398
+#: src/crypto/gui/signencryptfilesdialog.cpp:382
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr "결과 파일을 이 디렉터리에 저장했습니다."
 
-#: src/crypto/gui/signencryptfileswizard.cpp:399
+#: src/crypto/gui/signencryptfilesdialog.cpp:383
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "출력 디렉터리"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:461
-#, kde-format
-msgctxt "@action:button"
-msgid "Sign"
-msgstr "서명"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:464
-#, kde-format
-msgctxt "@action:button"
-msgid "Encrypt"
-msgstr "암호화"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:467
-#, kde-format
-msgctxt "@action:button"
-msgid "Sign / Encrypt"
-msgstr "서명/암호화"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:480
-#, kde-format
-msgid "Next"
-msgstr "다음"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:549
+#: src/crypto/gui/signencryptfilesdialog.cpp:502
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "결과"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:550
+#: src/crypto/gui/signencryptfilesdialog.cpp:503
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "암호화 작업의 상태와 진행을 표시합니다."
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:512
+#, kde-format
+msgctxt "@title"
+msgid "Sign / Encrypt Files"
+msgstr "파일 서명/암호화"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:520
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Sign / Encrypt Files"
+msgctxt "@title:dialog"
+msgid "Sign / Encrypt Files"
+msgstr "파일 서명/암호화"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:542
+#: src/dialogs/selftestdialog.cpp:445
+#, kde-format
+msgctxt "@action:button"
+msgid "Continue"
+msgstr "계속"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:552
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Results"
+msgctxt "@title:dialog"
+msgid "Results"
+msgstr "결과"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:553
+#, kde-format
+msgctxt "@action:button"
+msgid "Finished"
+msgstr ""
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:563
+#, kde-format
+msgctxt "@action:button"
+msgid "Sign"
+msgstr "서명"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:566
+#, kde-format
+msgctxt "@action:button"
+msgid "Encrypt"
+msgstr "암호화"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:569
+#, kde-format
+msgctxt "@action:button"
+msgid "Sign / Encrypt"
+msgstr "서명/암호화"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:583
+#, fuzzy, kde-format
+#| msgid "Next"
+msgctxt "@action:button"
+msgid "Next"
+msgstr "다음"
 
 #: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
@@ -8218,12 +8249,6 @@ msgstr "모든 테스트 결과 표시"
 msgctxt "@option:check"
 msgid "Run these tests at startup"
 msgstr "시작할 때 다음 테스트 실행"
-
-#: src/dialogs/selftestdialog.cpp:445
-#, kde-format
-msgctxt "@action:button"
-msgid "Continue"
-msgstr "계속"
 
 #: src/dialogs/selftestdialog.cpp:446
 #, kde-format

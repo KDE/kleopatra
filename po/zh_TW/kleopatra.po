@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-12 00:41+0000\n"
+"POT-Creation-Date: 2024-12-13 00:41+0000\n"
 "PO-Revision-Date: 2024-08-26 15:58+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -5391,25 +5391,19 @@ msgctxt "@title:window"
 msgid "Select Certificates for Message \"%1\""
 msgstr "為訊息 \"%1\" 選擇憑證"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:148
-#, kde-format
-msgctxt "@title"
-msgid "Sign / Encrypt Files"
-msgstr "簽署/加密檔案"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:163
+#: src/crypto/gui/signencryptfilesdialog.cpp:156
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "&Sign as:"
 msgstr "簽署名義(&S)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:164
+#: src/crypto/gui/signencryptfilesdialog.cpp:157
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt for &me:"
 msgstr "為自己加密(&M)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:165
+#: src/crypto/gui/signencryptfilesdialog.cpp:158
 #, fuzzy, kde-format
 #| msgctxt "@option:check on SignEncryptPage"
 #| msgid "Encrypt for &others:"
@@ -5417,7 +5411,7 @@ msgctxt "@label on SignEncryptPage"
 msgid "Encrypt for &others:"
 msgstr "為別人加密(&O)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:166
+#: src/crypto/gui/signencryptfilesdialog.cpp:159
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Encrypt Notepad"
@@ -5425,36 +5419,36 @@ msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt with &password:"
 msgstr "加密筆記本"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:175
+#: src/crypto/gui/signencryptfilesdialog.cpp:168
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please select an action."
 msgstr "請選擇一個動作。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:178
+#: src/crypto/gui/signencryptfilesdialog.cpp:171
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Output &files/folder:"
 msgstr "輸出檔案/資料夾(&F)："
 
-#: src/crypto/gui/signencryptfileswizard.cpp:186
+#: src/crypto/gui/signencryptfilesdialog.cpp:179
 #, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Encrypt / Sign &each file separately."
 msgstr "單獨加密/簽署各個檔案(&E)。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:187
+#: src/crypto/gui/signencryptfilesdialog.cpp:180
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Keep each file separate instead of creating an archive for all."
 msgstr "讓各個檔案保持分離，而不為它們全部建立封存檔。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:198
+#: src/crypto/gui/signencryptfilesdialog.cpp:191
 #, kde-format
 msgid "Invalid compliance settings for signing and encrypting files."
 msgstr ""
 
-#: src/crypto/gui/signencryptfileswizard.cpp:200
+#: src/crypto/gui/signencryptfilesdialog.cpp:193
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5468,7 +5462,7 @@ msgstr ""
 "<application>Kleopatra</application> 所用的 <application>GnuPG</application> "
 "系統不%1。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:268
+#: src/crypto/gui/signencryptfilesdialog.cpp:278
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -5482,7 +5476,7 @@ msgstr ""
 "案，因為 <application>Kleopatra</application> 所用的 <application>GnuPG</"
 "application> 系統不%1。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:288
+#: src/crypto/gui/signencryptfilesdialog.cpp:288
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5499,13 +5493,13 @@ msgstr ""
 "Kleopatra 簽署。</para><para>Kleopatra 將來的版本希望能在這種狀況下支援分離式"
 "簽章。</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:293
+#: src/crypto/gui/signencryptfilesdialog.cpp:293
 #, kde-format
 msgctxt "@title:window"
 msgid "Unusual Signature Warning"
 msgstr "警告：不正常的簽章"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:312
+#: src/crypto/gui/signencryptfilesdialog.cpp:307
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5517,168 +5511,205 @@ msgstr ""
 "<para>您加密的接收人沒有一個是您自己。</para> <para>這表示加密之後，您自己將"
 "無法解密。</para> <para>您要繼續，還是取消以變更收件人？</para>"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:315
+#: src/crypto/gui/signencryptfilesdialog.cpp:310
 #, kde-format
 msgctxt "@title:window"
 msgid "Encrypt-To-Self Warning"
 msgstr "加密警告"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:358
+#: src/crypto/gui/signencryptfilesdialog.cpp:342
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME signature."
 msgstr "這是 S/MIME 簽章的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:359
+#: src/crypto/gui/signencryptfilesdialog.cpp:343
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME signature file"
 msgstr "S/MIME 簽章檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:360
+#: src/crypto/gui/signencryptfilesdialog.cpp:344
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Signatures (*.p7s)"
 msgstr "S/MIME 簽章 (*.p7s)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:361
+#: src/crypto/gui/signencryptfilesdialog.cpp:345
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Signatures (*.p7s *.pem)"
 msgstr "S/MIME 簽章 (*.p7s *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:366
+#: src/crypto/gui/signencryptfilesdialog.cpp:350
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the detached OpenPGP signature."
 msgstr "這是分離的 OpenPGP 簽章的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:367
+#: src/crypto/gui/signencryptfilesdialog.cpp:351
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signature file"
 msgstr "OpenPGP 簽章檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:368
+#: src/crypto/gui/signencryptfilesdialog.cpp:352
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Signatures (*.sig *.pgp)"
 msgstr "OpenPGP 簽章 (*.sig *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:369
+#: src/crypto/gui/signencryptfilesdialog.cpp:353
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Signatures (*.asc *.sig)"
 msgstr "OpenPGP 簽章 (*.asc *.sig)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:374
+#: src/crypto/gui/signencryptfilesdialog.cpp:358
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP-signed and encrypted file."
 msgstr "這是 OpenPGP 已簽署並加密的檔案的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:375
+#: src/crypto/gui/signencryptfilesdialog.cpp:359
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP signed and encrypted file"
 msgstr "OpenPGP 署名/加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:376
-#: src/crypto/gui/signencryptfileswizard.cpp:384
+#: src/crypto/gui/signencryptfilesdialog.cpp:360
+#: src/crypto/gui/signencryptfilesdialog.cpp:368
 #, kde-format
 msgctxt "Name filter binary"
 msgid "OpenPGP Files (*.gpg *.pgp)"
 msgstr "OpenPGP 檔案 (*.gpg *.pgp)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:377
-#: src/crypto/gui/signencryptfileswizard.cpp:385
+#: src/crypto/gui/signencryptfilesdialog.cpp:361
+#: src/crypto/gui/signencryptfilesdialog.cpp:369
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "OpenPGP Files (*.asc)"
 msgstr "OpenPGP 檔案 (*.asc)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:382
+#: src/crypto/gui/signencryptfilesdialog.cpp:366
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the OpenPGP encrypted file."
 msgstr "這是 OpenPGP 加密檔的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:383
+#: src/crypto/gui/signencryptfilesdialog.cpp:367
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "OpenPGP encrypted file"
 msgstr "OpenPGP 加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:390
+#: src/crypto/gui/signencryptfilesdialog.cpp:374
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This is the filename of the S/MIME encrypted file."
 msgstr "這是 S/MIME 加密檔的檔案名稱。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:391
+#: src/crypto/gui/signencryptfilesdialog.cpp:375
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "S/MIME encrypted file"
 msgstr "S/MIME 加密檔"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:392
+#: src/crypto/gui/signencryptfilesdialog.cpp:376
 #, kde-format
 msgctxt "Name filter binary"
 msgid "S/MIME Files (*.p7m)"
 msgstr "S/MIME 檔案 (*.p7m)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:393
+#: src/crypto/gui/signencryptfilesdialog.cpp:377
 #, kde-format
 msgctxt "Name filter ASCII"
 msgid "S/MIME Files (*.p7m *.pem)"
 msgstr "S/MIME 檔案 (*.p7m *.pem)"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:398
+#: src/crypto/gui/signencryptfilesdialog.cpp:382
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The resulting files are written to this directory."
 msgstr "完成後的檔案會寫入至這個目錄中。"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:399
+#: src/crypto/gui/signencryptfilesdialog.cpp:383
 #, kde-format
 msgctxt "Lineedit accessible name"
 msgid "Output directory"
 msgstr "輸出目錄"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:461
-#, kde-format
-msgctxt "@action:button"
-msgid "Sign"
-msgstr "簽署"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:464
-#, kde-format
-msgctxt "@action:button"
-msgid "Encrypt"
-msgstr "加密"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:467
-#, kde-format
-msgctxt "@action:button"
-msgid "Sign / Encrypt"
-msgstr "簽署 / 加密"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:480
-#, kde-format
-msgid "Next"
-msgstr "下一個"
-
-#: src/crypto/gui/signencryptfileswizard.cpp:549
+#: src/crypto/gui/signencryptfilesdialog.cpp:502
 #, kde-format
 msgctxt "@title"
 msgid "Results"
 msgstr "結果"
 
-#: src/crypto/gui/signencryptfileswizard.cpp:550
+#: src/crypto/gui/signencryptfilesdialog.cpp:503
 #, kde-format
 msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "加密的狀態與進度顯示在這裡。"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:512
+#, kde-format
+msgctxt "@title"
+msgid "Sign / Encrypt Files"
+msgstr "簽署/加密檔案"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:520
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Sign / Encrypt Files"
+msgctxt "@title:dialog"
+msgid "Sign / Encrypt Files"
+msgstr "簽署/加密檔案"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:542
+#: src/dialogs/selftestdialog.cpp:445
+#, kde-format
+msgctxt "@action:button"
+msgid "Continue"
+msgstr "繼續"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:552
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Results"
+msgctxt "@title:dialog"
+msgid "Results"
+msgstr "結果"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:553
+#, kde-format
+msgctxt "@action:button"
+msgid "Finished"
+msgstr ""
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:563
+#, kde-format
+msgctxt "@action:button"
+msgid "Sign"
+msgstr "簽署"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:566
+#, kde-format
+msgctxt "@action:button"
+msgid "Encrypt"
+msgstr "加密"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:569
+#, kde-format
+msgctxt "@action:button"
+msgid "Sign / Encrypt"
+msgstr "簽署 / 加密"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:583
+#, fuzzy, kde-format
+#| msgid "Next"
+msgctxt "@action:button"
+msgid "Next"
+msgstr "下一個"
 
 #: src/crypto/gui/signencryptwidget.cpp:172
 #, fuzzy, kde-format
@@ -7895,12 +7926,6 @@ msgstr "顯示所有測試結果"
 msgctxt "@option:check"
 msgid "Run these tests at startup"
 msgstr "啟動時執行這些測試"
-
-#: src/dialogs/selftestdialog.cpp:445
-#, kde-format
-msgctxt "@action:button"
-msgid "Continue"
-msgstr "繼續"
 
 #: src/dialogs/selftestdialog.cpp:446
 #, kde-format
