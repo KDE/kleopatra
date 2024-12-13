@@ -31,9 +31,7 @@ public:
 
 private Q_SLOTS:
     void slotImportClipboard();
-    void slotEncryptClipboard();
-    void slotOpenPGPSignClipboard();
-    void slotSMIMESignClipboard();
+    void slotSignEncryptClipboard();
     void slotDecryptVerifyClipboard();
     void slotEnableDisableActions();
 
@@ -42,9 +40,7 @@ private:
 
     QPointer<KActionMenu> mClipboardMenu;
     QPointer<QAction> mImportClipboardAction;
-    QPointer<QAction> mEncryptClipboardAction;
-    QPointer<QAction> mSmimeSignClipboardAction;
-    QPointer<QAction> mOpenPGPSignClipboardAction;
+    QPointer<QAction> mSignEncryptClipboardAction;
     QPointer<QAction> mDecryptVerifyClipboardAction;
     QPointer<MainWindow> mWindow;
 };

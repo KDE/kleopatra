@@ -22,13 +22,13 @@ namespace Kleo
 namespace Commands
 {
 
-class SignClipboardCommand : public Command
+class SignEncryptClipboardCommand : public Command
 {
     Q_OBJECT
 public:
-    explicit SignClipboardCommand(GpgME::Protocol protocol, QAbstractItemView *view, KeyListController *parent);
-    explicit SignClipboardCommand(GpgME::Protocol protocol, KeyListController *parent);
-    ~SignClipboardCommand() override;
+    explicit SignEncryptClipboardCommand(QAbstractItemView *view, KeyListController *parent);
+    explicit SignEncryptClipboardCommand(KeyListController *parent);
+    ~SignEncryptClipboardCommand() override;
 
     static bool canSignCurrentClipboard();
 

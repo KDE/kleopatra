@@ -985,6 +985,24 @@ QString SignEncryptFilesResult::overview() const
         return {};
     }
 
+    if (dataSource() == Task::Clipboard) {
+        if (!m_sresult.isNull() && m_sresult.error()) {
+            return i18nc("@info", "Failed to sign the clipboard: %1", Formatting::errorAsString(m_sresult.error()));
+        }
+        if (!m_eresult.isNull() && m_eresult.error()) {
+            return i18nc("@info", "Failed to encrypt the clipboard: %1", Formatting::errorAsString(m_eresult.error()));
+        }
+
+        if (!m_sresult.isNull() && !m_eresult.isNull()) {
+            return i18nc("@info", "Successfully encrypted and signed the clipboard");
+        } else if (!m_eresult.isNull()) {
+            return i18nc("@info", "Successfully encrypted the clipboard");
+        } else {
+            return i18nc("@info", "Successfully signed the clipboard");
+        }
+        return {};
+    }
+
     return formatResultLine(m_input.fileNames,
                             m_output.label,
                             !m_sresult.isNull(),

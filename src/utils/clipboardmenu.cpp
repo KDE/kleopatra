@@ -14,9 +14,8 @@
 #include <settings.h>
 
 #include <commands/decryptverifyclipboardcommand.h>
-#include <commands/encryptclipboardcommand.h>
 #include <commands/importcertificatefromclipboardcommand.h>
-#include <commands/signclipboardcommand.h>
+#include <commands/signencryptclipboardcommand.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
@@ -41,34 +40,19 @@ ClipboardMenu::ClipboardMenu(QObject *parent)
 {
     mClipboardMenu = new KActionMenu(i18n("Clipboard"), this);
     mImportClipboardAction = new QAction(i18nc("@action", "Certificate Import"), this);
-    mEncryptClipboardAction = new QAction(i18nc("@action", "Encrypt..."), this);
+    mSignEncryptClipboardAction = new QAction(i18nc("@action", "Sign/Encrypt..."), this);
     const Kleo::Settings settings{};
-    if (settings.cmsEnabled() && settings.cmsSigningAllowed()) {
-        mSmimeSignClipboardAction = new QAction(i18nc("@action", "S/MIME-Sign..."), this);
-        Q_SET_OBJECT_NAME(mSmimeSignClipboardAction);
-    }
-    mOpenPGPSignClipboardAction = new QAction(i18nc("@action", "OpenPGP-Sign..."), this);
     mDecryptVerifyClipboardAction = new QAction(i18nc("@action", "Decrypt/Verify..."), this);
 
     Q_SET_OBJECT_NAME(mClipboardMenu);
     Q_SET_OBJECT_NAME(mImportClipboardAction);
-    Q_SET_OBJECT_NAME(mEncryptClipboardAction);
-    Q_SET_OBJECT_NAME(mOpenPGPSignClipboardAction);
     Q_SET_OBJECT_NAME(mDecryptVerifyClipboardAction);
 
     connect(mImportClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotImportClipboard);
-    connect(mEncryptClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotEncryptClipboard);
-    if (mSmimeSignClipboardAction) {
-        connect(mSmimeSignClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotSMIMESignClipboard);
-    }
-    connect(mOpenPGPSignClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotOpenPGPSignClipboard);
+    connect(mSignEncryptClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotSignEncryptClipboard);
     connect(mDecryptVerifyClipboardAction, &QAction::triggered, this, &ClipboardMenu::slotDecryptVerifyClipboard);
     mClipboardMenu->addAction(mImportClipboardAction);
-    mClipboardMenu->addAction(mEncryptClipboardAction);
-    if (mSmimeSignClipboardAction) {
-        mClipboardMenu->addAction(mSmimeSignClipboardAction);
-    }
-    mClipboardMenu->addAction(mOpenPGPSignClipboardAction);
+    mClipboardMenu->addAction(mSignEncryptClipboardAction);
     mClipboardMenu->addAction(mDecryptVerifyClipboardAction);
     connect(QApplication::clipboard(), &QClipboard::changed, this, &ClipboardMenu::slotEnableDisableActions);
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, this, &ClipboardMenu::slotEnableDisableActions);
@@ -99,19 +83,9 @@ void ClipboardMenu::slotImportClipboard()
     startCommand(new ImportCertificateFromClipboardCommand(nullptr));
 }
 
-void ClipboardMenu::slotEncryptClipboard()
+void ClipboardMenu::slotSignEncryptClipboard()
 {
-    startCommand(new EncryptClipboardCommand(nullptr));
-}
-
-void ClipboardMenu::slotOpenPGPSignClipboard()
-{
-    startCommand(new SignClipboardCommand(GpgME::OpenPGP, nullptr));
-}
-
-void ClipboardMenu::slotSMIMESignClipboard()
-{
-    startCommand(new SignClipboardCommand(GpgME::CMS, nullptr));
+    startCommand(new SignEncryptClipboardCommand(nullptr));
 }
 
 void ClipboardMenu::slotDecryptVerifyClipboard()
@@ -119,30 +93,11 @@ void ClipboardMenu::slotDecryptVerifyClipboard()
     startCommand(new DecryptVerifyClipboardCommand(nullptr));
 }
 
-namespace
-{
-
-bool hasSigningKeys(GpgME::Protocol protocol)
-{
-    if (!KeyCache::instance()->initialized()) {
-        return false;
-    }
-    return std::ranges::any_of(KeyCache::instance()->keys(), [protocol](const auto &k) {
-        return k.hasSecret() && Kleo::keyHasSign(k) && (k.protocol() == protocol);
-    });
-}
-
-}
-
 void ClipboardMenu::slotEnableDisableActions()
 {
     const QSignalBlocker blocker(QApplication::clipboard());
     mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
-    mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
-    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::OpenPGP));
-    if (mSmimeSignClipboardAction) {
-        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::CMS));
-    }
+    // mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
     mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }
 
