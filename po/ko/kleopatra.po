@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-13 00:41+0000\n"
+"POT-Creation-Date: 2024-12-14 00:51+0000\n"
 "PO-Revision-Date: 2024-02-24 22:07+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -2178,8 +2178,8 @@ msgid "Clipboard"
 msgstr "클립보드"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:349 src/view/padwidget.cpp:350
-#: src/view/padwidget.cpp:429 src/view/padwidget.cpp:430
+#: src/view/padwidget.cpp:293 src/view/padwidget.cpp:294
+#: src/view/padwidget.cpp:373 src/view/padwidget.cpp:374
 #, kde-format
 msgid "Notepad"
 msgstr "메모장"
@@ -4758,48 +4758,48 @@ msgstr "완료."
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "암호화 작업의 상태와 진행을 표시합니다."
 
-#: src/crypto/decryptverifyemailcontroller.cpp:139
+#: src/crypto/decryptverifyemailcontroller.cpp:141
 #, kde-format
 msgid "User canceled"
 msgstr "사용자가 취소함"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:228
+#: src/crypto/decryptverifyemailcontroller.cpp:230
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify E-Mail"
 msgstr "이메일 복호화/검증"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:250
+#: src/crypto/decryptverifyemailcontroller.cpp:252
 #, kde-format
 msgid "At least one input needs to be provided"
 msgstr "하나 이상의 입력을 지정해야 함"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:254
+#: src/crypto/decryptverifyemailcontroller.cpp:256
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
 msgstr "보낸 사람/서명된 데이터 개수 정보가 일치하지 않음"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:259
+#: src/crypto/decryptverifyemailcontroller.cpp:261
 #, kde-format
 msgid "Signature/signed data count mismatch"
 msgstr "서명/서명된 데이터 개수가 일치하지 않음"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:261
+#: src/crypto/decryptverifyemailcontroller.cpp:263
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
 msgstr "서명된 데이터는 분리된 서명 검증에만 지정할 수 있음"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:267
+#: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
 msgid "Input/Output count mismatch"
 msgstr "입력/출력 개수가 일치하지 않음"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:269
+#: src/crypto/decryptverifyemailcontroller.cpp:271
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
 msgstr "출력과 서명된 데이터를 동시에 사용할 수 없음"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:276
+#: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "No backend support for %1"
 msgstr "%1의 백엔드 지원 없음"
@@ -5038,7 +5038,47 @@ msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "키를 카드에 복사했습니다."
 
-#: src/crypto/decryptverifytask.cpp:578
+#: src/crypto/decryptverifytask.cpp:550
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to decrypt the clipboard: %1"
+msgstr "키를 삭제할 수 없음: %1"
+
+#: src/crypto/decryptverifytask.cpp:553
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to delete the key: %1"
+msgctxt "@info"
+msgid "Failed to verify the clipboard: %1"
+msgstr "키를 삭제할 수 없음: %1"
+
+#: src/crypto/decryptverifytask.cpp:557
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted and verified the clipboard"
+msgstr "키를 카드에 복사했습니다."
+
+#: src/crypto/decryptverifytask.cpp:560
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully decrypted the clipboard"
+msgstr "키를 카드에 복사했습니다."
+
+#: src/crypto/decryptverifytask.cpp:563
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully copied the key to the card."
+msgctxt "@info"
+msgid "Successfully verified the clipboard"
+msgstr "키를 카드에 복사했습니다."
+
+#: src/crypto/decryptverifytask.cpp:595
 #, fuzzy, kde-format
 #| msgid ""
 #| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -5051,25 +5091,25 @@ msgstr ""
 "<br/><b>경고:</b> 보낸 사람의 메일 주소가 서명에 사용된 인증서에 저장되지 않"
 "았습니다."
 
-#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
-#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
-#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
-#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:735 src/crypto/decryptverifytask.cpp:943
+#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
+#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1344
+#: src/crypto/decryptverifytask.cpp:1421 src/crypto/decryptverifytask.cpp:1555
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "예외 발생: %1"
 
-#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
-#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
-#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
-#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
+#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:945
+#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
+#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1346
+#: src/crypto/decryptverifytask.cpp:1423 src/crypto/decryptverifytask.cpp:1557
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "알 수 없는 예외 발생"
 
-#: src/crypto/decryptverifytask.cpp:775
+#: src/crypto/decryptverifytask.cpp:792
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5078,12 +5118,12 @@ msgstr ""
 "서명/암호문이 S/MIME인지 OpenPGP인지 확인할 수 없습니다. 암호문이나 서명이 아"
 "닐 수도 있습니다."
 
-#: src/crypto/decryptverifytask.cpp:783
+#: src/crypto/decryptverifytask.cpp:800
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "%1 복호화 중..."
 
-#: src/crypto/decryptverifytask.cpp:1062
+#: src/crypto/decryptverifytask.cpp:1079
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5092,12 +5132,12 @@ msgstr ""
 "암호문이 S/MIME인지 OpenPGP인지 확인할 수 없습니다. 암호문이 아닐 수도 있습니"
 "다."
 
-#: src/crypto/decryptverifytask.cpp:1070
+#: src/crypto/decryptverifytask.cpp:1087
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "복호화 중: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
+#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1485
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5105,12 +5145,12 @@ msgid ""
 msgstr ""
 "서명이 S/MIME인지 OpenPGP인지 확인할 수 없습니다. 서명이 아닐 수도 있습니다."
 
-#: src/crypto/decryptverifytask.cpp:1224
+#: src/crypto/decryptverifytask.cpp:1241
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 검증 중..."
 
-#: src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1503
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5118,7 +5158,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> 검증 중(<filename>%2</filename> 사용)..."
 
-#: src/crypto/decryptverifytask.cpp:1490
+#: src/crypto/decryptverifytask.cpp:1507
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "%1 서명 검사 중..."
@@ -5882,26 +5922,47 @@ msgctxt "@action:button"
 msgid "Next"
 msgstr "다음"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:177
+#, fuzzy, kde-format
+#| msgid "<h3>Protocol:</h3>"
+msgctxt "@label"
+msgid "Protocol:"
+msgstr "<h3>프로토콜:</h3>"
+
+#: src/crypto/gui/signencryptwidget.cpp:187
+#, fuzzy, kde-format
+#| msgid "OpenPGP"
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/crypto/gui/signencryptwidget.cpp:188
+#, fuzzy, kde-format
+#| msgid "S/MIME"
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
+
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, fuzzy, kde-format
 #| msgctxt "@option:check on SignEncryptPage"
 #| msgid "&Sign as:"
 msgid "&Sign as:"
 msgstr "다음으로 서명(&S):"
 
-#: src/crypto/gui/signencryptwidget.cpp:212
+#: src/crypto/gui/signencryptwidget.cpp:251
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "내 자신에게 암호화:"
 
-#: src/crypto/gui/signencryptwidget.cpp:242
+#: src/crypto/gui/signencryptwidget.cpp:281
 #, fuzzy, kde-format
 #| msgid "Encrypt for others:"
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "다른 사람에게 암호화:"
 
-#: src/crypto/gui/signencryptwidget.cpp:255
+#: src/crypto/gui/signencryptwidget.cpp:294
 #, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Encrypt Notepad"
@@ -5909,7 +5970,7 @@ msgctxt "@option:check"
 msgid "Encrypt with password:"
 msgstr "메모장 암호화"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:297
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5923,7 +5984,7 @@ msgstr ""
 "고 하더라도 암호를 사용하는 것은 공개 키 암호화에 비해서 <b>안전하지 않습니다"
 "</b>."
 
-#: src/crypto/gui/signencryptwidget.cpp:265
+#: src/crypto/gui/signencryptwidget.cpp:304
 #, fuzzy, kde-format
 #| msgid ""
 #| "Encrypt with password. Anyone you share the password with can read the "
@@ -5933,84 +5994,84 @@ msgid "Anyone you share the password with can read the data."
 msgstr ""
 "암호로 암호화합니다. 암호를 공유하는 모든 사람이 데이터를 읽을 수 있습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:358
+#: src/crypto/gui/signencryptwidget.cpp:412
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "수신자 키"
 
-#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:487
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "Usable for Signing"
 msgstr "암호화"
 
-#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:488
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
 msgid "Certificates that can be used for signing"
 msgstr "이 인증서를 암호화에 사용할 수 없습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:437
-#: src/crypto/gui/signencryptwidget.cpp:471 src/dialogs/editgroupdialog.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:491
+#: src/crypto/gui/signencryptwidget.cpp:525 src/dialogs/editgroupdialog.cpp:221
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgid "Usable for Encryption"
 msgstr "암호화"
 
-#: src/crypto/gui/signencryptwidget.cpp:438
-#: src/crypto/gui/signencryptwidget.cpp:472 src/dialogs/editgroupdialog.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:492
+#: src/crypto/gui/signencryptwidget.cpp:526 src/dialogs/editgroupdialog.cpp:222
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
 msgid "Certificates that can be used for encryption"
 msgstr "이 인증서를 암호화에 사용할 수 없습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:659
-#: src/crypto/gui/signencryptwidget.cpp:937
+#: src/crypto/gui/signencryptwidget.cpp:713
+#: src/crypto/gui/signencryptwidget.cpp:996
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "이 인증서가 만료되었습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:662
+#: src/crypto/gui/signencryptwidget.cpp:716
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "이 인증서가 오늘 만료됩니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:664
+#: src/crypto/gui/signencryptwidget.cpp:718
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "이 인증서가 %1일 후 만료됩니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:723
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "이 인증서를 암호화에 사용할 수 없습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:671
+#: src/crypto/gui/signencryptwidget.cpp:725
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "이 인증서를 서명에 사용할 수 없습니다."
 
-#: src/crypto/gui/signencryptwidget.cpp:900
+#: src/crypto/gui/signencryptwidget.cpp:959
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "다음 받는 사람의 키를 찾을 수 없음:"
 
-#: src/crypto/gui/signencryptwidget.cpp:902
+#: src/crypto/gui/signencryptwidget.cpp:961
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "일부 키를 찾을 수 없음"
 
-#: src/crypto/gui/signencryptwidget.cpp:940
+#: src/crypto/gui/signencryptwidget.cpp:999
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate is expired."
@@ -12557,12 +12618,12 @@ msgstr "메모장 가져오기"
 msgid "Revert"
 msgstr "되돌리기"
 
-#: src/view/padwidget.cpp:105
+#: src/view/padwidget.cpp:103
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "서명과 암호화를 사용할 수 없습니다.."
 
-#: src/view/padwidget.cpp:107
+#: src/view/padwidget.cpp:105
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12576,40 +12637,19 @@ msgstr ""
 "application> 시스템이 %1이(가) 아니므로 <application>Kleopatra</application>"
 "를 사용하여 서명하거나 암호화할 수 없습니다.</para>"
 
-#: src/view/padwidget.cpp:165
-#, fuzzy, kde-format
-#| msgid "<h3>Protocol:</h3>"
-msgctxt "@label"
-msgid "Protocol:"
-msgstr "<h3>프로토콜:</h3>"
-
-#: src/view/padwidget.cpp:175
-#, fuzzy, kde-format
-#| msgid "OpenPGP"
-msgctxt "@option:radio"
-msgid "OpenPGP"
-msgstr "OpenPGP"
-
-#: src/view/padwidget.cpp:176
-#, fuzzy, kde-format
-#| msgid "S/MIME"
-msgctxt "@option:radio"
-msgid "S/MIME"
-msgstr "S/MIME"
-
-#: src/view/padwidget.cpp:216
+#: src/view/padwidget.cpp:170
 #, fuzzy, kde-format
 #| msgid "Enter a message to encrypt or decrypt..."
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "암호화하거나 복호화할 메시지 입력..."
 
-#: src/view/padwidget.cpp:348
+#: src/view/padwidget.cpp:292
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "복호화/검증"
 
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:353
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12624,42 +12664,42 @@ msgstr ""
 "<application>Kleopatra</application>를 사용하여 서명하거나 암호화할 수 없습니"
 "다.</para>"
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:363
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "메모장 서명 중..."
 
-#: src/view/padwidget.cpp:422
+#: src/view/padwidget.cpp:366
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "메모장 암호화 중..."
 
-#: src/view/padwidget.cpp:425
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "메모장 서명 및 암호화 중..."
 
-#: src/view/padwidget.cpp:471
+#: src/view/padwidget.cpp:415
 #, kde-format
 msgid "Importing..."
 msgstr "가져오는 중..."
 
-#: src/view/padwidget.cpp:510
+#: src/view/padwidget.cpp:454
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "메모장 서명"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:457
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "메모장 암호화"
 
-#: src/view/padwidget.cpp:517
+#: src/view/padwidget.cpp:461
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"

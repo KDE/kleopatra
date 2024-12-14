@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-13 00:41+0000\n"
+"POT-Creation-Date: 2024-12-14 00:51+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2065,8 +2065,8 @@ msgid "Clipboard"
 msgstr "剪贴板"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:349 src/view/padwidget.cpp:350
-#: src/view/padwidget.cpp:429 src/view/padwidget.cpp:430
+#: src/view/padwidget.cpp:293 src/view/padwidget.cpp:294
+#: src/view/padwidget.cpp:373 src/view/padwidget.cpp:374
 #, kde-format
 msgid "Notepad"
 msgstr "记事本"
@@ -4485,48 +4485,48 @@ msgstr "完成。"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "在此显示的是加密操作的状态和进度。"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:139
+#: src/crypto/decryptverifyemailcontroller.cpp:141
 #, kde-format
 msgid "User canceled"
 msgstr "用户已取消"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:228
+#: src/crypto/decryptverifyemailcontroller.cpp:230
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify E-Mail"
 msgstr "解密/校验邮件"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:250
+#: src/crypto/decryptverifyemailcontroller.cpp:252
 #, kde-format
 msgid "At least one input needs to be provided"
 msgstr "至少需要提供一个输入"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:254
+#: src/crypto/decryptverifyemailcontroller.cpp:256
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
 msgstr "发件人信息和被签名数据不匹配"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:259
+#: src/crypto/decryptverifyemailcontroller.cpp:261
 #, kde-format
 msgid "Signature/signed data count mismatch"
 msgstr "签名和被签名数据不匹配"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:261
+#: src/crypto/decryptverifyemailcontroller.cpp:263
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
 msgstr "签名数据只能用于分离签名验证"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:267
+#: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
 msgid "Input/Output count mismatch"
 msgstr "输入和输出不匹配"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:269
+#: src/crypto/decryptverifyemailcontroller.cpp:271
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
 msgstr "无法同时使用输出和签名数据"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:276
+#: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "No backend support for %1"
 msgstr "没有 %1 的支持后端"
@@ -4726,7 +4726,42 @@ msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:578
+#: src/crypto/decryptverifytask.cpp:550
+#, fuzzy, kde-format
+#| msgid "Failed to find the card with the serial number: %1"
+msgctxt "@info"
+msgid "Failed to decrypt the clipboard: %1"
+msgstr "未能找到此序列号的智能卡：%1"
+
+#: src/crypto/decryptverifytask.cpp:553
+#, fuzzy, kde-format
+#| msgctxt "%1 is error message"
+#| msgid "Failed to export: '%1'"
+msgctxt "@info"
+msgid "Failed to verify the clipboard: %1"
+msgstr "导出失败: “%1”"
+
+#: src/crypto/decryptverifytask.cpp:557
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully generated an OpenPGP key from the card keys."
+msgctxt "@info"
+msgid "Successfully decrypted and verified the clipboard"
+msgstr "已成功从卡上的密钥生成新的 OpenPGP 密钥。"
+
+#: src/crypto/decryptverifytask.cpp:560
+#, kde-format
+msgctxt "@info"
+msgid "Successfully decrypted the clipboard"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:563
+#, kde-format
+msgctxt "@info"
+msgid "Successfully verified the clipboard"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -4734,25 +4769,25 @@ msgid ""
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
-#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
-#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
-#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:735 src/crypto/decryptverifytask.cpp:943
+#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
+#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1344
+#: src/crypto/decryptverifytask.cpp:1421 src/crypto/decryptverifytask.cpp:1555
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "捕捉到异常：%1"
 
-#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
-#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
-#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
-#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
+#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:945
+#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
+#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1346
+#: src/crypto/decryptverifytask.cpp:1423 src/crypto/decryptverifytask.cpp:1557
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "捕捉到未知异常"
 
-#: src/crypto/decryptverifytask.cpp:775
+#: src/crypto/decryptverifytask.cpp:792
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4760,36 +4795,36 @@ msgid ""
 msgstr ""
 "无法判定这是 S/MIME 还是 OpenPGP 签名/密文 - 也许它不是密文也不是签名？"
 
-#: src/crypto/decryptverifytask.cpp:783
+#: src/crypto/decryptverifytask.cpp:800
 #, kde-format
 msgid "Decrypting %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1062
+#: src/crypto/decryptverifytask.cpp:1079
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr "无法判定是 S/MIME 还是 OpenPGP 加密的 - 也许它根本不是密文？"
 
-#: src/crypto/decryptverifytask.cpp:1070
+#: src/crypto/decryptverifytask.cpp:1087
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "正在解密：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
+#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1485
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr "无法判定是 S/MIME 还是 OpenPGP 签名 - 也许它根本不是签名？"
 
-#: src/crypto/decryptverifytask.cpp:1224
+#: src/crypto/decryptverifytask.cpp:1241
 #, kde-format
 msgid "Verifying %1..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1503
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4797,7 +4832,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:1490
+#: src/crypto/decryptverifytask.cpp:1507
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr ""
@@ -5481,9 +5516,7 @@ msgid "Sign / Encrypt Files"
 msgstr "签名/加密文件"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:520
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Sign / Encrypt Files"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
 msgstr "签名/加密文件"
@@ -5496,9 +5529,7 @@ msgid "Continue"
 msgstr "继续"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Results"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Results"
 msgstr "结果"
@@ -5528,35 +5559,52 @@ msgid "Sign / Encrypt"
 msgstr "签名/加密"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
-#, fuzzy, kde-format
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Next"
 msgstr "下一个"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:177
+#, kde-format
+msgctxt "@label"
+msgid "Protocol:"
+msgstr ""
+
+#: src/crypto/gui/signencryptwidget.cpp:187
+#, kde-format
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/crypto/gui/signencryptwidget.cpp:188
+#, kde-format
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
+
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgid "&Sign as:"
 msgstr "签名身份(&S)："
 
-#: src/crypto/gui/signencryptwidget.cpp:212
+#: src/crypto/gui/signencryptwidget.cpp:251
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "为我加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:242
+#: src/crypto/gui/signencryptwidget.cpp:281
 #, kde-format
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "为他人加密："
 
-#: src/crypto/gui/signencryptwidget.cpp:255
+#: src/crypto/gui/signencryptwidget.cpp:294
 #, kde-format
 msgctxt "@option:check"
 msgid "Encrypt with password:"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:297
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5569,84 +5617,84 @@ msgstr ""
 "何密钥的情况下读取数据。 即使您选择了一个非常强大的密码，使用密码的安全性也"
 "<b>不如</b>公钥加密系统。"
 
-#: src/crypto/gui/signencryptwidget.cpp:265
+#: src/crypto/gui/signencryptwidget.cpp:304
 #, kde-format
 msgctxt "@info"
 msgid "Anyone you share the password with can read the data."
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:358
+#: src/crypto/gui/signencryptwidget.cpp:412
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "接收者密钥"
 
-#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:487
 #, kde-format
 msgid "Usable for Signing"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:488
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:437
-#: src/crypto/gui/signencryptwidget.cpp:471 src/dialogs/editgroupdialog.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:491
+#: src/crypto/gui/signencryptwidget.cpp:525 src/dialogs/editgroupdialog.cpp:221
 #, kde-format
 msgid "Usable for Encryption"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:438
-#: src/crypto/gui/signencryptwidget.cpp:472 src/dialogs/editgroupdialog.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:492
+#: src/crypto/gui/signencryptwidget.cpp:526 src/dialogs/editgroupdialog.cpp:222
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr ""
 
-#: src/crypto/gui/signencryptwidget.cpp:659
-#: src/crypto/gui/signencryptwidget.cpp:937
+#: src/crypto/gui/signencryptwidget.cpp:713
+#: src/crypto/gui/signencryptwidget.cpp:996
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "证书已过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:662
+#: src/crypto/gui/signencryptwidget.cpp:716
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "该证书于今天过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:664
+#: src/crypto/gui/signencryptwidget.cpp:718
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
 msgid_plural "This certificate expires in %1 days."
 msgstr[0] "该证书在 %1 天后过期。"
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:723
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "此证书不能用于加密。"
 
-#: src/crypto/gui/signencryptwidget.cpp:671
+#: src/crypto/gui/signencryptwidget.cpp:725
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "此证书不能用于签名。"
 
-#: src/crypto/gui/signencryptwidget.cpp:900
+#: src/crypto/gui/signencryptwidget.cpp:959
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "找不到以下收件人的密钥："
 
-#: src/crypto/gui/signencryptwidget.cpp:902
+#: src/crypto/gui/signencryptwidget.cpp:961
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "无法找到一些密钥"
 
-#: src/crypto/gui/signencryptwidget.cpp:940
+#: src/crypto/gui/signencryptwidget.cpp:999
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -11722,12 +11770,12 @@ msgstr "导入记事本"
 msgid "Revert"
 msgstr "还原"
 
-#: src/view/padwidget.cpp:105
+#: src/view/padwidget.cpp:103
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "无法签名和加密。"
 
-#: src/view/padwidget.cpp:107
+#: src/view/padwidget.cpp:105
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11741,36 +11789,18 @@ msgstr ""
 "<application>Kleopatra</application> 使用的 <application>GnuPG</application> "
 "系统不是 %1。</para>"
 
-#: src/view/padwidget.cpp:165
-#, kde-format
-msgctxt "@label"
-msgid "Protocol:"
-msgstr ""
-
-#: src/view/padwidget.cpp:175
-#, kde-format
-msgctxt "@option:radio"
-msgid "OpenPGP"
-msgstr "OpenPGP"
-
-#: src/view/padwidget.cpp:176
-#, kde-format
-msgctxt "@option:radio"
-msgid "S/MIME"
-msgstr "S/MIME"
-
-#: src/view/padwidget.cpp:216
+#: src/view/padwidget.cpp:170
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "输入欲加密或解密的消息..."
 
-#: src/view/padwidget.cpp:348
+#: src/view/padwidget.cpp:292
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "解密/校验"
 
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:353
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -11784,42 +11814,42 @@ msgstr ""
 "<application>Kleopatra</application> 使用的 <application>GnuPG</application> "
 "系统不是 %1。</para>"
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:363
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "正在签名记事本..."
 
-#: src/view/padwidget.cpp:422
+#: src/view/padwidget.cpp:366
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "正在加密记事本..."
 
-#: src/view/padwidget.cpp:425
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "正在签名并加密记事本..."
 
-#: src/view/padwidget.cpp:471
+#: src/view/padwidget.cpp:415
 #, kde-format
 msgid "Importing..."
 msgstr "正在导入..."
 
-#: src/view/padwidget.cpp:510
+#: src/view/padwidget.cpp:454
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "签名记事本"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:457
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "加密记事本"
 
-#: src/view/padwidget.cpp:517
+#: src/view/padwidget.cpp:461
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
