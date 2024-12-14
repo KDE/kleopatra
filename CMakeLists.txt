@@ -112,7 +112,6 @@ if (WIN32)
   find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG)
   set_package_properties(KF6DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
                          PURPOSE "DBus session integration"
-                         URL "https://inqlude.org/libraries/kdbusaddons.html"
                          TYPE OPTIONAL)
 else()
   find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG REQUIRED)
