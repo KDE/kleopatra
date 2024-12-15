@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-13 00:41+0000\n"
-"PO-Revision-Date: 2024-12-12 19:58+0100\n"
+"POT-Creation-Date: 2024-12-14 00:51+0000\n"
+"PO-Revision-Date: 2024-12-14 01:59+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -2209,8 +2209,8 @@ msgid "Clipboard"
 msgstr "Arbela"
 
 #: src/commands/importcertificatefromdatacommand.cpp:77
-#: src/view/padwidget.cpp:349 src/view/padwidget.cpp:350
-#: src/view/padwidget.cpp:429 src/view/padwidget.cpp:430
+#: src/view/padwidget.cpp:293 src/view/padwidget.cpp:294
+#: src/view/padwidget.cpp:373 src/view/padwidget.cpp:374
 #, kde-format
 msgid "Notepad"
 msgstr "Ohar-bloka"
@@ -4807,49 +4807,49 @@ msgstr "Eginda."
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Kriptografia eragiketen aurrerapenaren egoera hemen erakusten da."
 
-#: src/crypto/decryptverifyemailcontroller.cpp:139
+#: src/crypto/decryptverifyemailcontroller.cpp:141
 #, kde-format
 msgid "User canceled"
 msgstr "Erabiltzaileak bertan behera utzi du"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:228
+#: src/crypto/decryptverifyemailcontroller.cpp:230
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify E-Mail"
 msgstr "Deszifratu/egiaztatu e-posta"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:250
+#: src/crypto/decryptverifyemailcontroller.cpp:252
 #, kde-format
 msgid "At least one input needs to be provided"
 msgstr "Gutxienez sarrera bat eman behar da"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:254
+#: src/crypto/decryptverifyemailcontroller.cpp:256
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
 msgstr "Informatzeko bidaltzaile/sinatutako datuen zenbaketaren desfazea"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:259
+#: src/crypto/decryptverifyemailcontroller.cpp:261
 #, kde-format
 msgid "Signature/signed data count mismatch"
 msgstr "Sinadura/sinatutako datuen zenbaketaren desfasea"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:261
+#: src/crypto/decryptverifyemailcontroller.cpp:263
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
 msgstr ""
 "Sinatutako datuak bereizitako sinadura egiaztapenerako baino ezin dira eman"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:267
+#: src/crypto/decryptverifyemailcontroller.cpp:269
 #, kde-format
 msgid "Input/Output count mismatch"
 msgstr "Sarrera/irteera zenbaketaren desfasea"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:269
+#: src/crypto/decryptverifyemailcontroller.cpp:271
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
 msgstr "Ezin ditu irteera eta sinatutako-datuak aldi berean erabili"
 
-#: src/crypto/decryptverifyemailcontroller.cpp:276
+#: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "No backend support for %1"
 msgstr "%1(e)rako bizkarraldekoaren euskarririk ez"
@@ -5064,7 +5064,47 @@ msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Ohar-blokaren egiaztatze arrakastatsua"
 
-#: src/crypto/decryptverifytask.cpp:578
+#: src/crypto/decryptverifytask.cpp:550
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to decrypt the notepad: %1"
+msgctxt "@info"
+msgid "Failed to decrypt the clipboard: %1"
+msgstr "Ohar-bloka deszifratzea huts egin du: %1"
+
+#: src/crypto/decryptverifytask.cpp:553
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to verify the notepad: %1"
+msgctxt "@info"
+msgid "Failed to verify the clipboard: %1"
+msgstr "Ohar-bloka egiaztatzea huts egin du: %1"
+
+#: src/crypto/decryptverifytask.cpp:557
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the notepad"
+msgctxt "@info"
+msgid "Successfully decrypted and verified the clipboard"
+msgstr "Ohar-blokaren deszifratze eta egiaztatze arrakastatsua"
+
+#: src/crypto/decryptverifytask.cpp:560
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the notepad"
+msgctxt "@info"
+msgid "Successfully decrypted the clipboard"
+msgstr "Ohar-blokaren deszifratze arrakastatsua"
+
+#: src/crypto/decryptverifytask.cpp:563
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the notepad"
+msgctxt "@info"
+msgid "Successfully verified the clipboard"
+msgstr "Ohar-blokaren egiaztatze arrakastatsua"
+
+#: src/crypto/decryptverifytask.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5074,25 +5114,25 @@ msgstr ""
 "Abisua: Bidaltzailearen posta-helbide ez dago sinatzeko erabilitako <a href="
 "\"key:%1\">ziurtagirian</a> gordeta. Gordetakoa:<ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:718 src/crypto/decryptverifytask.cpp:926
-#: src/crypto/decryptverifytask.cpp:1006 src/crypto/decryptverifytask.cpp:1107
-#: src/crypto/decryptverifytask.cpp:1159 src/crypto/decryptverifytask.cpp:1327
-#: src/crypto/decryptverifytask.cpp:1404 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:735 src/crypto/decryptverifytask.cpp:943
+#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
+#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1344
+#: src/crypto/decryptverifytask.cpp:1421 src/crypto/decryptverifytask.cpp:1555
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Harrapatutako salbuespena: %1"
 
-#: src/crypto/decryptverifytask.cpp:721 src/crypto/decryptverifytask.cpp:928
-#: src/crypto/decryptverifytask.cpp:1009 src/crypto/decryptverifytask.cpp:1109
-#: src/crypto/decryptverifytask.cpp:1162 src/crypto/decryptverifytask.cpp:1329
-#: src/crypto/decryptverifytask.cpp:1406 src/crypto/decryptverifytask.cpp:1540
+#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:945
+#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
+#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1346
+#: src/crypto/decryptverifytask.cpp:1423 src/crypto/decryptverifytask.cpp:1557
 #: src/uiserver/assuanserverconnection.cpp:1358
 #: src/uiserver/assuanserverconnection.cpp:1407
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Salbuespen ezezaguna harrapatu da"
 
-#: src/crypto/decryptverifytask.cpp:775
+#: src/crypto/decryptverifytask.cpp:792
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5101,12 +5141,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP sinadura/zifratutako-testua bat den "
 "- agian ez da ez zifratutako testua ez eta sinadura bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:783
+#: src/crypto/decryptverifytask.cpp:800
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "%1 deszifratzen..."
 
-#: src/crypto/decryptverifytask.cpp:1062
+#: src/crypto/decryptverifytask.cpp:1079
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5115,12 +5155,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP-zifratutako-testua zen - agian ez da "
 "zifratutako testu bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:1070
+#: src/crypto/decryptverifytask.cpp:1087
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Deszifratzen: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1216 src/crypto/decryptverifytask.cpp:1468
+#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1485
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5129,12 +5169,12 @@ msgstr ""
 "Ezin du zehaztu hori S/MIME edo OpenPGP sinadura bat den - agian ez da "
 "sinadura bat ere?"
 
-#: src/crypto/decryptverifytask.cpp:1224
+#: src/crypto/decryptverifytask.cpp:1241
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1 egiaztatzen..."
 
-#: src/crypto/decryptverifytask.cpp:1486
+#: src/crypto/decryptverifytask.cpp:1503
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5142,7 +5182,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> <filename>%2</filename>(e)rekin egiaztatzen..."
 
-#: src/crypto/decryptverifytask.cpp:1490
+#: src/crypto/decryptverifytask.cpp:1507
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "%1 sinadura egiaztatzen..."
@@ -5847,12 +5887,10 @@ msgid "Sign / Encrypt Files"
 msgstr "Sinatu/zifratu fitxategiak"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:520
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Sign / Encrypt Files"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
-msgstr "Sinatu/zifratu fitxategiak"
+msgstr "Sinatu/Zifratu fitxategiak"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:542
 #: src/dialogs/selftestdialog.cpp:445
@@ -5862,9 +5900,7 @@ msgid "Continue"
 msgstr "Jarraitu"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:552
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Results"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Results"
 msgstr "Emaitzak"
@@ -5873,7 +5909,7 @@ msgstr "Emaitzak"
 #, kde-format
 msgctxt "@action:button"
 msgid "Finished"
-msgstr ""
+msgstr "Bukatuta"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:563
 #, kde-format
@@ -5894,35 +5930,52 @@ msgid "Sign / Encrypt"
 msgstr "Sinatu / Zifratu"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
-#, fuzzy, kde-format
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Next"
 msgstr "Hurrengoa"
 
-#: src/crypto/gui/signencryptwidget.cpp:172
+#: src/crypto/gui/signencryptwidget.cpp:177
+#, kde-format
+msgctxt "@label"
+msgid "Protocol:"
+msgstr "Protokoloa:"
+
+#: src/crypto/gui/signencryptwidget.cpp:187
+#, kde-format
+msgctxt "@option:radio"
+msgid "OpenPGP"
+msgstr "OpenPGP"
+
+#: src/crypto/gui/signencryptwidget.cpp:188
+#, kde-format
+msgctxt "@option:radio"
+msgid "S/MIME"
+msgstr "S/MIME"
+
+#: src/crypto/gui/signencryptwidget.cpp:211
 #, kde-format
 msgid "&Sign as:"
 msgstr "&Sinatu honela:"
 
-#: src/crypto/gui/signencryptwidget.cpp:212
+#: src/crypto/gui/signencryptwidget.cpp:251
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Zifratu niretzat:"
 
-#: src/crypto/gui/signencryptwidget.cpp:242
+#: src/crypto/gui/signencryptwidget.cpp:281
 #, kde-format
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "Zifratu besteentzat:"
 
-#: src/crypto/gui/signencryptwidget.cpp:255
+#: src/crypto/gui/signencryptwidget.cpp:294
 #, kde-format
 msgctxt "@option:check"
 msgid "Encrypt with password:"
 msgstr "Pasahitzarekin zifratu:"
 
-#: src/crypto/gui/signencryptwidget.cpp:258
+#: src/crypto/gui/signencryptwidget.cpp:297
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5936,54 +5989,54 @@ msgstr ""
 "Pasahitz bat erabiltzea ez da gako publikoko kriptografia erabiltzea "
 "<b>bezain segurua</b>. Pasahitz oso sendo bat hartuta ere."
 
-#: src/crypto/gui/signencryptwidget.cpp:265
+#: src/crypto/gui/signencryptwidget.cpp:304
 #, kde-format
 msgctxt "@info"
 msgid "Anyone you share the password with can read the data."
 msgstr "Pasahitza partekatzen diozun orok datuak irakur ditzake."
 
-#: src/crypto/gui/signencryptwidget.cpp:358
+#: src/crypto/gui/signencryptwidget.cpp:412
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "hartzailearen gakoa"
 
-#: src/crypto/gui/signencryptwidget.cpp:433
+#: src/crypto/gui/signencryptwidget.cpp:487
 #, kde-format
 msgid "Usable for Signing"
 msgstr "Sinatzeko erabilgarria"
 
-#: src/crypto/gui/signencryptwidget.cpp:434
+#: src/crypto/gui/signencryptwidget.cpp:488
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr "Sinatzeko erabil daitezkeen ziurtagiriak"
 
-#: src/crypto/gui/signencryptwidget.cpp:437
-#: src/crypto/gui/signencryptwidget.cpp:471 src/dialogs/editgroupdialog.cpp:221
+#: src/crypto/gui/signencryptwidget.cpp:491
+#: src/crypto/gui/signencryptwidget.cpp:525 src/dialogs/editgroupdialog.cpp:221
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "Zifratzeko erabilgarria"
 
-#: src/crypto/gui/signencryptwidget.cpp:438
-#: src/crypto/gui/signencryptwidget.cpp:472 src/dialogs/editgroupdialog.cpp:222
+#: src/crypto/gui/signencryptwidget.cpp:492
+#: src/crypto/gui/signencryptwidget.cpp:526 src/dialogs/editgroupdialog.cpp:222
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr "Zifratzeko erabil daitezkeen ziurtagiriak"
 
-#: src/crypto/gui/signencryptwidget.cpp:659
-#: src/crypto/gui/signencryptwidget.cpp:937
+#: src/crypto/gui/signencryptwidget.cpp:713
+#: src/crypto/gui/signencryptwidget.cpp:996
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Ziurtagiri hori iraungita dago."
 
-#: src/crypto/gui/signencryptwidget.cpp:662
+#: src/crypto/gui/signencryptwidget.cpp:716
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Ziurtagiri hori gaur iraungiko da."
 
-#: src/crypto/gui/signencryptwidget.cpp:664
+#: src/crypto/gui/signencryptwidget.cpp:718
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5991,30 +6044,30 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Ziurtagiri hori bihar iraungiko da."
 msgstr[1] "Ziurtagiri hori %1 egun barru iraungiko da."
 
-#: src/crypto/gui/signencryptwidget.cpp:669
+#: src/crypto/gui/signencryptwidget.cpp:723
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Ziurtagiri hori ezin da zifratzeko erabili."
 
-#: src/crypto/gui/signencryptwidget.cpp:671
+#: src/crypto/gui/signencryptwidget.cpp:725
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Ziurtagiri hori ezin da sinatzeko erabili."
 
-#: src/crypto/gui/signencryptwidget.cpp:900
+#: src/crypto/gui/signencryptwidget.cpp:959
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Ezin izan du ondoko hartzaileentzako ziurtagiririk aurkitu:"
 
-#: src/crypto/gui/signencryptwidget.cpp:902
+#: src/crypto/gui/signencryptwidget.cpp:961
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Gako batzuk bilatzean huts egin du"
 
-#: src/crypto/gui/signencryptwidget.cpp:940
+#: src/crypto/gui/signencryptwidget.cpp:999
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -12447,12 +12500,12 @@ msgstr "Inportatu Ohar-bloka"
 msgid "Revert"
 msgstr "Lehengoratu"
 
-#: src/view/padwidget.cpp:105
+#: src/view/padwidget.cpp:103
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Sinatzea eta zifratzea ezin dira egin."
 
-#: src/view/padwidget.cpp:107
+#: src/view/padwidget.cpp:105
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12466,36 +12519,18 @@ msgstr ""
 "zifratzeko erabili, <application>Kleopatra</application>k erabilitako "
 "<application>GnuPG</application> sistema ez delako %1.</para>"
 
-#: src/view/padwidget.cpp:165
-#, kde-format
-msgctxt "@label"
-msgid "Protocol:"
-msgstr "Protokoloa:"
-
-#: src/view/padwidget.cpp:175
-#, kde-format
-msgctxt "@option:radio"
-msgid "OpenPGP"
-msgstr "OpenPGP"
-
-#: src/view/padwidget.cpp:176
-#, kde-format
-msgctxt "@option:radio"
-msgid "S/MIME"
-msgstr "S/MIME"
-
-#: src/view/padwidget.cpp:216
+#: src/view/padwidget.cpp:170
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Sartu zifratu edo deszifratu beharreko mezu bat..."
 
-#: src/view/padwidget.cpp:348
+#: src/view/padwidget.cpp:292
 #, kde-format
 msgid "Decrypt / Verify"
 msgstr "Deszifratu / Egiaztatu"
 
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:353
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12509,42 +12544,42 @@ msgstr ""
 "zifratzeko erabili, <application>Kleopatra</application>k erabilitako "
 "<application>GnuPG</application> sistema ez delako %1.</para>"
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:363
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Ohar-bloka sinatzen..."
 
-#: src/view/padwidget.cpp:422
+#: src/view/padwidget.cpp:366
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Ohar-bloka zifratzen..."
 
-#: src/view/padwidget.cpp:425
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Ohar-bloka sinatzen eta zifratzen..."
 
-#: src/view/padwidget.cpp:471
+#: src/view/padwidget.cpp:415
 #, kde-format
 msgid "Importing..."
 msgstr "Inportatzen..."
 
-#: src/view/padwidget.cpp:510
+#: src/view/padwidget.cpp:454
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Sinatu Ohar-bloka"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:457
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Zifratu Ohar-bloka"
 
-#: src/view/padwidget.cpp:517
+#: src/view/padwidget.cpp:461
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
