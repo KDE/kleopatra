@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-14 00:51+0000\n"
-"PO-Revision-Date: 2024-12-14 10:16+0100\n"
+"PO-Revision-Date: 2024-12-16 01:20+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -5070,44 +5070,34 @@ msgid "Successfully verified the notepad"
 msgstr "Verificouse o caderno."
 
 #: src/crypto/decryptverifytask.cpp:550
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to decrypt the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
-msgstr "Non foi posíbel descifrar o caderno: %1"
+msgstr "Non foi posíbel descifrar o portapapeis: %1"
 
 #: src/crypto/decryptverifytask.cpp:553
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to verify the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
-msgstr "Non foi posíbel verificar o caderno: %1"
+msgstr "Non foi posíbel verificar o portapapeis: %1"
 
 #: src/crypto/decryptverifytask.cpp:557
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted and verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
-msgstr "Descifrouse e verificouse o caderno."
+msgstr "Descifrouse e verificouse o portapapeis."
 
 #: src/crypto/decryptverifytask.cpp:560
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
-msgstr "Descifrouse o caderno."
+msgstr "Descifrouse o portapapeis."
 
 #: src/crypto/decryptverifytask.cpp:563
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
-msgstr "Verificouse o caderno."
+msgstr "Verificouse o portapapeis."
 
 #: src/crypto/decryptverifytask.cpp:595
 #, kde-format
@@ -9702,6 +9692,7 @@ msgctxt "@info:shell"
 msgid "Sign and/or encrypt file(s)"
 msgstr "Asinar ou cifrar ficheiro(s)"
 
+# skip-rule: trasno-encrypt
 #: src/kleopatra_options.h:30
 #, kde-format
 msgctxt "@info:shell"
@@ -10862,8 +10853,8 @@ msgid ""
 "<para>Kleopatra detected the following errors in the libkleopatrarc "
 "configuration:</para>%1"
 msgstr ""
-"<para>Kleopatra detectou os erros seguintes no ficheiro de configuración "
-"libkleopatrarc:</para>%1"
+"<para>Kleopatra detectou os erros seguintes na configuración libkleopatrarc:"
+"</para>%1"
 
 #: src/selftest/registrycheck.cpp:34
 #, kde-format
@@ -11234,6 +11225,7 @@ msgstr "aquí non se permite --protocol"
 msgid "invalid protocol \"%1\""
 msgstr "o protocolo «%1» é incorrecto"
 
+# skip-rule: trasno-file
 #: src/uiserver/createchecksumscommand.cpp:56
 #: src/uiserver/decryptverifycommandfilesbase.cpp:150
 #: src/uiserver/signencryptfilescommand.cpp:61
@@ -11252,6 +11244,7 @@ msgstr "Non é posíbel usar un SENDER non informativo"
 msgid "Cannot use non-info RECIPIENT"
 msgstr "Non é posíbel usar un RECIPIENT non informativo"
 
+# skip-rule: trasno-file
 #: src/uiserver/decryptverifycommandemailbase.cpp:143
 #, kde-format
 msgid "FILES present"
@@ -11344,6 +11337,7 @@ msgstr ""
 "Recolleuse unha excepción descoñecida en SignCommand::Private::"
 "slotMicAlgDetermined"
 
+# skip-rule: trasno-encrypt
 #: src/uiserver/encryptcommand.cpp:69
 #, kde-format
 msgid ""
@@ -11352,6 +11346,7 @@ msgstr ""
 "ENCRYPT é unha orde de modo de correo electrónico; semella que a conexión "
 "está en modo xestor de ficheiros"
 
+# skip-rule: trasno-encrypt
 #: src/uiserver/encryptcommand.cpp:72
 #, kde-format
 msgid "SENDER may not be given prior to ENCRYPT, except with --info"
@@ -11367,6 +11362,7 @@ msgstr "Ha de haber polo menos un INPUT presente"
 msgid "At least one OUTPUT must be present"
 msgstr "Ha de haber polo menos un OUTPUT presente"
 
+# skip-rule: trasno-encrypt
 #: src/uiserver/encryptcommand.cpp:84
 #, kde-format
 msgid "MESSAGE command is not allowed before ENCRYPT"
@@ -11392,6 +11388,7 @@ msgstr "Engadíronse novos remitentes despois da orde PREP_ENCRYPT"
 msgid "No recipients given, or only with --info"
 msgstr "Non se deron destinatarios, ou só con --info"
 
+# skip-rule: trasno-encrypt
 #: src/uiserver/encryptcommand.cpp:170
 #, kde-format
 msgid ""
@@ -11401,6 +11398,7 @@ msgstr ""
 "Recolleuse una excepción inesperada en EncryptCommand::Private::"
 "slotRecipientsResolved: %1"
 
+# skip-rule: trasno-encrypt
 #: src/uiserver/encryptcommand.cpp:172
 #, kde-format
 msgid ""

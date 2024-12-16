@@ -153,7 +153,7 @@ msgstr "© 2019-%1 g10 Code GmbH"
 #, kde-format
 msgctxt "@info:credit"
 msgid "© 2015-2018 Intevation GmbH"
-msgstr "© 2015-2018 Intevation GmbH"
+msgstr ""
 
 #: src/aboutdata.cpp:132
 #, kde-format
@@ -195,8 +195,8 @@ msgid ""
 "want to add the ADSK specified in the GnuPG configuration to your "
 "certificate?"
 msgstr ""
-"通过将 ADSK 添加到您的证书，您允许 ADSK 的所有者解密为您的证书加密的所有新消"
-"息。您是否要将 GnuPG 配置中指定的 ADSK 添加到您的证书？"
+"通过向证书中添加ADSK，您可以允许ADSK的所有者解密为您的证书加密的所有新消息。"
+"要将GnuPG配置中指定的ADSK添加到证书中吗？"
 
 #: src/commands/addadskcommand.cpp:131
 #, kde-format
@@ -491,26 +491,26 @@ msgstr "认证成功"
 #, kde-format
 msgctxt "@title:window"
 msgid "Group Cannot Be Certified"
-msgstr ""
+msgstr "组无法认证"
 
 #: src/commands/certifygroupcommand.cpp:116
 #, kde-format
 msgctxt "@info"
 msgid "This group contains S/MIME certificates which cannot be certified."
-msgstr ""
+msgstr "此组包含无法认证的S/MIME证书。"
 
 #: src/commands/certifygroupcommand.cpp:170
 #: src/dialogs/certifycertificatedialog.cpp:43
 #, kde-format
 msgctxt "@title:window"
 msgid "Certify Certificates"
-msgstr ""
+msgstr "认证证书"
 
 #: src/commands/certifygroupcommand.cpp:171
 #, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates ..."
-msgstr ""
+msgstr "正在验证证书..."
 
 #: src/commands/certifygroupcommand.cpp:243
 #, kde-kuit-format
@@ -518,13 +518,13 @@ msgctxt "@info"
 msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
-msgstr ""
+msgstr "<para>证书认证失败。</para><para>错误: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "All certificates were certified successfully."
-msgstr ""
+msgstr "所有证书均已成功认证。"
 
 #: src/commands/certifygroupcommand.cpp:271
 #, kde-kuit-format
@@ -533,13 +533,14 @@ msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
+"<para>所有证书认证均失败。</para><para>错误: <message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp:276
 #, kde-format
 msgctxt "@info"
 msgid "1 of %2 certificates was certified successfully."
 msgid_plural "%1 of %2 certificates were certified successfully."
-msgstr[0] ""
+msgstr[0] "%1 of %2 证书认证成功。"
 
 #: src/commands/certifygroupcommand.cpp:294
 #, kde-format
@@ -547,7 +548,7 @@ msgctxt "@info"
 msgid ""
 "<p>Next the certified certificates will be uploaded to the configured "
 "certificate directory.</p>"
-msgstr ""
+msgstr "<p>接下来，经过认证的证书将被上传到配置的证书目录。</p>"
 
 #: src/commands/certifygroupcommand.cpp:299
 #, kde-format
@@ -559,13 +560,13 @@ msgstr "%1(%2)"
 #, kde-format
 msgctxt "@info"
 msgid "<p>Certifying the following certificates failed:</p>"
-msgstr ""
+msgstr "<p>认证以下证书失败:</p>"
 
 #: src/commands/certifygroupcommand.cpp:310
 #, kde-format
 msgctxt "@title:window"
 msgid "Certification Completed"
-msgstr ""
+msgstr "认证完成"
 
 #: src/commands/changeexpirycommand.cpp:226
 #, kde-format
@@ -1162,7 +1163,7 @@ msgstr "创建 OpenPGP 密钥"
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter User ID"
-msgstr ""
+msgstr "输入用户ID"
 
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:179
 #, kde-format
@@ -1395,6 +1396,8 @@ msgid ""
 "able to verify the certificate.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
+"<para>您尚未使用可导出的证书来认证此证书的所有有效用户 ID。依赖您证书的人可能"
+"无法验证此证书。</para><para>您想继续导出吗？</para>"
 
 #: src/commands/exportcertificatecommand.cpp:186
 #: src/commands/exportcertificatecommand.cpp:201
@@ -1403,7 +1406,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Certificate Export"
-msgstr ""
+msgstr "确认证书导出"
 
 #: src/commands/exportcertificatecommand.cpp:187
 #: src/commands/exportcertificatecommand.cpp:202
@@ -1414,7 +1417,7 @@ msgstr ""
 msgctxt "@action:button"
 msgid "Export Certificate"
 msgid_plural "Export Certificates"
-msgstr[0] ""
+msgstr[0] "导出证书"
 
 #: src/commands/exportcertificatecommand.cpp:196
 #: src/commands/exportopenpgpcertstoservercommand.cpp:82
@@ -1426,6 +1429,8 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
+"<para>您尚未使用可导出的证书对下列证书的所有有效用户 ID 进行认证。依赖您证书"
+"的人可能无法验证证书。</para><para>您想继续导出吗？</para>"
 
 #: src/commands/exportcertificatecommand.cpp:265
 #, kde-format
@@ -1531,19 +1536,21 @@ msgid ""
 "able to verify the certificates.</para><para>Do you want to continue the "
 "export?</para>"
 msgstr ""
+"<para>您尚未用可导出的证书认证此组中的所有 OpenPGP 证书。依赖您证书的人可能无"
+"法验证证书。</para><para>您想继续导出吗？</para>"
 
 #: src/commands/exportgroupscommand.cpp:202
 #: src/commands/exportgroupscommand.cpp:217
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Group Export"
-msgstr ""
+msgstr "确认导出群组"
 
 #: src/commands/exportgroupscommand.cpp:203
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Group"
-msgstr ""
+msgstr "导出编组"
 
 #: src/commands/exportgroupscommand.cpp:212
 #, kde-kuit-format
@@ -1554,12 +1561,14 @@ msgid ""
 "may not be able to verify the certificates.</para><para>Do you want to "
 "continue the export?</para>"
 msgstr ""
+"<para>您尚未对下列组中所有 OpenPGP 证书进行可导出认证。依赖您认证的人可能无法"
+"验证这些证书。</para><para>您想继续导出吗？</para>"
 
 #: src/commands/exportgroupscommand.cpp:218
 #, kde-format
 msgctxt "@action:button"
 msgid "Export Groups"
-msgstr ""
+msgstr "导出编组"
 
 #: src/commands/exportgroupscommand.cpp:232
 #, kde-kuit-format
@@ -1604,7 +1613,7 @@ msgid ""
 msgid_plural ""
 "Exporting the certificates to a key server is not possible because the usage "
 "of key servers has been disabled explicitly."
-msgstr[0] ""
+msgstr[0] "无法将证书导出到密钥服务器，因为密钥服务器的使用已被明确禁用。"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:117
 #, kde-kuit-format
@@ -1677,6 +1686,8 @@ msgid ""
 "<para>The output of <command>%1</command> was:<nl /><message>%2</message></"
 "para>"
 msgstr ""
+"<para>尝试导出 OpenPGP 证书时发生错误。</para> <para>的输出为： <command>%1</"
+"command> 是:<nl /><message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:179
 #, kde-format
@@ -1952,7 +1963,7 @@ msgctxt "@info"
 msgid ""
 "You cannot generate keys on this smart card because it doesn't support any "
 "of the compliant algorithms."
-msgstr ""
+msgstr "您无法在此智能卡上生成密钥，因为它不支持任何兼容算法。"
 
 #: src/commands/genrevokecommand.cpp:72
 #, kde-format
@@ -2657,24 +2668,26 @@ msgid ""
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
+"<para>密钥已复制到卡中。</para><para>您现在可以删除存储在这台计算机上的密钥副"
+"本。您也可以先创建密钥的备份。</para>"
 
 #: src/commands/keytocardcommand.cpp:494
 #, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
-msgstr ""
+msgstr "创建备份"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "删除磁盘上的副本"
 
 #: src/commands/keytocardcommand.cpp:496 src/commands/keytocardcommand.cpp:523
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "将副本保存在磁盘上"
 
 #: src/commands/keytocardcommand.cpp:518
 #, kde-kuit-format
@@ -2684,6 +2697,8 @@ msgid ""
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
+"<para>密钥已复制到卡中，备份已写入 <filename>%1</filename>.</para><para>是否"
+"要删除存储在这台计算机上的密钥副本？</para>"
 
 #: src/commands/keytocardcommand.cpp:563
 #, kde-format
@@ -2726,7 +2741,7 @@ msgstr "备份私钥到 <filename>%1</filename> 失败。"
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr ""
+msgstr "您确实要删除此计算机上存储的密钥副本吗？"
 
 #: src/commands/keytocardcommand.cpp:687
 #, kde-kuit-format
@@ -2735,12 +2750,14 @@ msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para>无法删除此计算机上存储的密钥副本：</para><para><message>%1</message></"
+"para>"
 
 #: src/commands/keytocardcommand.cpp:690
 #, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr ""
+msgstr "已成功删除此计算机上存储的密钥副本。"
 
 #: src/commands/lookupcertificatescommand.cpp:317
 #, kde-format
@@ -2952,7 +2969,7 @@ msgctxt "@info"
 msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
-msgstr ""
+msgstr "您无法在此智能卡上生成密钥，因为它不支持任何兼容算法。"
 
 #: src/commands/refreshcertificatescommand.cpp:175
 #: src/commands/refreshcertificatescommand.cpp:248
@@ -3009,7 +3026,7 @@ msgctxt "@info"
 msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
-msgstr "从密钥服务器、LDAP 服务器或 Active Directory 更新 OpenPGP 证书的结果"
+msgstr "从密钥服务器、LDAP 服务器或活动目录更新 OpenPGP 证书的结果"
 
 #: src/commands/refreshcertificatescommand.cpp:393
 #: src/commands/refreshcertificatescommand.cpp:410
@@ -3046,13 +3063,13 @@ msgstr[0] "<para>更新证书。</para>"
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
-msgstr "Web密钥目录的更新结果"
+msgstr "Web 密钥目录的更新结果"
 
 #: src/commands/refreshcertificatescommand.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr "S/MIME证书更新结果"
+msgstr "S/MIME 证书更新结果"
 
 #: src/commands/refreshcertificatescommand.cpp:432
 #, kde-format
@@ -3073,7 +3090,7 @@ msgctxt "@info"
 msgid ""
 "Refreshing the OpenPGP certificates is not possible because the usage of key "
 "servers has been disabled explicitly."
-msgstr ""
+msgstr "无法刷新 OpenPGP 证书，因为密钥服务器的使用已被明确禁用。"
 
 #: src/commands/refreshopenpgpcertscommand.cpp:50
 #, kde-kuit-format
@@ -3328,9 +3345,9 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
-"<para>证书已成功吊销并上载到内部目录。</para><para>已吊销的证书已保存到"
-"<filename>%1</filename>.</para><para>您应该将此文件连同导入说明一起发送给您的"
-"通信伙伴。</para>"
+"<para>证书已成功吊销并上传到内部目录。</para><para>已吊销的证书已保存到"
+"<filename>%1</filename>.</para><para>您应该将此文件发送给您的通信伙伴，并附上"
+"导入该文件的说明。</para>"
 
 #: src/commands/revokekeycommand.cpp:333
 #, kde-kuit-format
@@ -3710,7 +3727,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "将没有扩展名的 .p7m 文件视为邮件。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
@@ -3781,7 +3798,7 @@ msgstr "OpenPGP 密钥服务器"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
-msgstr "请注意，只能配置一个OpenPGP密钥服务器。"
+msgstr "请注意，只能配置一个 OpenPGP 密钥服务器。"
 
 #: src/conf/dirservconfigpage.cpp:134
 #, kde-format
@@ -3803,6 +3820,9 @@ msgid ""
 "address then an internal default will be used. To disable the use of an "
 "OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
 msgstr ""
+"输入搜索 OpenPGP 证书和上传 OpenPGP 证书时使用的密钥服务器的地址。如果您不输"
+"入地址，则将使用内部默认值。要禁用 OpenPGP 密钥服务器，请输入特殊值  "
+"<emphasis>none</emphasis>."
 
 #: src/conf/dirservconfigpage.cpp:169
 #, kde-format
@@ -3844,7 +3864,7 @@ msgstr ""
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "查询所有用户 ID 的提供商证书目录"
 
 #: src/conf/dirservconfigpage.cpp:231
 #, kde-kuit-format
@@ -3855,6 +3875,9 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"默认情况下，当您更新 OpenPGP 证书时，Kleopatra 只会向提供商 (WKD) 的证书目录"
+"查询最初从 WKD 检索到的用户 ID。如果启用此选项，则 Kleopatra 将向 WKD 查询所"
+"有用户 ID。"
 
 #: src/conf/dirservconfigpage.cpp:474
 #, kde-format
@@ -3920,7 +3943,7 @@ msgstr "分组"
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
-msgstr ""
+msgstr "新建"
 
 #: src/conf/groupsconfigwidget.cpp:182
 #, kde-format
@@ -3939,7 +3962,7 @@ msgstr "删除"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr ""
+msgstr "启动组内所有证书的认证过程。"
 
 #: src/conf/groupsconfigwidget.cpp:195
 #: src/dialogs/certificatedetailsdialog.cpp:65
@@ -3961,6 +3984,8 @@ msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
+"<para>您确实要删除该群组吗？</para><para><emphasis>%1</emphasis></para><para>"
+"一旦删除，将无法恢复。</para>"
 
 #: src/conf/groupsconfigwidget.cpp:399
 #, kde-kuit-format
@@ -3972,13 +3997,15 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>您确实要删除此内容吗  %1 group?</para><para>一旦删除，则无法恢复。</"
+"para>"
 
 #: src/conf/groupsconfigwidget.cpp:411
 #, kde-format
 msgctxt "@title:window"
 msgid "Delete Group"
 msgid_plural "Delete Groups"
-msgstr[0] ""
+msgstr[0] "删除编组"
 
 #: src/conf/groupsconfigwidget.cpp:467
 #, kde-format
@@ -4615,8 +4642,7 @@ msgctxt "@info Successfully decrypted and verified <file> as <file>."
 msgid ""
 "Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
 "filename>."
-msgstr ""
-"已成功解密并验证 <filename>%1</filename> 作为  <filename>%2</filename>."
+msgstr "已为  <filename>%2</filename>成功解密并验证 <filename>%1</filename> ."
 
 #: src/crypto/decryptverifytask.cpp:237
 #, kde-format
@@ -4635,7 +4661,8 @@ msgstr "无法覆盖 <filename>%1</filename>:"
 msgctxt "@info Verified <file> with signature in <file>."
 msgid ""
 "Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr "验证 <filename>%1</filename> 签名在 <filename>%2</filename>."
+msgstr ""
+"已使用 <filename>%2</filename> 中的签名验证了 <filename>%1</filename>。"
 
 #: src/crypto/decryptverifytask.cpp:248
 #, kde-format
@@ -4789,7 +4816,7 @@ msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
-"警告：发件人的邮件地址未存储在 <a href=\"key:%1\">认证</a>用于签名。存储："
+"警告：发件人的邮件地址未存储在 <a href=\"key:%1\">证书</a>用于签名。存储："
 "<ul>%2</ul>"
 
 #: src/crypto/decryptverifytask.cpp:735 src/crypto/decryptverifytask.cpp:943
@@ -4821,7 +4848,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:800
 #, kde-format
 msgid "Decrypting %1..."
-msgstr ""
+msgstr "解密中 %1..."
 
 #: src/crypto/decryptverifytask.cpp:1079
 #, kde-format
@@ -4845,7 +4872,7 @@ msgstr "无法判定是 S/MIME 还是 OpenPGP 签名 - 也许它根本不是签�
 #: src/crypto/decryptverifytask.cpp:1241
 #, kde-format
 msgid "Verifying %1..."
-msgstr ""
+msgstr "验证中 %1..."
 
 #: src/crypto/decryptverifytask.cpp:1503
 #, kde-kuit-format
@@ -4853,12 +4880,12 @@ msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr ""
+msgstr "验证<filename>%1</filename> 与 <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1507
 #, kde-format
 msgid "Verifying signature %1..."
-msgstr ""
+msgstr "验证签名 %1..."
 
 #: src/crypto/encryptemailcontroller.cpp:121
 #, kde-format
@@ -5147,7 +5174,7 @@ msgstr "显示审核日志"
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
-msgstr ""
+msgstr "显示邮件"
 
 #: src/crypto/gui/resultpage.cpp:66
 #, kde-format
@@ -5971,7 +5998,8 @@ msgid ""
 "Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
 "%2</emphasis>"
 msgstr ""
-"签名和加密失败 <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
+"签名和加密失败： <filename>%1</filename>: <emphasis strong='true'>%2</"
+"emphasis>"
 
 #: src/crypto/signencrypttask.cpp:163
 #, kde-kuit-format
@@ -5980,8 +6008,8 @@ msgid ""
 "Failed to sign and encrypt <filename>%1</filename> and <filename>%2</"
 "filename>: <emphasis strong='true'>%3</emphasis>"
 msgstr ""
-"签名和加密失败 <filename>%1</filename> 和 <filename>%2</filename>: <emphasis "
-"strong='true'>%3</emphasis>"
+"签名和加密失败： <filename>%1</filename> 和 <filename>%2</filename>: "
+"<emphasis strong='true'>%3</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:169
 #, kde-kuit-format
@@ -5993,7 +6021,7 @@ msgid_plural ""
 "Failed to sign and encrypt <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
 msgstr[0] ""
-"签名和加密失败<filename>%2</filename> 和 %1 其它: <emphasis strong='true'>"
+"签名和加密失败：<filename>%2</filename> 和 %1 其它: <emphasis strong='true'>"
 "%3</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:179
@@ -6002,7 +6030,7 @@ msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
 "Failed to sign <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
 msgstr ""
-"签名失败 <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
+"签名失败： <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:185
 #, kde-kuit-format
@@ -6011,7 +6039,7 @@ msgid ""
 "Failed to sign <filename>%1</filename> and <filename>%2</filename>: "
 "<emphasis strong='true'>%3</emphasis>"
 msgstr ""
-"签名失败 <filename>%1</filename> 和 <filename>%2</filename>: <emphasis "
+"签名失败： <filename>%1</filename> 和 <filename>%2</filename>: <emphasis "
 "strong='true'>%3</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:191
@@ -6024,7 +6052,7 @@ msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
 msgstr[0] ""
-"签名失败 <filename>%2</filename> 和 %1 其它: <emphasis strong='true'>%3</"
+"签名失败 ：<filename>%2</filename> 和 %1 其它: <emphasis strong='true'>%3</"
 "emphasis>"
 
 #: src/crypto/signencrypttask.cpp:201
@@ -6034,7 +6062,7 @@ msgid ""
 "Failed to encrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
 "emphasis>"
 msgstr ""
-"加密失败 <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
+"加密失败： <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:207
 #, kde-kuit-format
@@ -6043,7 +6071,7 @@ msgid ""
 "Failed to encrypt <filename>%1</filename> and <filename>%2</filename>: "
 "<emphasis strong='true'>%3</emphasis>"
 msgstr ""
-"加密失败 <filename>%1</filename> 和 <filename>%2</filename>: <emphasis "
+"加密失败 ：<filename>%1</filename> 和 <filename>%2</filename>: <emphasis "
 "strong='true'>%3</emphasis>"
 
 #: src/crypto/signencrypttask.cpp:213
@@ -6056,7 +6084,7 @@ msgid_plural ""
 "Failed to encrypt <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
 msgstr[0] ""
-"加密失败 <filename>%2</filename> 和 %1 其它: <emphasis strong='true'>%3</"
+"加密失败： <filename>%2</filename> 和 %1 其它: <emphasis strong='true'>%3</"
 "emphasis>"
 
 #: src/crypto/signencrypttask.cpp:223
@@ -6093,7 +6121,7 @@ msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
 "saved it as <filename>%3</filename>."
 msgstr[0] ""
-"签名并加密成功 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</"
+"已签名并加密成功 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</"
 "filename>."
 
 #: src/crypto/signencrypttask.cpp:245
@@ -6129,7 +6157,7 @@ msgid_plural ""
 "Successfully signed <filename>%2</filename> and %1 others and saved the "
 "signature in <filename>%3</filename>."
 msgstr[0] ""
-"成功签署 <filename>%2</filename> 和 %1 并将签名保存在 <filename>%3</"
+"成功签名 <filename>%2</filename> 和 %1 并将签名保存在 <filename>%3</"
 "filename>."
 
 #: src/crypto/signencrypttask.cpp:266
@@ -6163,7 +6191,7 @@ msgid_plural ""
 "Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
 "<filename>%3</filename>."
 msgstr[0] ""
-"加密成功 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</filename>."
+"成功加密 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
 #: src/crypto/signencrypttask.cpp:929
@@ -6326,7 +6354,7 @@ msgstr "添加子密钥"
 #: src/dialogs/addsubkeydialog.cpp:156
 #, kde-format
 msgid "Expiration of primary key: %1"
-msgstr ""
+msgstr "主密钥过期：%1"
 
 #: src/dialogs/addsubkeydialog.cpp:264
 #, kde-format
@@ -6874,7 +6902,7 @@ msgstr "认证证书：%1"
 #, kde-format
 msgctxt "@title:window Certify Certificate Group <group name>"
 msgid "Certify Certificate Group %1"
-msgstr ""
+msgstr "认证证书组 %1"
 
 #: src/dialogs/certifywidget.cpp:160
 #, kde-format
@@ -6909,7 +6937,7 @@ msgstr "点击将所选认证密钥的信任等级设为绝对信任，通常用
 #, kde-format
 msgctxt "@info"
 msgid "One or more certificates cannot be certified."
-msgstr ""
+msgstr "一个或多个证书无法认证。"
 
 #: src/dialogs/certifywidget.cpp:217 src/dialogs/useridswidget.cpp:134
 #, kde-format
@@ -6921,7 +6949,7 @@ msgstr "用户 ID"
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
-msgstr ""
+msgstr "用户ID"
 
 #: src/dialogs/certifywidget.cpp:228
 #, kde-format
@@ -6946,6 +6974,8 @@ msgid ""
 "you just want to mark certificates as certified for yourself, then you can "
 "uncheck it."
 msgstr ""
+"如果您想与他人分享您的证书，请勾选此选项。如果您只想将证书标记为您自己认证"
+"的，则可以取消勾选。"
 
 #: src/dialogs/certifywidget.cpp:245
 #, kde-format
@@ -7038,6 +7068,8 @@ msgid ""
 "the certificate you want to certify the user IDs with.<br><i>Note: Only the "
 "fingerprints clearly identify the certificate and its owner.</i>"
 msgstr ""
+"验证指纹，标记要认证的用户 ID，然后选择要用来认证用户 ID 的证书。<br><i>注"
+"意：只有指纹才能清楚地识别证书及其所有者。</i>"
 
 #: src/dialogs/certifywidget.cpp:465
 #: src/dialogs/lookupcertificatesdialog.cpp:240
@@ -7046,19 +7078,19 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
-msgstr ""
+msgstr "指纹"
 
 #: src/dialogs/certifywidget.cpp:481 src/dialogs/certifywidget.cpp:482
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "S/MIME certificates cannot be certified."
-msgstr ""
+msgstr "S/MIME 证书无法认证。"
 
 #: src/dialogs/certifywidget.cpp:484 src/dialogs/certifywidget.cpp:485
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Expired or revoked certificates cannot be certified."
-msgstr ""
+msgstr "过期或被撤销的证书无法获得认证。"
 
 #: src/dialogs/certifywidget.cpp:795
 #, kde-format
@@ -7198,7 +7230,7 @@ msgid ""
 "contents, too.</para>"
 msgstr ""
 "<para>删除CA证书时 (根 CA 和中间 CA), 他们颁发的证书也将被删除。</para><para>"
-"这在 <application>Kleopatra中可以很容易看到</application> 层次视图模式：在此"
+"这在 <application>Kleopatra 中可以很容易看到</application> 层次视图模式：在此"
 "模式下，如果您删除具有子证书的证书，则这些子证书也将被删除。将 CA 证书视为包"
 "含其他证书的文件夹：删除文件夹时，也会删除其内容。</para>"
 
@@ -7561,7 +7593,7 @@ msgstr "源"
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
-msgstr ""
+msgstr "在服务器上查找"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:273
 #, kde-format
@@ -7572,13 +7604,13 @@ msgstr "导入"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
-msgstr ""
+msgstr "输入搜索词来搜索匹配的证书。"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:339
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
-msgstr ""
+msgstr "输入电子邮件地址，搜索匹配的证书。"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:419
 #: src/dialogs/lookupcertificatesdialog.cpp:422
@@ -7927,19 +7959,19 @@ msgstr "添加子密钥"
 #, kde-format
 msgctxt "@action:button"
 msgid "Change validity"
-msgstr ""
+msgstr "更改有效期"
 
 #: src/dialogs/subkeyswidget.cpp:182
 #, kde-format
 msgctxt "@action:button"
 msgid "Export OpenSSH key"
-msgstr ""
+msgstr "导出 OpenSSH 密钥"
 
 #: src/dialogs/subkeyswidget.cpp:183
 #, kde-format
 msgctxt "@action:button"
 msgid "Restore printed backup"
-msgstr ""
+msgstr "恢复打印的备份"
 
 #: src/dialogs/subkeyswidget.cpp:184
 #, kde-format
@@ -7951,7 +7983,7 @@ msgstr "转移到智能卡"
 #, kde-format
 msgctxt "@action:button"
 msgid "Export secret subkey"
-msgstr ""
+msgstr "导出秘密子密钥"
 
 #: src/dialogs/subkeyswidget.cpp:186
 #, kde-format
@@ -7982,7 +8014,7 @@ msgstr "显示更多选项"
 #: src/dialogs/subkeyswidget.cpp:296
 #, kde-format
 msgid "Change validity"
-msgstr ""
+msgstr "更改有效期"
 
 #: src/dialogs/subkeyswidget.cpp:303
 #, kde-format
@@ -8503,7 +8535,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:20
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr ""
+msgstr "电子邮件提示"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:21
@@ -8512,6 +8544,8 @@ msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and as placeholder in that field for S/MIME certificates."
 msgstr ""
+"该文本将显示在 OpenPGP 证书的电子邮件地址字段上方，并作为 S/MIME 证书该字段的"
+"占位符。"
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -8536,7 +8570,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:31
 #, kde-format
 msgid "Value of EMAIL"
-msgstr ""
+msgstr "电子邮件的值"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:32
@@ -8546,18 +8580,20 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"OpenPGP 和 S/MIME 证书的电子邮件地址字段的预填充值。这将覆盖 EMAIL_prefill。"
+"如果未找到 EMAIL_prefill 的系统设置或发现系统设置不合适，则此值很有用。"
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
 #, kde-format
 msgid "Hint for NAME"
-msgstr ""
+msgstr "名称提示"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:37
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr ""
+msgstr "该文本将显示在 OpenPGP 证书的名称字段上方。"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -8581,7 +8617,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:47
 #, kde-format
 msgid "Value of NAME"
-msgstr ""
+msgstr "名称 的值"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:48
@@ -8591,6 +8627,8 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
+"OpenPGP 证书名称字段的预填充值。这将覆盖 NAME_prefill。如果未找到 "
+"NAME_prefill 的系统设置或发现系统设置不合适，则此值很有用。"
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -8888,7 +8926,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:171
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "查询所有用户 ID 的提供商证书目录"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
 #: src/kcfg/settings.kcfg:174
@@ -8901,6 +8939,9 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"默认情况下，Kleopatra 仅查询提供商的证书目录（WKD）\n"
+"         当您更新 OpenPGP 证书时，最初从 WKD 检索到的用户 ID。\n"
+"         如果启用此选项，那么 Kleopatra 将查询所有用户 ID 的 WKD。"
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:180
@@ -9653,7 +9694,7 @@ msgctxt ""
 "Only available in German and English. Keep the English file name for other "
 "languages."
 msgid "BSI-VSA-10867_ENG_secops.pdf"
-msgstr ""
+msgstr "BSI-VSA--ENG_secops-pdf"
 
 #: src/mainwindow.cpp:857
 #, kde-format
@@ -9996,7 +10037,7 @@ msgid ""
 "<para><application>GnuPG</application> is not configured for <icode>de-vs</"
 "icode> compliance.</para>"
 msgstr ""
-"<para><application>GnuPG</application> 未配置<icode>de-vs</icode> 合规性.</"
+"<para><application>GnuPG</application> 未配置<icode>de-vs</icode> 标准。</"
 "para>"
 
 #: src/selftest/compliancecheck.cpp:57
@@ -12084,7 +12125,7 @@ msgstr "更改管理操作所需的 PIN 码。"
 #, kde-format
 msgctxt "@action"
 msgid "Set PUK"
-msgstr ""
+msgstr "设置PUK"
 
 #: src/view/smartcardactions.cpp:75
 #, kde-format
@@ -12226,7 +12267,7 @@ msgstr "为此密钥创建S/MIME证书签名请求"
 #, kde-format
 msgctxt "OpenPGP refers to a smartcard protocol"
 msgid "OpenPGP v2.0 or later"
-msgstr "OpenPGP v2.0或更高版本"
+msgstr "OpenPGP v2.0 或更高版本"
 
 #: src/view/smartcardswidget.cpp:80
 #, kde-format
@@ -12238,7 +12279,7 @@ msgstr "Gnuk"
 #, kde-format
 msgctxt "NetKey refers to a smartcard protocol"
 msgid "NetKey v3 or later"
-msgstr "NetKey v3 或更高版本"
+msgstr "NetKey v3或更高版本"
 
 #: src/view/smartcardswidget.cpp:82
 #, kde-format
