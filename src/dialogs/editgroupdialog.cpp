@@ -185,21 +185,21 @@ public:
 
         auto centerLayout = new QVBoxLayout;
 
-        auto availableKeysGroupBox = new QGroupBox{i18nc("@title", "Available Keys"), q};
+        auto availableKeysGroupBox = new QGroupBox{i18nc("@title", "Available Certificates"), q};
         availableKeysGroupBox->setFlat(true);
         auto availableKeysLayout = new QVBoxLayout{availableKeysGroupBox};
 
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
-            label->setAccessibleName(i18nc("@label", "Search available keys"));
-            label->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
+            label->setAccessibleName(i18nc("@label", "Search available certificates"));
+            label->setToolTip(i18nc("@info:tooltip", "Search the list of available certificates for any that match the search term."));
             hbox->addWidget(label);
 
             ui.availableKeysFilter = new QLineEdit(q);
             ui.availableKeysFilter->setClearButtonEnabled(true);
-            ui.availableKeysFilter->setAccessibleName(i18nc("@label", "Search available keys"));
-            ui.availableKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of available keys for keys matching the search term."));
+            ui.availableKeysFilter->setAccessibleName(i18nc("@label", "Search available certificates"));
+            ui.availableKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of available certificates for any that match the search term."));
             ui.availableKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
             ui.availableKeysFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.availableKeysFilter);
@@ -242,7 +242,7 @@ public:
         auto proxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Disable, q);
         proxyModel->setSourceModel(availableKeysModel);
         ui.availableKeysList = new KeyTreeView({}, nullptr, proxyModel, q, {});
-        ui.availableKeysList->view()->setAccessibleName(i18n("available keys"));
+        ui.availableKeysList->view()->setAccessibleName(i18nc("@label", "Available certificates"));
         ui.availableKeysList->view()->setRootIsDecorated(false);
         ui.availableKeysList->setFlatModel(availableKeysModel);
         ui.availableKeysList->setHierarchicalView(false);
@@ -258,15 +258,15 @@ public:
 
         auto addButton = new QPushButton(q);
         addButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-down")));
-        addButton->setAccessibleName(i18nc("@action:button", "Add Selected Keys"));
-        addButton->setToolTip(i18nc("@info:tooltip", "Add the selected keys to the group"));
+        addButton->setAccessibleName(i18nc("@action:button", "Add Selected Certificates"));
+        addButton->setToolTip(i18nc("@info:tooltip", "Add the selected certificates to the group"));
         addButton->setEnabled(false);
         buttonsLayout->addWidget(addButton);
 
         auto removeButton = new QPushButton(q);
         removeButton->setIcon(QIcon::fromTheme(QStringLiteral("arrow-up")));
-        removeButton->setAccessibleName(i18nc("@action:button", "Remove Selected Keys"));
-        removeButton->setToolTip(i18nc("@info:tooltip", "Remove the selected keys from the group"));
+        removeButton->setAccessibleName(i18nc("@action:button", "Remove Selected Certificates"));
+        removeButton->setToolTip(i18nc("@info:tooltip", "Remove the selected certificates from the group"));
         removeButton->setEnabled(false);
         buttonsLayout->addWidget(removeButton);
 
@@ -274,21 +274,21 @@ public:
 
         centerLayout->addLayout(buttonsLayout);
 
-        auto groupKeysGroupBox = new QGroupBox{i18nc("@title", "Group Keys"), q};
+        auto groupKeysGroupBox = new QGroupBox{i18nc("@title", "Certificates in the Group"), q};
         groupKeysGroupBox->setFlat(true);
         auto groupKeysLayout = new QVBoxLayout{groupKeysGroupBox};
 
         {
             auto hbox = new QHBoxLayout;
             auto label = new QLabel{i18nc("@label", "Search:")};
-            label->setAccessibleName(i18nc("@label", "Search group keys"));
-            label->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
+            label->setAccessibleName(i18nc("@label", "Search for certificates in the group"));
+            label->setToolTip(i18nc("@info:tooltip", "Search the list of certificates in the group for any that match the search term."));
             hbox->addWidget(label);
 
             ui.groupKeysFilter = new QLineEdit(q);
             ui.groupKeysFilter->setClearButtonEnabled(true);
-            ui.groupKeysFilter->setAccessibleName(i18nc("@label", "Search group keys"));
-            ui.groupKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of group keys for keys matching the search term."));
+            ui.groupKeysFilter->setAccessibleName(i18nc("@label", "Search for certificates in the group"));
+            ui.groupKeysFilter->setToolTip(i18nc("@info:tooltip", "Search the list of certificates in the group for any that match the search term."));
             ui.groupKeysFilter->setPlaceholderText(i18nc("@info::placeholder", "Enter search term"));
             ui.groupKeysFilter->setCursorPosition(0); // prevent emission of accessible text cursor event before accessible focus event
             label->setBuddy(ui.groupKeysFilter);
@@ -301,7 +301,7 @@ public:
 
         auto warnNonEncryptionProxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Warn, q);
         ui.groupKeysList = new KeyTreeView({}, nullptr, warnNonEncryptionProxyModel, q, {});
-        ui.groupKeysList->view()->setAccessibleName(i18n("group keys"));
+        ui.groupKeysList->view()->setAccessibleName(i18nc("@label", "Certificates in group"));
         ui.groupKeysList->view()->setRootIsDecorated(false);
         ui.groupKeysList->setFlatModel(groupKeysModel);
         ui.groupKeysList->setHierarchicalView(false);
