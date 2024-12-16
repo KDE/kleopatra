@@ -759,14 +759,7 @@ void MainWindow::Private::setupActions()
                       coll);
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
-    const auto symguide =
-        new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
-                      i18n("&Password-based Encryption"),
-                      i18nc("Only available in German and English. Leave to English for other languages.", "symmetric_encryption_gnupgvsd_en.pdf"),
-                      QStringLiteral("../share/doc/gnupg-vsd"),
-                      QUrl(),
-                      coll);
-    coll->addAction(QStringLiteral("help_doc_symenc"), symguide);
+    coll->addAction(QStringLiteral("help_doc_symenc"), createSymmetricGuideAction(coll).release());
 
     const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
                                       i18n("Certificate &Groups"),
@@ -1000,6 +993,17 @@ void MainWindow::unexportWindow()
 KeyListController *MainWindow::keyListController()
 {
     return &d->controller;
+}
+
+std::unique_ptr<DocAction> MainWindow::createSymmetricGuideAction(QObject *parent)
+{
+    return std::make_unique<DocAction>(
+        QIcon::fromTheme(QStringLiteral("help-contextual")),
+        i18n("&Password-based Encryption"),
+        i18nc("Only available in German and English. Leave to English for other languages.", "symmetric_encryption_gnupgvsd_en.pdf"),
+        QStringLiteral("../share/doc/gnupg-vsd"),
+        QUrl(),
+        parent);
 }
 
 #include "mainwindow.moc"

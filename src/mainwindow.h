@@ -19,6 +19,7 @@
 namespace Kleo
 {
 class KeyListController;
+class DocAction;
 }
 
 class MainWindow : public KXmlGuiWindow
@@ -29,6 +30,8 @@ public:
     ~MainWindow() override;
 
     Kleo::KeyListController *keyListController();
+
+    static std::unique_ptr<Kleo::DocAction> createSymmetricGuideAction(QObject *parent);
 
 public Q_SLOTS:
     void importCertificatesFromFile(const QStringList &files);

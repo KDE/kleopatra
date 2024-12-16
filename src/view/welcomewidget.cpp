@@ -12,10 +12,16 @@
 #include "welcomewidget.h"
 
 #include "htmllabel.h"
+#include "kleopatra_debug.h"
+#include "kleopatraapplication.h"
+#include "mainwindow.h"
+
+#include <Libkleo/DocAction>
 
 #include <KAboutData>
 
 #include <QAction>
+#include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QKeyEvent>
 #include <QToolButton>
@@ -27,12 +33,17 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
+#include <KXmlGuiWindow>
 
 static const QString templ = QStringLiteral(
     "<h3>%1</h3>" // Welcome
-    "<p>%2<p/><p>%3</p>" // Intro + Explanation
+    "<p>%2<p/>" // Intro
+    "<p>%7</p>" // (optional) VSD Text
+    "<p>%8</p>" // (optional) Password explanation
+    "<p>%3</p>" // Explanation
     "<ul><li>%4</li><li>%5</li></ul>" //
     "<p>%6</p>" // More info
+    "<br />"
     "");
 
 using namespace Kleo;
@@ -115,20 +126,51 @@ public:
         const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1", KAboutData::applicationData().version());
         const QString introduction = i18n("Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org\">GnuPG</a>.");
 
-        const QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own private key.");
+        QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own secret key.");
 
-        const QString privateKeyExplanation = i18n("The private key is needed to decrypt or sign.");
+        const QString privateKeyExplanation = i18n("The secret key is needed to decrypt or sign.");
         const QString publicKeyExplanation = i18n("The public key can be used by others to verify your identity or encrypt to you.");
 
         const QString wikiUrl = i18nc("More info about public key cryptography, please link to your local version of Wikipedia",
                                       "https://en.wikipedia.org/wiki/Public-key_cryptography");
-        const QString learnMore = i18nc("%1 is link a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
+        QString learnMore = i18nc("%1 is a link to a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
 
-        const auto labelText = templ.arg(welcome).arg(introduction).arg(keyExplanation).arg(privateKeyExplanation).arg(publicKeyExplanation).arg(learnMore);
+        QString vsdText;
+        QString symExplanation;
+
+        if (MainWindow::createSymmetricGuideAction(nullptr)->isEnabled()) {
+            vsdText =
+                i18nc("@info",
+                      "With Kleopatra you can encrypt using different methods. Please follow the regulations for classified information of your organization.");
+            symExplanation = i18nc("@info", "For password based encryption see this <a href=\"action:help_doc_symenc\">guide</a>.");
+            keyExplanation = i18nc("@info", "For public key encryption you generally have to create your own key pair.");
+            learnMore =
+                i18nc("@info", "You can find step-by-step instructions for public key encryption in this <a href=\"action:help_doc_quickguide\">guide</a>.");
+        }
+
+        const auto labelText = templ.arg(welcome)
+                                   .arg(introduction)
+                                   .arg(keyExplanation)
+                                   .arg(privateKeyExplanation)
+                                   .arg(publicKeyExplanation)
+                                   .arg(learnMore)
+                                   .arg(vsdText)
+                                   .arg(symExplanation);
         mLabel = new HtmlLabel{labelText, q};
         mLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
-        mLabel->setOpenExternalLinks(true);
 
+        connect(mLabel, &QLabel::linkActivated, q, [](const auto &link) {
+            QUrl url(link);
+            if (url.scheme() == QStringLiteral("action")) {
+                if (const auto action = KleopatraApplication::instance()->mainWindow()->action(url.path())) {
+                    action->trigger();
+                } else {
+                    qCWarning(KLEOPATRA_LOG) << "action" << url.path() << "not found";
+                }
+                return;
+            }
+            QDesktopServices::openUrl(url);
+        });
         auto genKeyAction = new QAction(q);
         genKeyAction->setText(i18n("New Key Pair..."));
         genKeyAction->setIcon(QIcon::fromTheme(QStringLiteral("view-certificate-add")));
