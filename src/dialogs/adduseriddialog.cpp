@@ -14,11 +14,11 @@
 #include "adduseriddialog.h"
 
 #include "utils/accessibility.h"
-#include "utils/scrollarea.h"
 #include "view/htmllabel.h"
 
 #include <Libkleo/NameAndEmailWidget>
 
+#include <KAdjustingScrollArea>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -39,7 +39,7 @@ class AddUserIDDialog::Private
     AddUserIDDialog *const q;
 
     struct {
-        ScrollArea *scrollArea;
+        KAdjustingScrollArea *scrollArea;
         NameAndEmailWidget *nameAndEmail;
         HtmlLabel *resultLabel;
         QDialogButtonBox *buttonBox;
@@ -71,13 +71,15 @@ public:
 
         mainLayout->addWidget(new KSeparator{Qt::Horizontal, q});
 
-        ui.scrollArea = new ScrollArea{q};
+        ui.scrollArea = new KAdjustingScrollArea{q};
         ui.scrollArea->setFocusPolicy(Qt::NoFocus);
         ui.scrollArea->setFrameStyle(QFrame::NoFrame);
         ui.scrollArea->setBackgroundRole(q->backgroundRole());
         ui.scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         ui.scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(ui.scrollArea->widget()->layout());
+        auto widget = new QWidget;
+        ui.scrollArea->setWidget(widget);
+        auto scrollAreaLayout = new QVBoxLayout(widget);
         scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
 
         ui.nameAndEmail = new NameAndEmailWidget{q};

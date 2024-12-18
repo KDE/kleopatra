@@ -17,7 +17,6 @@
 
 #include "advancedsettingsdialog_p.h"
 
-#include "utils/scrollarea.h"
 #include "utils/userinfo.h"
 
 #include <settings.h>
@@ -29,6 +28,7 @@
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Validation>
 
+#include <KAdjustingScrollArea>
 #include <KLocalizedString>
 
 #include <QGpgME/CryptoConfig>
@@ -110,13 +110,15 @@ struct EnterDetailsPage::UI {
         const auto margins = mainLayout->contentsMargins();
         mainLayout->setContentsMargins(margins.left(), 0, margins.right(), 0);
 
-        auto scrollArea = new ScrollArea{parent};
+        auto scrollArea = new KAdjustingScrollArea{parent};
         scrollArea->setFocusPolicy(Qt::NoFocus);
         scrollArea->setFrameStyle(QFrame::NoFrame);
         scrollArea->setBackgroundRole(parent->backgroundRole());
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+        auto widget = new QWidget;
+        scrollArea->setWidget(widget);
+        auto scrollAreaLayout = new QVBoxLayout(widget);
         scrollAreaLayout->setContentsMargins(0, margins.top(), 0, margins.bottom());
 
         gridLayout = new QGridLayout;

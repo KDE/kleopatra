@@ -17,18 +17,17 @@
 #include <crypto/gui/resultitemwidget.h>
 
 #include <utils/gui-helper.h>
-#include <utils/scrollarea.h>
 
 #include <Libkleo/Stl_Util>
 
+#include <KAdjustingScrollArea>
+#include <KGuiItem>
 #include <KLocalizedString>
 #include <KStandardGuiItem>
-#include <QPushButton>
 
 #include <QLabel>
+#include <QPushButton>
 #include <QVBoxLayout>
-
-#include <KGuiItem>
 
 using namespace Kleo;
 using namespace Kleo::Crypto;
@@ -51,7 +50,7 @@ public:
     std::vector<std::shared_ptr<TaskCollection>> m_collections;
     bool m_standaloneMode = false;
     int m_lastErrorItemIndex = 0;
-    ScrollArea *m_scrollArea = nullptr;
+    KAdjustingScrollArea *m_scrollArea = nullptr;
     QPushButton *m_closeButton = nullptr;
     QVBoxLayout *m_layout = nullptr;
     QLabel *m_progressLabel = nullptr;
@@ -65,10 +64,11 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
     m_layout->setContentsMargins(0, 0, 0, 0);
     m_layout->setSpacing(0);
 
-    m_scrollArea = new ScrollArea;
+    m_scrollArea = new KAdjustingScrollArea;
     m_scrollArea->setFocusPolicy(Qt::NoFocus);
-    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout());
-    Q_ASSERT(scrollAreaLayout);
+    auto widget = new QWidget;
+    m_scrollArea->setWidget(widget);
+    auto scrollAreaLayout = new QVBoxLayout(widget);
     scrollAreaLayout->setContentsMargins(0, 0, 0, 0);
     scrollAreaLayout->setSpacing(2);
     scrollAreaLayout->addStretch();

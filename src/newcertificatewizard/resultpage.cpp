@@ -21,10 +21,10 @@
 #include "utils/dragqueen.h"
 #include "utils/email.h"
 #include "utils/filedialog.h"
-#include "utils/scrollarea.h"
 
 #include <Libkleo/KeyCache>
 
+#include <KAdjustingScrollArea>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -63,13 +63,15 @@ struct ResultPage::UI {
         const auto margins = mainLayout->contentsMargins();
         mainLayout->setContentsMargins(margins.left(), 0, margins.right(), 0);
 
-        auto scrollArea = new ScrollArea{parent};
+        auto scrollArea = new KAdjustingScrollArea{parent};
         scrollArea->setFocusPolicy(Qt::NoFocus);
         scrollArea->setFrameStyle(QFrame::NoFrame);
         scrollArea->setBackgroundRole(parent->backgroundRole());
         scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-        auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+        auto widget = new QWidget;
+        scrollArea->setWidget(widget);
+        auto scrollAreaLayout = new QVBoxLayout(widget);
         scrollAreaLayout->setContentsMargins(0, margins.top(), 0, margins.bottom());
 
         auto resultGB = new QGroupBox{i18nc("@title:group", "Result"), parent};

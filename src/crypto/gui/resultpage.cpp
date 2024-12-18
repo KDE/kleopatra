@@ -15,8 +15,6 @@
 
 #include <crypto/taskcollection.h>
 
-#include <utils/scrollarea.h>
-
 #include <KLocalizedString>
 
 #include <QCheckBox>

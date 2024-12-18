@@ -28,7 +28,6 @@
 #include "utils/gui-helper.h"
 #include "utils/input.h"
 #include "utils/output.h"
-#include "utils/scrollarea.h"
 
 #include <gpgme++/data.h>
 #include <gpgme++/decryptionresult.h>
@@ -48,6 +47,7 @@
 #include <QTextEdit>
 #include <QVBoxLayout>
 
+#include <KAdjustingScrollArea>
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -151,7 +151,7 @@ public:
         splitterWidget->setStretchFactor(0, 1);
 
         // The recipients area
-        auto scrollArea = new Kleo::ScrollArea;
+        auto scrollArea = new KAdjustingScrollArea;
         scrollArea->setFocusPolicy(Qt::NoFocus);
         auto recipientsWidget = new QWidget;
         scrollArea->setWidget(recipientsWidget);
