@@ -17,11 +17,11 @@
 #include "signencryptwidget.h"
 
 #include "resultpage.h"
-#include "utils/scrollarea.h"
 
 #include <fileoperationspreferences.h>
 #include <settings.h>
 
+#include <KAdjustingScrollArea>
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -140,7 +140,7 @@ public:
     {
         auto mainLayout = new QVBoxLayout(this);
         mainLayout->setContentsMargins({});
-        auto scrollArea = new Kleo::ScrollArea;
+        auto scrollArea = new KAdjustingScrollArea;
         mainLayout->addWidget(scrollArea);
 
         auto wrapper = new QWidget;

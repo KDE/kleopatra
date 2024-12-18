@@ -17,7 +17,6 @@
 #include "listwidget.h"
 
 #include "utils/gui-helper.h"
-#include "utils/scrollarea.h"
 
 #include <settings.h>
 
@@ -25,6 +24,7 @@
 #include <Libkleo/Compliance>
 #include <Libkleo/GnuPG>
 
+#include <KAdjustingScrollArea>
 #include <KLocalizedString>
 
 #include <QGpgME/CryptoConfig>
@@ -99,7 +99,7 @@ struct AdvancedSettingsDialog::UI {
     QComboBox *rsaKeyStrengthCB = nullptr;
     QCheckBox *signingCB = nullptr;
     QCheckBox *encryptionCB = nullptr;
-    ScrollArea *personalTab = nullptr;
+    KAdjustingScrollArea *personalTab = nullptr;
     QGroupBox *emailGB = nullptr;
     Kleo::NewCertificateUi::ListWidget *emailLW = nullptr;
     QGroupBox *dnsGB = nullptr;
@@ -118,7 +118,7 @@ struct AdvancedSettingsDialog::UI {
         tabWidget->setDocumentMode(true);
 
         {
-            auto technicalTab = new ScrollArea{tabWidget};
+            auto technicalTab = new KAdjustingScrollArea{tabWidget};
             technicalTab->setFocusPolicy(Qt::NoFocus);
             technicalTab->setFrameStyle(QFrame::NoFrame);
             technicalTab->setBackgroundRole(parent->backgroundRole());
@@ -175,7 +175,7 @@ struct AdvancedSettingsDialog::UI {
         }
 
         {
-            personalTab = new ScrollArea{tabWidget};
+            personalTab = new KAdjustingScrollArea{tabWidget};
             personalTab->setFocusPolicy(Qt::NoFocus);
             personalTab->setFrameStyle(QFrame::NoFrame);
             personalTab->setBackgroundRole(parent->backgroundRole());

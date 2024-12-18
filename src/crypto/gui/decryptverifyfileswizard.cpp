@@ -21,11 +21,11 @@
 #include <crypto/taskcollection.h>
 
 #include <utils/kleo_assert.h>
-#include <utils/scrollarea.h>
 
 #include <Libkleo/FileNameRequester>
 #include <Libkleo/Stl_Util>
 
+#include <KAdjustingScrollArea>
 #include <KGuiItem>
 #include <KLocalizedString>
 
@@ -112,7 +112,7 @@ private:
         QCheckBox useOutputDirectoryCB;
         QLabel outputDirectoryLB;
         FileNameRequester outputDirectoryFNR;
-        ScrollArea scrollArea; // ### replace with KDScrollArea when done
+        KAdjustingScrollArea scrollArea;
         QVBoxLayout vlay;
         QHBoxLayout hlay;
 

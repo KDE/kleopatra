@@ -16,12 +16,12 @@
 
 #include <kleopatra_debug.h>
 #include <utils/gui-helper.h>
-#include <utils/scrollarea.h>
 
 #include <Libkleo/DocAction>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyGroup>
 
+#include <KAdjustingScrollArea>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
@@ -109,13 +109,15 @@ GroupsConfigDialog::GroupsConfigDialog(QWidget *parent)
 
     auto mainLayout = new QVBoxLayout{this};
 
-    auto scrollArea = new ScrollArea{this};
+    auto scrollArea = new KAdjustingScrollArea{this};
     scrollArea->setFocusPolicy(Qt::NoFocus);
     scrollArea->setFrameStyle(QFrame::NoFrame);
     scrollArea->setBackgroundRole(backgroundRole());
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+    auto widget = new QWidget;
+    scrollArea->setWidget(widget);
+    auto scrollAreaLayout = new QVBoxLayout(widget);
     scrollAreaLayout->setContentsMargins({});
 
     d->configWidget = new GroupsConfigWidget{this};

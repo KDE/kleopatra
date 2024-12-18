@@ -12,7 +12,6 @@
 #include "addsubkeydialog.h"
 
 #include "utils/gui-helper.h"
-#include "utils/scrollarea.h"
 
 #include <Libkleo/Compat>
 #include <Libkleo/Compliance>
@@ -20,6 +19,7 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
+#include <KAdjustingScrollArea>
 #include <KConfigGroup>
 #include <KDateComboBox>
 #include <KLocalizedString>
@@ -77,14 +77,16 @@ public:
 
             const auto mainLayout = new QVBoxLayout{parent};
 
-            const auto scrollArea = new ScrollArea{parent};
+            const auto scrollArea = new KAdjustingScrollArea{parent};
             {
                 scrollArea->setFocusPolicy(Qt::NoFocus);
                 scrollArea->setFrameStyle(QFrame::NoFrame);
                 scrollArea->setBackgroundRole(parent->backgroundRole());
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
                 scrollArea->setSizeAdjustPolicy(QScrollArea::AdjustToContents);
-                const auto scrollLayout = qobject_cast<QVBoxLayout *>(scrollArea->widget()->layout());
+                auto widget = new QWidget;
+                scrollArea->setWidget(widget);
+                auto scrollLayout = new QVBoxLayout(widget);
 
                 {
                     const auto groupBox = new QGroupBox{i18nc("@title:group", "Key Material"), scrollArea};

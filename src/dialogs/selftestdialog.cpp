@@ -13,11 +13,11 @@
 
 #include <selftest/selftest.h>
 #include <utils/accessibility.h>
-#include <utils/scrollarea.h>
 
 #include <Libkleo/SystemInfo>
 #include <Libkleo/TreeView>
 
+#include <KAdjustingScrollArea>
 #include <KColorScheme>
 #include <KLocalizedString>
 
@@ -374,12 +374,14 @@ private:
                 detailsGB = new QGroupBox{i18nc("@title:group", "Details"), qq};
                 auto groupBoxLayout = new QVBoxLayout{detailsGB};
 
-                auto scrollArea = new Kleo::ScrollArea{qq};
+                auto scrollArea = new KAdjustingScrollArea{qq};
                 scrollArea->setFocusPolicy(Qt::NoFocus);
                 scrollArea->setMinimumHeight(100);
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+                auto widget = new QWidget;
+                scrollArea->setWidget(widget);
+                auto scrollAreaLayout = new QVBoxLayout(widget);
 
                 detailsLB = new QLabel{qq};
                 detailsLB->setTextFormat(Qt::RichText);
@@ -398,12 +400,14 @@ private:
                 proposedCorrectiveActionGB = new QGroupBox{i18nc("@title:group", "Proposed Corrective Action"), qq};
                 auto groupBoxLayout = new QVBoxLayout{proposedCorrectiveActionGB};
 
-                auto scrollArea = new Kleo::ScrollArea{qq};
+                auto scrollArea = new KAdjustingScrollArea{qq};
                 scrollArea->setFocusPolicy(Qt::NoFocus);
                 scrollArea->setMinimumHeight(100);
                 scrollArea->setFrameShape(QFrame::NoFrame);
                 scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                auto scrollAreaLayout = qobject_cast<QBoxLayout *>(scrollArea->widget()->layout());
+                auto widget = new QWidget;
+                scrollArea->setWidget(widget);
+                auto scrollAreaLayout = new QVBoxLayout(widget);
 
                 proposedCorrectiveActionLB = new QLabel{qq};
                 proposedCorrectiveActionLB->setTextFormat(Qt::RichText);
