@@ -550,7 +550,7 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
             stackedLayout->setCurrentIndex(1);
             Q_EMIT operationPrepared();
             title->setText(i18nc("@title:dialog", "Results"));
-            okButton->setText(i18nc("@action:button", "Finished"));
+            okButton->setText(i18nc("@action:button", "Finish"));
         } else {
             accept();
         }
