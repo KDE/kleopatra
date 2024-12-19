@@ -223,9 +223,13 @@ public:
             if (error.isCanceled()) {
                 return i18nc("@info", "Decryption and verification of <filename>%1</filename> canceled.", m_inputLabel);
             } else if (error.code() == GPG_ERR_NO_SECKEY) {
-                label = xi18nc("@info Unable to decrypt and verify <file>:", "Unable to decrypt and verify <filename>%1</filename>:", m_inputLabel);
+                label = xi18nc("@info 'Unable' meaning that decryption can't be started because there is no secret key",
+                               "Unable to decrypt and verify <filename>%1</filename>:",
+                               m_inputLabel);
             } else if (error.code() != GPG_ERR_NO_ERROR) {
-                label = xi18nc("@info Failed to decrypt and verify <file>:", "Failed to decrypt and verify <filename>%1</filename>:", m_inputLabel);
+                label = xi18nc("@info 'Failed' meaning that there was an error during decryption",
+                               "Failed to decrypt and verify <filename>%1</filename>:",
+                               m_inputLabel);
             } else {
                 label = xi18nc("@info Successfully decrypted and verified <file> as <file>.",
                                "Successfully decrypted and verified <filename>%1</filename> as <filename>%2</filename>.",
@@ -247,9 +251,11 @@ public:
             if (error.isCanceled()) {
                 return i18nc("@info", "Decryption of <filename>%1</filename> canceled.", m_inputLabel);
             } else if (error.code() == GPG_ERR_NO_SECKEY) {
-                label = xi18nc("@info Unable to decrypt <file>:", "Unable to decrypt <filename>%1</filename>:", m_inputLabel);
+                label = xi18nc("@info 'Unable' meaning that decryption can't be started because there is no secret key",
+                               "Unable to decrypt <filename>%1</filename>:",
+                               m_inputLabel);
             } else if (error.code() != GPG_ERR_NO_ERROR) {
-                label = xi18nc("@info Failed to decrypt <file>:", "Failed to decrypt <filename>%1</filename>:", m_inputLabel);
+                label = xi18nc("@info 'Failed' meaning that there was an error during decryption", "Failed to decrypt <filename>%1</filename>:", m_inputLabel);
             } else {
                 label = xi18nc("@info Successfully decrypted <file> as <file>.",
                                "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>.",
