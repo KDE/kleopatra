@@ -137,13 +137,28 @@ bool hasSigningKeys(GpgME::Protocol protocol)
 void ClipboardMenu::slotEnableDisableActions()
 {
     const QSignalBlocker blocker(QApplication::clipboard());
-    mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
-    mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
-    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::OpenPGP));
-    if (mSmimeSignClipboardAction) {
-        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::CMS));
+#ifdef Q_OS_UNIX
+    // On wayland, we can't reliable read the clipboard in the background,
+    // so we always enable all actions an error later if the content isn't right
+    if (qApp->platformName() == QStringLiteral("wayland")) {
+        mImportClipboardAction->setEnabled(true);
+        mEncryptClipboardAction->setEnabled(true);
+        mOpenPGPSignClipboardAction->setEnabled(true);
+        if (mSmimeSignClipboardAction) {
+            mSmimeSignClipboardAction->setEnabled(true);
+        }
+        mDecryptVerifyClipboardAction->setEnabled(true);
+    } else
+#endif
+    {
+        mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
+        mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
+        mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::OpenPGP));
+        if (mSmimeSignClipboardAction) {
+            mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::CMS));
+        }
+        mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
     }
-    mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }
 
 #include "moc_clipboardmenu.cpp"

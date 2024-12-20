@@ -41,7 +41,7 @@ public:
     explicit Private(ImportCertificateFromClipboardCommand *qq, KeyListController *c);
     ~Private() override;
 
-    bool ensureHaveClipboard();
+    void ensureHaveClipboard();
 
 private:
     QByteArray input;
@@ -93,14 +93,12 @@ ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand()
 
 void ImportCertificateFromClipboardCommand::doStart()
 {
-    if (!d->ensureHaveClipboard()) {
-        d->canceled();
-        return;
-    }
-
+    d->ensureHaveClipboard();
     d->setWaitForMoreJobs(true);
     const unsigned int classification = classifyContent(d->input);
-    if (!mayBeAnyCertStoreType(classification)) {
+    if (d->input.isEmpty()) {
+        d->error(i18n("The clipboard is empty."), i18n("Certificate Import Failed"));
+    } else if (!mayBeAnyCertStoreType(classification)) {
         d->error(i18n("Clipboard contents do not look like a certificate."), i18n("Certificate Import Failed"));
     } else {
         const GpgME::Protocol protocol = findProtocol(classification);
@@ -113,13 +111,13 @@ void ImportCertificateFromClipboardCommand::doStart()
     d->setWaitForMoreJobs(false);
 }
 
-bool ImportCertificateFromClipboardCommand::Private::ensureHaveClipboard()
+void ImportCertificateFromClipboardCommand::Private::ensureHaveClipboard()
 {
-    if (input.isEmpty())
+    if (input.isEmpty()) {
         if (const QClipboard *cb = qApp->clipboard()) {
             input = cb->text().toUtf8();
         }
-    return !input.isEmpty();
+    }
 }
 
 #undef d
