@@ -136,14 +136,11 @@ bool hasSigningKeys(GpgME::Protocol protocol)
 
 void ClipboardMenu::slotEnableDisableActions()
 {
-    const QSignalBlocker blocker(QApplication::clipboard());
-    mImportClipboardAction->setEnabled(ImportCertificateFromClipboardCommand::canImportCurrentClipboard());
-    mEncryptClipboardAction->setEnabled(EncryptClipboardCommand::canEncryptCurrentClipboard());
-    mOpenPGPSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::OpenPGP));
+    mOpenPGPSignClipboardAction->setEnabled(hasSigningKeys(GpgME::OpenPGP));
     if (mSmimeSignClipboardAction) {
-        mSmimeSignClipboardAction->setEnabled(SignClipboardCommand::canSignCurrentClipboard() && hasSigningKeys(GpgME::CMS));
+        Settings settings;
+        mSmimeSignClipboardAction->setEnabled(settings.cmsEnabled() && settings.cmsSigningAllowed() && hasSigningKeys(GpgME::CMS));
     }
-    mDecryptVerifyClipboardAction->setEnabled(DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard());
 }
 
 #include "moc_clipboardmenu.cpp"

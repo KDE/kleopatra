@@ -24,6 +24,7 @@
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
+#include <KMessageDialog>
 
 #include <QApplication>
 #include <QClipboard>
@@ -34,6 +35,8 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
+
+using namespace Qt::Literals::StringLiterals;
 
 class SignClipboardCommand::Private : public Command::Private
 {
@@ -136,19 +139,47 @@ bool SignClipboardCommand::canSignCurrentClipboard()
 
 void SignClipboardCommand::doStart()
 {
-    try {
-        // snapshot clipboard content here, in case it's being changed...
-        d->input = Input::createFromClipboard();
+    // Don't remove this dialog, it's required to query the clipboard on wayland
+    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Signing clipboard…"), nullptr);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        connect(&d->controller, &SignEMailController::signersResolved, this, [this]() {
-            d->slotSignersResolved();
-        });
+    auto onClipboardAvailable = [dialog, this]() {
+        dialog->close();
+        try {
+            // snapshot clipboard content here, in case it's being changed...
+            d->input = Input::createFromClipboard();
 
-        d->controller.startResolveSigners();
+            if (d->input->size() == 0) {
+                d->information(i18nc("@info", "The clipboard is empty"));
+                d->finished();
+                return;
+            }
 
-    } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Sign Clipboard Error"));
-        d->finished();
+            connect(&d->controller, &SignEMailController::signersResolved, this, [this]() {
+                d->slotSignersResolved();
+            });
+
+            d->controller.startResolveSigners();
+
+        } catch (const std::exception &e) {
+            d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())));
+            d->finished();
+        }
+    };
+
+    if (qApp->platformName() != "wayland"_L1) {
+        onClipboardAvailable();
+    } else {
+        dialog->show();
+        // On wayland, the clipboard is not available immediately, but QClipboard::dataChanged is always triggered once we can access it.
+        connect(
+            qApp->clipboard(),
+            &QClipboard::dataChanged,
+            this,
+            [onClipboardAvailable]() {
+                onClipboardAvailable();
+            },
+            Qt::SingleShotConnection);
     }
 }
 
@@ -159,7 +190,7 @@ void SignClipboardCommand::Private::slotSignersResolved()
         input.reset(); // no longer needed, so don't keep a reference
         controller.start();
     } catch (const std::exception &e) {
-        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Sign Clipboard Error"));
+        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())));
         finished();
     }
 }

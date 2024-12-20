@@ -26,6 +26,7 @@
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
+#include <KMessageDialog>
 
 #include <QApplication>
 #include <QClipboard>
@@ -36,6 +37,8 @@
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
+
+using namespace Qt::Literals::StringLiterals;
 
 class EncryptClipboardCommand::Private : public Command::Private
 {
@@ -136,19 +139,46 @@ bool EncryptClipboardCommand::canEncryptCurrentClipboard()
 
 void EncryptClipboardCommand::doStart()
 {
-    try {
-        // snapshot clipboard content here, in case it's being changed...
-        d->input = Input::createFromClipboard();
+    // Don't remove this dialog, it's required to query the clipboard on wayland
+    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Encrypting clipboard…"), nullptr);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        connect(&d->controller, &EncryptEMailController::recipientsResolved, this, [this]() {
-            d->slotRecipientsResolved();
-        });
+    auto onClipboardAvailable = [dialog, this]() {
+        dialog->close();
+        try {
+            // snapshot clipboard content here, in case it's being changed...
+            d->input = Input::createFromClipboard();
+            if (d->input->size() == 0) {
+                d->information(i18nc("@info", "The clipboard is empty"));
+                d->finished();
+                return;
+            }
 
-        d->controller.startResolveRecipients();
+            connect(&d->controller, &EncryptEMailController::recipientsResolved, this, [this]() {
+                d->slotRecipientsResolved();
+            });
 
-    } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Encrypt Clipboard Error"));
-        d->finished();
+            d->controller.startResolveRecipients();
+
+        } catch (const std::exception &e) {
+            d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())));
+            d->finished();
+        }
+    };
+
+    if (qApp->platformName() != "wayland"_L1) {
+        onClipboardAvailable();
+    } else {
+        dialog->show();
+        // On wayland, the clipboard is not available immediately, but QClipboard::dataChanged is always triggered once we can access it.
+        connect(
+            qApp->clipboard(),
+            &QClipboard::dataChanged,
+            this,
+            [onClipboardAvailable]() {
+                onClipboardAvailable();
+            },
+            Qt::SingleShotConnection);
     }
 }
 
@@ -159,7 +189,7 @@ void EncryptClipboardCommand::Private::slotRecipientsResolved()
         input.reset(); // no longer needed, so don't keep a reference
         controller.start();
     } catch (const std::exception &e) {
-        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Encrypt Clipboard Error"));
+        information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())));
         finished();
     }
 }

@@ -25,12 +25,17 @@
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
+#include <KMessageDialog>
+#include <QApplication>
+#include <QClipboard>
 
 #include <exception>
 
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Kleo::Crypto;
+
+using namespace Qt::Literals::StringLiterals;
 
 class DecryptVerifyClipboardCommand::Private : public Command::Private
 {
@@ -127,33 +132,55 @@ bool DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard()
 
 void DecryptVerifyClipboardCommand::doStart()
 {
-    try {
-        const std::shared_ptr<Input> input = Input::createFromClipboard();
+    // Don't remove this dialog, it's required to query the clipboard on wayland
+    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Decrypting/Verifying clipboard…"), nullptr);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-        const unsigned int classification = input->classification();
+    auto onClipboardAvailable = [dialog, this]() {
+        dialog->close();
+        try {
+            const std::shared_ptr<Input> input = Input::createFromClipboard();
 
-        if (classification & (Class::ClearsignedMessage | Class::OpaqueSignature)) {
-            d->controller.setOperation(Verify);
-            d->controller.setVerificationMode(Opaque);
-        } else if (classification & Class::CipherText) {
-            d->controller.setOperation(DecryptVerify);
-        } else {
-            d->information(i18n("The clipboard does not appear to "
-                                "contain a signature or encrypted text."),
-                           i18n("Decrypt/Verify Clipboard Error"));
+            const unsigned int classification = input->classification();
+
+            if (classification & (Class::ClearsignedMessage | Class::OpaqueSignature)) {
+                d->controller.setOperation(Verify);
+                d->controller.setVerificationMode(Opaque);
+            } else if (classification & Class::CipherText) {
+                d->controller.setOperation(DecryptVerify);
+            } else {
+                d->information(
+                    i18n("The clipboard does not appear to "
+                         "contain signed or encrypted text."));
+                d->finished();
+                return;
+            }
+
+            d->controller.setProtocol(findProtocol(classification));
+            d->controller.setInput(input);
+            d->controller.setOutput(Output::createFromClipboard());
+
+            d->controller.start();
+
+        } catch (const std::exception &e) {
+            d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())));
             d->finished();
-            return;
         }
+    };
 
-        d->controller.setProtocol(findProtocol(classification));
-        d->controller.setInput(input);
-        d->controller.setOutput(Output::createFromClipboard());
-
-        d->controller.start();
-
-    } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Decrypt/Verify Clipboard Error"));
-        d->finished();
+    if (qApp->platformName() != "wayland"_L1) {
+        onClipboardAvailable();
+    } else {
+        dialog->show();
+        // On wayland, the clipboard is not available immediately, but QClipboard::dataChanged is always triggered once we can access it.
+        connect(
+            qApp->clipboard(),
+            &QClipboard::dataChanged,
+            this,
+            [onClipboardAvailable]() {
+                onClipboardAvailable();
+            },
+            Qt::SingleShotConnection);
     }
 }
 
