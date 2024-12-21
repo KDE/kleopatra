@@ -22,6 +22,7 @@
 
 #include <QByteArray>
 #include <QIODevice>
+#include <QVariant>
 
 #include <algorithm>
 #include <string>
