@@ -37,9 +37,6 @@ public:
     void setEmail(const QString &email);
     const QString &email() const;
 
-    void setComment(const QString &comment);
-    const QString &comment() const;
-
 private:
     void doStart() override;
     void doCancel() override;
