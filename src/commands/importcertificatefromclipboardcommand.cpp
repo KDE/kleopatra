@@ -20,6 +20,7 @@
 #include <gpgme++/global.h>
 
 #include <KLocalizedString>
+#include <KMessageDialog>
 
 #include <QApplication>
 #include <QByteArray>
@@ -93,22 +94,34 @@ ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand()
 
 void ImportCertificateFromClipboardCommand::doStart()
 {
-    d->ensureHaveClipboard();
-    d->setWaitForMoreJobs(true);
-    const unsigned int classification = classifyContent(d->input);
-    if (d->input.isEmpty()) {
-        d->error(i18n("The clipboard is empty."), i18n("Certificate Import Failed"));
-    } else if (!mayBeAnyCertStoreType(classification)) {
-        d->error(i18n("Clipboard contents do not look like a certificate."), i18n("Certificate Import Failed"));
-    } else {
-        const GpgME::Protocol protocol = findProtocol(classification);
-        if (protocol == GpgME::UnknownProtocol) {
-            d->error(i18n("Could not determine certificate type of clipboard contents."), i18n("Certificate Import Failed"));
-        } else {
-            d->startImport(protocol, d->input, i18n("Clipboard"));
-        }
-    }
-    d->setWaitForMoreJobs(false);
+    // Don't remove this dialog, it's required to query the clipboard on wayland
+    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Importing certificate from clipboard…"), nullptr);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->show();
+    connect(
+        qApp->clipboard(),
+        &QClipboard::dataChanged,
+        this,
+        [this, dialog]() {
+            dialog->close();
+            d->ensureHaveClipboard();
+            d->setWaitForMoreJobs(true);
+            const unsigned int classification = classifyContent(d->input);
+            if (d->input.isEmpty()) {
+                d->error(i18n("The clipboard is empty."), i18n("Certificate Import Failed"));
+            } else if (!mayBeAnyCertStoreType(classification)) {
+                d->error(i18n("Clipboard contents do not look like a certificate."), i18n("Certificate Import Failed"));
+            } else {
+                const GpgME::Protocol protocol = findProtocol(classification);
+                if (protocol == GpgME::UnknownProtocol) {
+                    d->error(i18n("Could not determine certificate type of clipboard contents."), i18n("Certificate Import Failed"));
+                } else {
+                    d->startImport(protocol, d->input, i18n("Clipboard"));
+                }
+            }
+            d->setWaitForMoreJobs(false);
+        },
+        Qt::SingleShotConnection);
 }
 
 void ImportCertificateFromClipboardCommand::Private::ensureHaveClipboard()
