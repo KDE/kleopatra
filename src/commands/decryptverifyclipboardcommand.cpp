@@ -25,6 +25,9 @@
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
+#include <KMessageDialog>
+#include <QApplication>
+#include <QClipboard>
 
 #include <exception>
 
@@ -127,34 +130,45 @@ bool DecryptVerifyClipboardCommand::canDecryptVerifyCurrentClipboard()
 
 void DecryptVerifyClipboardCommand::doStart()
 {
-    try {
-        const std::shared_ptr<Input> input = Input::createFromClipboard();
+    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Importing certificate from clipboard…"), nullptr);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->show();
+    connect(
+        qApp->clipboard(),
+        &QClipboard::dataChanged,
+        this,
+        [this, dialog]() {
+            dialog->close();
+            try {
+                const std::shared_ptr<Input> input = Input::createFromClipboard();
 
-        const unsigned int classification = input->classification();
+                const unsigned int classification = input->classification();
 
-        if (classification & (Class::ClearsignedMessage | Class::OpaqueSignature)) {
-            d->controller.setOperation(Verify);
-            d->controller.setVerificationMode(Opaque);
-        } else if (classification & Class::CipherText) {
-            d->controller.setOperation(DecryptVerify);
-        } else {
-            d->information(i18n("The clipboard does not appear to "
-                                "contain a signature or encrypted text."),
-                           i18n("Decrypt/Verify Clipboard Error"));
-            d->finished();
-            return;
-        }
+                if (classification & (Class::ClearsignedMessage | Class::OpaqueSignature)) {
+                    d->controller.setOperation(Verify);
+                    d->controller.setVerificationMode(Opaque);
+                } else if (classification & Class::CipherText) {
+                    d->controller.setOperation(DecryptVerify);
+                } else {
+                    d->information(i18n("The clipboard does not appear to "
+                                        "contain a signature or encrypted text."),
+                                   i18n("Decrypt/Verify Clipboard Error"));
+                    d->finished();
+                    return;
+                }
 
-        d->controller.setProtocol(findProtocol(classification));
-        d->controller.setInput(input);
-        d->controller.setOutput(Output::createFromClipboard());
+                d->controller.setProtocol(findProtocol(classification));
+                d->controller.setInput(input);
+                d->controller.setOutput(Output::createFromClipboard());
 
-        d->controller.start();
+                d->controller.start();
 
-    } catch (const std::exception &e) {
-        d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Decrypt/Verify Clipboard Error"));
-        d->finished();
-    }
+            } catch (const std::exception &e) {
+                d->information(i18n("An error occurred: %1", QString::fromLocal8Bit(e.what())), i18n("Decrypt/Verify Clipboard Error"));
+                d->finished();
+            }
+        },
+        Qt::SingleShotConnection);
 }
 
 void DecryptVerifyClipboardCommand::doCancel()
