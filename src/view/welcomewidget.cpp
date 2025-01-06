@@ -162,7 +162,7 @@ public:
         connect(mLabel, &QLabel::linkActivated, q, [](const auto &link) {
             QUrl url(link);
             if (url.scheme() == QStringLiteral("action")) {
-                if (const auto action = KleopatraApplication::instance()->mainWindow()->action(url.path())) {
+                if (const auto action = KleopatraApplication::instance()->mainWindow()->action(url.path().toUtf8().constData())) {
                     action->trigger();
                 } else {
                     qCWarning(KLEOPATRA_LOG) << "action" << url.path() << "not found";
