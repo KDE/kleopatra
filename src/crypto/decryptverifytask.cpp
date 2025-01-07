@@ -583,7 +583,11 @@ static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, 
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
 
     if (numRecipients == 1) {
-        details += QLatin1Char(' ') + Formatting::summaryLine(knownRecipients.front()).toHtmlEscaped();
+        if (knownRecipients.empty()) {
+            details += QLatin1Char(' ') + i18nc("@info", "One unknown recipient");
+        } else {
+            details += QLatin1Char(' ') + Formatting::summaryLine(knownRecipients.front()).toHtmlEscaped();
+        }
     } else {
         details += QLatin1String("<ul>");
         for (const Key &key : knownRecipients) {
