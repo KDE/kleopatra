@@ -294,7 +294,7 @@ private:
     void setTechnicalParameters(const KeyParameters &parameters)
     {
         int index;
-        if (parameters.keyType() == GpgME::Subkey::AlgoRSA_S) {
+        if (parameters.keyType() == GpgME::Subkey::AlgoRSA) {
             index = ui.keyAlgoCB->findData(QStringLiteral("rsa%1").arg(parameters.keyLength()));
         } else if (parameters.keyCurve() == QLatin1String("ed25519")) {
             index = ui.keyAlgoCB->findData(QStringLiteral("curve25519"));
