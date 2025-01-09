@@ -21,6 +21,7 @@
 #include <smartcard/utils.h>
 #include <utils/qt-cxx20-compat.h>
 
+#include <Libkleo/Expiration>
 #include <Libkleo/Formatting>
 
 #include <KLocalizedString>
@@ -104,6 +105,10 @@ protected:
         ei->setNameUtf8(mParams.name.toStdString());
         ei->setEmailUtf8(mParams.email.toStdString());
         ei->setDoBackup(mParams.backup);
+        const QDate expirationDate = defaultExpirationDate(Kleo::Expiration::ExpirationOnUnlimitedValidity::InternalDefaultExpiration);
+        if (expirationDate.isValid()) {
+            ei->setExpiry(expirationDate.toString(Qt::ISODate).toStdString());
+        }
 
         const auto ctx = std::shared_ptr<GpgME::Context>(GpgME::Context::createForProtocol(GpgME::OpenPGP));
         ctx->setFlag("extended-edit", "1"); // we want to be able to select all curves
