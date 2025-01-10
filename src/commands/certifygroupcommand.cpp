@@ -168,7 +168,7 @@ void CertifyGroupCommand::Private::setUpProgressDialog(int numberOfKeysToCertify
     progressDialog->setAttribute(Qt::WA_DeleteOnClose);
     progressDialog->setModal(true);
     progressDialog->setWindowTitle(i18nc("@title:window", "Certify Certificates"));
-    progressDialog->setLabelText(i18nc("@info:progress", "Certifying certificates ..."));
+    progressDialog->setLabelText(i18nc("@info:progress", "Certifying certificates…"));
     progressDialog->setMinimumDuration(1000);
     progressDialog->setMaximum(numberOfKeysToCertify);
     progressDialog->setValue(0);
