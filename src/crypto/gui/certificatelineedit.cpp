@@ -604,22 +604,23 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
     mGroup = newGroup;
     mUserId = newUserId;
 
+    using namespace Kleo::Formatting;
     if (!mKey.isNull()) {
         /* FIXME: This needs to be solved by a multiple UID supporting model */
         mStatus = Status::Success;
-        ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Formatting::ToolTipOption::AllOptions));
+        ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mKey), positioning);
         }
     } else if (!mGroup.isNull()) {
         mStatus = Status::Success;
-        ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Formatting::ToolTipOption::AllOptions));
+        ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mGroup), positioning);
         }
     } else if (!mUserId.isNull()) {
         mStatus = Status::Success;
-        ui.lineEdit.setToolTip(Formatting::toolTip(mUserId, Formatting::ToolTipOption::AllOptions));
+        ui.lineEdit.setToolTip(Formatting::toolTip(mUserId, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mUserId), positioning);
         }
