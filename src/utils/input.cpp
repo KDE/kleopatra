@@ -32,12 +32,14 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QMimeData>
 #include <QProcess>
 #include <QString>
 
 #include <cerrno>
 
 using namespace Kleo;
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -378,8 +380,8 @@ std::shared_ptr<Input> Input::createFromClipboard()
 static QByteArray dataFromClipboard(QClipboard::Mode mode)
 {
     Q_UNUSED(mode)
-    if (QClipboard *const cb = QApplication::clipboard()) {
-        return cb->text().toUtf8();
+    if (const auto mimeData = QApplication::clipboard()->mimeData()) {
+        return mimeData->data("text/plain"_L1);
     } else {
         return QByteArray();
     }
