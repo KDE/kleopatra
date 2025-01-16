@@ -243,6 +243,10 @@ OperationsWidget::UI::UI(OperationsWidget *q)
     connect(&useOutputDirectoryCB, &QCheckBox::toggled, &outputDirectoryLB, &QLabel::setEnabled);
     connect(&useOutputDirectoryCB, &QCheckBox::toggled, &outputDirectoryFNR, &FileNameRequester::setEnabled);
 
+    auto widget = new QWidget;
+    scrollArea.setWidget(widget);
+    new QVBoxLayout(widget);
+
     Q_ASSERT(qobject_cast<QBoxLayout *>(scrollArea.widget()->layout()));
     static_cast<QBoxLayout *>(scrollArea.widget()->layout())->addStretch(1);
     outputDirectoryLB.setBuddy(&outputDirectoryFNR);
