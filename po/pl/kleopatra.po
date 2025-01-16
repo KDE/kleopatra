@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1700221 $
+# Version: $Revision: 1700367 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-14 00:42+0000\n"
+"POT-Creation-Date: 2025-01-16 00:41+0000\n"
 "PO-Revision-Date: 2024-12-29 10:56+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1027,12 +1027,12 @@ msgstr "Nieudane \"gpgconf --reload gpg-agent\": %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
-#: src/commands/decryptverifyclipboardcommand.cpp:155
+#: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
+#: src/commands/encryptclipboardcommand.cpp:164
+#: src/commands/encryptclipboardcommand.cpp:192
+#: src/commands/signclipboardcommand.cpp:165
+#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1233,16 +1233,19 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "Pomyślnie utworzono klucz OpenPGP z kluczy karty."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:141
-#, kde-format
-msgid "The clipboard does not appear to contain a signature or encrypted text."
-msgstr "Schowek nie zawiera podpisu lub zaszyfrowanego tekstu."
-
-#: src/commands/decryptverifyclipboardcommand.cpp:143
-#: src/commands/decryptverifyclipboardcommand.cpp:155
-#, kde-format
-msgid "Decrypt/Verify Clipboard Error"
+#: src/commands/decryptverifyclipboardcommand.cpp:136
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Clipboard Error"
+msgctxt "@info"
+msgid "Decrypting/Verifying clipboard…"
 msgstr "Błąd podczas odszyfrowania/sprawdzania danych ze schowka"
+
+#: src/commands/decryptverifyclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgid "The clipboard does not appear to contain signed or encrypted text."
+msgstr "Schowek nie zawiera podpisu lub zaszyfrowanego tekstu."
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
@@ -1444,11 +1447,21 @@ msgstr ""
 "działania GpgSM:\n"
 "%1"
 
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#, kde-format
-msgid "Encrypt Clipboard Error"
+#: src/commands/encryptclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Encrypt Clipboard Error"
+msgctxt "@info"
+msgid "Encrypting clipboard…"
 msgstr "Błąd szyfrowania schowka"
+
+#: src/commands/encryptclipboardcommand.cpp:152
+#: src/commands/signclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The result of the export is empty."
+msgctxt "@info"
+msgid "The clipboard is empty"
+msgstr "Wynik eksportowania jest pusty."
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2187,26 +2200,36 @@ msgstr "Uruchamianie %1..."
 msgid "Process finished"
 msgstr "Proces ukończył"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#: src/commands/importcertificatefromfilecommand.cpp:134
-#: src/commands/importcertificatescommand.cpp:908
-#: src/commands/importcertificatescommand.cpp:961
-#, kde-format
-msgid "Certificate Import Failed"
-msgstr "Nieudany import certyfikatu"
+#: src/commands/importcertificatefromclipboardcommand.cpp:98
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Import Certificate from Card"
+msgctxt "@info"
+msgid "Importing certificate from clipboard…"
+msgstr "Zaimportuj certyfikat z karty"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:106
 #, kde-format
-msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "The clipboard is empty. Nothing imported."
+msgstr ""
+
+#: src/commands/importcertificatefromclipboardcommand.cpp:108
+#, fuzzy, kde-format
+#| msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr "Zawartość schowka nie wygląda jak certyfikat."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#, kde-format
-msgid "Could not determine certificate type of clipboard contents."
+#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#, fuzzy, kde-format
+#| msgid "Could not determine certificate type of clipboard contents."
+msgctxt "@info"
+msgid ""
+"Could not determine certificate type of clipboard contents. Nothing imported."
 msgstr "Nie można wykryć rodzaju certyfikatu zawartości schowka."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:114
 #: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
@@ -2233,6 +2256,13 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "Importowanie certyfikatów z 1 pliku..."
 msgstr[1] "Importowanie certyfikatów z %1 plików..."
 msgstr[2] "Importowanie certyfikatów z %1 plików..."
+
+#: src/commands/importcertificatefromfilecommand.cpp:134
+#: src/commands/importcertificatescommand.cpp:908
+#: src/commands/importcertificatescommand.cpp:961
+#, kde-format
+msgid "Certificate Import Failed"
+msgstr "Nieudany import certyfikatu"
 
 #: src/commands/importcertificatefromfilecommand.cpp:134
 #, kde-format
@@ -3684,10 +3714,11 @@ msgstr ""
 "<para>Pomyślnie oznaczono ID użytkownika<nl/><emphasis>%1</emphasis><nl/"
 ">jako główny ID użytkownika.</para>"
 
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
-#, kde-format
-msgid "Sign Clipboard Error"
+#: src/commands/signclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Sign Clipboard Error"
+msgctxt "@info"
+msgid "Signing clipboard…"
 msgstr "Błąd podpisywania danych ze schowka"
 
 #: src/commands/signencryptfilescommand.cpp:274

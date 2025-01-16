@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-14 00:42+0000\n"
+"POT-Creation-Date: 2025-01-16 00:41+0000\n"
 "PO-Revision-Date: 2024-11-16 12:56+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -1019,12 +1019,12 @@ msgstr "\"gpgconf --reload gpg-agent\" failed: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
-#: src/commands/decryptverifyclipboardcommand.cpp:155
+#: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
+#: src/commands/encryptclipboardcommand.cpp:164
+#: src/commands/encryptclipboardcommand.cpp:192
+#: src/commands/signclipboardcommand.cpp:165
+#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1223,17 +1223,20 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "Successfully generated an OpenPGP key from the card keys."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:141
-#, kde-format
-msgid "The clipboard does not appear to contain a signature or encrypted text."
+#: src/commands/decryptverifyclipboardcommand.cpp:136
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Clipboard Error"
+msgctxt "@info"
+msgid "Decrypting/Verifying clipboard…"
+msgstr "Decrypt/Verify Clipboard Error"
+
+#: src/commands/decryptverifyclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr ""
 "The clipboard does not appear to contain a signature or encrypted text."
-
-#: src/commands/decryptverifyclipboardcommand.cpp:143
-#: src/commands/decryptverifyclipboardcommand.cpp:155
-#, kde-format
-msgid "Decrypt/Verify Clipboard Error"
-msgstr "Decrypt/Verify Clipboard Error"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
@@ -1433,11 +1436,21 @@ msgstr ""
 "was:\n"
 "%1"
 
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#, kde-format
-msgid "Encrypt Clipboard Error"
+#: src/commands/encryptclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Encrypt Clipboard Error"
+msgctxt "@info"
+msgid "Encrypting clipboard…"
 msgstr "Encrypt Clipboard Error"
+
+#: src/commands/encryptclipboardcommand.cpp:152
+#: src/commands/signclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The result of the export is empty."
+msgctxt "@info"
+msgid "The clipboard is empty"
+msgstr "The result of the export is empty."
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2164,26 +2177,36 @@ msgstr "Starting %1..."
 msgid "Process finished"
 msgstr "Process finished"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#: src/commands/importcertificatefromfilecommand.cpp:134
-#: src/commands/importcertificatescommand.cpp:908
-#: src/commands/importcertificatescommand.cpp:961
-#, kde-format
-msgid "Certificate Import Failed"
-msgstr "Certificate Import Failed"
+#: src/commands/importcertificatefromclipboardcommand.cpp:98
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Import Certificate from Card"
+msgctxt "@info"
+msgid "Importing certificate from clipboard…"
+msgstr "Import Certificate from Card"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:106
 #, kde-format
-msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "The clipboard is empty. Nothing imported."
+msgstr ""
+
+#: src/commands/importcertificatefromclipboardcommand.cpp:108
+#, fuzzy, kde-format
+#| msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr "Clipboard contents do not look like a certificate."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#, kde-format
-msgid "Could not determine certificate type of clipboard contents."
+#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#, fuzzy, kde-format
+#| msgid "Could not determine certificate type of clipboard contents."
+msgctxt "@info"
+msgid ""
+"Could not determine certificate type of clipboard contents. Nothing imported."
 msgstr "Could not determine certificate type of clipboard contents."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:114
 #: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
@@ -2209,6 +2232,13 @@ msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "Importing certificates from 1 file..."
 msgstr[1] "Importing certificates from %1 files..."
+
+#: src/commands/importcertificatefromfilecommand.cpp:134
+#: src/commands/importcertificatescommand.cpp:908
+#: src/commands/importcertificatescommand.cpp:961
+#, kde-format
+msgid "Certificate Import Failed"
+msgstr "Certificate Import Failed"
 
 #: src/commands/importcertificatefromfilecommand.cpp:134
 #, kde-format
@@ -3645,10 +3675,11 @@ msgstr ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
-#, kde-format
-msgid "Sign Clipboard Error"
+#: src/commands/signclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Sign Clipboard Error"
+msgctxt "@info"
+msgid "Signing clipboard…"
 msgstr "Sign Clipboard Error"
 
 #: src/commands/signencryptfilescommand.cpp:274

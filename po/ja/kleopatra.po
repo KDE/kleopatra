@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-14 00:42+0000\n"
+"POT-Creation-Date: 2025-01-16 00:41+0000\n"
 "PO-Revision-Date: 2023-04-20 18:19-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1063,12 +1063,12 @@ msgstr "\"gpgconf --reload gpg-agent\" が失敗: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
-#: src/commands/decryptverifyclipboardcommand.cpp:155
+#: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
+#: src/commands/encryptclipboardcommand.cpp:164
+#: src/commands/encryptclipboardcommand.cpp:192
+#: src/commands/signclipboardcommand.cpp:165
+#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1270,16 +1270,19 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "カード鍵から OpenPGP 鍵の作成ができました。"
 
-#: src/commands/decryptverifyclipboardcommand.cpp:141
-#, kde-format
-msgid "The clipboard does not appear to contain a signature or encrypted text."
-msgstr "クリップボードには署名も暗号化されたテクストもないようです。"
-
-#: src/commands/decryptverifyclipboardcommand.cpp:143
-#: src/commands/decryptverifyclipboardcommand.cpp:155
-#, kde-format
-msgid "Decrypt/Verify Clipboard Error"
+#: src/commands/decryptverifyclipboardcommand.cpp:136
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Clipboard Error"
+msgctxt "@info"
+msgid "Decrypting/Verifying clipboard…"
 msgstr "クリップボードの復号/検証に失敗"
+
+#: src/commands/decryptverifyclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgid "The clipboard does not appear to contain signed or encrypted text."
+msgstr "クリップボードには署名も暗号化されたテクストもないようです。"
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, fuzzy, kde-format
@@ -1481,11 +1484,21 @@ msgstr ""
 "GpgSM からの出力は以下のとおりです:\n"
 "%1"
 
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#, kde-format
-msgid "Encrypt Clipboard Error"
+#: src/commands/encryptclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Encrypt Clipboard Error"
+msgctxt "@info"
+msgid "Encrypting clipboard…"
 msgstr "クリップボードの暗号化に失敗"
+
+#: src/commands/encryptclipboardcommand.cpp:152
+#: src/commands/signclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The result of the export is empty."
+msgctxt "@info"
+msgid "The clipboard is empty"
+msgstr "エクスポートの結果は空です。"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2243,26 +2256,36 @@ msgstr "開始: %1..."
 msgid "Process finished"
 msgstr "プロセスは終了しました"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#: src/commands/importcertificatefromfilecommand.cpp:134
-#: src/commands/importcertificatescommand.cpp:908
-#: src/commands/importcertificatescommand.cpp:961
-#, kde-format
-msgid "Certificate Import Failed"
-msgstr "証明書のインポートに失敗"
+#: src/commands/importcertificatefromclipboardcommand.cpp:98
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Imported Certificates from %1"
+msgctxt "@info"
+msgid "Importing certificate from clipboard…"
+msgstr "%1 からインポートした証明書"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:106
 #, kde-format
-msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "The clipboard is empty. Nothing imported."
+msgstr ""
+
+#: src/commands/importcertificatefromclipboardcommand.cpp:108
+#, fuzzy, kde-format
+#| msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr "クリップボードの内容が証明書ではないようです。"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#, kde-format
-msgid "Could not determine certificate type of clipboard contents."
+#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#, fuzzy, kde-format
+#| msgid "Could not determine certificate type of clipboard contents."
+msgctxt "@info"
+msgid ""
+"Could not determine certificate type of clipboard contents. Nothing imported."
 msgstr "クリップボードにある証明書の種類を判断できませんでした。"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:114
 #: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
@@ -2287,6 +2310,13 @@ msgstr "証明書をインポート"
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "%1 件のファイルから証明書をインポート..."
+
+#: src/commands/importcertificatefromfilecommand.cpp:134
+#: src/commands/importcertificatescommand.cpp:908
+#: src/commands/importcertificatescommand.cpp:961
+#, kde-format
+msgid "Certificate Import Failed"
+msgstr "証明書のインポートに失敗"
 
 #: src/commands/importcertificatefromfilecommand.cpp:134
 #, kde-format
@@ -3740,10 +3770,11 @@ msgstr ""
 "<para>ユーザ ID<nl/><emphasis>%1</emphasis><nl/>はプライマリユーザ ID として"
 "マークできました。</para>"
 
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
-#, kde-format
-msgid "Sign Clipboard Error"
+#: src/commands/signclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Sign Clipboard Error"
+msgctxt "@info"
+msgid "Signing clipboard…"
 msgstr "クリップボードの署名に失敗"
 
 #: src/commands/signencryptfilescommand.cpp:274

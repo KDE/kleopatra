@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-14 00:42+0000\n"
-"PO-Revision-Date: 2025-01-12 08:23+0200\n"
+"POT-Creation-Date: 2025-01-16 00:41+0000\n"
+"PO-Revision-Date: 2025-01-13 19:47+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1006,12 +1006,12 @@ msgstr "„gpgconf --reload gpg-agent” נכשלה: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:151
 #: src/commands/checksumverifyfilescommand.cpp:150
-#: src/commands/decryptverifyclipboardcommand.cpp:155
+#: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
+#: src/commands/encryptclipboardcommand.cpp:164
+#: src/commands/encryptclipboardcommand.cpp:192
+#: src/commands/signclipboardcommand.cpp:165
+#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1204,16 +1204,19 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "מפתח OpenPGP נוצר בהצלחה ממפתחות הכרטיס."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:141
-#, kde-format
-msgid "The clipboard does not appear to contain a signature or encrypted text."
-msgstr "נראה שלוח הגזירים לא מכיל טקסט חתימה או טקסט מוצפן."
-
-#: src/commands/decryptverifyclipboardcommand.cpp:143
-#: src/commands/decryptverifyclipboardcommand.cpp:155
-#, kde-format
-msgid "Decrypt/Verify Clipboard Error"
+#: src/commands/decryptverifyclipboardcommand.cpp:136
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Clipboard Error"
+msgctxt "@info"
+msgid "Decrypting/Verifying clipboard…"
 msgstr "פענוח/אימות שגיאות לוח גזירים"
+
+#: src/commands/decryptverifyclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgid "The clipboard does not appear to contain signed or encrypted text."
+msgstr "נראה שלוח הגזירים לא מכיל טקסט חתימה או טקסט מוצפן."
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
@@ -1409,11 +1412,21 @@ msgstr ""
 "היה:\n"
 "%1"
 
-#: src/commands/encryptclipboardcommand.cpp:150
-#: src/commands/encryptclipboardcommand.cpp:162
-#, kde-format
-msgid "Encrypt Clipboard Error"
+#: src/commands/encryptclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Encrypt Clipboard Error"
+msgctxt "@info"
+msgid "Encrypting clipboard…"
 msgstr "שגיאת הצפנת לוח גזירים"
+
+#: src/commands/encryptclipboardcommand.cpp:152
+#: src/commands/signclipboardcommand.cpp:153
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "The result of the export is empty."
+msgctxt "@info"
+msgid "The clipboard is empty"
+msgstr "תוצאת הייצוא ריקה."
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2110,26 +2123,36 @@ msgstr "%1 מופעל…"
 msgid "Process finished"
 msgstr "התהליך הסתיים"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#: src/commands/importcertificatefromfilecommand.cpp:134
-#: src/commands/importcertificatescommand.cpp:908
-#: src/commands/importcertificatescommand.cpp:961
-#, kde-format
-msgid "Certificate Import Failed"
-msgstr "ייבוא אישורים נכשל"
+#: src/commands/importcertificatefromclipboardcommand.cpp:98
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Import Certificate from Card"
+msgctxt "@info"
+msgid "Importing certificate from clipboard…"
+msgstr "ייבוא אישור מכרטיס"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:106
 #, kde-format
-msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "The clipboard is empty. Nothing imported."
+msgstr ""
+
+#: src/commands/importcertificatefromclipboardcommand.cpp:108
+#, fuzzy, kde-format
+#| msgid "Clipboard contents do not look like a certificate."
+msgctxt "@info"
+msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr "תוכן לוח הגזירים לא נראה כמו אישור."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:108
-#, kde-format
-msgid "Could not determine certificate type of clipboard contents."
+#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#, fuzzy, kde-format
+#| msgid "Could not determine certificate type of clipboard contents."
+msgctxt "@info"
+msgid ""
+"Could not determine certificate type of clipboard contents. Nothing imported."
 msgstr "לא ניתן לאתר את סוג האישור מתוכן לוח הגזירים."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:114
 #: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
@@ -2157,6 +2180,13 @@ msgstr[0] "מיובאים אישורים מקובץ…"
 msgstr[1] "מיובאים אישורים משני קבצים…"
 msgstr[2] "מיובאים אישורים מ־%1 קבצים…"
 msgstr[3] "מיובאים אישורים מ־%1 קבצים…"
+
+#: src/commands/importcertificatefromfilecommand.cpp:134
+#: src/commands/importcertificatescommand.cpp:908
+#: src/commands/importcertificatescommand.cpp:961
+#, kde-format
+msgid "Certificate Import Failed"
+msgstr "ייבוא אישורים נכשל"
 
 #: src/commands/importcertificatefromfilecommand.cpp:134
 #, kde-format
@@ -3540,10 +3570,11 @@ msgid ""
 "successfully as the primary user ID.</para>"
 msgstr ""
 
-#: src/commands/signclipboardcommand.cpp:150
-#: src/commands/signclipboardcommand.cpp:162
-#, kde-format
-msgid "Sign Clipboard Error"
+#: src/commands/signclipboardcommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Sign Clipboard Error"
+msgctxt "@info"
+msgid "Signing clipboard…"
 msgstr "שגיאת חתימת לוח גזירים"
 
 #: src/commands/signencryptfilescommand.cpp:274
@@ -5240,7 +5271,7 @@ msgstr "נמען (%1)"
 #: src/crypto/gui/resolverecipientspage.cpp:587
 #, kde-format
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
-msgstr ""
+msgstr "<qt><p>נמענים הוגדרו מראש דרך הגדרות GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:117
 #, kde-format
@@ -10497,6 +10528,11 @@ msgid ""
 "<application>EnigMail</application>.</para><para>Keeping the entry might "
 "lead to an old GnuPG backend being used.</para>"
 msgstr ""
+"<para>Kleopatra זיהתה מפתח רישום מערכת מיושן (<resource>%1\\%2</resource>), "
+"נוסף על ידי גרסה קודמת של <application>Gpg4win</application> או יישומים כגון "
+"<application>WinPT</application> או <application>EnigMail</application>.</"
+"para><para>שמירה על הרשומה יכול להוביל לכך שאפשר יהיה להשתמש גם במנגנון ישן "
+"של GnuPG.</para>"
 
 #: src/selftest/registrycheck.cpp:56
 #, kde-kuit-format
@@ -10927,7 +10963,7 @@ msgstr "יש פלט/OUTPUT"
 #: src/uiserver/decryptverifycommandfilesbase.cpp:152
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
-msgstr ""
+msgstr "DECRYPT/VERIFY_FILES (פענוח/אימות קבצים) לא יכולים להשתמש בתיקיות כקלט"
 
 #: src/uiserver/echocommand.cpp:135 src/uiserver/signcommand.cpp:193
 #, kde-format
@@ -10944,12 +10980,12 @@ msgstr "נתפסה חריגה לא ידועה ב־SignCommand::Private::slotMicA
 #, kde-format
 msgid ""
 "ENCRYPT is an email mode command, connection seems to be in filemanager mode"
-msgstr ""
+msgstr "ENCRYPT (הצפנה) היא פקודת מצב דוא״ל, החיבור נראה במצב ניהול קבצים"
 
 #: src/uiserver/encryptcommand.cpp:72
 #, kde-format
 msgid "SENDER may not be given prior to ENCRYPT, except with --info"
-msgstr ""
+msgstr "אי אפשר לספק את SENDER (מוען) לפני ENCRYPT (הצפנה), למעט עם ‎--info"
 
 #: src/uiserver/encryptcommand.cpp:75 src/uiserver/signcommand.cpp:76
 #, kde-format
@@ -10964,7 +11000,7 @@ msgstr "חייב להיות לפחות OUTPUT/פלט אחד"
 #: src/uiserver/encryptcommand.cpp:84
 #, kde-format
 msgid "MESSAGE command is not allowed before ENCRYPT"
-msgstr ""
+msgstr "אסור לציין את פקודת MESSAGE (הודעה) לפני ENCRYPT (הצפנה)"
 
 #: src/uiserver/encryptcommand.cpp:91
 #, kde-format
@@ -11003,19 +11039,20 @@ msgstr "נתפסה חריגה מפתיעה ב־EncryptCommand::Private::slotReci
 #: src/uiserver/prepencryptcommand.cpp:63
 #, kde-format
 msgid "INPUT/OUTPUT/MESSAGE may only be given after PREP_ENCRYPT"
-msgstr ""
+msgstr "אפשר לציין את INPUT/OUTPUT/MESSAGE רק אחרי PREP_ENCRYPT"
 
 #: src/uiserver/prepencryptcommand.cpp:66
 #, kde-format
 msgid ""
 "PREP_ENCRYPT is an email mode command, connection seems to be in filemanager "
 "mode"
-msgstr ""
+msgstr "PREP_ENCRYPT היא פקודת מצב דוא״ל, החיבור נראה במצב ניהול קבצים"
 
 #: src/uiserver/prepencryptcommand.cpp:69
 #, kde-format
 msgid "SENDER may not be given prior to PREP_ENCRYPT, except with --info"
 msgstr ""
+"אי אפשר לספק את SENDER (מוען) לפני PREP_ENCRYPT (הצפנה), למעט עם ‎--info"
 
 #: src/uiserver/prepencryptcommand.cpp:121
 #, kde-format
@@ -11413,6 +11450,11 @@ msgid ""
 "para><para>Please right click the tray icon of <application>Kleopatra</"
 "application> and select 'quit' to try again.</para>"
 msgstr ""
+"<para>נראה ש־<application>Kleopatra</application> כבר פועלת למענך, אבל עם "
+"הרשאות אחרות.</para><para>זה בדרך כלל קורה אם <application>Kleopatra</"
+"application> רצה בטעות דרך חשבון ניהול/Administrator</para><para>נא ללחוץ על "
+"הסמל של <application>Kleopatra</application> בשורת המערכת ולבחור ב‚יציאה’ "
+"כדי לנסות שוב.</para>"
 
 #: src/utils/kuniqueservice_win.cpp:132
 #, kde-kuit-format
