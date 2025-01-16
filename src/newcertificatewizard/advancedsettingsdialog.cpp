@@ -119,6 +119,11 @@ struct AdvancedSettingsDialog::UI {
 
         {
             auto technicalTab = new KAdjustingScrollArea{tabWidget};
+
+            auto widget = new QWidget;
+            technicalTab->setWidget(widget);
+            new QVBoxLayout(widget);
+
             technicalTab->setFocusPolicy(Qt::NoFocus);
             technicalTab->setFrameStyle(QFrame::NoFrame);
             technicalTab->setBackgroundRole(parent->backgroundRole());
@@ -176,6 +181,11 @@ struct AdvancedSettingsDialog::UI {
 
         {
             personalTab = new KAdjustingScrollArea{tabWidget};
+
+            auto widget = new QWidget;
+            personalTab->setWidget(widget);
+            new QVBoxLayout(widget);
+
             personalTab->setFocusPolicy(Qt::NoFocus);
             personalTab->setFrameStyle(QFrame::NoFrame);
             personalTab->setBackgroundRole(parent->backgroundRole());
