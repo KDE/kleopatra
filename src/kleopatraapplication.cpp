@@ -360,7 +360,6 @@ void KleopatraApplication::init()
         QDesktopServices::setUrlHandler(scheme, this, "blockUrl");
     }
     add_resources();
-    DN::setAttributeOrder(Settings{}.attributeOrder());
     /* Start the gpg-agent early, this is done explicitly
      * because on an empty keyring our keylistings wont start
      * the agent. In that case any assuan-connect calls to

@@ -15,7 +15,6 @@
 #include <settings.h>
 #include <tooltippreferences.h>
 
-#include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/Dn>
 #include <Libkleo/ExpiryCheckerConfig>
 #include <Libkleo/KeyFilterManager>
@@ -505,17 +504,6 @@ public:
         highContrastMsg->setText(i18n("The preview of colors is disabled because high-contrast mode is active."));
         highContrastMsg->setCloseButtonVisible(false);
 
-        if (Kleo::Settings{}.cmsEnabled()) {
-            auto w = new QWidget;
-            dnOrderWidget = new DNAttributeOrderConfigWidget{w};
-            dnOrderWidget->setObjectName(QLatin1StringView("dnOrderWidget"));
-            (new QVBoxLayout(w))->addWidget(dnOrderWidget);
-
-            tabWidget->addTab(w, i18n("DN-Attribute Order"));
-
-            connect(dnOrderWidget, &DNAttributeOrderConfigWidget::changed, q, &AppearanceConfigWidget::changed);
-        }
-
         connect(iconButton, SIGNAL(clicked()), q, SLOT(slotIconClicked()));
 #ifndef QT_NO_COLORDIALOG
         connect(foregroundButton, SIGNAL(clicked()), q, SLOT(slotForegroundClicked()));
@@ -566,9 +554,6 @@ private:
     void slotTooltipValidityChanged(bool);
     void slotTooltipOwnerChanged(bool);
     void slotTooltipDetailsChanged(bool);
-
-private:
-    Kleo::DNAttributeOrderConfigWidget *dnOrderWidget = nullptr;
 };
 
 AppearanceConfigWidget::AppearanceConfigWidget(QWidget *p, Qt::WindowFlags f)
@@ -658,12 +643,6 @@ void AppearanceConfigWidget::defaults()
     tooltipPrefs.setShowCertificateDetails(tooltipPrefs.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
     d->tooltipDetailsCheckBox->setChecked(tooltipPrefs.showCertificateDetails());
 
-    if (d->dnOrderWidget) {
-        if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
-            d->dnOrderWidget->setAttributeOrder(DN::defaultAttributeOrder());
-        }
-    }
-
     Q_EMIT changed();
 }
 
@@ -692,11 +671,6 @@ void AppearanceConfigWidget::load()
         d->ownCertificateThresholdSpinBox->setEnabled(!expiryConfig.ownKeyThresholdInDaysItem()->isImmutable());
         d->otherCertificateThresholdSpinBox->setValue(expiryConfig.otherKeyThresholdInDays());
         d->otherCertificateThresholdSpinBox->setEnabled(!expiryConfig.otherKeyThresholdInDaysItem()->isImmutable());
-    }
-
-    if (d->dnOrderWidget) {
-        d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
-        d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
 
     d->categoriesLV->clear();
@@ -729,10 +703,6 @@ void AppearanceConfigWidget::save()
 {
     Settings settings;
     settings.setShowExpiryNotifications(d->showExpirationCheckBox->isChecked());
-    if (d->dnOrderWidget) {
-        settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
-        DN::setAttributeOrder(settings.attributeOrder());
-    }
     settings.save();
 
     {

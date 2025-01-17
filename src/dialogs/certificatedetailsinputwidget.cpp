@@ -221,7 +221,7 @@ public:
 
     void createForm()
     {
-        static const QStringList defaultAttributeOrder = {
+        static const QStringList attrOrder = {
             QStringLiteral("CN!"),
             QStringLiteral("EMAIL!"),
             QStringLiteral("L"),
@@ -230,8 +230,6 @@ public:
             QStringLiteral("C"),
         };
         const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
-
-        const QStringList attrOrder = config.readEntry("DNAttributeOrder", defaultAttributeOrder);
 
         for (const QString &rawKey : attrOrder) {
             const QString key = rawKey.trimmed().toUpper();

@@ -349,11 +349,14 @@ void EnterDetailsPage::updateForm()
     const auto settings = Kleo::Settings{};
     const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("CertificateCreationWizard"));
 
-    QStringList attrOrder = config.readEntry("DNAttributeOrder", QStringList());
-    if (attrOrder.empty()) {
-        attrOrder << QStringLiteral("CN!") << QStringLiteral("L") << QStringLiteral("OU") << QStringLiteral("O") << QStringLiteral("C")
-                  << QStringLiteral("EMAIL!");
-    }
+    QStringList attrOrder{
+        QStringLiteral("CN!"),
+        QStringLiteral("L"),
+        QStringLiteral("OU"),
+        QStringLiteral("O"),
+        QStringLiteral("C"),
+        QStringLiteral("EMAIL!"),
+    };
 
     QList<QWidget *> widgets;
     widgets.push_back(ui->nameLE);
