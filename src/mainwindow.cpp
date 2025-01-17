@@ -835,7 +835,6 @@ void MainWindow::Private::setupActions()
 
 void MainWindow::Private::slotConfigCommitted()
 {
-    controller.updateConfig();
     updateStatusBar();
 }
 

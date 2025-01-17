@@ -49,9 +49,6 @@ private:
     Q_PRIVATE_SLOT(d, void slotItalicToggled(bool))
     Q_PRIVATE_SLOT(d, void slotBoldToggled(bool))
     Q_PRIVATE_SLOT(d, void slotStrikeOutToggled(bool))
-    Q_PRIVATE_SLOT(d, void slotTooltipValidityChanged(bool))
-    Q_PRIVATE_SLOT(d, void slotTooltipDetailsChanged(bool))
-    Q_PRIVATE_SLOT(d, void slotTooltipOwnerChanged(bool))
 };
 
 }

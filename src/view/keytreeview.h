@@ -92,11 +92,6 @@ public:
     void addKeysSelected(const std::vector<GpgME::Key> &keys);
     void removeKeys(const std::vector<GpgME::Key> &keys);
 
-#if 0
-    void setToolTipOptions(int options);
-    int toolTipOptions() const;
-#endif
-
     QString stringFilter() const
     {
         return m_stringFilter;

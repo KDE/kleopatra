@@ -81,7 +81,6 @@ public Q_SLOTS:
     void setCurrentView(QAbstractItemView *view);
 
     void cancelCommands();
-    void updateConfig();
 
 Q_SIGNALS:
     void progress(int current, int total);

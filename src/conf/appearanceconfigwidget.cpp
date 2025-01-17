@@ -13,7 +13,6 @@
 #include "appearanceconfigwidget.h"
 
 #include <settings.h>
-#include <tooltippreferences.h>
 
 #include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/Dn>
@@ -319,9 +318,6 @@ public:
     QCheckBox *boldCB;
     QCheckBox *strikeoutCB;
     QPushButton *defaultLookPB;
-    QCheckBox *tooltipValidityCheckBox;
-    QCheckBox *tooltipOwnerCheckBox;
-    QCheckBox *tooltipDetailsCheckBox;
     QCheckBox *showExpirationCheckBox;
     QSpinBox *ownCertificateThresholdSpinBox;
     QSpinBox *otherCertificateThresholdSpinBox;
@@ -339,23 +335,6 @@ public:
         {
             auto tab = new QWidget{parent};
             auto tabLayout = new QVBoxLayout{tab};
-
-            tabLayout->addWidget(new KSeparator{tab});
-
-            auto label = new QLabel{tab};
-            label->setText(i18nc("@info", "Show the following information in certificate list tooltips:"));
-            tabLayout->addWidget(label);
-
-            tooltipValidityCheckBox = new QCheckBox{i18nc("@option:check", "Show validity"), tab};
-            tabLayout->addWidget(tooltipValidityCheckBox);
-
-            tooltipOwnerCheckBox = new QCheckBox{i18nc("@option:check", "Show owner information"), tab};
-            tabLayout->addWidget(tooltipOwnerCheckBox);
-
-            tooltipDetailsCheckBox = new QCheckBox{i18nc("@option:check", "Show technical details"), tab};
-            tabLayout->addWidget(tooltipDetailsCheckBox);
-
-            tabLayout->addWidget(new KSeparator{tab});
 
             showExpirationCheckBox = new QCheckBox{i18nc("@option:check", "Show upcoming certificate expiration"), tab};
             tabLayout->addWidget(showExpirationCheckBox);
@@ -537,9 +516,6 @@ public:
         connect(italicCB, SIGNAL(toggled(bool)), q, SLOT(slotItalicToggled(bool)));
         connect(boldCB, SIGNAL(toggled(bool)), q, SLOT(slotBoldToggled(bool)));
         connect(strikeoutCB, SIGNAL(toggled(bool)), q, SLOT(slotStrikeOutToggled(bool)));
-        connect(tooltipValidityCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipValidityChanged(bool)));
-        connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
-        connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(showExpirationCheckBox, &QCheckBox::toggled, q, emitChanged);
         connect(ownCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
         connect(otherCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
@@ -563,9 +539,6 @@ private:
     void slotItalicToggled(bool);
     void slotBoldToggled(bool);
     void slotStrikeOutToggled(bool);
-    void slotTooltipValidityChanged(bool);
-    void slotTooltipOwnerChanged(bool);
-    void slotTooltipDetailsChanged(bool);
 
 private:
     Kleo::DNAttributeOrderConfigWidget *dnOrderWidget = nullptr;
@@ -650,14 +623,6 @@ void AppearanceConfigWidget::defaults()
         set_default_appearance(d->categoriesLV->item(i));
     }
 
-    TooltipPreferences tooltipPrefs;
-    tooltipPrefs.setShowValidity(tooltipPrefs.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
-    d->tooltipValidityCheckBox->setChecked(tooltipPrefs.showValidity());
-    tooltipPrefs.setShowOwnerInformation(tooltipPrefs.findItem(QStringLiteral("ShowOwnerInformation"))->getDefault().toBool());
-    d->tooltipOwnerCheckBox->setChecked(tooltipPrefs.showOwnerInformation());
-    tooltipPrefs.setShowCertificateDetails(tooltipPrefs.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
-    d->tooltipDetailsCheckBox->setChecked(tooltipPrefs.showCertificateDetails());
-
     if (d->dnOrderWidget) {
         if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
             d->dnOrderWidget->setAttributeOrder(DN::defaultAttributeOrder());
@@ -715,14 +680,6 @@ void AppearanceConfigWidget::load()
         item->setHidden(isCmsSpecificKeyFilter && !Kleo::Settings{}.cmsEnabled());
         apply_config(configGroup, item);
     }
-
-    const TooltipPreferences prefs;
-    d->tooltipValidityCheckBox->setChecked(prefs.showValidity());
-    d->tooltipValidityCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowValidity")));
-    d->tooltipOwnerCheckBox->setChecked(prefs.showOwnerInformation());
-    d->tooltipOwnerCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowOwnerInformation")));
-    d->tooltipDetailsCheckBox->setChecked(prefs.showCertificateDetails());
-    d->tooltipDetailsCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowCertificateDetails")));
 }
 
 void AppearanceConfigWidget::save()
@@ -741,12 +698,6 @@ void AppearanceConfigWidget::save()
         expiryConfig.setOtherKeyThresholdInDays(d->otherCertificateThresholdSpinBox->value());
         expiryConfig.save();
     }
-
-    TooltipPreferences prefs;
-    prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());
-    prefs.setShowOwnerInformation(d->tooltipOwnerCheckBox->isChecked());
-    prefs.setShowCertificateDetails(d->tooltipDetailsCheckBox->isChecked());
-    prefs.save();
 
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     if (!config) {
@@ -894,21 +845,6 @@ void AppearanceConfigWidget::Private::slotBoldToggled(bool on)
 void AppearanceConfigWidget::Private::slotStrikeOutToggled(bool on)
 {
     set_strikeout(selectedItem(), on);
-    Q_EMIT q->changed();
-}
-
-void AppearanceConfigWidget::Private::slotTooltipValidityChanged(bool)
-{
-    Q_EMIT q->changed();
-}
-
-void AppearanceConfigWidget::Private::slotTooltipOwnerChanged(bool)
-{
-    Q_EMIT q->changed();
-}
-
-void AppearanceConfigWidget::Private::slotTooltipDetailsChanged(bool)
-{
     Q_EMIT q->changed();
 }
 

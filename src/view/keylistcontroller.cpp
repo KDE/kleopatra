@@ -20,7 +20,6 @@
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "kleopatra_debug.h"
-#include "tooltippreferences.h"
 #include <settings.h>
 #ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
@@ -147,9 +146,6 @@ public:
     void updateActions(KActionCollection *collection);
 
 private:
-    int toolTipOptions() const;
-
-private:
     static Command::Restrictions calculateRestrictionsMask(const QItemSelectionModel *sm);
 
 private:
@@ -227,10 +223,6 @@ void KeyListController::setFlatModel(AbstractKeyListModel *model)
     }
 
     d->flatModel = model;
-
-    if (model) {
-        model->setToolTipOptions(d->toolTipOptions());
-    }
 }
 
 void KeyListController::setHierarchicalModel(AbstractKeyListModel *model)
@@ -240,10 +232,6 @@ void KeyListController::setHierarchicalModel(AbstractKeyListModel *model)
     }
 
     d->hierarchicalModel = model;
-
-    if (model) {
-        model->setToolTipOptions(d->toolTipOptions());
-    }
 }
 
 void KeyListController::setTabWidget(TabWidget *tabWidget)
@@ -1113,33 +1101,6 @@ void KeyListController::Private::slotActionTriggered(QAction *sender)
             qCDebug(KLEOPATRA_LOG) << "createCommand() == NULL for action(?) \"" << qPrintable(sender->objectName()) << "\"";
     else {
         qCDebug(KLEOPATRA_LOG) << "I don't know anything about action(?) \"%s\"", qPrintable(sender->objectName());
-    }
-}
-
-int KeyListController::Private::toolTipOptions() const
-{
-    using namespace Kleo::Formatting;
-    static const int validityFlags = Validity | Issuer | ExpiryDates | CertificateUsage;
-    static const int ownerFlags = Subject | UserIDs | OwnerTrust;
-    static const int detailsFlags = StorageLocation | CertificateType | SerialNumber | Fingerprint;
-
-    const TooltipPreferences prefs;
-
-    int flags = KeyID;
-    flags |= prefs.showValidity() ? validityFlags : 0;
-    flags |= prefs.showOwnerInformation() ? ownerFlags : 0;
-    flags |= prefs.showCertificateDetails() ? detailsFlags : 0;
-    return flags;
-}
-
-void KeyListController::updateConfig()
-{
-    const int opts = d->toolTipOptions();
-    if (d->flatModel) {
-        d->flatModel->setToolTipOptions(opts);
-    }
-    if (d->hierarchicalModel) {
-        d->hierarchicalModel->setToolTipOptions(opts);
     }
 }
 

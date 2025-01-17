@@ -9,8 +9,6 @@
 
 #include "cardkeysview.h"
 
-#include <tooltippreferences.h>
-
 #include <kleopatra_debug.h>
 #include <settings.h>
 
@@ -60,22 +58,6 @@ using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace Kleo::Commands;
 using namespace Qt::Literals::StringLiterals;
-
-static int toolTipOptions()
-{
-    using namespace Kleo::Formatting;
-    static const int validityFlags = Validity | Issuer | ExpiryDates | CertificateUsage;
-    static const int ownerFlags = Subject | UserIDs | OwnerTrust;
-    static const int detailsFlags = StorageLocation | CertificateType | SerialNumber | Fingerprint;
-
-    const TooltipPreferences prefs;
-
-    int flags = KeyID;
-    flags |= prefs.showValidity() ? validityFlags : 0;
-    flags |= prefs.showOwnerInformation() ? ownerFlags : 0;
-    flags |= prefs.showCertificateDetails() ? detailsFlags : 0;
-    return flags;
-}
 
 namespace
 {
@@ -248,7 +230,8 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         } else {
             item->setData(Certificate, Qt::DisplayRole, DN(key.userID(0).id()).prettyDN());
         }
-        item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(key, toolTipOptions()));
+        item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(key, 0 /*TODO*/));
+
         // protocol
         item->setData(KeyProtocol, Qt::DisplayRole, Formatting::type(key));
     }
