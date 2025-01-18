@@ -14,8 +14,6 @@
 
 #include <vector>
 
-class QString;
-
 struct AnchorData {
     int start;
     int end;
