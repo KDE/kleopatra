@@ -116,11 +116,22 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="KleopatraClientCopy::Gui::CertificateRequester" native="1" name="OCSPResponderSignature" >
-        <property name="whatsThis" >
-         <string>Choose here the certificate with which the OCSP server signs its replies.</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout">
+        <item>
+         <widget class="QLabel" native="1" name="OCSPResponderSignature" >
+          <property name="whatsThis" >
+           <string>Choose here the certificate with which the OCSP server signs its replies.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="ocspSelectButton" >
+          <property name="text" >
+           <string>Change Certificate…</string>
+          </property>
+         </widget>
+        </item>
+      </layout>
       </item>
      </layout>
     </widget>
@@ -303,14 +314,6 @@ The syntax is "HOST" or "HOST:PORT". If PORT is omitted, port 389 (standard LDAP
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KleopatraClientCopy::Gui::CertificateRequester</class>
-   <extends>QWidget</extends>
-   <header>libkleopatraclient/gui/certificaterequester.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <includes>
   <include location="local" >libkleo/keyrequester.h</include>
  </includes>

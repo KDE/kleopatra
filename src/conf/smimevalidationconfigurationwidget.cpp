@@ -13,13 +13,18 @@
 
 #include "ui_smimevalidationconfigurationwidget.h"
 
+#include "dialogs/certificateselectiondialog.h"
 #include "labelledwidget.h"
 
 #include "smimevalidationpreferences.h"
 
 #include <Libkleo/Compat>
+#include <Libkleo/Formatting>
+#include <Libkleo/KeyCache>
 
 #include <QGpgME/CryptoConfig>
+
+#include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
@@ -31,6 +36,7 @@
 using namespace Kleo;
 using namespace Kleo::Config;
 using namespace QGpgME;
+using namespace Dialogs;
 
 class SMimeValidationConfigurationWidget::Private
 {
@@ -50,10 +56,6 @@ public:
         connect(ui.intervalRefreshSB, &QSpinBox::valueChanged, q, changedSignal);
         connect(ui.OCSPCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.OCSPResponderURL, &QLineEdit::textChanged, q, changedSignal);
-
-        auto certRequesterSignal = &KleopatraClientCopy::Gui::CertificateRequester::selectedCertificatesChanged;
-        connect(ui.OCSPResponderSignature, certRequesterSignal, q, changedSignal);
-
         connect(ui.doNotCheckCertPolicyCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.neverConsultCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.fetchMissingCB, &QCheckBox::toggled, q, changedSignal);
@@ -75,6 +77,7 @@ public:
     }
 
     bool customHTTPProxyWritable = false;
+    QString ocspResponderSignatureFingerprint;
 
 private:
     void enableDisableActions()
@@ -84,7 +87,7 @@ private:
 
 private:
     struct UI : Ui_SMimeValidationConfigurationWidget {
-        LabelledWidget<KleopatraClientCopy::Gui::CertificateRequester> labelledOCSPResponderSignature;
+        LabelledWidget<QLabel> labelledOCSPResponderSignature;
         LabelledWidget<QLineEdit> labelledOCSPResponderURL;
 
         explicit UI(SMimeValidationConfigurationWidget *q)
@@ -95,10 +98,21 @@ private:
             labelledOCSPResponderURL.setWidgets(OCSPResponderURL, OCSPResponderURLLabel);
             labelledOCSPResponderSignature.setWidgets(OCSPResponderSignature, OCSPResponderSignatureLabel);
 
-            OCSPResponderSignature->setOnlyX509CertificatesAllowed(true);
-            OCSPResponderSignature->setOnlySigningCertificatesAllowed(true);
-            OCSPResponderSignature->setMultipleCertificatesAllowed(false);
-            // OCSPResponderSignature->setAllowedKeys( KeySelectionDialog::TrustedKeys|KeySelectionDialog::ValidKeys );
+            connect(ocspSelectButton, &QPushButton::clicked, q, [q, this]() {
+                auto dialog = new CertificateSelectionDialog{q};
+                dialog->setAttribute(Qt::WA_DeleteOnClose);
+                dialog->setOptions(CertificateSelectionDialog::Options( //
+                    CertificateSelectionDialog::SignOnly | //
+                    CertificateSelectionDialog::optionsFromProtocol(GpgME::Protocol::CMS)));
+                dialog->setStringFilter(q->d->ocspResponderSignatureFingerprint);
+
+                q->connect(dialog, &QDialog::accepted, q, [this, dialog, q]() {
+                    OCSPResponderSignature->setText(Formatting::summaryLine(dialog->selectedCertificate()));
+                    q->d->ocspResponderSignatureFingerprint = QString::fromLatin1({dialog->selectedCertificate().primaryFingerprint()});
+                    Q_EMIT q->changed();
+                });
+                dialog->open();
+            });
         }
     } ui;
 };
@@ -243,8 +257,10 @@ void SMimeValidationConfigurationWidget::load()
         d->ui.OCSPResponderURL->setText(e.mOCSPResponderURLConfigEntry->stringValue());
     }
     d->ui.labelledOCSPResponderURL.setEnabled(e.mOCSPResponderURLConfigEntry && !e.mOCSPResponderURLConfigEntry->isReadOnly());
-    if (e.mOCSPResponderSignature) {
-        d->ui.OCSPResponderSignature->setSelectedCertificate(e.mOCSPResponderSignature->stringValue());
+    if (e.mOCSPResponderSignature && !e.mOCSPResponderSignature->stringValue().isEmpty()) {
+        d->ocspResponderSignatureFingerprint = e.mOCSPResponderSignature->stringValue();
+        d->ui.OCSPResponderSignature->setText(
+            Formatting::summaryLine(KeyCache::instance()->findByFingerprint(e.mOCSPResponderSignature->stringValue().toLatin1().data())));
     }
     d->ui.labelledOCSPResponderSignature.setEnabled(e.mOCSPResponderSignature && !e.mOCSPResponderSignature->isReadOnly());
 
@@ -326,7 +342,7 @@ void SMimeValidationConfigurationWidget::save() const
         e.mOCSPResponderURLConfigEntry->setStringValue(txt);
     }
 
-    txt = d->ui.OCSPResponderSignature->selectedCertificate();
+    txt = d->ocspResponderSignatureFingerprint;
     if (e.mOCSPResponderSignature && e.mOCSPResponderSignature->stringValue() != txt) {
         e.mOCSPResponderSignature->setStringValue(txt);
     }
