@@ -47,16 +47,28 @@ using namespace GpgME;
 namespace
 {
 
+struct LabelAndError {
+    QString label;
+    QString errorString;
+    QStringList fileNames;
+};
+
 class ErrorResult : public Task::Result
 {
 public:
-    ErrorResult(bool sign, bool encrypt, const Error &err, const QString &errStr, const QString &input, const QString &output, const AuditLogEntry &auditLog)
+    ErrorResult(bool sign,
+                bool encrypt,
+                const Error &err,
+                const QString &errStr,
+                const LabelAndError &input,
+                const QString &output,
+                const AuditLogEntry &auditLog)
         : Task::Result()
         , m_sign(sign)
         , m_encrypt(encrypt)
         , m_error(err)
         , m_errString(errStr)
-        , m_inputLabel(input)
+        , m_input(input)
         , m_outputLabel(output)
         , m_auditLog(auditLog)
     {
@@ -82,19 +94,10 @@ private:
     const bool m_encrypt;
     const Error m_error;
     const QString m_errString;
-    const QString m_inputLabel;
+    const LabelAndError m_input;
     const QString m_outputLabel;
     const AuditLogEntry m_auditLog;
 };
-
-namespace
-{
-struct LabelAndError {
-    QString label;
-    QString errorString;
-    QStringList fileNames;
-};
-}
 
 class SignEncryptFilesResult : public Task::Result
 {
@@ -330,7 +333,7 @@ QString ErrorResult::overview() const
     Q_ASSERT(m_error || m_error.isCanceled());
     Q_ASSERT(m_sign || m_encrypt);
 
-    return formatResultLine({m_inputLabel}, m_outputLabel, m_sign, m_encrypt, true, true, m_error);
+    return formatResultLine(m_input.fileNames, m_outputLabel, m_sign, m_encrypt, true, true, m_error);
 }
 
 QString ErrorResult::details() const
@@ -362,7 +365,7 @@ private:
     std::unique_ptr<QGpgME::SignEncryptArchiveJob> createSignEncryptArchiveJob(GpgME::Protocol proto);
     std::unique_ptr<QGpgME::EncryptArchiveJob> createEncryptArchiveJob(GpgME::Protocol proto);
 
-    std::shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog);
+    std::shared_ptr<const Task::Result> makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog, const QStringList &fileNames);
 
 private:
     void slotResult(const SigningResult &);
@@ -404,9 +407,10 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
     q->setAsciiArmor(true);
 }
 
-std::shared_ptr<const Task::Result> SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog)
+std::shared_ptr<const Task::Result>
+SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog, const QStringList &fileNames)
 {
-    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, inputLabel(), outputLabel(), auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, {inputLabel(), errStr, fileNames}, outputLabel(), auditLog));
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
@@ -926,7 +930,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         if (output) {
             output->cancel();
         }
-        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO), i18n("Input error: %1", escape(input->errorString())), auditLog));
+        q->emitResult(makeErrorResult(Error::fromCode(GPG_ERR_EIO), i18n("Input error: %1", escape(input->errorString())), auditLog, inputFileNames));
         return;
     } else if (sresult.error().code() || eresult.error().code()) {
         if (output) {
@@ -953,7 +957,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
                 input->finalize();
             }
         } catch (const GpgME::Exception &e) {
-            q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog));
+            q->emitResult(makeErrorResult(e.error(), QString::fromLocal8Bit(e.what()), auditLog, inputFileNames));
             return;
         }
     }
