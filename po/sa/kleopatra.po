@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-23 00:41+0000\n"
+"POT-Creation-Date: 2025-01-24 00:42+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -1006,10 +1006,6 @@ msgstr "\"gpgconf --reload gpg-agent\" विफलम्: %1"
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:164
-#: src/commands/encryptclipboardcommand.cpp:192
-#: src/commands/signclipboardcommand.cpp:165
-#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1407,22 +1403,6 @@ msgid ""
 msgstr ""
 "CRL-सञ्चयं डम्प् कर्तुं प्रयतमाने त्रुटिः अभवत् । GpgSM इत्यस्मात् निर्गमः आसीत् :\n"
 "%1"
-
-#: src/commands/encryptclipboardcommand.cpp:143
-#, fuzzy, kde-format
-#| msgid "Encrypt Clipboard Error"
-msgctxt "@info"
-msgid "Encrypting clipboard…"
-msgstr "क्लिप्बोर्ड त्रुटिः एन्क्रिप्ट् कुर्वन्तु"
-
-#: src/commands/encryptclipboardcommand.cpp:152
-#: src/commands/signclipboardcommand.cpp:153
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "The result of the export is empty."
-msgctxt "@info"
-msgid "The clipboard is empty"
-msgstr "निर्यातस्य परिणामः शून्यः भवति ।"
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2164,7 +2144,7 @@ msgid ""
 msgstr "क्लिप्बोर्डसामग्रीणां प्रमाणपत्रप्रकारं निर्धारयितुं न शक्तवान् ।"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:114
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
 msgstr "क्लिपबोर्ड"
@@ -3601,13 +3581,6 @@ msgid ""
 msgstr ""
 "<para>उपयोक्तृ-ID<nl/><emphasis>%1</emphasis><nl/>प्राथमिक-उपयोक्तृ-ID इति सफलतया "
 "ध्वज्यते ।</para>"
-
-#: src/commands/signclipboardcommand.cpp:143
-#, fuzzy, kde-format
-#| msgid "Sign Clipboard Error"
-msgctxt "@info"
-msgid "Signing clipboard…"
-msgstr "क्लिप्बोर्ड त्रुटिः इति हस्ताक्षरं कुर्वन्तु"
 
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
@@ -5248,30 +5221,30 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "पाठं एन्क्रिप्ट् कुर्वन्तु"
 
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:87
+#: src/crypto/gui/newresultpage.cpp:98
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: सर्वाणि कार्याणि सम्पन्नानि।"
 
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:89
+#: src/crypto/gui/newresultpage.cpp:100
 #, kde-format
 msgid "All operations completed."
 msgstr "सर्वाणि कार्याणि सम्पन्नानि।"
 
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:106
+#: src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "संचालन %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:108
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:103
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:111
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>परिणामाः</b>"
@@ -5747,6 +5720,7 @@ msgid "Output directory"
 msgstr "आउटपुट निर्देशिका"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:502
+#: src/dialogs/signencryptclipboarddialog.cpp:178
 #, kde-format
 msgctxt "@title"
 msgid "Results"
@@ -5772,6 +5746,7 @@ msgstr "सञ्चिकाः हस्ताक्षरयन्तु / �
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:542
 #: src/dialogs/selftestdialog.cpp:449
+#: src/dialogs/signencryptclipboarddialog.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
@@ -5784,30 +5759,35 @@ msgid "Results"
 msgstr "परिणामाः"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:553
+#: src/dialogs/signencryptclipboarddialog.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "समाप्तं कुर्वन्तु"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:563
+#: src/dialogs/signencryptclipboarddialog.cpp:144
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "चिह्नम्‌"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:566
+#: src/dialogs/signencryptclipboarddialog.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "एन्क्रिप्ट् कुर्वन्तु"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:569
+#: src/dialogs/signencryptclipboarddialog.cpp:150
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "हस्ताक्षर / एन्क्रिप्ट"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
+#: src/dialogs/signencryptclipboarddialog.cpp:164
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -6176,25 +6156,25 @@ msgstr ""
 "SignEncryptFilesController::Private::slotWizardOperationPrepared इत्यस्मिन् "
 "अज्ञात अपवादः गृहीतः"
 
-#: src/crypto/signencrypttask.cpp:145
+#: src/crypto/signencrypttask.cpp:148
 #, kde-format
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "हस्ताक्षरं एन्क्रिप्शनं च रद्दम्।"
 
-#: src/crypto/signencrypttask.cpp:148
+#: src/crypto/signencrypttask.cpp:151
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "हस्ताक्षरं रद्दं कृतम्।"
 
-#: src/crypto/signencrypttask.cpp:151
+#: src/crypto/signencrypttask.cpp:154
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "एन्क्रिप्शन रद्दम्।"
 
-#: src/crypto/signencrypttask.cpp:157
+#: src/crypto/signencrypttask.cpp:160
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
@@ -6204,7 +6184,7 @@ msgstr ""
 "<filename>%1</filename> इत्यत्र हस्ताक्षरं कृत्वा गोपनं कर्तुं असफलम्: <emphasis "
 "strong='true'>%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:163
+#: src/crypto/signencrypttask.cpp:166
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6214,7 +6194,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इत्यत्र हस्ताक्षरं कृत्वा गोपनं "
 "कर्तुं असफलम्: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:169
+#: src/crypto/signencrypttask.cpp:172
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6230,7 +6210,7 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्येषां हस्ताक्षरं गोपनं च कर्तुं असफलम्: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:179
+#: src/crypto/signencrypttask.cpp:182
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
@@ -6239,7 +6219,7 @@ msgstr ""
 "<filename>%1</filename> इति हस्ताक्षरं कर्तुं असफलम्: <emphasis strong='true'>%2</"
 "emphasis>"
 
-#: src/crypto/signencrypttask.cpp:185
+#: src/crypto/signencrypttask.cpp:188
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <file>: <reason>"
 msgid ""
@@ -6249,7 +6229,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इत्यत्र हस्ताक्षरं कर्तुं असफलम्: "
 "<emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:191
+#: src/crypto/signencrypttask.cpp:194
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
@@ -6265,7 +6245,7 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्ये च हस्ताक्षरं कर्तुं असफलम्: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:201
+#: src/crypto/signencrypttask.cpp:204
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file>: <reason>"
 msgid ""
@@ -6274,7 +6254,7 @@ msgid ""
 msgstr ""
 "<filename>%1</filename> गोपनं कर्तुं असफलम्: <emphasis strong='true'>%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:207
+#: src/crypto/signencrypttask.cpp:210
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6284,7 +6264,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इति गोपनीयं कर्तुं असफलम्: "
 "<emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:213
+#: src/crypto/signencrypttask.cpp:216
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6300,7 +6280,7 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्ये च गोपनं कर्तुं असफलम्: <emphasis strong='true'>"
 "%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:223
+#: src/crypto/signencrypttask.cpp:226
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and saved it as <file>."
@@ -6311,7 +6291,7 @@ msgstr ""
 "<filename>%1</filename> इति सफलतया हस्ताक्षरं कृत्वा गोपनं कृत्वा <filename>%2</"
 "filename> इति रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:229
+#: src/crypto/signencrypttask.cpp:232
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6323,7 +6303,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इति सफलतया हस्ताक्षरं कृत्वा "
 "गोपनं कृत्वा <filename>%3</filename> इति रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:235
+#: src/crypto/signencrypttask.cpp:238
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
@@ -6340,7 +6320,7 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्ये च सफलतया हस्ताक्षरं कृत्वा गोपनं कृत्वा <filename>"
 "%3</filename> इति रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:248
 #, kde-kuit-format
 msgctxt "@info Successfully signed <file> and saved the signature in <file>."
 msgid ""
@@ -6350,7 +6330,7 @@ msgstr ""
 "<filename>%1</filename> इत्यत्र सफलतया हस्ताक्षरं कृत्वा <filename>%2</filename> "
 "इत्यत्र हस्ताक्षरं रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:251
+#: src/crypto/signencrypttask.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <file> and saved the signature in "
@@ -6362,7 +6342,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इत्यत्र सफलतया हस्ताक्षरं "
 "कृत्वा <filename>%3</filename> इत्यत्र हस्ताक्षरं रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:260
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <n> other(s) and saved the signature in "
@@ -6380,7 +6360,7 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्ये च सफलतया हस्ताक्षरं कृत्वा <filename>%3</"
 "filename> इत्यत्र हस्ताक्षरं रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:269
 #, kde-kuit-format
 msgctxt "@info Successfully encrypted <file> and saved it as <file>."
 msgid ""
@@ -6390,7 +6370,7 @@ msgstr ""
 "<filename>%1</filename> इति सफलतया गुप्तीकरणं कृत्वा <filename>%2</filename> इति "
 "रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:272
+#: src/crypto/signencrypttask.cpp:275
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <file> and saved it as <file>."
@@ -6401,7 +6381,7 @@ msgstr ""
 "<filename>%1</filename> तथा <filename>%2</filename> इति सफलतया गुप्तीकरणं कृत्वा "
 "<filename>%3</filename> इति रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:281
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
@@ -6418,29 +6398,29 @@ msgstr[1] ""
 "<filename>%2</filename> तथा %1 अन्ये च सफलतया गुप्तीकरणं कृत्वा <filename>%3</"
 "filename> इति रक्षितम् ।"
 
-#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
-#: src/crypto/signencrypttask.cpp:929
+#: src/crypto/signencrypttask.cpp:300 src/crypto/signencrypttask.cpp:317
+#: src/crypto/signencrypttask.cpp:933
 #, kde-format
 msgid "Input error: %1"
 msgstr "निवेशदोषः %1"
 
-#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
+#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
 #, kde-format
 msgid "Output error: %1"
 msgstr "निर्गमदोषः %1"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:537
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "कार्यस्य कृते प्रोटोकॉलं निर्धारयितुं न शक्नोति"
 
-#: src/crypto/signencrypttask.cpp:584
+#: src/crypto/signencrypttask.cpp:588
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:800 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6449,53 +6429,93 @@ msgstr ""
 "एतेषां सञ्चिकानां सामान्यमूलनिर्देशिकां न प्राप्यते:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:813
+#: src/crypto/signencrypttask.cpp:817
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "हस्ताक्षरितं एन्क्रिप्टेड् च संग्रहणं निर्माय ..."
 
-#: src/crypto/signencrypttask.cpp:829
+#: src/crypto/signencrypttask.cpp:833
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "एन्क्रिप्टेड् आर्काइव् निर्माय ..."
 
-#: src/crypto/signencrypttask.cpp:845
+#: src/crypto/signencrypttask.cpp:849
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "हस्ताक्षरितं संग्रहं निर्माय ..."
 
-#: src/crypto/signencrypttask.cpp:972
+#: src/crypto/signencrypttask.cpp:976
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "नोटपैड् हस्ताक्षरं कर्तुं असफलम्: %1"
 
-#: src/crypto/signencrypttask.cpp:975
+#: src/crypto/signencrypttask.cpp:979
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "नोटपैड् गुप्तीकरणं कर्तुं असफलम्: %1"
 
-#: src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "सफलतया एन्क्रिप्ट् कृत्वा नोटपैड् हस्ताक्षरितम्"
 
-#: src/crypto/signencrypttask.cpp:981
+#: src/crypto/signencrypttask.cpp:985
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "नोटपैड् सफलतया एन्क्रिप्ट् कृतवान्"
 
-#: src/crypto/signencrypttask.cpp:983
+#: src/crypto/signencrypttask.cpp:987
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "नोटपैड् इत्यत्र सफलतया हस्ताक्षरं कृतवान्"
+
+#: src/crypto/signencrypttask.cpp:994
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to verify the clipboard: %1"
+msgctxt "@info"
+msgid "Failed to sign the clipboard: %1"
+msgstr "अंशफलकं सत्यापयितुं असफलम्: %1"
+
+#: src/crypto/signencrypttask.cpp:997
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to decrypt the clipboard: %1"
+msgctxt "@info"
+msgid "Failed to encrypt the clipboard: %1"
+msgstr "अंशफलकं विगुप्तीकरणे असफलम्: %1"
+
+#: src/crypto/signencrypttask.cpp:1001
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the clipboard"
+msgctxt "@info"
+msgid "Successfully encrypted and signed the clipboard"
+msgstr "सफलतया अंशफलकं विगुप्तं कृत्वा सत्यापितम्"
+
+#: src/crypto/signencrypttask.cpp:1003
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the clipboard"
+msgctxt "@info"
+msgid "Successfully encrypted the clipboard"
+msgstr "अंशफलकं सफलतया विगुप्तं कृतवान्"
+
+#: src/crypto/signencrypttask.cpp:1005
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the clipboard"
+msgctxt "@info"
+msgid "Successfully signed the clipboard"
+msgstr "अंशफलकं सफलतया सत्यापितम्"
 
 #: src/crypto/task.cpp:172
 #, kde-format
@@ -8151,6 +8171,28 @@ msgstr "चरण 2: योग्यहस्ताक्षरप्रमा�
 #, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(वैकल्पिकम्) प्रारम्भिकपिन (SigG) सेट् कुर्वन्तु"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:100
+#, fuzzy, kde-format
+#| msgid "Sign / Encrypt Notepad"
+msgctxt "@title:dialog"
+msgid "Sign/Encrypt Clipboard"
+msgstr "नोटपैड् हस्ताक्षर / एन्क्रिप्ट करें"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:104
+#, fuzzy, kde-format
+#| msgid "Sign / Encrypt Notepad"
+msgctxt "@title"
+msgid "Sign/Encrypt Clipboard"
+msgstr "नोटपैड् हस्ताक्षर / एन्क्रिप्ट करें"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:206
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgctxt "@info"
+msgid "The clipboard does not contain text."
+msgstr "क्लिप्बोर्ड् हस्ताक्षरं वा एन्क्रिप्टेड् पाठं वा न दृश्यते ।"
 
 #: src/dialogs/smartcardwindow.cpp:98 src/dialogs/smartcardwindow.cpp:120
 #, kde-format
@@ -10833,43 +10875,43 @@ msgstr "डिजिटल हस्ताक्षर कुंजी"
 msgid "Key Management Key"
 msgstr "कुञ्जी प्रबन्धन कुञ्जी"
 
-#: src/systrayicon.cpp:115
+#: src/systrayicon.cpp:111
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "&Open प्रमाणपत्र प्रबन्धक..."
 
-#: src/systrayicon.cpp:117
+#: src/systrayicon.cpp:113
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "&<अनुप्रयोग>%1</अनुप्रयोग> विन्यस्तं कुर्वन्तु..."
 
-#: src/systrayicon.cpp:120
+#: src/systrayicon.cpp:116
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "&<application>%1</application> विषये..."
 
-#: src/systrayicon.cpp:123
+#: src/systrayicon.cpp:119
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "&निरोध <अनुप्रयोग>%1</अनुप्रयोग>"
 
-#: src/systrayicon.cpp:126
+#: src/systrayicon.cpp:122
 #, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "स्मार्टकार्ड"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:123
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "कार्ड स्थिति अद्यतन करें"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:124
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11420,31 +11462,34 @@ msgstr "unpack-command कृते मानकनिवेशे argument pass
 msgid "Caught unknown exception in group %1"
 msgstr "%1 समूहे अज्ञात अपवादः गृहीतः"
 
-#: src/utils/clipboardmenu.cpp:43
+#: src/utils/clipboardmenu.cpp:42
 #, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "प्रमाणपत्र आयात"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "एन्क्रिप्ट..."
 
-#: src/utils/clipboardmenu.cpp:47
-#, kde-format
+#: src/utils/clipboardmenu.cpp:44
+#, fuzzy, kde-format
+#| msgid "Sign/Encrypt..."
 msgctxt "@action"
-msgid "S/MIME-Sign..."
-msgstr "S/MIME-साइन..."
+msgid "Sign/Encrypt..."
+msgstr "हस्ताक्षर/गुप्तीकरण..."
 
-#: src/utils/clipboardmenu.cpp:50
-#, kde-format
+#: src/utils/clipboardmenu.cpp:45
+#, fuzzy, kde-format
+#| msgctxt "@action:button"
+#| msgid "Sign"
 msgctxt "@action"
-msgid "OpenPGP-Sign..."
-msgstr "OpenPGP-हस्ताक्षर..."
+msgid "Sign..."
+msgstr "चिह्नम्‌"
 
-#: src/utils/clipboardmenu.cpp:51
+#: src/utils/clipboardmenu.cpp:46
 #, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
@@ -13082,6 +13127,33 @@ msgid ""
 msgstr ""
 "सञ्चिकातः प्रमाणपत्रं आयातयन्तु।<nl/>सार्वजनिककीसर्वरतः आयातयितुं तस्य स्थाने "
 "<interface>Lookup on Server</interface> इत्यस्य उपयोगं कुर्वन्तु ।"
+
+#, fuzzy
+#~| msgid "Encrypt Clipboard Error"
+#~ msgctxt "@info"
+#~ msgid "Encrypting clipboard…"
+#~ msgstr "क्लिप्बोर्ड त्रुटिः एन्क्रिप्ट् कुर्वन्तु"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "The result of the export is empty."
+#~ msgctxt "@info"
+#~ msgid "The clipboard is empty"
+#~ msgstr "निर्यातस्य परिणामः शून्यः भवति ।"
+
+#, fuzzy
+#~| msgid "Sign Clipboard Error"
+#~ msgctxt "@info"
+#~ msgid "Signing clipboard…"
+#~ msgstr "क्लिप्बोर्ड त्रुटिः इति हस्ताक्षरं कुर्वन्तु"
+
+#~ msgctxt "@action"
+#~ msgid "S/MIME-Sign..."
+#~ msgstr "S/MIME-साइन..."
+
+#~ msgctxt "@action"
+#~ msgid "OpenPGP-Sign..."
+#~ msgstr "OpenPGP-हस्ताक्षर..."
 
 #~ msgctxt "@title"
 #~ msgid "Available Keys"

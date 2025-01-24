@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-23 00:41+0000\n"
+"POT-Creation-Date: 2025-01-24 00:42+0000\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -1105,10 +1105,6 @@ msgstr ""
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:164
-#: src/commands/encryptclipboardcommand.cpp:192
-#: src/commands/signclipboardcommand.cpp:165
-#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1538,20 +1534,6 @@ msgstr ""
 "Се случи грешка при обидот за внесување на CRL-датотеката. Излезот од GpgSM "
 "беше :\n"
 "%1"
-
-#: src/commands/encryptclipboardcommand.cpp:143
-#, fuzzy, kde-format
-#| msgid "Certificate Deletion Failed"
-msgctxt "@info"
-msgid "Encrypting clipboard…"
-msgstr "Бришењето на сертификатот не успеа"
-
-#: src/commands/encryptclipboardcommand.cpp:152
-#: src/commands/signclipboardcommand.cpp:153
-#, kde-format
-msgctxt "@info"
-msgid "The clipboard is empty"
-msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2337,7 +2319,7 @@ msgid ""
 msgstr "Не можам да создадам сертификат: %1"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:114
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
 msgstr ""
@@ -3885,12 +3867,6 @@ msgctxt "@info"
 msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
-msgstr ""
-
-#: src/commands/signclipboardcommand.cpp:143
-#, kde-format
-msgctxt "@info"
-msgid "Signing clipboard…"
 msgstr ""
 
 #: src/commands/signencryptfilescommand.cpp:274
@@ -5583,25 +5559,25 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "Само &за криптографирање"
 
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:87
+#: src/crypto/gui/newresultpage.cpp:98
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:89
+#: src/crypto/gui/newresultpage.cpp:100
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:106
+#: src/crypto/gui/resultpage.cpp:101
 #, fuzzy, kde-format
 #| msgid "Stop Operation"
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Запри ја операцијата"
 
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:108
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:103
 #, fuzzy, kde-format
 #| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 #| msgid "%1 (%2):"
@@ -5609,7 +5585,7 @@ msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1 (%2):"
 
-#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:111
 #, kde-format
 msgid "<b>Results</b>"
 msgstr ""
@@ -6094,6 +6070,7 @@ msgid "Output directory"
 msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:502
+#: src/dialogs/signencryptclipboarddialog.cpp:178
 #, kde-format
 msgctxt "@title"
 msgid "Results"
@@ -6121,6 +6098,7 @@ msgstr "Бришам клучеви..."
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:542
 #: src/dialogs/selftestdialog.cpp:449
+#: src/dialogs/signencryptclipboarddialog.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
@@ -6134,12 +6112,14 @@ msgid "Results"
 msgstr "&Детали"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:553
+#: src/dialogs/signencryptclipboarddialog.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:563
+#: src/dialogs/signencryptclipboarddialog.cpp:144
 #, fuzzy, kde-format
 #| msgid "For &signing only"
 msgctxt "@action:button"
@@ -6147,6 +6127,7 @@ msgid "Sign"
 msgstr "Само &за потпишување"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:566
+#: src/dialogs/signencryptclipboarddialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@action:button"
@@ -6154,6 +6135,7 @@ msgid "Encrypt"
 msgstr "Само &за криптографирање"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:569
+#: src/dialogs/signencryptclipboarddialog.cpp:150
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@action:button"
@@ -6161,6 +6143,7 @@ msgid "Sign / Encrypt"
 msgstr "Само &за криптографирање"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
+#: src/dialogs/signencryptclipboarddialog.cpp:164
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -6555,28 +6538,28 @@ msgid ""
 "slotWizardOperationPrepared"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:145
+#: src/crypto/signencrypttask.cpp:148
 #, fuzzy, kde-format
 #| msgid "For signing &and encrypting"
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "За потпишување &и криптографирање"
 
-#: src/crypto/signencrypttask.cpp:148
+#: src/crypto/signencrypttask.cpp:151
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Откажано."
 
-#: src/crypto/signencrypttask.cpp:151
+#: src/crypto/signencrypttask.cpp:154
 #, fuzzy, kde-format
 #| msgid "Certificate Deletion Failed"
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "Бришењето на сертификатот не успеа"
 
-#: src/crypto/signencrypttask.cpp:157
+#: src/crypto/signencrypttask.cpp:160
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6589,7 +6572,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:163
+#: src/crypto/signencrypttask.cpp:166
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6602,7 +6585,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:169
+#: src/crypto/signencrypttask.cpp:172
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6615,7 +6598,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/crypto/signencrypttask.cpp:179
+#: src/crypto/signencrypttask.cpp:182
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6627,7 +6610,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:185
+#: src/crypto/signencrypttask.cpp:188
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6640,7 +6623,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:191
+#: src/crypto/signencrypttask.cpp:194
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6662,7 +6645,7 @@ msgstr[2] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:201
+#: src/crypto/signencrypttask.cpp:204
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6675,7 +6658,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:207
+#: src/crypto/signencrypttask.cpp:210
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6688,7 +6671,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:213
+#: src/crypto/signencrypttask.cpp:216
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6710,7 +6693,7 @@ msgstr[2] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:223
+#: src/crypto/signencrypttask.cpp:226
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6724,7 +6707,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:229
+#: src/crypto/signencrypttask.cpp:232
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6734,7 +6717,7 @@ msgid ""
 "filename> and saved it as <filename>%3</filename>."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:235
+#: src/crypto/signencrypttask.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6757,7 +6740,7 @@ msgstr[2] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:248
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6770,7 +6753,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:251
+#: src/crypto/signencrypttask.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6785,7 +6768,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:260
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6809,7 +6792,7 @@ msgstr[2] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:269
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6822,7 +6805,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:272
+#: src/crypto/signencrypttask.cpp:275
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6836,7 +6819,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:281
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -6859,87 +6842,122 @@ msgstr[2] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
-#: src/crypto/signencrypttask.cpp:929
+#: src/crypto/signencrypttask.cpp:300 src/crypto/signencrypttask.cpp:317
+#: src/crypto/signencrypttask.cpp:933
 #, kde-format
 msgid "Input error: %1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
+#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
 #, kde-format
 msgid "Output error: %1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:537
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:584
+#: src/crypto/signencrypttask.cpp:588
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:800 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:813
+#: src/crypto/signencrypttask.cpp:817
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Бришам клучеви..."
 
-#: src/crypto/signencrypttask.cpp:829
+#: src/crypto/signencrypttask.cpp:833
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Земам клучеви..."
 
-#: src/crypto/signencrypttask.cpp:845
+#: src/crypto/signencrypttask.cpp:849
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Земам клучеви..."
 
-#: src/crypto/signencrypttask.cpp:972
+#: src/crypto/signencrypttask.cpp:976
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/signencrypttask.cpp:975
+#: src/crypto/signencrypttask.cpp:979
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:981
+#: src/crypto/signencrypttask.cpp:985
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:983
+#: src/crypto/signencrypttask.cpp:987
 #, fuzzy, kde-format
 #| msgid "Secret keys imported:"
 msgctxt "@info"
 msgid "Successfully signed the notepad"
+msgstr "Внесени тајни клучеви:"
+
+#: src/crypto/signencrypttask.cpp:994
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to sign the clipboard: %1"
+msgstr "Не можам да создадам сертификат: %1"
+
+#: src/crypto/signencrypttask.cpp:997
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Failed to encrypt the clipboard: %1"
+msgstr "Не можам да создадам сертификат: %1"
+
+#: src/crypto/signencrypttask.cpp:1001
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@info"
+msgid "Successfully encrypted and signed the clipboard"
+msgstr "&Сертификати"
+
+#: src/crypto/signencrypttask.cpp:1003
+#, fuzzy, kde-format
+#| msgid "&Certificates"
+msgctxt "@info"
+msgid "Successfully encrypted the clipboard"
+msgstr "&Сертификати"
+
+#: src/crypto/signencrypttask.cpp:1005
+#, fuzzy, kde-format
+#| msgid "Secret keys imported:"
+msgctxt "@info"
+msgid "Successfully signed the clipboard"
 msgstr "Внесени тајни клучеви:"
 
 #: src/crypto/task.cpp:172
@@ -8669,6 +8687,26 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui:81
 #, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
+msgstr ""
+
+#: src/dialogs/signencryptclipboarddialog.cpp:100
+#, fuzzy, kde-format
+#| msgid "For &encrypting only"
+msgctxt "@title:dialog"
+msgid "Sign/Encrypt Clipboard"
+msgstr "Само &за криптографирање"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:104
+#, fuzzy, kde-format
+#| msgid "For &encrypting only"
+msgctxt "@title"
+msgid "Sign/Encrypt Clipboard"
+msgstr "Само &за криптографирање"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:206
+#, kde-format
+msgctxt "@info"
+msgid "The clipboard does not contain text."
 msgstr ""
 
 #: src/dialogs/smartcardwindow.cpp:98 src/dialogs/smartcardwindow.cpp:120
@@ -11334,45 +11372,45 @@ msgstr "Нови потписи:"
 msgid "Key Management Key"
 msgstr "Запри ја операцијата"
 
-#: src/systrayicon.cpp:115
+#: src/systrayicon.cpp:111
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "Грешка во менаџерот за сертификати"
 
-#: src/systrayicon.cpp:117
+#: src/systrayicon.cpp:113
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:120
+#: src/systrayicon.cpp:116
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:123
+#: src/systrayicon.cpp:119
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr ""
 
-#: src/systrayicon.cpp:126
+#: src/systrayicon.cpp:122
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "Одбери CRL-датотека"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:123
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr ""
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:124
 #, fuzzy, kde-format
 #| msgid "Set F&ont..."
 msgctxt "@action:inmenu"
@@ -11910,33 +11948,35 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:43
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 #| msgid "Certificate Import Failed"
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Внесувањето на сертификатот не успеа"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:43
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Само &за криптографирање"
 
-#: src/utils/clipboardmenu.cpp:47
-#, kde-format
+#: src/utils/clipboardmenu.cpp:44
+#, fuzzy, kde-format
+#| msgid "For &encrypting only"
 msgctxt "@action"
-msgid "S/MIME-Sign..."
-msgstr ""
+msgid "Sign/Encrypt..."
+msgstr "Само &за криптографирање"
 
-#: src/utils/clipboardmenu.cpp:50
-#, kde-format
+#: src/utils/clipboardmenu.cpp:45
+#, fuzzy, kde-format
+#| msgid "For &signing only"
 msgctxt "@action"
-msgid "OpenPGP-Sign..."
-msgstr ""
+msgid "Sign..."
+msgstr "Само &за потпишување"
 
-#: src/utils/clipboardmenu.cpp:51
+#: src/utils/clipboardmenu.cpp:46
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@action"
@@ -13677,6 +13717,12 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Certificate Deletion Failed"
+#~ msgctxt "@info"
+#~ msgid "Encrypting clipboard…"
+#~ msgstr "Бришењето на сертификатот не успеа"
+
+#, fuzzy
 #~| msgid "Certificate Download Failed"
 #~ msgctxt "@label"
 #~ msgid "Search available keys"
@@ -14654,12 +14700,6 @@ msgstr ""
 #~ msgctxt "@action"
 #~ msgid "Encrypt"
 #~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "For &signing only"
-#~ msgctxt "@action"
-#~ msgid "Sign"
-#~ msgstr "Само &за потпишување"
 
 #, fuzzy
 #~| msgid "Certificate Deletion Failed"

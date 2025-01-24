@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-23 00:41+0000\n"
+"POT-Creation-Date: 2025-01-24 00:42+0000\n"
 "PO-Revision-Date: 2025-01-07 20:32+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -1016,10 +1016,6 @@ msgstr ""
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:164
-#: src/commands/encryptclipboardcommand.cpp:192
-#: src/commands/signclipboardcommand.cpp:165
-#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1395,19 +1391,6 @@ msgid ""
 "was:\n"
 "%1"
 msgstr "أداة تعريف خطأ إلى استيراد CRL ملفّ الـ مخرجات من n 1"
-
-#: src/commands/encryptclipboardcommand.cpp:143
-#, fuzzy, kde-format
-msgctxt "@info"
-msgid "Encrypting clipboard…"
-msgstr "شهادة حذف فشل"
-
-#: src/commands/encryptclipboardcommand.cpp:152
-#: src/commands/signclipboardcommand.cpp:153
-#, kde-format
-msgctxt "@info"
-msgid "The clipboard is empty"
-msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2138,7 +2121,7 @@ msgid ""
 msgstr "يمكن أن ليس توليد شهادة 1"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:114
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
 msgstr "الحافظة"
@@ -3543,12 +3526,6 @@ msgctxt "@info"
 msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
-msgstr ""
-
-#: src/commands/signclipboardcommand.cpp:143
-#, kde-format
-msgctxt "@info"
-msgid "Signing clipboard…"
 msgstr ""
 
 #: src/commands/signencryptfilescommand.cpp:274
@@ -5121,30 +5098,30 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "لـ"
 
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:87
+#: src/crypto/gui/newresultpage.cpp:98
 #, kde-format
 msgid "%1: All operations completed."
 msgstr ""
 
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:89
+#: src/crypto/gui/newresultpage.cpp:100
 #, kde-format
 msgid "All operations completed."
 msgstr ""
 
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:106
+#: src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "العملية %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:108
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:103
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:111
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>النّتائج</b>"
@@ -5592,6 +5569,7 @@ msgid "Output directory"
 msgstr "مجلّد الإخراج"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:502
+#: src/dialogs/signencryptclipboarddialog.cpp:178
 #, kde-format
 msgctxt "@title"
 msgid "Results"
@@ -5617,6 +5595,7 @@ msgstr "جاري الحذف."
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:542
 #: src/dialogs/selftestdialog.cpp:449
+#: src/dialogs/signencryptclipboarddialog.cpp:132
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
@@ -5629,30 +5608,35 @@ msgid "Results"
 msgstr "النّتائج"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:553
+#: src/dialogs/signencryptclipboarddialog.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "أنهِ"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:563
+#: src/dialogs/signencryptclipboarddialog.cpp:144
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "وقّع"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:566
+#: src/dialogs/signencryptclipboarddialog.cpp:147
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "عمِّ"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:569
+#: src/dialogs/signencryptclipboarddialog.cpp:150
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "وقّع/عمِّ"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
+#: src/dialogs/signencryptclipboarddialog.cpp:164
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -6020,26 +6004,26 @@ msgid ""
 "slotWizardOperationPrepared"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:145
+#: src/crypto/signencrypttask.cpp:148
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "لـ و"
 
-#: src/crypto/signencrypttask.cpp:148
+#: src/crypto/signencrypttask.cpp:151
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "ملغى."
 
-#: src/crypto/signencrypttask.cpp:151
+#: src/crypto/signencrypttask.cpp:154
 #, fuzzy, kde-format
 #| msgid "Encryption failed."
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "فشل التشفير."
 
-#: src/crypto/signencrypttask.cpp:157
+#: src/crypto/signencrypttask.cpp:160
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
@@ -6047,7 +6031,7 @@ msgid ""
 "%2</emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:163
+#: src/crypto/signencrypttask.cpp:166
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6055,7 +6039,7 @@ msgid ""
 "filename>: <emphasis strong='true'>%3</emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:169
+#: src/crypto/signencrypttask.cpp:172
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6071,14 +6055,14 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: src/crypto/signencrypttask.cpp:179
+#: src/crypto/signencrypttask.cpp:182
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
 "Failed to sign <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:185
+#: src/crypto/signencrypttask.cpp:188
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <file>: <reason>"
 msgid ""
@@ -6086,7 +6070,7 @@ msgid ""
 "<emphasis strong='true'>%3</emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:191
+#: src/crypto/signencrypttask.cpp:194
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
@@ -6102,7 +6086,7 @@ msgstr[3] "فشل نقل '%1' إلى '%2'"
 msgstr[4] "فشل نقل '%1' إلى '%2'"
 msgstr[5] "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:201
+#: src/crypto/signencrypttask.cpp:204
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to encrypt <file>: <reason>"
 msgid ""
@@ -6110,7 +6094,7 @@ msgid ""
 "emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:207
+#: src/crypto/signencrypttask.cpp:210
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6118,7 +6102,7 @@ msgid ""
 "<emphasis strong='true'>%3</emphasis>"
 msgstr "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:213
+#: src/crypto/signencrypttask.cpp:216
 #, fuzzy, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6134,7 +6118,7 @@ msgstr[3] "فشل نقل '%1' إلى '%2'"
 msgstr[4] "فشل نقل '%1' إلى '%2'"
 msgstr[5] "فشل نقل '%1' إلى '%2'"
 
-#: src/crypto/signencrypttask.cpp:223
+#: src/crypto/signencrypttask.cpp:226
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and saved it as <file>."
@@ -6143,7 +6127,7 @@ msgid ""
 "<filename>%2</filename>."
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:229
+#: src/crypto/signencrypttask.cpp:232
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6153,7 +6137,7 @@ msgid ""
 "filename> and saved it as <filename>%3</filename>."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:235
+#: src/crypto/signencrypttask.cpp:238
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
@@ -6170,7 +6154,7 @@ msgstr[3] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهاد�
 msgstr[4] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 msgstr[5] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:248
 #, fuzzy, kde-kuit-format
 msgctxt "@info Successfully signed <file> and saved the signature in <file>."
 msgid ""
@@ -6178,7 +6162,7 @@ msgid ""
 "<filename>%2</filename>."
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:251
+#: src/crypto/signencrypttask.cpp:254
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <file> and saved the signature in "
@@ -6188,7 +6172,7 @@ msgid ""
 "saved the signature in <filename>%3</filename>."
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:260
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <n> other(s) and saved the signature in "
@@ -6206,7 +6190,7 @@ msgstr[3] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهاد�
 msgstr[4] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 msgstr[5] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:269
 #, fuzzy, kde-kuit-format
 msgctxt "@info Successfully encrypted <file> and saved it as <file>."
 msgid ""
@@ -6214,7 +6198,7 @@ msgid ""
 "filename>."
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:272
+#: src/crypto/signencrypttask.cpp:275
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <file> and saved it as <file>."
@@ -6223,7 +6207,7 @@ msgid ""
 "and saved it as <filename>%3</filename>."
 msgstr "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:281
 #, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
@@ -6240,81 +6224,111 @@ msgstr[3] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهاد�
 msgstr[4] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 msgstr[5] "<qt><p> أداة تعريف خطأ بينما إلى حذف شهادة</p><p><b></b></p></qt>"
 
-#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
-#: src/crypto/signencrypttask.cpp:929
+#: src/crypto/signencrypttask.cpp:300 src/crypto/signencrypttask.cpp:317
+#: src/crypto/signencrypttask.cpp:933
 #, kde-format
 msgid "Input error: %1"
 msgstr "خطأ في الإدخال: %1"
 
-#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
+#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
 #, kde-format
 msgid "Output error: %1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:537
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:584
+#: src/crypto/signencrypttask.cpp:588
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:800 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
 "%1"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:813
+#: src/crypto/signencrypttask.cpp:817
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "جاري الحذف."
 
-#: src/crypto/signencrypttask.cpp:829
+#: src/crypto/signencrypttask.cpp:833
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Fetching keys..."
 
-#: src/crypto/signencrypttask.cpp:845
+#: src/crypto/signencrypttask.cpp:849
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Fetching keys..."
 
-#: src/crypto/signencrypttask.cpp:972
+#: src/crypto/signencrypttask.cpp:976
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "فشل إلى نفِّذ n 1"
 
-#: src/crypto/signencrypttask.cpp:975
+#: src/crypto/signencrypttask.cpp:979
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "فشل إلى نفِّذ n 1"
 
-#: src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:981
+#: src/crypto/signencrypttask.cpp:985
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:983
+#: src/crypto/signencrypttask.cpp:987
 #, fuzzy, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
+msgstr "سر:"
+
+#: src/crypto/signencrypttask.cpp:994
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to sign the clipboard: %1"
+msgstr "فشل إلى نفِّذ n 1"
+
+#: src/crypto/signencrypttask.cpp:997
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Failed to encrypt the clipboard: %1"
+msgstr "فشل إلى نفِّذ n 1"
+
+#: src/crypto/signencrypttask.cpp:1001
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted and signed the clipboard"
+msgstr "الشّهادات"
+
+#: src/crypto/signencrypttask.cpp:1003
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Successfully encrypted the clipboard"
+msgstr "الشّهادات"
+
+#: src/crypto/signencrypttask.cpp:1005
+#, fuzzy, kde-format
+msgctxt "@info"
+msgid "Successfully signed the clipboard"
 msgstr "سر:"
 
 #: src/crypto/task.cpp:172
@@ -7925,6 +7939,24 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui:81
 #, kde-format
 msgid "(optional) Set Initial PIN (SigG)"
+msgstr ""
+
+#: src/dialogs/signencryptclipboarddialog.cpp:100
+#, fuzzy, kde-format
+msgctxt "@title:dialog"
+msgid "Sign/Encrypt Clipboard"
+msgstr "لـ"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:104
+#, fuzzy, kde-format
+msgctxt "@title"
+msgid "Sign/Encrypt Clipboard"
+msgstr "لـ"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:206
+#, kde-format
+msgctxt "@info"
+msgid "The clipboard does not contain text."
 msgstr ""
 
 #: src/dialogs/smartcardwindow.cpp:98 src/dialogs/smartcardwindow.cpp:120
@@ -10463,43 +10495,43 @@ msgstr "جديد:"
 msgid "Key Management Key"
 msgstr "يجري توليد المفتاح"
 
-#: src/systrayicon.cpp:115
+#: src/systrayicon.cpp:111
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "شهادة المدير خطأ"
 
-#: src/systrayicon.cpp:117
+#: src/systrayicon.cpp:113
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr "ا&ضبط <application>%1</application>..."
 
-#: src/systrayicon.cpp:120
+#: src/systrayicon.cpp:116
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr "&عن <application>%1</application>..."
 
-#: src/systrayicon.cpp:123
+#: src/systrayicon.cpp:119
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr "أ&طفئ <application>%1</application>"
 
-#: src/systrayicon.cpp:126
+#: src/systrayicon.cpp:122
 #, fuzzy, kde-format
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "انتقِ CRL ملف"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:123
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr ""
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:124
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Set NetKey v3 Initial PIN..."
@@ -11029,33 +11061,32 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr ""
 
-#: src/utils/clipboardmenu.cpp:43
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "شهادة استيراد فشل"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:43
 #, kde-format
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "عمِّ..."
 
-#: src/utils/clipboardmenu.cpp:47
+#: src/utils/clipboardmenu.cpp:44
 #, fuzzy, kde-format
-#| msgid "S/MIME"
+#| msgid "Sign/Encrypt..."
 msgctxt "@action"
-msgid "S/MIME-Sign..."
-msgstr "S/MIME"
+msgid "Sign/Encrypt..."
+msgstr "وقّع/عمِّ..."
 
-#: src/utils/clipboardmenu.cpp:50
+#: src/utils/clipboardmenu.cpp:45
 #, fuzzy, kde-format
-#| msgid "OpenPGP"
 msgctxt "@action"
-msgid "OpenPGP-Sign..."
-msgstr "OpenPGP"
+msgid "Sign..."
+msgstr "لـ"
 
-#: src/utils/clipboardmenu.cpp:51
+#: src/utils/clipboardmenu.cpp:46
 #, fuzzy, kde-format
 msgctxt "@action"
 msgid "Decrypt/Verify..."
@@ -12639,6 +12670,23 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid "Encrypting clipboard…"
+#~ msgstr "شهادة حذف فشل"
+
+#, fuzzy
+#~| msgid "S/MIME"
+#~ msgctxt "@action"
+#~ msgid "S/MIME-Sign..."
+#~ msgstr "S/MIME"
+
+#, fuzzy
+#~| msgid "OpenPGP"
+#~ msgctxt "@action"
+#~ msgid "OpenPGP-Sign..."
+#~ msgstr "OpenPGP"
+
 #~ msgctxt "@title"
 #~ msgid "Available Keys"
 #~ msgstr "المفاتيح المتوفرة"
@@ -13598,11 +13646,6 @@ msgstr ""
 #, fuzzy
 #~ msgctxt "@action"
 #~ msgid "Encrypt"
-#~ msgstr "لـ"
-
-#, fuzzy
-#~ msgctxt "@action"
-#~ msgid "Sign"
 #~ msgstr "لـ"
 
 #, fuzzy

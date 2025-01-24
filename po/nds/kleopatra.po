@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-23 00:41+0000\n"
+"POT-Creation-Date: 2025-01-24 00:42+0000\n"
 "PO-Revision-Date: 2014-09-18 17:03+0200\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -1132,10 +1132,6 @@ msgstr "\"gpgconf --reload gpg-agent\" fehlslaan: %1"
 #: src/commands/checksumverifyfilescommand.cpp:150
 #: src/commands/decryptverifyclipboardcommand.cpp:166
 #: src/commands/decryptverifyfilescommand.cpp:205
-#: src/commands/encryptclipboardcommand.cpp:164
-#: src/commands/encryptclipboardcommand.cpp:192
-#: src/commands/signclipboardcommand.cpp:165
-#: src/commands/signclipboardcommand.cpp:193
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
 msgid "An error occurred: %1"
@@ -1567,20 +1563,6 @@ msgstr ""
 "Dat geev en Fehler bi't Utgeven vun den ZTL-Twischenspieker. De Utgaav vun "
 "GpgSM weer:\n"
 "%1"
-
-#: src/commands/encryptclipboardcommand.cpp:143
-#, fuzzy, kde-format
-#| msgid "Encrypt Clipboard Error"
-msgctxt "@info"
-msgid "Encrypting clipboard…"
-msgstr "Fehler bi't Verslöteln vun de Twischenaflaag"
-
-#: src/commands/encryptclipboardcommand.cpp:152
-#: src/commands/signclipboardcommand.cpp:153
-#, kde-format
-msgctxt "@info"
-msgid "The clipboard is empty"
-msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp:182
 #: src/commands/exportopenpgpcertstoservercommand.cpp:68
@@ -2399,7 +2381,7 @@ msgstr ""
 "Zertifikaattyp vun de Twischenaflaag ehr Inholt lett sik nich fastslaan."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:114
-#: src/utils/clipboardmenu.cpp:42 src/utils/output.cpp:782
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:782
 #, kde-format
 msgid "Clipboard"
 msgstr "Twischenaflaag"
@@ -3975,13 +3957,6 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
-
-#: src/commands/signclipboardcommand.cpp:143
-#, fuzzy, kde-format
-#| msgid "Sign Clipboard Error"
-msgctxt "@info"
-msgid "Signing clipboard…"
-msgstr "Fehler bi't Ünnerschrieven vun de Twischenaflaag"
 
 #: src/commands/signencryptfilescommand.cpp:274
 #, kde-format
@@ -5825,30 +5800,30 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "Verslöteln"
 
-#: src/crypto/gui/newresultpage.cpp:98 src/crypto/gui/resultpage.cpp:87
+#: src/crypto/gui/newresultpage.cpp:98
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: All Akschonen afslaten."
 
-#: src/crypto/gui/newresultpage.cpp:100 src/crypto/gui/resultpage.cpp:89
+#: src/crypto/gui/newresultpage.cpp:100
 #, kde-format
 msgid "All operations completed."
 msgstr "All Akschonen afslaten."
 
 #: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultlistwidget.cpp:209
-#: src/crypto/gui/resultpage.cpp:106
+#: src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Akschoon %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:108
+#: src/crypto/gui/newresultpage.cpp:123 src/crypto/gui/resultpage.cpp:103
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:116
+#: src/crypto/gui/newresultpage.cpp:131 src/crypto/gui/resultpage.cpp:111
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>Resultaten</b>"
@@ -6362,6 +6337,7 @@ msgid "Output directory"
 msgstr "&Utgaavorner:"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:502
+#: src/dialogs/signencryptclipboarddialog.cpp:178
 #, kde-format
 msgctxt "@title"
 msgid "Results"
@@ -6389,6 +6365,7 @@ msgstr "Dateien ünnerschrieven/verslöteln"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:542
 #: src/dialogs/selftestdialog.cpp:449
+#: src/dialogs/signencryptclipboarddialog.cpp:132
 #, fuzzy, kde-format
 #| msgid "Continue"
 msgctxt "@action:button"
@@ -6404,12 +6381,14 @@ msgid "Results"
 msgstr "Resultaten"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:553
+#: src/dialogs/signencryptclipboarddialog.cpp:192
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:563
+#: src/dialogs/signencryptclipboarddialog.cpp:144
 #, fuzzy, kde-format
 #| msgid "Sign"
 msgctxt "@action:button"
@@ -6417,6 +6396,7 @@ msgid "Sign"
 msgstr "Ünnerschrieven"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:566
+#: src/dialogs/signencryptclipboarddialog.cpp:147
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@action:button"
@@ -6424,6 +6404,7 @@ msgid "Encrypt"
 msgstr "Verslöteln"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:569
+#: src/dialogs/signencryptclipboarddialog.cpp:150
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign && Encrypt"
@@ -6432,6 +6413,7 @@ msgid "Sign / Encrypt"
 msgstr "Ünnerschrieven && verslöteln"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:583
+#: src/dialogs/signencryptclipboarddialog.cpp:164
 #, fuzzy, kde-format
 #| msgid "&Next"
 msgctxt "@action:button"
@@ -6825,28 +6807,28 @@ msgstr ""
 "Nich begäng Utnahm binnen \"SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared\" affungen"
 
-#: src/crypto/signencrypttask.cpp:145
+#: src/crypto/signencrypttask.cpp:148
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Mit Spood verslötelt un ünnerschreven."
 
-#: src/crypto/signencrypttask.cpp:148
+#: src/crypto/signencrypttask.cpp:151
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Ünnerschrieven afbraken."
 
-#: src/crypto/signencrypttask.cpp:151
+#: src/crypto/signencrypttask.cpp:154
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "Verslöteln afbraken."
 
-#: src/crypto/signencrypttask.cpp:157
+#: src/crypto/signencrypttask.cpp:160
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6860,7 +6842,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:163
+#: src/crypto/signencrypttask.cpp:166
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6874,7 +6856,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:169
+#: src/crypto/signencrypttask.cpp:172
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6886,7 +6868,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/crypto/signencrypttask.cpp:179
+#: src/crypto/signencrypttask.cpp:182
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6899,7 +6881,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:185
+#: src/crypto/signencrypttask.cpp:188
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6913,7 +6895,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:191
+#: src/crypto/signencrypttask.cpp:194
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6933,7 +6915,7 @@ msgstr[1] ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:201
+#: src/crypto/signencrypttask.cpp:204
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6947,7 +6929,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:207
+#: src/crypto/signencrypttask.cpp:210
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6961,7 +6943,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:213
+#: src/crypto/signencrypttask.cpp:216
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6981,7 +6963,7 @@ msgstr[1] ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:223
+#: src/crypto/signencrypttask.cpp:226
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -6996,7 +6978,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:229
+#: src/crypto/signencrypttask.cpp:232
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7012,7 +6994,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:235
+#: src/crypto/signencrypttask.cpp:238
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7033,7 +7015,7 @@ msgstr[1] ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:245
+#: src/crypto/signencrypttask.cpp:248
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7047,7 +7029,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:251
+#: src/crypto/signencrypttask.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7063,7 +7045,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:257
+#: src/crypto/signencrypttask.cpp:260
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7085,7 +7067,7 @@ msgstr[1] ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:266
+#: src/crypto/signencrypttask.cpp:269
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7099,7 +7081,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:272
+#: src/crypto/signencrypttask.cpp:275
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7114,7 +7096,7 @@ msgstr ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:278
+#: src/crypto/signencrypttask.cpp:281
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -7135,29 +7117,29 @@ msgstr[1] ""
 "Temporeerdatei <filename>%1</filename> lett sik nich na <filename>%2</"
 "filename> koperen: <message>%3</message>"
 
-#: src/crypto/signencrypttask.cpp:297 src/crypto/signencrypttask.cpp:314
-#: src/crypto/signencrypttask.cpp:929
+#: src/crypto/signencrypttask.cpp:300 src/crypto/signencrypttask.cpp:317
+#: src/crypto/signencrypttask.cpp:933
 #, kde-format
 msgid "Input error: %1"
 msgstr "Ingaav-Fehler: %1"
 
-#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
+#: src/crypto/signencrypttask.cpp:302 src/crypto/signencrypttask.cpp:319
 #, kde-format
 msgid "Output error: %1"
 msgstr "Utgaav-Fehler: %1"
 
-#: src/crypto/signencrypttask.cpp:533
+#: src/crypto/signencrypttask.cpp:537
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "Protokoll för disse Opgaav lett sik nich fastslaan."
 
-#: src/crypto/signencrypttask.cpp:584
+#: src/crypto/signencrypttask.cpp:588
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:796 src/utils/archivedefinition.cpp:422
+#: src/crypto/signencrypttask.cpp:800 src/utils/archivedefinition.cpp:422
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -7166,14 +7148,14 @@ msgstr ""
 "För disse Dateien lett sik keen gemeen Wörtelorner finnen:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:813
+#: src/crypto/signencrypttask.cpp:817
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "Dateien ünnerschrieven un/oder verslöteln"
 
-#: src/crypto/signencrypttask.cpp:829
+#: src/crypto/signencrypttask.cpp:833
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -7181,7 +7163,7 @@ msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "Slötel warrt opstellt..."
 
-#: src/crypto/signencrypttask.cpp:845
+#: src/crypto/signencrypttask.cpp:849
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -7189,38 +7171,74 @@ msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "Slötel warrt opstellt..."
 
-#: src/crypto/signencrypttask.cpp:972
+#: src/crypto/signencrypttask.cpp:976
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "%1 lett sik nich utföhren: %2"
 
-#: src/crypto/signencrypttask.cpp:975
+#: src/crypto/signencrypttask.cpp:979
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "%1 lett sik nich utföhren: %2"
 
-#: src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:981
+#: src/crypto/signencrypttask.cpp:985
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr ""
 
-#: src/crypto/signencrypttask.cpp:983
+#: src/crypto/signencrypttask.cpp:987
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Key Pair Successfully Created"
 msgctxt "@info"
 msgid "Successfully signed the notepad"
+msgstr "Slötelpoor mit Spood opstellt"
+
+#: src/crypto/signencrypttask.cpp:994
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to sign the clipboard: %1"
+msgstr "%1 lett sik nich utföhren: %2"
+
+#: src/crypto/signencrypttask.cpp:997
+#, fuzzy, kde-format
+#| msgid "Failed to execute %1: %2"
+msgctxt "@info"
+msgid "Failed to encrypt the clipboard: %1"
+msgstr "%1 lett sik nich utföhren: %2"
+
+#: src/crypto/signencrypttask.cpp:1001
+#, fuzzy, kde-format
+#| msgid "certificate"
+msgctxt "@info"
+msgid "Successfully encrypted and signed the clipboard"
+msgstr "Zertifikaat"
+
+#: src/crypto/signencrypttask.cpp:1003
+#, fuzzy, kde-format
+#| msgid "certificate"
+msgctxt "@info"
+msgid "Successfully encrypted the clipboard"
+msgstr "Zertifikaat"
+
+#: src/crypto/signencrypttask.cpp:1005
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Key Pair Successfully Created"
+msgctxt "@info"
+msgid "Successfully signed the clipboard"
 msgstr "Slötelpoor mit Spood opstellt"
 
 #: src/crypto/task.cpp:172
@@ -9048,6 +9066,31 @@ msgstr ""
 #| msgid "Set Initial PIN (SigG)"
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "Eerst-PIN setten (SigG)"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:100
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Sign && Encrypt"
+msgctxt "@title:dialog"
+msgid "Sign/Encrypt Clipboard"
+msgstr "Ünnerschrieven && verslöteln"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:104
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Sign && Encrypt"
+msgctxt "@title"
+msgid "Sign/Encrypt Clipboard"
+msgstr "Ünnerschrieven && verslöteln"
+
+#: src/dialogs/signencryptclipboarddialog.cpp:206
+#, fuzzy, kde-format
+#| msgid ""
+#| "The clipboard does not appear to contain a signature or encrypted text."
+msgctxt "@info"
+msgid "The clipboard does not contain text."
+msgstr ""
+"As't lett bargt de Twischenaflaag keen Ünnerschrift oder verslötelt Text."
 
 #: src/dialogs/smartcardwindow.cpp:98 src/dialogs/smartcardwindow.cpp:120
 #, fuzzy, kde-format
@@ -11836,46 +11879,46 @@ msgstr "Lokaal Ünnerschrift"
 msgid "Key Management Key"
 msgstr "Slötel warrt opstellt"
 
-#: src/systrayicon.cpp:115
+#: src/systrayicon.cpp:111
 #, fuzzy, kde-format
 #| msgid "&Open Certificate Manager..."
 msgctxt "@action:inmenu"
 msgid "&Open Certificate Manager..."
 msgstr "Zertifikaatpleger &opmaken..."
 
-#: src/systrayicon.cpp:117
+#: src/systrayicon.cpp:113
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Configure <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:120
+#: src/systrayicon.cpp:116
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&About <application>%1</application>..."
 msgstr ""
 
-#: src/systrayicon.cpp:123
+#: src/systrayicon.cpp:119
 #, kde-kuit-format
 msgctxt "@action:inmenu"
 msgid "&Shutdown <application>%1</application>"
 msgstr ""
 
-#: src/systrayicon.cpp:126
+#: src/systrayicon.cpp:122
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgctxt "@title:menu"
 msgid "SmartCard"
 msgstr "SmartKoort"
 
-#: src/systrayicon.cpp:127
+#: src/systrayicon.cpp:123
 #, fuzzy, kde-format
 #| msgid "Update Card Status"
 msgctxt "@action:inmenu"
 msgid "Update Card Status"
 msgstr "Koort-Status opfrischen"
 
-#: src/systrayicon.cpp:128
+#: src/systrayicon.cpp:124
 #, fuzzy, kde-format
 #| msgid "Set NetKey v3 Initial PIN..."
 msgctxt "@action:inmenu"
@@ -12462,35 +12505,36 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Nich begäng Utnahm binnen Koppel \"%1\" affungen"
 
-#: src/utils/clipboardmenu.cpp:43
+#: src/utils/clipboardmenu.cpp:42
 #, fuzzy, kde-format
 #| msgid "Certificate Import"
 msgctxt "@action"
 msgid "Certificate Import"
 msgstr "Zertifikaat importeren"
 
-#: src/utils/clipboardmenu.cpp:44
+#: src/utils/clipboardmenu.cpp:43
 #, fuzzy, kde-format
 #| msgid "Encrypt..."
 msgctxt "@action"
 msgid "Encrypt..."
 msgstr "Verslöteln..."
 
-#: src/utils/clipboardmenu.cpp:47
+#: src/utils/clipboardmenu.cpp:44
 #, fuzzy, kde-format
-#| msgid "S/MIME-Sign..."
+#| msgid "Sign/Encrypt..."
 msgctxt "@action"
-msgid "S/MIME-Sign..."
-msgstr "S/MIME-Ünnerschrift..."
+msgid "Sign/Encrypt..."
+msgstr "Ünnerschrieven/verslöteln..."
 
-#: src/utils/clipboardmenu.cpp:50
+#: src/utils/clipboardmenu.cpp:45
 #, fuzzy, kde-format
-#| msgid "OpenPGP-Sign..."
+#| msgctxt "@action"
+#| msgid "Sign"
 msgctxt "@action"
-msgid "OpenPGP-Sign..."
-msgstr "OpenPGP-Ünnerschrift..."
+msgid "Sign..."
+msgstr "Ünnerschrieven"
 
-#: src/utils/clipboardmenu.cpp:51
+#: src/utils/clipboardmenu.cpp:46
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify..."
 msgctxt "@action"
@@ -14251,6 +14295,30 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Encrypt Clipboard Error"
+#~ msgctxt "@info"
+#~ msgid "Encrypting clipboard…"
+#~ msgstr "Fehler bi't Verslöteln vun de Twischenaflaag"
+
+#, fuzzy
+#~| msgid "Sign Clipboard Error"
+#~ msgctxt "@info"
+#~ msgid "Signing clipboard…"
+#~ msgstr "Fehler bi't Ünnerschrieven vun de Twischenaflaag"
+
+#, fuzzy
+#~| msgid "S/MIME-Sign..."
+#~ msgctxt "@action"
+#~ msgid "S/MIME-Sign..."
+#~ msgstr "S/MIME-Ünnerschrift..."
+
+#, fuzzy
+#~| msgid "OpenPGP-Sign..."
+#~ msgctxt "@action"
+#~ msgid "OpenPGP-Sign..."
+#~ msgstr "OpenPGP-Ünnerschrift..."
+
+#, fuzzy
 #~| msgid "Search for Certificate by fingerprint"
 #~ msgctxt "@label"
 #~ msgid "Search available keys"
@@ -15822,10 +15890,6 @@ msgstr ""
 #~ msgctxt "@action"
 #~ msgid "Encrypt"
 #~ msgstr "Verslöteln"
-
-#~ msgctxt "@action"
-#~ msgid "Sign"
-#~ msgstr "Ünnerschrieven"
 
 #, fuzzy
 #~| msgid "Certification Not Possible"
