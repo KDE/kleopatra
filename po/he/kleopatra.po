@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-24 00:42+0000\n"
-"PO-Revision-Date: 2025-01-25 16:04+0200\n"
+"PO-Revision-Date: 2025-01-27 08:33+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -520,9 +520,7 @@ msgid "Certify Certificates"
 msgstr "הסמכת אישורים"
 
 #: src/commands/certifygroupcommand.cpp:171
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Certifying certificates ..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates…"
 msgstr "האישורים מוסמכים…"
@@ -1203,18 +1201,15 @@ msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "מפתח OpenPGP נוצר בהצלחה ממפתחות הכרטיס."
 
 #: src/commands/decryptverifyclipboardcommand.cpp:136
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Clipboard Error"
+#, kde-format
 msgctxt "@info"
 msgid "Decrypting/Verifying clipboard…"
-msgstr "פענוח/אימות שגיאות לוח גזירים"
+msgstr "פענוח/אימות לוח גזירים…"
 
 #: src/commands/decryptverifyclipboardcommand.cpp:153
-#, fuzzy, kde-format
-#| msgid ""
-#| "The clipboard does not appear to contain a signature or encrypted text."
+#, kde-format
 msgid "The clipboard does not appear to contain signed or encrypted text."
-msgstr "נראה שלוח הגזירים לא מכיל טקסט חתימה או טקסט מוצפן."
+msgstr "נראה שלוח הגזירים לא מכיל טקסט חתום או מוצפן."
 
 #: src/commands/decryptverifyfilescommand.cpp:67
 #, kde-format
@@ -2124,12 +2119,10 @@ msgid "Process finished"
 msgstr "התהליך הסתיים"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:98
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Import Certificate from Card"
+#, kde-format
 msgctxt "@info"
 msgid "Importing certificate from clipboard…"
-msgstr "ייבוא אישור מכרטיס"
+msgstr "ייבוא אישור מלוח גזירים…"
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
 #, kde-format
@@ -2138,19 +2131,17 @@ msgid "The clipboard is empty. Nothing imported."
 msgstr ""
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:108
-#, fuzzy, kde-format
-#| msgid "Clipboard contents do not look like a certificate."
+#, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
-msgstr "תוכן לוח הגזירים לא נראה כמו אישור."
+msgstr "תוכן לוח הגזירים לא נראה כמו אישור. לא ייובא שום דבר."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
-#, fuzzy, kde-format
-#| msgid "Could not determine certificate type of clipboard contents."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Could not determine certificate type of clipboard contents. Nothing imported."
-msgstr "לא ניתן לאתר את סוג האישור מתוכן לוח הגזירים."
+msgstr "לא ניתן לאתר את סוג האישור מתוכן לוח הגזירים. לא ייובא שום דבר."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:114
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:782
@@ -2538,14 +2529,15 @@ msgid "Clear CRL Cache Error"
 msgstr "שגיאה בפינוי מטמון רשימת השלילה"
 
 #: src/commands/importcrlcommand.cpp:191
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
 "because of an unexpected error. Please check the output of gpgsm --call-"
 "dirmngr loadcrl <filename> for details."
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"תהליך GpgSM שניסה לייבא את קובץ ה־CRL (רשימת שלילת אישורים) הסתיים מוקדם "
+"מהצפוי עקב שגיאה מפתיעה. נא לבדוק את הפלט של הפקודה ‎gpgsm --call-dirmngr "
+"loadcrl <filename> לפרטים נוספים."
 
 #: src/commands/importcrlcommand.cpp:194 src/commands/importcrlcommand.cpp:199
 #, kde-format
@@ -3273,6 +3265,10 @@ msgid ""
 "your network connection, and the number of certificates to check.</para> "
 "<para>Are you sure you want to continue?</para>"
 msgstr ""
+"<para>ריענון אישורי X.509 מאלץ את הורדת כל רשימות שלילת האישורים (CRLs), "
+"אפילו אם הם תקפים בכל מקרה.</para><para>התהליך הזה יכול להעמיס על הרשת שלך "
+"וגם על רשתות של אחרים ועלול לארוך שעה או יותר עד שיושלם, כתלות במהירות "
+"החיבור שלך ומספר האישורים לבדיקה.</para> <para>להמשיך?</para>"
 
 #: src/commands/refreshx509certscommand.cpp:48
 #, kde-format
@@ -6499,44 +6495,34 @@ msgid "Successfully signed the notepad"
 msgstr "המחברת נחתמה בהצלחה"
 
 #: src/crypto/signencrypttask.cpp:994
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to verify the clipboard: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
-msgstr "אימות לוח הגזירים נכשל: %1"
+msgstr "חתימת לוח הגזירים נכשלה: %1"
 
 #: src/crypto/signencrypttask.cpp:997
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to decrypt the clipboard: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
-msgstr "פענוח לוח הגזירים נכשל: %1"
+msgstr "הצפנת לוח הגזירים נכשלה: %1"
 
 #: src/crypto/signencrypttask.cpp:1001
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted and verified the clipboard"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
-msgstr "לוח הגזירים פוענח ואומת בהצלחה"
+msgstr "לוח הגזירים הוצפן ונחתם בהצלחה"
 
 #: src/crypto/signencrypttask.cpp:1003
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted the clipboard"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
-msgstr "לוח הגזירים פוענח בהצלחה"
+msgstr "לוח הגזירים הוצפן בהצלחה"
 
 #: src/crypto/signencrypttask.cpp:1005
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully verified the clipboard"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
-msgstr "לוח הגזירים אומת בהצלחה"
+msgstr "לוח הגזירים נחתם בהצלחה"
 
 #: src/crypto/task.cpp:172
 #, kde-format
@@ -8144,6 +8130,8 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
+"לא נמצאו NullPin (קוד איפוס ראשוני). <warning>אם לא הגדרת את הקוד הזה בעצמך, "
+"יכול להיות שהתעסקו עם הכרטיס.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:71
 #, kde-format
@@ -8210,26 +8198,22 @@ msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(רשות) הגדרת קוד אישי/PIN ראשוני (SigG)"
 
 #: src/dialogs/signencryptclipboarddialog.cpp:100
-#, fuzzy, kde-format
-#| msgid "Encrypt Clipboard Error"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Sign/Encrypt Clipboard"
-msgstr "שגיאת הצפנת לוח גזירים"
+msgstr "חתימת/הצפנת לוח הגזירים"
 
 #: src/dialogs/signencryptclipboarddialog.cpp:104
-#, fuzzy, kde-format
-#| msgid "Encrypt Clipboard Error"
+#, kde-format
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
-msgstr "שגיאת הצפנת לוח גזירים"
+msgstr "חתימת/הצפנת לוח הגזירים"
 
 #: src/dialogs/signencryptclipboarddialog.cpp:206
-#, fuzzy, kde-format
-#| msgid ""
-#| "The clipboard does not appear to contain a signature or encrypted text."
+#, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
-msgstr "נראה שלוח הגזירים לא מכיל טקסט חתימה או טקסט מוצפן."
+msgstr "לוח הגזירים לא מכיל טקסט."
 
 #: src/dialogs/smartcardwindow.cpp:98 src/dialogs/smartcardwindow.cpp:120
 #, kde-format
@@ -9305,6 +9289,10 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"כברירת מחדל, תתשאל Kleopatra בספריות האישורים של הספקים (WKD)\n"
+"         לאיתור מזהי משתמשים שהתקבלו במקור מ־WKD בעת עדכון אישור OpenPGP.\n"
+"         אם האפשרות הזאת פעילה, אז Kleopatra תתשאל ב־WKDs לאיתור כל מזהי "
+"המשתמשים."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:180
@@ -10041,7 +10029,7 @@ msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:822
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
-msgstr ""
+msgstr "SecOps לאישור VS-NfD"
 
 #: src/mainwindow.cpp:823
 #, kde-format
@@ -10369,6 +10357,12 @@ msgid ""
 "para><para>If that does not work, either, save the request to a file, and "
 "then attach that.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> ניסתה לשלוח דוא״ל דרך לקוח דוא״ל "
+"ברירת המחדל שלך.</para><para>חלק מלקוחות הדוא״ל ידועים בכך שאינם תומכים "
+"בקבצים מצורפים כשמפעילים אותם ככה.</para><para>אם בלקוח הדוא״ל שלך לא צורף "
+"קובץ, יש לגרור את הסמל של <application>Kleopatra</application> ולהציב אותו "
+"בחלון כתיבת ההודעות של לקוח הדוא״ל שלך.</para><para>אם זה לא עובד, יש לשמור "
+"את הבקשה לקובץ ואז לצרף אותו.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:248
 #, kde-format
@@ -11467,19 +11461,16 @@ msgid "Encrypt..."
 msgstr "הצפנה…"
 
 #: src/utils/clipboardmenu.cpp:44
-#, fuzzy, kde-format
-#| msgid "Sign/Encrypt..."
+#, kde-format
 msgctxt "@action"
 msgid "Sign/Encrypt..."
 msgstr "חתימה/הצפנה…"
 
 #: src/utils/clipboardmenu.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Sign"
+#, kde-format
 msgctxt "@action"
 msgid "Sign..."
-msgstr "חתימה"
+msgstr "חתימה…"
 
 #: src/utils/clipboardmenu.cpp:46
 #, kde-format
@@ -12464,6 +12455,11 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>ליצור שלושה מפתחות חדשים בכרטיס החכם וליצור אישור OpenPGP חדש עם "
+"המפתחות האלה. כרשות, מפתח ההצפנה נוצר מחוץ לכרטיס ונוצר לו גיבוי כדי שעדיין "
+"יהיה אפשר לגשת לנתונים המוצפנים עם המפתח הזה אם הכרטיס אבד או נפגם.</"
+"para><para><emphasis strong='true'>מפתחות קיימים בכרטיס החכם ישוכתבו.</"
+"emphasis></para>"
 
 #: src/view/smartcardactions.cpp:62 src/view/smartcardactions.cpp:86
 #, kde-format
