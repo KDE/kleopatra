@@ -22,9 +22,6 @@ kconfig_add_kcfg_files(_kcm_kleopatra_libkleopatraclient_extra_SRCS
   ${kleopatra_SOURCE_DIR}/src/kcfg/smimevalidationpreferences.kcfgc
 )
 
-set(_kcm_kleopatra_libkleopatraclient_extra_LIBS kleopatraclientgui)
-
-
 set(kcm_kleopatra_PART_SRCS
   dirservconfigpage.cpp
   appearanceconfigpage.cpp
@@ -66,5 +63,4 @@ target_link_libraries(kcm_kleopatra_static
   KF6::WidgetsAddons
   ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}
-  ${_kcm_kleopatra_libkleopatraclient_extra_LIBS}
 )
