@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-10 02:39+0000\n"
-"PO-Revision-Date: 2025-01-25 16:04+0200\n"
+"PO-Revision-Date: 2025-01-27 08:33+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -2532,14 +2532,15 @@ msgid "Clear CRL Cache Error"
 msgstr "שגיאה בפינוי מטמון רשימת השלילה"
 
 #: src/commands/importcrlcommand.cpp:191
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "The GpgSM process that tried to import the CRL file ended prematurely "
 "because of an unexpected error. Please check the output of gpgsm --call-"
 "dirmngr loadcrl <filename> for details."
 msgstr ""
-"התהליך Dirmngr, שניסה לייבא את קובץ רשימת ביטול התעודות, הסתיים מוקדם מן "
-"הצפוי בשל שגיאה לא צפויה."
+"תהליך GpgSM שניסה לייבא את קובץ ה־CRL (רשימת שלילת אישורים) הסתיים מוקדם "
+"מהצפוי עקב שגיאה מפתיעה. נא לבדוק את הפלט של הפקודה ‎gpgsm --call-dirmngr "
+"loadcrl <filename> לפרטים נוספים."
 
 #: src/commands/importcrlcommand.cpp:194 src/commands/importcrlcommand.cpp:199
 #, kde-format
@@ -3267,6 +3268,10 @@ msgid ""
 "your network connection, and the number of certificates to check.</para> "
 "<para>Are you sure you want to continue?</para>"
 msgstr ""
+"<para>ריענון אישורי X.509 מאלץ את הורדת כל רשימות שלילת האישורים (CRLs), "
+"אפילו אם הם תקפים בכל מקרה.</para><para>התהליך הזה יכול להעמיס על הרשת שלך "
+"וגם על רשתות של אחרים ועלול לארוך שעה או יותר עד שיושלם, כתלות במהירות "
+"החיבור שלך ומספר האישורים לבדיקה.</para> <para>להמשיך?</para>"
 
 #: src/commands/refreshx509certscommand.cpp:48
 #, kde-format
@@ -8140,6 +8145,8 @@ msgid ""
 "No NullPin found. <warning>If this PIN was not set by you personally, the "
 "card might have been tampered with.</warning>"
 msgstr ""
+"לא נמצאו NullPin (קוד איפוס ראשוני). <warning>אם לא הגדרת את הקוד הזה בעצמך, "
+"יכול להיות שהתעסקו עם הכרטיס.</warning>"
 
 #: src/dialogs/setinitialpindialog.cpp:71
 #, kde-format
@@ -9279,6 +9286,10 @@ msgid ""
 "         If this option is enabled, then Kleopatra will query WKDs for all "
 "user IDs."
 msgstr ""
+"כברירת מחדל, תתשאל Kleopatra בספריות האישורים של הספקים (WKD)\n"
+"         לאיתור מזהי משתמשים שהתקבלו במקור מ־WKD בעת עדכון אישור OpenPGP.\n"
+"         אם האפשרות הזאת פעילה, אז Kleopatra תתשאל ב־WKDs לאיתור כל מזהי "
+"המשתמשים."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
 #: src/kcfg/settings.kcfg:180
@@ -10027,7 +10038,7 @@ msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 #: src/mainwindow.cpp:829
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
-msgstr ""
+msgstr "SecOps לאישור VS-NfD"
 
 #: src/mainwindow.cpp:830
 #, kde-format
@@ -10343,6 +10354,12 @@ msgid ""
 "para><para>If that does not work, either, save the request to a file, and "
 "then attach that.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> ניסתה לשלוח דוא״ל דרך לקוח דוא״ל "
+"ברירת המחדל שלך.</para><para>חלק מלקוחות הדוא״ל ידועים בכך שאינם תומכים "
+"בקבצים מצורפים כשמפעילים אותם ככה.</para><para>אם בלקוח הדוא״ל שלך לא צורף "
+"קובץ, יש לגרור את הסמל של <application>Kleopatra</application> ולהציב אותו "
+"בחלון כתיבת ההודעות של לקוח הדוא״ל שלך.</para><para>אם זה לא עובד, יש לשמור "
+"את הבקשה לקובץ ואז לצרף אותו.</para>"
 
 #: src/newcertificatewizard/resultpage.cpp:246
 #, kde-format
@@ -12455,6 +12472,11 @@ msgid ""
 "strong='true'>Existing keys on the smart card will be overwritten.</"
 "emphasis></para>"
 msgstr ""
+"<para>ליצור שלושה מפתחות חדשים בכרטיס החכם וליצור אישור OpenPGP חדש עם "
+"המפתחות האלה. כרשות, מפתח ההצפנה נוצר מחוץ לכרטיס ונוצר לו גיבוי כדי שעדיין "
+"יהיה אפשר לגשת לנתונים המוצפנים עם המפתח הזה אם הכרטיס אבד או נפגם.</"
+"para><para><emphasis strong='true'>מפתחות קיימים בכרטיס החכם ישוכתבו.</"
+"emphasis></para>"
 
 #: src/view/smartcardactions.cpp:62 src/view/smartcardactions.cpp:86
 #, kde-format
