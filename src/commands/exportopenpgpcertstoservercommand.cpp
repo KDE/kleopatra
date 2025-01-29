@@ -143,7 +143,7 @@ QString ExportOpenPGPCertsToServerCommand::errorCaption() const
 
 QString ExportOpenPGPCertsToServerCommand::successCaption() const
 {
-    return i18nc("@title:window", "OpenPGP Certificate Export Finished");
+    return {};
 }
 
 QString ExportOpenPGPCertsToServerCommand::crashExitMessage(const QStringList &args) const
@@ -174,7 +174,7 @@ QString ExportOpenPGPCertsToServerCommand::errorExitMessage(const QStringList &a
 
 QString ExportOpenPGPCertsToServerCommand::successMessage(const QStringList &) const
 {
-    return i18nc("@info", "OpenPGP certificates exported successfully.");
+    return i18nc("@info", "Upload successful.");
 }
 
 #include "moc_exportopenpgpcertstoservercommand.cpp"
