@@ -9,7 +9,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 if (NOT DISABLE_KWATCHGNUPG)
     add_subdirectory(kwatchgnupg)
 endif()
-add_subdirectory(libkleopatraclient)
 add_subdirectory(conf)
 
 if(WIN32)
@@ -211,6 +210,8 @@ set(_kleopatra_SRCS
   commands/signencryptfilescommand.h
   commands/signencryptfoldercommand.cpp
   commands/signencryptfoldercommand.h
+  commands/testuiservercommand.cpp
+  commands/testuiservercommand.h
   commands/togglecertificateenabledcommand.cpp
   commands/togglecertificateenabledcommand.h
   commands/viewemailfilescommand.cpp
@@ -615,7 +616,6 @@ target_link_libraries(kleopatra_bin
   KF6::XmlGui
   Qt::Network
   Qt::PrintSupport # Printing secret keys
-  kleopatraclientcore
   ${_kleopatra_extra_libs}
   ${_kleopatra_mail_libs}
   ${_kleopatra_uiserver_extra_libs}

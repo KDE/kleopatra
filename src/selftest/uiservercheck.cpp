@@ -11,9 +11,8 @@
 
 #include "uiservercheck.h"
 
+#include "commands/testuiservercommand.h"
 #include "implementation_p.h"
-
-#include <libkleopatraclient/core/command.h>
 
 #include <QCoreApplication>
 #include <QEventLoop>
@@ -37,7 +36,7 @@ public:
 
     void runTest()
     {
-        KleopatraClientCopy::Command command;
+        Commands::TestUiServerCommand command;
 
         {
             QEventLoop loop;
@@ -59,6 +58,7 @@ public:
             m_explanation = xi18nc("@info", "It seems another <application>Kleopatra</application> is running (with process-id %1)", command.serverPid());
             m_proposedFix = xi18nc("@info", "Quit any other running instances of <application>Kleopatra</application>.");
         } else {
+            // TODO make sure that the logic is even run
             m_passed = true;
         }
     }

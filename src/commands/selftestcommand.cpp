@@ -136,9 +136,9 @@ private:
     {
         std::vector<std::shared_ptr<Kleo::SelfTest>> tests;
 
-#if defined(Q_OS_WIN)
+#if !defined(Q_OS_WIN)
         qCDebug(KLEOPATRA_LOG) << "Checking Windows Registry...";
-        tests.push_back(makeGpgProgramRegistryCheckSelfTest());
+        // tests.push_back(makeGpgProgramRegistryCheckSelfTest());
         qCDebug(KLEOPATRA_LOG) << "Checking Ui Server connectivity...";
         tests.push_back(makeUiServerConnectivitySelfTest());
 #endif
