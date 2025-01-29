@@ -12,8 +12,7 @@
 #include "uiservercheck.h"
 
 #include "implementation_p.h"
-
-#include <libkleopatraclient/core/command.h>
+#include "selftest/testuiserver.h"
 
 #include <QCoreApplication>
 #include <QEventLoop>
@@ -37,7 +36,7 @@ public:
 
     void runTest()
     {
-        KleopatraClientCopy::Command command;
+        TestUiServer command;
 
         {
             QEventLoop loop;
