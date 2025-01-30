@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-29 00:41+0000\n"
-"PO-Revision-Date: 2025-01-27 08:33+0200\n"
+"PO-Revision-Date: 2025-01-29 08:37+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -1759,6 +1759,12 @@ msgid ""
 "removal of a published key.</para><para>Are you sure you want to continue?</"
 "para>"
 msgstr ""
+"<para>לא לכל ספק דוא״ל יש תמיכה ב־WKS, לכן כל מפתח שמיוצא בדרך הזאת עלול "
+"להיכשל פרטנית.</para><para>אם בחרת לייצא, תישלח בקשת אישור בדוא״ל אל <email>"
+"%1</email> שיש לאשר אותה עם תוכנית דוא״ל כדי להשלים את תהליך הייצוא.</"
+"para><para><application>KMail</application> יכול לטפל בבקשות מהסוג הזה אבל "
+"לא כל לקוחות הדוא״ל יכולים.</para><para>לאחר הייצוא, התקן (עדיין) לא מאפשר "
+"הסרה אוטומטית של מפתח שהוסר.</para><para>להמשיך?</para>"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:121
 #, kde-kuit-format
@@ -2128,7 +2134,7 @@ msgstr "ייבוא אישור מלוח גזירים…"
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
-msgstr ""
+msgstr "לוח הגזירים ריק. לא ייובא שום דבר."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:108
 #, kde-format
@@ -2492,13 +2498,13 @@ msgstr ""
 "אישורים שלא ניתן להשתמש בהם להצפנה. יכול להוביל לתוצאות מפתיעות.</para>"
 
 #: src/commands/importcertificatescommand.cpp:872
-#, fuzzy, kde-format
+#, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
-msgstr[0] "הארך תוקף תעודה"
-msgstr[1] "הארך תוקף תעודה"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "מפתח חותם מתקבל… (עלול לארוך זמן מה)"
+msgstr[1] "שני מתפחות חותמים מתקבלים… (עלול לארוך זמן מה)"
+msgstr[2] "%1 מתפחות חותמים מתקבלים… (עלול לארוך זמן מה)"
+msgstr[3] "%1 מתפחות חותמים מתקבלים… (עלול לארוך זמן מה)"
 
 #: src/commands/importcertificatescommand.cpp:907
 #: src/commands/importcertificatescommand.cpp:960
@@ -3993,6 +3999,9 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"כברירת מחדל, תתשאל Kleopatra בספריות האישורים של הספקים (WKD)לאיתור מזהי "
+"משתמשים שהתקבלו במקור מ־WKD בעת עדכון אישור OpenPGP. אם האפשרות הזאת פעילה, "
+"אז Kleopatra תתשאל ב־WKDs לאיתור כל מזהי המשתמשים."
 
 #: src/conf/dirservconfigpage.cpp:474
 #, kde-format
@@ -4280,10 +4289,9 @@ msgstr "נא לבחור כאן את האישור שבאמצעותו יחתום �
 
 #. i18n: ectx: property (text), widget (QPushButton, ocspSelectButton)
 #: src/conf/smimevalidationconfigurationwidget.ui:130
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgid "Change Certificate…"
-msgstr "אישור כרטיס"
+msgstr "החלפת אישור…"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:142
@@ -4329,6 +4337,10 @@ msgid ""
 "allowing trusted root certificates into your certificate store will "
 "undermine the security of the system."
 msgstr ""
+"אם האפשרות הזאת מסומנת בזמן שאישור רשות אישורים מיובא, תופיע בקשה לאשר את "
+"טביעת האצבע שלו ולהצהיר האם אישור העל הזה נחשב אמין בעיניך. יש לסמוך על "
+"אישור על לפני שהאישורים אותם הוא מסמיך יהפכו לאמינים, הקלת ראש בהרשאת אמון "
+"באישורי על לתוך מאגר האישורים שלך תערער את אבטחת המערכת."
 
 #. i18n: ectx: property (text), widget (QCheckBox, allowMarkTrustedCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:165
@@ -5557,6 +5569,11 @@ msgid ""
 "Kleopatra.</para><para>Future versions of Kleopatra are expected to also "
 "support detached signatures in this case.</para>"
 msgstr ""
+"<para>העברה לארכיון בשילוב עם חתימה בלבד דורשת כרגע משהו שידוע כרגע בשם "
+"חתימות אטומות - בניגוד לחתימות מנותקות, אלו מטמיעות את התוכן בחתימה.</"
+"para><para>זה תסדיר די חריג. כנראה שעדיף להעביר את הקבצים לארכיון בנפרד, ואז "
+"לחתום על הארכיון כקובץ אחד עם Kleopatra.</para><para>גרסאות עתידיות של "
+"Kleopatra גם אמורות לתמוך בחתימות מנותקות במקרה שכזה.</para>"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:293
 #, kde-format
@@ -8938,6 +8955,9 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
+"ערך שמולא מראש לשדה כתובת הדוא״ל של אישורי OpenPGP ו־S/MIME. הוא ידרוס את "
+"EMAIL_prefill (מילוי דוא״ל מראש). שימושי אם לא נמצאו הגדרות מערכת מתאימות "
+"עבור EMAIL_prefill."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
@@ -8966,6 +8986,9 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
+"אם חיובי/true, אז שדה השם של אישורי OpenPGP תמולא מראש במידע שנאסף מהמערכת,\n"
+"        כלומר, מהגדרות הדוא״ל של שולחן העבודה או, ב־Windows מה־Active "
+"Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:47
@@ -9791,6 +9814,10 @@ msgid ""
 "support.<br/>You can try to continue to use Kleopatra but there might be "
 "other problems.</qt>"
 msgstr ""
+"<qt>לא ניתן להפעיל את מודול Kleopatra לסייר הקבצים של Windows.<br/> השגיאה "
+"שסופקה היא: <b>%1</b><br/>כפי הנראה זה מעיד שיש בעיה עם ההתקנה שלך. כדאי "
+"לנסות להתקין מחדש או ליצור קשר עם הנהלת המערכת לקבלת תמיכה. <br/>אפשר לנסות "
+"להשתמש ב־Kleopatra אך עלולות לצוץ תקלות נוספות.</qt>"
 
 #: src/main.cpp:268
 #, kde-format
