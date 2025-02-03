@@ -59,6 +59,7 @@ endif ()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 find_package(ECM ${KF5_WANT_VERSION} CONFIG REQUIRED)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
@@ -88,6 +89,8 @@ else()
     set(KF_MIN_VERSION "5.105.0")
     set(KF_MAJOR_VERSION "5")
 endif()
+
+find_package(Threads REQUIRED)
 
 # Find KF5 packages
 find_package(KF${KF_MAJOR_VERSION} ${KF5_WANT_VERSION}

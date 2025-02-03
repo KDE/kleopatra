@@ -625,6 +625,7 @@ target_link_libraries(kleopatra_bin
   KF${KF_MAJOR_VERSION}::XmlGui
   Qt::Network
   Qt::PrintSupport # Printing secret keys
+  Threads::Threads
   kleopatraclientcore
   ${_kleopatra_extra_libs}
   ${_kleopatra_mail_libs}
