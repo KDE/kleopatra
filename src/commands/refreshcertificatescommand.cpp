@@ -411,10 +411,13 @@ void RefreshCertificatesCommand::Private::checkFinished()
         } else if (wkdRefreshResult.numConsidered() == 0) {
             // explicitly use pgpKeys.size() also for WKD to avoid confusion caused by different plural forms for keyserver result and WKD result
             text += xi18ncp("@info", "<para>The certificate was not found.</para>", "<para>The certificates were not found.</para>", pgpKeys.size());
-        } else {
+        } else if (pgpKeys.size() > 1) {
             success = true;
             // explicitly use pgpKeys.size() also for WKD to avoid confusion caused by different plural forms for keyserver result and WKD result
             text += xi18ncp("@info", "<para>The certificate was updated.</para>", "<para>The certificates were updated.</para>", pgpKeys.size());
+        } else if (pgpKeys.size() == 1) {
+            success = true;
+            text += informationOnChanges(wkdRefreshResult);
         }
     }
 
