@@ -210,7 +210,9 @@ void SearchBar::updateClickMessage(const QString &shortcutStr)
 // slot
 void SearchBar::setStringFilter(const QString &filter)
 {
-    d->lineEdit->setText(filter);
+    if (d->lineEdit->text() != filter) {
+        d->lineEdit->setText(filter);
+    }
 }
 
 // slot
