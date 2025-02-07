@@ -471,7 +471,7 @@ auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
         QString s;
         if (!r.id.isEmpty()) {
             const auto program = r.protocol == GpgME::OpenPGP ? gpg : gpgsm;
-            const auto headerLine = i18nc("file name (imported with gpg/gpgsm)", "%1 (imported with %2)").arg(r.id, program);
+            const auto headerLine = i18nc("file name (imported with gpg/gpgsm)", "%1 (imported with %2)", r.id, program);
             s += QStringLiteral("<div><b>%1</b></div>").arg(headerLine);
         }
         if (r.auditLog.error().code() == GPG_ERR_NO_DATA) {
