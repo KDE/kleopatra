@@ -1,5 +1,4 @@
-/*  crypto/gui/signencryptemailconflictdialog.cpp
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Intevation GmbH
 

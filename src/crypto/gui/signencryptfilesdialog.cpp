@@ -1,5 +1,4 @@
-/*  crypto/gui/signencryptfileswizard.cpp
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2009 Klarälvdalens Datakonsult AB
 

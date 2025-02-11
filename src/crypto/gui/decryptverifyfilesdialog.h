@@ -1,5 +1,4 @@
-/* crypto/gui/decryptverifyfilesdialog.h
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik

@@ -1,6 +1,4 @@
 /*
-    kleopageconfigdialog.h.h
-
     This file is part of Kleopatra
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH

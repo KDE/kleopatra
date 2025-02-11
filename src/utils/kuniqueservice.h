@@ -1,7 +1,5 @@
 #pragma once
 /*
-    kuniqueservice.h
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH

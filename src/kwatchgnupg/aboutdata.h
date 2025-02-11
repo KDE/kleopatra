@@ -1,6 +1,4 @@
 /*
-    aboutdata.h
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2004 Klarälvdalens Datakonsult AB
 

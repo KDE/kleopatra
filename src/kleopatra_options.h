@@ -1,6 +1,4 @@
 /*
-    kleopatra_options.h
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2015 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH

@@ -1,6 +1,4 @@
 /*
-    cryptooperationsconfigwidget.cpp
-
     This file is part of kleopatra, the KDE key manager
     SPDX-FileCopyrightText: 2010 Klarälvdalens Datakonsult AB
 

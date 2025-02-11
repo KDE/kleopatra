@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    selftest/gpgagentcheck.h
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2009 Klarälvdalens Datakonsult AB
 

@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    smartcard/readerstatus.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2009 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2020 g10 Code GmbH

@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/gui/resultitemwidget.h
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
 

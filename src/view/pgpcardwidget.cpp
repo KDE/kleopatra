@@ -1,5 +1,4 @@
-/*  view/pgpcardwiget.cpp
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2017 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileContributor: Intevation GmbH

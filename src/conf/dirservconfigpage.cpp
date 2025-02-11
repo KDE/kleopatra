@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    conf/dirservconfigpage.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2004, 2008 Klarälvdalens Datakonsult AB
 

@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    uiserver/decryptverifycommandfilesbase.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007 Klarälvdalens Datakonsult AB
 

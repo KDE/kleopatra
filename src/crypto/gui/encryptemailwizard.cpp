@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    crypto/gui/encryptemailwizard.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2023 g10 Code GmbH

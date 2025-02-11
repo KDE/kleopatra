@@ -1,6 +1,4 @@
 /*
-    dialogs/certificatedetailswidget.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2017 Intevation GmbH

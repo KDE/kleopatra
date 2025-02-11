@@ -1,5 +1,4 @@
-/*  overlaywidget.cpp
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik
     SPDX-FileCopyrightText: 2024 g10 Code GmbH

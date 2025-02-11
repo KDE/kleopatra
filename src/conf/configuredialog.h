@@ -1,6 +1,4 @@
 /*
-    configuredialog.h
-
     This file is part of Kleopatra
     SPDX-FileCopyrightText: 2000 Espen Sand <espen@kde.org>
     SPDX-FileCopyrightText: 2001-2002 Marc Mutz <mutz@kde.org>

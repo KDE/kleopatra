@@ -1,6 +1,4 @@
 /*
-    kwatchgnupgconfig.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2001, 2002, 2004 Klarälvdalens Datakonsult AB
 

@@ -1,6 +1,4 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    commands/importcertificatescommand.cpp
-
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2007, 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2016 Bundesamt für Sicherheit in der Informationstechnik

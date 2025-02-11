@@ -1,5 +1,4 @@
-/*  commands/setpivcardapplicationadministrationkeycommand.cpp
-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2020 g10 Code GmbH
     SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>

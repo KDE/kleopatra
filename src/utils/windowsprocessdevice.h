@@ -1,4 +1,4 @@
-/* utils/windowsprocessdevice.h
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2019 g 10code GmbH
 

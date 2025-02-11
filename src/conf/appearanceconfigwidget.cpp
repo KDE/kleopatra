@@ -1,6 +1,4 @@
 /*
-    appearanceconfigwidget.cpp
-
     This file is part of kleopatra, the KDE key manager
     SPDX-FileCopyrightText: 2002, 2004, 2008 Klarälvdalens Datakonsult AB
     SPDX-FileCopyrightText: 2002, 2003 Marc Mutz <mutz@kde.org>
