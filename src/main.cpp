@@ -105,6 +105,7 @@ int main(int argc, char **argv)
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.
     app.setOrganizationDomain(QStringLiteral("kde.org"));
+    qWarning() << app.arguments();
 
     STARTUP_TIMING << "Application created";
     /* Create the unique service ASAP to prevent double starts if
