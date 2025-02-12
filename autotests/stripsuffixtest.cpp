@@ -1,4 +1,4 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
+/*
     This file is part of Kleopatra's test suite.
     SPDX-FileCopyrightText: 2022 Carlo Vanini <silhusk@gmail.com>
 

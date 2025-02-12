@@ -1,4 +1,4 @@
-/* -*- mode: c++; c-basic-offset:4 -*-
+/*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2022 Felix Tiede
 
