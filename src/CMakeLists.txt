@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-add_subdirectory(icons)
 add_subdirectory(mimetypes)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
@@ -582,8 +581,9 @@ kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/tooltippreferences.kcfgc
 )
 
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.*")
 ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_SRCS})
+ecm_install_icons(ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR})
 
 add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_uiserver_SRCS})
 
