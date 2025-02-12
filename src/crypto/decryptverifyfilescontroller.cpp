@@ -84,6 +84,7 @@ DecryptVerifyFilesController::Private::taskFromOperationWidget(const DecryptVeri
                                                                const std::shared_ptr<OverwritePolicy> &overwritePolicy)
 {
     kleo_assert(w);
+    qWarning() << "B" << fileName << outDir;
 
     std::shared_ptr<AbstractDecryptVerifyTask> task;
 
@@ -370,6 +371,7 @@ std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildT
     std::vector<std::shared_ptr<Task>> tasks;
     for (int i = 0, end = fileNames.size(); i != end; ++i)
         try {
+            qWarning() << "A" << fileNames[i];
             const QDir fileDir = QFileInfo(fileNames[i]).absoluteDir();
             kleo_assert(fileDir.exists());
             tasks.push_back(

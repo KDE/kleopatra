@@ -446,6 +446,8 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                 // an encrypted message is also signed.
                 qCDebug(KLEOPATRA_LOG) << "creating a DecryptVerifyTask";
                 std::shared_ptr<DecryptVerifyTask> t(new DecryptVerifyTask);
+                qWarning() << "DecryptVerify!!!!!";
+                qWarning() << "input" << (bool)input << input.get();
                 if (input) {
                     t->setInput(input);
                 }

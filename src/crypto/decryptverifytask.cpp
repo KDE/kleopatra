@@ -930,6 +930,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
 #endif
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (!m_inputFilePath.isEmpty() && !m_outputFilePath.isEmpty()) {
+            qWarning() << "C" << m_inputFilePath;
             job->setInputFile(m_inputFilePath);
             job->setOutputFile(m_outputFilePath);
             const auto err = job->startIt();
@@ -939,6 +940,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
         }
 #else
         ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
+        qWarning() << "D" << dynamic_cast<QFile *>(m_input->ioDevice().get())->fileName();
         job->start(m_input->ioDevice(), m_output->ioDevice());
 #endif
         q->setJob(job.release());
