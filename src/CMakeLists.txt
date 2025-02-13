@@ -243,10 +243,6 @@ set(_kleopatra_SRCS
   crypto/gui/certificateselectionline.h
   crypto/gui/decryptverifyfilesdialog.cpp
   crypto/gui/decryptverifyfilesdialog.h
-  crypto/gui/decryptverifyfileswizard.cpp
-  crypto/gui/decryptverifyfileswizard.h
-  crypto/gui/decryptverifyoperationwidget.cpp
-  crypto/gui/decryptverifyoperationwidget.h
   crypto/gui/encryptemailwizard.cpp
   crypto/gui/encryptemailwizard.h
   crypto/gui/newresultpage.cpp

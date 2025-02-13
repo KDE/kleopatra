@@ -16,7 +16,6 @@
 
 #include <crypto/decryptverifytask.h>
 #include <crypto/gui/decryptverifyfilesdialog.h>
-#include <crypto/gui/decryptverifyoperationwidget.h>
 #include <crypto/taskcollection.h>
 
 #include "commands/decryptverifyfilescommand.h"
