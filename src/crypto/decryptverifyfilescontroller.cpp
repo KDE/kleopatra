@@ -10,7 +10,7 @@
 
 #include <config-kleopatra.h>
 
-#include "autodecryptverifyfilescontroller.h"
+#include "decryptverifyfilescontroller.h"
 
 #include "fileoperationspreferences.h"
 
@@ -81,12 +81,12 @@ struct FindExtension {
 };
 }
 
-class AutoDecryptVerifyFilesController::Private
+class DecryptVerifyFilesController::Private
 {
-    AutoDecryptVerifyFilesController *const q;
+    DecryptVerifyFilesController *const q;
 
 public:
-    explicit Private(AutoDecryptVerifyFilesController *qq);
+    explicit Private(DecryptVerifyFilesController *qq);
 
     void schedule();
 
@@ -121,13 +121,13 @@ public:
     std::unique_ptr<QTemporaryDir> m_workDir;
 };
 
-AutoDecryptVerifyFilesController::Private::Private(AutoDecryptVerifyFilesController *qq)
+DecryptVerifyFilesController::Private::Private(DecryptVerifyFilesController *qq)
     : q(qq)
 {
     qRegisterMetaType<VerificationResult>();
 }
 
-void AutoDecryptVerifyFilesController::Private::schedule()
+void DecryptVerifyFilesController::Private::schedule()
 {
     if (!m_runningTask && !m_runnableTasks.empty()) {
         const std::shared_ptr<Task> t = m_runnableTasks.back();
@@ -143,7 +143,7 @@ void AutoDecryptVerifyFilesController::Private::schedule()
     }
 }
 
-QString AutoDecryptVerifyFilesController::Private::getEmbeddedFileName(const QString &fileName) const
+QString DecryptVerifyFilesController::Private::getEmbeddedFileName(const QString &fileName) const
 {
     auto it = std::find_if(m_results.cbegin(), m_results.cend(), [fileName](const auto &r) {
         return r->fileName() == fileName;
@@ -161,7 +161,7 @@ QString AutoDecryptVerifyFilesController::Private::getEmbeddedFileName(const QSt
     }
 }
 
-void AutoDecryptVerifyFilesController::Private::exec()
+void DecryptVerifyFilesController::Private::exec()
 {
     Q_ASSERT(!m_dialog);
 
@@ -198,7 +198,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
     });
 }
 
-QList<AutoDecryptVerifyFilesController::Private::CryptoFile> AutoDecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
+QList<DecryptVerifyFilesController::Private::CryptoFile> DecryptVerifyFilesController::Private::classifyAndSortFiles(const QStringList &files)
 {
     const auto isSignature = [](int classification) -> bool {
         return mayBeDetachedSignature(classification) //
@@ -243,7 +243,7 @@ static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
     return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();
 }
 
-std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
+std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildTasks(const QStringList &fileNames, QStringList &undetected)
 {
     // sort files so that we make sure we first decrypt and then verify
     QList<CryptoFile> cryptoFiles = classifyAndSortFiles(fileNames);
@@ -498,44 +498,44 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
     return tasks;
 }
 
-void AutoDecryptVerifyFilesController::setFiles(const QStringList &files)
+void DecryptVerifyFilesController::setFiles(const QStringList &files)
 {
     d->m_passedFiles = files;
 }
 
-AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(QObject *parent)
+DecryptVerifyFilesController::DecryptVerifyFilesController(QObject *parent)
     : Controller(parent)
     , d(new Private(this))
 {
 }
 
-AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
+DecryptVerifyFilesController::DecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
     : Controller(ctx, parent)
     , d(new Private(this))
 {
 }
 
-AutoDecryptVerifyFilesController::~AutoDecryptVerifyFilesController()
+DecryptVerifyFilesController::~DecryptVerifyFilesController()
 {
     qCDebug(KLEOPATRA_LOG);
 }
 
-void AutoDecryptVerifyFilesController::start()
+void DecryptVerifyFilesController::start()
 {
     d->exec();
 }
 
-void AutoDecryptVerifyFilesController::setOperation(DecryptVerifyOperation op)
+void DecryptVerifyFilesController::setOperation(DecryptVerifyOperation op)
 {
     d->m_operation = op;
 }
 
-DecryptVerifyOperation AutoDecryptVerifyFilesController::operation() const
+DecryptVerifyOperation DecryptVerifyFilesController::operation() const
 {
     return d->m_operation;
 }
 
-void AutoDecryptVerifyFilesController::Private::cancelAllTasks()
+void DecryptVerifyFilesController::Private::cancelAllTasks()
 {
     // we just kill all runnable tasks - this will not result in
     // signal emissions.
@@ -547,7 +547,7 @@ void AutoDecryptVerifyFilesController::Private::cancelAllTasks()
     }
 }
 
-void AutoDecryptVerifyFilesController::cancel()
+void DecryptVerifyFilesController::cancel()
 {
     qCDebug(KLEOPATRA_LOG) << this << __func__;
     try {
@@ -561,7 +561,7 @@ void AutoDecryptVerifyFilesController::cancel()
     }
 }
 
-void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
+void DecryptVerifyFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
     Q_ASSERT(task);
     Q_UNUSED(task)
@@ -581,7 +581,7 @@ void AutoDecryptVerifyFilesController::doTaskDone(const Task *task, const std::s
     QTimer::singleShot(0, this, SLOT(schedule()));
 }
 
-void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
+void DecryptVerifyFilesController::Private::onDialogFinished(int result)
 {
     if (result == QDialog::Rejected) {
         q->cancel();
@@ -706,9 +706,9 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
     m_dialog->deleteLater();
 }
 
-std::shared_ptr<ArchiveDefinition> AutoDecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto,
-                                                                                             const std::vector<std::shared_ptr<ArchiveDefinition>> &ads,
-                                                                                             const QString &filename)
+std::shared_ptr<ArchiveDefinition> DecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto,
+                                                                                         const std::vector<std::shared_ptr<ArchiveDefinition>> &ads,
+                                                                                         const QString &filename)
 {
     const QFileInfo fi(outputFileName(filename));
     QString extension = fi.completeSuffix();
@@ -734,4 +734,4 @@ std::shared_ptr<ArchiveDefinition> AutoDecryptVerifyFilesController::pick_archiv
     }
 }
 
-#include "moc_autodecryptverifyfilescontroller.cpp"
+#include "moc_decryptverifyfilescontroller.cpp"

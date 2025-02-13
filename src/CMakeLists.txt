@@ -219,8 +219,8 @@ set(_kleopatra_SRCS
   conf/groupsconfigdialog.h
   conf/groupsconfigwidget.cpp
   conf/groupsconfigwidget.h
-  crypto/autodecryptverifyfilescontroller.cpp
-  crypto/autodecryptverifyfilescontroller.h
+  crypto/decryptverifyfilescontroller.cpp
+  crypto/decryptverifyfilescontroller.h
   crypto/certificateresolver.cpp
   crypto/certificateresolver.h
   crypto/checksumsutils_p.cpp

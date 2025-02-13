@@ -25,14 +25,14 @@ namespace Kleo
 namespace Crypto
 {
 
-class AutoDecryptVerifyFilesController : public Controller
+class DecryptVerifyFilesController : public Controller
 {
     Q_OBJECT
 public:
-    explicit AutoDecryptVerifyFilesController(QObject *parent = nullptr);
-    explicit AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
+    explicit DecryptVerifyFilesController(QObject *parent = nullptr);
+    explicit DecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent = nullptr);
 
-    ~AutoDecryptVerifyFilesController() override;
+    ~DecryptVerifyFilesController() override;
 
     void setFiles(const QStringList &files);
     void setOperation(DecryptVerifyOperation op);

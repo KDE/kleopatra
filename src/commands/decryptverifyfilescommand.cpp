@@ -13,7 +13,7 @@
 #include "command_p.h"
 #include "fileoperationspreferences.h"
 
-#include "crypto/autodecryptverifyfilescontroller.h"
+#include "crypto/decryptverifyfilescontroller.h"
 
 #include <utils/filedialog.h>
 
@@ -69,7 +69,7 @@ private:
     QStringList files;
     QStringList emailFiles;
     std::shared_ptr<const ExecutionContext> shared_qq;
-    AutoDecryptVerifyFilesController *mController;
+    DecryptVerifyFilesController *mController;
 };
 
 DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func()
@@ -89,7 +89,7 @@ DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyLi
     , files()
     , shared_qq(qq, [](DecryptVerifyFilesCommand *) {})
 {
-    mController = new AutoDecryptVerifyFilesController();
+    mController = new DecryptVerifyFilesController();
 }
 
 DecryptVerifyFilesCommand::Private::~Private()

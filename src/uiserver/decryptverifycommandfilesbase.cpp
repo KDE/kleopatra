@@ -12,7 +12,7 @@
 
 #include <crypto/decryptverifytask.h>
 
-#include "crypto/autodecryptverifyfilescontroller.h"
+#include "crypto/decryptverifyfilescontroller.h"
 
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
@@ -74,7 +74,7 @@ public Q_SLOTS:
 
 public:
 private:
-    std::shared_ptr<AutoDecryptVerifyFilesController> controller;
+    std::shared_ptr<DecryptVerifyFilesController> controller;
 };
 
 DecryptVerifyCommandFilesBase::DecryptVerifyCommandFilesBase()
@@ -91,14 +91,14 @@ int DecryptVerifyCommandFilesBase::doStart()
 {
     d->checkForErrors();
 
-    d->controller.reset(new AutoDecryptVerifyFilesController());
+    d->controller.reset(new DecryptVerifyFilesController());
 
     d->controller->setOperation(operation());
     d->controller->setFiles(fileNames());
 
     QObject::connect(d->controller.get(), &Controller::done, d.get(), &Private::slotDone, Qt::QueuedConnection);
     QObject::connect(d->controller.get(), &Controller::error, d.get(), &Private::slotError, Qt::QueuedConnection);
-    QObject::connect(d->controller.get(), &AutoDecryptVerifyFilesController::verificationResult, d.get(), &Private::verificationResult, Qt::QueuedConnection);
+    QObject::connect(d->controller.get(), &DecryptVerifyFilesController::verificationResult, d.get(), &Private::verificationResult, Qt::QueuedConnection);
 
     d->controller->start();
 
