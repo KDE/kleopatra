@@ -149,10 +149,7 @@ void AutoDecryptVerifyFilesController::Private::exec()
         reportError(makeGnuPGError(GPG_ERR_GENERAL),
                     xi18nc("@info",
                            "Failed to find encrypted or signed data in one or more files.<nl/>"
-                           "You can manually select what to do with the files now.<nl/>"
                            "If they contain signed or encrypted data please report a bug (see Help->Report Bug)."));
-        auto cmd = new Commands::DecryptVerifyFilesCommand(undetected, nullptr, true);
-        cmd->start();
     }
     if (tasks.empty()) {
         q->emitDoneOrError();

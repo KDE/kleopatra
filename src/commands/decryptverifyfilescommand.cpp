@@ -90,12 +90,7 @@ DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyLi
     , files()
     , shared_qq(qq, [](DecryptVerifyFilesCommand *) {})
 {
-    FileOperationsPreferences prefs;
-    if (!forceManualMode && prefs.autoDecryptVerify()) {
-        mController = new AutoDecryptVerifyFilesController();
-    } else {
-        mController = new DecryptVerifyFilesController();
-    }
+    mController = new AutoDecryptVerifyFilesController();
 }
 
 DecryptVerifyFilesCommand::Private::~Private()

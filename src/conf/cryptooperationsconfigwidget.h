@@ -47,7 +47,6 @@ private:
 private:
     QCheckBox *mPGPFileExtCB = nullptr;
     QCheckBox *mTreatP7mEmailCB = nullptr;
-    QCheckBox *mAutoDecryptVerifyCB = nullptr;
     QCheckBox *mAutoExtractArchivesCB = nullptr;
     QCheckBox *mASCIIArmorCB = nullptr;
     QCheckBox *mTmpDirCB = nullptr;

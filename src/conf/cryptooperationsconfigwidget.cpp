@@ -61,7 +61,6 @@ void CryptoOperationsConfigWidget::setupGui()
                                     "So that they can be opened with an editor or sent in a mail body. "
                                     "This will increase file size by one third."));
     mTreatP7mEmailCB = new QCheckBox(i18nc("@option:check", "Treat .p7m files without extensions as mails."));
-    mAutoDecryptVerifyCB = new QCheckBox(i18nc("@option:check", "Automatically start operation based on input detection for decrypt/verify."));
     mAutoExtractArchivesCB = new QCheckBox(i18nc("@option:check", "Automatically extract file archives after decryption"));
     mTmpDirCB = new QCheckBox(i18nc("@option:check", "Create temporary decrypted files in the folder of the encrypted file."));
     mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
@@ -84,7 +83,6 @@ void CryptoOperationsConfigWidget::setupGui()
 
     baseLay->addWidget(mPGPFileExtCB);
     baseLay->addWidget(mTreatP7mEmailCB);
-    baseLay->addWidget(mAutoDecryptVerifyCB);
     baseLay->addWidget(mAutoExtractArchivesCB);
     baseLay->addWidget(mASCIIArmorCB);
     baseLay->addWidget(mTmpDirCB);
@@ -122,7 +120,6 @@ void CryptoOperationsConfigWidget::defaults()
 {
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(filePrefs.findItem(QStringLiteral("UsePGPFileExt"))->getDefault().toBool());
-    filePrefs.setAutoDecryptVerify(filePrefs.findItem(QStringLiteral("AutoDecryptVerify"))->getDefault().toBool());
     filePrefs.setAutoExtractArchives(filePrefs.findItem(QStringLiteral("AutoExtractArchives"))->getDefault().toBool());
     filePrefs.setAddASCIIArmor(filePrefs.findItem(QStringLiteral("AddASCIIArmor"))->getDefault().toBool());
     filePrefs.setDontUseTmpDir(filePrefs.findItem(QStringLiteral("DontUseTmpDir"))->getDefault().toBool());
@@ -145,8 +142,6 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
 {
     mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
     mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
-    mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
-    mAutoDecryptVerifyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AutoDecryptVerify")));
     mAutoExtractArchivesCB->setChecked(filePrefs.autoExtractArchives());
     mAutoExtractArchivesCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AutoExtractArchives")));
     mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
@@ -212,7 +207,6 @@ void CryptoOperationsConfigWidget::save()
 {
     FileOperationsPreferences filePrefs;
     filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
-    filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
     filePrefs.setAutoExtractArchives(mAutoExtractArchivesCB->isChecked());
     filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
     filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());

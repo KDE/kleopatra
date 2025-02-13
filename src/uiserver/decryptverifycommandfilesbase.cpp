@@ -92,12 +92,7 @@ int DecryptVerifyCommandFilesBase::doStart()
 {
     d->checkForErrors();
 
-    FileOperationsPreferences prefs;
-    if (prefs.autoDecryptVerify()) {
-        d->controller.reset(new AutoDecryptVerifyFilesController());
-    } else {
-        d->controller.reset(new DecryptVerifyFilesController(shared_from_this()));
-    }
+    d->controller.reset(new AutoDecryptVerifyFilesController());
 
     d->controller->setOperation(operation());
     d->controller->setFiles(fileNames());
