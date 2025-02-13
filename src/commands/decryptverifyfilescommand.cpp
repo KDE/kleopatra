@@ -11,7 +11,6 @@
 #include "viewemailfilescommand.h"
 
 #include "command_p.h"
-#include "fileoperationspreferences.h"
 
 #include "crypto/decryptverifyfilescontroller.h"
 
@@ -38,7 +37,7 @@ class DecryptVerifyFilesCommand::Private : public Command::Private
     }
 
 public:
-    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode = false);
+    explicit Private(DecryptVerifyFilesCommand *qq, KeyListController *c);
     ~Private() override;
 
     QStringList selectFiles() const;
@@ -84,10 +83,10 @@ const DecryptVerifyFilesCommand::Private *DecryptVerifyFilesCommand::d_func() co
 #define d d_func()
 #define q q_func()
 
-DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c, bool forceManualMode)
+DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
     , files()
-    , shared_qq(qq, [](DecryptVerifyFilesCommand *) {})
+    , shared_qq(qq, [](DecryptVerifyFilesCommand *) { })
 {
     mController = new DecryptVerifyFilesController();
 }
@@ -110,8 +109,8 @@ DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(QAbstractItemView *v, KeyLi
     d->init();
 }
 
-DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, KeyListController *c, bool forceManualMode)
-    : Command(new Private(this, c, forceManualMode))
+DecryptVerifyFilesCommand::DecryptVerifyFilesCommand(const QStringList &files, KeyListController *c)
+    : Command(new Private(this, c))
 {
     d->init();
     d->files = files;
