@@ -56,6 +56,31 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
 
+namespace
+{
+struct FindExtension {
+    const QString ext;
+    const Protocol proto;
+    FindExtension(const QString &ext, Protocol proto)
+        : ext(ext)
+        , proto(proto)
+    {
+    }
+    bool operator()(const std::shared_ptr<ArchiveDefinition> &ad) const
+    {
+        qCDebug(KLEOPATRA_LOG) << "   considering" << (ad ? ad->label() : QStringLiteral("<null>")) << "for" << ext;
+        bool result;
+        if (proto == UnknownProtocol) {
+            result = ad && (ad->extensions(OpenPGP).contains(ext, Qt::CaseInsensitive) || ad->extensions(CMS).contains(ext, Qt::CaseInsensitive));
+        } else {
+            result = ad && ad->extensions(proto).contains(ext, Qt::CaseInsensitive);
+        }
+        qCDebug(KLEOPATRA_LOG) << (result ? "   -> matches" : "   -> doesn't match");
+        return result;
+    }
+};
+}
+
 class AutoDecryptVerifyFilesController::Private
 {
     AutoDecryptVerifyFilesController *const q;
@@ -479,13 +504,13 @@ void AutoDecryptVerifyFilesController::setFiles(const QStringList &files)
 }
 
 AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(QObject *parent)
-    : DecryptVerifyFilesController(parent)
+    : Controller(parent)
     , d(new Private(this))
 {
 }
 
 AutoDecryptVerifyFilesController::AutoDecryptVerifyFilesController(const std::shared_ptr<const ExecutionContext> &ctx, QObject *parent)
-    : DecryptVerifyFilesController(ctx, parent)
+    : Controller(ctx, parent)
     , d(new Private(this))
 {
 }
@@ -679,6 +704,34 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
     }
     q->emitDoneOrError();
     m_dialog->deleteLater();
+}
+
+std::shared_ptr<ArchiveDefinition> AutoDecryptVerifyFilesController::pick_archive_definition(GpgME::Protocol proto,
+                                                                                             const std::vector<std::shared_ptr<ArchiveDefinition>> &ads,
+                                                                                             const QString &filename)
+{
+    const QFileInfo fi(outputFileName(filename));
+    QString extension = fi.completeSuffix();
+
+    if (extension == QLatin1StringView("out")) { // added by outputFileName() -> useless
+        return std::shared_ptr<ArchiveDefinition>();
+    }
+
+    if (extension.endsWith(QLatin1StringView(".out"))) { // added by outputFileName() -> remove
+        extension.chop(4);
+    }
+
+    for (;;) {
+        const auto it = std::find_if(ads.begin(), ads.end(), FindExtension(extension, proto));
+        if (it != ads.end()) {
+            return *it;
+        }
+        const int idx = extension.indexOf(QLatin1Char('.'));
+        if (idx < 0) {
+            return std::shared_ptr<ArchiveDefinition>();
+        }
+        extension = extension.mid(idx + 1);
+    }
 }
 
 #include "moc_autodecryptverifyfilescontroller.cpp"

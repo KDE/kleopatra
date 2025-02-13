@@ -10,19 +10,22 @@
 
 #pragma once
 
-#include "crypto/decryptverifyfilescontroller.h"
+#include "crypto/controller.h"
 
+#include <utils/archivedefinition.h>
 #include <utils/types.h>
 
 #include <memory>
 #include <vector>
+
+#include <gpgme++/verificationresult.h>
 
 namespace Kleo
 {
 namespace Crypto
 {
 
-class AutoDecryptVerifyFilesController : public DecryptVerifyFilesController
+class AutoDecryptVerifyFilesController : public Controller
 {
     Q_OBJECT
 public:
@@ -31,16 +34,21 @@ public:
 
     ~AutoDecryptVerifyFilesController() override;
 
-    void setFiles(const QStringList &files) override;
-    void setOperation(DecryptVerifyOperation op) override;
-    DecryptVerifyOperation operation() const override;
-    void start() override;
+    void setFiles(const QStringList &files);
+    void setOperation(DecryptVerifyOperation op);
+    DecryptVerifyOperation operation() const;
+    void start();
 
 public Q_SLOTS:
-    void cancel() override;
+    void cancel();
+
+Q_SIGNALS:
+    void verificationResult(const GpgME::VerificationResult &);
 
 private:
     void doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &) override;
+    std::shared_ptr<ArchiveDefinition>
+    pick_archive_definition(GpgME::Protocol proto, const std::vector<std::shared_ptr<ArchiveDefinition>> &ads, const QString &filename);
 
 private:
     class Private;

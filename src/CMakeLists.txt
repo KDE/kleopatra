@@ -231,8 +231,6 @@ set(_kleopatra_SRCS
   crypto/createchecksumscontroller.h
   crypto/decryptverifyemailcontroller.cpp
   crypto/decryptverifyemailcontroller.h
-  crypto/decryptverifyfilescontroller.cpp
-  crypto/decryptverifyfilescontroller.h
   crypto/decryptverifytask.cpp
   crypto/decryptverifytask.h
   crypto/encryptemailcontroller.cpp
