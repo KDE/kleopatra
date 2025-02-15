@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2025-01-29 12:57+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -1036,7 +1036,7 @@ msgstr "falló «gpgconf --reload gpg-agent»: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1250,18 +1250,18 @@ msgstr "Descifrando/verificando el portapapeles..."
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "Parece que el portapapeles no contiene texto firmado o cifrado."
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "No se ha podido descifrar o verificar"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Error a descifrar o verificar archivos"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Elija uno o más archivos para descifrar o verificar"
@@ -2646,7 +2646,7 @@ msgid "Import CRL Finished"
 msgstr "Importación de CRL finalizada"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3981,26 +3981,17 @@ msgstr "Tratar los archivos .p7m sin extensión como mensajes de correo."
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Iniciar la operación automáticamente basándose en la detección de entrada "
-"para descifrar/verificar."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Extraer automáticamente los archivos comprimidos tras descifrarlos"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Crear archivos descifrados temporalmente en la carpeta del archivo cifrado."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -4008,38 +3999,38 @@ msgstr ""
 "Marque esta opción para evitar que los usuarios usen el directorio temporal "
 "de usuario."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Usar solo cifrado simétrico."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Marque esta opción para desactivar el cifrado de clave pública."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Usar solo cifrado de clave pública."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "Marque esta opción para desactivar el cifrado basado en contraseña."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Programa de suma de verificación a utilizar al crear archivos de suma de "
 "verificación:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Orden de archivado que usar al archivar archivos:"
@@ -4652,94 +4643,6 @@ msgstr ""
 "La sintaxis es «SERVIDOR» o «SERVIDOR:PUERTO». Si se omite el puerto, se "
 "usará el puerto estándar LDAP (389)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"Ha fallado la búsqueda de datos cifrados o firmados en uno o más archivos."
-"<nl/>Puede seleccionar manualmente lo que hacer con los archivos ahora.<nl/> "
-"Si la clave contiene datos firmados o cifrados, informe del fallo (consulte "
-"Ayuda -> Informar de fallos)."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"El archivo <filename>%1</filename> contiene certificados y no se puede "
-"descifrar o verificar."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"Seleccione el archivo para verificar con la firma <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para>No se ha podido mover <filename>%1</filename> a <filename>%2</"
-"filename>.</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para>Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
-"</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"¿Se debe guardar el archivo con su nombre original <filename>%1</filename>?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "¿Usar el nombre de archivo original?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "No, guardarlo como <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "Sí, guardarlo como <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "Ha fallado al borrar <filename>%1</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4890,22 +4793,97 @@ msgstr "No se puede usar la salida y los datos firmados simultáneamente"
 msgid "No backend support for %1"
 msgstr "No se reconoce el motor para %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "No se puede determinar si el dato de entrada es OpenPGP o CMS"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"Ha fallado la búsqueda de datos cifrados o firmados en uno o más archivos."
+"<nl/>Puede seleccionar manualmente lo que hacer con los archivos ahora.<nl/> "
+"Si la clave contiene datos firmados o cifrados, informe del fallo (consulte "
+"Ayuda -> Informar de fallos)."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "No se han encontrado entradas que se puedan usar"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"El archivo <filename>%1</filename> contiene certificados y no se puede "
+"descifrar o verificar."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"Seleccione el archivo para verificar con la firma <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para>No se ha podido mover <filename>%1</filename> a <filename>%2</"
+"filename>.</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para>Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
+"</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"¿Se debe guardar el archivo con su nombre original <filename>%1</filename>?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "Descifrar/verificar archivos"
+msgid "Use Original File Name?"
+msgstr "¿Usar el nombre de archivo original?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "No, guardarlo como <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "Sí, guardarlo como <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "Ha fallado al borrar <filename>%1</filename>."
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr "Ha fallado al mover <filename>%1</filename> a <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5329,61 +5307,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "Ca&rpeta de salida:"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "Descifrar/verificar archivos"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Verificar archivos"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Elija las operaciones a realizar</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"Aquí puede comprobar y, si fuera necesario, redefinir las operaciones que "
-"Kleopatra ha detectado para la entrada indicada."
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "&Descifrar/verificar"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "Crear todas los archivos de salida en una carpeta única"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "Ca&rpeta de salida:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "Archivo de entrada:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "El arch&ivo de entrada es una firma despegada"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "Dato&s firmados:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "El arch&ivo de entrada es un archivo comprimido, desempaquetar con"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -8941,35 +8875,14 @@ msgstr ""
 "Marque esta opción para hacer que kleopatra asigne por defecto la extensión "
 "«pgp» a los archivos de OpenPGP."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Iniciar la operación automáticamente basándose en la detección de entrada "
-"para descifrar/verificar."
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"Con esta opción Kleopatra no le volverá a preguntar lo que quiere hacer con "
-"los archivos de entrada, pero, en su lugar, iniciara la operación "
-"automáticamente si la detecta como aplicable a la entrada."
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "Extraer automáticamente los archivos comprimidos tras descifrarlos."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8979,13 +8892,13 @@ msgstr ""
 "comprimidos tras descifrarlos."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "Use esta orden para crear archivos comprimidos."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8995,13 +8908,13 @@ msgstr ""
 "con esta orden."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Crear archivos firmados o cifrados como nuevos archivos de texto."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -9014,39 +8927,39 @@ msgstr ""
 "un tercio."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
 "Crear archivos descifrados temporalmente en la carpeta del archivo cifrado."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Marque esta opción para evitar el uso del directorio temporal del usuario."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Usar solo cifrado simétrico."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "Marque esta opción para desactivar el cifrado de clave pública."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "Usar solo cifrado de clave pública."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "Marque esta opción para desactivar el cifrado basado en contraseña."
@@ -11302,7 +11215,7 @@ msgid "invalid protocol \"%1\""
 msgstr "protocolo no válido «%1»"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11365,32 +11278,32 @@ msgstr "No se reconoce el motor para OpenPGP"
 msgid "No backend support for S/MIME"
 msgstr "No se reconoce el motor para S/MIME"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "No se puede usar SENDER"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "No se puede usar RECIPIENT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT presente"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE presente"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT presente"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DESCIFRAR/VERIFICAR_ARCHIVOS no puede usar directorios como entrada"
@@ -13427,6 +13340,66 @@ msgid ""
 msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Iniciar la operación automáticamente basándose en la detección de entrada "
+#~ "para descifrar/verificar."
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "No se puede determinar si el dato de entrada es OpenPGP o CMS"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "No se han encontrado entradas que se puedan usar"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>Elija las operaciones a realizar</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "Aquí puede comprobar y, si fuera necesario, redefinir las operaciones que "
+#~ "Kleopatra ha detectado para la entrada indicada."
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "&Descifrar/verificar"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "Crear todas los archivos de salida en una carpeta única"
+
+#~ msgid "&Output folder:"
+#~ msgstr "Ca&rpeta de salida:"
+
+#~ msgid "Input file:"
+#~ msgstr "Archivo de entrada:"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "El arch&ivo de entrada es una firma despegada"
+
+#~ msgid "&Signed data:"
+#~ msgstr "Dato&s firmados:"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "El arch&ivo de entrada es un archivo comprimido, desempaquetar con"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Iniciar la operación automáticamente basándose en la detección de entrada "
+#~ "para descifrar/verificar."
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "Con esta opción Kleopatra no le volverá a preguntar lo que quiere hacer "
+#~ "con los archivos de entrada, pero, en su lugar, iniciara la operación "
+#~ "automáticamente si la detecta como aplicable a la entrada."
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "Ha fallado al enviar la opción crítica %1: %2"

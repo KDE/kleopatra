@@ -3,7 +3,7 @@
 # KDE Finnish translation sprint participants:
 # Author: Artnay
 # Author: Lliehu
-# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2006.
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007, 2008.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
-"PO-Revision-Date: 2024-12-03 22:29+0200\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
+"PO-Revision-Date: 2025-01-28 09:45+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1031,7 +1031,7 @@ msgstr "”gpgconf --reload gpg-agent” epäonnistui: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1244,18 +1244,18 @@ msgstr "Virhe leikepöydän salauksen purkamisessa tai todennuksessa"
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "Leikepöydältä ei tunnu löytyvän allekirjoitusta tai salattua tekstiä."
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Salauksen purku tai todennus epäonnistui"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Virhe purettaessa tai todennettaessa tiedostojen salausta"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr ""
@@ -2603,7 +2603,7 @@ msgid "Import CRL Finished"
 msgstr "CRL-tuonti valmis"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3911,60 +3911,51 @@ msgstr "Tulkitse päätteettömät .p7m-tiedostot sähköpostiviesteiksi."
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Käynnistä toimenpide automaattisesti, kun salauksen purku tai todennus on "
-"tunnistettu."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Pura arkistot salauksen avaamisen jälkeen automaattisesti"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Luo puretut väliaikaistiedostot salatun tiedoston kansioon."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "Aseta tämä välttääksesi käyttämästä käyttäjien väliaikaiskansiota."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Käytä vain symmetristä salausta."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Poista julkisen avaimen salaus käytöstä tällä valinnalla."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Käytä vain julkisen avaimen salausta."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "Poista tällä valinnalla salasanapohjainen salaus käytöstä."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Tarkistussummatiedostoja luotaessa käytettävä ohjelma:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Tiedostoja arkistoitaessa käytettävä komento:"
@@ -4567,96 +4558,6 @@ msgstr ""
 "Syntaksi on ”KONE” tai ”KONE:PORTTI”. Jos PORTTIa ei anneta, käytetään "
 "porttia 389 (standardi LDAP-portti)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"Yhdestä tai useammasta tiedostosta ei löytynyt salattua tai allekirjoitettua "
-"tietoa.<nl/>Voit valita nyt itse, mitä tiedostoille tehdään.<nl/>Jos ne "
-"sisältävät allekirjoitettua tai salattua tietoa, ilmoita ohjelmavirheestä "
-"(katso Ohje | Ilmoita ohjelmavirheestä)."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Tiedosto <filename>%1</filename> sisältää varmenteita eikä sitä voi todentaa "
-"tai sen salausta purkaa."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"Valitse tiedosto, jolla allekirjoitus <filename>%1</filename> todennetaan"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
-"filename> epäonnistui.</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
-"filename> epäonnistui.</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"Tallennetaanko tiedosto alkuperäisellä nimellä <filename>%1</filename>?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "Käytetäänkö alkuperäistä tiedostonimeä?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "Ei, tallenna nimellä <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "Kyllä, tallenna nimellä <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "Tiedoston <filename>%1</filename> poistaminen epäonnistui."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
-"epäonnistui."
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4811,22 +4712,99 @@ msgstr "Tulostetta ja allekirjoitettua tietoa ei voi käyttää yhtäaikaisesti"
 msgid "No backend support for %1"
 msgstr "Ei taustaosatukea: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "Ei voida päätellä, onko syöte OpenPGP- vai CMS-muotoista"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"Yhdestä tai useammasta tiedostosta ei löytynyt salattua tai allekirjoitettua "
+"tietoa.<nl/>Voit valita nyt itse, mitä tiedostoille tehdään.<nl/>Jos ne "
+"sisältävät allekirjoitettua tai salattua tietoa, ilmoita ohjelmavirheestä "
+"(katso Ohje | Ilmoita ohjelmavirheestä)."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "Käyttökelpoisia syötteitä ei löytynyt"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Tiedosto <filename>%1</filename> sisältää varmenteita eikä sitä voi todentaa "
+"tai sen salausta purkaa."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"Valitse tiedosto, jolla allekirjoitus <filename>%1</filename> todennetaan"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
+"filename> epäonnistui.</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para>Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</"
+"filename> epäonnistui.</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"Tallennetaanko tiedosto alkuperäisellä nimellä <filename>%1</filename>?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "Pura tai todenna tiedostoja"
+msgid "Use Original File Name?"
+msgstr "Käytetäänkö alkuperäistä tiedostonimeä?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "Ei, tallenna nimellä <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "Kyllä, tallenna nimellä <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "Tiedoston <filename>%1</filename> poistaminen epäonnistui."
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"Tiedoston <filename>%1</filename> siirto kohteeseen <filename>%2</filename> "
+"epäonnistui."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -4836,9 +4814,7 @@ msgstr[0] "Vastaanottaja:"
 msgstr[1] "Vastaanottajat:"
 
 #: src/crypto/decryptverifytask.cpp:147
-#, fuzzy, kde-format
-#| msgid "One unknown recipient"
-#| msgid_plural "%1 unknown recipients"
+#, kde-format
 msgctxt "@info"
 msgid "One unknown recipient"
 msgstr "Yksi tuntematon vastaanottaja"
@@ -4851,29 +4827,27 @@ msgstr[0] "Yksi tuntematon vastaanottaja"
 msgstr[1] "%1 tuntematonta vastaanottajaa"
 
 #: src/crypto/decryptverifytask.cpp:222
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Writing certificates to file <filename>%1</filename> failed."
+#, kde-format
 msgctxt "@info"
 msgid "Decryption and verification of <filename>%1</filename> canceled."
 msgstr ""
-"Varmenteiden kirjoittaminen tiedostoon <filename>%1</filename> epäonnistui."
+"Tiedoston <filename>%1</filename> salaaminen ja todentaminen peruttiin."
 
 #: src/crypto/decryptverifytask.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt and verify <filename>%1</filename>:"
-msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
+msgstr "Tiedostoa <filename>%1</filename> ei voida salata ja todentaa."
 
 #: src/crypto/decryptverifytask.cpp:229
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt and verify <filename>%1</filename>:"
-msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
+msgstr ""
+"Tiedoston <filename>%1</filename> salauksen purkaminen ja todentaminen "
+"epäonnistui:"
 
 #: src/crypto/decryptverifytask.cpp:233
 #, kde-kuit-format
@@ -4886,20 +4860,16 @@ msgstr ""
 "onnistuneesti tiedostoon <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:239
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-format
 msgctxt "@info"
 msgid "Verification of <filename>%1</filename> canceled."
-msgstr "Avaimen kirjoittaminen tiedostoon <filename>%1</filename> epäonnistui."
+msgstr "Tiedoston <filename>%1</filename> todentaminen peruttiin."
 
 #: src/crypto/decryptverifytask.cpp:241
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Failed to overwrite <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
-msgstr "Ei voitu korvata tiedostoa <filename>%1</filename>."
+msgstr "Tiedoston <filename>%1</filename> todentaminen epäonnistui:"
 
 #: src/crypto/decryptverifytask.cpp:244
 #, kde-kuit-format
@@ -4911,28 +4881,24 @@ msgstr ""
 "%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:250
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-format
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
-msgstr "Avaimen kirjoittaminen tiedostoon <filename>%1</filename> epäonnistui."
+msgstr "Tiedoston <filename>%1</filename> salauksen purkaminen peruttiin."
 
 #: src/crypto/decryptverifytask.cpp:253
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt <filename>%1</filename>:"
-msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
+msgstr "Tiedoston <filename>%1</filename> salausta ei voida purkaa."
 
 #: src/crypto/decryptverifytask.cpp:256
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to delete <filename>%1</filename>."
+#, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
-msgstr "Tiedoston <filename>%1</filename> poisto epäonnistui."
+msgstr "Tiedoston <filename>%1</filename> salaaminen purkaminen epäonnistui:"
 
 #: src/crypto/decryptverifytask.cpp:259
 #, kde-kuit-format
@@ -4944,12 +4910,11 @@ msgstr ""
 "<filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
-msgstr "Tiedot on salattu tälle avaimelle tai varmenteelle."
+msgstr ""
+"Tietoa ei ole salattu varmenneluettelosi millekään salaiselle avaimelle."
 
 #: src/crypto/decryptverifytask.cpp:274
 #, kde-format
@@ -5043,58 +5008,44 @@ msgid "Successfully verified the notepad"
 msgstr "Muistikirjan todennus onnistui"
 
 #: src/crypto/decryptverifytask.cpp:554
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to decrypt the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
-msgstr "Muistikirjan salauksen purkaminen epäonnistui: %1"
+msgstr "Leikepöydän salauksen purkaminen epäonnistui: %1"
 
 #: src/crypto/decryptverifytask.cpp:557
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to verify the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
-msgstr "Muistikirjan todentaminen epäonnistui: %1"
+msgstr "Leikepöydän todentaminen epäonnistui: %1"
 
 #: src/crypto/decryptverifytask.cpp:561
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted and verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
-msgstr "Muistikirjan salauksen purku ja todennus onnistui"
+msgstr "Leikepöydän salauksen purku ja todennus onnistui"
 
 #: src/crypto/decryptverifytask.cpp:564
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
-msgstr "Muistikirjan salauksen purku onnistui"
+msgstr "Leikepöydän salauksen purku onnistui"
 
 #: src/crypto/decryptverifytask.cpp:567
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
-msgstr "Muistikirjan todennus onnistui"
+msgstr "Leikepöydän todennus onnistui"
 
 #: src/crypto/decryptverifytask.cpp:599
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Warning: The sender's mail address is not stored in the <a href=\"key:"
-#| "%1\">certificate</a> used for signing."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
-"<br/>Varoitus: Lähettäjän osoitetta ei ole talletettu allekirjoittamisessa "
-"käytettyyn <a href=\"key:%1\">varmenteeseen</a>."
+"Varoitus: Lähettäjän osoitetta ei ole talletettu allekirjoittamisessa "
+"käytettyyn <a href=\"key:%1\">varmenteeseen</a>. Talletettu: <ul>%2</ul>"
 
 #: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:947
 #: src/crypto/decryptverifytask.cpp:1027 src/crypto/decryptverifytask.cpp:1128
@@ -5271,12 +5222,10 @@ msgid "..."
 msgstr "…"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "No Output Folder"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Choose output folder"
-msgstr "Ei tuloskansiota"
+msgstr "Valitse tuloskansio"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:53
 #, kde-format
@@ -5284,61 +5233,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Tuloskansio:"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "Pura tai todenna tiedostoja"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Todenna tiedostoja"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Valitse tehtävät toimet</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"Tässä voit valita ja tarvittaessa ohittaa Kleopatran syötteestä havaitsemia "
-"toimia."
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "Pu&ra tai todenna"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "Luo kaikki tulostiedostot yhteen kansioon"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "&Tuloskansio:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "Syötetiedosto:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "Syötetiedosto on &irrallinen allekirjoitus"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "&Allekirjoitettu tieto:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "Syötetiedosto on &arkisto, pura ohjelmalla:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -5867,9 +5772,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Allekirjoita tai salaa tiedostoja"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:519
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Sign / Encrypt Files"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
 msgstr "Allekirjoita tai salaa tiedostoja"
@@ -5883,9 +5786,7 @@ msgid "Continue"
 msgstr "Jatka"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:551
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Results"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Results"
 msgstr "Tulokset"
@@ -5895,7 +5796,7 @@ msgstr "Tulokset"
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
-msgstr ""
+msgstr "Viimeistele"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:562
 #: src/dialogs/signencryptclipboarddialog.cpp:144
@@ -5920,8 +5821,7 @@ msgstr "Allekirjoita tai salaa"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:582
 #: src/dialogs/signencryptclipboarddialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Next"
 msgstr "Seuraava"
@@ -7728,27 +7628,23 @@ msgid "Name:"
 msgstr "Nimi:"
 
 #: src/dialogs/editgroupdialog.cpp:186
-#, fuzzy, kde-format
-#| msgid "All Certificates"
+#, kde-format
 msgctxt "@title"
 msgid "Available Certificates"
-msgstr "Kaikki varmenteet"
+msgstr "Käytettävissä olevat varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:193 src/dialogs/editgroupdialog.cpp:199
-#, fuzzy, kde-format
-#| msgid "With unavailable certificate:"
+#, kde-format
 msgctxt "@label"
 msgid "Search available certificates"
-msgstr "Varmenteella, joka ei ole saatavilla:"
+msgstr "Etsi käytettävissä olevia varmenteita"
 
 #: src/dialogs/editgroupdialog.cpp:194 src/dialogs/editgroupdialog.cpp:200
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Search the list of available keys for keys matching the search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Search the list of available certificates for any that match the search term."
-msgstr "Etsi luettelosta hakusanoja vastaavia käytettävissä olevia avaimia."
+msgstr "Etsi hakusanoja vastaavia varmenteita käytettävissä olevista."
 
 #: src/dialogs/editgroupdialog.cpp:207 src/view/searchbar.cpp:136
 #, kde-format
@@ -7762,74 +7658,61 @@ msgid "Show only certificates that belong to the selected category."
 msgstr "Näytä vain valittuun luokkaan kuuluvat varmenteet."
 
 #: src/dialogs/editgroupdialog.cpp:243
-#, fuzzy, kde-format
-#| msgid "All Certificates"
+#, kde-format
 msgctxt "@label"
 msgid "Available certificates"
-msgstr "Kaikki varmenteet"
+msgstr "Käytettävissä olevat varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:259
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Select Certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Certificates"
-msgstr "Valitse varmennetiedost"
+msgstr "Lisää valitut varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:260
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Add the selected keys to the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected certificates to the group"
-msgstr "Lisää valitut avaimet ryhmään"
+msgstr "Lisää valitut varmenteet ryhmään"
 
 #: src/dialogs/editgroupdialog.cpp:266
-#, fuzzy, kde-format
-#| msgid "Delete selected certificates"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Certificates"
 msgstr "Poista valitut varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:267
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Remove the selected keys from the group"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected certificates from the group"
-msgstr "Poista valitut avaimet ryhmästä"
+msgstr "Poista valitut varmenteet ryhmästä"
 
 #: src/dialogs/editgroupdialog.cpp:275
-#, fuzzy, kde-format
-#| msgid "Certificate Groups"
+#, kde-format
 msgctxt "@title"
 msgid "Certificates in the Group"
-msgstr "Varmenneryhmät"
+msgstr "Ryhmän varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:282 src/dialogs/editgroupdialog.cpp:288
-#, fuzzy, kde-format
-#| msgid "Search for certificates on %1"
+#, kde-format
 msgctxt "@label"
 msgid "Search for certificates in the group"
-msgstr "Etsi varmenteita kohteesta %1"
+msgstr "Etsi ryhmän varmenteita"
 
-# *** TARKISTA: ”list of group keys”?
+# Käännös tiivistetty muiden vastaavien mukaan; voi mennä tässä väärin.
 #: src/dialogs/editgroupdialog.cpp:283 src/dialogs/editgroupdialog.cpp:289
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Search the list of group keys for keys matching the search term."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Search the list of certificates in the group for any that match the search "
 "term."
-msgstr "Etsi ryhmäavainluettelosta hakusanoja vastaavia avaimia."
+msgstr "Etsi hakusanoja vastaavia varmenteita ryhmästä."
 
 #: src/dialogs/editgroupdialog.cpp:302
-#, fuzzy, kde-format
-#| msgid "Certificate Groups"
+#, kde-format
 msgctxt "@label"
 msgid "Certificates in group"
-msgstr "Varmenneryhmät"
+msgstr "Ryhmän varmenteet"
 
 #: src/dialogs/editgroupdialog.cpp:482
 #, kde-format
@@ -8890,34 +8773,14 @@ msgstr ""
 "Käytä tätä asettaaksesi Kleopatran käyttämään .pgp-tiedostopäätettä OpenPGP-"
 "tiedostoille."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Käynnistä toiminto automaattisesti, kun salauksen purku tai todennus on "
-"tunnistettu."
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"Tällä asetuksella Kleopatra ei enää kysy, mitä haluat syötetiedostoille "
-"tehdä, vaan käynnistää automaattisesti sopiviksi katsomansa toimenpiteet."
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "Pura arkistot salauksen avaamisen jälkeen automaattisesti."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8927,13 +8790,13 @@ msgstr ""
 "avaamisen jälkeen."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "Luo tiedostoarkistoja tällä komennolla."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8943,13 +8806,13 @@ msgstr ""
 "tällä komennolla."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Luo allekirjoitetut tai salatut tiedostot tekstitiedostoina"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8961,37 +8824,37 @@ msgstr ""
 "Tämä kasvattaa tiedoston kokoa kolmanneksen."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Luo puretut väliaikaistiedostot salatun tiedoston kansioon."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "Aseta tämä välttääksesi käyttämästä käyttäjien väliaikaiskansiota."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Käytä vain symmetristä salausta."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "Poista julkisen avaimen salaus käytöstä tällä valinnalla."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "Käytä vain julkisen avaimen salausta."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "Poista tällä valinnalla salasanapohjainen salaus käytöstä."
@@ -11216,7 +11079,7 @@ msgid "invalid protocol \"%1\""
 msgstr "Virheellinen yhteyskäytäntö ”%1”"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11279,32 +11142,32 @@ msgstr "Ei OpenPGP-taustaosatukea"
 msgid "No backend support for S/MIME"
 msgstr "Ei S/MIME-taustaosatukea"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "Ei voida käyttää SENDERiä"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "Ei voida käyttää RECIPIENTiä"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT annettu"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE annettu"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT annettu"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DECRYPT/VERIFY_FILES-komennot eivät voi käyttää kansioita syötteenä"
@@ -13229,23 +13092,18 @@ msgstr ""
 "käyttöliittymä."
 
 #: src/view/welcomewidget.cpp:128
-#, fuzzy, kde-format
-#| msgid ""
-#| "For most actions you need either a public key (certificate) or your own "
-#| "private key."
+#, kde-format
 msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "secret key."
 msgstr ""
 "Useimpiin toimintoihin tarvitset joko julkisen avaimen (varmenteen) tai oman "
-"yksityisen avaimesi."
+"salaisen avaimen."
 
 #: src/view/welcomewidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "The private key is needed to decrypt or sign."
+#, kde-format
 msgid "The secret key is needed to decrypt or sign."
-msgstr ""
-"Salauksen purkamiseen ja allekirjoittamiseen tarvitaan yksityistä avainta."
+msgstr "Salauksen purkamiseen ja allekirjoittamiseen vaaditaan salainen avain."
 
 #: src/view/welcomewidget.cpp:131
 #, kde-format
@@ -13265,12 +13123,10 @@ msgid "https://en.wikipedia.org/wiki/Public-key_cryptography"
 msgstr "https://fi.wikipedia.org/wiki/Julkisen_avaimen_salaus"
 
 #: src/view/welcomewidget.cpp:135
-#, fuzzy, kde-format
-#| msgctxt "%1 is link a wiki article"
-#| msgid "You can learn more about this on <a href=\"%1\">Wikipedia</a>."
+#, kde-format
 msgctxt "%1 is a link to a wiki article"
 msgid "You can learn more about this on <a href=\"%1\">Wikipedia</a>."
-msgstr "Asiasta löytyy lisätietoa <a href=\"%1\">Wikipedia</a>sta"
+msgstr "Asiasta löytyy lisätietoa <a href=\"%1\">Wikipedia</a>sta."
 
 #: src/view/welcomewidget.cpp:143
 #, kde-format
@@ -13279,6 +13135,8 @@ msgid ""
 "With Kleopatra you can encrypt using different methods. Please follow the "
 "regulations for classified information of your organization."
 msgstr ""
+"Kleopatra osaa salata eri menetelmillä. Noudata organisaatiosi sääntöjä "
+"salattavalle tiedolle."
 
 #: src/view/welcomewidget.cpp:144
 #, kde-format
@@ -13287,13 +13145,15 @@ msgid ""
 "For password based encryption see this <a href=\"action:help_doc_symenc"
 "\">guide</a>."
 msgstr ""
+"Salasanapohjaisesta salauksesta saa tietoa <a href=\"action:help_doc_symenc"
+"\">tästä oppaasta</a>."
 
 #: src/view/welcomewidget.cpp:145
 #, kde-format
 msgctxt "@info"
 msgid ""
 "For public key encryption you generally have to create your own key pair."
-msgstr ""
+msgstr "Julkisen avaimen salausta varten täytyy yleensä luoda oma avainpari."
 
 #: src/view/welcomewidget.cpp:147
 #, kde-format
@@ -13302,6 +13162,8 @@ msgid ""
 "You can find step-by-step instructions for public key encryption in this <a "
 "href=\"action:help_doc_quickguide\">guide</a>."
 msgstr ""
+"Vaiheittaiset ohjeet julkisen avaimen salaukseen löytyvät <a href=\"action:"
+"help_doc_quickguide\">tästä oppaasta</a>."
 
 #: src/view/welcomewidget.cpp:174
 #, kde-format
@@ -13329,6 +13191,65 @@ msgid ""
 msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Käynnistä toimenpide automaattisesti, kun salauksen purku tai todennus on "
+#~ "tunnistettu."
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "Ei voida päätellä, onko syöte OpenPGP- vai CMS-muotoista"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "Käyttökelpoisia syötteitä ei löytynyt"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>Valitse tehtävät toimet</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "Tässä voit valita ja tarvittaessa ohittaa Kleopatran syötteestä "
+#~ "havaitsemia toimia."
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "Pu&ra tai todenna"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "Luo kaikki tulostiedostot yhteen kansioon"
+
+#~ msgid "&Output folder:"
+#~ msgstr "&Tuloskansio:"
+
+#~ msgid "Input file:"
+#~ msgstr "Syötetiedosto:"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "Syötetiedosto on &irrallinen allekirjoitus"
+
+#~ msgid "&Signed data:"
+#~ msgstr "&Allekirjoitettu tieto:"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "Syötetiedosto on &arkisto, pura ohjelmalla:"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Käynnistä toiminto automaattisesti, kun salauksen purku tai todennus on "
+#~ "tunnistettu."
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "Tällä asetuksella Kleopatra ei enää kysy, mitä haluat syötetiedostoille "
+#~ "tehdä, vaan käynnistää automaattisesti sopiviksi katsomansa toimenpiteet."
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "Ei voitu lähettää oleellista asetusta %1: %2"

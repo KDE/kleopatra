@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2024-09-19 22:12+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -1070,7 +1070,7 @@ msgstr "\"gpgconf --reload gpg-agent\" απέτυχε: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1291,18 +1291,18 @@ msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr ""
 "Το πρόχειρο δεν φαίνεται να περιέχει υπογραφή ή κρυπτογραφημένο κείμενο."
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Αποκρυπτογράφηση/επαλήθευση αρχείων"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Σφάλμα αποκρυπτογράφησης/επαλήθευσης αρχείων"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr ""
@@ -2730,7 +2730,7 @@ msgid "Import CRL Finished"
 msgstr "Ολοκλήρωση εισαγωγής CRL"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -4093,19 +4093,10 @@ msgstr ""
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
-"αποκρυπτογράφηση/επαλήθευση."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Αυτόματη εξαγωγή αρχείων μετά την αποκρυπτογράφηση"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
@@ -4113,7 +4104,7 @@ msgstr ""
 "Δημιουργία προσωρινών αποκρυπτογραφημένων αρχείων στο φάκελο του "
 "κρυπτογραφημένου αρχείου."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
@@ -4121,13 +4112,13 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να αποφύγετε τη χρήση του προσωρινού "
 "καταλόγου των χρηστών."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
@@ -4135,14 +4126,14 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να απενεργοποιηθεί η κρυπτογράφηση δημόσιου "
 "κλειδιού."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Set this option to disable public key encryption."
@@ -4152,14 +4143,14 @@ msgstr ""
 "Ρυθμίστε αυτήν την επιλογή για να απενεργοποιηθεί η κρυπτογράφηση δημόσιου "
 "κλειδιού."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Πρόγραμμα αθροίσματος ελέγχου προς χρήση κατά τη δημιουργία αρχείων "
 "αθροίσματος ελέγχου:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Εντολή για την τοποθέτηση αρχείων στην αρχειοθήκη:"
@@ -4772,96 +4763,6 @@ msgstr ""
 "Η σύνταξη είναι \"ΥΠΟΛΟΓΙΣΤΗΣ\" ή \"ΥΠΟΛΟΓΙΣΤΗΣ:ΘΥΡΑ\". Αν δεν οριστεί η "
 "ΘΥΡΑ, θα χρησιμοποιηθεί η 389 (η τυπική θύρα LDAP)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"Αποτυχία εύρεσης κρυπτογραφημένων ή υπογεγραμμένων δεδομένων σε ένα ή "
-"περισσότερα αρχεία.<nl/>Μπορείτε τώρα να επιλέξετε χειροκίνητα τι να κάνετε "
-"με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
-"κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
-"αποκρυπτογραφηθεί ή να επαληθευθεί."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"Επιλέξτε το αρχείο για επιβεβαίωση με την υπογραφή <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
-"filename>.</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
-"filename>.</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"Να γίνει αποθήκευση του αρχείου με το αρχικό όνομα αρχείου <filename>%1</"
-"filename>;"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "Χρήση αρχικού ονόματος αρχείου;"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "Όχι, αποθήκευση ως <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "Ναι, αποθήκευση ως <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -5014,23 +4915,99 @@ msgstr "Αδυναμία χρήσης εξόδου και υπογεγραμμέ
 msgid "No backend support for %1"
 msgstr "Κανένα σύστημα υποστήριξης για το %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
-"Αδυναμία προσδιορισμού για το αν τα δεδομένα εισόδου είναι OpenPGP ή CMS"
+"Αποτυχία εύρεσης κρυπτογραφημένων ή υπογεγραμμένων δεδομένων σε ένα ή "
+"περισσότερα αρχεία.<nl/>Μπορείτε τώρα να επιλέξετε χειροκίνητα τι να κάνετε "
+"με τα αρχεία<nl/>Αν περιέχουν υπογεγραμμένα ή κρυπτογραφημένα δεδομένα, "
+"κάνετε αναφορά σφάλματος (δείτε Βοήθεια->αναφορά σφάλματος)."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "Δεν βρέθηκαν χρήσιμα δεδομένα εισόδου"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Το αρχείο <filename>%1</filename> περιέχει πιστοποιητικά και δεν μπορεί να "
+"αποκρυπτογραφηθεί ή να επαληθευθεί."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"Επιλέξτε το αρχείο για επιβεβαίωση με την υπογραφή <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
+"filename>.</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para>Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</"
+"filename>.</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"Να γίνει αποθήκευση του αρχείου με το αρχικό όνομα αρχείου <filename>%1</"
+"filename>;"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "Αποκρυπτογράφηση/επαλήθευση αρχείων"
+msgid "Use Original File Name?"
+msgstr "Χρήση αρχικού ονόματος αρχείου;"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "Όχι, αποθήκευση ως <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "Ναι, αποθήκευση ως <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"Αποτυχία μετακίνησης του <filename>%1</filename> στο <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5502,61 +5479,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Φάκελος εξόδου:"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "Αποκρυπτογράφηση/επαλήθευση αρχείων"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Επαλήθευση αρχείων"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Επιλέξτε λειτουργίες προς εκτέλεση</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"Εδώ μπορείτε να ελέγξετε και αν απαιτείται να τροποποιήσετε τις λειτουργίες "
-"που ανίχνευσε η Kleopatra για τη δοσμένη είσοδο."
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "&Αποκρυπτογράφηση/επαλήθευση"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "Δημιουργία όλων των αρχείων εξόδου σε ένα φάκελο"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "&Φάκελος εξόδου:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "Αρχείο εισόδου:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "Το αρχείο &εισόδου είναι μια αποσυνδεδεμένη υπογραφή"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "&Υπογεγραμμένα δεδομένα:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "Το αρχείο &εισόδου είναι αρχειοθήκη: αποσυμπίεση με:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -9270,35 +9203,14 @@ msgstr ""
 "Ρυθμίστε το για να χρησιμοποιεί εξ ορισμού η kleopatra τις επεκτάσεις pgp "
 "για OpenPGP αρχεία."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
-"αποκρυπτογράφηση/επαλήθευση."
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"Με αυτό το σύνολο επιλογών η Kleop;atra δεν σας ζητάει πλέον τι θέλετε να "
-"κάνετε με τα αρχεία εισόδου αλλά ξεκινάει αυτόματα τις λειτουργίες που "
-"εντοπίζει στην είσοδο ως εφαρμόσιμες"
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "Αυτόματη εξαγωγή των αρχείων μετά την αποκρυπτογράφηση."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -9308,13 +9220,13 @@ msgstr ""
 "μετά την αποκρυπτογράφηση."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "Χρησιμοποιήστε αυτήν την εντολή για να δημιουργήσετε αρχειοθήκες."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -9324,14 +9236,14 @@ msgstr ""
 "μια κρυπτογραφημένη αρχειοθήκη με αυτήν την εντολή."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr ""
 "Δημιουργία υπογεγραμμένων ή/και κρυπτογραφημένων αρχείων ως αρχείων κειμένου."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -9344,7 +9256,7 @@ msgstr ""
 "μέγεθος του αρχείου κατά ένα τρίτο."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr ""
@@ -9352,7 +9264,7 @@ msgstr ""
 "κρυπτογραφημένου αρχείου."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
@@ -9360,13 +9272,13 @@ msgstr ""
 "καταλόγου."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr ""
@@ -9374,14 +9286,14 @@ msgstr ""
 "κλειδιού."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
 msgid "Use public key encryption only."
 msgstr "Να χρησιμοποιηθεί συμμετρική κρυπτογράφηση μόνο."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, fuzzy, kde-format
 #| msgid "Set this option to disable public key encryption."
 msgid "Set this option to disable password-based encryption."
@@ -11676,7 +11588,7 @@ msgid "invalid protocol \"%1\""
 msgstr "μη έγκυρο πρωτόκολλο \"%1\""
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11741,32 +11653,32 @@ msgstr "Κανένα σύστημα υποστήριξης για το OpenPGP"
 msgid "No backend support for S/MIME"
 msgstr "Κανένα σύστημα υποστήριξης για το S/MIME"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "Αδυναμία χρήσης της SENDER"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "Αδυναμία χρήσης της RECIPIENT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT παρούσα"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE παρούσα"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT παρούσα"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr ""
@@ -13856,6 +13768,67 @@ msgstr ""
 "Εισαγωγή πιστοποιητικού από αρχείο.<nl/>Για να εισάγετε από ένα δημόσιο "
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
+#~ "αποκρυπτογράφηση/επαλήθευση."
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr ""
+#~ "Αδυναμία προσδιορισμού για το αν τα δεδομένα εισόδου είναι OpenPGP ή CMS"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "Δεν βρέθηκαν χρήσιμα δεδομένα εισόδου"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>Επιλέξτε λειτουργίες προς εκτέλεση</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "Εδώ μπορείτε να ελέγξετε και αν απαιτείται να τροποποιήσετε τις "
+#~ "λειτουργίες που ανίχνευσε η Kleopatra για τη δοσμένη είσοδο."
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "&Αποκρυπτογράφηση/επαλήθευση"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "Δημιουργία όλων των αρχείων εξόδου σε ένα φάκελο"
+
+#~ msgid "&Output folder:"
+#~ msgstr "&Φάκελος εξόδου:"
+
+#~ msgid "Input file:"
+#~ msgstr "Αρχείο εισόδου:"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "Το αρχείο &εισόδου είναι μια αποσυνδεδεμένη υπογραφή"
+
+#~ msgid "&Signed data:"
+#~ msgstr "&Υπογεγραμμένα δεδομένα:"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "Το αρχείο &εισόδου είναι αρχειοθήκη: αποσυμπίεση με:"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Αυτόματη εκκίνηση λειτουργίας με βάση την ανίχνευση εισόδου για "
+#~ "αποκρυπτογράφηση/επαλήθευση."
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "Με αυτό το σύνολο επιλογών η Kleop;atra δεν σας ζητάει πλέον τι θέλετε να "
+#~ "κάνετε με τα αρχεία εισόδου αλλά ξεκινάει αυτόματα τις λειτουργίες που "
+#~ "εντοπίζει στην είσοδο ως εφαρμόσιμες"
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "Αποτυχία αποστολής κρίσιμης επιλογής %1: %2"

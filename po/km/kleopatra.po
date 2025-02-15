@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -1106,7 +1106,7 @@ msgstr "\"gpgconf --reload gpg-agent\" បាន​បរាជ័យ​ ៖​ 
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1327,19 +1327,19 @@ msgstr "កំហុស​ក្នុង​ការ​ឌិគ្រីប​
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "ក្ដារ​តម្បៀត​ខ្ទាស់​មិន​លេចឡើង​​ ដើម្បី​មាន​​​ហត្ថលេខា​  ឬ​អត្ថបទ​ដែល​បាន​​អ៊ិនគ្រីបឡើយ​​ ។​"
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "កំហុស​ក្នុងការ​ឌិគ្រីប​/បញ្ជាក់​ឯកសារ"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "ជ្រើស​ឯកសារ​មួយ ឬ​ច្រើន​ដើម្បី​ឌិគ្រីប និង/​ឬ​បញ្ជាក់"
@@ -2752,7 +2752,7 @@ msgid "Import CRL Finished"
 msgstr "បាន​បញ្ចប់​ការ​នាំចូល CRL"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file \"%1\" for reading"
 msgctxt "@info"
@@ -4141,62 +4141,55 @@ msgstr ""
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, fuzzy, kde-format
 #| msgid "Use 'Quick Mode' when encrypting"
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "ប្រើ​​ '​របៀប​រហ័ស​​' នៅ​ពេល​ដែល​ការ​អ៊ិនគ្រីប​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, fuzzy, kde-format
 #| msgid "Use 'Quick Mode' when encrypting"
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "ប្រើ​​ '​របៀប​រហ័ស​​' នៅ​ពេល​ដែល​ការ​អ៊ិនគ្រីប​"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr ""
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, fuzzy, kde-format
 #| msgid "Checksum program to use:"
 msgid "Checksum program to use when creating checksum files:"
 msgstr "កម្មវិធី​ឆេកសាំ​​ត្រូវ​ប្រើ​ ៖"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr ""
@@ -4805,133 +4798,6 @@ msgstr ""
 "វាក្យសម្ពន្ធ​គឺ \"HOST\" ឬ \"HOST:PORT\" ។ ប្រសិន​បើ​ច្រក​ត្រូវ​បាន​លុប ច្រក ៣៨៩ (ច្រក LDAP "
 "ស្តង់ដារ) ត្រូវ​បាន​ប្រើ ។"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The file named \"%1\" already exists. Are you sure you want to overwrite "
-#| "it?"
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr "មាន​ឯកសារ​ឈ្មោះ \"%1\" រួច​ហើយ ។ តើ​អ្នក​ពិត​ជា​ចង់​សរសេរ​ជាន់​លើ​វា​ឬ ?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr ""
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-"filename> ៖ <message>%3</message>"
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -5087,23 +4953,131 @@ msgstr "មិន​អាច​ប្រើលទ្ធផល និង​ទ�
 msgid "No backend support for %1"
 msgstr "គ្មាន​កា​រគាំទ្រ​ផ្នែក​ខាង​ក្រោយ​​សម្រាប់ %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "មិន​អាច​កំណត់​ថា​តើ​​បញ្ចូល​ទិន្នន័យ​គឺ​​ OpenPGP ឬ CMS ឡើយ​​"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "រក​មិន​ឃើញ​ព័ត៌មាន​បញ្ចូល​ដែល​អាច​ប្រើ​បាន​ទេ"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The file named \"%1\" already exists. Are you sure you want to overwrite "
+#| "it?"
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr "មាន​ឯកសារ​ឈ្មោះ \"%1\" រួច​ហើយ ។ តើ​អ្នក​ពិត​ជា​ចង់​សរសេរ​ជាន់​លើ​វា​ឬ ?"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
-#, fuzzy, kde-format
-#| msgid "Decrypt/Verify Files"
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
+#, kde-format
+msgctxt "@title:window"
+msgid "Use Original File Name?"
+msgstr ""
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#| "%2</filename>: <message>%3</message>"
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5610,63 +5584,19 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "ថត​លទ្ធផល ៖"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, fuzzy, kde-format
+#| msgid "Decrypt/Verify Files"
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, fuzzy, kde-format
 #| msgid "Decrypt/Verify Files"
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>ជ្រើស​ប្រតិបត្តិការ​ដែល​ត្រូវ​ធ្វើ</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"នៅ​ទីនេះ អ្នក​អាច​ពិនិត្យ​មើល ហើយ​បើ​ចាំបាច់​គឺ​អាច​បដិសេធ​ប្រតិបត្តិការ Kleopatra ដែលបាន​រកឃើញ​សម្រាប់​"
-"ព័ត៌មាន​បញ្ចូល​ដែល​បាន​ផ្ដល់ ។"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, fuzzy, kde-format
-#| msgid "&Decrypt/Verify"
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "បង្កើត​ឯកសារ​លទ្ធផល​ទាំងអស់​នៅ​ក្នុង​ថត​មួយ"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "ថត​លទ្ធផល ៖"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "ឯកសារ​បញ្ចូល​"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "ឯកសារ​បញ្ចូល ជា​ហត្ថលេខា​ដែល​បាន​ផ្ដាច់"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "ទិន្នន័យ​ដែល​បាន​ចុះហត្ថលេខា ៖"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "ឯកសារ​ដែល​បាន​បញ្ចូល​គឺជា​ប័ណ្ណ​សារ ស្រាយ​ជាមួយ​ ៖​"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, fuzzy, kde-format
@@ -9495,30 +9425,14 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -9526,13 +9440,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -9540,14 +9454,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgid "Create signed or encrypted files as text files."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -9556,39 +9470,39 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, fuzzy, kde-format
 #| msgid "Sign and/or encrypt file(s)"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "ចុះ​ហត្ថលេខា​ និង​​/​ឬ​ ​ឯកសារ​អ៊ិនគ្រីប​"
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, fuzzy, kde-format
 #| msgid "Use 'Quick Mode' when encrypting"
 msgid "Use public key encryption only."
 msgstr "ប្រើ​​ '​របៀប​រហ័ស​​' នៅ​ពេល​ដែល​ការ​អ៊ិនគ្រីប​"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr ""
@@ -11805,7 +11719,7 @@ msgid "invalid protocol \"%1\""
 msgstr "ពិធីការ \"%1\" មិនត្រឹមត្រូវ"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11871,34 +11785,34 @@ msgstr "គ្មាន​ការ​គាំទ្រ​ផ្នែក​ខ
 msgid "No backend support for S/MIME"
 msgstr "គ្មាន​ការ​គាំទ្រ​ផ្នែកខាងក្រោយ​សម្រាប់ S/MIME"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, fuzzy, kde-format
 #| msgid "Can not use SENDER"
 msgid "Cannot use SENDER"
 msgstr "មិន​អាច​ប្រើ​ SENDER"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, fuzzy, kde-format
 #| msgid "Can not use RECIPIENT"
 msgid "Cannot use RECIPIENT"
 msgstr "មិន​អាច​ប្រើ​ RECIPIENT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "បាន​បង្ហាញ INPUT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "បាន​បង្ហាញ MESSAGE"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "បាន​បង្ហាញ OUTPUT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DECRYPT​​/VERIFY_FILES មិន​អាច​ប្រើ​ថត​ដូច​ព័ត៌មាន​បញ្ចូល​បាន​ទេ"
@@ -14030,6 +13944,46 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "មិន​អាច​កំណត់​ថា​តើ​​បញ្ចូល​ទិន្នន័យ​គឺ​​ OpenPGP ឬ CMS ឡើយ​​"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "រក​មិន​ឃើញ​ព័ត៌មាន​បញ្ចូល​ដែល​អាច​ប្រើ​បាន​ទេ"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>ជ្រើស​ប្រតិបត្តិការ​ដែល​ត្រូវ​ធ្វើ</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "នៅ​ទីនេះ អ្នក​អាច​ពិនិត្យ​មើល ហើយ​បើ​ចាំបាច់​គឺ​អាច​បដិសេធ​ប្រតិបត្តិការ Kleopatra ដែលបាន​រកឃើញ​"
+#~ "សម្រាប់​ព័ត៌មាន​បញ្ចូល​ដែល​បាន​ផ្ដល់ ។"
+
+#, fuzzy
+#~| msgid "&Decrypt/Verify"
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "បង្កើត​ឯកសារ​លទ្ធផល​ទាំងអស់​នៅ​ក្នុង​ថត​មួយ"
+
+#~ msgid "&Output folder:"
+#~ msgstr "ថត​លទ្ធផល ៖"
+
+#~ msgid "Input file:"
+#~ msgstr "ឯកសារ​បញ្ចូល​"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "ឯកសារ​បញ្ចូល ជា​ហត្ថលេខា​ដែល​បាន​ផ្ដាច់"
+
+#~ msgid "&Signed data:"
+#~ msgstr "ទិន្នន័យ​ដែល​បាន​ចុះហត្ថលេខា ៖"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "ឯកសារ​ដែល​បាន​បញ្ចូល​គឺជា​ប័ណ្ណ​សារ ស្រាយ​ជាមួយ​ ៖​"
 
 #, fuzzy
 #~| msgid "Failed to execute %1: %2"

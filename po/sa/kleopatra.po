@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -1005,7 +1005,7 @@ msgstr "\"gpgconf --reload gpg-agent\" विफलम्: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1212,18 +1212,18 @@ msgstr "क्लिपबोर्ड त्रुटिं विगुप्�
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "क्लिप्बोर्ड् हस्ताक्षरं वा एन्क्रिप्टेड् पाठं वा न दृश्यते ।"
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "विगुप्तीकरणं/सत्यापनं विफलम्"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Decrypt/Verify Files त्रुटिः"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "विगुप्तीकरणाय तथा/वा सत्यापयितुं एकं वा अधिकं सञ्चिकां चिनोतु"
@@ -2558,7 +2558,7 @@ msgid "Import CRL Finished"
 msgstr "आयात CRL समाप्तम्"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3847,58 +3847,51 @@ msgstr "विस्ताररहिताः .p7m सञ्चिकाः �
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "विगुप्तीकरण/सत्यापनार्थं निवेशपरिचयस्य आधारेण स्वयमेव कार्यं आरभत ।"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "विगुप्तीकरणानन्तरं सञ्चिकासंग्रहालयं स्वयमेव निष्कासयन्तु"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "एन्क्रिप्टेड् सञ्चिकायाः पुटे अस्थायी विगुप्तसञ्चिकाः रचयन्तु ।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "उपयोक्तृणां अस्थायीनिर्देशिकायाः उपयोगं परिहरितुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "केवलं सममितगुप्तीकरणस्य उपयोगं कुर्वन्तु।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "सार्वजनिककुंजीगुप्तीकरणं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "केवलं सार्वजनिक-कुंजी-गोपनस्य उपयोगं कुर्वन्तु ।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "गुप्तशब्द-आधारित-गोपनं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "चेकसम सञ्चिकानां निर्माणकाले उपयोक्तुं चेकसम कार्यक्रमः:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "सञ्चिकानां संग्रहणकाले उपयोक्तुं Archive आदेशः :"
@@ -4496,94 +4489,6 @@ msgstr ""
 "वाक्यविन्यासः \"HOST\" अथवा \"HOST:PORT\" अस्ति । यदि PORT परित्यक्तं भवति तर्हि "
 "पोर्ट् 389 (मानक LDAP पोर्ट्) उपयुज्यते ।"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"एकस्मिन् वा अधिकेषु सञ्चिकासु गुप्तीकरणं वा हस्ताक्षरितं वा दत्तांशं अन्वेष्टुं असफलम्।<nl/>भवन्तः "
-"इदानीं सञ्चिकाभिः सह किं कर्तव्यमिति स्वहस्तेन चयनं कर्तुं शक्नुवन्ति।<nl/>यदि तेषु हस्ताक्षरितं "
-"वा गुप्तीकरणं वा दत्तांशं भवति तर्हि कृपया दोषं निवेदयन्तु (सहायता->प्रतिवेदनं पश्यन्तु मत्कुण)।"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"<filename>%1</filename> इति सञ्चिकायां प्रमाणपत्राणि सन्ति, तेषां विगुप्तीकरणं सत्यापनं "
-"वा कर्तुं न शक्यते ।"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "<filename>%1</filename> इति हस्ताक्षरेण सत्यापयितुं सञ्चिकां चिनोतु"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para><filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र "
-"स्थानान्तरयितुं असफलम् ।</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para><filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र "
-"स्थानान्तरयितुं असफलम्।</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"किं सञ्चिका मूलसञ्चिकानाम्ना <filename>%1</filename> इत्यनेन सह रक्षिता भविष्यति?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "मूलसञ्चिकानामस्य उपयोगं कुर्वन्तु?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "न, <filename>%1</filename> इति रक्षतु"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "आम्, <filename>%1</filename> इति रक्षतु"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "<filename>%1</filename> विलोपयितुं असफलम् ।"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"<filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र स्थानान्तरयितुं "
-"असफलम् ।"
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4732,22 +4637,97 @@ msgstr "आउटपुट् तथा साइन्ड् डाटा ए�
 msgid "No backend support for %1"
 msgstr "%1 कृते पृष्ठभागसमर्थनं नास्ति"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "निवेशदत्तांशः OpenPGP अथवा CMS इति निर्धारयितुं न शक्यते"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"एकस्मिन् वा अधिकेषु सञ्चिकासु गुप्तीकरणं वा हस्ताक्षरितं वा दत्तांशं अन्वेष्टुं असफलम्।<nl/>भवन्तः "
+"इदानीं सञ्चिकाभिः सह किं कर्तव्यमिति स्वहस्तेन चयनं कर्तुं शक्नुवन्ति।<nl/>यदि तेषु हस्ताक्षरितं "
+"वा गुप्तीकरणं वा दत्तांशं भवति तर्हि कृपया दोषं निवेदयन्तु (सहायता->प्रतिवेदनं पश्यन्तु मत्कुण)।"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "उपयोगयोग्याः निवेशाः न प्राप्ताः"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"<filename>%1</filename> इति सञ्चिकायां प्रमाणपत्राणि सन्ति, तेषां विगुप्तीकरणं सत्यापनं "
+"वा कर्तुं न शक्यते ।"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "<filename>%1</filename> इति हस्ताक्षरेण सत्यापयितुं सञ्चिकां चिनोतु"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para><filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र "
+"स्थानान्तरयितुं असफलम् ।</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para><filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र "
+"स्थानान्तरयितुं असफलम्।</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"किं सञ्चिका मूलसञ्चिकानाम्ना <filename>%1</filename> इत्यनेन सह रक्षिता भविष्यति?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "सञ्चिकाः विगुप्त/सत्यापनं कुर्वन्तु"
+msgid "Use Original File Name?"
+msgstr "मूलसञ्चिकानामस्य उपयोगं कुर्वन्तु?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "न, <filename>%1</filename> इति रक्षतु"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "आम्, <filename>%1</filename> इति रक्षतु"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "<filename>%1</filename> विलोपयितुं असफलम् ।"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"<filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र स्थानान्तरयितुं "
+"असफलम् ।"
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5166,61 +5146,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&आउटपुट फोल्डर: 1.1."
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "सञ्चिकाः विगुप्त/सत्यापनं कुर्वन्तु"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "सञ्चिकाः सत्यापयन्तु"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>कर्तव्यानि क्रियाणि चिनोतु</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"अत्र भवान् दत्तस्य निवेशस्य कृते Kleopatra इत्यनेन ज्ञातानि कार्याणि परीक्षितुं, आवश्यकता "
-"चेत्, अधिलिखितुं च शक्नोति ।"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "&डिक्रिप्ट/सत्यापन"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "एकस्मिन् पुटे सर्वाणि आउटपुट् सञ्चिकाः रचयन्तु"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "&आउटपुट फोल्डर: 1.1."
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "इनपुट् सञ्चिका :"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "&Input file इति विच्छिन्नहस्ताक्षरम् अस्ति"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "&हस्ताक्षरितदत्तांशः :"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "&इनपुट् सञ्चिका एकः संग्रहः अस्ति; unpack with:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -8730,32 +8666,14 @@ msgid ""
 msgstr ""
 "OpenPGP सञ्चिकानां कृते kleopatra पूर्वनिर्धारितं pgp सञ्चिकाविस्तारं कर्तुं एतत् सेट् कुर्वन्तु ।"
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "विगुप्तीकरण/सत्यापनार्थं निवेशपरिचयस्य आधारेण स्वयमेव कार्यं आरभत ।"
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"एतेन विकल्पेन सेट् कृत्वा Kleopatra भवन्तं न पृच्छति यत् भवन्तः इनपुट् सञ्चिकाभिः सह किं कर्तुम् "
-"इच्छन्ति अपितु तस्य स्थाने स्वयमेव इनपुट् कृते प्रयोज्यत्वेन ज्ञायमानानि कार्याणि आरभते"
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "विगुप्तीकरणानन्तरं स्वयमेव अभिलेखान् निष्कासयन्तु।"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8765,13 +8683,13 @@ msgstr ""
 "निष्कासयति ।"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "सञ्चिकासंग्रहनिर्माणार्थं एतस्य आदेशस्य उपयोगं कुर्वन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8780,13 +8698,13 @@ msgstr ""
 "बहुसञ्चिकाः अथवा पुटं गोपनं कुर्वन् क्लिओपात्रा एतेन आदेशेन एन्क्रिप्टेड् आर्काइव् निर्माति ।"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "हस्ताक्षरितानि अथवा गुप्तसञ्चिकाः पाठसञ्चिकारूपेण रचयन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8798,37 +8716,37 @@ msgstr ""
 "आकारः एकतृतीयभागः वर्धते ।"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "एन्क्रिप्टेड् सञ्चिकायाः पुटे अस्थायी विगुप्तसञ्चिकाः रचयन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "उपयोक्तृणां अस्थायीनिर्देशिकायाः उपयोगं परिहरितुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "केवलं सममितगुप्तीकरणस्य उपयोगं कुर्वन्तु।"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "सार्वजनिककुंजीगुप्तीकरणं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "केवलं सार्वजनिककुंजीगोपनस्य उपयोगं कुर्वन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "गुप्तशब्द-आधारित-गोपनं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
@@ -11016,7 +10934,7 @@ msgid "invalid protocol \"%1\""
 msgstr "अमान्यप्रोटोकॉल \"%1\" ।"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11079,32 +10997,32 @@ msgstr "OpenPGP कृते पृष्ठभागसमर्थनं न�
 msgid "No backend support for S/MIME"
 msgstr "S/MIME कृते पृष्ठभागसमर्थनं नास्ति"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "SENDER इत्यस्य उपयोगं कर्तुं न शक्यते"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "RECIPIENT इत्यस्य उपयोगं कर्तुं न शक्यते"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT उपस्थित"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE वर्तमान"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT वर्तमान"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DECRYPT/VERIFY_FILES निर्देशिकानां निवेशरूपेण उपयोगं कर्तुं न शक्नोति"
@@ -13099,6 +13017,61 @@ msgid ""
 msgstr ""
 "सञ्चिकातः प्रमाणपत्रं आयातयन्तु।<nl/>सार्वजनिककीसर्वरतः आयातयितुं तस्य स्थाने "
 "<interface>Lookup on Server</interface> इत्यस्य उपयोगं कुर्वन्तु ।"
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "विगुप्तीकरण/सत्यापनार्थं निवेशपरिचयस्य आधारेण स्वयमेव कार्यं आरभत ।"
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "निवेशदत्तांशः OpenPGP अथवा CMS इति निर्धारयितुं न शक्यते"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "उपयोगयोग्याः निवेशाः न प्राप्ताः"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>कर्तव्यानि क्रियाणि चिनोतु</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "अत्र भवान् दत्तस्य निवेशस्य कृते Kleopatra इत्यनेन ज्ञातानि कार्याणि परीक्षितुं, आवश्यकता "
+#~ "चेत्, अधिलिखितुं च शक्नोति ।"
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "&डिक्रिप्ट/सत्यापन"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "एकस्मिन् पुटे सर्वाणि आउटपुट् सञ्चिकाः रचयन्तु"
+
+#~ msgid "&Output folder:"
+#~ msgstr "&आउटपुट फोल्डर: 1.1."
+
+#~ msgid "Input file:"
+#~ msgstr "इनपुट् सञ्चिका :"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "&Input file इति विच्छिन्नहस्ताक्षरम् अस्ति"
+
+#~ msgid "&Signed data:"
+#~ msgstr "&हस्ताक्षरितदत्तांशः :"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "&इनपुट् सञ्चिका एकः संग्रहः अस्ति; unpack with:"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "विगुप्तीकरण/सत्यापनार्थं निवेशपरिचयस्य आधारेण स्वयमेव कार्यं आरभत ।"
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "एतेन विकल्पेन सेट् कृत्वा Kleopatra भवन्तं न पृच्छति यत् भवन्तः इनपुट् सञ्चिकाभिः सह किं "
+#~ "कर्तुम् इच्छन्ति अपितु तस्य स्थाने स्वयमेव इनपुट् कृते प्रयोज्यत्वेन ज्ञायमानानि कार्याणि आरभते"
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "%1: %2 महत्त्वपूर्णविकल्पं प्रेषयितुं असफलम्"

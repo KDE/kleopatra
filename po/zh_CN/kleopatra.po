@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -66,7 +66,7 @@ msgstr "Alexander Kulbartsch"
 #: src/aboutdata.cpp:49
 msgctxt "@info:credit"
 msgid "UX redesign of smartcard view and certificate details"
-msgstr "智能卡视图和证书详细信息的用户体验重新设计"
+msgstr "智能卡视图和证书详情的 UX 重设计"
 
 #: src/aboutdata.cpp:50
 msgid "Carl Schwan"
@@ -178,13 +178,13 @@ msgstr "© 2001-%1 The Kleopatra developers "
 msgctxt "@info"
 msgid ""
 "<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
-msgstr "<p>尝试将ADSK添加到时出错 <b>%1</b>:</p><p>%2</p>"
+msgstr "<p>尝试将 ADSK 添加到<b>%1</b>中时出错：</p><p>%2</p>"
 
 #: src/commands/addadskcommand.cpp:114
 #, kde-format
 msgctxt "@info"
 msgid "ADSK added successfully."
-msgstr "ADSK添加成功。"
+msgstr "ADSK 添加成功。"
 
 #: src/commands/addadskcommand.cpp:129
 #, kde-format
@@ -195,8 +195,8 @@ msgid ""
 "want to add the ADSK specified in the GnuPG configuration to your "
 "certificate?"
 msgstr ""
-"通过向证书中添加ADSK，您可以允许ADSK的所有者解密为您的证书加密的所有新消息。"
-"要将GnuPG配置中指定的ADSK添加到证书中吗？"
+"通过将 ADSK 添加到您的证书中，您将允许该附属解密密钥的所有者解密所有为您的证"
+"书加密的新消息。您是否想将 GnuPG 配置中指定的 ADSK 添加到您的证书中？ "
 
 #: src/commands/addadskcommand.cpp:131
 #, kde-format
@@ -214,7 +214,7 @@ msgstr "添加 ADSK"
 msgid ""
 "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
 "%2</p>"
-msgstr "<p>尝试将新子项添加到以下内容时发生错误 <b>%1</b>:</p><p>%2</p>"
+msgstr "<p>尝试将新子项添加到以下内容中时发生错误 <b>%1</b>：</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp:175
 #, kde-format
@@ -319,7 +319,7 @@ msgstr "复制密钥到智能卡失败。"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr "<para>密钥被复制到智能卡上。</para>"
+msgstr "<para>密钥已被复制到智能卡上。</para>"
 
 #: src/commands/certificatetocardcommand.cpp:341
 #, kde-kuit-format
@@ -328,7 +328,7 @@ msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>密钥被复制到智能卡上。</para><para>备份已导出到 <filename>%1</"
+"<para>密钥已被复制到智能卡上。</para><para>备份已导出到 <filename>%1</"
 "filename></para>"
 
 #: src/commands/certificatetocardcommand.cpp:355
@@ -981,7 +981,7 @@ msgstr "“gpgconf --reload gpg-agent”执行失败：%1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1184,18 +1184,18 @@ msgstr "正在解密 / 验证剪贴板内容..."
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "剪贴板中似乎未包含已签名或加密的文本。"
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "解密/校验失败"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "解密/校验文件错误"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "请选择一个或多个要解密/校验的文件"
@@ -2489,7 +2489,7 @@ msgid "Import CRL Finished"
 msgstr "CRL 导入完成"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3729,58 +3729,51 @@ msgstr "将没有扩展名的 .p7m 文件视为邮件。"
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "基于输入检测自动开始解密或验证操作"
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "解密后自动解压文件"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密文件的文件夹中创建临时解密文件。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "设置此选项以避免使用用户临时目录。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "只使用对称加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "选中此选项以禁用公钥加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "仅使用公钥加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "设置此选项以禁用基于密码的加密。"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "创建校验和文件时所用的校验和程序："
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "压缩文件时使用的压缩命令："
@@ -4356,88 +4349,6 @@ msgstr ""
 "务器。\n"
 "语法为：“主机名”或“主机名:端口”。如果省略端口，则默认采用标准 LDAP 端口 389。"
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"无法在一个或多个文件中找到加密或签名的数据。<nl/>您现在可以手动选择如何处理这"
-"些文件。<nl/>如果它们包含已签名或加密的数据，请报告错误（见帮助 -> 报告错"
-"误）。"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr "文件 <filename>%1</filename> 包含证书，无法被解密或验证。"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "选择要使用签名 <filename>%1</filename>进行验证的文件"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para>未能将 <filename>%1</filename> 移动到 <filename>%2</filename>。</"
-"para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para>未能将 <filename>%1</filename> 移动到 <filename>%2</filename>。</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr "文件是否要以原始文件名 <filename>%1</filename> 保存？"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "是否使用原始文件名？"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "否，另存为 <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "是，覆盖 <filename>%1</filename>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "无法删除 <filename>%1</filename>。"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr "无法移动 <filename>%1</filename> 到 <filename>%2</filename>。"
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4586,22 +4497,91 @@ msgstr "无法同时使用输出和签名数据"
 msgid "No backend support for %1"
 msgstr "没有 %1 的支持后端"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "无法判定输入数据是 OpenPGP 还是 CMS"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"无法在一个或多个文件中找到加密或签名的数据。<nl/>您现在可以手动选择如何处理这"
+"些文件。<nl/>如果它们包含已签名或加密的数据，请报告错误（见帮助 -> 报告错"
+"误）。"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "找不到可用的输入"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr "文件 <filename>%1</filename> 包含证书，无法被解密或验证。"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "选择要使用签名 <filename>%1</filename>进行验证的文件"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para>未能将 <filename>%1</filename> 移动到 <filename>%2</filename>。</"
+"para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para>未能将 <filename>%1</filename> 移动到 <filename>%2</filename>。</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr "文件是否要以原始文件名 <filename>%1</filename> 保存？"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "解密/校验文件"
+msgid "Use Original File Name?"
+msgstr "是否使用原始文件名？"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "否，另存为 <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "是，覆盖 <filename>%1</filename>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "无法删除 <filename>%1</filename>。"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr "无法移动 <filename>%1</filename> 到 <filename>%2</filename>。"
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -4633,13 +4613,13 @@ msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt and verify <filename>%1</filename>:"
-msgstr ""
+msgstr "无法解密和验证 <filename>%1</filename>："
 
 #: src/crypto/decryptverifytask.cpp:229
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt and verify <filename>%1</filename>:"
-msgstr ""
+msgstr "对 <filename>%1</filename> 的解密和验证失败："
 
 #: src/crypto/decryptverifytask.cpp:233
 #, kde-kuit-format
@@ -4681,13 +4661,13 @@ msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt <filename>%1</filename>:"
-msgstr ""
+msgstr "无法解密 <filename>%1</filename>："
 
 #: src/crypto/decryptverifytask.cpp:256
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
-msgstr ""
+msgstr "对 <filename>%1</filename> 的解密失败："
 
 #: src/crypto/decryptverifytask.cpp:259
 #, kde-kuit-format
@@ -4790,31 +4770,31 @@ msgstr "成功验证记事本"
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
-msgstr ""
+msgstr "无法解密剪贴板内容：%1"
 
 #: src/crypto/decryptverifytask.cpp:557
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
-msgstr ""
+msgstr "无法验证剪贴板内容：%1 "
 
 #: src/crypto/decryptverifytask.cpp:561
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行解密和验证"
 
 #: src/crypto/decryptverifytask.cpp:564
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行解密"
 
 #: src/crypto/decryptverifytask.cpp:567
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行验证"
 
 #: src/crypto/decryptverifytask.cpp:599
 #, kde-format
@@ -5005,59 +4985,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "输出文件夹(&O)："
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "解密/校验文件"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "校验文件"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>选择要执行的操作</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr "您可以在这里查看和按需覆盖 Kleopatra 检测到的输入数据的操作。"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "解密/校验(&D)"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "在单个文件夹内创建所有输出文件"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "输出文件夹(&O)："
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "输入文件："
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "输入文件是一个分离的签名(&I)"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "已签名数据(&S)："
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "输入文件是一个压缩文件；使用此程序解压(&I)："
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -5598,7 +5536,7 @@ msgstr "结果"
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
-msgstr ""
+msgstr "完成"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:562
 #: src/dialogs/signencryptclipboarddialog.cpp:144
@@ -6290,31 +6228,31 @@ msgstr "已成功签署记事本"
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
-msgstr ""
+msgstr "无法对剪贴板内容进行签名：%1"
 
 #: src/crypto/signencrypttask.cpp:995
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
-msgstr ""
+msgstr "无法对剪贴板内容进行加密：%1"
 
 #: src/crypto/signencrypttask.cpp:999
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行加密和签名"
 
 #: src/crypto/signencrypttask.cpp:1001
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行加密"
 
 #: src/crypto/signencrypttask.cpp:1003
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
-msgstr ""
+msgstr "已成功对剪贴板内容进行签名"
 
 #: src/crypto/task.cpp:170
 #, kde-format
@@ -6728,7 +6666,7 @@ msgstr "无限制"
 #, kde-format
 msgctxt "not applicable"
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/dialogs/certificatedetailswidget.cpp:353
 #, kde-format
@@ -7352,20 +7290,20 @@ msgstr "名称："
 #, kde-format
 msgctxt "@title"
 msgid "Available Certificates"
-msgstr ""
+msgstr "可用证书"
 
 #: src/dialogs/editgroupdialog.cpp:193 src/dialogs/editgroupdialog.cpp:199
 #, kde-format
 msgctxt "@label"
 msgid "Search available certificates"
-msgstr ""
+msgstr "搜索可用证书"
 
 #: src/dialogs/editgroupdialog.cpp:194 src/dialogs/editgroupdialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Search the list of available certificates for any that match the search term."
-msgstr ""
+msgstr "在可用证书列表中搜索与搜索词匹配的证书。"
 
 #: src/dialogs/editgroupdialog.cpp:207 src/view/searchbar.cpp:136
 #, kde-format
@@ -7382,43 +7320,43 @@ msgstr "只显示属于所选类别的证书。"
 #, kde-format
 msgctxt "@label"
 msgid "Available certificates"
-msgstr ""
+msgstr "可用证书"
 
 #: src/dialogs/editgroupdialog.cpp:259
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Certificates"
-msgstr ""
+msgstr "添加所选证书"
 
 #: src/dialogs/editgroupdialog.cpp:260
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected certificates to the group"
-msgstr ""
+msgstr "将所选的证书添加到此分组"
 
 #: src/dialogs/editgroupdialog.cpp:266
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Certificates"
-msgstr ""
+msgstr "移除选中的证书"
 
 #: src/dialogs/editgroupdialog.cpp:267
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected certificates from the group"
-msgstr ""
+msgstr "从分组组中移除所选证书"
 
 #: src/dialogs/editgroupdialog.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certificates in the Group"
-msgstr ""
+msgstr "组中的证书"
 
 #: src/dialogs/editgroupdialog.cpp:282 src/dialogs/editgroupdialog.cpp:288
 #, kde-format
 msgctxt "@label"
 msgid "Search for certificates in the group"
-msgstr ""
+msgstr "搜索在组中的证书"
 
 #: src/dialogs/editgroupdialog.cpp:283 src/dialogs/editgroupdialog.cpp:289
 #, kde-format
@@ -7426,13 +7364,13 @@ msgctxt "@info:tooltip"
 msgid ""
 "Search the list of certificates in the group for any that match the search "
 "term."
-msgstr ""
+msgstr "在组内的证书列表中搜索与搜索词匹配的证书。"
 
 #: src/dialogs/editgroupdialog.cpp:302
 #, kde-format
 msgctxt "@label"
 msgid "Certificates in group"
-msgstr ""
+msgstr "组中的证书"
 
 #: src/dialogs/editgroupdialog.cpp:482
 #, kde-format
@@ -7936,19 +7874,19 @@ msgstr "（可选）设置初始 PIN （SigG）"
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign/Encrypt Clipboard"
-msgstr ""
+msgstr "签名/加密剪贴板"
 
 #: src/dialogs/signencryptclipboarddialog.cpp:104
 #, kde-format
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
-msgstr ""
+msgstr "签名/加密剪贴板"
 
 #: src/dialogs/signencryptclipboarddialog.cpp:206
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
-msgstr ""
+msgstr "剪贴板中未包含文本。"
 
 #: src/dialogs/smartcardwindow.cpp:97 src/dialogs/smartcardwindow.cpp:119
 #, kde-format
@@ -8466,32 +8404,14 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr "设定此选项，让 kleopatra 为 OpenPGP 文件使用 pgp 作为默认扩展名。"
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "基于输入检测自动开始解密或验证操作"
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"使用此选项，Kleopatra 不再询问您想要如何处理输入文件，而是自动启动它检测到的"
-"适用于输入的操作。"
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "解密后自动解压压缩文件。"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8499,13 +8419,13 @@ msgid ""
 msgstr "如果启用此选项，那么 Kleopatra 会在解密后自动解压压缩文件。"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "使用此命令创建压缩文件。"
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8513,13 +8433,13 @@ msgid ""
 msgstr "在加密多个文件或文件夹时，Kleopatra 使用此命令创建加密的归档文件。"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "创建文本文件格式的签名或加密文件"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8530,37 +8450,37 @@ msgstr ""
 "者通过邮件正文发送。 这会使文件大小增加三分之一。"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密文件的文件夹中创建临时解密文件。"
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "设置此选项以避免使用用户临时目录。"
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "只使用对称加密。"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "选中此选项以禁用公钥加密。"
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "仅使用公钥加密。"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "设置此选项可禁用基于密码的加密。"
@@ -10695,7 +10615,7 @@ msgid "invalid protocol \"%1\""
 msgstr "无效的协议“%1”"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -10758,32 +10678,32 @@ msgstr "没有支持 OpenPGP 的后端"
 msgid "No backend support for S/MIME"
 msgstr "没有支持 S/MIME 的后端"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "无法使用 SENDER"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "无法使用 RECIPIENT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT 命令已存在"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE 命令已存在"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT 命令已存在"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "不能将目录作为 DECRYPT/VERIFY_FILES 命令的输入来源"
@@ -11128,7 +11048,7 @@ msgstr "签名/加密..."
 #, kde-format
 msgctxt "@action"
 msgid "Sign..."
-msgstr ""
+msgstr "签名..."
 
 #: src/utils/clipboardmenu.cpp:46
 #, kde-format
@@ -12656,12 +12576,12 @@ msgstr "Kleopatra 是加密软件 <a href=\"https://gnupg.org\">GnuPG</a> 的前
 msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "secret key."
-msgstr ""
+msgstr "对于大多数操作，您需要公钥 (证书) 或者您自己的私钥。"
 
 #: src/view/welcomewidget.cpp:130
 #, kde-format
 msgid "The secret key is needed to decrypt or sign."
-msgstr ""
+msgstr "私钥用于解密或签名。"
 
 #: src/view/welcomewidget.cpp:131
 #, kde-format
@@ -12691,6 +12611,8 @@ msgid ""
 "With Kleopatra you can encrypt using different methods. Please follow the "
 "regulations for classified information of your organization."
 msgstr ""
+"使用 Kleopatra，您可以通过不同的方法进行加密。请遵循您所在组织关于机密信息的"
+"相关规定。 "
 
 #: src/view/welcomewidget.cpp:144
 #, kde-format
@@ -12699,13 +12621,15 @@ msgid ""
 "For password based encryption see this <a href=\"action:help_doc_symenc"
 "\">guide</a>."
 msgstr ""
+"如需使用基于密码的加密方式，请参阅此 <a href=\"action:help_doc_symenc\">指南"
+"</a>。"
 
 #: src/view/welcomewidget.cpp:145
 #, kde-format
 msgctxt "@info"
 msgid ""
 "For public key encryption you generally have to create your own key pair."
-msgstr ""
+msgstr "对于公钥加密，通常您需要创建自己的密钥对。"
 
 #: src/view/welcomewidget.cpp:147
 #, kde-format
@@ -12714,6 +12638,8 @@ msgid ""
 "You can find step-by-step instructions for public key encryption in this <a "
 "href=\"action:help_doc_quickguide\">guide</a>."
 msgstr ""
+"您可以在此 <a href=\"action:help_doc_quickguide\">指南</a> 中找到公钥加密的分"
+"步说明。"
 
 #: src/view/welcomewidget.cpp:174
 #, kde-format
@@ -12740,3 +12666,56 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "基于输入检测自动开始解密或验证操作"
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "无法判定输入数据是 OpenPGP 还是 CMS"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "找不到可用的输入"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>选择要执行的操作</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr "您可以在这里查看和按需覆盖 Kleopatra 检测到的输入数据的操作。"
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "解密/校验(&D)"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "在单个文件夹内创建所有输出文件"
+
+#~ msgid "&Output folder:"
+#~ msgstr "输出文件夹(&O)："
+
+#~ msgid "Input file:"
+#~ msgstr "输入文件："
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "输入文件是一个分离的签名(&I)"
+
+#~ msgid "&Signed data:"
+#~ msgstr "已签名数据(&S)："
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "输入文件是一个压缩文件；使用此程序解压(&I)："
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "基于输入检测自动开始解密或验证操作"
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "使用此选项，Kleopatra 不再询问您想要如何处理输入文件，而是自动启动它检测到"
+#~ "的适用于输入的操作。"

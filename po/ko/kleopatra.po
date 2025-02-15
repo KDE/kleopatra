@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2024-12-24 18:54+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1007,7 +1007,7 @@ msgstr "\"gpgconf --reload gpg-agent\" 실패: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1218,18 +1218,18 @@ msgstr "클립보드 복호화/검증 오류"
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "클립보드에 서명이나 암호화된 텍스트가 없는 것 같습니다."
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "복호화/검증 실패"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "복호화/검증 파일 오류"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "복호화하거나 검증할 파일 하나 이상 선택"
@@ -2576,7 +2576,7 @@ msgid "Import CRL Finished"
 msgstr "CRL 가져오기 완료됨"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3866,48 +3866,41 @@ msgstr "확장이 없는 .p7m 파일을 이메일로 취급합니다."
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "암호화 해제 후 자동으로 압축 풀기"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Set this option to disable public key encryption."
@@ -3915,12 +3908,12 @@ msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "체크섬 파일을 생성할 때 사용할 프로그램:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "파일을 압축할 때 사용할 압축 명령:"
@@ -4514,95 +4507,6 @@ msgstr ""
 "문법은 \"호스트\" 및 \"호스트:포트\"이며, 포트가 없는 경우에는 표준 LDAP 포"
 "트 389번을 사용합니다."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"하나 이상의 파일에서 암호화되었거나 서명된 데이터를 찾을 수 없습니다.<nl/>해"
-"당 파일로 무엇을 할 것인지를 선택할 수 있습니다.<nl/>해당 파일에 서명되었거"
-"나 암호화된 데이터가 포함되어 있으면 버그를 보고해 주십시오(도움말->버그 보"
-"고 참조)."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"<filename>%1</filename> 파일에 인증서가 포함되어 있으며 복호화하거나 검증할 "
-"수 없습니다."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "<filename>%1</filename> 서명을 사용하여 검증할 파일을 선택하십시오"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para><filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 "
-"없습니다.</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para><filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 "
-"없습니다.</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "원래 파일 이름을 사용하시겠습니까?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "아니요, <filename>%1</filename>(으)로 저장"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "예, <filename>%1</filename>(으)로 저장"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "<filename>%1</filename>을(를) 삭제할 수 없습니다."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
-"다."
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4751,22 +4655,98 @@ msgstr "출력과 서명된 데이터를 동시에 사용할 수 없음"
 msgid "No backend support for %1"
 msgstr "%1의 백엔드 지원 없음"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "입력 데이터가 OpenPGP인지 CMS인지 결정할 수 없음"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"하나 이상의 파일에서 암호화되었거나 서명된 데이터를 찾을 수 없습니다.<nl/>해"
+"당 파일로 무엇을 할 것인지를 선택할 수 있습니다.<nl/>해당 파일에 서명되었거"
+"나 암호화된 데이터가 포함되어 있으면 버그를 보고해 주십시오(도움말->버그 보"
+"고 참조)."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "사용 가능한 입력을 찾을 수 없음"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"<filename>%1</filename> 파일에 인증서가 포함되어 있으며 복호화하거나 검증할 "
+"수 없습니다."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "<filename>%1</filename> 서명을 사용하여 검증할 파일을 선택하십시오"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para><filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 "
+"없습니다.</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para><filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 "
+"없습니다.</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"파일을 원래 파일 이름인 <filename>%1</filename>(으)로 저장하시겠습니까?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "파일 복호화/검증"
+msgid "Use Original File Name?"
+msgstr "원래 파일 이름을 사용하시겠습니까?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "아니요, <filename>%1</filename>(으)로 저장"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "예, <filename>%1</filename>(으)로 저장"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "<filename>%1</filename>을(를) 삭제할 수 없습니다."
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"<filename>%1</filename>을(를) <filename>%2</filename>(으)로 이동할 수 없습니"
+"다."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5231,61 +5211,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "출력 폴더(&O):"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "파일 복호화/검증"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "파일 검증"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>수행할 작업 선택</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"Kleopatra가 지정한 입력에 수행할 작업을 확인하고 필요한 경우 재정의할 수 있습"
-"니다."
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "복호화/검증(&D)"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "모든 출력 파일을 단일 폴더 내에 만들기"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "출력 폴더(&O):"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "입력 파일:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "입력 파일이 분리된 서명임(&I)"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "서명된 데이터(&S):"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "입력 파일이 압축 파일임, 다음으로 압축 해제(&I):"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -8907,32 +8843,14 @@ msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr "Kleopatra에서 OpenPGP 파일에 pgp 확장자를 기본값으로 사용합니다."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"이 옵션을 사용하면 Kleopatra에서 입력 파일로 할 동작을 묻지 않고 입력 내용에 "
-"따라서 작업을 자동으로 시작합니다."
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "암호화 해제 후 자동으로 압축을 풉니다."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8942,13 +8860,13 @@ msgstr ""
 "다."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "압축 파일을 만들 때 이 명령을 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8958,13 +8876,13 @@ msgstr ""
 "일을 만듭니다."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "서명되거나 암호화된 파일을 텍스트 형식으로 만듭니다."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8976,38 +8894,38 @@ msgstr ""
 "1/3 증가합니다."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "암호화된 파일이 저장된 폴더에 임시로 복호화된 파일을 만듭니다."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "이 옵션을 사용하면 사용자의 임시 디렉터리를 사용하지 않습니다."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "이 옵션을 사용하면 공개 키 암호화를 비활성화합니다."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, fuzzy, kde-format
 #| msgid "Use symmetric encryption only."
 msgid "Use public key encryption only."
 msgstr "대칭 키 암호화만 사용합니다."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, fuzzy, kde-format
 #| msgid "Set this option to disable public key encryption."
 msgid "Set this option to disable password-based encryption."
@@ -11235,7 +11153,7 @@ msgid "invalid protocol \"%1\""
 msgstr "잘못된 프로토콜 \"%1\""
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11298,32 +11216,32 @@ msgstr "OpenPGP 백엔드 지원 없음"
 msgid "No backend support for S/MIME"
 msgstr "S/MIME 백엔드 지원 없음"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "SENDER를 사용할 수 없음"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "RECIPIENT를 사용할 수 없음"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT이 존재함"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE가 존재함"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT이 존재함"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DECRYPT/VERIFY_FILES에는 디렉터리를 입력으로 사용할 수 없음"
@@ -13372,6 +13290,61 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "입력 데이터가 OpenPGP인지 CMS인지 결정할 수 없음"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "사용 가능한 입력을 찾을 수 없음"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>수행할 작업 선택</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "Kleopatra가 지정한 입력에 수행할 작업을 확인하고 필요한 경우 재정의할 수 "
+#~ "있습니다."
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "복호화/검증(&D)"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "모든 출력 파일을 단일 폴더 내에 만들기"
+
+#~ msgid "&Output folder:"
+#~ msgstr "출력 폴더(&O):"
+
+#~ msgid "Input file:"
+#~ msgstr "입력 파일:"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "입력 파일이 분리된 서명임(&I)"
+
+#~ msgid "&Signed data:"
+#~ msgstr "서명된 데이터(&S):"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "입력 파일이 압축 파일임, 다음으로 압축 해제(&I):"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr "입력 내용을 감지하여 복호화/검증 작업을 자동으로 시작합니다."
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "이 옵션을 사용하면 Kleopatra에서 입력 파일로 할 동작을 묻지 않고 입력 내용"
+#~ "에 따라서 작업을 자동으로 시작합니다."
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "필수 옵션 %1을(를) 전송할 수 없음: %2"

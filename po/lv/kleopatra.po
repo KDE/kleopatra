@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-12 00:42+0000\n"
+"POT-Creation-Date: 2025-02-15 00:43+0000\n"
 "PO-Revision-Date: 2025-01-27 16:42+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1015,7 +1015,7 @@ msgstr "„gpgconf --reload gpg-agent“ neizdevās: %1"
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:164
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
 msgid "An error occurred: %1"
@@ -1225,18 +1225,18 @@ msgstr "Atšifrē/verificē starpliktuvi…"
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "Izskatās, ka starpliktuve nesatur parakstītu vai šifrētu tekstu."
 
-#: src/commands/decryptverifyfilescommand.cpp:65
+#: src/commands/decryptverifyfilescommand.cpp:63
 #, kde-format
 msgctxt "@title:window"
 msgid "Decrypt/Verify Failed"
 msgstr "Datņu atšifrēšana/verificēšana neizdevās"
 
-#: src/commands/decryptverifyfilescommand.cpp:203
+#: src/commands/decryptverifyfilescommand.cpp:196
 #, kde-format
 msgid "Decrypt/Verify Files Error"
 msgstr "Datņu atšifrēšanas/verificēšanas kļūda"
 
-#: src/commands/decryptverifyfilescommand.cpp:216
+#: src/commands/decryptverifyfilescommand.cpp:209
 #, kde-format
 msgid "Select One or More Files to Decrypt and/or Verify"
 msgstr "Atlasiet vienu vai vairākas atšifrējamās/verificējamās datnes"
@@ -2597,7 +2597,7 @@ msgid "Import CRL Finished"
 msgstr "CRL importēšana pabeigta"
 
 #: src/commands/importpaperkeycommand.cpp:85
-#: src/crypto/autodecryptverifyfilescontroller.cpp:236
+#: src/crypto/decryptverifyfilescontroller.cpp:257
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
@@ -3914,61 +3914,52 @@ msgstr "„.p7m“ datnes bez paplašinājumiem uzskatīt par vēstulēm."
 #: src/conf/cryptooperationsconfigwidget.cpp:64
 #, kde-format
 msgctxt "@option:check"
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Automātiski sākt darbību, balstoties uz konstatētu ievadi atšifrēšanai/"
-"verificēšanai."
-
-#: src/conf/cryptooperationsconfigwidget.cpp:65
-#, kde-format
-msgctxt "@option:check"
 msgid "Automatically extract file archives after decryption"
 msgstr "Pēc atšifrēšanas automātiski atspiest datņu arhīvus"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:65
 #, kde-format
 msgctxt "@option:check"
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Pagaidu atšifrētās datnes veidot šifrēto datņu mapē."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:66
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Iestatiet šo opciju, lai izvairītos no lietotāja pagaidu mapes lietošanas."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Izmantot tikai simetrisku šifrēšanu."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:68
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr "Iestatiet šo opciju, lai izslēgtu šifrēšanu ar publisko atslēgu."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:70
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Izmantot tikai šifrēšanu ar publisko atslēgu."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:71
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
 msgstr "Iestatiet šo opciju, lai izslēgtu šifrēšanu, kurai pamatā ir parole."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:97
+#: src/conf/cryptooperationsconfigwidget.cpp:95
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr "Kontrolsummas programma, ko izmantot, veidojot kontrolsummu datnes:"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:102
+#: src/conf/cryptooperationsconfigwidget.cpp:100
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Arhīva komanda, ko izmantot, arhivējot datnes:"
@@ -4579,94 +4570,6 @@ msgstr ""
 "Sintakse ir RESURSDATORS vai RESURSDATORS:PORTS. Ja ports nav norādīts, "
 "programma izmanto 389. portu (standarta LDAP portu)."
 
-#: src/crypto/autodecryptverifyfilescontroller.cpp:151
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Failed to find encrypted or signed data in one or more files.<nl/>You can "
-"manually select what to do with the files now.<nl/>If they contain signed or "
-"encrypted data please report a bug (see Help->Report Bug)."
-msgstr ""
-"Vienā vai vairākās datnēs neizdevās atrast šifrētus vai parakstītus datus."
-"<nl/>Varat manuāli atlasīt, ko ar datnēm darīt.<nl/>Ja tās satur parakstītus "
-"vai šifrētus datus, lūdzu, ziņojiet par kļūdu (skatīt Palīdzība—>Ziņot par "
-"kļūdu)."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:244
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"The file <filename>%1</filename> contains certificates and can't be "
-"decrypted or verified."
-msgstr ""
-"Datne „<filename>%1</filename>“ satur sertifikātus un to nevar atšifrēt vai "
-"verificēt."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:296
-#, kde-kuit-format
-msgctxt "@title:window"
-msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr "Atlasiet datni ko verificēt ar parakstu „<filename>%1</filename>“"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:610
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para><para><message>%3</message></para>"
-msgstr ""
-"<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
-"filename>“.</para><para><message>%3</message></para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:620
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
-"para>"
-msgstr ""
-"<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
-"filename>“.</para>"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:632
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
-"Vai datni saglabāt ar datnes oriģinālo nosaukumu — „<filename>%1</filename>“?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:633
-#, kde-format
-msgctxt "@title:window"
-msgid "Use Original File Name?"
-msgstr "Vai izmantot oriģinālo datnes nosaukumu?"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:634
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "No, Save As <filename>%1</filename>"
-msgstr "Nē, saglabāt kā „<filename>%1</filename>“"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:635
-#, kde-kuit-format
-msgctxt "@action:button"
-msgid "Yes, Save As <filename>%1</filename>"
-msgstr "Jā, saglabāt kā „<filename>%1</filename>“"
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:658
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to delete <filename>%1</filename>."
-msgstr "Neizdevās dzēst „<filename>%1</filename>“."
-
-#: src/crypto/autodecryptverifyfilescontroller.cpp:679
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-msgstr ""
-"Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
-
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
@@ -4815,22 +4718,97 @@ msgstr "Nevar vienlaikus izmantot izvadi un parakstītos datus"
 msgid "No backend support for %1"
 msgstr "„%1“ trūkst aizmugursistēmas atbalsta"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:113
-#, kde-format
-msgid "Cannot determine whether input data is OpenPGP or CMS"
-msgstr "Nevar noteikt, vai ievades dati ir „OpenPGP“ vai CMS"
+#: src/crypto/decryptverifyfilescontroller.cpp:175
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
+#| "manually select what to do with the files now.<nl/>If they contain signed "
+#| "or encrypted data please report a bug (see Help->Report Bug)."
+msgctxt "@info"
+msgid ""
+"Failed to find encrypted or signed data in one or more files.<nl/>If they "
+"contain signed or encrypted data please report a bug (see Help->Report Bug)."
+msgstr ""
+"Vienā vai vairākās datnēs neizdevās atrast šifrētus vai parakstītus datus."
+"<nl/>Varat manuāli atlasīt, ko ar datnēm darīt.<nl/>Ja tās satur parakstītus "
+"vai šifrētus datus, lūdzu, ziņojiet par kļūdu (skatīt Palīdzība—>Ziņot par "
+"kļūdu)."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:156
-#, kde-format
-msgid "No usable inputs found"
-msgstr "Nav atrasta derīga ievade"
+#: src/crypto/decryptverifyfilescontroller.cpp:265
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The file <filename>%1</filename> contains certificates and can't be "
+"decrypted or verified."
+msgstr ""
+"Datne „<filename>%1</filename>“ satur sertifikātus un to nevar atšifrēt vai "
+"verificēt."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:222
-#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#: src/crypto/decryptverifyfilescontroller.cpp:317
+#, kde-kuit-format
+msgctxt "@title:window"
+msgid "Select the file to verify with the signature <filename>%1</filename>"
+msgstr "Atlasiet datni ko verificēt ar parakstu „<filename>%1</filename>“"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:631
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para><para><message>%3</message></para>"
+msgstr ""
+"<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
+"filename>“.</para><para><message>%3</message></para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:641
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+"para>"
+msgstr ""
+"<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
+"filename>“.</para>"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:653
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Shall the file be saved with the original file name <filename>%1</filename>?"
+msgstr ""
+"Vai datni saglabāt ar datnes oriģinālo nosaukumu — „<filename>%1</filename>“?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:654
 #, kde-format
 msgctxt "@title:window"
-msgid "Decrypt/Verify Files"
-msgstr "Atšifrēt/verificēt datnes"
+msgid "Use Original File Name?"
+msgstr "Vai izmantot oriģinālo datnes nosaukumu?"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:655
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "No, Save As <filename>%1</filename>"
+msgstr "Nē, saglabāt kā „<filename>%1</filename>“"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:656
+#, kde-kuit-format
+msgctxt "@action:button"
+msgid "Yes, Save As <filename>%1</filename>"
+msgstr "Jā, saglabāt kā „<filename>%1</filename>“"
+
+#: src/crypto/decryptverifyfilescontroller.cpp:679
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to delete <filename>%1</filename>."
+msgstr "Neizdevās dzēst „<filename>%1</filename>“."
+
+#: src/crypto/decryptverifyfilescontroller.cpp:700
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
+msgstr ""
+"Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</filename>“."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -5255,61 +5233,17 @@ msgctxt "@label:textbox"
 msgid "&Output folder:"
 msgstr "&Izvades mape:"
 
+#: src/crypto/gui/decryptverifyfilesdialog.cpp:89
+#, kde-format
+msgctxt "@title:window"
+msgid "Decrypt/Verify Files"
+msgstr "Atšifrēt/verificēt datnes"
+
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:96
 #, kde-format
 msgctxt "@title:window"
 msgid "Verify Files"
 msgstr "Verificēt datnes"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:210
-#, kde-format
-msgid "<b>Choose operations to be performed</b>"
-msgstr "<b>Izvēlieties izpildāmās darbības</b>"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:212
-#, kde-format
-msgid ""
-"Here you can check and, if needed, override the operations Kleopatra "
-"detected for the input given."
-msgstr ""
-"Šeit varat pārbaudīt un, ja vajadzīgs, mainīt darbības, ko „Kleopatra“ "
-"noteica dotajai ievadei."
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:215
-#, kde-format
-msgctxt "@action:button"
-msgid "&Decrypt/Verify"
-msgstr "Atši&frēt/verificēt"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:223
-#, kde-format
-msgid "Create all output files in a single folder"
-msgstr "Visas izvades datnes izveidot vienā mapē"
-
-#: src/crypto/gui/decryptverifyfileswizard.cpp:224
-#, kde-format
-msgid "&Output folder:"
-msgstr "&Izvades mape:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:68
-#, kde-format
-msgid "Input file:"
-msgstr "Ievades datne:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:72
-#, kde-format
-msgid "&Input file is a detached signature"
-msgstr "&Ievades datne ir atvienots paraksts"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:73
-#, kde-format
-msgid "&Signed data:"
-msgstr "Parak&stītie dati:"
-
-#: src/crypto/gui/decryptverifyoperationwidget.cpp:78
-#, kde-format
-msgid "&Input file is an archive; unpack with:"
-msgstr "&Ievades datne ir arhīvs, atspiest ar:"
 
 #: src/crypto/gui/encryptemailwizard.cpp:25
 #, kde-format
@@ -8870,35 +8804,14 @@ msgstr ""
 "Iestatiet šo, ja vēlaties lai „Kleopatra“ pēc noklusējuma „OpenPGP“ datnēm "
 "izmantotu „pgp“ paplašinājumu."
 
-#. i18n: ectx: label, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:15
-#, kde-format
-msgid ""
-"Automatically start operation based on input detection for decrypt/verify."
-msgstr ""
-"Automātiski sākt darbību, balstoties konstatētajā ievadē atšifrēšanai/"
-"verificēšanai."
-
-#. i18n: ectx: whatsthis, entry (AutoDecryptVerify), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:16
-#, kde-format
-msgid ""
-"With this option set Kleopatra no longer asks you what you want to do with "
-"input files but instead automatically starts the operations it detects as "
-"applicable to the input."
-msgstr ""
-"Šī opcija liks „Kleopatra“ vairs nejautāt, ko vēlaties darīt ar ievades "
-"datnēm, bet tā vietā automātiski uzsāks darbību, ko atzīs par piemērotu "
-"ievadei."
-
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:20
+#: src/kcfg/fileoperationspreferences.kcfg:15
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "Pēc atšifrēšanas automātiski atspiest arhīvus"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:21
+#: src/kcfg/fileoperationspreferences.kcfg:16
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8908,13 +8821,13 @@ msgstr ""
 "to atšifrēšanas."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:25
+#: src/kcfg/fileoperationspreferences.kcfg:20
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "Lietojiet šo komandu, lai izveidotu datņu arhīvus."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:26
+#: src/kcfg/fileoperationspreferences.kcfg:21
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8924,13 +8837,13 @@ msgstr ""
 "šifrētu arhīvu."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:30
+#: src/kcfg/fileoperationspreferences.kcfg:25
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Izveidot parakstītas un šifrētas datnes kā teksta datnes."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:31
+#: src/kcfg/fileoperationspreferences.kcfg:26
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8943,38 +8856,38 @@ msgstr ""
 "trešdaļu."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:35
+#: src/kcfg/fileoperationspreferences.kcfg:30
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Pagaidu atšifrētās datnes veidot šifrēto datņu mapē."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:36
+#: src/kcfg/fileoperationspreferences.kcfg:31
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Iestatiet šo opciju, lai izvairītos no lietotāja pagaidu mapes lietošanas."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:40
+#: src/kcfg/fileoperationspreferences.kcfg:35
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Izmantot tikai simetrisku šifrēšanu."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:41
+#: src/kcfg/fileoperationspreferences.kcfg:36
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "Iestatiet šo opciju, lai izslēgtu šifrēšanu ar publisko atslēgu."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:45
+#: src/kcfg/fileoperationspreferences.kcfg:40
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "Izmantot tikai šifrēšanu ar publisko atslēgu."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/fileoperationspreferences.kcfg:46
+#: src/kcfg/fileoperationspreferences.kcfg:41
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "Iestatiet šo opciju, lai izslēgtu šifrēšanu, kurai pamatā ir parole."
@@ -11205,7 +11118,7 @@ msgid "invalid protocol \"%1\""
 msgstr "nederīgs protokols „%1“"
 
 #: src/uiserver/createchecksumscommand.cpp:54
-#: src/uiserver/decryptverifycommandfilesbase.cpp:148
+#: src/uiserver/decryptverifycommandfilesbase.cpp:142
 #: src/uiserver/signencryptfilescommand.cpp:59
 #: src/uiserver/verifychecksumscommand.cpp:56
 #, kde-format
@@ -11268,32 +11181,32 @@ msgstr "Nav „OpenPGP“ aizmugursistēmas atbalsta"
 msgid "No backend support for S/MIME"
 msgstr "Nav S/MIME aizmugursistēmas atbalsta"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:128
+#: src/uiserver/decryptverifycommandfilesbase.cpp:122
 #, kde-format
 msgid "Cannot use SENDER"
 msgstr "Nevar izmantot SENDER"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:131
+#: src/uiserver/decryptverifycommandfilesbase.cpp:125
 #, kde-format
 msgid "Cannot use RECIPIENT"
 msgstr "Nevar izmantot RECIPIENT"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:138
+#: src/uiserver/decryptverifycommandfilesbase.cpp:132
 #, kde-format
 msgid "INPUT present"
 msgstr "INPUT ir klātesošs"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:141
+#: src/uiserver/decryptverifycommandfilesbase.cpp:135
 #, kde-format
 msgid "MESSAGE present"
 msgstr "MESSAGE ir klātesošs"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:144
+#: src/uiserver/decryptverifycommandfilesbase.cpp:138
 #, kde-format
 msgid "OUTPUT present"
 msgstr "OUTPUT ir klātesošs"
 
-#: src/uiserver/decryptverifycommandfilesbase.cpp:150
+#: src/uiserver/decryptverifycommandfilesbase.cpp:144
 #, kde-format
 msgid "DECRYPT/VERIFY_FILES cannot use directories as input"
 msgstr "DECRYPT/VERIFY_FILES nevar kā ievadi izmantot mapes"
@@ -13313,6 +13226,66 @@ msgid ""
 msgstr ""
 "Importēt sertifikātu no datnes.<nl/>Lai importētu no publiskā atslēgu "
 "servera, izmantojiet <interface>Uzmeklēt serverī</interface>."
+
+#~ msgctxt "@option:check"
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Automātiski sākt darbību, balstoties uz konstatētu ievadi atšifrēšanai/"
+#~ "verificēšanai."
+
+#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
+#~ msgstr "Nevar noteikt, vai ievades dati ir „OpenPGP“ vai CMS"
+
+#~ msgid "No usable inputs found"
+#~ msgstr "Nav atrasta derīga ievade"
+
+#~ msgid "<b>Choose operations to be performed</b>"
+#~ msgstr "<b>Izvēlieties izpildāmās darbības</b>"
+
+#~ msgid ""
+#~ "Here you can check and, if needed, override the operations Kleopatra "
+#~ "detected for the input given."
+#~ msgstr ""
+#~ "Šeit varat pārbaudīt un, ja vajadzīgs, mainīt darbības, ko „Kleopatra“ "
+#~ "noteica dotajai ievadei."
+
+#~ msgctxt "@action:button"
+#~ msgid "&Decrypt/Verify"
+#~ msgstr "Atši&frēt/verificēt"
+
+#~ msgid "Create all output files in a single folder"
+#~ msgstr "Visas izvades datnes izveidot vienā mapē"
+
+#~ msgid "&Output folder:"
+#~ msgstr "&Izvades mape:"
+
+#~ msgid "Input file:"
+#~ msgstr "Ievades datne:"
+
+#~ msgid "&Input file is a detached signature"
+#~ msgstr "&Ievades datne ir atvienots paraksts"
+
+#~ msgid "&Signed data:"
+#~ msgstr "Parak&stītie dati:"
+
+#~ msgid "&Input file is an archive; unpack with:"
+#~ msgstr "&Ievades datne ir arhīvs, atspiest ar:"
+
+#~ msgid ""
+#~ "Automatically start operation based on input detection for decrypt/verify."
+#~ msgstr ""
+#~ "Automātiski sākt darbību, balstoties konstatētajā ievadē atšifrēšanai/"
+#~ "verificēšanai."
+
+#~ msgid ""
+#~ "With this option set Kleopatra no longer asks you what you want to do "
+#~ "with input files but instead automatically starts the operations it "
+#~ "detects as applicable to the input."
+#~ msgstr ""
+#~ "Šī opcija liks „Kleopatra“ vairs nejautāt, ko vēlaties darīt ar ievades "
+#~ "datnēm, bet tā vietā automātiski uzsāks darbību, ko atzīs par piemērotu "
+#~ "ievadei."
 
 #~ msgid "Failed to send critical option %1: %2"
 #~ msgstr "Neizdevās nosūtīt kritisku opciju „%1“: %2"
