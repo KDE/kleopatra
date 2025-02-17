@@ -68,6 +68,7 @@ endif()
 
 ki18n_wrap_ui(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwidget.ui)
 
+configure_file(kleopatra.qrc.in kleopatra.qrc @ONLY)
 set(_kleopatra_SRCS
   ${_kleopatra_extra_SRCS}
 
@@ -525,7 +526,7 @@ set(_kleopatra_SRCS
 
   aboutdata.cpp
   aboutdata.h
-  kleopatra.qrc
+  ${CMAKE_CURRENT_BINARY_DIR}/kleopatra.qrc
   kleopatraapplication.cpp
   kleopatraapplication.h
   main.cpp

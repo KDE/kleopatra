@@ -1,3 +1,5 @@
+#cmakedefine KLEOPATRA_APPLICATION_NAME "@KLEOPATRA_APPLICATION_NAME@"
+
 /* DBus available */
 #cmakedefine01 HAVE_QDBUS
 

@@ -120,7 +120,7 @@ static void loadCustomAboutData(KAboutData &about)
 }
 
 AboutData::AboutData()
-    : KAboutData(QStringLiteral("kleopatra"),
+    : KAboutData(QStringLiteral(KLEOPATRA_APPLICATION_NAME),
                  i18n("Kleopatra"),
                  QLatin1StringView(KLEOPATRA_VERSION_STRING),
                  i18n("Certificate manager and cryptography app"),

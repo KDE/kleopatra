@@ -102,6 +102,7 @@ int main(int argc, char **argv)
     KleopatraApplication app(argc, argv);
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.
+    app.setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
     app.setOrganizationDomain(QStringLiteral("kde.org"));
 
     STARTUP_TIMING << "Application created";
