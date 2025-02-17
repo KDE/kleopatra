@@ -28,6 +28,10 @@ if (NOT KLEOPATRA_DISTRIBUTION_TEXT)
     # This is only used on Windows for the file attributes of Kleopatra
     set(KLEOPATRA_DISTRIBUTION_TEXT "KDE")
 endif()
+if (NOT KLEOPATRA_APPLICATION_NAME)
+    # This is used to allow multiple flavors of Kleopatra to run at the same time on Windows
+    set(KLEOPATRA_APPLICATION_NAME "kleopatra")
+endif()
 
 project(kleopatra VERSION ${kleopatra_version})
 
