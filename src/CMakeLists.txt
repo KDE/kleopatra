@@ -576,7 +576,11 @@ kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/tooltippreferences.kcfgc
 )
 
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.*")
+# setting a different KLEOPATRA_ICON_DIR allows to use different icons for a customized build
+if (NOT KLEOPATRA_ICON_DIR)
+    set(KLEOPATRA_ICON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/icons")
+endif()
+file(GLOB ICONS_SRCS "${KLEOPATRA_ICON_DIR}/*.png" "${KLEOPATRA_ICON_DIR}/*.svg*")
 ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_SRCS})
 ecm_install_icons(ICONS ${ICONS_SRCS} DESTINATION ${KDE_INSTALL_ICONDIR})
 
