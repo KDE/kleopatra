@@ -9,9 +9,6 @@
 
 #include "resultlistwidget.h"
 
-#include "emailoperationspreferences.h"
-
-#include <crypto/decryptverifytask.h>
 #include <crypto/gui/resultitemwidget.h>
 
 #include <utils/gui-helper.h>
@@ -19,12 +16,8 @@
 #include <Libkleo/Stl_Util>
 
 #include <KAdjustingScrollArea>
-#include <KGuiItem>
 #include <KLocalizedString>
-#include <KStandardGuiItem>
 
-#include <QLabel>
-#include <QPushButton>
 #include <QVBoxLayout>
 
 using namespace Kleo;
@@ -43,15 +36,11 @@ public:
     void allTasksDone();
 
     void addResultWidget(ResultItemWidget *widget);
-    void resizeIfStandalone();
 
     std::vector<std::shared_ptr<TaskCollection>> m_collections;
-    bool m_standaloneMode = false;
     int m_lastErrorItemIndex = 0;
     KAdjustingScrollArea *m_scrollArea = nullptr;
-    QPushButton *m_closeButton = nullptr;
     QVBoxLayout *m_layout = nullptr;
-    QLabel *m_progressLabel = nullptr;
 };
 
 ResultListWidget::Private::Private(ResultListWidget *qq)
@@ -71,18 +60,6 @@ ResultListWidget::Private::Private(ResultListWidget *qq)
     scrollAreaLayout->setSpacing(2);
     scrollAreaLayout->addStretch();
     m_layout->addWidget(m_scrollArea);
-
-    m_progressLabel = new QLabel;
-    m_progressLabel->setWordWrap(true);
-    m_layout->addWidget(m_progressLabel);
-    m_progressLabel->setVisible(false);
-
-    m_closeButton = new QPushButton;
-    KGuiItem::assign(m_closeButton, KStandardGuiItem::close());
-    q->connect(m_closeButton, &QPushButton::clicked, q, &ResultListWidget::close);
-    m_layout->addWidget(m_closeButton);
-    m_closeButton->setVisible(false);
-    m_closeButton->setEnabled(false);
 }
 
 ResultListWidget::ResultListWidget(QWidget *parent, Qt::WindowFlags f)
@@ -91,22 +68,7 @@ ResultListWidget::ResultListWidget(QWidget *parent, Qt::WindowFlags f)
 {
 }
 
-ResultListWidget::~ResultListWidget()
-{
-    if (!d->m_standaloneMode) {
-        return;
-    }
-    EMailOperationsPreferences prefs;
-    prefs.setDecryptVerifyPopupGeometry(geometry());
-    prefs.save();
-}
-
-void ResultListWidget::Private::resizeIfStandalone()
-{
-    if (m_standaloneMode) {
-        q->resize(q->size().expandedTo(q->sizeHint()));
-    }
-}
+ResultListWidget::~ResultListWidget() = default;
 
 void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
 {
@@ -130,7 +92,6 @@ void ResultListWidget::Private::addResultWidget(ResultItemWidget *widget)
     }
 
     widget->show();
-    resizeIfStandalone();
 }
 
 void ResultListWidget::Private::allTasksDone()
@@ -138,8 +99,6 @@ void ResultListWidget::Private::allTasksDone()
     if (!q->isComplete()) {
         return;
     }
-    m_progressLabel->setVisible(false);
-    resizeIfStandalone();
     Q_EMIT q->completeChanged();
 }
 
@@ -182,7 +141,6 @@ unsigned int ResultListWidget::numberOfCompletedTasks() const
 
 void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
-    // clear(); ### PENDING(marc) implement
     addTaskCollection(coll);
 }
 
@@ -197,26 +155,11 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
             SLOT(result(std::shared_ptr<const Kleo::Crypto::Task::Result>)));
     connect(coll.get(), SIGNAL(started(std::shared_ptr<Kleo::Crypto::Task>)), this, SLOT(started(std::shared_ptr<Kleo::Crypto::Task>)));
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
-    setStandaloneMode(d->m_standaloneMode);
 }
 
 void ResultListWidget::Private::started(const std::shared_ptr<Task> &task)
 {
     Q_ASSERT(task);
-    Q_ASSERT(m_progressLabel);
-    m_progressLabel->setText(i18nc("number, operation description", "Operation %1: %2", q->numberOfCompletedTasks() + 1, task->label()));
-    resizeIfStandalone();
-}
-
-void ResultListWidget::setStandaloneMode(bool standalone)
-{
-    d->m_standaloneMode = standalone;
-    if (totalNumberOfTasks() == 0) {
-        return;
-    }
-    d->m_closeButton->setVisible(standalone);
-    d->m_closeButton->setEnabled(standalone);
-    d->m_progressLabel->setVisible(standalone);
 }
 
 #include "moc_resultlistwidget.cpp"

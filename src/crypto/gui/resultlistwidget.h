@@ -35,8 +35,6 @@ public:
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);
 
-    void setStandaloneMode(bool standalone);
-
     bool isComplete() const;
 
     unsigned int totalNumberOfTasks() const;
