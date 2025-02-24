@@ -17,8 +17,6 @@
 #include "signemailtask.h"
 #include "taskcollection.h"
 
-#include "emailoperationspreferences.h"
-
 #include <crypto/gui/signencryptemailconflictdialog.h>
 
 #include "utils/input.h"

@@ -12,8 +12,6 @@
 #include "decryptverifyemailcontroller.h"
 #include "kleopatra_debug.h"
 
-#include "emailoperationspreferences.h"
-
 #include <crypto/decryptverifytask.h>
 #include <crypto/gui/newresultpage.h>
 #include <crypto/taskcollection.h>
@@ -30,7 +28,9 @@
 
 #include <KMime/HeaderParsing>
 
+#include <KConfigGroup>
 #include <KLocalizedString>
+#include <KSharedConfig>
 
 #include <QPoint>
 #include <QPointer>
@@ -58,6 +58,8 @@ public:
         m_resultPage.setSubTitle(i18n("Status and progress of the crypto operations is shown here."));
 
         addPage(&m_resultPage);
+
+        readConfig();
     }
 
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll)
@@ -65,12 +67,26 @@ public:
         m_resultPage.addTaskCollection(coll);
     }
 
+    void readConfig()
+    {
+        KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("DecryptVerifyEMailWizard"));
+        const QSize size = config.readEntry("Size", QSize{});
+        if (size.isValid()) {
+            resize(size);
+        }
+    }
+
+    void writeConfig()
+    {
+        KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("DecryptVerifyEMailWizard"));
+        config.writeEntry("Size", size());
+        config.sync();
+    }
+
 public Q_SLOTS:
     void accept() override
     {
-        EMailOperationsPreferences prefs;
-        prefs.setDecryptVerifyPopupGeometry(geometry());
-        prefs.save();
+        writeConfig();
         QWizard::accept();
     }
 
@@ -227,11 +243,6 @@ DecryptVerifyEMailWizard *DecryptVerifyEMailController::Private::findOrCreateWiz
     auto w = new DecryptVerifyEMailWizard;
     w->setWindowTitle(i18nc("@title:window", "Decrypt/Verify E-Mail"));
     w->setAttribute(Qt::WA_DeleteOnClose);
-
-    const QRect preferredGeometry = EMailOperationsPreferences().decryptVerifyPopupGeometry();
-    if (preferredGeometry.isValid()) {
-        w->setGeometry(preferredGeometry);
-    }
 
     s_wizards[id] = w;
 
