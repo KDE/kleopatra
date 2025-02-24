@@ -9,8 +9,6 @@
 
 #include "cardkeysview.h"
 
-#include <tooltippreferences.h>
-
 #include <kleopatra_debug.h>
 #include <settings.h>
 
@@ -70,12 +68,12 @@ static int toolTipOptions()
     static const int ownerFlags = Subject | UserIDs | OwnerTrust;
     static const int detailsFlags = StorageLocation | CertificateType | SerialNumber | Fingerprint;
 
-    const TooltipPreferences prefs;
+    const Settings settings;
 
     int flags = KeyID;
-    flags |= prefs.showValidity() ? validityFlags : 0;
-    flags |= prefs.showOwnerInformation() ? ownerFlags : 0;
-    flags |= prefs.showCertificateDetails() ? detailsFlags : 0;
+    flags |= settings.showValidity() ? validityFlags : 0;
+    flags |= settings.showOwnerInformation() ? ownerFlags : 0;
+    flags |= settings.showCertificateDetails() ? detailsFlags : 0;
     return flags;
 }
 

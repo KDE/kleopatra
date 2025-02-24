@@ -586,7 +586,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
 
 kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/settings.kcfgc
-  kcfg/tooltippreferences.kcfgc
 )
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/*-apps-kleopatra.png")
