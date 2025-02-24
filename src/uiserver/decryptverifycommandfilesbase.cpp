@@ -8,7 +8,6 @@
 #include <config-kleopatra.h>
 
 #include "decryptverifycommandfilesbase.h"
-#include "fileoperationspreferences.h"
 
 #include <crypto/decryptverifytask.h>
 

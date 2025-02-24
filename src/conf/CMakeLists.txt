@@ -46,7 +46,6 @@ ki18n_wrap_ui(kcm_kleopatra_PART_SRCS
 
 kconfig_add_kcfg_files(kcm_kleopatra_PART_SRCS
   ${kleopatra_SOURCE_DIR}/src/kcfg/tooltippreferences.kcfgc
-  ${kleopatra_SOURCE_DIR}/src/kcfg/fileoperationspreferences.kcfgc
   ${kleopatra_SOURCE_DIR}/src/kcfg/settings.kcfgc
 )
 

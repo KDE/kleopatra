@@ -11,12 +11,12 @@
 #include "kleopatra_debug.h"
 
 #include "certificatelineedit.h"
-#include "fileoperationspreferences.h"
 #include "kleopatraapplication.h"
-#include "settings.h"
 #include "unknownrecipientwidget.h"
 
 #include "utils/gui-helper.h"
+
+#include <settings.h>
 
 #include <QButtonGroup>
 #include <QCheckBox>
@@ -167,8 +167,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
-    const bool publicKeyOnly = FileOperationsPreferences().publicKeyEncryptionOnly();
+    const bool symmetricOnly = Settings().symmetricEncryptionOnly();
+    const bool publicKeyOnly = Settings().publicKeyEncryptionOnly();
 
     bool pgpOnly = KeyCache::instance()->pgpOnly();
     if (!pgpOnly && Settings{}.cmsEnabled() && sigEncExclusive) {
@@ -409,7 +409,7 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
 
     const RecipientWidgets recipient{new CertificateLineEdit{mModel, KeyUsage::Encrypt, new EncryptCertificateFilter{mCurrentProto}, q}, new KMessageWidget{q}};
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
-    recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !FileOperationsPreferences().symmetricEncryptionOnly());
+    recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !Settings().symmetricEncryptionOnly());
     recipient.expiryMessage->setVisible(false);
     if (!after) {
         mEncOtherLabel->setBuddy(recipient.edit);
@@ -849,8 +849,8 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
     if (checked) {
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-        const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
-        const bool publicKeyOnly = FileOperationsPreferences().publicKeyEncryptionOnly();
+        const bool symmetricOnly = Settings().symmetricEncryptionOnly();
+        const bool publicKeyOnly = Settings().publicKeyEncryptionOnly();
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
         d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
     } else {
@@ -968,7 +968,7 @@ bool SignEncryptWidget::validate()
 void SignEncryptWidget::Private::updateCheckBoxes()
 {
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
-    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+    const bool symmetricOnly = Settings().symmetricEncryptionOnly();
     mSigChk->setEnabled(haveSecretKeys);
     mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
     if (symmetricOnly) {

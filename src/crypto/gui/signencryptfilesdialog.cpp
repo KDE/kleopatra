@@ -17,7 +17,6 @@
 
 #include "resultpage.h"
 
-#include <fileoperationspreferences.h>
 #include <settings.h>
 
 #include <KAdjustingScrollArea>
@@ -388,7 +387,7 @@ private:
         if (!mRequesters.empty()) {
             return;
         }
-        const bool isAscii = FileOperationsPreferences().addASCIIArmor();
+        const bool isAscii = Settings().addASCIIArmor();
         for (const auto &requester : requestersInfo) {
             const auto id = requester.id;
             auto requesterWithIcon = new FileNameRequesterWithIcon{id == SignEncryptFilesDialog::Directory ? QDir::Dirs : QDir::Files, this};

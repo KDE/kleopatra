@@ -11,7 +11,7 @@
 #include "command_p.h"
 #include "exportsecretsubkeycommand.h"
 
-#include "fileoperationspreferences.h"
+#include <settings.h>
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
 
@@ -39,7 +39,7 @@ namespace
 
 QString openPGPCertificateFileExtension()
 {
-    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt());
+    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, Settings().usePGPFileExt());
 }
 
 QString proposeFilename(const std::vector<Subkey> &subkeys)

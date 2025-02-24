@@ -12,7 +12,7 @@
 
 #include "decryptverifyfilescontroller.h"
 
-#include "fileoperationspreferences.h"
+#include <settings.h>
 
 #include <crypto/decryptverifytask.h>
 #include <crypto/gui/decryptverifyfilesdialog.h>
@@ -376,7 +376,7 @@ std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildT
                 qCDebug(KLEOPATRA_LOG) << "Failed detection for: " << cFile.fileName << " adding to undetected.";
             }
         } else {
-            const FileOperationsPreferences fileOpSettings;
+            const Settings settings;
             // Any Message type so we have input and output.
             std::shared_ptr<Input> input;
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
@@ -388,12 +388,12 @@ std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildT
 #endif
 
             std::shared_ptr<ArchiveDefinition> ad;
-            if (fileOpSettings.autoExtractArchives()) {
+            if (settings.autoExtractArchives()) {
                 const auto archiveDefinitions = ArchiveDefinition::getArchiveDefinitions();
                 ad = q->pick_archive_definition(cFile.protocol, archiveDefinitions, cFile.fileName);
             }
 
-            if (fileOpSettings.dontUseTmpDir()) {
+            if (settings.dontUseTmpDir()) {
                 if (!m_workDir) {
                     m_workDir = std::make_unique<QTemporaryDir>(heuristicBaseDirectory(fileNames) + QStringLiteral("/kleopatra-XXXXXX"));
                 }
