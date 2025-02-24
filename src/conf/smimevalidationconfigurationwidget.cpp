@@ -14,7 +14,7 @@
 #include "dialogs/certificateselectiondialog.h"
 #include "labelledwidget.h"
 
-#include "smimevalidationpreferences.h"
+#include <settings.h>
 
 #include <Libkleo/Compat>
 #include <Libkleo/Formatting>
@@ -201,11 +201,11 @@ void SMimeValidationConfigurationWidget::defaults()
 
 void SMimeValidationConfigurationWidget::load()
 {
-    const SMimeValidationPreferences preferences;
-    const unsigned int refreshInterval = preferences.refreshInterval();
+    const Settings settings;
+    const unsigned int refreshInterval = settings.refreshInterval();
     d->ui.intervalRefreshCB->setChecked(refreshInterval > 0);
     d->ui.intervalRefreshSB->setValue(refreshInterval);
-    const bool isRefreshIntervalImmutable = preferences.isImmutable(QStringLiteral("RefreshInterval"));
+    const bool isRefreshIntervalImmutable = settings.isImmutable(QStringLiteral("RefreshInterval"));
     d->ui.intervalRefreshCB->setEnabled(!isRefreshIntervalImmutable);
     d->ui.intervalRefreshSB->setEnabled(!isRefreshIntervalImmutable);
 
@@ -312,9 +312,9 @@ void SMimeValidationConfigurationWidget::save() const
     }
 
     {
-        SMimeValidationPreferences preferences;
-        preferences.setRefreshInterval(d->ui.intervalRefreshCB->isChecked() ? d->ui.intervalRefreshSB->value() : 0);
-        preferences.save();
+        Settings settings;
+        settings.setRefreshInterval(d->ui.intervalRefreshCB->isChecked() ? d->ui.intervalRefreshSB->value() : 0);
+        settings.save();
     }
 
     // Create config entries

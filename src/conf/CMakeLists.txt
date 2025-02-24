@@ -18,10 +18,6 @@ ki18n_wrap_ui(_kcm_kleopatra_libkleopatraclient_extra_SRCS
   smimevalidationconfigurationwidget.ui
 )
 
-kconfig_add_kcfg_files(_kcm_kleopatra_libkleopatraclient_extra_SRCS
-  ${kleopatra_SOURCE_DIR}/src/kcfg/smimevalidationpreferences.kcfgc
-)
-
 set(kcm_kleopatra_PART_SRCS
   dirservconfigpage.cpp
   appearanceconfigpage.cpp
