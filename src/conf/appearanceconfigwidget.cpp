@@ -11,7 +11,6 @@
 #include "appearanceconfigwidget.h"
 
 #include <settings.h>
-#include <tooltippreferences.h>
 
 #include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/Dn>
@@ -648,13 +647,12 @@ void AppearanceConfigWidget::defaults()
         set_default_appearance(d->categoriesLV->item(i));
     }
 
-    TooltipPreferences tooltipPrefs;
-    tooltipPrefs.setShowValidity(tooltipPrefs.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
-    d->tooltipValidityCheckBox->setChecked(tooltipPrefs.showValidity());
-    tooltipPrefs.setShowOwnerInformation(tooltipPrefs.findItem(QStringLiteral("ShowOwnerInformation"))->getDefault().toBool());
-    d->tooltipOwnerCheckBox->setChecked(tooltipPrefs.showOwnerInformation());
-    tooltipPrefs.setShowCertificateDetails(tooltipPrefs.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
-    d->tooltipDetailsCheckBox->setChecked(tooltipPrefs.showCertificateDetails());
+    settings.setShowValidity(settings.findItem(QStringLiteral("ShowValidity"))->getDefault().toBool());
+    d->tooltipValidityCheckBox->setChecked(settings.showValidity());
+    settings.setShowOwnerInformation(settings.findItem(QStringLiteral("ShowOwnerInformation"))->getDefault().toBool());
+    d->tooltipOwnerCheckBox->setChecked(settings.showOwnerInformation());
+    settings.setShowCertificateDetails(settings.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
+    d->tooltipDetailsCheckBox->setChecked(settings.showCertificateDetails());
 
     if (d->dnOrderWidget) {
         if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
@@ -714,13 +712,12 @@ void AppearanceConfigWidget::load()
         apply_config(configGroup, item);
     }
 
-    const TooltipPreferences prefs;
-    d->tooltipValidityCheckBox->setChecked(prefs.showValidity());
-    d->tooltipValidityCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowValidity")));
-    d->tooltipOwnerCheckBox->setChecked(prefs.showOwnerInformation());
-    d->tooltipOwnerCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowOwnerInformation")));
-    d->tooltipDetailsCheckBox->setChecked(prefs.showCertificateDetails());
-    d->tooltipDetailsCheckBox->setEnabled(!prefs.isImmutable(QStringLiteral("ShowCertificateDetails")));
+    d->tooltipValidityCheckBox->setChecked(settings.showValidity());
+    d->tooltipValidityCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowValidity")));
+    d->tooltipOwnerCheckBox->setChecked(settings.showOwnerInformation());
+    d->tooltipOwnerCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowOwnerInformation")));
+    d->tooltipDetailsCheckBox->setChecked(settings.showCertificateDetails());
+    d->tooltipDetailsCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowCertificateDetails")));
 }
 
 void AppearanceConfigWidget::save()
@@ -731,7 +728,6 @@ void AppearanceConfigWidget::save()
         settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
         DN::setAttributeOrder(settings.attributeOrder());
     }
-    settings.save();
 
     {
         ExpiryCheckerConfig expiryConfig;
@@ -740,11 +736,10 @@ void AppearanceConfigWidget::save()
         expiryConfig.save();
     }
 
-    TooltipPreferences prefs;
-    prefs.setShowValidity(d->tooltipValidityCheckBox->isChecked());
-    prefs.setShowOwnerInformation(d->tooltipOwnerCheckBox->isChecked());
-    prefs.setShowCertificateDetails(d->tooltipDetailsCheckBox->isChecked());
-    prefs.save();
+    settings.setShowValidity(d->tooltipValidityCheckBox->isChecked());
+    settings.setShowOwnerInformation(d->tooltipOwnerCheckBox->isChecked());
+    settings.setShowCertificateDetails(d->tooltipDetailsCheckBox->isChecked());
+    settings.save();
 
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
     if (!config) {

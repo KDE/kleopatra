@@ -570,7 +570,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
 
 kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/settings.kcfgc
-  kcfg/tooltippreferences.kcfgc
 )
 
 # setting a different KLEOPATRA_ICON_DIR allows to use different icons for a customized build

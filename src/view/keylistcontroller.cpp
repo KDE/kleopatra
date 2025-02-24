@@ -18,7 +18,6 @@
 #include "commands/exportcertificatecommand.h"
 #include "commands/exportopenpgpcertstoservercommand.h"
 #include "kleopatra_debug.h"
-#include "tooltippreferences.h"
 #include <settings.h>
 #ifdef MAILAKONADI_ENABLED
 #include "commands/exportopenpgpcerttoprovidercommand.h"
@@ -1121,12 +1120,12 @@ int KeyListController::Private::toolTipOptions() const
     static const int ownerFlags = Subject | UserIDs | OwnerTrust;
     static const int detailsFlags = StorageLocation | CertificateType | SerialNumber | Fingerprint;
 
-    const TooltipPreferences prefs;
+    const Settings settings;
 
     int flags = KeyID;
-    flags |= prefs.showValidity() ? validityFlags : 0;
-    flags |= prefs.showOwnerInformation() ? ownerFlags : 0;
-    flags |= prefs.showCertificateDetails() ? detailsFlags : 0;
+    flags |= settings.showValidity() ? validityFlags : 0;
+    flags |= settings.showOwnerInformation() ? ownerFlags : 0;
+    flags |= settings.showCertificateDetails() ? detailsFlags : 0;
     return flags;
 }
 
