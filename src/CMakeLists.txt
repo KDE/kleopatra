@@ -586,7 +586,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
 
 kconfig_add_kcfg_files(_kleopatra_SRCS
   kcfg/settings.kcfgc
-  kcfg/smimevalidationpreferences.kcfgc
   kcfg/tooltippreferences.kcfgc
 )
 
