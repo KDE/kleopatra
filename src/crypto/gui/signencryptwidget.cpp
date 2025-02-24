@@ -12,13 +12,13 @@
 #include "kleopatra_debug.h"
 
 #include "certificatelineedit.h"
-#include "fileoperationspreferences.h"
 #include "kleopatraapplication.h"
-#include "settings.h"
 #include "unknownrecipientwidget.h"
 
 #include "dialogs/certificateselectiondialog.h"
 #include "utils/gui-helper.h"
+
+#include <settings.h>
 
 #include <QCheckBox>
 #include <QGroupBox>
@@ -167,7 +167,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+    const bool symmetricOnly = Settings().symmetricEncryptionOnly();
 
     /* The signature selection */
     {
@@ -742,7 +742,7 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
     if (checked) {
         const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
         const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-        const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+        const bool symmetricOnly = Settings().symmetricEncryptionOnly();
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
         d->mEncOtherChk->setChecked(havePublicKeys && !symmetricOnly);
         d->mSymmetric->setChecked(symmetricOnly || !havePublicKeys);
@@ -850,7 +850,7 @@ void SignEncryptWidget::Private::updateCheckBoxes()
 {
     const bool haveSecretKeys = !KeyCache::instance()->secretKeys().empty();
     const bool havePublicKeys = !KeyCache::instance()->keys().empty();
-    const bool symmetricOnly = FileOperationsPreferences().symmetricEncryptionOnly();
+    const bool symmetricOnly = Settings().symmetricEncryptionOnly();
     mSigChk->setEnabled(haveSecretKeys);
     mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
     mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);

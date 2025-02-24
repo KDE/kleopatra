@@ -16,7 +16,6 @@
 
 #include "newresultpage.h"
 
-#include <fileoperationspreferences.h>
 #include <settings.h>
 
 #include <KColorScheme>
@@ -391,7 +390,7 @@ private:
         if (!mRequesters.empty()) {
             return;
         }
-        const bool isAscii = FileOperationsPreferences().addASCIIArmor();
+        const bool isAscii = Settings().addASCIIArmor();
         for (const auto &requester : requestersInfo) {
             const auto id = requester.id;
             auto requesterWithIcon = new FileNameRequesterWithIcon{id == SignEncryptFilesWizard::Directory ? QDir::Dirs : QDir::Files, this};

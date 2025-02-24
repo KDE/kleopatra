@@ -19,7 +19,7 @@
 #include "crypto/gui/signencryptfileswizard.h"
 #include "crypto/taskcollection.h"
 
-#include "fileoperationspreferences.h"
+#include <settings.h>
 
 #include "utils/archivedefinition.h"
 #include "utils/input.h"
@@ -230,7 +230,7 @@ static QString extension(bool pgp, bool sign, bool encrypt, bool ascii, bool det
         cls |= detached ? Class::DetachedSignature : Class::OpaqueSignature;
     }
     cls |= ascii ? Class::Ascii : Class::Binary;
-    const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
+    const bool usePGPFileExt = Settings().usePGPFileExt();
     const auto ext = outputFileExtension(cls, usePGPFileExt);
     if (!ext.isEmpty()) {
         return ext;
@@ -244,8 +244,7 @@ static std::shared_ptr<ArchiveDefinition> getDefaultAd()
     const std::vector<std::shared_ptr<ArchiveDefinition>> ads = ArchiveDefinition::getArchiveDefinitions();
     Q_ASSERT(!ads.empty());
     std::shared_ptr<ArchiveDefinition> ad = ads.front();
-    const FileOperationsPreferences prefs;
-    const QString archiveCmd = prefs.archiveCommand();
+    const QString archiveCmd = Settings{}.archiveCommand();
     auto it = std::find_if(ads.cbegin(), ads.cend(), [&archiveCmd](const std::shared_ptr<ArchiveDefinition> &toCheck) {
         return toCheck->id() == archiveCmd;
     });
@@ -273,8 +272,7 @@ static QMap<int, QString> buildOutputNames(const QStringList &files, const bool 
     } else {
         baseNameCms = baseNamePgp = files.first() + QLatin1Char('.');
     }
-    const FileOperationsPreferences prefs;
-    const bool ascii = prefs.addASCIIArmor();
+    const bool ascii = Settings{}.addASCIIArmor();
 
     nameMap.insert(SignEncryptFilesWizard::SignatureCMS, baseNameCms + extension(false, true, false, ascii, true));
     nameMap.insert(SignEncryptFilesWizard::EncryptedCMS, baseNameCms + extension(false, false, true, ascii, false));
@@ -298,8 +296,7 @@ static QMap<int, QString> buildOutputNamesForDir(const QString &file, const QMap
     const QFileInfo fi(file);
     const QString baseName = dir + QLatin1Char('/') + fi.fileName() + QLatin1Char('.');
 
-    const FileOperationsPreferences prefs;
-    const bool ascii = prefs.addASCIIArmor();
+    const bool ascii = Settings{}.addASCIIArmor();
 
     ret.insert(SignEncryptFilesWizard::SignatureCMS, baseName + extension(false, true, false, ascii, true));
     ret.insert(SignEncryptFilesWizard::EncryptedCMS, baseName + extension(false, false, true, ascii, false));
@@ -622,8 +619,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         const std::vector<Key> recipients = wizard->resolvedRecipients();
         const std::vector<Key> signers = wizard->resolvedSigners();
 
-        const FileOperationsPreferences prefs;
-        const bool ascii = prefs.addASCIIArmor();
+        const bool ascii = Settings{}.addASCIIArmor();
 
         std::vector<Key> pgpRecipients, cmsRecipients, pgpSigners, cmsSigners;
         for (const Key &k : recipients) {

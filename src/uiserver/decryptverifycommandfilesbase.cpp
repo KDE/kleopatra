@@ -10,7 +10,6 @@
 #include <config-kleopatra.h>
 
 #include "decryptverifycommandfilesbase.h"
-#include "fileoperationspreferences.h"
 
 #include <crypto/decryptverifytask.h>
 
@@ -20,6 +19,8 @@
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
 #include <utils/output.h>
+
+#include <settings.h>
 
 #include <Libkleo/Formatting>
 #include <Libkleo/Hex>
@@ -96,8 +97,8 @@ int DecryptVerifyCommandFilesBase::doStart()
 {
     d->checkForErrors();
 
-    FileOperationsPreferences prefs;
-    if (prefs.autoDecryptVerify()) {
+    Settings settings;
+    if (settings.autoDecryptVerify()) {
         d->controller.reset(new AutoDecryptVerifyFilesController());
     } else {
         d->controller.reset(new DecryptVerifyFilesController(shared_from_this()));

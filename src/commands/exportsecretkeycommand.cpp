@@ -13,9 +13,10 @@
 #include "command_p.h"
 #include "exportsecretkeycommand.h"
 
-#include "fileoperationspreferences.h"
 #include "utils/filedialog.h"
 #include <utils/applicationstate.h>
+
+#include <settings.h>
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
@@ -46,7 +47,7 @@ namespace
 
 QString openPGPCertificateFileExtension()
 {
-    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, FileOperationsPreferences().usePGPFileExt());
+    return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, Settings().usePGPFileExt());
 }
 
 QString cmsCertificateFileExtension()

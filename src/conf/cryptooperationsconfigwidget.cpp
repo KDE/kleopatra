@@ -18,8 +18,7 @@
 #include "cryptooperationsconfigwidget.h"
 #include "kleopatra_debug.h"
 
-#include "fileoperationspreferences.h"
-#include "settings.h"
+#include <settings.h>
 
 #include <Libkleo/ChecksumDefinition>
 #include <Libkleo/KeyFilterManager>
@@ -107,40 +106,35 @@ CryptoOperationsConfigWidget::~CryptoOperationsConfigWidget()
 
 void CryptoOperationsConfigWidget::defaults()
 {
-    FileOperationsPreferences filePrefs;
-    filePrefs.setUsePGPFileExt(filePrefs.findItem(QStringLiteral("UsePGPFileExt"))->getDefault().toBool());
-    filePrefs.setAutoDecryptVerify(filePrefs.findItem(QStringLiteral("AutoDecryptVerify"))->getDefault().toBool());
-    filePrefs.setAutoExtractArchives(filePrefs.findItem(QStringLiteral("AutoExtractArchives"))->getDefault().toBool());
-    filePrefs.setAddASCIIArmor(filePrefs.findItem(QStringLiteral("AddASCIIArmor"))->getDefault().toBool());
-    filePrefs.setDontUseTmpDir(filePrefs.findItem(QStringLiteral("DontUseTmpDir"))->getDefault().toBool());
-    filePrefs.setSymmetricEncryptionOnly(filePrefs.findItem(QStringLiteral("SymmetricEncryptionOnly"))->getDefault().toBool());
-    filePrefs.setArchiveCommand(filePrefs.findItem(QStringLiteral("ArchiveCommand"))->getDefault().toString());
+    Settings settings;
+    settings.setUsePGPFileExt(settings.findItem(QStringLiteral("UsePGPFileExt"))->getDefault().toBool());
+    settings.setAutoDecryptVerify(settings.findItem(QStringLiteral("AutoDecryptVerify"))->getDefault().toBool());
+    settings.setAutoExtractArchives(settings.findItem(QStringLiteral("AutoExtractArchives"))->getDefault().toBool());
+    settings.setAddASCIIArmor(settings.findItem(QStringLiteral("AddASCIIArmor"))->getDefault().toBool());
+    settings.setDontUseTmpDir(settings.findItem(QStringLiteral("DontUseTmpDir"))->getDefault().toBool());
+    settings.setSymmetricEncryptionOnly(settings.findItem(QStringLiteral("SymmetricEncryptionOnly"))->getDefault().toBool());
+    settings.setArchiveCommand(settings.findItem(QStringLiteral("ArchiveCommand"))->getDefault().toString());
 
     ClassifyConfig classifyConfig;
     classifyConfig.setP7mWithoutExtensionAreEmail(classifyConfig.defaultP7mWithoutExtensionAreEmailValue());
 
-    Settings settings;
-    settings.setChecksumDefinitionId(settings.findItem(QStringLiteral("ChecksumDefinitionId"))->getDefault().toString());
-
-    load(filePrefs, settings, classifyConfig);
+    load(settings, classifyConfig);
 }
 
-void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &filePrefs,
-                                        const Kleo::Settings &settings,
-                                        const Kleo::ClassifyConfig &classifyConfig)
+void CryptoOperationsConfigWidget::load(const Kleo::Settings &settings, const Kleo::ClassifyConfig &classifyConfig)
 {
-    mPGPFileExtCB->setChecked(filePrefs.usePGPFileExt());
-    mPGPFileExtCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("UsePGPFileExt")));
-    mAutoDecryptVerifyCB->setChecked(filePrefs.autoDecryptVerify());
-    mAutoDecryptVerifyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AutoDecryptVerify")));
-    mAutoExtractArchivesCB->setChecked(filePrefs.autoExtractArchives());
-    mAutoExtractArchivesCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AutoExtractArchives")));
-    mASCIIArmorCB->setChecked(filePrefs.addASCIIArmor());
-    mASCIIArmorCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("AddASCIIArmor")));
-    mTmpDirCB->setChecked(filePrefs.dontUseTmpDir());
-    mTmpDirCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("DontUseTmpDir")));
-    mSymmetricOnlyCB->setChecked(filePrefs.symmetricEncryptionOnly());
-    mSymmetricOnlyCB->setEnabled(!filePrefs.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
+    mPGPFileExtCB->setChecked(settings.usePGPFileExt());
+    mPGPFileExtCB->setEnabled(!settings.isImmutable(QStringLiteral("UsePGPFileExt")));
+    mAutoDecryptVerifyCB->setChecked(settings.autoDecryptVerify());
+    mAutoDecryptVerifyCB->setEnabled(!settings.isImmutable(QStringLiteral("AutoDecryptVerify")));
+    mAutoExtractArchivesCB->setChecked(settings.autoExtractArchives());
+    mAutoExtractArchivesCB->setEnabled(!settings.isImmutable(QStringLiteral("AutoExtractArchives")));
+    mASCIIArmorCB->setChecked(settings.addASCIIArmor());
+    mASCIIArmorCB->setEnabled(!settings.isImmutable(QStringLiteral("AddASCIIArmor")));
+    mTmpDirCB->setChecked(settings.dontUseTmpDir());
+    mTmpDirCB->setEnabled(!settings.isImmutable(QStringLiteral("DontUseTmpDir")));
+    mSymmetricOnlyCB->setChecked(settings.symmetricEncryptionOnly());
+    mSymmetricOnlyCB->setEnabled(!settings.isImmutable(QStringLiteral("SymmetricEncryptionOnly")));
     mTreatP7mEmailCB->setChecked(classifyConfig.p7mWithoutExtensionAreEmail());
     mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
 
@@ -155,7 +149,7 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
     }
     mChecksumDefinitionCB.setEnabled(!settings.isImmutable(QStringLiteral("ChecksumDefinitionId")));
 
-    const auto ad_default_id = filePrefs.archiveCommand();
+    const auto ad_default_id = settings.archiveCommand();
     {
         const auto index = mArchiveDefinitionCB.widget()->findData(ad_default_id);
         if (index >= 0) {
@@ -164,7 +158,7 @@ void CryptoOperationsConfigWidget::load(const Kleo::FileOperationsPreferences &f
             qCWarning(KLEOPATRA_LOG) << "No archive definition found with id" << ad_default_id;
         }
     }
-    mArchiveDefinitionCB.setEnabled(!filePrefs.isImmutable(QStringLiteral("ArchiveCommand")));
+    mArchiveDefinitionCB.setEnabled(!settings.isImmutable(QStringLiteral("ArchiveCommand")));
 }
 
 void CryptoOperationsConfigWidget::load()
@@ -189,33 +183,32 @@ void CryptoOperationsConfigWidget::load()
         }
     }
 
-    load(FileOperationsPreferences{}, Settings{}, ClassifyConfig{});
+    load(Settings{}, ClassifyConfig{});
 }
 
 void CryptoOperationsConfigWidget::save()
 {
-    FileOperationsPreferences filePrefs;
-    filePrefs.setUsePGPFileExt(mPGPFileExtCB->isChecked());
-    filePrefs.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
-    filePrefs.setAutoExtractArchives(mAutoExtractArchivesCB->isChecked());
-    filePrefs.setAddASCIIArmor(mASCIIArmorCB->isChecked());
-    filePrefs.setDontUseTmpDir(mTmpDirCB->isChecked());
-    filePrefs.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
-
     Settings settings;
+    settings.setUsePGPFileExt(mPGPFileExtCB->isChecked());
+    settings.setAutoDecryptVerify(mAutoDecryptVerifyCB->isChecked());
+    settings.setAutoExtractArchives(mAutoExtractArchivesCB->isChecked());
+    settings.setAddASCIIArmor(mASCIIArmorCB->isChecked());
+    settings.setDontUseTmpDir(mTmpDirCB->isChecked());
+    settings.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
+
     const int idx = mChecksumDefinitionCB.widget()->currentIndex();
     if (idx >= 0) {
         const auto id = mChecksumDefinitionCB.widget()->itemData(idx).toString();
         settings.setChecksumDefinitionId(id);
     }
-    settings.save();
 
     const int aidx = mArchiveDefinitionCB.widget()->currentIndex();
     if (aidx >= 0) {
         const QString id = mArchiveDefinitionCB.widget()->itemData(aidx).toString();
-        filePrefs.setArchiveCommand(id);
+        settings.setArchiveCommand(id);
     }
-    filePrefs.save();
+
+    settings.save();
 
     ClassifyConfig classifyConfig;
     classifyConfig.setP7mWithoutExtensionAreEmail(mTreatP7mEmailCB->isChecked());

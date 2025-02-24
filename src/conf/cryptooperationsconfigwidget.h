@@ -20,7 +20,6 @@ class QPushButton;
 
 namespace Kleo
 {
-class FileOperationsPreferences;
 class Settings;
 class ClassifyConfig;
 
@@ -45,7 +44,7 @@ Q_SIGNALS:
 private:
     void setupGui();
 
-    void load(const Kleo::FileOperationsPreferences &filePrefs, const Kleo::Settings &settings, const Kleo::ClassifyConfig &classifyConfig);
+    void load(const Kleo::Settings &settings, const Kleo::ClassifyConfig &classifyConfig);
 
 private:
     QCheckBox *mPGPFileExtCB = nullptr;

@@ -151,6 +151,43 @@
      <default></default>
    </entry>
  </group>
+ <group name="FileOperations">
+   <entry name="UsePGPFileExt" key="file-extension-pgp" type="Bool">
+     <label>Use pgp as the default extension for generated OpenPGP files</label>
+     <whatsthis>Set this to make kleopatra default to pgp file extensions for OpenPGP files.</whatsthis>
+     <default>false</default>
+   </entry>
+   <entry name="AutoDecryptVerify" key="auto-decrypt-verify" type="Bool">
+     <label>Automatically start operation based on input detection for decrypt/verify.</label>
+     <whatsthis>With this option set Kleopatra no longer asks you what you want to do with input files but instead automatically starts the operations it detects as applicable to the input.</whatsthis>
+     <default>true</default>
+   </entry>
+   <entry name="AutoExtractArchives" key="auto-extract-archives" type="Bool">
+     <label>Automatically extract archives after decryption.</label>
+     <whatsthis>If this option is set, then Kleopatra automatically extracts file archives after decryption.</whatsthis>
+     <default>true</default>
+   </entry>
+   <entry name="ArchiveCommand" key="default-archive-cmd" type="String">
+     <label>Use this command to create file archives.</label>
+     <whatsthis>When encrypting multiple files or a folder Kleopatra creates an encrypted archive with this command.</whatsthis>
+     <default>tar</default>
+   </entry>
+   <entry name="AddASCIIArmor" key="ascii-armor" type="Bool">
+     <label>Create signed or encrypted files as text files.</label>
+     <whatsthis>Set this option to encode encrypted or signed files as base64 encoded text. So that they can be opened with an editor or sent in a mail body. This will increase file size by one third.</whatsthis>
+     <default>false</default>
+   </entry>
+   <entry name="DontUseTmpDir" key="dont-use-tmp-dir" type="Bool">
+     <label>Create temporary decrypted files in the folder of the encrypted file.</label>
+     <whatsthis>Set this option to avoid using the users temporary directory.</whatsthis>
+     <default>false</default>
+   </entry>
+   <entry name="SymmetricEncryptionOnly" key="symmetric-encryption-only" type="Bool">
+     <label>Use symmetric encryption only.</label>
+     <whatsthis>Set this option to disable public key encryption.</whatsthis>
+     <default>false</default>
+   </entry>
+ </group>
  <group name="Groups">
    <entry name="GroupsEnabled" type="Bool">
      <label>Enable Groups</label>

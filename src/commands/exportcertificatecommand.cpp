@@ -11,7 +11,7 @@
 #include <config-kleopatra.h>
 
 #include "exportcertificatecommand.h"
-#include "fileoperationspreferences.h"
+#include <settings.h>
 
 #include "command_p.h"
 
@@ -232,7 +232,7 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
 
     QString proposedFileName = lastDir + QLatin1Char('/');
     if (keys().size() == 1) {
-        const bool usePGPFileExt = FileOperationsPreferences().usePGPFileExt();
+        const bool usePGPFileExt = Settings().usePGPFileExt();
         const auto key = keys().front();
         auto name = Formatting::prettyName(key);
         if (name.isEmpty()) {

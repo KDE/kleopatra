@@ -13,7 +13,8 @@
 #include "viewemailfilescommand.h"
 
 #include "command_p.h"
-#include "fileoperationspreferences.h"
+
+#include <settings.h>
 
 #include "crypto/autodecryptverifyfilescontroller.h"
 #include "crypto/decryptverifyfilescontroller.h"
@@ -93,8 +94,8 @@ DecryptVerifyFilesCommand::Private::Private(DecryptVerifyFilesCommand *qq, KeyLi
     , files()
     , shared_qq(qq, [](DecryptVerifyFilesCommand *) {})
 {
-    FileOperationsPreferences prefs;
-    if (!forceManualMode && prefs.autoDecryptVerify()) {
+    Settings settings;
+    if (!forceManualMode && settings.autoDecryptVerify()) {
         mController = new AutoDecryptVerifyFilesController();
     } else {
         mController = new DecryptVerifyFilesController();
