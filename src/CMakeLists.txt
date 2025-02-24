@@ -569,7 +569,6 @@ ki18n_wrap_ui(_kleopatra_SRCS
 )
 
 kconfig_add_kcfg_files(_kleopatra_SRCS
-  kcfg/emailoperationspreferences.kcfgc
   kcfg/fileoperationspreferences.kcfgc
   kcfg/settings.kcfgc
   kcfg/smimevalidationpreferences.kcfgc
