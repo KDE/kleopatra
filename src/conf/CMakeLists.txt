@@ -1,23 +1,5 @@
 include_directories(${kleopatra_SOURCE_DIR}/src)
 
-
-set(_kcm_kleopatra_libkleopatraclient_extra_SRCS
-  smimevalidationconfigurationwidget.cpp
-  smimevalidationconfigurationpage.cpp
-  cryptooperationsconfigwidget.cpp
-  cryptooperationsconfigpage.cpp
-  smimevalidationconfigurationwidget.h
-  smimevalidationconfigurationpage.h
-  cryptooperationsconfigwidget.h
-  cryptooperationsconfigpage.h
-  smartcardconfigpage.cpp
-  smartcardconfigpage.h
-)
-
-ki18n_wrap_ui(_kcm_kleopatra_libkleopatraclient_extra_SRCS
-  smimevalidationconfigurationwidget.ui
-)
-
 set(kcm_kleopatra_PART_SRCS
   dirservconfigpage.cpp
   appearanceconfigpage.cpp
@@ -32,9 +14,17 @@ set(kcm_kleopatra_PART_SRCS
   kleoconfigmodule.cpp
   kleoconfigmodule.h
   ${kleopatra_BINARY_DIR}/src/kleopatra_debug.cpp
-  ${_kcm_kleopatra_libkleopatraclient_extra_SRCS}
+  smimevalidationconfigurationwidget.cpp
+  smimevalidationconfigurationpage.cpp
+  cryptooperationsconfigwidget.cpp
+  cryptooperationsconfigpage.cpp
+  smimevalidationconfigurationwidget.h
+  smimevalidationconfigurationpage.h
+  cryptooperationsconfigwidget.h
+  cryptooperationsconfigpage.h
+  smartcardconfigpage.cpp
+  smartcardconfigpage.h
 )
-
 
 ki18n_wrap_ui(kcm_kleopatra_PART_SRCS
   smimevalidationconfigurationwidget.ui
@@ -54,6 +44,5 @@ target_link_libraries(kcm_kleopatra_static
   KF6::IconThemes
   KF6::IconWidgets
   KF6::WidgetsAddons
-  ${_kcm_kleopatra_extra_libs}
   ${_kleopatra_dbusaddons_libs}
 )
