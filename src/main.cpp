@@ -99,6 +99,19 @@ int main(int argc, char **argv)
 {
     startupTimer.start();
 
+    // Initialize GpgME
+    const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
+    STARTUP_TIMING << "GPGME Initialized";
+#ifdef Q_OS_WIN
+    if (qEnvironmentVariableIsEmpty("GNUPGHOME")) {
+        if (qputenv("GNUPGHOME", Kleo::gnupgHomeDirectory().toUtf8())) {
+            qCDebug(KLEOPATRA_LOG) << "Set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "Failed to set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
+        }
+    }
+#endif
+
     KleopatraApplication app(argc, argv);
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.
@@ -122,20 +135,17 @@ int main(int argc, char **argv)
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
 
-    // Initialize GpgME
-    {
-        const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
-        if (gpgmeInitError) {
-            KMessageBox::error(nullptr,
-                               xi18nc("@info",
-                                      "<para>The version of the <application>GpgME</application> library you are running against "
-                                      "is older than the one that the <application>GpgME++</application> library was built against.</para>"
-                                      "<para><application>Kleopatra</application> will not function in this setting.</para>"
-                                      "<para>Please ask your administrator for help in resolving this issue.</para>"),
-                               i18nc("@title", "GpgME Too Old"));
-            return EXIT_FAILURE;
-        }
-        STARTUP_TIMING << "GPGME Initialized";
+    if (gpgmeInitError) {
+        // Show a failed initialization of GpgME after creating QApplication and KUniqueService,
+        // and after setting the application domain for the localization.
+        KMessageBox::error(nullptr,
+                           xi18nc("@info",
+                                  "<para>The version of the <application>GpgME</application> library you are running against "
+                                  "is older than the one that the <application>GpgME++</application> library was built against.</para>"
+                                  "<para><application>Kleopatra</application> will not function in this setting.</para>"
+                                  "<para>Please ask your administrator for help in resolving this issue.</para>"),
+                           i18nc("@title", "GpgME Too Old"));
+        return EXIT_FAILURE;
     }
 
     AboutData aboutData;
