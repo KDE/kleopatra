@@ -450,7 +450,7 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
             // We do not check that file exists here. Better handle
             // these errors in the UI.
             if (QFileInfo(file).isAbsolute()) {
-                files << file;
+                files << QDir::fromNativeSeparators(file);
             } else {
                 files << cwd.absoluteFilePath(file);
             }
