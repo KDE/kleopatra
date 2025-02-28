@@ -446,7 +446,11 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
             // We do not check that file exists here. Better handle
             // these errors in the UI.
             if (QFileInfo(file).isAbsolute()) {
-                files << file;
+                if (file.startsWith(QStringLiteral("\\\\?\\"))) {
+                    files << file.mid(4);
+                } else {
+                    files << file;
+                }
             } else {
                 files << cwd.absoluteFilePath(file);
             }
