@@ -39,7 +39,7 @@ public Q_SLOTS:
 protected:
     QByteArray savedGeometry;
 
-    void closeEvent(QCloseEvent *e) override;
+    bool queryClose() override;
     void showEvent(QShowEvent *e) override;
     void hideEvent(QHideEvent *e) override;
     void dragEnterEvent(QDragEnterEvent *) override;

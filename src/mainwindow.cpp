@@ -837,11 +837,9 @@ void MainWindow::Private::slotConfigCommitted()
     updateStatusBar();
 }
 
-void MainWindow::closeEvent(QCloseEvent *e)
+bool MainWindow::queryClose()
 {
-    // KMainWindow::closeEvent() insists on quitting the application,
-    // so do not let it touch the event...
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << __func__;
     if (d->controller.hasRunningCommands()) {
         if (d->controller.shutdownWarningRequired()) {
             const int ret = KMessageBox::warningContinueCancel(this,
@@ -850,8 +848,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
                                                                     "Proceed?"),
                                                                i18n("Ongoing Background Tasks"));
             if (ret != KMessageBox::Continue) {
-                e->ignore();
-                return;
+                return false;
             }
         }
         d->controller.cancelCommands();
@@ -862,20 +859,19 @@ void MainWindow::closeEvent(QCloseEvent *e)
             QTimer::singleShot(100ms, &ev, &QEventLoop::quit);
             connect(&d->controller, &KeyListController::commandsExecuting, &ev, &QEventLoop::quit);
             ev.exec();
-            if (d->controller.hasRunningCommands())
+            if (d->controller.hasRunningCommands()) {
                 qCWarning(KLEOPATRA_LOG) << "controller still has commands running, this may crash now...";
+            }
             setEnabled(true);
         }
     }
     unexportWindow();
     if (isQuitting || qApp->isSavingSession() || Kleo::userIsElevated()) {
         d->ui.searchTab->tabWidget()->saveViews();
-        KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
-        saveMainWindowSettings(grp);
-        e->accept();
+        return true;
     } else {
-        e->ignore();
         hide();
+        return false;
     }
 }
 
