@@ -86,11 +86,7 @@ static void loadBackendVersions()
             QMetaObject::invokeMethod(qApp, [backendComponents]() {
                 auto about = KAboutData::applicationData();
                 for (const auto &component : backendComponents) {
-#if KCOREADDONS_VERSION >= QT_VERSION_CHECK(6, 9, 0)
                     about.addComponent(component);
-#else
-                    about.addComponent(component.name(), component.description(), component.version(), component.webAddress() /*, component.license() */);
-#endif
                 }
                 KAboutData::setApplicationData(about);
             });
