@@ -15,7 +15,6 @@
 
 #include "view/keycacheoverlay.h"
 #include "view/keylistcontroller.h"
-#include "view/padwidget.h"
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
 #include "view/welcomewidget.h"
@@ -37,6 +36,7 @@
 #include <Libkleo/GnuPG>
 
 #include "dialogs/debugdialog.h"
+#include "dialogs/padwindow.h"
 #include "dialogs/updatenotification.h"
 
 // needed for GPGME_VERSION_NUMBER
@@ -128,10 +128,6 @@ static bool isQuitting = false;
 
 namespace
 {
-static const std::vector<QString> mainViewActionNames = {
-    QStringLiteral("view_certificate_overview"),
-    QStringLiteral("pad_view"),
-};
 
 class CertificateView : public QWidget, public FocusFirstChild
 {
@@ -335,39 +331,19 @@ public:
         ui.searchTab->searchBar()->lineEdit()->setFocus();
     }
 
-    void showView(const QString &actionName, QWidget *widget)
+    void showView(QWidget *widget)
     {
-        const auto coll = q->actionCollection();
-        if (coll) {
-            for (const QString &name : mainViewActionNames) {
-                if (auto action = coll->action(name)) {
-                    action->setChecked(name == actionName);
-                }
-            }
-        }
         ui.stackWidget->setCurrentWidget(widget);
         if (auto ffci = dynamic_cast<Kleo::FocusFirstChild *>(widget)) {
             ffci->focusFirstChild(Qt::TabFocusReason);
         }
     }
 
-    void showCertificateView()
-    {
-        if (KeyCache::instance()->keys().empty()) {
-            showView(QStringLiteral("view_certificate_overview"), ui.welcomeWidget);
-        } else {
-            showView(QStringLiteral("view_certificate_overview"), ui.searchTab);
-        }
-    }
-
     void showPadView()
     {
-        if (!ui.padWidget) {
-            ui.padWidget = new PadWidget;
-            ui.stackWidget->addWidget(ui.padWidget);
-        }
-        showView(QStringLiteral("pad_view"), ui.padWidget);
-        ui.stackWidget->resize(ui.padWidget->sizeHint());
+        auto padWindow = new PadWindow();
+        padWindow->setAttribute(Qt::WA_DeleteOnClose);
+        padWindow->show();
     }
 
     void restartDaemons()
@@ -403,11 +379,11 @@ private:
 
     void keyListingDone()
     {
-        const auto curWidget = ui.stackWidget->currentWidget();
-        if (curWidget == ui.padWidget) {
-            return;
+        if (KeyCache::instance()->keys().empty()) {
+            showView(ui.welcomeWidget);
+        } else {
+            showView(ui.searchTab);
         }
-        showCertificateView();
     }
 
 private:
@@ -415,7 +391,6 @@ private:
     bool firstShow : 1;
     struct UI {
         CertificateView *searchTab = nullptr;
-        PadWidget *padWidget = nullptr;
         WelcomeWidget *welcomeWidget = nullptr;
         QStackedWidget *stackWidget = nullptr;
         explicit UI(MainWindow *q);
@@ -426,7 +401,6 @@ private:
 };
 
 MainWindow::Private::UI::UI(MainWindow *q)
-    : padWidget(nullptr)
 {
     auto mainWidget = new QWidget{q};
     auto mainLayout = new QVBoxLayout(mainWidget);
@@ -491,9 +465,6 @@ MainWindow::Private::Private(MainWindow *qq)
     setupActions();
 
     ui.stackWidget->setCurrentWidget(ui.searchTab);
-    if (auto action = q->actionCollection()->action(QStringLiteral("view_certificate_overview"))) {
-        action->setChecked(true);
-    }
 
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView *, QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView *, QPoint)));
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
@@ -628,17 +599,6 @@ void MainWindow::Private::setupActions()
 #endif
         // View menu
         {
-            "view_certificate_overview",
-            i18nc("@action show certificate overview", "Certificates"),
-            i18n("Show certificate overview"),
-            "view-certificate",
-            q,
-            [this](bool) {
-                showCertificateView();
-            },
-            QString(),
-        },
-        {
             "pad_view",
             i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
             i18n("Show pad for encrypting/decrypting and signing/verifying text"),
@@ -704,12 +664,6 @@ void MainWindow::Private::setupActions()
         }
         if (auto action = coll->action(QStringLiteral("configure_groups_toolbar"))) {
             delete action;
-        }
-    }
-
-    for (const QString &name : mainViewActionNames) {
-        if (auto action = coll->action(name)) {
-            action->setCheckable(true);
         }
     }
 

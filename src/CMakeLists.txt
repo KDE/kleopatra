@@ -342,6 +342,8 @@ set(_kleopatra_SRCS
   dialogs/groupdetailsdialog.h
   dialogs/lookupcertificatesdialog.cpp
   dialogs/lookupcertificatesdialog.h
+  dialogs/padwindow.cpp
+  dialogs/padwindow.h
   dialogs/pivcardapplicationadministrationkeyinputdialog.cpp
   dialogs/pivcardapplicationadministrationkeyinputdialog.h
   dialogs/revokekeydialog.cpp
