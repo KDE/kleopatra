@@ -60,6 +60,11 @@
 #include <KMessageBox>
 #include <KWindowSystem>
 
+#if __has_include(<KWaylandExtras>)
+#include <KWaylandExtras>
+#define HAVE_WAYLAND
+#endif
+
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
@@ -303,6 +308,12 @@ public:
         }
         return mw;
     }
+    void exportFocusWindow()
+    {
+#ifdef HAVE_WAYLAND
+        KWaylandExtras::self()->exportWindow(QGuiApplication::focusWindow());
+#endif
+    }
 };
 
 class KleopatraProxyStyle : public QProxyStyle
@@ -377,6 +388,26 @@ void KleopatraApplication::init()
         d->sysTray->show();
     }
 #endif
+
+#ifdef HAVE_WAYLAND
+    connect(KWaylandExtras::self(), &KWaylandExtras::windowExported, this, [](const auto, const auto &token) {
+        qputenv("PINENTRY_GEOM_HINT", QUrl::toPercentEncoding(token));
+    });
+    connect(qApp, &QGuiApplication::focusWindowChanged, this, [this](auto w) {
+        if (!w) {
+            return;
+        }
+        d->exportFocusWindow();
+    });
+
+    QMetaObject::invokeMethod(
+        this,
+        [this]() {
+            d->exportFocusWindow();
+        },
+        Qt::QueuedConnection);
+#endif
+
     if (!Kleo::userIsElevated()) {
         // For users running Kleo with elevated permissions on Windows we
         // always quit the application when the last window is closed.
@@ -682,11 +713,6 @@ void KleopatraApplication::toggleMainWindowVisibility()
         mainWindow()->setVisible(!mainWindow()->isVisible());
     } else {
         openOrRaiseMainWindow();
-    }
-    if (mainWindow()->isVisible()) {
-        mainWindow()->exportWindow();
-    } else {
-        mainWindow()->unexportWindow();
     }
 }
 

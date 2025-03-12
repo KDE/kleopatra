@@ -94,11 +94,6 @@
 
 #include <KSharedConfig>
 
-#if __has_include(<KWaylandExtras>)
-#include <KWaylandExtras>
-#define HAVE_WAYLAND
-#endif
-
 #include <chrono>
 #include <vector>
 using namespace std::chrono_literals;
@@ -447,20 +442,6 @@ MainWindow::Private::Private(MainWindow *qq)
 
     ui.searchTab->tabWidget()->setFlatModel(flatModel);
     ui.searchTab->tabWidget()->setHierarchicalModel(hierarchicalModel);
-
-#ifdef HAVE_WAYLAND
-    connect(KWaylandExtras::self(), &KWaylandExtras::windowExported, q, [this](const auto &window, const auto &token) {
-        if (window == q->windowHandle()) {
-            qputenv("PINENTRY_GEOM_HINT", QUrl::toPercentEncoding(token));
-        }
-    });
-    QMetaObject::invokeMethod(
-        q,
-        [this]() {
-            q->exportWindow();
-        },
-        Qt::QueuedConnection);
-#endif
 
     setupActions();
 
@@ -819,7 +800,6 @@ bool MainWindow::queryClose()
             setEnabled(true);
         }
     }
-    unexportWindow();
     if (isQuitting || qApp->isSavingSession() || Kleo::userIsElevated()) {
         d->ui.searchTab->tabWidget()->saveViews();
         return true;
@@ -921,21 +901,6 @@ void MainWindow::saveProperties(KConfigGroup &cg)
     qCDebug(KLEOPATRA_LOG);
     KXmlGuiWindow::saveProperties(cg);
     cg.writeEntry("hidden", isHidden());
-}
-
-void MainWindow::exportWindow()
-{
-#ifdef HAVE_WAYLAND
-    (void)winId(); // Ensures that windowHandle() returns the window
-    KWaylandExtras::self()->exportWindow(windowHandle());
-#endif
-}
-
-void MainWindow::unexportWindow()
-{
-#ifdef HAVE_WAYLAND
-    KWaylandExtras::self()->unexportWindow(windowHandle());
-#endif
 }
 
 KeyListController *MainWindow::keyListController()
