@@ -30,6 +30,7 @@
 #include <KLocalizedString>
 
 #include <QGpgME/CryptoConfig>
+#include <QGpgME/DN>
 #include <QGpgME/Protocol>
 
 #include <QCheckBox>
@@ -428,7 +429,7 @@ void EnterDetailsPage::updateForm()
 
 QString EnterDetailsPage::cmsDN() const
 {
-    DN dn;
+    QGpgME::DN dn;
     for (QList<Line>::const_iterator it = lineList.begin(), end = lineList.end(); it != end; ++it) {
         const QString text = it->edit->text().trimmed();
         if (text.isEmpty()) {
@@ -441,7 +442,7 @@ QString EnterDetailsPage::cmsDN() const
         if (const char *const oid = oidForAttributeName(attr)) {
             attr = QString::fromUtf8(oid);
         }
-        dn.append(DN::Attribute(attr, text));
+        dn.append(QGpgME::DN::Attribute(attr, text));
     }
     return dn.dn();
 }

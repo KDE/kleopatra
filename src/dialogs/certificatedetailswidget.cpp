@@ -45,6 +45,7 @@
 
 #include <gpgme.h>
 
+#include <QGpgME/DN>
 #include <QGpgME/Debug>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
@@ -401,7 +402,7 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
     // add email address from primary user ID if not listed already as attribute field
     if (!emailField) {
         const auto ownerId = key.userID(0);
-        const Kleo::DN dn(ownerId.id());
+        const QGpgME::DN dn(ownerId.id());
         const QString dnEmail = dn[QStringLiteral("EMAIL")];
         if (!dnEmail.isEmpty()) {
             ui.smimeAddressList->addItem(dnEmail);
@@ -560,7 +561,7 @@ void CertificateDetailsWidget::Private::setupPGPProperties()
     ui.primaryUserIdField->setVisible(true);
 }
 
-static QString formatDNToolTip(const Kleo::DN &dn)
+static QString formatDNToolTip(const QGpgME::DN &dn)
 {
     QString html = QStringLiteral("<table border=\"0\" cell-spacing=15>");
 
@@ -596,7 +597,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
 
     ui.trustChainWidget->setKey(key);
     const auto ownerId = key.userID(0);
-    const Kleo::DN dn(ownerId.id());
+    const QGpgME::DN dn(ownerId.id());
 
     for (const auto &[attributeName, field] : ui.smimeAttributeFields) {
         const QString attributeValue = dn[attributeName];
@@ -606,7 +607,7 @@ void CertificateDetailsWidget::Private::setupSMIMEProperties()
     ui.smimeTrustLevelField->setIcon(trustLevelIcon(ownerId));
     ui.smimeTrustLevelField->setValue(trustLevelText(ownerId));
 
-    const Kleo::DN issuerDN(key.issuerName());
+    const QGpgME::DN issuerDN(key.issuerName());
     const QString issuerCN = issuerDN[QStringLiteral("CN")];
     const QString issuer = issuerCN.isEmpty() ? QString::fromUtf8(key.issuerName()) : issuerCN;
     ui.smimeIssuerField->setValue(issuer);

@@ -21,6 +21,8 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <QGpgME/DN>
+
 #include <QLabel>
 #include <QLineEdit>
 #include <QVBoxLayout>
@@ -277,7 +279,7 @@ public:
 
     QString cmsDN() const
     {
-        DN dn;
+        QGpgME::DN dn;
         for (const Line &line : ui.lines) {
             const QString text = line.edit->text().trimmed();
             if (text.isEmpty()) {
@@ -290,7 +292,7 @@ public:
             if (const char *const oid = oidForAttributeName(attr)) {
                 attr = QString::fromUtf8(oid);
             }
-            dn.append(DN::Attribute(attr, text));
+            dn.append(QGpgME::DN::Attribute(attr, text));
         }
         return dn.dn();
     }

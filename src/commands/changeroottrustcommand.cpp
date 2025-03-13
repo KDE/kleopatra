@@ -17,6 +17,9 @@
 
 #include "kleopatra_debug.h"
 #include <KLocalizedString>
+
+#include <QGpgME/DN>
+
 #include <QSaveFile>
 
 #include <QByteArray>
@@ -145,7 +148,7 @@ void ChangeRootTrustCommand::doCancel()
     d->canceled = true;
 }
 
-static QString change_trust_file(const QString &trustListFile, const QString &fingerprint, const DN &dn, Key::OwnerTrust trust);
+static QString change_trust_file(const QString &trustListFile, const QString &fingerprint, const QGpgME::DN &dn, Key::OwnerTrust trust);
 static QString run_gpgconf_reload_gpg_agent(const QString &gpgConfPath);
 
 void ChangeRootTrustCommand::Private::run()
@@ -154,7 +157,7 @@ void ChangeRootTrustCommand::Private::run()
 
     const auto key = keys().front();
     const QString fpr = QString::fromLatin1(key.primaryFingerprint());
-    const auto dn = DN(key.userID(0).id());
+    const auto dn = QGpgME::DN(key.userID(0).id());
     // Undefined means "fingerprint didn't match" -> do not trust this certificate
     const Key::OwnerTrust trust = this->trust == Key::Undefined ? Key::Never : this->trust;
     const QString trustListFile = this->trustListFile;
@@ -268,7 +271,7 @@ public:
 }
 
 // static
-QString change_trust_file(const QString &trustListFile, const QString &key, const DN &dn, Key::OwnerTrust trust)
+QString change_trust_file(const QString &trustListFile, const QString &key, const QGpgME::DN &dn, Key::OwnerTrust trust)
 {
     QList<QByteArray> trustListFileContents;
 
