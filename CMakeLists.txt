@@ -97,7 +97,6 @@ find_package(KF6 ${KF6_WANT_VERSION}
     WidgetsAddons
     WindowSystem
     XmlGui
-    StatusNotifierItem
 
     OPTIONAL_COMPONENTS
     DocTools
