@@ -19,7 +19,6 @@
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
-#include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KleoException>

@@ -25,7 +25,6 @@
 #include <utils/filedialog.h>
 
 #include <Libkleo/Algorithm>
-#include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
