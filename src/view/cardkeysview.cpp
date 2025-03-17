@@ -22,7 +22,6 @@
 
 #include <Libkleo/Compliance>
 #include <Libkleo/Debug>
-#include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilterManager>
@@ -243,7 +242,7 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         if (key.protocol() == GpgME::OpenPGP) {
             item->setData(Certificate, Qt::DisplayRole, Formatting::prettyUserID(key.userID(0)));
         } else {
-            item->setData(Certificate, Qt::DisplayRole, DN(key.userID(0).id()).prettyDN());
+            item->setData(Certificate, Qt::DisplayRole, Formatting::prettyDN(key.userID(0).id()));
         }
         item->setData(Certificate, Qt::ToolTipRole, Formatting::toolTip(key, toolTipOptions()));
         // protocol

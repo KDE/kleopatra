@@ -21,7 +21,6 @@
 #include "utils/writecertassuantransaction.h"
 
 #include <Libkleo/Compat>
-#include <Libkleo/Dn>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
@@ -133,7 +132,7 @@ void CertificateToPIVCardCommand::Private::start()
 
     const QString certificateInfo = i18nc("X.509 certificate DN (validity, created: date)",
                                           "%1 (%2, created: %3)",
-                                          DN(certificate.userID(0).id()).prettyDN(),
+                                          Formatting::prettyDN(certificate.userID(0).id()),
                                           Formatting::complianceStringShort(certificate),
                                           Formatting::creationDateString(certificate));
     const QString slotName = cardKeyDisplayName(cardSlot);

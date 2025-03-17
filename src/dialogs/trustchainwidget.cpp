@@ -17,7 +17,7 @@
 
 #include <gpgme++/key.h>
 
-#include <Libkleo/Dn>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 
 class TrustChainWidget::Private
@@ -77,13 +77,13 @@ void TrustChainWidget::setKey(const GpgME::Key &key)
     QTreeWidgetItem *last = nullptr;
     if (!chain.back().isRoot()) {
         last = new QTreeWidgetItem(d->ui.treeWidget);
-        last->setText(0, i18n("Issuer Certificate Not Found (%1)", Kleo::DN(chain.back().issuerName()).prettyDN()));
+        last->setText(0, i18n("Issuer Certificate Not Found (%1)", Kleo::Formatting::prettyDN(chain.back().issuerName())));
         const QBrush &fg = d->ui.treeWidget->palette().brush(QPalette::Disabled, QPalette::WindowText);
         last->setForeground(0, fg);
     }
     for (auto it = chain.rbegin(), end = chain.rend(); it != end; ++it) {
         last = last ? new QTreeWidgetItem(last) : new QTreeWidgetItem(d->ui.treeWidget);
-        last->setText(0, Kleo::DN(it->userID(0).id()).prettyDN());
+        last->setText(0, Kleo::Formatting::prettyDN(it->userID(0).id()));
     }
     d->ui.treeWidget->expandAll();
 }
