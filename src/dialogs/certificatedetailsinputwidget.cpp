@@ -12,7 +12,7 @@
 
 #include <utils/userinfo.h>
 
-#include <Libkleo/Dn>
+#include <Libkleo/DnAttributes>
 #include <Libkleo/OidMap>
 #include <Libkleo/Stl_Util>
 #include <Libkleo/Validation>
@@ -54,7 +54,7 @@ QString attributeLabel(const QString &attr)
     if (attr.isEmpty()) {
         return QString();
     }
-    const QString label = DN::attributeNameToLabel(attr);
+    const QString label = DNAttributes::nameToLabel(attr);
     if (!label.isEmpty()) {
         return i18nc("Format string for the labels in the \"Your Personal Data\" page", "%1 (%2)", label, attr);
     } else {

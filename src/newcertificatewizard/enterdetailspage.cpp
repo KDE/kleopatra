@@ -20,7 +20,7 @@
 #include <settings.h>
 
 #include <Libkleo/Compat>
-#include <Libkleo/Dn>
+#include <Libkleo/DnAttributes>
 #include <Libkleo/Formatting>
 #include <Libkleo/OidMap>
 #include <Libkleo/Stl_Util>
@@ -72,7 +72,7 @@ static QString attributeLabel(const QString &attr, bool pgp)
     if (attr.isEmpty()) {
         return QString();
     }
-    const QString label = pgp ? pgpLabel(attr) : Kleo::DN::attributeNameToLabel(attr);
+    const QString label = pgp ? pgpLabel(attr) : Kleo::DNAttributes::nameToLabel(attr);
     if (!label.isEmpty())
         if (pgp) {
             return label;

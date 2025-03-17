@@ -28,7 +28,7 @@
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compliance>
-#include <Libkleo/Dn>
+#include <Libkleo/DnAttributes>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
@@ -165,8 +165,8 @@ private:
                 gridLayout->addWidget(primaryUserIdField->label(), row, 0);
                 gridLayout->addLayout(primaryUserIdField->layout(), row, 1);
 
-                for (const auto &attribute : DN::attributeOrder()) {
-                    const auto attributeLabel = DN::attributeNameToLabel(attribute);
+                for (const auto &attribute : DNAttributes::order()) {
+                    const auto attributeLabel = DNAttributes::nameToLabel(attribute);
                     if (attributeLabel.isEmpty()) {
                         continue;
                     }

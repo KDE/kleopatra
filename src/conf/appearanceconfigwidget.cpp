@@ -13,7 +13,7 @@
 #include <settings.h>
 
 #include <Libkleo/DNAttributeOrderConfigWidget>
-#include <Libkleo/Dn>
+#include <Libkleo/DnAttributes>
 #include <Libkleo/ExpiryCheckerConfig>
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/SystemInfo>
@@ -656,7 +656,7 @@ void AppearanceConfigWidget::defaults()
 
     if (d->dnOrderWidget) {
         if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
-            d->dnOrderWidget->setAttributeOrder(DN::defaultAttributeOrder());
+            d->dnOrderWidget->setAttributeOrder(DNAttributes::defaultOrder());
         }
     }
 
@@ -691,7 +691,7 @@ void AppearanceConfigWidget::load()
     }
 
     if (d->dnOrderWidget) {
-        d->dnOrderWidget->setAttributeOrder(DN::attributeOrder());
+        d->dnOrderWidget->setAttributeOrder(DNAttributes::order());
         d->dnOrderWidget->setEnabled(!settings.isImmutable(QStringLiteral("AttributeOrder")));
     }
 
@@ -726,7 +726,7 @@ void AppearanceConfigWidget::save()
     settings.setShowExpiryNotifications(d->showExpirationCheckBox->isChecked());
     if (d->dnOrderWidget) {
         settings.setAttributeOrder(d->dnOrderWidget->attributeOrder());
-        DN::setAttributeOrder(settings.attributeOrder());
+        DNAttributes::setOrder(settings.attributeOrder());
     }
 
     {

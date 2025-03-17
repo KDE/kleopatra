@@ -30,7 +30,7 @@
 #include <gpgme++/key.h>
 
 #include <Libkleo/Classify>
-#include <Libkleo/Dn>
+#include <Libkleo/DnAttributes>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilterManager>
@@ -368,7 +368,7 @@ void KleopatraApplication::init()
         QDesktopServices::setUrlHandler(scheme, this, "blockUrl");
     }
     add_resources();
-    DN::setAttributeOrder(Settings{}.attributeOrder());
+    DNAttributes::setOrder(Settings{}.attributeOrder());
     /* Start the gpg-agent early, this is done explicitly
      * because on an empty keyring our keylistings wont start
      * the agent. In that case any assuan-connect calls to
