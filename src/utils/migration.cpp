@@ -17,6 +17,8 @@
 
 #include <Libkleo/GnuPG>
 
+using namespace Qt::Literals::StringLiterals;
+
 static const QStringList groupStateIgnoredKeys = {
     QStringLiteral("magic"),
 };
@@ -56,10 +58,10 @@ void Migration::migrate()
         migrations.sync();
     }
 
-    // Migrate kleopatragroupsrc from ~/.config/ (or %LOCALAPPDATA%/) to GNUPGHOME/kleopatra/
-    const QString groupConfigFilename = QStringLiteral("kleopatragroupsrc");
+    // Migrate kleopatragroupsrc from ~/.config/ (or %APPDATA%/kleopatra/) to GNUPGHOME/kleopatra/
+    const QString groupConfigFilename = u"kleopatragroupsrc"_s;
 #ifdef Q_OS_WIN
-    const QString oldGroupConfigPath = qEnvironmentVariable("LOCALAPPDATA") + QLatin1Char('/') + groupConfigFilename;
+    const QString oldGroupConfigPath = qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + groupConfigFilename;
 #else
     const QString oldGroupConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + groupConfigFilename;
 #endif
