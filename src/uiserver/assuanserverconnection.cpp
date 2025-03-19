@@ -222,7 +222,7 @@ public Q_SLOTS:
     {
         Q_ASSERT(ctx);
         int done = false;
-        if (const int err = assuan_process_next(ctx.get(), &done) || done) {
+        if (/*const int err =*/assuan_process_next(ctx.get(), &done) || done) {
             // if ( err == -1 || gpg_err_code(err) == GPG_ERR_EOF ) {
             topHalfDeletion();
             if (nohupedCommands.empty()) {
