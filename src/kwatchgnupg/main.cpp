@@ -14,6 +14,7 @@
 #include "kwatchgnupg_debug.h"
 #include <KCrash>
 #include <KLocalizedString>
+#include <KWindowSystem>
 #include <QApplication>
 #include <QCommandLineParser>
 
@@ -38,5 +39,15 @@ int main(int argc, char **argv)
 
     auto mMainWin = new KWatchGnuPGMainWindow();
     mMainWin->show();
+
+    QObject::connect(&service, &KUniqueService::activateRequested, mMainWin, [mMainWin] {
+        if (mMainWin->isVisible()) {
+            KWindowSystem::updateStartupId(mMainWin->windowHandle());
+            KWindowSystem::activateWindow(mMainWin->windowHandle());
+        } else {
+            mMainWin->show();
+        }
+    });
+
     return app.exec();
 }
