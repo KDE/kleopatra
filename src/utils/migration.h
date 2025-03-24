@@ -6,5 +6,10 @@
 
 namespace Migration
 {
+#ifdef Q_OS_WIN
+/// Copies the application config files appnamerc and appnamestaterc from the old location to GNUPGHOME/kleopatra.
+void migrateApplicationConfigFiles(const QString &applicationName);
+#endif
+
 void migrate();
 }

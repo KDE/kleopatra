@@ -132,6 +132,9 @@ int main(int argc, char **argv)
             win_outputDebugString_helper(u"Failed to set GNUPGHOME to "_s + Kleo::gnupgHomeDirectory());
         }
     }
+    // The config files need to be migrated before the application is created. Otherwise, at least
+    // the staterc might already have been created at the new location.
+    Migration::migrateApplicationConfigFiles(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
 #endif
 
 #ifdef  Q_OS_WIN
