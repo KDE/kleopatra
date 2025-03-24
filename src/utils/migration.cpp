@@ -48,6 +48,40 @@ static void migrateGroupState(const QString &configName, const QString &name)
     }
 }
 
+static void migrateConfigFile(const QString &fileName)
+{
+#ifdef Q_OS_WIN
+    // On Windows, Gpg4win 4.x used %APPDATA%/kleopatra as GenericConfigLocation;
+    // Gpg4win 5.x uses %GNUPGHOME%/kleopatra as GenericConfigLocation
+    const QString oldConfigPath = qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + fileName;
+#else
+    const QString oldConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/' + fileName;
+#endif
+    const QDir configDir{Kleo::gnupgHomeDirectory() + "/kleopatra"_L1};
+    const QString configPath = configDir.absoluteFilePath(fileName);
+
+    if (!QFileInfo::exists(configPath) && QFileInfo::exists(oldConfigPath)) {
+        qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath << "to" << configPath;
+        if (!QDir{}.mkpath(configDir.absolutePath())) {
+            qCWarning(KLEOPATRA_LOG) << "Failed to create folder" << configDir.absolutePath();
+            return;
+        }
+        const bool ok = QFile::copy(oldConfigPath, configPath);
+        if (!ok) {
+            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old configuration to" << configPath;
+        }
+    }
+}
+
+#ifdef Q_OS_WIN
+void Migration::migrateApplicationConfigFiles(const QString &applicationName)
+{
+    // On Windows, also migrate the main config file and the state config file to GNUPGHOME/kleopatra/
+    migrateConfigFile(applicationName + "rc"_L1);
+    migrateConfigFile(applicationName + "staterc"_L1);
+}
+#endif
+
 void Migration::migrate()
 {
     auto migrations = KSharedConfig::openStateConfig()->group(QStringLiteral("Migrations"));
@@ -58,25 +92,6 @@ void Migration::migrate()
         migrations.sync();
     }
 
-    // Migrate kleopatragroupsrc from ~/.config/ (or %APPDATA%/kleopatra/) to GNUPGHOME/kleopatra/
-    const QString groupConfigFilename = u"kleopatragroupsrc"_s;
-#ifdef Q_OS_WIN
-    const QString oldGroupConfigPath = qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + groupConfigFilename;
-#else
-    const QString oldGroupConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + QLatin1Char('/') + groupConfigFilename;
-#endif
-    const QDir groupConfigDir{Kleo::gnupgHomeDirectory() + QLatin1StringView("/kleopatra")};
-    const QString groupConfigPath = groupConfigDir.absoluteFilePath(groupConfigFilename);
-
-    if (!QFileInfo::exists(groupConfigPath) && QFileInfo::exists(oldGroupConfigPath)) {
-        qCInfo(KLEOPATRA_LOG) << "Copying group configuration from" << oldGroupConfigPath << "to" << groupConfigPath;
-        if (!QDir{}.mkpath(groupConfigDir.absolutePath())) {
-            qCWarning(KLEOPATRA_LOG) << "Failed to create folder for group configuration:" << groupConfigDir.absolutePath();
-            return;
-        }
-        const bool ok = QFile::copy(oldGroupConfigPath, groupConfigPath);
-        if (!ok) {
-            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old group configuration to" << groupConfigPath;
-        }
-    }
+    // Migrate kleopatragroupsrc from old location to GNUPGHOME/kleopatra/
+    migrateConfigFile(u"kleopatragroupsrc"_s);
 }

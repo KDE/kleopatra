@@ -110,6 +110,9 @@ int main(int argc, char **argv)
             qCWarning(KLEOPATRA_LOG) << "Failed to set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
         }
     }
+    // The config files need to be migrated before the application is created. Otherwise, at least
+    // the staterc might already have been created at the new location.
+    Migration::migrateApplicationConfigFiles(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
 #endif
 
     KleopatraApplication app(argc, argv);
