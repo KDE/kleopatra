@@ -46,7 +46,6 @@ target_link_libraries(kwatchgnupg
   KF6::XmlGui
   KF6::Notifications
   KF6::I18n
-  KF6::GuiAddons
   KPim6::Libkleo
   KF6::CoreAddons
   KF6::Crash
