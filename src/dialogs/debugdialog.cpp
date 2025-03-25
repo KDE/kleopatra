@@ -6,6 +6,7 @@
 
 #include "kleopatra_debug.h"
 
+#include <conf/labelledwidget.h>
 #include <utils/qt6compat.h>
 
 #include "settings.h"
@@ -22,6 +23,7 @@
 #include <QFileDialog>
 #include <QGuiApplication>
 #include <QLabel>
+#include <QLineEdit>
 #include <QProcess>
 #include <QPushButton>
 #include <QTextEdit>
@@ -124,6 +126,47 @@ DebugDialog::DebugDialog(QWidget *parent)
     d->outputEdit->setReadOnly(true);
     layout->addWidget(d->outputEdit);
 
+    auto searchLayout = new QHBoxLayout;
+
+    auto searchField = new LabelledWidget<QLineEdit>();
+    searchField->createWidgets(this);
+    searchField->label()->setText(i18nc("@label", "Search:"));
+    searchField->widget()->setToolTip(i18nc("@info:tooltip", "Search in output"));
+    searchField->widget()->setPlaceholderText(i18nc("@info:placeholder", "Enter search term"));
+    connect(searchField->widget(), &QLineEdit::textChanged, this, [this, searchField]() {
+        d->outputEdit->moveCursor(QTextCursor::Start);
+        d->outputEdit->find(searchField->widget()->text());
+    });
+
+    auto searchNext = [this, searchField]() {
+        if (!d->outputEdit->find(searchField->widget()->text())) {
+            d->outputEdit->moveCursor(QTextCursor::Start);
+            d->outputEdit->find(searchField->widget()->text());
+        }
+    };
+
+    connect(searchField->widget(), &QLineEdit::returnPressed, this, searchNext);
+    searchLayout->addWidget(searchField->label());
+    searchLayout->addWidget(searchField->widget());
+
+    auto nextButton = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-down")), {});
+    nextButton->setToolTip(i18nc("@info:tooltip", "Jump to next match"));
+    nextButton->setAccessibleName(i18nc("@action:button", "Find Next"));
+    connect(nextButton, &QPushButton::clicked, this, searchNext);
+
+    searchLayout->addWidget(nextButton);
+    auto previousButton = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-up")), {});
+    previousButton->setToolTip(i18nc("@info:tooltip", "Jump to previous match"));
+    previousButton->setAccessibleName(i18nc("@action:button", "Find Previous"));
+    connect(previousButton, &QPushButton::clicked, this, [this, searchField]() {
+        if (!d->outputEdit->find(searchField->widget()->text(), QTextDocument::FindBackward)) {
+            d->outputEdit->moveCursor(QTextCursor::End);
+            d->outputEdit->find(searchField->widget()->text(), QTextDocument::FindBackward);
+        }
+    });
+    searchLayout->addWidget(previousButton);
+
+    layout->addLayout(searchLayout);
     {
         auto buttonBox = new QDialogButtonBox;
 
