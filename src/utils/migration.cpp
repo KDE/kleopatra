@@ -55,22 +55,22 @@ static void migrateConfigFile(const QString &fileName)
 #ifdef Q_OS_WIN
     // On Windows, Gpg4win 4.x used %APPDATA%/kleopatra as GenericConfigLocation;
     // Gpg4win 5.x uses %GNUPGHOME%/kleopatra as GenericConfigLocation
-    const QString oldConfigPath = qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + fileName;
+    const QFileInfo oldConfigPath{qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + fileName};
 #else
-    const QString oldConfigPath = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/' + fileName;
+    const QFileInfo oldConfigPath{QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/' + fileName};
 #endif
-    const QDir configDir{Kleo::gnupgHomeDirectory() + "/kleopatra"_L1};
-    const QString configPath = configDir.absoluteFilePath(fileName);
+    const QDir newConfigDir{Kleo::gnupgHomeDirectory() + "/kleopatra"_L1};
+    const QFileInfo newConfigPath{newConfigDir.absoluteFilePath(fileName)};
 
-    if (!QFileInfo::exists(configPath) && QFileInfo::exists(oldConfigPath)) {
-        qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath << "to" << configPath;
-        if (!QDir{}.mkpath(configDir.absolutePath())) {
-            qCWarning(KLEOPATRA_LOG) << "Failed to create folder" << configDir.absolutePath();
+    if (!newConfigPath.exists() && oldConfigPath.exists()) {
+        qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath.absoluteFilePath() << "to" << newConfigPath.absoluteFilePath();
+        if (!QDir{}.mkpath(newConfigPath.absolutePath())) {
+            qCWarning(KLEOPATRA_LOG) << "Failed to create folder" << newConfigPath.absolutePath();
             return;
         }
-        const bool ok = QFile::copy(oldConfigPath, configPath);
+        const bool ok = QFile::copy(oldConfigPath.absoluteFilePath(), newConfigPath.absoluteFilePath());
         if (!ok) {
-            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old configuration to" << configPath;
+            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old configuration to" << newConfigPath.absoluteFilePath();
         }
     }
 }
@@ -81,6 +81,10 @@ void Migration::migrateApplicationConfigFiles(const QString &applicationName)
     // On Windows, also migrate the main config file and the state config file to GNUPGHOME/kleopatra/
     migrateConfigFile(applicationName + "rc"_L1);
     migrateConfigFile(applicationName + "staterc"_L1);
+    // Migrate some more config files
+    migrateConfigFile(u"klanguageoverridesrc"_s);
+    migrateConfigFile(u"libkleopatrarc"_s);
+    migrateConfigFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s);
 }
 #endif
 
