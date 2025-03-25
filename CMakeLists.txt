@@ -89,7 +89,6 @@ find_package(KF6 ${KF6_WANT_VERSION}
     Config
     CoreAddons
     Crash
-    GuiAddons
     I18n
     IconThemes
     ItemModels
