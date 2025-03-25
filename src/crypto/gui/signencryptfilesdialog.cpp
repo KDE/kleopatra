@@ -494,11 +494,22 @@ class SignEncryptResultPage : public Kleo::Crypto::Gui::ResultPage
     Q_OBJECT
 
 public:
-    explicit SignEncryptResultPage(QWidget *parent = nullptr)
+    explicit SignEncryptResultPage(QDialog *parent = nullptr)
         : ResultPage(parent)
     {
         setTitle(i18nc("@title", "Results"));
         setSubTitle(i18nc("@title", "Status and progress of the crypto operations is shown here."));
+        setKeepOpenWhenDone(Settings{}.showResultsAfterSignEncrypt());
+        connect(this, &SignEncryptResultPage::completeChanged, this, [this, parent]() {
+            if (autoAdvance()) {
+                parent->close();
+            }
+        });
+        connect(parent, &QDialog::finished, this, [this]() {
+            Settings settings;
+            settings.setShowResultsAfterSignEncrypt(keepOpenWhenDone());
+            settings.save();
+        });
     }
 };
 

@@ -8,6 +8,7 @@
 #include "crypto/gui/signencryptwidget.h"
 #include "crypto/signencrypttask.h"
 #include "crypto/taskcollection.h"
+#include "settings.h"
 #include "utils/input.h"
 #include "utils/output.h"
 
@@ -112,6 +113,24 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
 
     auto resultPage = new Kleo::Crypto::Gui::ResultPage;
     stackedLayout->addWidget(resultPage);
+
+    resultPage->setKeepOpenWhenDone(mode == SignEncryptClipboardCommand::Mode::Sign ? Settings{}.showResultsAfterSigningClipboard()
+                                                                                    : Settings{}.showResultsAfterEncryptingClipboard());
+    connect(resultPage, &Gui::ResultPage::completeChanged, this, [this, resultPage]() {
+        if (resultPage->autoAdvance()) {
+            close();
+        }
+    });
+
+    connect(this, &QDialog::finished, this, [resultPage, mode]() {
+        Settings settings;
+        if (mode == SignEncryptClipboardCommand::Mode::Sign) {
+            settings.setShowResultsAfterSigningClipboard(resultPage->keepOpenWhenDone());
+        } else {
+            settings.setShowResultsAfterEncryptingClipboard(resultPage->keepOpenWhenDone());
+        }
+        settings.save();
+    });
 
     layout->addLayout(stackedLayout);
 

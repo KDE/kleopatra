@@ -44,7 +44,7 @@ public:
     QVBoxLayout *m_progressLabelLayout;
     int m_lastErrorItemIndex = 0;
     ResultListWidget *m_resultList;
-    QCheckBox *m_keepOpenCB;
+    QCheckBox *m_autoCloseCB;
 };
 
 ResultPage::Private::Private(ResultPage *qq)
@@ -58,10 +58,10 @@ ResultPage::Private::Private(ResultPage *qq)
     layout->addWidget(m_progressBar);
     m_resultList = new ResultListWidget;
     layout->addWidget(m_resultList);
-    m_keepOpenCB = new QCheckBox;
-    m_keepOpenCB->setText(i18n("Keep open after operation completed"));
-    m_keepOpenCB->setChecked(true);
-    layout->addWidget(m_keepOpenCB);
+    m_autoCloseCB = new QCheckBox;
+    m_autoCloseCB->setText(i18nc("@option:check", "Close window automatically on success"));
+    m_autoCloseCB->setChecked(false);
+    layout->addWidget(m_autoCloseCB);
 }
 
 void ResultPage::Private::progress(int progress, int total)
@@ -75,7 +75,7 @@ void ResultPage::Private::progress(int progress, int total)
 void ResultPage::Private::allDone()
 {
     Q_ASSERT(m_tasks);
-    q->setAutoAdvance(!m_keepOpenCB->isChecked() && !m_tasks->errorOccurred());
+    q->setAutoAdvance(m_autoCloseCB->isChecked() && !m_tasks->errorOccurred());
     m_progressBar->setVisible(false);
     m_tasks.reset();
     const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
@@ -115,12 +115,12 @@ ResultPage::~ResultPage()
 
 bool ResultPage::keepOpenWhenDone() const
 {
-    return d->m_keepOpenCB->isChecked();
+    return !d->m_autoCloseCB->isChecked();
 }
 
 void ResultPage::setKeepOpenWhenDone(bool keep)
 {
-    d->m_keepOpenCB->setChecked(keep);
+    d->m_autoCloseCB->setChecked(!keep);
 }
 
 void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
