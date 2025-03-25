@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <QtGlobal>
+
 namespace Migration
 {
 #ifdef Q_OS_WIN
