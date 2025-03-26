@@ -654,9 +654,15 @@ void MainWindow::Private::setupActions()
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
     KStandardAction::preferences(qApp, SLOT(openOrRaiseConfigDialog()), coll);
 
-    auto manager = KColorSchemeManager::instance();
-    KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
-    coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
+#ifdef Q_OS_WIN
+    // In high contrast mode we do not want our own colors
+    if (!SystemInfo::isHighContrastModeActive())
+#endif
+    {
+        auto manager = KColorSchemeManager::instance();
+        KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
+        coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
+    }
 
     focusToClickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);
