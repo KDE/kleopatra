@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-26 00:42+0000\n"
+"POT-Creation-Date: 2025-03-27 00:42+0000\n"
 "PO-Revision-Date: 2025-03-04 12:32+0100\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
@@ -5491,8 +5491,9 @@ msgstr "E-Mail anzeigen"
 
 #: src/crypto/gui/resultpage.cpp:62
 #, kde-format
-msgid "Keep open after operation completed"
-msgstr "Auch nach erfolgreichem Ende der Operation Fenster geöffnet lassen."
+msgctxt "@option:check"
+msgid "Close window automatically on success"
+msgstr ""
 
 #: src/crypto/gui/signemailwizard.cpp:69
 #, kde-format
@@ -5883,7 +5884,7 @@ msgid "Output directory"
 msgstr "Ausgabe-Ordner"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:500
-#: src/dialogs/signencryptclipboarddialog.cpp:178
+#: src/dialogs/signencryptclipboarddialog.cpp:197
 #, kde-format
 msgctxt "@title"
 msgid "Results"
@@ -5897,62 +5898,62 @@ msgstr ""
 "Hier wird der Status und der Fortschritt der Verschlüsselungs-Operationen "
 "angezeigt."
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:510
+#: src/crypto/gui/signencryptfilesdialog.cpp:521
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "Dateien signieren/verschlüsseln"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:518
+#: src/crypto/gui/signencryptfilesdialog.cpp:529
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
 msgstr "Dateien signieren/verschlüsseln"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:540
+#: src/crypto/gui/signencryptfilesdialog.cpp:551
 #: src/dialogs/selftestdialog.cpp:447
-#: src/dialogs/signencryptclipboarddialog.cpp:132
+#: src/dialogs/signencryptclipboarddialog.cpp:151
 #, kde-format
 msgctxt "@action:button"
 msgid "Continue"
 msgstr "Fortfahren"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:550
+#: src/crypto/gui/signencryptfilesdialog.cpp:561
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Results"
 msgstr "Ergebnisse"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:551
-#: src/dialogs/signencryptclipboarddialog.cpp:192
+#: src/crypto/gui/signencryptfilesdialog.cpp:562
+#: src/dialogs/signencryptclipboarddialog.cpp:211
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
 msgstr "Abschließen"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:561
-#: src/dialogs/signencryptclipboarddialog.cpp:144
+#: src/crypto/gui/signencryptfilesdialog.cpp:572
+#: src/dialogs/signencryptclipboarddialog.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Signieren"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:564
-#: src/dialogs/signencryptclipboarddialog.cpp:147
+#: src/crypto/gui/signencryptfilesdialog.cpp:575
+#: src/dialogs/signencryptclipboarddialog.cpp:166
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Verschlüsseln"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:567
-#: src/dialogs/signencryptclipboarddialog.cpp:150
+#: src/crypto/gui/signencryptfilesdialog.cpp:578
+#: src/dialogs/signencryptclipboarddialog.cpp:169
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
 msgstr "Signieren/Verschlüsseln"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:581
-#: src/dialogs/signencryptclipboarddialog.cpp:164
+#: src/crypto/gui/signencryptfilesdialog.cpp:592
+#: src/dialogs/signencryptclipboarddialog.cpp:183
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -8383,19 +8384,19 @@ msgstr ""
 msgid "(optional) Set Initial PIN (SigG)"
 msgstr "(optional) Anfängliche PIN einrichten (SigG)"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:100
+#: src/dialogs/signencryptclipboarddialog.cpp:101
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Zwischenablage verschlüsseln/signieren"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:104
+#: src/dialogs/signencryptclipboarddialog.cpp:105
 #, kde-format
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Zwischenablage verschlüsseln/signieren"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:206
+#: src/dialogs/signencryptclipboarddialog.cpp:225
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
@@ -9615,14 +9616,21 @@ msgstr "Profileinstellungen deaktivieren"
 msgid "Allow custom debug commands"
 msgstr "Konfiguration der Debug-Befehle zulassen"
 
+#. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
+#: src/kcfg/settings.kcfg:263
+#, fuzzy, kde-format
+#| msgid "Show results after encryption"
+msgid "Show results after signing and encrypting files"
+msgstr "Ergebnis nach Verschlüsselung anzeigen"
+
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:265
+#: src/kcfg/settings.kcfg:269
 #, kde-format
 msgid "Show certificate validity"
 msgstr "Zertifikatsgültigkeit anzeigen"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:266
+#: src/kcfg/settings.kcfg:270
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9632,13 +9640,13 @@ msgstr ""
 "Zertifikat abgelaufen ist oder zurückgezogen wurde."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:270
+#: src/kcfg/settings.kcfg:274
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "Informationen über Zertifikatseigentümer anzeigen"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:271
+#: src/kcfg/settings.kcfg:275
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9648,13 +9656,13 @@ msgstr ""
 "Inhabername und Herausgeber."
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:275
+#: src/kcfg/settings.kcfg:279
 #, kde-format
 msgid "Show certificate details"
 msgstr "Zertifikatsdetails anzeigen"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:276
+#: src/kcfg/settings.kcfg:280
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -10090,18 +10098,18 @@ msgctxt "@action:intoolbar"
 msgid "Groups"
 msgstr "Gruppen"
 
-#: src/mainwindow.cpp:661
+#: src/mainwindow.cpp:667
 #, kde-format
 msgctxt "@action"
 msgid "Set Focus to Quick Search"
 msgstr "Fokus auf die Schnellsuche einstellen"
 
-#: src/mainwindow.cpp:673
+#: src/mainwindow.cpp:679
 #, kde-format
 msgid "Gpg4win Compendium"
 msgstr "Gpg4win-Kompendium"
 
-#: src/mainwindow.cpp:677
+#: src/mainwindow.cpp:683
 #, kde-format
 msgctxt ""
 "The Gpg4win compendium is only availableat this point (24.7.2017) in german "
@@ -10109,36 +10117,36 @@ msgctxt ""
 msgid "gpg4win-compendium-en.pdf"
 msgstr "gpg4win-compendium-de.pdf"
 
-#: src/mainwindow.cpp:688
+#: src/mainwindow.cpp:694
 #, kde-format
 msgid "&Quick Guide Encrypt and Sign"
 msgstr "&Kurzanleitung Verschlüsseln und Signieren"
 
-#: src/mainwindow.cpp:689
+#: src/mainwindow.cpp:695
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_de.pdf"
 
-#: src/mainwindow.cpp:698
+#: src/mainwindow.cpp:704
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "Zertifikats&gruppen"
 
-#: src/mainwindow.cpp:699
+#: src/mainwindow.cpp:705
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_de.pdf"
 
-#: src/mainwindow.cpp:708
+#: src/mainwindow.cpp:714
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "&Mail-Verschlüsselung in Outlook"
 
-#: src/mainwindow.cpp:709
+#: src/mainwindow.cpp:715
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10146,41 +10154,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_de.pdf"
 
-#: src/mainwindow.cpp:719
+#: src/mainwindow.cpp:725
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Beglaubigungsmanagement"
 
-#: src/mainwindow.cpp:720
+#: src/mainwindow.cpp:726
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_de.pdf"
 
-#: src/mainwindow.cpp:728
+#: src/mainwindow.cpp:734
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&Smartcard-Einrichtung"
 
-#: src/mainwindow.cpp:729
+#: src/mainwindow.cpp:735
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_de.pdf"
 
-#: src/mainwindow.cpp:736
+#: src/mainwindow.cpp:742
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "GnuPG-&Befehlszeile"
 
-#: src/mainwindow.cpp:746
+#: src/mainwindow.cpp:752
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Handbuch zur Zulassung"
 
-#: src/mainwindow.cpp:747
+#: src/mainwindow.cpp:753
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10188,12 +10196,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_de.pdf"
 
-#: src/mainwindow.cpp:755
+#: src/mainwindow.cpp:761
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "SecOps zur VS-NfD Zulassung"
 
-#: src/mainwindow.cpp:756
+#: src/mainwindow.cpp:762
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10201,7 +10209,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_DEU_secops.pdf"
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10210,17 +10218,17 @@ msgstr ""
 "Im Hintergrund sind noch einige Operationen aktiv. Diese werden abgebrochen, "
 "wenn Sie das Fenster schließen. Fortfahren?"
 
-#: src/mainwindow.cpp:784
+#: src/mainwindow.cpp:790
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Hintergrundoperationen aktiv"
 
-#: src/mainwindow.cpp:915
+#: src/mainwindow.cpp:921
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "&Passwortbasierte Verschlüsselung"
 
-#: src/mainwindow.cpp:916
+#: src/mainwindow.cpp:922
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
@@ -13392,6 +13400,9 @@ msgstr ""
 "Ein Zertifikat oder einen geheimen Schlüssel aus einer Datei importieren.<nl/"
 ">Um ein Zertifikat von einem öffentlichen Schlüsselserver zu importieren, "
 "bitte „Auf Server suchen“ verwenden."
+
+#~ msgid "Keep open after operation completed"
+#~ msgstr "Auch nach erfolgreichem Ende der Operation Fenster geöffnet lassen."
 
 #~ msgctxt "@action show certificate overview"
 #~ msgid "Certificates"
