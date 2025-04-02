@@ -52,6 +52,7 @@
 #include "kleopatra_options.h"
 
 #include <KCrash>
+#include <KIconTheme>
 #include <KLocalizedString>
 #include <KMessageBox>
 
@@ -113,7 +114,13 @@ int main(int argc, char **argv)
     // The config files need to be migrated before the application is created. Otherwise, at least
     // the staterc might already have been created at the new location.
     Migration::migrateApplicationConfigFiles(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
+    STARTUP_TIMING << "Config files migrated";
 #endif
+
+    // Enforce the Breeze icon theme for all icons (including recoloring);
+    // needs to be done before creating the QApplication
+    KIconTheme::initTheme();
+    STARTUP_TIMING << "Icon theme initialized";
 
     KleopatraApplication app(argc, argv);
     // Set OrganizationDomain early as this is used to generate the service
