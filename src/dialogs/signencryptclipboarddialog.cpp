@@ -249,3 +249,5 @@ SignEncryptClipboardDialog::~SignEncryptClipboardDialog()
         m_task->cancel();
     }
 }
+
+#include "moc_signencryptclipboarddialog.cpp"
