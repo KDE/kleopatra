@@ -10,13 +10,13 @@
 # Edwin Veber <edwin0307@gmail.com>, 2011.
 # Мария Шикунова <translation-team@basealt.ru>, 2021, 2022, 2023.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2024.
-# SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
+# SPDX-FileCopyrightText: 2024, 2025 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-07 00:43+0000\n"
-"PO-Revision-Date: 2024-11-22 14:15+0300\n"
+"PO-Revision-Date: 2025-04-01 17:15+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
@@ -536,9 +536,7 @@ msgid "Certify Certificates"
 msgstr "Заверение сертификатов"
 
 #: src/commands/certifygroupcommand.cpp:169
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Certifying certificates ..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Certifying certificates…"
 msgstr "Заверение сертификатов…"
@@ -1359,7 +1357,7 @@ msgstr "Снимок сертификата"
 #: src/commands/dumpcrlcachecommand.cpp:313
 #, kde-format
 msgid "Unable to start process gpgsm. Please check your installation."
-msgstr "Не удалось запустить процесс gpgsm. Проверьте правильность установки."
+msgstr "Невозможно запустить процесс gpgsm. Проверьте правильность установки."
 
 #: src/commands/dumpcertificatecommand.cpp:306
 #, kde-format
@@ -2170,7 +2168,7 @@ msgstr "Диагностика подпроцессов"
 #: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
 msgid "Unable to start process %1. Please check your installation."
-msgstr "Не удалось запустить процесс %1. Проверьте правильность установки."
+msgstr "Невозможно запустить процесс %1. Проверьте правильность установки."
 
 #: src/commands/gnupgprocesscommand.cpp:273
 #, kde-format
@@ -2194,22 +2192,23 @@ msgstr "Импорт сертификата с карты"
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
-msgstr ""
+msgstr "Буфер обмена пуст. Ничего не импортировано."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:106
-#, fuzzy, kde-format
-#| msgid "Clipboard contents do not look like a certificate."
+#, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
-msgstr "Содержимое буфера обмена не похоже на сертификат."
+msgstr ""
+"Содержимое буфера обмена не похоже на сертификат. Ничего не импортировано."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:110
-#, fuzzy, kde-format
-#| msgid "Could not determine certificate type of clipboard contents."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Could not determine certificate type of clipboard contents. Nothing imported."
-msgstr "Невозможно определить тип сертификата в содержимом буфера обмена."
+msgstr ""
+"Невозможно определить тип сертификата в содержимом буфера обмена. Ничего не "
+"импортировано."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:112
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
@@ -2600,7 +2599,7 @@ msgstr "Выберите файл списка отозванных сертиф
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
 msgstr ""
-"Не удалось запустить процесс dirmngr. Проверьте правильность установки."
+"Невозможно запустить процесс dirmngr. Проверьте правильность установки."
 
 #: src/commands/importcrlcommand.cpp:171
 #, kde-format
@@ -4413,10 +4412,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, ocspSelectButton)
 #: src/conf/smimevalidationconfigurationwidget.ui:130
-#, fuzzy, kde-format
-#| msgid "Card Certificate"
+#, kde-format
 msgid "Change Certificate…"
-msgstr "Сертификат карты"
+msgstr "Изменить сертификат…"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:142
@@ -4922,14 +4920,12 @@ msgid "Decryption and verification of <filename>%1</filename> canceled."
 msgstr "Не удалось записать сертификаты в файл <filename>%1</filename>."
 
 #: src/crypto/decryptverifytask.cpp:225
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Failed to decrypt <file>: <reason>"
-#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+#, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt and verify <filename>%1</filename>:"
-msgstr "Не удалось расшифровать файл <filename>%1</filename>: %2"
+msgstr "Невозможно расшифровать и проверить файл <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:229
 #, fuzzy, kde-kuit-format
@@ -4983,22 +4979,18 @@ msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "Не удалось записать ключ в файл <filename>%1</filename>."
 
 #: src/crypto/decryptverifytask.cpp:253
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Failed to decrypt <file>: <reason>"
-#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+#, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt <filename>%1</filename>:"
-msgstr "Не удалось расшифровать файл <filename>%1</filename>: %2"
+msgstr "Невозможно расшифровать файл <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:256
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Failed to decrypt <file>: <reason>"
-#| msgid "Failed to decrypt <filename>%1</filename>: %2"
+#, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
-msgstr "Не удалось расшифровать файл <filename>%1</filename>: %2"
+msgstr "Не удалось расшифровать файл <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:259
 #, kde-kuit-format
@@ -5010,12 +5002,12 @@ msgstr ""
 "filename>."
 
 #: src/crypto/decryptverifytask.cpp:270
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "The data was encrypted to this key / certificate."
+#, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
-msgstr "Данные зашифрованы для расшифровывания этим ключом или сертификатом"
+msgstr ""
+"Данные не были зашифрованы для расшифровки каким-либо из закрытых ключей в "
+"вашем списке сертификатов."
 
 #: src/crypto/decryptverifytask.cpp:274
 #, kde-format
@@ -5107,54 +5099,44 @@ msgid "Successfully verified the notepad"
 msgstr "Текст проверен"
 
 #: src/crypto/decryptverifytask.cpp:554
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to decrypt the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
-msgstr "Не удалось расшифровать текст: %1"
+msgstr "Не удалось расшифровать содержимое буфера обмена: %1"
 
 #: src/crypto/decryptverifytask.cpp:557
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to verify the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
-msgstr "Не удалось проверить текст: %1"
+msgstr "Не удалось проверить содержимое буфера обмена: %1"
 
 #: src/crypto/decryptverifytask.cpp:561
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted and verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
-msgstr "Текст расшифрован и проверен"
+msgstr "Содержимое буфера обмена расшифровано и проверено"
 
 #: src/crypto/decryptverifytask.cpp:564
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully decrypted the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
-msgstr "Текст расшифрован"
+msgstr "Содержимое буфера обмена расшифровано"
 
 #: src/crypto/decryptverifytask.cpp:567
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Successfully verified the notepad"
+#, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
-msgstr "Текст проверен"
+msgstr "Содержимое буфера обмена проверено"
 
 #: src/crypto/decryptverifytask.cpp:599
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
-"<br/>Предупреждение: адрес отправителя не содержится в сертификатах, "
-"использованных для подписывания."
+"Предупреждение: адрес отправителя не содержится в <a href=\"key:"
+"%1\">сертификате</a>, использованном для подписывания. Сохранено:<ul>%2</ul>"
 
 #: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:947
 #: src/crypto/decryptverifytask.cpp:1027 src/crypto/decryptverifytask.cpp:1128
@@ -5330,18 +5312,16 @@ msgid "..."
 msgstr "…"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "No Output Folder"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Choose output folder"
-msgstr "Отсутствие папки для сохранения результатов"
+msgstr "Выберите папку для сохранения результатов"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:53
 #, kde-format
 msgctxt "@label:textbox"
 msgid "&Output folder:"
-msgstr "&Папка для вывода:"
+msgstr "&Папка для сохранения результатов:"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:89
 #, kde-format
@@ -5886,9 +5866,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Создание подписи и шифрование файлов"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:518
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Sign / Encrypt Files"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
 msgstr "Создание подписи и шифрование файлов"
@@ -5902,9 +5880,7 @@ msgid "Continue"
 msgstr "Продолжить"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:550
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Results"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Results"
 msgstr "Результаты"
@@ -5914,7 +5890,7 @@ msgstr "Результаты"
 #, kde-format
 msgctxt "@action:button"
 msgid "Finish"
-msgstr ""
+msgstr "Готово"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:561
 #: src/dialogs/signencryptclipboarddialog.cpp:144
@@ -5939,8 +5915,7 @@ msgstr "Подписать / зашифровать"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:581
 #: src/dialogs/signencryptclipboarddialog.cpp:164
-#, fuzzy, kde-format
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Next"
 msgstr "Далее"
@@ -13339,10 +13314,7 @@ msgstr ""
 "\"https://gnupg.org\">GnuPG</a>."
 
 #: src/view/welcomewidget.cpp:128
-#, fuzzy, kde-format
-#| msgid ""
-#| "For most actions you need either a public key (certificate) or your own "
-#| "private key."
+#, kde-format
 msgid ""
 "For most actions you need either a public key (certificate) or your own "
 "secret key."
@@ -13351,8 +13323,7 @@ msgstr ""
 "(сертификат) либо ваш собственный закрытый ключ."
 
 #: src/view/welcomewidget.cpp:130
-#, fuzzy, kde-format
-#| msgid "The private key is needed to decrypt or sign."
+#, kde-format
 msgid "The secret key is needed to decrypt or sign."
 msgstr "Закрытый ключ требуется для расшифровки или подписи."
 
@@ -13388,6 +13359,9 @@ msgid ""
 "With Kleopatra you can encrypt using different methods. Please follow the "
 "regulations for classified information of your organization."
 msgstr ""
+"В программе Kleopatra шифрование можно выполнять разными методами. Следуйте "
+"правилам работы с засекреченной информацией, которые применяются в вашей "
+"организации."
 
 #: src/view/welcomewidget.cpp:144
 #, kde-format
@@ -13396,6 +13370,8 @@ msgid ""
 "For password based encryption see this <a href=\"action:help_doc_symenc"
 "\">guide</a>."
 msgstr ""
+"Дополнительные сведения о шифровании на основе пароля доступны в этом <a "
+"href=\"action:help_doc_symenc\">руководстве</a>."
 
 #: src/view/welcomewidget.cpp:145
 #, kde-format
@@ -13403,6 +13379,8 @@ msgctxt "@info"
 msgid ""
 "For public key encryption you generally have to create your own key pair."
 msgstr ""
+"Для шифрования с помощью открытого ключа обычно нужно создать свою "
+"собственную пару ключей."
 
 #: src/view/welcomewidget.cpp:147
 #, kde-format
@@ -13411,6 +13389,8 @@ msgid ""
 "You can find step-by-step instructions for public key encryption in this <a "
 "href=\"action:help_doc_quickguide\">guide</a>."
 msgstr ""
+"Пошаговые инструкции по шифрованию с помощью открытого ключа доступны в этом "
+"<a href=\"action:help_doc_quickguide\">руководстве</a>."
 
 #: src/view/welcomewidget.cpp:174
 #, kde-format
