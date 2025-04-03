@@ -158,6 +158,59 @@ void FocusFrame::paintEvent(QPaintEvent *)
     p.setClipRect(rect);
     p.drawPrimitive(QStyle::PE_FrameFocusRect, option);
 }
+
+#ifdef Q_OS_WIN
+static void fixHighContrastPalette()
+{
+    if (SystemInfo::isHighContrastModeActive()) {
+        if (const auto colorSchemeProperty = qApp->property("KDE_COLOR_SCHEME_PATH"); //
+            colorSchemeProperty.isValid() && !colorSchemeProperty.toString().isEmpty()) {
+            // a custom color scheme is active
+            qCDebug(KLEOPATRA_LOG) << __func__ << "- a custom color scheme is active";
+            return;
+        }
+
+        qCDebug(KLEOPATRA_LOG) << __func__ << "- patching application palette";
+        // use colors specified by Windows if high-contrast mode is active; Qt uses wrong colors
+        QPalette highContrastPalette = qApp->palette();
+
+        const QColor linkColor = win_getSysColor(COLOR_HOTLIGHT);
+        highContrastPalette.setColor(QPalette::All, QPalette::Link, linkColor);
+        highContrastPalette.setColor(QPalette::All, QPalette::LinkVisited, linkColor);
+
+        const QColor toolTipBase = win_getSysColor(COLOR_3DFACE);
+        const QColor toolTipText = win_getSysColor(COLOR_BTNTEXT);
+        highContrastPalette.setColor(QPalette::All, QPalette::ToolTipBase, toolTipBase);
+        highContrastPalette.setColor(QPalette::All, QPalette::ToolTipText, toolTipText);
+
+        const QColor disabledColor = win_getSysColor(COLOR_GRAYTEXT);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::WindowText, disabledColor);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
+        highContrastPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
+        highContrastPalette.setColor(QPalette::All, QPalette::PlaceholderText, disabledColor);
+
+        qApp->setPalette(highContrastPalette);
+    }
+}
+
+class HighContrastPalettePatcher : public QObject
+{
+    Q_OBJECT
+public:
+    using QObject::QObject;
+
+    bool eventFilter(QObject *watched, QEvent *event) override
+    {
+        if (event->type() == QEvent::ApplicationPaletteChange && watched == qApp) {
+            qCDebug(KLEOPATRA_LOG) << "HighContrastPalettePatcher - application palette changed";
+            qApp->removeEventFilter(this);
+            fixHighContrastPalette();
+            qApp->installEventFilter(this);
+        }
+        return false;
+    }
+};
+#endif
 }
 
 class KleopatraApplication::Private
@@ -172,6 +225,9 @@ public:
         , firstNewInstance(true)
 #ifndef QT_NO_SYSTEMTRAYICON
         , sysTray(nullptr)
+#endif
+#ifdef Q_OS_WIN
+        , highContrastPalettePatcher{new HighContrastPalettePatcher{qq}}
 #endif
     {
     }
@@ -228,6 +284,9 @@ public:
     std::shared_ptr<Log> log;
     std::shared_ptr<FileSystemWatcher> watcher;
     std::shared_ptr<QSettings> distroSettings;
+#ifdef Q_OS_WIN
+    QPointer<HighContrastPalettePatcher> highContrastPalettePatcher;
+#endif
 
 public:
     void setupKeyCache()
@@ -336,22 +395,8 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
 {
     setStyle(new KleopatraProxyStyle);
 #ifdef Q_OS_WIN
-    if (SystemInfo::isHighContrastModeActive()) {
-        // use colors specified by Windows if high-contrast mode is active
-        QPalette highContrastPalette = palette();
-
-        const QColor linkColor = win_getSysColor(COLOR_HOTLIGHT);
-        highContrastPalette.setColor(QPalette::All, QPalette::Link, linkColor);
-        highContrastPalette.setColor(QPalette::All, QPalette::LinkVisited, linkColor);
-
-        const QColor disabledColor = win_getSysColor(COLOR_GRAYTEXT);
-        highContrastPalette.setColor(QPalette::Disabled, QPalette::WindowText, disabledColor);
-        highContrastPalette.setColor(QPalette::Disabled, QPalette::Text, disabledColor);
-        highContrastPalette.setColor(QPalette::Disabled, QPalette::ButtonText, disabledColor);
-        highContrastPalette.setColor(QPalette::All, QPalette::PlaceholderText, disabledColor);
-
-        setPalette(highContrastPalette);
-    }
+    installEventFilter(d->highContrastPalettePatcher);
+    fixHighContrastPalette();
 #endif
     connect(this, &QApplication::focusChanged, this, [this](QWidget *, QWidget *now) {
         d->updateFocusFrame(now);
@@ -422,6 +467,9 @@ void KleopatraApplication::init()
 
 KleopatraApplication::~KleopatraApplication()
 {
+#ifdef Q_OS_WIN
+    removeEventFilter(d->highContrastPalettePatcher);
+#endif
     delete d->groupsConfigDialog;
     delete d->smartCardWindow;
     delete d->mainWindow;
