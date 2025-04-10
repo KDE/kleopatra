@@ -185,10 +185,10 @@ public:
                 exportSecretAction = new QAction({}, i18nc("@action:button", "Export secret subkey"), widget);
                 addAdskAction = new QAction({}, i18nc("@action:button", "Add ADSK"));
                 addAdskAction->setToolTip(i18nc("@info:tooltip",
-                                                "Add the ADSK specified in the GnuPG configuration to your certificate. By"
+                                                "<html>Add the ADSK specified in the GnuPG configuration to your certificate. By "
                                                 "adding an ADSK to your certificate, you allow the owner of the ADSK to decrypt all new messages that "
                                                 "are encrypted for your certificate, if the client encrypting the "
-                                                "message supports this functionality."));
+                                                "message supports this functionality.</html>"));
                 addAdskAction->setVisible(false);
 
                 addActionButton(buttonRow, addSubkeyAction);
