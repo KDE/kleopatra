@@ -64,12 +64,7 @@ class ResultItemWidget::Private
     ResultItemWidget *const q;
 
 public:
-    explicit Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
-        : q(qq)
-        , m_result(result)
-    {
-        Q_ASSERT(m_result);
-    }
+    Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq);
 
     void slotLinkActivated(const QString &);
     void updateShowDetailsLabel();
@@ -143,10 +138,12 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
     m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
 }
 
-ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags)
-    : QWidget(parent, flags)
-    , d(new Private(result, this))
+ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
+    : q(qq)
+    , m_result(result)
 {
+    Q_ASSERT(m_result);
+
     const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     const QString styleSheet = SystemInfo::isHighContrastModeActive()
         ? QStringLiteral(
@@ -159,7 +156,7 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
               "QLabel { padding: 5px; border-radius: 3px }")
               .arg(color.name())
               .arg(color.darker(150).name());
-    auto topLayout = new QVBoxLayout(this);
+    auto topLayout = new QVBoxLayout(q);
     auto frame = new QFrame;
     frame->setObjectName(QLatin1StringView("resultFrame"));
     frame->setStyleSheet(styleSheet);
@@ -168,12 +165,12 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     auto layout = new QHBoxLayout();
     auto overview = new HtmlLabel;
     overview->setWordWrap(true);
-    overview->setHtml(d->m_result->overview());
+    overview->setHtml(m_result->overview());
     overview->setStyleSheet(styleSheet);
-    setFocusPolicy(overview->focusPolicy());
-    setFocusProxy(overview);
-    connect(overview, &QLabel::linkActivated, this, [this](const auto &link) {
-        d->slotLinkActivated(link);
+    q->setFocusPolicy(overview->focusPolicy());
+    q->setFocusProxy(overview);
+    connect(overview, &QLabel::linkActivated, q, [this](const auto &link) {
+        slotLinkActivated(link);
     });
 
     layout->addWidget(overview);
@@ -182,16 +179,16 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     auto actionLayout = new QVBoxLayout;
     layout->addLayout(actionLayout);
 
-    d->addIgnoreMDCButton(actionLayout);
+    addIgnoreMDCButton(actionLayout);
 
-    d->m_auditLogLabel = new UrlLabel;
-    connect(d->m_auditLogLabel, &QLabel::linkActivated, this, [this](const auto &link) {
-        d->slotLinkActivated(link);
+    m_auditLogLabel = new UrlLabel;
+    connect(m_auditLogLabel, &QLabel::linkActivated, q, [this](const auto &link) {
+        slotLinkActivated(link);
     });
-    actionLayout->addWidget(d->m_auditLogLabel);
-    d->m_auditLogLabel->setStyleSheet(styleSheet);
+    actionLayout->addWidget(m_auditLogLabel);
+    m_auditLogLabel->setStyleSheet(styleSheet);
 
-    for (const auto &detail : d->m_result.get()->detailsList()) {
+    for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
         auto row = new QHBoxLayout(frame);
 
@@ -224,31 +221,37 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
                   .arg(color.darker(150).name());
         frame->setStyleSheet(styleSheet);
         detailsLabel->setStyleSheet(QStringLiteral("QLabel {border-width: 0; }"));
-        connect(detailsLabel, &QLabel::linkActivated, this, [this](const auto &link) {
-            d->slotLinkActivated(link);
+        connect(detailsLabel, &QLabel::linkActivated, q, [this](const auto &link) {
+            slotLinkActivated(link);
         });
 
         row->addWidget(detailsLabel, 1);
         vlay->addWidget(frame);
     }
 
-    d->m_showButton = new QPushButton;
-    d->m_showButton->setVisible(false);
-    connect(d->m_showButton, &QAbstractButton::clicked, this, &ResultItemWidget::showButtonClicked);
-    actionLayout->addWidget(d->m_showButton);
+    m_showButton = new QPushButton;
+    m_showButton->setVisible(false);
+    connect(m_showButton, &QAbstractButton::clicked, q, &ResultItemWidget::showButtonClicked);
+    actionLayout->addWidget(m_showButton);
 
-    d->m_closeButton = new QPushButton;
-    KGuiItem::assign(d->m_closeButton, KStandardGuiItem::close());
-    d->m_closeButton->setFixedSize(d->m_closeButton->sizeHint());
-    connect(d->m_closeButton, &QAbstractButton::clicked, this, &ResultItemWidget::closeButtonClicked);
-    actionLayout->addWidget(d->m_closeButton);
-    d->m_closeButton->setVisible(false);
+    m_closeButton = new QPushButton;
+    KGuiItem::assign(m_closeButton, KStandardGuiItem::close());
+    m_closeButton->setFixedSize(m_closeButton->sizeHint());
+    connect(m_closeButton, &QAbstractButton::clicked, q, &ResultItemWidget::closeButtonClicked);
+    actionLayout->addWidget(m_closeButton);
+    m_closeButton->setVisible(false);
 
     layout->setStretch(0, 1);
     actionLayout->addStretch(-1);
     vlay->addStretch(-1);
 
-    d->updateShowDetailsLabel();
+    updateShowDetailsLabel();
+}
+
+ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags)
+    : QWidget(parent, flags)
+    , d(new Private(result, this))
+{
     setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
 }
 
