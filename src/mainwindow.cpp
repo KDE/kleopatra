@@ -33,6 +33,7 @@
 #include "utils/keyexportdraghandler.h"
 #include "utils/userinfo.h"
 
+#include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/GnuPG>
 
 #include "dialogs/debugdialog.h"
@@ -263,14 +264,18 @@ public:
         }
         if (DeVSCompliance::isActive()) {
             auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
-            if (!SystemInfo::isHighContrastModeActive()) {
-                const auto color = KColorScheme(QPalette::Active, KColorScheme::View)
-                                       .foreground(DeVSCompliance::isCompliant() ? KColorScheme::NormalText : KColorScheme::NegativeText)
-                                       .color();
-                const auto background = KColorScheme(QPalette::Active, KColorScheme::View)
-                                            .background(DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground)
-                                            .color();
-                statusLbl->setStyleSheet(QStringLiteral("QLabel { color: %1; background-color: %2; }").arg(color.name(), background.name()));
+            {
+                auto statusPalette = qApp->palette();
+                KColorScheme::adjustForeground(statusPalette,
+                                               DeVSCompliance::isCompliant() ? KColorScheme::NormalText : KColorScheme::NegativeText,
+                                               statusLbl->foregroundRole(),
+                                               KColorScheme::View);
+                statusLbl->setAutoFillBackground(true);
+                KColorScheme::adjustBackground(statusPalette,
+                                               DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground,
+                                               QPalette::Window,
+                                               KColorScheme::View);
+                statusLbl->setPalette(statusPalette);
             }
             statusBar->insertPermanentWidget(0, statusLbl.release());
             showStatusbar = true;
@@ -382,6 +387,7 @@ private:
     }
 
 private:
+    ApplicationPaletteWatcher appPaletteWatcher;
     Kleo::KeyListController controller;
     bool firstShow : 1;
     struct UI {
@@ -488,6 +494,9 @@ MainWindow::Private::Private(MainWindow *qq)
     q->setAutoSaveSettings();
 
     updateSearchBarClickMessage();
+    connect(&appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
+        updateStatusBar();
+    });
     updateStatusBar();
 
     if (KeyCache::instance()->initialized()) {
