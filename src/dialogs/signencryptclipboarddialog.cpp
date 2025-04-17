@@ -107,9 +107,9 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
 
     auto stackedLayout = new QStackedLayout;
 
-    auto signEncryptPage = new SignEncryptPage(mode, this);
+    mSignEncryptPage = new SignEncryptPage(mode, this);
 
-    stackedLayout->addWidget(signEncryptPage);
+    stackedLayout->addWidget(mSignEncryptPage);
 
     auto resultPage = new Kleo::Crypto::Gui::ResultPage;
     stackedLayout->addWidget(resultPage);
@@ -136,19 +136,17 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
 
     auto buttons = new QDialogButtonBox;
 
-    QPushButton *labelButton = nullptr;
-
     if (DeVSCompliance::isActive()) {
         /* We use a custom button to display a label next to the
            buttons. */
-        labelButton = buttons->addButton(QString(), QDialogButtonBox::ActionRole);
+        mComplianceLabelButton = buttons->addButton(QString(), QDialogButtonBox::ActionRole);
         /* We style the button so that it looks and acts like a
            label.  */
-        labelButton->setStyleSheet(QStringLiteral("border: none"));
-        labelButton->setFocusPolicy(Qt::NoFocus);
+        mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
+        mComplianceLabelButton->setFocusPolicy(Qt::NoFocus);
     }
 
-    auto okButton = buttons->addButton(i18nc("@action:button", "Continue"), QDialogButtonBox::ActionRole);
+    mOkButton = buttons->addButton(i18nc("@action:button", "Continue"), QDialogButtonBox::ActionRole);
     auto cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
     connect(cancelButton, &QPushButton::clicked, this, [this]() {
         reject();
@@ -156,38 +154,10 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
 
     layout->addWidget(buttons);
 
-    connect(signEncryptPage->signEncryptWidget(), &SignEncryptWidget::operationChanged, this, [okButton, signEncryptPage, labelButton](const auto op) {
-        QString label;
-        switch (op) {
-        case SignEncryptWidget::Sign:
-            label = i18nc("@action:button", "Sign");
-            break;
-        case SignEncryptWidget::Encrypt:
-            label = i18nc("@action:button", "Encrypt");
-            break;
-        case SignEncryptWidget::SignAndEncrypt:
-            label = i18nc("@action:button", "Sign / Encrypt");
-            break;
-        default:;
-        };
-        if (!label.isEmpty()) {
-            okButton->setText(label);
-            if (DeVSCompliance::isActive()) {
-                const bool de_vs = DeVSCompliance::isCompliant() && signEncryptPage->isDeVsAndValid();
-                DeVSCompliance::decorate(okButton, de_vs);
+    connect(mSignEncryptPage->signEncryptWidget(), &SignEncryptWidget::operationChanged, this, &SignEncryptClipboardDialog::updateButtons);
+    connect(&mAppPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, this, &SignEncryptClipboardDialog::updateButtons);
 
-                okButton->setToolTip(DeVSCompliance::name(de_vs));
-                labelButton->setText(DeVSCompliance::name(de_vs));
-            }
-        } else {
-            okButton->setText(i18nc("@action:button", "Next"));
-            okButton->setIcon(QIcon());
-            okButton->setStyleSheet(QString());
-        }
-        okButton->setEnabled(signEncryptPage->validatePage());
-    });
-
-    connect(okButton, &QPushButton::clicked, this, [this, signEncryptPage, stackedLayout, resultPage, okButton, title]() {
+    connect(mOkButton, &QPushButton::clicked, this, [this, stackedLayout, resultPage, title]() {
         if (stackedLayout->currentIndex() == 0) {
             m_task = std::make_shared<SignEncryptTask>();
             m_task->setDataSource(Task::Clipboard);
@@ -196,19 +166,19 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
             m_task->setOutput(output);
             title->setText(i18nc("@title", "Results"));
 
-            auto recipients = signEncryptPage->recipients();
-            auto signer = signEncryptPage->signer();
+            auto recipients = mSignEncryptPage->recipients();
+            auto signer = mSignEncryptPage->signer();
 
             m_task->setRecipients(recipients);
             m_task->setEncrypt(!recipients.empty());
             m_task->setSigners({signer});
             m_task->setSign(!signer.isNull());
             m_task->setClearsign(!signer.isNull() && recipients.empty() && signer.protocol() == GpgME::OpenPGP);
-            m_task->setEncryptSymmetric(signEncryptPage->signEncryptWidget()->encryptSymmetric());
+            m_task->setEncryptSymmetric(mSignEncryptPage->signEncryptWidget()->encryptSymmetric());
             m_task->setAsciiArmor(true);
 
             stackedLayout->setCurrentIndex(1);
-            okButton->setText(i18nc("@action:button", "Finish"));
+            mOkButton->setText(i18nc("@action:button", "Finish"));
 
             std::shared_ptr<TaskCollection> coll(new TaskCollection);
             coll->setTasks({m_task});
@@ -241,6 +211,38 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
             },
             Qt::SingleShotConnection);
     }
+}
+
+void SignEncryptClipboardDialog::updateButtons()
+{
+    QString label;
+    switch (mSignEncryptPage->signEncryptWidget()->currentOp()) {
+    case SignEncryptWidget::Sign:
+        label = i18nc("@action:button", "Sign");
+        break;
+    case SignEncryptWidget::Encrypt:
+        label = i18nc("@action:button", "Encrypt");
+        break;
+    case SignEncryptWidget::SignAndEncrypt:
+        label = i18nc("@action:button", "Sign / Encrypt");
+        break;
+    default:;
+    };
+    if (!label.isEmpty()) {
+        mOkButton->setText(label);
+        if (DeVSCompliance::isActive()) {
+            const bool de_vs = DeVSCompliance::isCompliant() && mSignEncryptPage->isDeVsAndValid();
+            DeVSCompliance::decorate(mOkButton, de_vs);
+
+            mOkButton->setToolTip(DeVSCompliance::name(de_vs));
+            mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
+        }
+    } else {
+        mOkButton->setText(i18nc("@action:button", "Next"));
+        mOkButton->setIcon(QIcon());
+        mOkButton->setStyleSheet(QString());
+    }
+    mOkButton->setEnabled(mSignEncryptPage->validatePage());
 }
 
 SignEncryptClipboardDialog::~SignEncryptClipboardDialog()

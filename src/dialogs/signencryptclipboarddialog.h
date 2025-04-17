@@ -6,6 +6,8 @@
 
 #include "commands/signencryptclipboardcommand.h"
 
+#include <Libkleo/ApplicationPaletteWatcher>
+
 #include <QDialog>
 
 namespace Kleo
@@ -17,6 +19,8 @@ class SignEncryptTask;
 }
 }
 
+class SignEncryptPage;
+
 class SignEncryptClipboardDialog : public QDialog
 {
     Q_OBJECT
@@ -26,6 +30,12 @@ public:
     ~SignEncryptClipboardDialog() override;
 
 private:
+    void updateButtons();
+
+    ApplicationPaletteWatcher mAppPaletteWatcher;
+    SignEncryptPage *mSignEncryptPage = nullptr;
+    QPushButton *mOkButton = nullptr;
+    QPushButton *mComplianceLabelButton = nullptr;
     std::shared_ptr<Kleo::Crypto::SignEncryptTask> m_task;
     std::shared_ptr<Kleo::Input> m_input;
 };

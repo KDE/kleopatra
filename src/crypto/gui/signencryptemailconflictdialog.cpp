@@ -19,6 +19,7 @@
 #include "utils/kleo_assert.h"
 #include <Libkleo/GnuPG>
 
+#include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/Stl_Util>
@@ -123,6 +124,9 @@ public:
         , presetProtocol(UnknownProtocol)
         , ui(q)
     {
+        connect(&appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
+            updateComplianceStatus();
+        });
     }
 
 private:
@@ -320,6 +324,7 @@ private:
     }
 
 private:
+    ApplicationPaletteWatcher appPaletteWatcher;
     std::vector<Sender> senders;
     std::vector<Recipient> recipients;
 

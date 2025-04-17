@@ -10,10 +10,11 @@
 
 #pragma once
 
+#include <Libkleo/ApplicationPaletteWatcher>
+
 #include <gpgme++/global.h>
 
 #include <QDialog>
-
 #include <QMap>
 
 #include <memory>
@@ -83,8 +84,13 @@ Q_SIGNALS:
     void operationPrepared();
 
 private:
+    void updateButtons();
+
+    ApplicationPaletteWatcher mAppPaletteWatcher;
     SigEncPage *mSigEncPage = nullptr;
     SignEncryptResultPage *mResultPage = nullptr;
+    QPushButton *mOkButton = nullptr;
+    QPushButton *mComplianceLabelButton = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
 };

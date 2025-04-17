@@ -322,6 +322,11 @@ public:
         return mWidget->isDeVsAndValid();
     }
 
+    SignEncryptWidget::Operations currentOp() const
+    {
+        return mWidget->currentOp();
+    }
+
 private:
     struct RequesterInfo {
         SignEncryptFilesDialog::KindNames id;
@@ -469,12 +474,12 @@ private Q_SLOTS:
             mOutputLabel->setBuddy(nullptr);
         }
         mOutLayout->setEnabled(true);
-        Q_EMIT checkReady(mWidget->currentOp());
+        Q_EMIT checkReady();
     }
 
 Q_SIGNALS:
     void finished();
-    void checkReady(SignEncryptWidget::Operations op);
+    void checkReady();
 
 private:
     SignEncryptWidget *mWidget;
@@ -536,67 +541,71 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
 
     auto buttons = new QDialogButtonBox;
 
-    QPushButton *labelButton = nullptr;
-
     if (DeVSCompliance::isActive()) {
         /* We use a custom button to display a label next to the
            buttons. */
-        labelButton = buttons->addButton(QString(), QDialogButtonBox::ActionRole);
+        mComplianceLabelButton = buttons->addButton(QString(), QDialogButtonBox::ActionRole);
         /* We style the button so that it looks and acts like a
            label.  */
-        labelButton->setStyleSheet(QStringLiteral("border: none"));
-        labelButton->setFocusPolicy(Qt::NoFocus);
+        mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
+        mComplianceLabelButton->setFocusPolicy(Qt::NoFocus);
     }
 
-    auto okButton = buttons->addButton(i18nc("@action:button", "Continue"), QDialogButtonBox::ActionRole);
+    mOkButton = buttons->addButton(i18nc("@action:button", "Continue"), QDialogButtonBox::ActionRole);
     auto cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
     connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
-    connect(okButton, &QPushButton::clicked, this, [this]() {
+    connect(mOkButton, &QPushButton::clicked, this, [this]() {
         mSigEncPage->done();
     });
-    connect(mSigEncPage, &SigEncPage::finished, this, [this, title, okButton, stackedLayout]() {
+    connect(mSigEncPage, &SigEncPage::finished, this, [this, title, stackedLayout]() {
         if (stackedLayout->currentIndex() == 0) {
             stackedLayout->setCurrentIndex(1);
             Q_EMIT operationPrepared();
             title->setText(i18nc("@title:dialog", "Results"));
-            okButton->setText(i18nc("@action:button", "Finish"));
+            mOkButton->setText(i18nc("@action:button", "Finish"));
         } else {
             accept();
         }
     });
 
-    connect(mSigEncPage, &SigEncPage::checkReady, this, [this, okButton, labelButton](const auto op) {
-        QString label;
-        switch (op) {
-        case SignEncryptWidget::Sign:
-            label = i18nc("@action:button", "Sign");
-            break;
-        case SignEncryptWidget::Encrypt:
-            label = i18nc("@action:button", "Encrypt");
-            break;
-        case SignEncryptWidget::SignAndEncrypt:
-            label = i18nc("@action:button", "Sign / Encrypt");
-            break;
-        default:;
-        };
-        if (!label.isEmpty()) {
-            okButton->setText(label);
-            if (DeVSCompliance::isActive()) {
-                const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
-                DeVSCompliance::decorate(okButton, de_vs);
-
-                okButton->setToolTip(DeVSCompliance::name(de_vs));
-                labelButton->setText(DeVSCompliance::name(de_vs));
-            }
-        } else {
-            okButton->setText(i18nc("@action:button", "Next"));
-            okButton->setIcon(QIcon());
-            okButton->setStyleSheet(QString());
-        }
-        okButton->setEnabled(mSigEncPage->validatePage());
-    });
+    connect(mSigEncPage, &SigEncPage::checkReady, this, &SignEncryptFilesDialog::updateButtons);
+    connect(&mAppPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, this, &SignEncryptFilesDialog::updateButtons);
 
     layout->addWidget(buttons);
+}
+
+void SignEncryptFilesDialog::updateButtons()
+{
+    QString label;
+    switch (mSigEncPage->currentOp()) {
+    case SignEncryptWidget::Sign:
+        label = i18nc("@action:button", "Sign");
+        break;
+    case SignEncryptWidget::Encrypt:
+        label = i18nc("@action:button", "Encrypt");
+        break;
+    case SignEncryptWidget::SignAndEncrypt:
+        label = i18nc("@action:button", "Sign / Encrypt");
+        break;
+    default:;
+    }
+    if (!label.isEmpty()) {
+        mOkButton->setText(label);
+        if (DeVSCompliance::isActive()) {
+            const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
+            DeVSCompliance::decorate(mOkButton, de_vs);
+
+            mOkButton->setToolTip(DeVSCompliance::name(de_vs));
+            if (mComplianceLabelButton) {
+                mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
+            }
+        }
+    } else {
+        mOkButton->setText(i18nc("@action:button", "Next"));
+        mOkButton->setIcon(QIcon());
+        mOkButton->setStyleSheet(QString());
+    }
+    mOkButton->setEnabled(mSigEncPage->validatePage());
 }
 
 SignEncryptFilesDialog::~SignEncryptFilesDialog()

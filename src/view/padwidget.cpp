@@ -10,6 +10,7 @@
 
 #include <settings.h>
 
+#include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
@@ -177,6 +178,9 @@ public:
         updateButtons();
 
         connect(mEdit, &QTextEdit::textChanged, q, [this]() {
+            updateButtons();
+        });
+        connect(&appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
             updateButtons();
         });
 
@@ -479,6 +483,8 @@ public:
 
 private:
     PadWidget *const q;
+
+    ApplicationPaletteWatcher appPaletteWatcher;
     QTextEdit *mEdit;
     QPushButton *mCryptBtn;
     QPushButton *mDecryptBtn;
