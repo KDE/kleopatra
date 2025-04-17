@@ -29,7 +29,6 @@
 
 #include <KMime/Types>
 
-#include <KColorScheme>
 #include <KLocalizedString>
 
 #include <QCheckBox>

@@ -47,7 +47,6 @@
 #include <QVBoxLayout>
 
 #include <KAdjustingScrollArea>
-#include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>

@@ -20,7 +20,6 @@
 #include <settings.h>
 
 #include <KAdjustingScrollArea>
-#include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>

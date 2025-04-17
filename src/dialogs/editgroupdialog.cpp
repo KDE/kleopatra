@@ -23,7 +23,6 @@
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
 
-#include <KColorScheme>
 #include <KConfigGroup>
 #include <KGuiItem>
 #include <KLocalizedString>
