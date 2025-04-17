@@ -12,7 +12,6 @@
 #include <selftest/selftest.h>
 #include <utils/accessibility.h>
 
-#include <Libkleo/SystemInfo>
 #include <Libkleo/TreeView>
 
 #include <KAdjustingScrollArea>
@@ -93,13 +92,10 @@ public:
                 }
                 break;
             case Qt::BackgroundRole:
-                if (!SystemInfo::isHighContrastModeActive()) {
-                    KColorScheme scheme(qApp->palette().currentColorGroup());
-                    return (m_tests[row]->skipped()      ? scheme.background(KColorScheme::NeutralBackground)
-                                : m_tests[row]->passed() ? scheme.background(KColorScheme::PositiveBackground)
-                                                         : scheme.background(KColorScheme::NegativeBackground))
-                        .color();
-                }
+                const KColorScheme::BackgroundRole role = (m_tests[row]->skipped()      ? KColorScheme::NeutralBackground
+                                                               : m_tests[row]->passed() ? KColorScheme::PositiveBackground
+                                                                                        : KColorScheme::NegativeBackground);
+                return KColorScheme(qApp->palette().currentColorGroup()).background(role).color();
             }
         return QVariant();
     }
