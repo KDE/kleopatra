@@ -18,6 +18,7 @@
 #include "view/htmllabel.h"
 #include "view/urllabel.h"
 
+#include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/AuditLogViewer>
 #include <Libkleo/Classify>
@@ -44,19 +45,24 @@ using namespace Kleo::Crypto::Gui;
 namespace
 {
 // TODO move out of here
-static QColor colorForVisualCode(Task::Result::VisualCode code)
+static KColorScheme::BackgroundRole colorForVisualCode(Task::Result::VisualCode code)
 {
     switch (code) {
     case Task::Result::AllGood:
-        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::PositiveBackground).color();
+        return KColorScheme::PositiveBackground;
     case Task::Result::Warning:
-        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
+        return KColorScheme::NormalBackground;
     case Task::Result::Danger:
-        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color();
+        return KColorScheme::NegativeBackground;
     default:
-        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
+        return KColorScheme::NormalBackground;
     }
 }
+
+struct ResultItemData {
+    QPointer<QWidget> widget;
+    KColorScheme::BackgroundRole backgroundRole;
+};
 }
 
 class ResultItemWidget::Private
@@ -68,11 +74,15 @@ public:
 
     void slotLinkActivated(const QString &);
     void updateShowDetailsLabel();
+    void updateStyleSheets();
 
     void addIgnoreMDCButton(QBoxLayout *lay);
 
     void oneImportFinished();
 
+    ApplicationPaletteWatcher m_appPaletteWatcher;
+    QList<QPointer<QWidget>> m_mainStylesheetWidgets;
+    QList<ResultItemData> m_itemStylesheetWidgets;
     const std::shared_ptr<const Task::Result> m_result;
     UrlLabel *m_auditLogLabel = nullptr;
     QPushButton *m_closeButton = nullptr;
@@ -138,14 +148,10 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
     m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
 }
 
-ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
-    : q(qq)
-    , m_result(result)
+void ResultItemWidget::Private::updateStyleSheets()
 {
-    Q_ASSERT(m_result);
-
     const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
-    const QString styleSheet = SystemInfo::isHighContrastModeActive()
+    const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
         ? QStringLiteral(
               "QFrame,QLabel { margin: 0px; }"
               "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
@@ -156,17 +162,42 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
               "QLabel { padding: 5px; border-radius: 3px }")
               .arg(color.name())
               .arg(color.darker(150).name());
+    for (auto &w : m_mainStylesheetWidgets) {
+        w->setStyleSheet(styleSheet);
+    }
+
+    for (auto &item : m_itemStylesheetWidgets) {
+        const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(item.backgroundRole).color();
+        const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
+            ? QStringLiteral(
+                  "QFrame { margin: 0px; }"
+                  "QFrame { padding: 5px; border-radius: 3px }")
+            : QStringLiteral(
+                  "QFrame { background-color: %1; margin: 0px; }"
+                  "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
+                  .arg(color.name())
+                  .arg(color.darker(150).name());
+        item.widget->setStyleSheet(styleSheet);
+    }
+}
+
+ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
+    : q(qq)
+    , m_result(result)
+{
+    Q_ASSERT(m_result);
+
     auto topLayout = new QVBoxLayout(q);
     auto frame = new QFrame;
     frame->setObjectName(QLatin1StringView("resultFrame"));
-    frame->setStyleSheet(styleSheet);
+    m_mainStylesheetWidgets.push_back(frame);
     topLayout->addWidget(frame);
     auto vlay = new QVBoxLayout(frame);
     auto layout = new QHBoxLayout();
     auto overview = new HtmlLabel;
     overview->setWordWrap(true);
     overview->setHtml(m_result->overview());
-    overview->setStyleSheet(styleSheet);
+    m_mainStylesheetWidgets.push_back(overview);
     q->setFocusPolicy(overview->focusPolicy());
     q->setFocusProxy(overview);
     connect(overview, &QLabel::linkActivated, q, [this](const auto &link) {
@@ -186,7 +217,7 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         slotLinkActivated(link);
     });
     actionLayout->addWidget(m_auditLogLabel);
-    m_auditLogLabel->setStyleSheet(styleSheet);
+    m_mainStylesheetWidgets.push_back(m_auditLogLabel);
 
     for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
@@ -208,18 +239,7 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         detailsLabel->setWordWrap(true);
         detailsLabel->setHtml(detail.details);
         iconLabel->setStyleSheet(QStringLiteral("QLabel {border-width: 0; }"));
-        auto color = colorForVisualCode(detail.code);
-
-        const QString styleSheet = SystemInfo::isHighContrastModeActive()
-            ? QStringLiteral(
-                  "QFrame { margin: 0px; }"
-                  "QFrame { padding: 5px; border-radius: 3px }")
-            : QStringLiteral(
-                  "QFrame { background-color: %1; margin: 0px; }"
-                  "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
-                  .arg(color.name())
-                  .arg(color.darker(150).name());
-        frame->setStyleSheet(styleSheet);
+        m_itemStylesheetWidgets.push_back({frame, colorForVisualCode(detail.code)});
         detailsLabel->setStyleSheet(QStringLiteral("QLabel {border-width: 0; }"));
         connect(detailsLabel, &QLabel::linkActivated, q, [this](const auto &link) {
             slotLinkActivated(link);
@@ -246,6 +266,10 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
     vlay->addStretch(-1);
 
     updateShowDetailsLabel();
+    updateStyleSheets();
+    connect(&m_appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
+        updateStyleSheets();
+    });
 }
 
 ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags)
