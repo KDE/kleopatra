@@ -17,6 +17,7 @@
 #include <QClipboard>
 #include <QColor>
 #include <QComboBox>
+#include <QCompleter>
 #include <QDialogButtonBox>
 #include <QFileDialog>
 #include <QGuiApplication>
@@ -68,6 +69,10 @@ DebugDialog::DebugDialog(QWidget *parent)
     d->commandCombo = new QComboBox;
     d->commandCombo->setEditable(Settings{}.allowCustomDebugCommands());
     d->commandCombo->setInsertPolicy(QComboBox::InsertAtBottom);
+    if (auto completer = d->commandCombo->completer()) {
+        completer->setCaseSensitivity(Qt::CaseSensitive);
+        completer->setCompletionMode(QCompleter::PopupCompletion);
+    }
 
     auto commandsConfig = KSharedConfig::openConfig(QStringLiteral("kleopatradebugcommandsrc"));
     auto group = commandsConfig->group(QStringLiteral("DebugCommands"));
