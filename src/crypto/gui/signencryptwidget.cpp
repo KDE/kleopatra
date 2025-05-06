@@ -152,8 +152,8 @@ public:
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
     std::unique_ptr<ExpiryChecker> mExpiryChecker;
-    QRadioButton *mPGPRB;
-    QRadioButton *mCMSRB;
+    QRadioButton *mPGPRB = nullptr;
+    QRadioButton *mCMSRB = nullptr;
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
