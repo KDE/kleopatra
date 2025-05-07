@@ -497,6 +497,9 @@ MainWindow::Private::Private(MainWindow *qq)
     connect(&appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
         updateStatusBar();
     });
+    connect(KleopatraApplication::instance(), &KleopatraApplication::distributionSettingsChanged, q, [this]() {
+        updateStatusBar();
+    });
     updateStatusBar();
 
     if (KeyCache::instance()->initialized()) {

@@ -104,6 +104,7 @@ Q_SIGNALS:
     void setExitValue(int value);
 
     void configurationChanged();
+    void distributionSettingsChanged();
 
 private Q_SLOTS:
     // used as URL handler for URLs with schemes that shall be blocked
