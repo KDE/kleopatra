@@ -15,6 +15,7 @@
 #include <Libkleo/GnuPG>
 
 #include <QCoreApplication>
+#include <QFile>
 #include <QSettings>
 #include <QThread>
 
@@ -99,18 +100,20 @@ static void loadBackendVersions()
 // can put in their own about data information.
 static void loadCustomAboutData(KAboutData &about)
 {
-    const QStringList searchPaths = {Kleo::gnupgInstallPath()};
     const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
-    const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
-    STARTUP_TIMING << "Starting version info check";
-    bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
-    STARTUP_TIMING << "Version info checked";
-    if (valid) {
-        qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
-        auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
-        settings->beginGroup(QStringLiteral("Kleopatra"));
-        updateAboutDataFromSettings(about, settings.get());
-        KleopatraApplication::instance()->setDistributionSettings(settings);
+    if (QFile::exists(versionFile)) {
+        const QStringList searchPaths = {Kleo::gnupgInstallPath()};
+        const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
+        STARTUP_TIMING << "Starting version info check";
+        const bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
+        STARTUP_TIMING << "Version info checked";
+        if (valid) {
+            qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
+            auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
+            settings->beginGroup(QStringLiteral("Kleopatra"));
+            updateAboutDataFromSettings(about, settings.get());
+            KleopatraApplication::instance()->setDistributionSettings(settings);
+        }
     }
     loadBackendVersions();
 }
