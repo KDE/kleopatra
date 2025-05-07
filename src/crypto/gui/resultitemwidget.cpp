@@ -152,17 +152,12 @@ void ResultItemWidget::Private::updateStyleSheets()
 {
     const QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     const QColor borderColor = (color.lightnessF() > 0.5) ? color.darker(150) : color.lighter(150);
-    const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
-        ? QStringLiteral(
-              "QFrame,QLabel { margin: 0px; }"
-              "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
-              "QLabel { padding: 5px; border-radius: 3px }")
-        : QStringLiteral(
-              "QFrame,QLabel { background-color: %1; margin: 0px; }"
-              "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
-              "QLabel { padding: 5px; border-radius: 3px }")
-              .arg(color.name())
-              .arg(borderColor.name());
+    const QString styleSheet = QStringLiteral(
+                                   "QFrame,QLabel { background-color: %1; margin: 0px; }"
+                                   "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
+                                   "QLabel { padding: 5px; border-radius: 3px }")
+                                   .arg(color.name())
+                                   .arg(borderColor.name());
     for (auto &w : m_mainStylesheetWidgets) {
         w->setStyleSheet(styleSheet);
     }
@@ -170,15 +165,11 @@ void ResultItemWidget::Private::updateStyleSheets()
     for (auto &item : m_itemStylesheetWidgets) {
         const QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background(item.backgroundRole).color();
         const QColor borderColor = (color.lightnessF() > 0.5) ? color.darker(150) : color.lighter(150);
-        const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
-            ? QStringLiteral(
-                  "QFrame { margin: 0px; }"
-                  "QFrame { padding: 5px; border-radius: 3px }")
-            : QStringLiteral(
-                  "QFrame { background-color: %1; margin: 0px; }"
-                  "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
-                  .arg(color.name())
-                  .arg(borderColor.name());
+        const QString styleSheet = QStringLiteral(
+                                       "QFrame { background-color: %1; margin: 0px; }"
+                                       "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
+                                       .arg(color.name())
+                                       .arg(borderColor.name());
         item.widget->setStyleSheet(styleSheet);
     }
 }
