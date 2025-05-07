@@ -884,6 +884,7 @@ void KleopatraApplication::startGpgAgent()
 void KleopatraApplication::setDistributionSettings(const std::shared_ptr<QSettings> &settings)
 {
     d->distroSettings = settings;
+    Q_EMIT distributionSettingsChanged();
 }
 
 std::shared_ptr<QSettings> KleopatraApplication::distributionSettings() const

@@ -520,6 +520,9 @@ MainWindow::Private::Private(MainWindow *qq)
     q->setAutoSaveSettings();
 
     updateSearchBarClickMessage();
+    connect(KleopatraApplication::instance(), &KleopatraApplication::distributionSettingsChanged, q, [this]() {
+        updateStatusBar();
+    });
     updateStatusBar();
 
     if (KeyCache::instance()->initialized()) {
