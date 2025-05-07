@@ -150,7 +150,8 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
 
 void ResultItemWidget::Private::updateStyleSheets()
 {
-    const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
+    const QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
+    const QColor borderColor = (color.lightnessF() > 0.5) ? color.darker(150) : color.lighter(150);
     const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
         ? QStringLiteral(
               "QFrame,QLabel { margin: 0px; }"
@@ -161,13 +162,14 @@ void ResultItemWidget::Private::updateStyleSheets()
               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
               "QLabel { padding: 5px; border-radius: 3px }")
               .arg(color.name())
-              .arg(color.darker(150).name());
+              .arg(borderColor.name());
     for (auto &w : m_mainStylesheetWidgets) {
         w->setStyleSheet(styleSheet);
     }
 
     for (auto &item : m_itemStylesheetWidgets) {
-        const auto color = KColorScheme(QPalette::Active, KColorScheme::View).background(item.backgroundRole).color();
+        const QColor color = KColorScheme(QPalette::Active, KColorScheme::View).background(item.backgroundRole).color();
+        const QColor borderColor = (color.lightnessF() > 0.5) ? color.darker(150) : color.lighter(150);
         const QString styleSheet = SystemInfo::isHighContrastColorSchemeInUse()
             ? QStringLiteral(
                   "QFrame { margin: 0px; }"
@@ -176,7 +178,7 @@ void ResultItemWidget::Private::updateStyleSheets()
                   "QFrame { background-color: %1; margin: 0px; }"
                   "QFrame { padding: 5px; border-radius: 3px; border-style: solid; border-width: 1px; border-color: %2; }")
                   .arg(color.name())
-                  .arg(color.darker(150).name());
+                  .arg(borderColor.name());
         item.widget->setStyleSheet(styleSheet);
     }
 }
