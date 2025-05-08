@@ -12,6 +12,7 @@
 
 #include "urllabel.h"
 
+#include <QFocusEvent>
 #include <QUrl>
 
 using namespace Kleo;
@@ -41,9 +42,9 @@ void UrlLabel::setUrl(const QUrl &url, const QString &text)
 
 void UrlLabel::focusInEvent(QFocusEvent *event)
 {
-    // immediately focus the URL when the label get focus
+    // immediately focus the URL when the label get focus (except on mouse click)
     QLabel::focusInEvent(event);
-    if (!hasSelectedText()) {
+    if (!hasSelectedText() && event->reason() != Qt::MouseFocusReason) {
         QMetaObject::invokeMethod(
             this,
             [this]() {
