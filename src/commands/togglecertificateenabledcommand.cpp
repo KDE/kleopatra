@@ -10,6 +10,7 @@
 #include "command_p.h"
 
 #include <Libkleo/Formatting>
+#include <Libkleo/KeyFilterManager>
 
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
@@ -21,6 +22,7 @@
 
 #include <KLocalizedString>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace Kleo::Commands;
 using namespace GpgME;
 using namespace QGpgME;
@@ -109,6 +111,29 @@ ToggleCertificateEnabledCommand::~ToggleCertificateEnabledCommand() = default;
 
 void ToggleCertificateEnabledCommand::doStart()
 {
+    if (!d->key().isDisabled()) {
+        const auto filterName = KeyFilterManager::instance()->keyFilterByID(u"disabled-filter"_s)->name();
+        auto result = KMessageBox::warningContinueCancel(
+            d->parentWidgetOrView(),
+            xi18nc("@info",
+                   "<para>Disabled certificates cannot be selected for signing or encryption. "
+                   "They are only visible when the <interface>%2</interface> filter is active.</para>"
+                   "<para>You can undo this action at any time by switching to the "
+                   "<interface>%2</interface> filter and enabling the certificate again.</para>"
+                   "<para><emphasis strong='true'>Are you sure you want to disable and hide the following certificate?</emphasis></para>"
+                   "<list><item>%1</item></list>",
+                   Formatting::summaryLine(d->key()),
+                   filterName),
+            i18nc("@title:dialog", "Disable Certificate"),
+            KGuiItem(i18nc("@action:button", "Disable Certificate")),
+            KStandardGuiItem::cancel(),
+            u"disable-certificate-warning"_s);
+        if (result == KMessageBox::Cancel) {
+            d->canceled();
+            return;
+        }
+    }
+
     d->createJob();
 
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
