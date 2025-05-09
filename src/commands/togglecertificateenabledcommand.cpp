@@ -21,6 +21,7 @@
 
 #include <KLocalizedString>
 
+using namespace Qt::Literals::StringLiterals;
 using namespace Kleo::Commands;
 using namespace GpgME;
 using namespace QGpgME;
@@ -109,6 +110,25 @@ ToggleCertificateEnabledCommand::~ToggleCertificateEnabledCommand() = default;
 
 void ToggleCertificateEnabledCommand::doStart()
 {
+    if (!d->key().isDisabled()) {
+        auto result = KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
+                                                         xi18nc("@info",
+                                                                "<para>Disabled certificates cannot be selected for signing or encryption."
+                                                                " They are only visible when the <interface>Disabled</interface> filter is active.</para>"
+                                                                "<para>You can undo this action at any time by switching to the "
+                                                                "<interface>Disabled</interface> filter and enabling the certificate again.</para>"
+                                                                "<para>Are you sure you want to disable and hide the certificate %1?</para>",
+                                                                Formatting::summaryLine(d->key())),
+                                                         i18nc("@title:dialog", "Disable Certificate"),
+                                                         KGuiItem(i18nc("@action:button", "Disable Certificate")),
+                                                         KStandardGuiItem::cancel(),
+                                                         u"disable-certificate-warning"_s);
+        if (result == KMessageBox::Cancel) {
+            d->canceled();
+            return;
+        }
+    }
+
     d->createJob();
 
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0

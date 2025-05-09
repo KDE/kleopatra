@@ -1150,7 +1150,7 @@ void KeyListController::Private::updateActions(KActionCollection *collection)
         // Get the key from the cache, as the existing one isn't correctly updated yet
         key = KeyCache::instance()->findByKeyIDOrFingerprint(key.primaryFingerprint());
         auto action = collection->action(QStringLiteral("certificates_disable"));
-        action->setText(key.isDisabled() ? i18nc("@action:inmenu", "Enable Certificate") : i18nc("@action:inmenu", "Disable Certificate"));
+        action->setText(key.isDisabled() ? i18nc("@action:inmenu", "Enable and Show Certificate") : i18nc("@action:inmenu", "Disable and Hide Certificate"));
     }
 }
 
