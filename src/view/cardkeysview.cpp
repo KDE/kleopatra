@@ -34,6 +34,7 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <QGpgME/Debug>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 
