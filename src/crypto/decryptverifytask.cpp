@@ -239,10 +239,12 @@ public:
             } else if (error) {
                 label = xi18nc("@info Failed to verify <file>:", "Failed to verify <filename>%1</filename>:", m_inputLabel);
             } else {
-                label = xi18nc("@info Verified <file> with signature in <file>.",
-                               "Verified <filename>%1</filename> with signature in <filename>%2</filename>.",
-                               m_outputLabel,
-                               m_inputLabel);
+                label = xi18ncp("@info Verified <file> with signature(s) in <file>.",
+                                "Verified <filename>%2</filename> with signature in <filename>%3</filename>.",
+                                "Verified <filename>%2</filename> with %1 signatures in <filename>%3</filename>.",
+                                m_verificationResult.numSignatures(),
+                                m_outputLabel,
+                                m_inputLabel);
             }
         } else {
             if (error.isCanceled()) {
