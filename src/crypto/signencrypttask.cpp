@@ -27,6 +27,7 @@
 #include <QGpgME/SignEncryptArchiveJob>
 #include <QGpgME/SignEncryptJob>
 #include <QGpgME/SignJob>
+#include <qgpgme/qgpgme_version.h>
 
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
@@ -1009,9 +1010,15 @@ QString SignEncryptFilesResult::overview() const
                             m_output.label,
                             !m_sresult.isNull(),
                             !m_eresult.isNull(),
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+                            m_sresult.error().isError(),
+                            m_eresult.error().isError(),
+                            m_sresult.error().isError() ? m_sresult.error() : m_eresult.error());
+#else
                             m_sresult.error(),
                             m_eresult.error(),
                             m_sresult.error().code() ? m_sresult.error() : m_eresult.error());
+#endif
 }
 
 QString SignEncryptFilesResult::details() const
