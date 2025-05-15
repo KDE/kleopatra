@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-08 00:42+0000\n"
+"POT-Creation-Date: 2025-05-15 00:43+0000\n"
 "PO-Revision-Date: 2025-04-16 01:36+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -3298,7 +3298,7 @@ msgstr ""
 
 #: src/commands/revokecertificationcommand.cpp:104
 #: src/commands/revokecertificationcommand.cpp:118
-#: src/dialogs/useridswidget.cpp:440
+#: src/dialogs/useridswidget.cpp:441
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
@@ -3562,7 +3562,7 @@ msgstr "서명하거나 암호화할 파일 하나 이상 선택"
 msgid "Select Folder to Sign and/or Encrypt"
 msgstr "서명하거나 암호화할 파일 폴더 선택"
 
-#: src/commands/togglecertificateenabledcommand.cpp:77
+#: src/commands/togglecertificateenabledcommand.cpp:79
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3570,13 +3570,41 @@ msgid ""
 msgstr ""
 "<para>인증서를 활성화할 수 없음:</para><para><message>%1</message></para>"
 
-#: src/commands/togglecertificateenabledcommand.cpp:79
+#: src/commands/togglecertificateenabledcommand.cpp:81
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Failed to disable certificate:</para><para><message>%1</message></para>"
 msgstr ""
 "<para>인증서를 비활성화할 수 없음:</para><para><message>%1</message></para>"
+
+#: src/commands/togglecertificateenabledcommand.cpp:119
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Disabled certificates cannot be selected for signing or encryption. "
+"They are only visible when the <interface>%2</interface> filter is active.</"
+"para><para>You can undo this action at any time by switching to the "
+"<interface>%2</interface> filter and enabling the certificate again.</"
+"para><para><emphasis strong='true'>Are you sure you want to disable and hide "
+"the following certificate?</emphasis></para><list><item>%1</item></list>"
+msgstr ""
+
+#: src/commands/togglecertificateenabledcommand.cpp:127
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Disable Certificate"
+msgctxt "@title:dialog"
+msgid "Disable Certificate"
+msgstr "인증서 비활성화"
+
+#: src/commands/togglecertificateenabledcommand.cpp:128
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Disable Certificate"
+msgctxt "@action:button"
+msgid "Disable Certificate"
+msgstr "인증서 비활성화"
 
 #: src/conf/appearanceconfigwidget.cpp:133
 #, kde-format
@@ -6036,25 +6064,25 @@ msgstr ""
 "SignEncryptFilesController::Private::slotWizardOperationPrepared에서 예상하"
 "지 못한 예외 발생"
 
-#: src/crypto/signencrypttask.cpp:146
+#: src/crypto/signencrypttask.cpp:147
 #, kde-format
 msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "서명과 암호화가 취소되었습니다."
 
-#: src/crypto/signencrypttask.cpp:149
+#: src/crypto/signencrypttask.cpp:150
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "서명이 취소되었습니다."
 
-#: src/crypto/signencrypttask.cpp:152
+#: src/crypto/signencrypttask.cpp:153
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
 msgstr "암호화가 취소되었습니다."
 
-#: src/crypto/signencrypttask.cpp:158
+#: src/crypto/signencrypttask.cpp:159
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
@@ -6064,7 +6092,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 서명과 암호화할 수 없음: <emphasis "
 "strong='true'>%2</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:164
+#: src/crypto/signencrypttask.cpp:165
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6074,7 +6102,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일에 서명과 암호화할 수 없"
 "음: <emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:170
+#: src/crypto/signencrypttask.cpp:171
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6087,7 +6115,7 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개에 서명과 암호화할 수 없음: "
 "<emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:180
+#: src/crypto/signencrypttask.cpp:181
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
@@ -6096,7 +6124,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 서명할 수 없음: <emphasis strong='true'>%2</"
 "emphasis>"
 
-#: src/crypto/signencrypttask.cpp:186
+#: src/crypto/signencrypttask.cpp:187
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <file>: <reason>"
 msgid ""
@@ -6106,7 +6134,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일에 서명할 수 없음: "
 "<emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:192
+#: src/crypto/signencrypttask.cpp:193
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
@@ -6119,7 +6147,7 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개에 서명할 수 없음: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:202
+#: src/crypto/signencrypttask.cpp:203
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file>: <reason>"
 msgid ""
@@ -6129,7 +6157,7 @@ msgstr ""
 "<filename>%1</filename> 파일을 암호화할 수 없음: <emphasis strong='true'>%2</"
 "emphasis>"
 
-#: src/crypto/signencrypttask.cpp:208
+#: src/crypto/signencrypttask.cpp:209
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
 msgid ""
@@ -6139,7 +6167,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일을 암호화할 수 없음: "
 "<emphasis strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:214
+#: src/crypto/signencrypttask.cpp:215
 #, kde-kuit-format
 msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
 msgid ""
@@ -6152,7 +6180,7 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개를 암호화할 수 없음: <emphasis "
 "strong='true'>%3</emphasis>"
 
-#: src/crypto/signencrypttask.cpp:224
+#: src/crypto/signencrypttask.cpp:225
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and saved it as <file>."
@@ -6163,7 +6191,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 서명과 암호화하고 <filename>%2</filename>(으)"
 "로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:230
+#: src/crypto/signencrypttask.cpp:231
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved it as "
@@ -6175,7 +6203,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일에 서명과 암호화하고 "
 "<filename>%3</filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:236
+#: src/crypto/signencrypttask.cpp:237
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
@@ -6189,7 +6217,7 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개에 서명과 암호화하고 <filename>%3</"
 "filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:246
+#: src/crypto/signencrypttask.cpp:247
 #, kde-kuit-format
 msgctxt "@info Successfully signed <file> and saved the signature in <file>."
 msgid ""
@@ -6199,7 +6227,7 @@ msgstr ""
 "<filename>%1</filename> 파일에 서명하고 서명을 <filename>%2</filename>(으)로 "
 "저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:252
+#: src/crypto/signencrypttask.cpp:253
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <file> and saved the signature in "
@@ -6211,7 +6239,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일에 서명하고 서명을 "
 "<filename>%3</filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:258
+#: src/crypto/signencrypttask.cpp:259
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <n> other(s) and saved the signature in "
@@ -6226,7 +6254,7 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개에 서명하고 서명을 <filename>%3</"
 "filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:267
+#: src/crypto/signencrypttask.cpp:268
 #, kde-kuit-format
 msgctxt "@info Successfully encrypted <file> and saved it as <file>."
 msgid ""
@@ -6236,7 +6264,7 @@ msgstr ""
 "<filename>%1</filename> 파일을 암호화하고 <filename>%2</filename>(으)로 저장"
 "했습니다."
 
-#: src/crypto/signencrypttask.cpp:273
+#: src/crypto/signencrypttask.cpp:274
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <file> and saved it as <file>."
@@ -6247,7 +6275,7 @@ msgstr ""
 "<filename>%1</filename>, <filename>%2</filename> 파일을 암호화하고 <filename>"
 "%3</filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:279
+#: src/crypto/signencrypttask.cpp:280
 #, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
@@ -6261,29 +6289,29 @@ msgstr[0] ""
 "<filename>%2</filename> 및 다른 파일 %1개를 암호화하고 <filename>%3</"
 "filename>(으)로 저장했습니다."
 
-#: src/crypto/signencrypttask.cpp:298 src/crypto/signencrypttask.cpp:315
-#: src/crypto/signencrypttask.cpp:931
+#: src/crypto/signencrypttask.cpp:299 src/crypto/signencrypttask.cpp:316
+#: src/crypto/signencrypttask.cpp:932
 #, kde-format
 msgid "Input error: %1"
 msgstr "입력 오류: %1"
 
-#: src/crypto/signencrypttask.cpp:300 src/crypto/signencrypttask.cpp:317
+#: src/crypto/signencrypttask.cpp:301 src/crypto/signencrypttask.cpp:318
 #, kde-format
 msgid "Output error: %1"
 msgstr "출력 오류: %1"
 
-#: src/crypto/signencrypttask.cpp:535
+#: src/crypto/signencrypttask.cpp:536
 #, kde-format
 msgid "Cannot determine protocol for task"
 msgstr "작업에 사용할 프로토콜을 알 수 없음"
 
-#: src/crypto/signencrypttask.cpp:586
+#: src/crypto/signencrypttask.cpp:587
 #, kde-format
 msgctxt "<name of first file>, ..."
 msgid "%1, ..."
 msgstr "%1, ..."
 
-#: src/crypto/signencrypttask.cpp:798 src/utils/archivedefinition.cpp:420
+#: src/crypto/signencrypttask.cpp:799 src/utils/archivedefinition.cpp:420
 #, kde-format
 msgid ""
 "Cannot find common base directory for these files:\n"
@@ -6292,79 +6320,79 @@ msgstr ""
 "다음 파일의 공통된 기반 디렉터리를 찾을 수 없음:\n"
 "%1"
 
-#: src/crypto/signencrypttask.cpp:815
+#: src/crypto/signencrypttask.cpp:816
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed and encrypted archive ..."
 msgstr "서명과 암호화된 압축 파일 생성 중..."
 
-#: src/crypto/signencrypttask.cpp:831
+#: src/crypto/signencrypttask.cpp:832
 #, kde-format
 msgctxt "@info"
 msgid "Creating encrypted archive ..."
 msgstr "암호화된 압축 파일 생성 중..."
 
-#: src/crypto/signencrypttask.cpp:847
+#: src/crypto/signencrypttask.cpp:848
 #, kde-format
 msgctxt "@info"
 msgid "Creating signed archive ..."
 msgstr "서명된 압축 파일 생성 중..."
 
-#: src/crypto/signencrypttask.cpp:974
+#: src/crypto/signencrypttask.cpp:975
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "메모장을 서명할 수 없음: %1"
 
-#: src/crypto/signencrypttask.cpp:977
+#: src/crypto/signencrypttask.cpp:978
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "메모장을 암호화할 수 없음: %1"
 
-#: src/crypto/signencrypttask.cpp:981
+#: src/crypto/signencrypttask.cpp:982
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "메모장을 암호화 및 서명함"
 
-#: src/crypto/signencrypttask.cpp:983
+#: src/crypto/signencrypttask.cpp:984
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "메모장을 암호화함"
 
-#: src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:986
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "메모장을 서명함"
 
-#: src/crypto/signencrypttask.cpp:992
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "클립보드를 서명할 수 없음: %1"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:996
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "클립보드를 암호화할 수 없음: %1"
 
-#: src/crypto/signencrypttask.cpp:999
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "클립보드를 암호화 및 서명했습니다"
 
-#: src/crypto/signencrypttask.cpp:1001
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "클립보드를 암호화했습니다"
 
-#: src/crypto/signencrypttask.cpp:1003
+#: src/crypto/signencrypttask.cpp:1004
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -6847,14 +6875,14 @@ msgctxt "as in: can be used for ..."
 msgid "qualified signatures"
 msgstr "적합한 서명"
 
-#: src/dialogs/certificatedetailswidget.cpp:393 src/view/cardkeysview.cpp:200
+#: src/dialogs/certificatedetailswidget.cpp:393 src/view/cardkeysview.cpp:201
 #, kde-format
 msgctxt "Separator between words in a list"
 msgid ", "
 msgstr ", "
 
 #: src/dialogs/certificatedetailswidget.cpp:502
-#: src/dialogs/useridswidget.cpp:369
+#: src/dialogs/useridswidget.cpp:370
 #, kde-format
 msgid "Updating..."
 msgstr "업데이트 중..."
@@ -7045,13 +7073,13 @@ msgctxt "@info"
 msgid "One or more certificates cannot be certified."
 msgstr "한 개 이상의 인증서를 인증할 수 없습니다."
 
-#: src/dialogs/certifywidget.cpp:216 src/dialogs/useridswidget.cpp:134
+#: src/dialogs/certifywidget.cpp:216 src/dialogs/useridswidget.cpp:135
 #, kde-format
 msgid "User IDs"
 msgstr "사용자 ID"
 
 #: src/dialogs/certifywidget.cpp:223 src/dialogs/certifywidget.cpp:450
-#: src/dialogs/certifywidget.cpp:464 src/view/cardkeysview.cpp:427
+#: src/dialogs/certifywidget.cpp:464 src/view/cardkeysview.cpp:428
 #, kde-format
 msgctxt "@title:column"
 msgid "User ID"
@@ -7184,7 +7212,7 @@ msgstr ""
 #: src/dialogs/certifywidget.cpp:464
 #: src/dialogs/lookupcertificatesdialog.cpp:238
 #: src/dialogs/revokerswidget.cpp:74 src/dialogs/subkeyswidget.cpp:164
-#: src/view/cardkeysview.cpp:429
+#: src/view/cardkeysview.cpp:430
 #, kde-format
 msgctxt "@title:column"
 msgid "Fingerprint"
@@ -7731,7 +7759,7 @@ msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "유효 기간 끝"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:241 src/view/cardkeysview.cpp:428
+#: src/dialogs/lookupcertificatesdialog.cpp:241 src/view/cardkeysview.cpp:429
 #, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
@@ -8112,13 +8140,13 @@ msgctxt "@title:column"
 msgid "Status"
 msgstr "상태"
 
-#: src/dialogs/subkeyswidget.cpp:168 src/view/cardkeysview.cpp:431
+#: src/dialogs/subkeyswidget.cpp:168 src/view/cardkeysview.cpp:432
 #, kde-format
 msgctxt "@title:column"
 msgid "Usage"
 msgstr "용도"
 
-#: src/dialogs/subkeyswidget.cpp:169 src/view/cardkeysview.cpp:432
+#: src/dialogs/subkeyswidget.cpp:169 src/view/cardkeysview.cpp:433
 #, kde-format
 msgctxt "@title:column"
 msgid "Algorithm"
@@ -8130,7 +8158,7 @@ msgctxt "@title:column"
 msgid "Storage"
 msgstr "저장소"
 
-#: src/dialogs/subkeyswidget.cpp:171 src/view/cardkeysview.cpp:433
+#: src/dialogs/subkeyswidget.cpp:171 src/view/cardkeysview.cpp:434
 #, kde-format
 msgctxt "@title:column"
 msgid "Keygrip"
@@ -8191,7 +8219,7 @@ msgstr ""
 "하면 메시지를 암호화하는 클라이언트에서 기능을 지원하는 경우 ADSK 소유자가 "
 "내 인증서로 암호화된 모든 새로운 메시지를 복호화할 수 있습니다."
 
-#: src/dialogs/subkeyswidget.cpp:198 src/dialogs/useridswidget.cpp:164
+#: src/dialogs/subkeyswidget.cpp:198 src/dialogs/useridswidget.cpp:165
 #: src/dialogs/weboftrustwidget.cpp:133
 #, kde-format
 msgctxt "@info:tooltip"
@@ -8296,105 +8324,105 @@ msgctxt "@action:button"
 msgid "&Get update"
 msgstr "업데이트 받기(&U)"
 
-#: src/dialogs/useridswidget.cpp:148
+#: src/dialogs/useridswidget.cpp:149
 #, kde-format
 msgctxt "@action:button"
 msgid "Add User ID"
 msgstr "사용자 ID 추가"
 
-#: src/dialogs/useridswidget.cpp:151 src/dialogs/useridswidget.cpp:436
+#: src/dialogs/useridswidget.cpp:152 src/dialogs/useridswidget.cpp:437
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke User ID"
 msgstr "사용자 ID 철회"
 
-#: src/dialogs/useridswidget.cpp:154
+#: src/dialogs/useridswidget.cpp:155
 #, kde-format
 msgctxt "@action:button"
 msgid "Flag as Primary"
 msgstr "주 ID로 플래그"
 
-#: src/dialogs/useridswidget.cpp:155
+#: src/dialogs/useridswidget.cpp:156
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Flag the selected user ID as the primary user ID of this key."
 msgstr "선택한 사용자 ID를 이 키의 주 사용자 ID로 플래그합니다."
 
-#: src/dialogs/useridswidget.cpp:157
+#: src/dialogs/useridswidget.cpp:158
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify User IDs"
 msgstr "사용자 ID 인증"
 
-#: src/dialogs/useridswidget.cpp:158
+#: src/dialogs/useridswidget.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Revoke Certifications"
 msgstr "인증 철회"
 
-#: src/dialogs/useridswidget.cpp:252
+#: src/dialogs/useridswidget.cpp:253
 #: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "이름"
 
-#: src/dialogs/useridswidget.cpp:253
+#: src/dialogs/useridswidget.cpp:254
 #, kde-format
 msgid "Email"
 msgstr "이메일"
 
-#: src/dialogs/useridswidget.cpp:254
+#: src/dialogs/useridswidget.cpp:255
 #, kde-format
 msgid "Trust Level"
 msgstr "신뢰 단계"
 
-#: src/dialogs/useridswidget.cpp:255
+#: src/dialogs/useridswidget.cpp:256
 #, kde-format
 msgid "Origin"
 msgstr "원본"
 
-#: src/dialogs/useridswidget.cpp:256
+#: src/dialogs/useridswidget.cpp:257
 #, kde-format
 msgid "Tags"
 msgstr "태그"
 
-#: src/dialogs/useridswidget.cpp:277
+#: src/dialogs/useridswidget.cpp:278
 #, kde-format
 msgctxt "text for screen readers for an empty email address"
 msgid "no email"
 msgstr "이메일 없음"
 
-#: src/dialogs/useridswidget.cpp:328
+#: src/dialogs/useridswidget.cpp:329
 #, kde-format
 msgid "never"
 msgstr "안 함"
 
-#: src/dialogs/useridswidget.cpp:330
+#: src/dialogs/useridswidget.cpp:331
 #, kde-format
 msgid "Signing"
 msgstr "서명"
 
-#: src/dialogs/useridswidget.cpp:331 src/dialogs/useridswidget.cpp:335
+#: src/dialogs/useridswidget.cpp:332 src/dialogs/useridswidget.cpp:336
 #, kde-format
 msgid "First message"
 msgstr "첫 메시지"
 
-#: src/dialogs/useridswidget.cpp:332 src/dialogs/useridswidget.cpp:336
+#: src/dialogs/useridswidget.cpp:333 src/dialogs/useridswidget.cpp:337
 #, kde-format
 msgid "Last message"
 msgstr "마지막 메시지"
 
-#: src/dialogs/useridswidget.cpp:333 src/dialogs/useridswidget.cpp:337
+#: src/dialogs/useridswidget.cpp:334 src/dialogs/useridswidget.cpp:338
 #, kde-format
 msgid "Message count"
 msgstr "메시지 개수"
 
-#: src/dialogs/useridswidget.cpp:334
+#: src/dialogs/useridswidget.cpp:335
 #, kde-format
 msgid "Encryption"
 msgstr "암호화"
 
-#: src/dialogs/useridswidget.cpp:434
+#: src/dialogs/useridswidget.cpp:435
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8403,45 +8431,45 @@ msgid ""
 msgstr ""
 "<para>사용자 ID <message>%1</message>을(를)<nl/>철회하시겠습니까?</para>"
 
-#: src/dialogs/useridswidget.cpp:482
+#: src/dialogs/useridswidget.cpp:483
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Flag as Primary User ID"
 msgstr "주 사용자 ID로 플래그"
 
-#: src/dialogs/useridswidget.cpp:491
+#: src/dialogs/useridswidget.cpp:492
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User IDs..."
 msgstr "사용자 ID 인증..."
 
-#: src/dialogs/useridswidget.cpp:492
+#: src/dialogs/useridswidget.cpp:493
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Certify User ID..."
 msgid_plural "Certify User IDs..."
 msgstr[0] "사용자 ID 인증..."
 
-#: src/dialogs/useridswidget.cpp:499
+#: src/dialogs/useridswidget.cpp:500
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certifications..."
 msgstr "인증 철회..."
 
-#: src/dialogs/useridswidget.cpp:500
+#: src/dialogs/useridswidget.cpp:501
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke Certification..."
 msgid_plural "Revoke Certifications..."
 msgstr[0] "인증 철회..."
 
-#: src/dialogs/useridswidget.cpp:509
+#: src/dialogs/useridswidget.cpp:510
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Publish at Mail Provider ..."
 msgstr "메일 공급자에 게시..."
 
-#: src/dialogs/useridswidget.cpp:524
+#: src/dialogs/useridswidget.cpp:525
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Revoke User ID"
@@ -10338,37 +10366,12 @@ msgctxt "@title"
 msgid "Gpg-Agent Connectivity"
 msgstr "Gpg-Agent 연결성"
 
-#: src/selftest/gpgagentcheck.cpp:41
-#, kde-format
-msgid "GpgME library too old"
-msgstr "GpgME 라이브러리가 너무 오래됨"
-
-#: src/selftest/gpgagentcheck.cpp:43
-#, kde-format
-msgctxt "@info"
-msgid ""
-"Either the GpgME library itself is too old, or the GpgME++ library was "
-"compiled against an older GpgME that did not support connecting to gpg-agent."
-msgstr ""
-"GpgME 라이브러리가 너무 오래 되었거나, GpgME++ 라이브러리가 gpg-agent와 연결"
-"할 수 없는 오래된 GpgME 라이브러리를 사용하여 컴파일되었습니다."
-
-#: src/selftest/gpgagentcheck.cpp:47
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure that "
-"gpgme++ was compiled against it."
-msgstr ""
-"<application>gpgme</application> 1.2.0 이상으로 업그레이드하십시오. gpgme++ "
-"지원이 컴파일되어 있는지 확인하십시오."
-
-#: src/selftest/gpgagentcheck.cpp:59
+#: src/selftest/gpgagentcheck.cpp:50
 #, kde-format
 msgid "GpgME does not support gpg-agent"
 msgstr "GpgME에서 gpg-agent를 지원하지 않음"
 
-#: src/selftest/gpgagentcheck.cpp:61
+#: src/selftest/gpgagentcheck.cpp:52
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10381,12 +10384,12 @@ msgstr ""
 "agent</application>를 지원하는 것 같지만 이 설치본에서 활성화되지 않은 것 같"
 "습니다.</para><para>반환된 오류: <message>%1</message></para>"
 
-#: src/selftest/gpgagentcheck.cpp:73
+#: src/selftest/gpgagentcheck.cpp:64
 #, kde-format
 msgid "unexpected error"
 msgstr "예상하지 못한 오류"
 
-#: src/selftest/gpgagentcheck.cpp:75
+#: src/selftest/gpgagentcheck.cpp:66
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -11631,99 +11634,99 @@ msgstr "%1 디렉터리를 삭제할 수 없음"
 msgid "Cannot remove file %1: %2"
 msgstr "%1 파일을 삭제할 수 없음: %2"
 
-#: src/view/cardkeysview.cpp:133
+#: src/view/cardkeysview.cpp:134
 #, kde-format
 msgid "encrypt"
 msgstr "암호화"
 
-#: src/view/cardkeysview.cpp:135
+#: src/view/cardkeysview.cpp:136
 #, kde-format
 msgid "sign"
 msgstr "서명"
 
-#: src/view/cardkeysview.cpp:137
+#: src/view/cardkeysview.cpp:138
 #, kde-format
 msgid "certify"
 msgstr "인증"
 
-#: src/view/cardkeysview.cpp:139
+#: src/view/cardkeysview.cpp:140
 #, kde-format
 msgid "authenticate"
 msgstr "인증"
 
-#: src/view/cardkeysview.cpp:182
+#: src/view/cardkeysview.cpp:183
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Card slot ID: %1"
 msgstr "카드 슬롯 ID: %1"
 
-#: src/view/cardkeysview.cpp:198
+#: src/view/cardkeysview.cpp:199
 #, kde-format
 msgctxt "@info entry in Usage column of a smart card key"
 msgid "none"
 msgstr "없음"
 
-#: src/view/cardkeysview.cpp:212
+#: src/view/cardkeysview.cpp:213
 #, kde-format
 msgctxt "@info date is unknown"
 msgid "unknown"
 msgstr "알 수 없음"
 
-#: src/view/cardkeysview.cpp:220
+#: src/view/cardkeysview.cpp:221
 #, kde-format
 msgctxt "@info unknown key algorithm"
 msgid "unknown"
 msgstr "알 수 없음"
 
-#: src/view/cardkeysview.cpp:232
+#: src/view/cardkeysview.cpp:233
 #, kde-format
 msgctxt "@info"
 msgid "no key"
 msgstr "키 없음"
 
-#: src/view/cardkeysview.cpp:232
+#: src/view/cardkeysview.cpp:233
 #, kde-format
 msgctxt "@info"
 msgid "no associated certificate"
 msgstr "연관된 인증서 없음"
 
-#: src/view/cardkeysview.cpp:420
+#: src/view/cardkeysview.cpp:421
 #, kde-format
 msgctxt "@title"
 msgid "card keys and certificates"
 msgstr "카드 키와 인증서"
 
-#: src/view/cardkeysview.cpp:426
+#: src/view/cardkeysview.cpp:427
 #, kde-format
 msgctxt "@title:column Name or ID of a storage slot for a key on a smart card"
 msgid "Card Slot"
 msgstr "카드 슬롯"
 
-#: src/view/cardkeysview.cpp:430
+#: src/view/cardkeysview.cpp:431
 #, kde-format
 msgctxt "@title:column"
 msgid "Created"
 msgstr "만든 날짜"
 
-#: src/view/cardkeysview.cpp:434
+#: src/view/cardkeysview.cpp:435
 #, kde-format
 msgctxt "@title:column"
 msgid "Actions"
 msgstr "동작"
 
-#: src/view/cardkeysview.cpp:669
+#: src/view/cardkeysview.cpp:670
 #, kde-format
 msgctxt "@action:button"
 msgid "Actions"
 msgstr "동작"
 
-#: src/view/cardkeysview.cpp:670
+#: src/view/cardkeysview.cpp:671
 #, kde-format
 msgctxt "@info"
 msgid "Show actions available for this smart card slot"
 msgstr "이 스마트카드 슬롯에 사용할 수 있는 동작 표시"
 
-#: src/view/cardkeysview.cpp:743
+#: src/view/cardkeysview.cpp:744
 #, kde-format
 msgctxt "@info"
 msgid "Reading certificates from smart card ..."
@@ -11985,7 +11988,7 @@ msgctxt "@action:button"
 msgid "Copy"
 msgstr "복사"
 
-#: src/view/keylistcontroller.cpp:615 src/view/keylistcontroller.cpp:1153
+#: src/view/keylistcontroller.cpp:615
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
@@ -12048,10 +12051,20 @@ msgid "Import CRL From File..."
 msgstr "파일에서 CRL 가져오기..."
 
 #: src/view/keylistcontroller.cpp:1153
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Enable Certificate"
 msgctxt "@action:inmenu"
-msgid "Enable Certificate"
+msgid "Enable and Show Certificate"
 msgstr "인증서 활성화"
+
+#: src/view/keylistcontroller.cpp:1153
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu"
+#| msgid "Disable Certificate"
+msgctxt "@action:inmenu"
+msgid "Disable and Hide Certificate"
+msgstr "인증서 비활성화"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
@@ -12910,6 +12923,26 @@ msgid ""
 msgstr ""
 "파일에서 인증서를 가져옵니다.<nl/>공개 키 서버에서 키를 가져오려면 "
 "<interface>서버에서 찾아보기</interface>를 사용하십시오."
+
+#~ msgid "GpgME library too old"
+#~ msgstr "GpgME 라이브러리가 너무 오래됨"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
+#~ "compiled against an older GpgME that did not support connecting to gpg-"
+#~ "agent."
+#~ msgstr ""
+#~ "GpgME 라이브러리가 너무 오래 되었거나, GpgME++ 라이브러리가 gpg-agent와 연"
+#~ "결할 수 없는 오래된 GpgME 라이브러리를 사용하여 컴파일되었습니다."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
+#~ "that gpgme++ was compiled against it."
+#~ msgstr ""
+#~ "<application>gpgme</application> 1.2.0 이상으로 업그레이드하십시오. gpgme+"
+#~ "+ 지원이 컴파일되어 있는지 확인하십시오."
 
 #~ msgid "Keep open after operation completed"
 #~ msgstr "작업이 끝난 후에도 열어 놓기"
