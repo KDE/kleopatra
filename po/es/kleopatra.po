@@ -1,5 +1,6 @@
 # Spanish translations for kleopatra.po package.
-# Copyright (C) 2004-2025 Free Software Foundation, Inc.
+# Copyright (C) 2004-2025 This file is copyright:
+# This file is distributed under the same license as the kleopatra package.
 #
 # SPDX-FileCopyrightText: 2004, 2005, 2007 Juan Manuel Garcia Molina <juanma@superiodico.net>
 # SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
@@ -12,15 +13,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-15 00:43+0000\n"
-"PO-Revision-Date: 2025-03-30 01:24+0100\n"
+"POT-Creation-Date: 2025-05-16 00:42+0000\n"
+"PO-Revision-Date: 2025-05-15 04:09+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.04.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1733,12 +1734,6 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Error de exportación de certificado OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:146
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export Finished"
-msgstr "Exportación de certificado OpenPGP finalizada"
-
 #: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
@@ -1778,10 +1773,12 @@ msgstr ""
 "message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "PUK changed successfully."
 msgctxt "@info"
-msgid "OpenPGP certificates exported successfully."
-msgstr "Certificados OpenPGP exportados correctamente."
+msgid "Upload successful."
+msgstr "PUK cambiado correctamente."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -3754,19 +3751,22 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>Los certificados desactivados no se pueden seleccionar para firmar ni "
+"para cifrar. Solo son visibles si el filtro <interface>%2</interface> está "
+"activo.</para><para>Puede deshacer esta acción en cualquier momento "
+"cambiando al filtro <interface>%2</interface> y volviendo a activar el "
+"certificado.</para><para><emphasis strong='true'>¿Seguro que quiere "
+"desactivar y ocultar el siguiente certificado</emphasis></para><list><item>"
+"%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Disable Certificate"
 msgstr "Desactivar certificado"
 
 #: src/commands/togglecertificateenabledcommand.cpp:128
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Disable Certificate"
 msgstr "Desactivar certificado"
@@ -4970,21 +4970,31 @@ msgid "Failed to verify <filename>%1</filename>:"
 msgstr "La verificación de <filename>%1</filename> ha fallado:"
 
 #: src/crypto/decryptverifytask.cpp:243
-#, kde-kuit-format
-msgctxt "@info Verified <file> with signature in <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
-"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr ""
+"Verified <filename>%2</filename> with signature in <filename>%3</filename>."
+msgid_plural ""
+"Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+"filename>."
+msgstr[0] ""
+"Se ha verificado <filename>%1</filename> con firma en <filename>%2</"
+"filename>."
+msgstr[1] ""
 "Se ha verificado <filename>%1</filename> con firma en <filename>%2</"
 "filename>."
 
-#: src/crypto/decryptverifytask.cpp:249
+#: src/crypto/decryptverifytask.cpp:251
 #, kde-format
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "Se ha cancelado el descifrado de <filename>%1</filename>."
 
-#: src/crypto/decryptverifytask.cpp:252
+#: src/crypto/decryptverifytask.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
@@ -4992,13 +5002,13 @@ msgctxt ""
 msgid "Unable to decrypt <filename>%1</filename>:"
 msgstr "No se ha podido descifrar <filename>%1</filename>:"
 
-#: src/crypto/decryptverifytask.cpp:255
+#: src/crypto/decryptverifytask.cpp:257
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "El descifrado de <filename>%1</filename> ha fallado:"
 
-#: src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:260
 #, kde-kuit-format
 msgctxt "@info Successfully decrypted <file> as <file>."
 msgid ""
@@ -5007,7 +5017,7 @@ msgstr ""
 "Se ha descifrado correctamente <filename>%1</filename> como <filename>%2</"
 "filename>."
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
@@ -5015,12 +5025,12 @@ msgstr ""
 "Los datos no se han cifrado para ninguna clave secreta de su lista de "
 "certificados."
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:275
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Sin protección de identidad (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5028,7 +5038,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "El descrifrado es %1."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5036,12 +5046,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "El descifrado <b>no es</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:302
+#: src/crypto/decryptverifytask.cpp:304
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Nombre de archivo incrustado:  '%1'"
 
-#: src/crypto/decryptverifytask.cpp:308
+#: src/crypto/decryptverifytask.cpp:310
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5050,7 +5060,7 @@ msgstr ""
 "<b>Nota:</b> No puede estar seguro de quién ha cifrado este mensaje, ya que "
 "no está firmado."
 
-#: src/crypto/decryptverifytask.cpp:314
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5062,7 +5072,7 @@ msgstr ""
 "sea ilegítimo. Esto es debido a que la protección de integridad no se usaba "
 "ampliamente."
 
-#: src/crypto/decryptverifytask.cpp:319
+#: src/crypto/decryptverifytask.cpp:321
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5074,67 +5084,67 @@ msgstr ""
 "Si confía en que el archivo no ha sido manipulado, debería volver a cifrarlo "
 "antes de forzar el descifrado."
 
-#: src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:537
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "El descifrado del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:540
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "La verificación del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:542
+#: src/crypto/decryptverifytask.cpp:544
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "El bloc de notas se ha descifrado y verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:547
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "El bloc de notas se ha descifrado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "El bloc de notas se ha verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:553
+#: src/crypto/decryptverifytask.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "El descifrado del portapapeles ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:558
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "La verificación del portapapeles ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:560
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "El portapapeles se ha descifrado y verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:565
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "El portapapeles se ha descifrado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:568
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "El portapapeles se ha verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:598
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5144,25 +5154,25 @@ msgstr ""
 "Advertencia: La dirección de correo del remitente no está guardada en el <a "
 "href=\"key:%1\">certificado</a> usado para firmar. Guardado:<ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:946
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1127
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1347
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1558
+#: src/crypto/decryptverifytask.cpp:740 src/crypto/decryptverifytask.cpp:948
+#: src/crypto/decryptverifytask.cpp:1028 src/crypto/decryptverifytask.cpp:1129
+#: src/crypto/decryptverifytask.cpp:1181 src/crypto/decryptverifytask.cpp:1349
+#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Se detectó excepción: %1"
 
-#: src/crypto/decryptverifytask.cpp:741 src/crypto/decryptverifytask.cpp:948
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1129
-#: src/crypto/decryptverifytask.cpp:1182 src/crypto/decryptverifytask.cpp:1349
-#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
+#: src/crypto/decryptverifytask.cpp:743 src/crypto/decryptverifytask.cpp:950
+#: src/crypto/decryptverifytask.cpp:1031 src/crypto/decryptverifytask.cpp:1131
+#: src/crypto/decryptverifytask.cpp:1184 src/crypto/decryptverifytask.cpp:1351
+#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1562
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Se detectó excepción desconocida"
 
-#: src/crypto/decryptverifytask.cpp:795
+#: src/crypto/decryptverifytask.cpp:797
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5171,12 +5181,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado ni firma?"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Descifrando %1…"
 
-#: src/crypto/decryptverifytask.cpp:1082
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5185,12 +5195,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1090
+#: src/crypto/decryptverifytask.cpp:1092
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Descifrando: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1236 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1238 src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5199,12 +5209,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es una firma después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1244
+#: src/crypto/decryptverifytask.cpp:1246
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Verificando %1…"
 
-#: src/crypto/decryptverifytask.cpp:1506
+#: src/crypto/decryptverifytask.cpp:1508
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5212,7 +5222,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verificando <filename>%1</filename> con <filename>%2</filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1510
+#: src/crypto/decryptverifytask.cpp:1512
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Verificando firma %1…"
@@ -12469,20 +12479,16 @@ msgid "Import CRL From File..."
 msgstr "Importar CRL desde archivo…"
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Enable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
-msgstr "Activar certificado"
+msgstr "Activar y mostrar certificado"
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
-msgstr "Desactivar certificado"
+msgstr "Desactivar y ocultar certificado"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
@@ -13359,23 +13365,10 @@ msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
 
-#~ msgid "GpgME library too old"
-#~ msgstr "La biblioteca GpgME es demasiado antigua"
+#~ msgctxt "@title:window"
+#~ msgid "OpenPGP Certificate Export Finished"
+#~ msgstr "Exportación de certificado OpenPGP finalizada"
 
 #~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "Bien la propia biblioteca GpgME es demasiado vieja, o bien la biblioteca "
-#~ "GpgME++ fue compilada contra una GpgME más vieja que no admite conectarse "
-#~ "a un agente gpg."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "Actualice a <application>gpgme</application> 1.2.0 o posterior, y "
-#~ "asegúrese de que gpgme++ se compiló contra ella."
+#~ msgid "OpenPGP certificates exported successfully."
+#~ msgstr "Certificados OpenPGP exportados correctamente."

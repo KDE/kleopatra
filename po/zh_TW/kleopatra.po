@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-15 00:43+0000\n"
+"POT-Creation-Date: 2025-05-16 00:42+0000\n"
 "PO-Revision-Date: 2024-12-30 16:47+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1649,12 +1649,6 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "OpenPGP 憑證匯出錯誤"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:146
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export Finished"
-msgstr "OpenPGP 憑證匯出完成"
-
 #: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
@@ -1692,10 +1686,11 @@ msgstr ""
 "輸出為：<message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Certification successful."
 msgctxt "@info"
-msgid "OpenPGP certificates exported successfully."
-msgstr "OpenPGP 憑證已成功匯出。"
+msgid "Upload successful."
+msgstr "憑證已成功確認。"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -4741,12 +4736,15 @@ msgstr "檢查 <filename>%1</filename> 時失敗："
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt "@info Verified <file> with signature in <file>."
+msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
-"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
+"Verified <filename>%2</filename> with signature in <filename>%3</filename>."
+msgid_plural ""
+"Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+"filename>."
+msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
-#: src/crypto/decryptverifytask.cpp:249
+#: src/crypto/decryptverifytask.cpp:251
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Writing key to file <filename>%1</filename> failed."
@@ -4754,7 +4752,7 @@ msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "將金鑰寫入至檔案 <filename>%1</filename> 時失敗。"
 
-#: src/crypto/decryptverifytask.cpp:252
+#: src/crypto/decryptverifytask.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgid "Failed to delete <filename>%1</filename>."
 msgctxt ""
@@ -4763,13 +4761,13 @@ msgctxt ""
 msgid "Unable to decrypt <filename>%1</filename>:"
 msgstr "刪除 <filename>%1</filename> 失敗。"
 
-#: src/crypto/decryptverifytask.cpp:255
+#: src/crypto/decryptverifytask.cpp:257
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "解密 <filename>%1</filename> 時失敗："
 
-#: src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:260
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -4780,19 +4778,19 @@ msgid ""
 "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:271
 #, fuzzy, kde-format
 #| msgid "The data was encrypted to this key / certificate."
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "資料是為這個金鑰 / 憑證所加密的。"
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:275
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "沒有一致性保護 (MDC)。"
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4800,7 +4798,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "此解密%1。"
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4808,19 +4806,19 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "此解密<b>不</b>%1。"
 
-#: src/crypto/decryptverifytask.cpp:302
+#: src/crypto/decryptverifytask.cpp:304
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "嵌入檔案名稱：'%1'"
 
-#: src/crypto/decryptverifytask.cpp:308
+#: src/crypto/decryptverifytask.cpp:310
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr "<b>注意：</b>由於信件未簽署，您並不能確定是誰加密了此信件。"
 
-#: src/crypto/decryptverifytask.cpp:314
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4831,7 +4829,7 @@ msgstr ""
 "<b>提示：</b>如果檔案是在 2003 年以前加密的，它很可能還是正當的。這是因為當時"
 "還沒有廣泛使用一致性保護。"
 
-#: src/crypto/decryptverifytask.cpp:319
+#: src/crypto/decryptverifytask.cpp:321
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4841,51 +4839,51 @@ msgid ""
 "it after you have forced the decryption."
 msgstr "如果您有信心檔案沒有被竄改，您應該在強制解密之後重新加密它。"
 
-#: src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:537
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "解密筆記本失敗：%1"
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:540
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "檢查筆記本失敗：%1"
 
-#: src/crypto/decryptverifytask.cpp:542
+#: src/crypto/decryptverifytask.cpp:544
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "已成功解密並檢查筆記本"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:547
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "已成功解密筆記本"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "已成功檢查筆記本"
 
-#: src/crypto/decryptverifytask.cpp:553
+#: src/crypto/decryptverifytask.cpp:555
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "執行 %1 時失敗：%2"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:558
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "執行 %1 時失敗：%2"
 
-#: src/crypto/decryptverifytask.cpp:560
+#: src/crypto/decryptverifytask.cpp:562
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -4893,7 +4891,7 @@ msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "已成功複製金鑰到卡片上。"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:565
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -4901,7 +4899,7 @@ msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "已成功複製金鑰到卡片上。"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:568
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -4909,7 +4907,7 @@ msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "已成功複製金鑰到卡片上。"
 
-#: src/crypto/decryptverifytask.cpp:598
+#: src/crypto/decryptverifytask.cpp:600
 #, fuzzy, kde-format
 #| msgid ""
 #| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -4920,25 +4918,25 @@ msgid ""
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr "<br /><b>警告：</b>寄件者的電子郵件地址並未儲存在憑證中以用於簽署。"
 
-#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:946
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1127
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1347
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1558
+#: src/crypto/decryptverifytask.cpp:740 src/crypto/decryptverifytask.cpp:948
+#: src/crypto/decryptverifytask.cpp:1028 src/crypto/decryptverifytask.cpp:1129
+#: src/crypto/decryptverifytask.cpp:1181 src/crypto/decryptverifytask.cpp:1349
+#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "補捉到例外狀況：%1"
 
-#: src/crypto/decryptverifytask.cpp:741 src/crypto/decryptverifytask.cpp:948
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1129
-#: src/crypto/decryptverifytask.cpp:1182 src/crypto/decryptverifytask.cpp:1349
-#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
+#: src/crypto/decryptverifytask.cpp:743 src/crypto/decryptverifytask.cpp:950
+#: src/crypto/decryptverifytask.cpp:1031 src/crypto/decryptverifytask.cpp:1131
+#: src/crypto/decryptverifytask.cpp:1184 src/crypto/decryptverifytask.cpp:1351
+#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1562
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "遇到未知的例外狀況"
 
-#: src/crypto/decryptverifytask.cpp:795
+#: src/crypto/decryptverifytask.cpp:797
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -4947,36 +4945,36 @@ msgstr ""
 "無法決定這是 S/MIME 還是 OpenGPG 的簽章或加密文字。也許它不是簽章也不是加密文"
 "字？"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "正在解密 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1082
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 加密。也許它根本不是加密文字？"
 
-#: src/crypto/decryptverifytask.cpp:1090
+#: src/crypto/decryptverifytask.cpp:1092
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "解密中：%1..."
 
-#: src/crypto/decryptverifytask.cpp:1236 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1238 src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr "無法決定這是用 S/MIME 還是 OpenGPG 簽署。也許它根本不是簽章？"
 
-#: src/crypto/decryptverifytask.cpp:1244
+#: src/crypto/decryptverifytask.cpp:1246
 #, kde-format
 msgid "Verifying %1..."
 msgstr "正在檢查 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1506
+#: src/crypto/decryptverifytask.cpp:1508
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -4985,7 +4983,7 @@ msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr ""
 "正在使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1510
+#: src/crypto/decryptverifytask.cpp:1512
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "正在檢查簽章 %1..."
@@ -12888,6 +12886,14 @@ msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
 
+#~ msgctxt "@title:window"
+#~ msgid "OpenPGP Certificate Export Finished"
+#~ msgstr "OpenPGP 憑證匯出完成"
+
+#~ msgctxt "@info"
+#~ msgid "OpenPGP certificates exported successfully."
+#~ msgstr "OpenPGP 憑證已成功匯出。"
+
 #~ msgid "GpgME library too old"
 #~ msgstr "GpgME 函式庫太舊了"
 
@@ -14556,11 +14562,6 @@ msgstr ""
 #~| msgid "Certification"
 #~ msgid "Revocation Error"
 #~ msgstr "憑證"
-
-#, fuzzy
-#~| msgid "Certification successful."
-#~ msgid "Revocation successful."
-#~ msgstr "憑證已成功確認。"
 
 #, fuzzy
 #~| msgid "Certification canceled."

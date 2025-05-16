@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-15 00:43+0000\n"
+"POT-Creation-Date: 2025-05-16 00:42+0000\n"
 "PO-Revision-Date: 2024-09-19 22:12+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -1801,12 +1801,6 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Σφάλμα εξαγωγής πιστοποιητικού OpenPGP"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:146
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export Finished"
-msgstr "Ολοκλήρωση εξαγωγής πιστοποιητικού OpenPGP"
-
 #: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
@@ -1851,10 +1845,11 @@ msgstr ""
 "message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation successful."
 msgctxt "@info"
-msgid "OpenPGP certificates exported successfully."
-msgstr "Η εξαγωγή των πιστοποιητικών OpenPGP έγινε με επιτυχία."
+msgid "Upload successful."
+msgstr "Επιτυχής ανάκληση."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -5117,12 +5112,16 @@ msgstr "Αποτυχία αντικατάστασης <filename>%1</filename>."
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt "@info Verified <file> with signature in <file>."
+msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
-"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr "Επαληθεύθηκε <filename>%1</filename> με <filename>%2</filename>"
+"Verified <filename>%2</filename> with signature in <filename>%3</filename>."
+msgid_plural ""
+"Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+"filename>."
+msgstr[0] "Επαληθεύθηκε <filename>%1</filename> με <filename>%2</filename>"
+msgstr[1] "Επαληθεύθηκε <filename>%1</filename> με <filename>%2</filename>"
 
-#: src/crypto/decryptverifytask.cpp:249
+#: src/crypto/decryptverifytask.cpp:251
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Writing key to file <filename>%1</filename> failed."
@@ -5130,7 +5129,7 @@ msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "Η εγγραφή του κλειδιού στο αρχείο <filename>%1</filename> απέτυχε."
 
-#: src/crypto/decryptverifytask.cpp:252
+#: src/crypto/decryptverifytask.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to delete <filename>%1</filename>."
@@ -5140,7 +5139,7 @@ msgctxt ""
 msgid "Unable to decrypt <filename>%1</filename>:"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/decryptverifytask.cpp:255
+#: src/crypto/decryptverifytask.cpp:257
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "Failed to delete <filename>%1</filename>."
@@ -5148,7 +5147,7 @@ msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "Αποτυχία διαγραφής του <filename>%1</filename>."
 
-#: src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:260
 #, fuzzy, kde-kuit-format
 #| msgctxt ""
 #| "Verification of a detached signature summary. The first file contains the "
@@ -5159,7 +5158,7 @@ msgid ""
 "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr "Επαληθεύθηκε <filename>%1</filename> με <filename>%2</filename>"
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:271
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "The data was encrypted to this key / certificate."
@@ -5167,12 +5166,12 @@ msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "Τα δεδομένα κρυπτογραφήθηκαν με αυτό το κλειδί / πιστοποιητικό."
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:275
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Χωρίς προστασία ακεραιότητας (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5180,7 +5179,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Η αποκρυπτογράφηση είναι %1."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5188,12 +5187,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Η αποκρυπτογράφηση <b>δεν είναι</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:302
+#: src/crypto/decryptverifytask.cpp:304
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Όνομα ενσωματωμένου αρχείου: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:308
+#: src/crypto/decryptverifytask.cpp:310
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5202,7 +5201,7 @@ msgstr ""
 "<b>Σημείωση:</b> Δεν μπορείτε να είστε βέβαιοι για το ποιος κρυπτογράφησε "
 "αυτό το μήνυμα καθώς δεν είναι υπογεγραμμένο."
 
-#: src/crypto/decryptverifytask.cpp:314
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5214,7 +5213,7 @@ msgstr ""
 "είναι μάλλον αποδεκτό.  Και είναι έτσι επειδή τότε η προστασία ακεραιότητας "
 "δεν ήταν διαδεδομένη."
 
-#: src/crypto/decryptverifytask.cpp:319
+#: src/crypto/decryptverifytask.cpp:321
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5226,7 +5225,7 @@ msgstr ""
 "Αν είστε σίγουροι ότι το αρχείο δεν τροποποιήθηκε θα πρέπει να το "
 "κρυπτογραφήσετε ξανά αφού το έχετε αποκρυπτογραφήσει."
 
-#: src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:537
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Failed to delete the key: %1"
@@ -5234,7 +5233,7 @@ msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "Αποτυχία διαγραφής του κλειδιού: %1"
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:540
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Failed to delete the key: %1"
@@ -5242,14 +5241,14 @@ msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "Αποτυχία διαγραφής του κλειδιού: %1"
 
-#: src/crypto/decryptverifytask.cpp:542
+#: src/crypto/decryptverifytask.cpp:544
 #, fuzzy, kde-format
 #| msgid "Successfully copied the certificate to the card."
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "Επιτυχώς αντιγράφτηκε το πιστοποιητικό στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:547
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -5257,7 +5256,7 @@ msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "Επιτυχώς αντιγράφτηκε το κλειδί στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:550
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -5265,7 +5264,7 @@ msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Επιτυχώς αντιγράφτηκε το κλειδί στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:553
+#: src/crypto/decryptverifytask.cpp:555
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Failed to delete the key: %1"
@@ -5273,7 +5272,7 @@ msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "Αποτυχία διαγραφής του κλειδιού: %1"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:558
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Failed to delete the key: %1"
@@ -5281,14 +5280,14 @@ msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "Αποτυχία διαγραφής του κλειδιού: %1"
 
-#: src/crypto/decryptverifytask.cpp:560
+#: src/crypto/decryptverifytask.cpp:562
 #, fuzzy, kde-format
 #| msgid "Successfully copied the certificate to the card."
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "Επιτυχώς αντιγράφτηκε το πιστοποιητικό στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:565
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -5296,7 +5295,7 @@ msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "Επιτυχώς αντιγράφτηκε το κλειδί στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:568
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Successfully copied the key to the card."
@@ -5304,7 +5303,7 @@ msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "Επιτυχώς αντιγράφτηκε το κλειδί στην κάρτα."
 
-#: src/crypto/decryptverifytask.cpp:598
+#: src/crypto/decryptverifytask.cpp:600
 #, fuzzy, kde-format
 #| msgid ""
 #| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
@@ -5317,25 +5316,25 @@ msgstr ""
 "<br/><b>Προειδοποίηση:</b> Η διεύθυνση email του αποστολέα δεν αποθηκεύτηκε "
 "στα πιστοποιητικά που χρησιμοποιούνται για υπογραφή."
 
-#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:946
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1127
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1347
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1558
+#: src/crypto/decryptverifytask.cpp:740 src/crypto/decryptverifytask.cpp:948
+#: src/crypto/decryptverifytask.cpp:1028 src/crypto/decryptverifytask.cpp:1129
+#: src/crypto/decryptverifytask.cpp:1181 src/crypto/decryptverifytask.cpp:1349
+#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Σύλληψη εξαίρεσης: %1"
 
-#: src/crypto/decryptverifytask.cpp:741 src/crypto/decryptverifytask.cpp:948
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1129
-#: src/crypto/decryptverifytask.cpp:1182 src/crypto/decryptverifytask.cpp:1349
-#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
+#: src/crypto/decryptverifytask.cpp:743 src/crypto/decryptverifytask.cpp:950
+#: src/crypto/decryptverifytask.cpp:1031 src/crypto/decryptverifytask.cpp:1131
+#: src/crypto/decryptverifytask.cpp:1184 src/crypto/decryptverifytask.cpp:1351
+#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1562
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Σύλληψη άγνωστης εξαίρεσης"
 
-#: src/crypto/decryptverifytask.cpp:795
+#: src/crypto/decryptverifytask.cpp:797
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5344,12 +5343,12 @@ msgstr ""
 "Αδυναμία προσδιορισμού αν πρόκειται για υπογραφή/κειμενοκώδικα S/MIME ή "
 "OpenPGP - μήπως δεν είναι ούτε κειμενοκώδικας ούτε υπογραφή;"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Αποκρυπτογράφηση %1..."
 
-#: src/crypto/decryptverifytask.cpp:1082
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5358,12 +5357,12 @@ msgstr ""
 "Αδυναμία προσδιορισμού αν αυτό ήταν S/MIME ή OpenPGP-κρυπτογραφημένο - μήπως "
 "δεν πρόκειται καθόλου για κειμενοκώδικα;"
 
-#: src/crypto/decryptverifytask.cpp:1090
+#: src/crypto/decryptverifytask.cpp:1092
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Αποκρυπτογράφηση: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1236 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1238 src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5372,12 +5371,12 @@ msgstr ""
 "Αδυναμία προσδιορισμού αν πρόκειται για υπογραφή S/MIME ή OpenPGP - μήπως "
 "δεν πρόκειται καθόλου για υπογραφή;"
 
-#: src/crypto/decryptverifytask.cpp:1244
+#: src/crypto/decryptverifytask.cpp:1246
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Επαλήθευση %1..."
 
-#: src/crypto/decryptverifytask.cpp:1506
+#: src/crypto/decryptverifytask.cpp:1508
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5385,7 +5384,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Επαλήθευση <filename>%1</filename> με <filename>%2</filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1510
+#: src/crypto/decryptverifytask.cpp:1512
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Επαλήθευση υπογραφής %1..."
@@ -13797,6 +13796,14 @@ msgstr ""
 "εξυπηρετητή κλειδιών χρησιμοποιήστε την επιλογή <interface>Αναζήτηση στον "
 "εξυπηρετητή</interface>."
 
+#~ msgctxt "@title:window"
+#~ msgid "OpenPGP Certificate Export Finished"
+#~ msgstr "Ολοκλήρωση εξαγωγής πιστοποιητικού OpenPGP"
+
+#~ msgctxt "@info"
+#~ msgid "OpenPGP certificates exported successfully."
+#~ msgstr "Η εξαγωγή των πιστοποιητικών OpenPGP έγινε με επιτυχία."
+
 #~ msgid "GpgME library too old"
 #~ msgstr "Βιβλιοθήκη GpgME πολύ παλαιά"
 
@@ -15673,9 +15680,6 @@ msgstr ""
 
 #~ msgid "Revocation Error"
 #~ msgstr "Σφάλμα ανάκλησης"
-
-#~ msgid "Revocation successful."
-#~ msgstr "Επιτυχής ανάκληση."
 
 #~ msgid "Revocation Succeeded"
 #~ msgstr "Η ανάκληση ήταν επιτυχημένη"

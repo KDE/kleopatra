@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-15 00:43+0000\n"
-"PO-Revision-Date: 2025-02-15 19:46+0200\n"
+"POT-Creation-Date: 2025-05-16 00:42+0000\n"
+"PO-Revision-Date: 2025-04-20 16:36+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1711,12 +1711,6 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Virhe OpenPGP-varmenteen viennissä"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:146
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export Finished"
-msgstr "OpenPGP-varmenteen vienti valmis"
-
 #: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
@@ -1755,10 +1749,11 @@ msgstr ""
 "<command>%1</command> tuloste oli:<nl /><message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation successful."
 msgctxt "@info"
-msgid "OpenPGP certificates exported successfully."
-msgstr "OpenPGP-varmenteiden vienti onnistui."
+msgid "Upload successful."
+msgstr "Peruminen onnistui."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -4731,21 +4726,15 @@ msgid "No backend support for %1"
 msgstr "Ei taustaosatukea: %1"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:175
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Failed to find encrypted or signed data in one or more files.<nl/>You can "
-#| "manually select what to do with the files now.<nl/>If they contain signed "
-#| "or encrypted data please report a bug (see Help->Report Bug)."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>If they "
 "contain signed or encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
 "Yhdestä tai useammasta tiedostosta ei löytynyt salattua tai allekirjoitettua "
-"tietoa.<nl/>Voit valita nyt itse, mitä tiedostoille tehdään.<nl/>Jos ne "
-"sisältävät allekirjoitettua tai salattua tietoa, ilmoita ohjelmavirheestä "
-"(katso Ohje | Ilmoita ohjelmavirheestä)."
+"tietoa.<nl/>Jos ne sisältävät allekirjoitettua tai salattua tietoa, ilmoita "
+"ohjelmavirheestä (katso Ohje | Ilmoita ohjelmavirheestä)."
 
 #: src/crypto/decryptverifyfilescontroller.cpp:265
 #, kde-kuit-format
@@ -4890,21 +4879,31 @@ msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Tiedoston <filename>%1</filename> todentaminen epäonnistui:"
 
 #: src/crypto/decryptverifytask.cpp:243
-#, kde-kuit-format
-msgctxt "@info Verified <file> with signature in <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
-"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr ""
+"Verified <filename>%2</filename> with signature in <filename>%3</filename>."
+msgid_plural ""
+"Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+"filename>."
+msgstr[0] ""
+"Varmennettu <filename>%1</filename> allekirjoituksella tiedostosta <filename>"
+"%2</filename>."
+msgstr[1] ""
 "Varmennettu <filename>%1</filename> allekirjoituksella tiedostosta <filename>"
 "%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:249
+#: src/crypto/decryptverifytask.cpp:251
 #, kde-format
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "Tiedoston <filename>%1</filename> salauksen purkaminen peruttiin."
 
-#: src/crypto/decryptverifytask.cpp:252
+#: src/crypto/decryptverifytask.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
@@ -4912,13 +4911,13 @@ msgctxt ""
 msgid "Unable to decrypt <filename>%1</filename>:"
 msgstr "Tiedoston <filename>%1</filename> salausta ei voida purkaa."
 
-#: src/crypto/decryptverifytask.cpp:255
+#: src/crypto/decryptverifytask.cpp:257
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "Tiedoston <filename>%1</filename> salaaminen purkaminen epäonnistui:"
 
-#: src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:260
 #, kde-kuit-format
 msgctxt "@info Successfully decrypted <file> as <file>."
 msgid ""
@@ -4927,19 +4926,19 @@ msgstr ""
 "Tiedoston <filename>%1</filename> salaus purettiin onnistuneesti tiedostoon "
 "<filename>%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr ""
 "Tietoa ei ole salattu varmenneluettelosi millekään salaiselle avaimelle."
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:275
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Ei eheyssuojaa (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4947,7 +4946,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Purkaminen on %1."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4955,12 +4954,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Purkaminen <b>ei ole</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:302
+#: src/crypto/decryptverifytask.cpp:304
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Upotettu tiedostonimi: ”%1”"
 
-#: src/crypto/decryptverifytask.cpp:308
+#: src/crypto/decryptverifytask.cpp:310
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -4969,7 +4968,7 @@ msgstr ""
 "<b>Huomaa:</b> Et voi olla varma viestin salaajasta, koska viestiä ei ole "
 "allekirjoitettu."
 
-#: src/crypto/decryptverifytask.cpp:314
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4982,7 +4981,7 @@ msgstr ""
 "<b>Vihje:</b> Jos tiedosto on salattu ennen vuotta 2003, tiedosto on "
 "todennäköisesti käypä. Tuolloin eheyssuoja ei vielä ollut laajalti käytössä."
 
-#: src/crypto/decryptverifytask.cpp:319
+#: src/crypto/decryptverifytask.cpp:321
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -4995,67 +4994,67 @@ msgstr ""
 "pakotettuasi salauksen purkamisen.Jos luotat siihen, ettei tiedostoa ole "
 "käsitelty, se tulisi salata uudelleen pakotettuasi salauksen purkamisen."
 
-#: src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:537
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "Muistikirjan salauksen purkaminen epäonnistui: %1"
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:540
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "Muistikirjan todentaminen epäonnistui: %1"
 
-#: src/crypto/decryptverifytask.cpp:542
+#: src/crypto/decryptverifytask.cpp:544
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "Muistikirjan salauksen purku ja todennus onnistui"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:547
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "Muistikirjan salauksen purku onnistui"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Muistikirjan todennus onnistui"
 
-#: src/crypto/decryptverifytask.cpp:553
+#: src/crypto/decryptverifytask.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "Leikepöydän salauksen purkaminen epäonnistui: %1"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:558
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "Leikepöydän todentaminen epäonnistui: %1"
 
-#: src/crypto/decryptverifytask.cpp:560
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "Leikepöydän salauksen purku ja todennus onnistui"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:565
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "Leikepöydän salauksen purku onnistui"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:568
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "Leikepöydän todennus onnistui"
 
-#: src/crypto/decryptverifytask.cpp:598
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5065,25 +5064,25 @@ msgstr ""
 "Varoitus: Lähettäjän osoitetta ei ole talletettu allekirjoittamisessa "
 "käytettyyn <a href=\"key:%1\">varmenteeseen</a>. Talletettu: <ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:946
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1127
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1347
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1558
+#: src/crypto/decryptverifytask.cpp:740 src/crypto/decryptverifytask.cpp:948
+#: src/crypto/decryptverifytask.cpp:1028 src/crypto/decryptverifytask.cpp:1129
+#: src/crypto/decryptverifytask.cpp:1181 src/crypto/decryptverifytask.cpp:1349
+#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Kohdattiin poikkeus: %1"
 
-#: src/crypto/decryptverifytask.cpp:741 src/crypto/decryptverifytask.cpp:948
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1129
-#: src/crypto/decryptverifytask.cpp:1182 src/crypto/decryptverifytask.cpp:1349
-#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
+#: src/crypto/decryptverifytask.cpp:743 src/crypto/decryptverifytask.cpp:950
+#: src/crypto/decryptverifytask.cpp:1031 src/crypto/decryptverifytask.cpp:1131
+#: src/crypto/decryptverifytask.cpp:1184 src/crypto/decryptverifytask.cpp:1351
+#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1562
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Kohdattiin tuntematon poikkeus"
 
-#: src/crypto/decryptverifytask.cpp:795
+#: src/crypto/decryptverifytask.cpp:797
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5092,12 +5091,12 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-allekirjoitettu tai -"
 "salattu – onkokaan tämä allekirjoitus tai salattu viesti?"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Puretaan salausta: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1082
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5106,12 +5105,12 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-salattu – onkokaan tämä "
 "salattu viesti?"
 
-#: src/crypto/decryptverifytask.cpp:1090
+#: src/crypto/decryptverifytask.cpp:1092
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Puretaan salausta: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1236 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1238 src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5120,12 +5119,12 @@ msgstr ""
 "Ei voitu päätellä, onko tämä S/MIME- vai OpenPGP-allekirjoitus – onkokaan "
 "tämä allekirjoitus?"
 
-#: src/crypto/decryptverifytask.cpp:1244
+#: src/crypto/decryptverifytask.cpp:1246
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Todennetaan %1…"
 
-#: src/crypto/decryptverifytask.cpp:1506
+#: src/crypto/decryptverifytask.cpp:1508
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5135,7 +5134,7 @@ msgstr ""
 "Todennetaan <filename>%1</filename> allekirjoituksella <filename>%2</"
 "filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1510
+#: src/crypto/decryptverifytask.cpp:1512
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Todennetaan allekirjoitusta %1…"
@@ -5391,7 +5390,7 @@ msgstr "Näytä sähköposti"
 #, kde-format
 msgctxt "@option:check"
 msgid "Close window automatically on success"
-msgstr ""
+msgstr "Sulje ikkuna onnistuneen toiminnon jälkeen automaattisesti"
 
 #: src/crypto/gui/signemailwizard.cpp:69
 #, kde-format
@@ -7485,12 +7484,10 @@ msgid "Run Command"
 msgstr "Suorita komento"
 
 #: src/dialogs/debugdialog.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Search groups"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search in output"
-msgstr "Etsi ryhmiä"
+msgstr "Etsi tulosteesta"
 
 #: src/dialogs/debugdialog.cpp:138 src/view/searchbar.cpp:131
 #, kde-format
@@ -7502,27 +7499,25 @@ msgstr "Anna hakulause"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to next match"
-msgstr ""
+msgstr "Hyppää seuraavaan osumaan"
 
 #: src/dialogs/debugdialog.cpp:157
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Find Next"
-msgstr "Seuraava"
+msgstr "Etsi seuraava"
 
 #: src/dialogs/debugdialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to previous match"
-msgstr ""
+msgstr "Hyppää edelliseen osumaan"
 
 #: src/dialogs/debugdialog.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Find Previous"
-msgstr ""
+msgstr "Etsi edellinen"
 
 #: src/dialogs/debugdialog.cpp:176
 #, kde-format
@@ -8001,8 +7996,7 @@ msgid "Keyserver"
 msgstr "Avainpalvelin"
 
 #: src/dialogs/padwindow.cpp:58
-#, fuzzy, kde-format
-#| msgid "Notepad"
+#, kde-format
 msgctxt "@title:window"
 msgid "Notepad"
 msgstr "Muistikirja"
@@ -9478,10 +9472,9 @@ msgstr "Salli mukautetut vianjäljityskomennot"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
 #: src/kcfg/settings.kcfg:263
-#, fuzzy, kde-format
-#| msgid "Show results after encryption"
+#, kde-format
 msgid "Show results after signing and encrypting files"
-msgstr "Näytä salauksen jälkeen tulokset"
+msgstr "Näytä tiedostojen allekirjoittamisen tai salaamisen jälkeen tulokset"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/settings.kcfg:269
@@ -13198,6 +13191,14 @@ msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
 
+#~ msgctxt "@title:window"
+#~ msgid "OpenPGP Certificate Export Finished"
+#~ msgstr "OpenPGP-varmenteen vienti valmis"
+
+#~ msgctxt "@info"
+#~ msgid "OpenPGP certificates exported successfully."
+#~ msgstr "OpenPGP-varmenteiden vienti onnistui."
+
 #~ msgid "GpgME library too old"
 #~ msgstr "GpgME-kirjasto on liian vanha"
 
@@ -15078,9 +15079,6 @@ msgstr ""
 
 #~ msgid "Revocation Error"
 #~ msgstr "Perumisvirhe"
-
-#~ msgid "Revocation successful."
-#~ msgstr "Peruminen onnistui."
 
 #~ msgid "Revocation Succeeded"
 #~ msgstr "Peruminen onnistui"

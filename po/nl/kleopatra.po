@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-15 00:43+0000\n"
-"PO-Revision-Date: 2025-03-28 17:41+0100\n"
+"POT-Creation-Date: 2025-05-16 00:42+0000\n"
+"PO-Revision-Date: 2025-05-15 16:26+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.04.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1733,12 +1733,6 @@ msgctxt "@title:window"
 msgid "OpenPGP Certificate Export Error"
 msgstr "Fout bij exporteren van openPGP certificaat"
 
-#: src/commands/exportopenpgpcertstoservercommand.cpp:146
-#, kde-format
-msgctxt "@title:window"
-msgid "OpenPGP Certificate Export Finished"
-msgstr "Export van openPGP certificaat voltooid"
-
 #: src/commands/exportopenpgpcertstoservercommand.cpp:152
 #, kde-kuit-format
 msgctxt "@info"
@@ -1778,10 +1772,11 @@ msgstr ""
 "<message>%2</message></para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Revocation successful."
 msgctxt "@info"
-msgid "OpenPGP certificates exported successfully."
-msgstr "Export van openPGP certificaten geslaagd."
+msgid "Upload successful."
+msgstr "Herroepen had succes."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -3746,19 +3741,22 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>Uitgeschakeld certificaten kunnen niet geselecteerd worden voor "
+"ondertekenen of versleuteling. Ze zijn alleen zichtbaar wanneer het filter "
+"<interface>%2</interface> actief is.</para><para>U kunt deze actie op elk "
+"moment ongedaan maken door omschakelen naar het filter <interface>%2</"
+"interface> en het certificaat opnieuw in te schakelen.</para><para><emphasis "
+"strong='true'>Bent u zeker om het volgende certificaat uit te schakelen en "
+"te verbergen?</emphasis></para><list><item>%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Disable Certificate"
 msgstr "Certificaat uitschakelen"
 
 #: src/commands/togglecertificateenabledcommand.cpp:128
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Disable Certificate"
 msgstr "Certificaat uitschakelen"
@@ -4969,21 +4967,31 @@ msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Verifiëren van <filename>%1</filename> is mislukt:"
 
 #: src/crypto/decryptverifytask.cpp:243
-#, kde-kuit-format
-msgctxt "@info Verified <file> with signature in <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
-"Verified <filename>%1</filename> with signature in <filename>%2</filename>."
-msgstr ""
+"Verified <filename>%2</filename> with signature in <filename>%3</filename>."
+msgid_plural ""
+"Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+"filename>."
+msgstr[0] ""
+"Geverifieerd <filename>%1</filename> met ondertekening in <filename>%2</"
+"filename>"
+msgstr[1] ""
 "Geverifieerd <filename>%1</filename> met ondertekening in <filename>%2</"
 "filename>"
 
-#: src/crypto/decryptverifytask.cpp:249
+#: src/crypto/decryptverifytask.cpp:251
 #, kde-format
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr "Ontcijferen van <filename>%1</filename> is geannuleerd."
 
-#: src/crypto/decryptverifytask.cpp:252
+#: src/crypto/decryptverifytask.cpp:254
 #, kde-kuit-format
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
@@ -4991,13 +4999,13 @@ msgctxt ""
 msgid "Unable to decrypt <filename>%1</filename>:"
 msgstr "Ontcijferen van <filename>%1</filename> lukt niet:"
 
-#: src/crypto/decryptverifytask.cpp:255
+#: src/crypto/decryptverifytask.cpp:257
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "Ontcijferen van <filename>%1</filename> is mislukt:"
 
-#: src/crypto/decryptverifytask.cpp:258
+#: src/crypto/decryptverifytask.cpp:260
 #, kde-kuit-format
 msgctxt "@info Successfully decrypted <file> as <file>."
 msgid ""
@@ -5005,7 +5013,7 @@ msgid ""
 msgstr ""
 "Met succes <filename>%1</filename> ontcijferd als <filename>%2</filename>"
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
@@ -5013,12 +5021,12 @@ msgstr ""
 "De gegevens waren versleuteld met geen enkele sleutel in uw lijst met "
 "certificaten."
 
-#: src/crypto/decryptverifytask.cpp:273
+#: src/crypto/decryptverifytask.cpp:275
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Geen bescherming van integriteit (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:289
+#: src/crypto/decryptverifytask.cpp:291
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5026,7 +5034,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "De ontcijfering is %1."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -5034,12 +5042,12 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "De ontcijfering <b>is niet</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:302
+#: src/crypto/decryptverifytask.cpp:304
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "Ingebedde bestandsnaam: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:308
+#: src/crypto/decryptverifytask.cpp:310
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5048,7 +5056,7 @@ msgstr ""
 "<b>OPmerking:</b> U kun niet zeker van zijn wie dit bericht heeft "
 "versleuteld omdat het niet is ondertekend."
 
-#: src/crypto/decryptverifytask.cpp:314
+#: src/crypto/decryptverifytask.cpp:316
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5060,7 +5068,7 @@ msgstr ""
 "waarschijnlijk dat het bestand legitiem is.  Dit komt omdat in die tijd "
 "bescherming van integriteit niet breed werd gebruikt."
 
-#: src/crypto/decryptverifytask.cpp:319
+#: src/crypto/decryptverifytask.cpp:321
 #, kde-format
 msgctxt ""
 "The user is offered to force decrypt a non integrity protected message. With "
@@ -5072,67 +5080,67 @@ msgstr ""
 "Als u er op vertrouwt dat het bestand niet is gemanipuleerd, dan zou u het "
 "opnieuw moeten versleutelen nadat u ontcijfering hebt afgedwongen."
 
-#: src/crypto/decryptverifytask.cpp:535
+#: src/crypto/decryptverifytask.cpp:537
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "Het notepad te ontcijferen is mislukt: %1"
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:540
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "Het notepad verifiëren is mislukt: %1"
 
-#: src/crypto/decryptverifytask.cpp:542
+#: src/crypto/decryptverifytask.cpp:544
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "Het notepad ontcijferen en verifiëren heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:547
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "Het notepad ontcijferen heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Het notepad verifiëren heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:553
+#: src/crypto/decryptverifytask.cpp:555
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "Het klembord ontcijferen is mislukt: %1"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:558
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "Het klembord verifiëren is mislukt: %1"
 
-#: src/crypto/decryptverifytask.cpp:560
+#: src/crypto/decryptverifytask.cpp:562
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "Het klembord ontcijferen en verifiëren heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:565
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "Het klembord ontcijferen heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:568
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "Het klembord verifiëren heeft succes"
 
-#: src/crypto/decryptverifytask.cpp:598
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5143,25 +5151,25 @@ msgstr ""
 "ondertekening gebruikte <a href=\"key:%1\">certificaat</a>. Opgeslagen:<ul>"
 "%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:738 src/crypto/decryptverifytask.cpp:946
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1127
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1347
-#: src/crypto/decryptverifytask.cpp:1424 src/crypto/decryptverifytask.cpp:1558
+#: src/crypto/decryptverifytask.cpp:740 src/crypto/decryptverifytask.cpp:948
+#: src/crypto/decryptverifytask.cpp:1028 src/crypto/decryptverifytask.cpp:1129
+#: src/crypto/decryptverifytask.cpp:1181 src/crypto/decryptverifytask.cpp:1349
+#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Uitzondering gevangen: %1"
 
-#: src/crypto/decryptverifytask.cpp:741 src/crypto/decryptverifytask.cpp:948
-#: src/crypto/decryptverifytask.cpp:1029 src/crypto/decryptverifytask.cpp:1129
-#: src/crypto/decryptverifytask.cpp:1182 src/crypto/decryptverifytask.cpp:1349
-#: src/crypto/decryptverifytask.cpp:1426 src/crypto/decryptverifytask.cpp:1560
+#: src/crypto/decryptverifytask.cpp:743 src/crypto/decryptverifytask.cpp:950
+#: src/crypto/decryptverifytask.cpp:1031 src/crypto/decryptverifytask.cpp:1131
+#: src/crypto/decryptverifytask.cpp:1184 src/crypto/decryptverifytask.cpp:1351
+#: src/crypto/decryptverifytask.cpp:1428 src/crypto/decryptverifytask.cpp:1562
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Onbekende uitzondering ontvangen"
 
-#: src/crypto/decryptverifytask.cpp:795
+#: src/crypto/decryptverifytask.cpp:797
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5170,12 +5178,12 @@ msgstr ""
 "Kon niet bepalen of dit een S/MIME of een OpenPGP ondertekening/"
 "versleuteltekst is - misschien is het geen van beide?"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:805
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Ontcijferen van %1..."
 
-#: src/crypto/decryptverifytask.cpp:1082
+#: src/crypto/decryptverifytask.cpp:1084
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5184,12 +5192,12 @@ msgstr ""
 "Kon niet bepalen of dit versleuteld is met S/MIME of OpenPGP - misschien is "
 "het helemaal geen versleutelingstekst?"
 
-#: src/crypto/decryptverifytask.cpp:1090
+#: src/crypto/decryptverifytask.cpp:1092
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Ontcijferen: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1236 src/crypto/decryptverifytask.cpp:1488
+#: src/crypto/decryptverifytask.cpp:1238 src/crypto/decryptverifytask.cpp:1490
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5198,12 +5206,12 @@ msgstr ""
 "Kon niet bepalen of dit een S/MIME of een OpenPGP ondertekening is - "
 "misschien is het helemaal geen ondertekening?"
 
-#: src/crypto/decryptverifytask.cpp:1244
+#: src/crypto/decryptverifytask.cpp:1246
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Verifiëren van %1..."
 
-#: src/crypto/decryptverifytask.cpp:1506
+#: src/crypto/decryptverifytask.cpp:1508
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5213,7 +5221,7 @@ msgstr ""
 "Bezig met verifiëren van: <filename>%1</filename> met <filename>%2</"
 "filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1510
+#: src/crypto/decryptverifytask.cpp:1512
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Ondertekening verifiëren %1..."
@@ -12472,20 +12480,16 @@ msgid "Import CRL From File..."
 msgstr "CRL van bestand importeren..."
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Enable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
-msgstr "Certificaat inschakelen"
+msgstr "Certificaat inschakelen en tonen"
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
-msgstr "Certificaat uitschakelen"
+msgstr "Certificaat uitschakelen en verbergen"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
@@ -13362,6 +13366,14 @@ msgstr ""
 "Certificaat importeren uit een bestand.<nl/>Om te importeren uit een "
 "publieke sleutelserver gebruik in plaats daarvan <interface>Op server "
 "opzoeken</interface>."
+
+#~ msgctxt "@title:window"
+#~ msgid "OpenPGP Certificate Export Finished"
+#~ msgstr "Export van openPGP certificaat voltooid"
+
+#~ msgctxt "@info"
+#~ msgid "OpenPGP certificates exported successfully."
+#~ msgstr "Export van openPGP certificaten geslaagd."
 
 #~ msgid "GpgME library too old"
 #~ msgstr "GpgME-bibliotheek te oud"
@@ -15248,9 +15260,6 @@ msgstr ""
 
 #~ msgid "Revocation Error"
 #~ msgstr "Fout bij herroepen"
-
-#~ msgid "Revocation successful."
-#~ msgstr "Herroepen had succes."
 
 #~ msgid "Revocation Succeeded"
 #~ msgstr "Intrekking had succes"
