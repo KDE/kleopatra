@@ -27,6 +27,8 @@
 
 #include <gpgme++/importresult.h>
 
+#include <QProgressDialog>
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -70,6 +72,8 @@ private:
     ImportResult keyserverResult;
     ImportResult wkdRefreshResult;
     std::optional<Error> smimeError;
+
+    QPointer<QProgressDialog> progressDialog;
 };
 
 RefreshCertificatesCommand::Private *RefreshCertificatesCommand::d_func()
@@ -111,6 +115,13 @@ void RefreshCertificatesCommand::Private::start()
     std::unique_ptr<QGpgME::Job> wkdRefreshJob;
 
     auto keysByProtocol = Kleo::partitionKeysByProtocol(keys());
+
+    progressDialog = new QProgressDialog(i18ncp("@info", "Updating certificate…", "Updating %1 certificates…", keys().size()),
+                                         i18nc("@action:button", "Cancel"),
+                                         0,
+                                         0,
+                                         parentWidgetOrView());
+    connect(progressDialog.get(), &QProgressDialog::canceled, q, &RefreshCertificatesCommand::cancel);
 
     pgpKeys = keysByProtocol.openpgp;
     smimeKeys = keysByProtocol.cms;
@@ -154,6 +165,8 @@ void RefreshCertificatesCommand::Private::cancel()
     pgpJob.clear();
     smimeJob.clear();
     wkdJob.clear();
+
+    delete progressDialog;
 
     smimeError = Error::fromCode(GPG_ERR_CANCELED);
 }
@@ -367,6 +380,8 @@ void RefreshCertificatesCommand::Private::checkFinished()
     if (smimeJob || pgpJob || wkdJob) {
         return;
     }
+
+    delete progressDialog;
 
     if (smimeError && smimeError->code() == GPG_ERR_CANCELED) {
         finished();
