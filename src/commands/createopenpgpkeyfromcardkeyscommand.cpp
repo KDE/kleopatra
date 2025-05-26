@@ -26,6 +26,7 @@
 
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
+#include <qgpgme/qgpgme_version.h>
 
 #include <gpgme++/context.h>
 #include <gpgme++/engineinfo.h>
@@ -160,8 +161,13 @@ void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogAccepted()
 
     const QString userID = Formatting::prettyNameAndEMail(OpenPGP, QString(), dialog->name(), dialog->email());
     const QDateTime expires = QDateTime();
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+    const Context::CreationFlags flags = Context::CreateForce;
+    job->startCreate(userID, "card", expires, flags);
+#else
     const unsigned int flags = GPGME_CREATE_FORCE;
     job->startCreate(userID, "card", expires, Key(), flags);
+#endif
 }
 
 void CreateOpenPGPKeyFromCardKeysCommand::Private::slotDialogRejected()

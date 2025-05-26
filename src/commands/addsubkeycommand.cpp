@@ -16,6 +16,7 @@
 
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
+#include <qgpgme/qgpgme_version.h>
 
 #include <QDateTime>
 
@@ -79,6 +80,19 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
 
     createJob();
     QString usage;
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+    Context::CreationFlags flags{0};
+    if (dialog->usage().canEncrypt()) {
+        flags |= Context::CreateEncrypt;
+        usage = QLatin1StringView("encr");
+    } else if (dialog->usage().canSign()) {
+        flags |= Context::CreateSign;
+        usage = QLatin1StringView("sign");
+    } else if (dialog->usage().canAuthenticate()) {
+        flags |= Context::CreateAuthenticate;
+        usage = QLatin1StringView("auth");
+    }
+#else
     unsigned int flags = 0;
     if (dialog->usage().canEncrypt()) {
         flags |= GPGME_CREATE_ENCR;
@@ -90,6 +104,7 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
         flags |= GPGME_CREATE_AUTH;
         usage = QLatin1StringView("auth");
     }
+#endif
     QString algoString = dialog->algo();
     if (algoString.startsWith(QLatin1StringView("curve"))) {
         if (dialog->usage().canEncrypt()) {
@@ -101,7 +116,11 @@ void AddSubkeyCommand::Private::slotDialogAccepted()
         algoString = QLatin1StringView("%1/%2").arg(algoString, usage);
     }
     algo = algoString.toLatin1();
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+    job->startAddSubkey(key(), algo, QDateTime(dialog->expires(), QTime()), flags);
+#else
     job->startAddSubkey(key(), algo.data(), QDateTime(dialog->expires(), QTime()), flags);
+#endif
 }
 
 void AddSubkeyCommand::Private::slotDialogRejected()
