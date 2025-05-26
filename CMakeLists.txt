@@ -18,6 +18,10 @@ set(KLEOPATRA_VERSION_MINOR "0")
 set(KLEOPATRA_VERSION_MICRO "0")
 
 set(kleopatra_version "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_MICRO}.${KDE_APPLICATIONS_COMPACT_VERSION}")
+# KLEOPATRA_VERSION_STRING is used for the About data; Gpg4win sets it to a custom value
+if (NOT KLEOPATRA_VERSION_STRING)
+    set(KLEOPATRA_VERSION_STRING "${kleopatra_version}")
+endif()
 # The following is for Windows
 set(kleopatra_version_win "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_MICRO}")
 set(kleopatra_fileversion_win "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_MICRO},0")
@@ -166,7 +170,7 @@ if(NOT kleopatra_release)
             string(REGEX REPLACE "^([0-9]+)-([0-9]+)-([0-9]+)T([0-9]+):([0-9]+):([0-9]+).*$" "\\1\\2\\3T\\4\\5\\6"
                    Kleopatra_WC_LAST_CHANGED_DATE "${Kleopatra_WC_LAST_CHANGED_DATE}")
 
-            set(kleopatra_version "${kleopatra_version}+git${Kleopatra_WC_LAST_CHANGED_DATE}~${Kleopatra_WC_REVISION}")
+            set(KLEOPATRA_VERSION_STRING "${KLEOPATRA_VERSION_STRING}+git${Kleopatra_WC_LAST_CHANGED_DATE}~${Kleopatra_WC_REVISION}")
         endif()
     endif()
 endif()
