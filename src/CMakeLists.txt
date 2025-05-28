@@ -184,10 +184,6 @@ set(_kleopatra_SRCS
   commands/pivgeneratecardkeycommand.h
   commands/refreshcertificatescommand.cpp
   commands/refreshcertificatescommand.h
-  commands/refreshopenpgpcertscommand.cpp
-  commands/refreshopenpgpcertscommand.h
-  commands/refreshx509certscommand.cpp
-  commands/refreshx509certscommand.h
   commands/reloadkeyscommand.cpp
   commands/reloadkeyscommand.h
   commands/revokecertificationcommand.cpp

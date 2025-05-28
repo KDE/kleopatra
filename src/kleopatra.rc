@@ -24,23 +24,10 @@
             <Separator/>
             <Action name="quit" />
         </Menu>
-        <Menu name="view">
-            <text>&amp;View</text>
-            <Action name="view_redisplay"/>
-            <Separator/>
-            <Action name="view_stop_operations"/>
-            <Action name="view_certificate_details"/>
-            <Separator/>
-            <Action name="window_view_hierarchical"/>
-            <Separator/>
-            <Action name="window_expand_all"/>
-            <Action name="window_collapse_all"/>
-            <Separator/>
-            <Action name="pad_view"/>
-            <Action name="manage_smartcard"/>
-        </Menu>
         <Menu name="certMenu">
             <text>&amp;Certificates</text>
+            <Action name="view_certificate_details"/>
+            <Separator/>
             <Action name="certificates_refresh"/>
             <Separator/>
             <Action name="certificates_change_owner_trust"/>
@@ -62,13 +49,16 @@
             <Separator/>
             <Action name="certificate_to_card"/>
         </Menu>
-        <Menu name="tools">
+        <Menu name="_tools">
             <text>&amp;Tools</text>
+            <Action name="settings_self_test"/>
             <Action name="tools_start_kwatchgnupg"/>
             <Action name="tools_debug_view"/>
             <Separator/>
-            <Action name="tools_refresh_x509_certificates"/>
-            <Action name="tools_refresh_openpgp_certificates"/>
+            <Action name="pad_view"/>
+            <Action name="manage_smartcard"/>
+            <Separator/>
+            <Action name="configure_groups"/>
             <Separator/>
             <Action name="clipboard_menu"/>
             <Separator/>
@@ -79,22 +69,21 @@
             <Separator/>
             <Action name="tools_restart_backend"/>
         </Menu>
+        <Menu name="_view">
+            <text>&amp;View</text>
+            <Action name="view_redisplay"/>
+            <Separator/>
+            <Action name="window_view_hierarchical"/>
+            <Separator/>
+            <Action name="window_expand_all"/>
+            <Action name="window_collapse_all"/>
+            <Separator/>
+            <Action name="pad_view"/>
+            <Action name="manage_smartcard"/>
+        </Menu>
         <Menu name="settings">
             <text>&amp;Settings</text>
             <Action name="colorscheme_menu" group="show_merge"/>
-            <Action name="settings_self_test"/>
-            <Action name="configure_groups" append="configure_merge"/>
-        </Menu>
-        <Menu name="window" append="settings_merge">
-            <text>&amp;Window</text>
-            <Action name="window_rename_tab"/>
-            <Separator/>
-            <Action name="window_new_tab"/>
-            <Action name="window_duplicate_tab"/>
-            <Action name="window_close_tab"/>
-            <Separator/>
-            <Action name="window_move_tab_left"/>
-            <Action name="window_move_tab_right"/>
         </Menu>
         <Menu name="help">
             <text>&amp;Help</text>
