@@ -33,6 +33,9 @@ if (NOT KLEOPATRA_APPLICATION_NAME)
     # This is used to allow multiple flavors of Kleopatra to run at the same time on Windows
     set(KLEOPATRA_APPLICATION_NAME "kleopatra")
 endif()
+if (KLEOPATRA_LIST_AS_COMPONENT)
+    set(KLEOPATRA_LIST_AS_COMPONENT 1)
+endif()
 
 project(kleopatra VERSION ${kleopatra_version})
 

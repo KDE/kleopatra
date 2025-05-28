@@ -33,6 +33,8 @@
 #define VERSION_RELPATH "/../VERSION"
 #endif
 
+using namespace Qt::Literals::StringLiterals;
+
 struct about_data {
     const KLazyLocalizedString name;
     const KLazyLocalizedString description;
@@ -140,6 +142,13 @@ AboutData::AboutData()
     for (const auto &credit : credits) {
         addCredit(credit.name.toString(), credit.description.toString());
     }
+
+#if KLEOPATRA_LIST_AS_COMPONENT
+    const QLatin1StringView commitId{KLEOPATRA_COMMIT_ID};
+    if (!commitId.isEmpty()) {
+        addComponent(i18n("Kleopatra"), i18n("Certificate manager and cryptography app"), commitId, u"https://apps.kde.org/kleopatra"_s, KAboutLicense::GPL);
+    }
+#endif
 
     loadCustomAboutData(*this);
 }
