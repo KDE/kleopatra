@@ -449,16 +449,6 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
-        // View menu
-        {
-            "view_redisplay",
-            i18n("Redisplay"),
-            QString(),
-            "view-refresh",
-            nullptr,
-            nullptr,
-            QStringLiteral("F5"),
-        },
         {
             "view_stop_operations",
             i18n("Stop Operation"),
@@ -584,12 +574,22 @@ void KeyListController::createActions(KActionCollection *coll)
         // Tools menu
         {
             "tools_refresh_openpgp_certificates",
-            i18n("Refresh OpenPGP Certificates"),
+            i18n("Refresh all OpenPGP Certificates"),
             QString(),
             "view-refresh",
             nullptr,
             nullptr,
             QString(),
+        },
+        // View menu
+        {
+            "redisplay",
+            i18n("Redisplay"),
+            QString(),
+            "view-refresh",
+            nullptr,
+            nullptr,
+            QStringLiteral("F5"),
         },
         // Context Menu
         {
@@ -663,7 +663,7 @@ void KeyListController::createActions(KActionCollection *coll)
         // Tools menu
         {
             "tools_refresh_x509_certificates",
-            i18n("Refresh S/MIME Certificates"),
+            i18n("Refresh all S/MIME Certificates"),
             QString(),
             "view-refresh",
             nullptr,
