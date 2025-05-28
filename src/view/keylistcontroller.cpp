@@ -46,8 +46,6 @@
 #include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
 #include "commands/refreshcertificatescommand.h"
-#include "commands/refreshopenpgpcertscommand.h"
-#include "commands/refreshx509certscommand.h"
 #include "commands/reloadkeyscommand.h"
 #include "commands/revokecertificationcommand.h"
 #include "commands/revokekeycommand.h"
@@ -449,29 +447,6 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
-        // View menu
-        {
-            "view_redisplay",
-            i18n("Redisplay"),
-            QString(),
-            "view-refresh",
-            nullptr,
-            nullptr,
-            QStringLiteral("F5"),
-        },
-        {
-            "view_stop_operations",
-            i18n("Stop Operation"),
-            QString(),
-            "process-stop",
-            this,
-            [this](bool) {
-                cancelCommands();
-            },
-            QStringLiteral("Escape"),
-            RegularQAction,
-            Disabled,
-        },
         {
             "view_certificate_details",
             i18n("Details"),
@@ -581,15 +556,15 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             QString(),
         },
-        // Tools menu
+        // View menu
         {
-            "tools_refresh_openpgp_certificates",
-            i18n("Refresh OpenPGP Certificates"),
+            "redisplay",
+            i18n("Redisplay"),
             QString(),
             "view-refresh",
             nullptr,
             nullptr,
-            QString(),
+            QStringLiteral("F5"),
         },
         // Context Menu
         {
@@ -657,16 +632,6 @@ void KeyListController::createActions(KActionCollection *coll)
             i18n("Technical Details"),
             QString(),
             nullptr,
-            nullptr,
-            nullptr,
-            QString(),
-        },
-        // Tools menu
-        {
-            "tools_refresh_x509_certificates",
-            i18n("Refresh S/MIME Certificates"),
-            QString(),
-            "view-refresh",
             nullptr,
             nullptr,
             QString(),
@@ -776,9 +741,6 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<RefreshCertificatesCommand>(coll->action(QStringLiteral("certificates_refresh")));
     //---
     registerActionForCommand<DumpCertificateCommand>(coll->action(QStringLiteral("certificates_dump_certificate")));
-
-    registerActionForCommand<RefreshX509CertsCommand>(coll->action(QStringLiteral("tools_refresh_x509_certificates")));
-    registerActionForCommand<RefreshOpenPGPCertsCommand>(coll->action(QStringLiteral("tools_refresh_openpgp_certificates")));
     //---
     registerActionForCommand<ImportCrlCommand>(coll->action(QStringLiteral("crl_import_crl")));
     //---

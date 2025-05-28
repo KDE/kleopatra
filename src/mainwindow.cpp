@@ -529,7 +529,7 @@ void MainWindow::Private::setupActions()
 #endif
         {
             "tools_debug_view",
-            i18n("Show GnuPG Configuration"),
+            i18n("GnuPG Command Line"),
             QString(),
             "",
             q,
@@ -602,7 +602,7 @@ void MainWindow::Private::setupActions()
         },
         {
             "configure_groups",
-            i18n("Configure Groups..."),
+            i18n("Manage Groups..."),
             QString(),
             "group",
             q,
