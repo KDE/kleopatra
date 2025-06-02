@@ -101,7 +101,7 @@ public:
         notAvailableLabel->setVisible(false);
         vLay->addWidget(notAvailableLabel);
 
-        detailsAction = new QAction{QIcon::fromTheme(QStringLiteral("dialog-information")), i18nc("@action", "Show Certificate Details"), q};
+        detailsAction = new QAction{QIcon::fromTheme(QStringLiteral("info")), i18nc("@action", "Show Certificate Details"), q};
         connect(detailsAction, &QAction::triggered, q, [this]() {
             showCertificateDetails();
         });

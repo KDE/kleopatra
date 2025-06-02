@@ -100,7 +100,7 @@ SmartCardActions::SmartCardActions()
     addAction(u"card_slot_show_certificate_details"_s, //
               i18nc("@action", "Show Certificate Details"),
               {},
-              QIcon::fromTheme(u"dialog-information"_s));
+              QIcon::fromTheme(u"info"_s));
     addAction(u"card_slot_generate_key"_s, //
               i18nc("@action", "Generate New Key"),
               i18nc("@info:tooltip", "If the card slot already contains a key then the new key will irrevocably replace the old key."),

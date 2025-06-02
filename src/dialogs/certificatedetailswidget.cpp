@@ -220,7 +220,7 @@ private:
                 row++;
                 smimeIssuerField = std::make_unique<InfoField>(i18n("Issuer:"), parent);
                 showIssuerCertificateAction = new QAction{parent};
-                showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("dialog-information")));
+                showIssuerCertificateAction->setIcon(QIcon::fromTheme(QStringLiteral("info")));
                 showIssuerCertificateAction->setToolTip(i18nc("@info:tooltip", "Show the issuer certificate"));
                 Kleo::setAccessibleName(showIssuerCertificateAction, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);

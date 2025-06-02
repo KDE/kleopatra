@@ -476,7 +476,7 @@ void KeyListController::createActions(KActionCollection *coll)
             "view_certificate_details",
             i18n("Details"),
             QString(),
-            "dialog-information",
+            "info",
             nullptr,
             nullptr,
             QString(),
