@@ -39,13 +39,7 @@ target_link_libraries(test_verify QGpgmeQt6)
 
   set(test_uiserver_SRCS test_uiserver.cpp ${CMAKE_SOURCE_DIR}/src/utils/wsastarter.cpp)
 
-#FIXME: omitting TEST makes test_uiserver print output again on a Win32 console;
-# find a better fix for this issue
-  if(WIN32)
-    add_executable(test_uiserver ${test_uiserver_SRCS})
-  else()
-    add_executable(test_uiserver ${test_uiserver_SRCS})
-  endif()
+  add_executable(test_uiserver ${test_uiserver_SRCS})
 
   target_link_libraries(test_uiserver KF6::I18n KPim6::Libkleo LibAssuan::LibAssuan LibGpgError::LibGpgError)
 
