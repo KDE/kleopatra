@@ -27,12 +27,12 @@ using namespace Kleo;
    This is similar to what pinentry-qt does on Windows.
    */
 #ifdef Q_OS_WIN
-WINBOOL SetForegroundWindowEx(HWND hWnd)
+BOOL SetForegroundWindowEx(HWND hWnd)
 {
     // Attach foreground window thread to our thread
     const DWORD ForeGroundID = GetWindowThreadProcessId(::GetForegroundWindow(), NULL);
     const DWORD CurrentID = GetCurrentThreadId();
-    WINBOOL retval;
+    BOOL retval;
 
     AttachThreadInput(ForeGroundID, CurrentID, TRUE);
     // Do our stuff here
