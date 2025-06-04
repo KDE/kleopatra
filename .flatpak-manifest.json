@@ -60,18 +60,60 @@
             ]
         },
         {
-            "name": "QGpgme",
-            "buildsystem": "autotools",
+            "name": "gpgme",
+            "builddir": true,
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-1.23.2.tar.bz2",
-                    "sha256": "9499e8b1f33cccb6815527a1bc16049d35a6198a6c5fae0185f2bd561bce5224",
+                    "url": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-2.0.0.tar.bz2",
+                    "sha256": "ddf161d3c41ff6a3fcbaf4be6c6e305ca4ef1cc3f1ecdfce0c8c2a167c0cc36d",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 1239,
                         "stable-only": true,
                         "url-template": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-$version.tar.bz2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "gpgmepp",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-2.0.0.tar.xz",
+                    "sha256": "d4796049c06708a26f3096f748ef095347e1a3c1e570561701fe952c3f565382",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 378536,
+                        "stable-only": true,
+                        "url-template": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-$version.tar.bz2"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "qgpgme",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DBUILD_TESTING=OFF",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-2.0.0.tar.xz",
+                    "sha256": "15645b2475cca6118eb2ed331b3a8d9442c9d4019c3846ba3f6d25321b4a61ad",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 378538,
+                        "stable-only": true,
+                        "url-template": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-$version.tar.bz2"
                     }
                 }
             ]
