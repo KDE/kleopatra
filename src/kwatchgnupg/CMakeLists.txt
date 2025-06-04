@@ -42,7 +42,7 @@ endif()
 
 
 target_link_libraries(kwatchgnupg
-  KF6::DBusAddons
+  ${_kleopatra_dbusaddons_libs}
   KF6::XmlGui
   KF6::Notifications
   KF6::I18n
