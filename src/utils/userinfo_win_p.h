@@ -9,7 +9,7 @@
 
 #include <windows.h>
 #define SECURITY_WIN32
-#include <secext.h> // For GetUserNameEx
+#include <security.h> // For GetUserNameEx
 
 #include <QString>
 
