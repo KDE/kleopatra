@@ -111,19 +111,19 @@ set_package_properties(KF6DocTools PROPERTIES
     TYPE OPTIONAL)
 
 # Optional packages
-if (WIN32)
-  # Only a replacement available for Windows so this
-  # is required on other platforms.
-  find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG)
-  set_package_properties(KF6DBusAddons PROPERTIES DESCRIPTION "Support library to work with DBus"
-                         PURPOSE "DBus session integration"
-                         TYPE OPTIONAL)
-else()
+# shall we use DBus?
+# enabled per default on Linux & BSD systems
+set(USE_DBUS_DEFAULT OFF)
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
+    set(USE_DBUS_DEFAULT ON)
+endif()
+option(USE_DBUS "Build components using DBus (used for interprocess communication, external open in same instance and various presentation related bits)" ${USE_DBUS_DEFAULT})
+if(USE_DBUS)
   find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG REQUIRED)
   set(_kleopatra_dbusaddons_libs KF6::DBusAddons)
+  set(HAVE_QDBUS 1)
 endif()
 
-set(HAVE_QDBUS ${Qt6DBus_FOUND})
 
 find_package(Gpgmepp ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 set(QGPGME_NAME "QGpgmeQt6")
