@@ -19,7 +19,7 @@ ecm_add_test(
     ${CMAKE_SOURCE_DIR}/src/utils/kuniqueservice.cpp
     ${logging_category_srcs}
     TEST_NAME kuniqueservicetest
-    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt::Test
+    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt::Test KF6::WidgetsAddons KF6::I18n
 )
 
 ecm_add_test(
