@@ -348,19 +348,19 @@ QString UserIdsWidget::Private::tofuTooltipString(const GpgME::UserID &uid) cons
 QIcon UserIdsWidget::Private::trustLevelIcon(const GpgME::UserID &uid) const
 {
     if (updateInProgress) {
-        return QIcon::fromTheme(QStringLiteral("emblem-question"));
+        return QIcon::fromTheme(QStringLiteral("data-question"));
     }
     switch (uid.validity()) {
     case GpgME::UserID::Unknown:
     case GpgME::UserID::Undefined:
-        return QIcon::fromTheme(QStringLiteral("emblem-question"));
+        return QIcon::fromTheme(QStringLiteral("data-question"));
     case GpgME::UserID::Never:
-        return QIcon::fromTheme(QStringLiteral("emblem-error"));
+        return QIcon::fromTheme(QStringLiteral("data-error"));
     case GpgME::UserID::Marginal:
-        return QIcon::fromTheme(QStringLiteral("emblem-warning"));
+        return QIcon::fromTheme(QStringLiteral("data-warning"));
     case GpgME::UserID::Full:
     case GpgME::UserID::Ultimate:
-        return QIcon::fromTheme(QStringLiteral("emblem-success"));
+        return QIcon::fromTheme(QStringLiteral("data-success"));
     }
     return {};
 }

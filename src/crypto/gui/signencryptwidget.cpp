@@ -499,7 +499,7 @@ void SignEncryptWidget::ownCertificateSelectionRequested(CertificateSelectionDia
         auto userId = dialog.selectedUserIDs()[0];
         auto index = combo->findUserId(userId);
         if (index == -1) {
-            combo->appendCustomItem(QIcon::fromTheme(QStringLiteral("emblem-error")), Formatting::summaryLine(userId), QVariant::fromValue(userId));
+            combo->appendCustomItem(QIcon::fromTheme(QStringLiteral("data-error")), Formatting::summaryLine(userId), QVariant::fromValue(userId));
             index = combo->combo()->count() - 1;
         }
         combo->combo()->setCurrentIndex(index);

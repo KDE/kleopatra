@@ -674,13 +674,13 @@ QIcon CertificateLineEdit::Private::statusIcon() const
     case Status::None:
     case Status::Ambiguous:
         if (mEditingInProgress || mLocateJob) {
-            return QIcon::fromTheme(QStringLiteral("emblem-question"));
+            return QIcon::fromTheme(QStringLiteral("dialog-question"));
         } else {
-            return QIcon::fromTheme(QStringLiteral("emblem-error"));
+            return QIcon::fromTheme(QStringLiteral("data-error"));
         }
     case Status::Expired:
     case Status::Revoked:
-        return QIcon::fromTheme(QStringLiteral("emblem-error"));
+        return QIcon::fromTheme(QStringLiteral("data-error"));
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
