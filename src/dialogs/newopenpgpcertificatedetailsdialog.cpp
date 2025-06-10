@@ -217,6 +217,27 @@ public:
             ui.keyAlgoCB->setCurrentIndex(0);
         }
 
+        if (!config.readEntry("PGPKeyType", QString()).isEmpty()) {
+            for (auto i = 0; i < ui.keyAlgoCB->count(); ++i) {
+                if (ui.keyAlgoCB->itemData(i).toString().startsWith(QStringLiteral("rsa"))) {
+                    ui.keyAlgoCB->setCurrentIndex(i);
+                    break;
+                }
+            }
+        }
+
+        if (config.hasKey("RSAKeySizes")) {
+            for (const auto size : config.readEntry("RSAKeySizes", QList<int>())) {
+                if (size < 0) {
+                    auto index = ui.keyAlgoCB->findData(QStringLiteral("rsa%1").arg(std::abs(size)));
+                    if (index != -1) {
+                        ui.keyAlgoCB->setCurrentIndex(index);
+                    }
+                    break;
+                }
+            }
+        }
+
         Kleo::setUpExpirationDateComboBox(ui.expiryDE);
         ui.expiryCB->setEnabled(true);
         setExpiryDate(defaultExpirationDate(ExpirationOnUnlimitedValidity::InternalDefaultExpiration));
