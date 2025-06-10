@@ -659,7 +659,7 @@ QIcon CertificateLineEdit::Private::statusIcon() const
 {
     switch (mStatus) {
     case Status::Empty:
-        return QIcon::fromTheme(QStringLiteral("emblem-unavailable"));
+        return {};
     case Status::Success:
         if (!mKey.isNull()) {
             return mIconProvider.icon(mKey);
