@@ -98,9 +98,7 @@ static void add_resources()
 
 static QList<QByteArray> default_logging_options()
 {
-    QList<QByteArray> result;
-    result.push_back("io");
-    return result;
+    return {"io"};
 }
 
 namespace
