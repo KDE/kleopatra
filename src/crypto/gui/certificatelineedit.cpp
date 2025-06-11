@@ -708,6 +708,8 @@ QString CertificateLineEdit::Private::statusToolTip() const
         }
     case Status::None:
     case Status::Ambiguous:
+    case Status::Expired:
+    case Status::Revoked:
         return errorMessage();
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
