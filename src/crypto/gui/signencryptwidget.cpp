@@ -38,7 +38,7 @@
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
-#include <Libkleo/UserIDSelectionCombo>
+#include <Libkleo/KeySelectionCombo>
 
 #include <Libkleo/GnuPG>
 
@@ -131,13 +131,14 @@ public:
     void onProtocolChanged();
     void updateCheckBoxes();
     ExpiryChecker *expiryChecker();
+    void updateExpiryMessages(KMessageWidget *w, const GpgME::Key &key, ExpiryChecker::CheckFlags flags);
     void updateExpiryMessages(KMessageWidget *w, const GpgME::UserID &userID, ExpiryChecker::CheckFlags flags);
     void updateAllExpiryMessages();
 
 public:
-    UserIDSelectionCombo *mSigSelect = nullptr;
+    KeySelectionCombo *mSigSelect = nullptr;
     KMessageWidget *mSignKeyExpiryMessage = nullptr;
-    UserIDSelectionCombo *mSelfSelect = nullptr;
+    KeySelectionCombo *mSelfSelect = nullptr;
     KMessageWidget *mEncryptToSelfKeyExpiryMessage = nullptr;
     std::vector<RecipientWidgets> mRecpWidgets;
     QVector<UnknownRecipientWidget *> mUnknownWidgets;
@@ -175,19 +176,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
 
-        d->mSigSelect = new UserIDSelectionCombo{KeyUsage::Sign, this};
+        d->mSigSelect = new KeySelectionCombo{KeyUsage::Sign, this};
         d->mSigSelect->setEnabled(d->mSigChk->isChecked());
 
         d->mSignKeyExpiryMessage = new KMessageWidget{this};
         d->mSignKeyExpiryMessage->setVisible(false);
-
-        connect(d->mSigSelect, &UserIDSelectionCombo::certificateSelectionRequested, this, [this]() {
-            ownCertificateSelectionRequested(CertificateSelectionDialog::SignOnly, d->mSigSelect);
-        });
-        connect(d->mSigSelect, &UserIDSelectionCombo::customItemSelected, this, [this]() {
-            updateOp();
-            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
-        });
 
         auto groupLayout = new QGridLayout{sigGrp};
         groupLayout->setColumnStretch(1, 1);
@@ -199,11 +192,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSigSelect->setEnabled(checked);
             updateOp();
-            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
+            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
         });
-        connect(d->mSigSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
+        connect(d->mSigSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
-            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
+            d->updateExpiryMessages(d->mSignKeyExpiryMessage, signKey(), ExpiryChecker::OwnSigningKey);
         });
     }
 
@@ -218,16 +211,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
-        d->mSelfSelect = new UserIDSelectionCombo{KeyUsage::Encrypt, this};
+        d->mSelfSelect = new KeySelectionCombo{KeyUsage::Encrypt, this};
         d->mSelfSelect->setEnabled(d->mEncSelfChk->isChecked());
-
-        connect(d->mSelfSelect, &UserIDSelectionCombo::certificateSelectionRequested, this, [this]() {
-            ownCertificateSelectionRequested(CertificateSelectionDialog::EncryptOnly, d->mSelfSelect);
-        });
-        connect(d->mSelfSelect, &UserIDSelectionCombo::customItemSelected, this, [this]() {
-            updateOp();
-            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
-        });
 
         d->mEncryptToSelfKeyExpiryMessage = new KMessageWidget{this};
         d->mEncryptToSelfKeyExpiryMessage->setVisible(false);
@@ -285,11 +270,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSelfSelect->setEnabled(checked);
             updateOp();
-            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
+            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
         });
-        connect(d->mSelfSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
+        connect(d->mSelfSelect, &KeySelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
-            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
+            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfKey(), ExpiryChecker::OwnEncryptionKey);
         });
         connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
 
@@ -421,29 +406,6 @@ void SignEncryptWidget::addRecipient(const KeyGroup &group)
     }
 }
 
-void SignEncryptWidget::ownCertificateSelectionRequested(CertificateSelectionDialog::Options options, UserIDSelectionCombo *combo)
-{
-    CertificateSelectionDialog dialog{this};
-    dialog.setOptions(CertificateSelectionDialog::Options( //
-                          CertificateSelectionDialog::SingleSelection | //
-                          CertificateSelectionDialog::SecretKeys | //
-                          CertificateSelectionDialog::optionsFromProtocol(d->mCurrentProto))
-                      | //
-                      options);
-
-    if (dialog.exec()) {
-        auto userId = dialog.selectedUserIDs()[0];
-        auto index = combo->findUserId(userId);
-        if (index == -1) {
-            combo->appendCustomItem(QIcon::fromTheme(QStringLiteral("emblem-error")), Formatting::summaryLine(userId), QVariant::fromValue(userId));
-            index = combo->combo()->count() - 1;
-        }
-        combo->combo()->setCurrentIndex(index);
-    }
-
-    recipientsChanged();
-}
-
 void SignEncryptWidget::certificateSelectionRequested(CertificateLineEdit *certificateLineEdit)
 {
     CertificateSelectionDialog dlg{this};
@@ -565,20 +527,20 @@ void SignEncryptWidget::recipientsChanged()
     }
 }
 
-UserID SignEncryptWidget::signUserId() const
+Key SignEncryptWidget::signKey() const
 {
     if (d->mSigSelect->isEnabled()) {
-        return d->mSigSelect->currentUserID();
+        return d->mSigSelect->currentKey();
     }
-    return UserID();
+    return Key();
 }
 
-UserID SignEncryptWidget::selfUserId() const
+Key SignEncryptWidget::selfKey() const
 {
     if (d->mSelfSelect->isEnabled()) {
-        return d->mSelfSelect->currentUserID();
+        return d->mSelfSelect->currentKey();
     }
-    return UserID();
+    return Key();
 }
 
 std::vector<Key> SignEncryptWidget::recipients() const
@@ -602,7 +564,7 @@ std::vector<Key> SignEncryptWidget::recipients() const
             ret.push_back(u.parent());
         }
     }
-    const Key k = selfUserId().parent();
+    const Key k = selfKey();
     if (!k.isNull()) {
         ret.push_back(k);
     }
@@ -611,11 +573,11 @@ std::vector<Key> SignEncryptWidget::recipients() const
 
 bool SignEncryptWidget::isDeVsAndValid() const
 {
-    if (!signUserId().isNull() && !DeVSCompliance::userIDIsCompliant(signUserId())) {
+    if (!signKey().isNull() && !DeVSCompliance::keyIsCompliant(signKey())) {
         return false;
     }
 
-    if (!selfUserId().isNull() && !DeVSCompliance::userIDIsCompliant(selfUserId())) {
+    if (!selfKey().isNull() && !DeVSCompliance::keyIsCompliant(selfKey())) {
         return false;
     }
 
@@ -662,7 +624,7 @@ void SignEncryptWidget::updateOp()
     const std::vector<Key> recp = recipients();
 
     Operations op = NoOperation;
-    if (!signUserId().isNull()) {
+    if (!signKey().isNull()) {
         op |= Sign;
     }
     if (!recp.empty() || encryptSymmetric()) {
@@ -846,11 +808,11 @@ bool SignEncryptWidget::isComplete() const
     if (currentOp() == NoOperation) {
         return false;
     }
-    if ((currentOp() & SignEncryptWidget::Sign) && !Kleo::canBeUsedForSigning(signUserId().parent())) {
+    if ((currentOp() & SignEncryptWidget::Sign) && !Kleo::canBeUsedForSigning(signKey())) {
         return false;
     }
     if (currentOp() & SignEncryptWidget::Encrypt) {
-        if (!selfUserId().isNull() && !Kleo::canBeUsedForEncryption(selfUserId().parent())) {
+        if (!selfKey().isNull() && !Kleo::canBeUsedForEncryption(selfKey())) {
             return false;
         }
         const bool allOtherRecipientsAreOkay = std::ranges::all_of(d->mRecpWidgets, [](const auto &r) {
@@ -907,6 +869,19 @@ ExpiryChecker *Kleo::SignEncryptWidget::Private::expiryChecker()
     return mExpiryChecker.get();
 }
 
+void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::Key &key, ExpiryChecker::CheckFlags flags)
+{
+    messageWidget->setCloseButtonVisible(false);
+    if (!Settings{}.showExpiryNotifications() || key.isNull()) {
+        messageWidget->setVisible(false);
+    } else {
+        const auto result = expiryChecker()->checkKey(key, flags);
+        const auto message = expiryMessage(result);
+        messageWidget->setText(message);
+        messageWidget->setVisible(!message.isEmpty());
+    }
+}
+
 void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWidget, const GpgME::UserID &userID, ExpiryChecker::CheckFlags flags)
 {
     messageWidget->setCloseButtonVisible(false);
@@ -931,8 +906,8 @@ void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWid
 
 void SignEncryptWidget::Private::updateAllExpiryMessages()
 {
-    updateExpiryMessages(mSignKeyExpiryMessage, q->signUserId(), ExpiryChecker::OwnSigningKey);
-    updateExpiryMessages(mEncryptToSelfKeyExpiryMessage, q->selfUserId(), ExpiryChecker::OwnEncryptionKey);
+    updateExpiryMessages(mSignKeyExpiryMessage, q->signKey(), ExpiryChecker::OwnSigningKey);
+    updateExpiryMessages(mEncryptToSelfKeyExpiryMessage, q->selfKey(), ExpiryChecker::OwnEncryptionKey);
     for (const auto &recipient : std::as_const(mRecpWidgets)) {
         if (recipient.edit->isEnabled()) {
             updateExpiryMessages(recipient.expiryMessage, recipient.edit->userID(), ExpiryChecker::EncryptionKey);
