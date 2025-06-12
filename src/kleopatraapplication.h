@@ -73,6 +73,7 @@ public:
     void toggleMainWindowVisibility();
     void restoreMainWindow();
     void openConfigDialogWithForeignParent(WId parentWId);
+    void showAboutDialog();
 
     /* Add optional signed settings for specialized distributions */
     void setDistributionSettings(const std::shared_ptr<QSettings> &settings);

@@ -56,6 +56,8 @@
 #endif
 
 #include "kleopatra_debug.h"
+#include <KAboutApplicationDialog>
+#include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KWindowSystem>
@@ -215,6 +217,7 @@ public:
     bool ignoreNewInstance;
     bool firstNewInstance;
     QPointer<FocusFrame> focusFrame;
+    QPointer<KAboutApplicationDialog> aboutDialog;
     QPointer<ConfigureDialog> configureDialog;
     QPointer<GroupsConfigDialog> groupsConfigDialog;
     QPointer<MainWindow> mainWindow;
@@ -899,6 +902,24 @@ void KleopatraApplication::setDistributionSettings(const std::shared_ptr<QSettin
 std::shared_ptr<QSettings> KleopatraApplication::distributionSettings() const
 {
     return d->distroSettings;
+}
+
+void KleopatraApplication::showAboutDialog()
+{
+    // we show the About dialog ourselves so that we can pass up-to-date about data to it;
+    // KXmlGuiWindow takes a copy of the about data on creation and this copy might not
+    // contain the backend version information that's set by a background thread
+    if (!d->aboutDialog) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Creating About dialog";
+        d->aboutDialog = new KAboutApplicationDialog(KAboutData::applicationData(), mainWindow());
+        d->aboutDialog->setAttribute(Qt::WA_DeleteOnClose);
+    }
+    if (d->aboutDialog->isMinimized()) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Unminimizing About dialog";
+        d->aboutDialog->setWindowState((d->aboutDialog->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+    }
+    qCDebug(KLEOPATRA_LOG) << __func__ << "Showing About dialog";
+    d->aboutDialog->show();
 }
 
 #include "kleopatraapplication.moc"
