@@ -420,7 +420,7 @@ using Func = void (KleopatraApplication::*)(const QStringList &, GpgME::Protocol
 void KleopatraApplication::slotActivateRequested(const QStringList &arguments, const QString &workingDirectory)
 {
     QCommandLineParser parser;
-
+    KAboutData::applicationData().setupCommandLine(&parser);
     kleopatra_options(&parser);
     QString err;
     if (!arguments.isEmpty() && !parser.parse(arguments)) {
@@ -448,6 +448,24 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 {
     if (d->ignoreNewInstance) {
         qCDebug(KLEOPATRA_LOG) << "New instance ignored because of ignoreNewInstance";
+        return QString();
+    }
+
+    // handle standard Qt options and KAboutData options
+    if (parser.isSet(u"help"_s)) {
+        KMessageBox::information(nullptr, parser.helpText());
+        return QString();
+    }
+    if (parser.isSet(u"help-all"_s)) {
+        // Qt doesn't provide the text for --help-all
+        KMessageBox::error(nullptr,
+                           xi18nc("@info",
+                                  "For technical reasons you can only use this option if <application>%1</application> is not already running.",
+                                  qApp->applicationDisplayName()));
+        return QString();
+    }
+    if (parser.isSet(u"version"_s) || parser.isSet(u"author"_s) || parser.isSet(u"license"_s)) {
+        showAboutDialog();
         return QString();
     }
 
