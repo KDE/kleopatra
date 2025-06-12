@@ -674,7 +674,7 @@ QIcon CertificateLineEdit::Private::statusIcon() const
     case Status::None:
     case Status::Ambiguous:
         if (mEditingInProgress || mLocateJob) {
-            return QIcon::fromTheme(QStringLiteral("dialog-question"));
+            return QIcon::fromTheme(QStringLiteral("data-question"), QIcon::fromTheme(QStringLiteral("dialog-question")));
         } else {
             return QIcon::fromTheme(QStringLiteral("data-error"));
         }
