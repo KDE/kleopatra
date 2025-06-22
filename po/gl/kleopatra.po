@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-06-13 00:43+0000\n"
-"PO-Revision-Date: 2025-05-26 09:30+0200\n"
+"PO-Revision-Date: 2025-06-21 10:48+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.04.1\n"
+"X-Generator: Lokalize 25.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3722,19 +3722,21 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>Os certificados desactivados non poden seleccionarse para asinar ou "
+"cifrar. Só se amosan cando o filtro <interface>%2</interface> está activado."
+"</para><para>Cambie o filtro <interface>%2</interface> e active de novo o "
+"certificado en calquera momento para desfacer a acción.</"
+"para><para><emphasis strong='true'>Seguro que quere desactivar e agochar "
+"este certificado?</emphasis></para><list><item>%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Disable Certificate"
 msgstr "Desactivar o certificado"
 
 #: src/commands/togglecertificateenabledcommand.cpp:128
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Disable Certificate"
 msgstr "Desactivar o certificado"
@@ -4939,11 +4941,7 @@ msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Non foi posíbel verificar <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:243
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Verified <file> with signature in <file>."
-#| msgid ""
-#| "Verified <filename>%1</filename> with signature in <filename>%2</"
-#| "filename>."
+#, kde-kuit-format
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -4951,9 +4949,10 @@ msgid_plural ""
 "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
 "filename>."
 msgstr[0] ""
-"Verificouse <filename>%1</filename> coa sinatura de <filename>%2</filename>."
+"Verificouse <filename>%2</filename> coa sinatura de <filename>%3</filename>."
 msgstr[1] ""
-"Verificouse <filename>%1</filename> coa sinatura de <filename>%2</filename>."
+"Verificouse <filename>%2</filename> con %1 sinaturas de <filename>%3</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp:251
 #, kde-format
@@ -5446,7 +5445,7 @@ msgstr "Amosar a mensaxe"
 #, kde-format
 msgctxt "@option:check"
 msgid "Close window automatically on success"
-msgstr ""
+msgstr "Pechar a xanela automaticamente en caso de éxito."
 
 #: src/crypto/gui/signemailwizard.cpp:69
 #, kde-format
@@ -7559,12 +7558,10 @@ msgid "Run Command"
 msgstr "Executar a orde"
 
 #: src/dialogs/debugdialog.cpp:137
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Search groups"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search in output"
-msgstr "Buscar nos grupos"
+msgstr "Buscar na saída"
 
 #: src/dialogs/debugdialog.cpp:138 src/view/searchbar.cpp:131
 #, kde-format
@@ -7576,27 +7573,25 @@ msgstr "Escriba o termo de busca"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to next match"
-msgstr ""
+msgstr "Saltar á seguinte coincidencia."
 
 #: src/dialogs/debugdialog.cpp:157
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Next"
+#, kde-format
 msgctxt "@action:button"
 msgid "Find Next"
-msgstr "Seguinte"
+msgstr "Atopar a seguinte"
 
 #: src/dialogs/debugdialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to previous match"
-msgstr ""
+msgstr "Saltar á coincidencia anterior."
 
 #: src/dialogs/debugdialog.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Find Previous"
-msgstr ""
+msgstr "Atopar a anterior"
 
 #: src/dialogs/debugdialog.cpp:176
 #, kde-format
@@ -9577,10 +9572,9 @@ msgstr "Permitir ordes de depuración personalizadas"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
 #: src/kcfg/settings.kcfg:263
-#, fuzzy, kde-format
-#| msgid "Show results after encryption"
+#, kde-format
 msgid "Show results after signing and encrypting files"
-msgstr "Amosar os resultados tras cifrar"
+msgstr "Amosar os resultados tras asinar e cifrar ficheiros"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/settings.kcfg:269
@@ -9826,6 +9820,8 @@ msgid ""
 "For technical reasons you can only use this option if <application>%1</"
 "application> is not already running."
 msgstr ""
+"Por limitacións técnicas, só pode usar esta opción se <application>%1</"
+"application> non está xa en execución."
 
 #: src/kleopatraapplication.cpp:500
 #, kde-format
@@ -12454,20 +12450,16 @@ msgid "Import CRL From File..."
 msgstr "Importar a CRL dun ficheiro…"
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Enable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
-msgstr "Activar o certificado"
+msgstr "Activar e amosar o certificado"
 
 #: src/view/keylistcontroller.cpp:1153
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
-msgstr "Desactivar o certificado"
+msgstr "Desactivar e agochar o certificado"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
