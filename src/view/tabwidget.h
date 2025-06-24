@@ -50,8 +50,6 @@ public:
 
     QAbstractItemView *addView(const QString &title = QString(), const QString &keyFilterID = QString(), const QString &searchString = QString());
     QAbstractItemView *addView(const KConfigGroup &group, Options options);
-    QAbstractItemView *
-    addTemporaryView(const QString &title = QString(), AbstractKeyListSortFilterProxyModel *proxy = nullptr, const QString &tabToolTip = QString());
 
     void loadViews(const KSharedConfig::Ptr &config, const QString &configKeys, Options options = ShowKeys);
     void saveViews();

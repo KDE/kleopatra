@@ -69,12 +69,6 @@ public:
     Page(const KConfigGroup &group, KeyTreeView::Options options = KeyTreeView::Default, QWidget *parent = nullptr);
     ~Page() override;
 
-    void setTemporary(bool temporary);
-    bool isTemporary() const
-    {
-        return m_isTemporary;
-    }
-
     void setHierarchicalView(bool hierarchical) override;
     void setStringFilter(const QString &filter) override;
     void setKeyFilter(const std::shared_ptr<KeyFilter> &filter) override;
@@ -105,7 +99,7 @@ public:
     }
     bool canChangeKeyFilter() const
     {
-        return m_canChangeKeyFilter && !m_isTemporary;
+        return m_canChangeKeyFilter;
     }
     bool canChangeHierarchical() const
     {
@@ -142,7 +136,6 @@ private:
 private:
     QString m_title;
     QString m_toolTip;
-    bool m_isTemporary : 1;
     bool m_canBeClosed : 1;
     bool m_canBeRenamed : 1;
     bool m_canChangeStringFilter : 1;
@@ -156,7 +149,6 @@ Page::Page(const Page &other)
     : KeyTreeView(other)
     , m_title(other.m_title)
     , m_toolTip(other.m_toolTip)
-    , m_isTemporary(other.m_isTemporary)
     , m_canBeClosed(other.m_canBeClosed)
     , m_canBeRenamed(other.m_canBeRenamed)
     , m_canChangeStringFilter(other.m_canChangeStringFilter)
@@ -178,7 +170,6 @@ Page::Page(const QString &title,
     : KeyTreeView(text, KeyFilterManager::instance()->keyFilterByID(id), proxy, parent, group, options)
     , m_title(title)
     , m_toolTip(toolTip)
-    , m_isTemporary(false)
     , m_canBeClosed(true)
     , m_canBeRenamed(true)
     , m_canChangeStringFilter(true)
@@ -206,7 +197,6 @@ Page::Page(const KConfigGroup &group, KeyTreeView::Options options, QWidget *par
                   options)
     , m_title(group.readEntry(TITLE_ENTRY))
     , m_toolTip()
-    , m_isTemporary(false)
     , m_canBeClosed(!group.isImmutable())
     , m_canBeRenamed(!group.isEntryImmutable(TITLE_ENTRY))
     , m_canChangeStringFilter(!group.isEntryImmutable(STRING_FILTER_ENTRY))
@@ -306,17 +296,6 @@ void Page::setHierarchicalView(bool on)
     KeyTreeView::setHierarchicalView(on);
     m_configGroup.writeEntry(HIERARCHICAL_VIEW_ENTRY, on);
     m_configGroup.sync();
-}
-
-void Page::setTemporary(bool on)
-{
-    if (on == m_isTemporary) {
-        return;
-    }
-    m_isTemporary = on;
-    if (on) {
-        setKeyFilter(std::shared_ptr<KeyFilter>());
-    }
 }
 
 namespace
@@ -1043,16 +1022,6 @@ QAbstractItemView *TabWidget::addView(const KConfigGroup &group, Options options
     return d->addView(page, nullptr);
 }
 
-QAbstractItemView *TabWidget::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
-{
-    const KConfigGroup group = KSharedConfig::openConfig()->group(QStringLiteral("KeyTreeView_default"));
-    Page *const page = new Page(title, QString(), QString(), proxy, tabToolTip, nullptr, group, d->keyTreeViewOptions);
-    page->setTemporary(true);
-    QAbstractItemView *v = d->addView(page, d->currentPage());
-    d->tabWidget->setCurrentIndex(d->tabWidget->count() - 1);
-    return v;
-}
-
 QTreeView *TabWidget::Private::addView(Page *page, Page *columnReference)
 {
     if (!page) {
@@ -1141,9 +1110,6 @@ void TabWidget::saveViews()
     QStringList tabs;
     for (unsigned int i = 0, end = count(); i != end; ++i) {
         if (Page *const p = d->page(i)) {
-            if (p->isTemporary()) {
-                continue;
-            }
             tabs += p->configGroup().name();
         }
     }

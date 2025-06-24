@@ -15,11 +15,14 @@
 #include "importcertificatescommand_p.h"
 
 #include "certifycertificatecommand.h"
+#include "commands/detailscommand.h"
 #include "kleopatra_debug.h"
+#include "view/keytreeview.h"
 #include <settings.h>
 #include <utils/memory-helpers.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/AuditLogViewer>
 #include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -45,12 +48,16 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KMessageDialog>
 
 #include <QByteArray>
 #include <QEventLoop>
+#include <QLabel>
 #include <QProgressDialog>
+#include <QPushButton>
 #include <QString>
 #include <QTreeView>
+#include <QVBoxLayout>
 #include <QWidget>
 
 #include <algorithm>
@@ -209,58 +216,6 @@ ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, KeyLi
 }
 
 ImportCertificatesCommand::~ImportCertificatesCommand() = default;
-
-static QString format_ids(const std::vector<QString> &ids)
-{
-    QStringList escapedIds;
-    for (const QString &id : ids) {
-        if (!id.isEmpty()) {
-            escapedIds << id.toHtmlEscaped();
-        }
-    }
-    return escapedIds.join(QLatin1StringView("<br>"));
-}
-
-static QString make_tooltip(const std::vector<ImportResultData> &results)
-{
-    if (results.empty()) {
-        return {};
-    }
-
-    std::vector<QString> ids;
-    ids.reserve(results.size());
-    std::transform(std::begin(results), std::end(results), std::back_inserter(ids), [](const auto &r) {
-        return r.id;
-    });
-    std::sort(std::begin(ids), std::end(ids));
-    ids.erase(std::unique(std::begin(ids), std::end(ids)), std::end(ids));
-
-    if (ids.size() == 1)
-        if (ids.front().isEmpty()) {
-            return {};
-        } else
-            return i18nc("@info:tooltip", "Imported Certificates from %1", ids.front().toHtmlEscaped());
-    else
-        return i18nc("@info:tooltip", "Imported certificates from these sources:<br/>%1", format_ids(ids));
-}
-
-void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResultData> &results)
-{
-    if (std::none_of(std::begin(results), std::end(results), [](const auto &r) {
-            return r.result.numConsidered() > 0;
-        })) {
-        return;
-    }
-
-    if (certificateListWasEmpty) {
-        return;
-    }
-
-    q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"), new ImportResultProxyModel(results), make_tooltip(results));
-    if (QTreeView *const tv = qobject_cast<QTreeView *>(parentWidgetOrView())) {
-        tv->expandAll();
-    }
-}
 
 int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
 {
@@ -489,14 +444,67 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
 {
     const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
 
-    setImportResultProxyModel(res);
-
+    // TODO do we still want this?
     if (!singleOpenPGPImport.isNull()) {
         if (showPleaseCertify(singleOpenPGPImport)) {
             return;
         }
     }
-    MessageBox::information(parentWidgetOrView(), make_message_report(res, groups), consolidatedAuditLogEntries(res), i18n("Certificate Import Result"));
+
+    auto dialog = new QDialog(parentWidgetOrView());
+    auto layout = new QVBoxLayout(dialog);
+    auto label = new QLabel(make_message_report(res, groups));
+    layout->addWidget(label);
+    auto buttons = new QDialogButtonBox;
+    auto listButton = buttons->addButton(i18nc("@action:button", "List Imported Certificates"), QDialogButtonBox::ActionRole);
+    auto auditLogButton = buttons->addButton(i18nc("@action:button", "Show Audit Log"), QDialogButtonBox::ActionRole);
+    auto okButton = buttons->addButton(QDialogButtonBox::Ok);
+
+    connect(listButton, &QPushButton::clicked, listButton, [res, listButton, this]() {
+        auto dialog = new QDialog();
+        dialog->setWindowTitle(i18nc("@title:dialog as in 'list of certificates that were imported'", "Imported Certificates"));
+
+        const auto size = KConfigGroup(KSharedConfig::openStateConfig(), QStringLiteral("ImportedCertificatesDialog")).readEntry("Size", QSize(730, 280));
+        if (size.isValid()) {
+            dialog->resize(size);
+        }
+
+        auto layout = new QVBoxLayout(dialog);
+        auto model = AbstractKeyListModel::createFlatKeyListModel(listButton);
+        model->useKeyCache(true, KeyList::AllKeys);
+        auto proxyModel = new ImportResultProxyModel(res);
+        proxyModel->setSourceModel(model);
+        auto keyTreeView = new KeyTreeView({}, {}, proxyModel, listButton, {});
+        keyTreeView->setFlatModel(model);
+        connect(keyTreeView->view(), &QAbstractItemView::doubleClicked, keyTreeView->view(), [dialog](const auto &index) {
+            auto detailsCommand = new Commands::DetailsCommand(index.data(Kleo::KeyList::KeyRole).template value<Key>());
+            detailsCommand->setParentWidget(dialog);
+            detailsCommand->start();
+        });
+        layout->addWidget(keyTreeView);
+
+        auto buttons = new QDialogButtonBox();
+        buttons->addButton(QDialogButtonBox::Close);
+        layout->addWidget(buttons);
+
+        connect(dialog, &QDialog::finished, dialog, [dialog]() {
+            KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("ImportedCertificatesDialog"));
+            config.writeEntry("Size", dialog->size());
+            config.sync();
+        });
+        dialog->show();
+    });
+
+    connect(auditLogButton, &QPushButton::clicked, auditLogButton, [this, res]() {
+        AuditLogViewer::showAuditLog(parentWidgetOrView(), consolidatedAuditLogEntries(res));
+    });
+
+    connect(okButton, &QPushButton::clicked, okButton, [this, dialog]() {
+        dialog->accept();
+    });
+    layout->addWidget(buttons);
+
+    dialog->show();
 }
 
 static QString make_error_message(const Error &err, const QString &id)
