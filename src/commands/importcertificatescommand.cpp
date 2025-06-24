@@ -15,11 +15,15 @@
 #include "importcertificatescommand_p.h"
 
 #include "certifycertificatecommand.h"
+#include "commands/detailscommand.h"
+#include "dialogs/importedcertificatesdialog.h"
 #include "kleopatra_debug.h"
+#include "view/keytreeview.h"
 #include <settings.h>
 #include <utils/memory-helpers.h>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/AuditLogViewer>
 #include <Libkleo/Compat>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -45,12 +49,16 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KMessageDialog>
 
 #include <QByteArray>
 #include <QEventLoop>
+#include <QLabel>
 #include <QProgressDialog>
+#include <QPushButton>
 #include <QString>
 #include <QTreeView>
+#include <QVBoxLayout>
 #include <QWidget>
 
 #include <algorithm>
@@ -78,93 +86,6 @@ namespace
 {
 
 make_comparator_str(ByImportFingerprint, .fingerprint());
-
-class ImportResultProxyModel : public AbstractKeyListSortFilterProxyModel
-{
-    Q_OBJECT
-public:
-    ImportResultProxyModel(const std::vector<ImportResultData> &results, QObject *parent = nullptr)
-        : AbstractKeyListSortFilterProxyModel(parent)
-    {
-        updateFindCache(results);
-    }
-
-    ~ImportResultProxyModel() override
-    {
-    }
-
-    ImportResultProxyModel *clone() const override
-    {
-        // compiler-generated copy ctor is fine!
-        return new ImportResultProxyModel(*this);
-    }
-
-    void setImportResults(const std::vector<ImportResultData> &results)
-    {
-        updateFindCache(results);
-        invalidateFilter();
-    }
-
-protected:
-    QVariant data(const QModelIndex &index, int role) const override
-    {
-        if (!index.isValid() || role != Qt::ToolTipRole) {
-            return AbstractKeyListSortFilterProxyModel::data(index, role);
-        }
-        const QString fpr = index.data(KeyList::FingerprintRole).toString();
-        // find information:
-        const std::vector<Import>::const_iterator it =
-            Kleo::binary_find(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), fpr.toLatin1().constData(), ByImportFingerprint<std::less>());
-        if (it == m_importsByFingerprint.end()) {
-            return AbstractKeyListSortFilterProxyModel::data(index, role);
-        } else {
-            QStringList rv;
-            const auto ids = m_idsByFingerprint[it->fingerprint()];
-            rv.reserve(ids.size());
-            std::copy(ids.cbegin(), ids.cend(), std::back_inserter(rv));
-            return Formatting::importMetaData(*it, rv);
-        }
-    }
-    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override
-    {
-        //
-        // 0. Keep parents of matching children:
-        //
-        const QModelIndex index = sourceModel()->index(source_row, 0, source_parent);
-        Q_ASSERT(index.isValid());
-        for (int i = 0, end = sourceModel()->rowCount(index); i != end; ++i)
-            if (filterAcceptsRow(i, index)) {
-                return true;
-            }
-        //
-        // 1. Check that this is an imported key:
-        //
-        const QString fpr = index.data(KeyList::FingerprintRole).toString();
-
-        return std::binary_search(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), fpr.toLatin1().constData(), ByImportFingerprint<std::less>());
-    }
-
-private:
-    void updateFindCache(const std::vector<ImportResultData> &results)
-    {
-        m_importsByFingerprint.clear();
-        m_idsByFingerprint.clear();
-        m_results = results;
-        for (const auto &r : results) {
-            const std::vector<Import> imports = r.result.imports();
-            m_importsByFingerprint.insert(m_importsByFingerprint.end(), imports.begin(), imports.end());
-            for (std::vector<Import>::const_iterator it = imports.begin(), end = imports.end(); it != end; ++it) {
-                m_idsByFingerprint[it->fingerprint()].insert(r.id);
-            }
-        }
-        std::sort(m_importsByFingerprint.begin(), m_importsByFingerprint.end(), ByImportFingerprint<std::less>());
-    }
-
-private:
-    mutable std::vector<Import> m_importsByFingerprint;
-    mutable std::map<const char *, std::set<QString>, ByImportFingerprint<std::less>> m_idsByFingerprint;
-    std::vector<ImportResultData> m_results;
-};
 
 bool importFailed(const ImportResultData &r)
 {
@@ -209,58 +130,6 @@ ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemView *v, KeyLi
 }
 
 ImportCertificatesCommand::~ImportCertificatesCommand() = default;
-
-static QString format_ids(const std::vector<QString> &ids)
-{
-    QStringList escapedIds;
-    for (const QString &id : ids) {
-        if (!id.isEmpty()) {
-            escapedIds << id.toHtmlEscaped();
-        }
-    }
-    return escapedIds.join(QLatin1StringView("<br>"));
-}
-
-static QString make_tooltip(const std::vector<ImportResultData> &results)
-{
-    if (results.empty()) {
-        return {};
-    }
-
-    std::vector<QString> ids;
-    ids.reserve(results.size());
-    std::transform(std::begin(results), std::end(results), std::back_inserter(ids), [](const auto &r) {
-        return r.id;
-    });
-    std::sort(std::begin(ids), std::end(ids));
-    ids.erase(std::unique(std::begin(ids), std::end(ids)), std::end(ids));
-
-    if (ids.size() == 1)
-        if (ids.front().isEmpty()) {
-            return {};
-        } else
-            return i18nc("@info:tooltip", "Imported Certificates from %1", ids.front().toHtmlEscaped());
-    else
-        return i18nc("@info:tooltip", "Imported certificates from these sources:<br/>%1", format_ids(ids));
-}
-
-void ImportCertificatesCommand::Private::setImportResultProxyModel(const std::vector<ImportResultData> &results)
-{
-    if (std::none_of(std::begin(results), std::end(results), [](const auto &r) {
-            return r.result.numConsidered() > 0;
-        })) {
-        return;
-    }
-
-    if (certificateListWasEmpty) {
-        return;
-    }
-
-    q->addTemporaryView(i18nc("@title:tab", "Imported Certificates"), new ImportResultProxyModel(results), make_tooltip(results));
-    if (QTreeView *const tv = qobject_cast<QTreeView *>(parentWidgetOrView())) {
-        tv->expandAll();
-    }
-}
 
 int sum(const std::vector<ImportResult> &res, int (ImportResult::*fun)() const)
 {
@@ -489,14 +358,34 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
 {
     const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
 
-    setImportResultProxyModel(res);
-
     if (!singleOpenPGPImport.isNull()) {
         if (showPleaseCertify(singleOpenPGPImport)) {
             return;
         }
     }
-    MessageBox::information(parentWidgetOrView(), make_message_report(res, groups), consolidatedAuditLogEntries(res), i18n("Certificate Import Result"));
+
+    auto dialog = new QDialog(parentWidgetOrView());
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    auto layout = new QVBoxLayout(dialog);
+    auto label = new QLabel(make_message_report(res, groups));
+    layout->addWidget(label);
+    auto buttons = new QDialogButtonBox;
+    auto listButton = buttons->addButton(i18nc("@action:button", "List Imported Certificates"), QDialogButtonBox::ActionRole);
+    auto auditLogButton = buttons->addButton(i18nc("@action:button", "Show Audit Log"), QDialogButtonBox::ActionRole);
+    auto okButton = buttons->addButton(QDialogButtonBox::Ok);
+
+    connect(listButton, &QPushButton::clicked, listButton, [res]() {
+        new ImportedCertificatesDialog(res);
+    });
+
+    connect(auditLogButton, &QPushButton::clicked, auditLogButton, [this, res]() {
+        AuditLogViewer::showAuditLog(parentWidgetOrView(), consolidatedAuditLogEntries(res));
+    });
+
+    connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    layout->addWidget(buttons);
+
+    dialog->show();
 }
 
 static QString make_error_message(const Error &err, const QString &id)
@@ -1104,5 +993,4 @@ void ImportCertificatesCommand::doCancel()
 #undef d
 #undef q
 
-#include "importcertificatescommand.moc"
 #include "moc_importcertificatescommand.cpp"

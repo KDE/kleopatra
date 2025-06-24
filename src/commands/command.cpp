@@ -223,14 +223,6 @@ void Command::cancel()
     Q_EMIT canceled(QPrivateSignal{});
 }
 
-void Command::addTemporaryView(const QString &title, AbstractKeyListSortFilterProxyModel *proxy, const QString &tabToolTip)
-{
-    if (TabWidget *const tw = d->controller_ ? d->controller_->tabWidget() : nullptr)
-        if (QAbstractItemView *const v = tw->addTemporaryView(title, proxy, tabToolTip)) {
-            setView(v);
-        }
-}
-
 void Command::applyWindowID(QWidget *w) const
 {
     if (w) {

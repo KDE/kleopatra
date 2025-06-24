@@ -340,6 +340,8 @@ set(_kleopatra_SRCS
   dialogs/gencardkeydialog.h
   dialogs/groupdetailsdialog.cpp
   dialogs/groupdetailsdialog.h
+  dialogs/importedcertificatesdialog.cpp
+  dialogs/importedcertificatesdialog.h
   dialogs/lookupcertificatesdialog.cpp
   dialogs/lookupcertificatesdialog.h
   dialogs/padwindow.cpp

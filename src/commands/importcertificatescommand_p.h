@@ -164,3 +164,5 @@ inline Kleo::ImportCertificatesCommand::ImportCertificatesCommand(QAbstractItemV
     : Command(v, pp)
 {
 }
+
+make_comparator_str(ByImportFingerprint, .fingerprint());
