@@ -610,7 +610,7 @@ void KeyListController::createActions(KActionCollection *coll)
     };
 
     if (ToggleCertificateEnabledCommand::isSupported()) {
-        common_and_openpgp_action_data.push_back(action_data{
+        common_and_openpgp_action_data.emplace_back(
             "certificates_disable",
             i18nc("@action:inmenu", "Disable Certificate"),
             "<html>"_L1
@@ -621,8 +621,7 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             nullptr,
             nullptr,
-            QString(),
-        });
+            QString());
     }
 
     static const action_data cms_create_csr_action_data = {
