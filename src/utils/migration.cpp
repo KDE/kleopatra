@@ -86,6 +86,27 @@ void Migration::migrateApplicationConfigFiles(const QString &applicationName)
 }
 #endif
 
+static void removeFilterNames(const QString &fileName)
+{
+    const QDir configDir{QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation)};
+    const QFileInfo configFilePath{configDir.absoluteFilePath(fileName)};
+    if (!configFilePath.exists()) {
+        return;
+    }
+    auto config = KConfig{configFilePath.absoluteFilePath(), KConfig::SimpleConfig};
+    const QStringList keyFilterGroups = config.groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    for (const auto &groupName : keyFilterGroups) {
+        KConfigGroup group(&config, groupName);
+        if (group.hasKey(u"Name"_s)) {
+            group.deleteEntry(u"Name"_s);
+        }
+    }
+    if (config.isDirty()) {
+        config.sync();
+        qCInfo(KLEOPATRA_LOG) << "Removed filter names from" << config.name();
+    }
+}
+
 void Migration::migrate()
 {
     auto migrations = KSharedConfig::openStateConfig()->group(QStringLiteral("Migrations"));
@@ -98,4 +119,6 @@ void Migration::migrate()
 
     // Migrate kleopatragroupsrc from old location to GNUPGHOME/kleopatra/
     migrateConfigFile(u"kleopatragroupsrc"_s);
+
+    removeFilterNames(u"libkleopatrarc"_s);
 }
