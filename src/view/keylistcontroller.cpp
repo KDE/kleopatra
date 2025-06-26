@@ -613,9 +613,11 @@ void KeyListController::createActions(KActionCollection *coll)
         common_and_openpgp_action_data.push_back(action_data{
             "certificates_disable",
             i18nc("@action:inmenu", "Disable Certificate"),
-            "<html>"_L1 + i18nc("@action:tooltip",
-                                           "Disabled certificates are not offered when selecting a certificate to sign with or to encrypt for. They are not "
-                                           "shown in the certificate list with most filters.") + "</html>"_L1,
+            "<html>"_L1
+                + i18nc("@action:tooltip",
+                        "Disabled certificates are not offered when selecting a certificate to sign with or to encrypt for. They are not "
+                        "shown in the certificate list with most filters.")
+                + "</html>"_L1,
             nullptr,
             nullptr,
             nullptr,
