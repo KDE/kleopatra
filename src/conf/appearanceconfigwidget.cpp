@@ -49,10 +49,8 @@ using namespace Kleo;
 using namespace Kleo::Config;
 
 enum {
-    HasNameRole = Qt::UserRole + 0x1234, /*!< Records that the user has assigned a name (to avoid comparing with i18n-strings) */
-    HasFontRole, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
+    HasFontRole = Qt::UserRole + 0x1234, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
     IconNameRole, /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
-    MayChangeNameRole,
     MayChangeForegroundRole,
     MayChangeBackgroundRole,
     MayChangeFontRole,
@@ -140,8 +138,6 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
 
     const QString name = group.readEntry("Name");
     item->setText(name.isEmpty() ? i18nc("Key filter without user-assigned name", "<unnamed>") : name);
-    item->setData(HasNameRole, !name.isEmpty());
-    item->setData(MayChangeNameRole, !group.isEntryImmutable("Name"));
 
     const QColor fg = group.readEntry("foreground-color", QColor());
     item->setData(StoredForegroundRole, fg.isValid() ? QBrush(fg) : QVariant());
@@ -278,7 +274,6 @@ static void save_to_config(const QListWidgetItem *item, KConfigGroup &group)
     if (!item) {
         return;
     }
-    writeOrDelete(group, "Name", item->data(HasNameRole).toBool() ? item->text() : QVariant());
     writeOrDelete(group, "foreground-color", brush2color(item->data(StoredForegroundRole)));
     writeOrDelete(group, "background-color", brush2color(item->data(StoredBackgroundRole)));
     writeOrDelete(group, "icon", item->data(IconNameRole));
