@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-13 00:43+0000\n"
+"POT-Creation-Date: 2025-06-27 00:43+0000\n"
 "PO-Revision-Date: 2025-06-21 10:48+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -3132,57 +3132,74 @@ msgstr ""
 "Non pode xerar unha chave nesta tarxeta intelixente porque non permite "
 "ningún dos algoritmos estándar."
 
-#: src/commands/refreshcertificatescommand.cpp:173
-#: src/commands/refreshcertificatescommand.cpp:246
+#: src/commands/refreshcertificatescommand.cpp:119
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid "Updating certificate..."
+msgctxt "@info"
+msgid "Updating certificate…"
+msgid_plural "Updating %1 certificates…"
+msgstr[0] "Actualizando o certificado…"
+msgstr[1] "Actualizando o certificado…"
+
+#: src/commands/refreshcertificatescommand.cpp:120
+#, fuzzy, kde-format
+#| msgid "Cancel"
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/commands/refreshcertificatescommand.cpp:187
+#: src/commands/refreshcertificatescommand.cpp:260
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Actualizando a chave…"
 
-#: src/commands/refreshcertificatescommand.cpp:190
+#: src/commands/refreshcertificatescommand.cpp:204
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Actualizando o certificado…"
 
-#: src/commands/refreshcertificatescommand.cpp:265
+#: src/commands/refreshcertificatescommand.cpp:279
 #, kde-format
 msgid "The certificate has not changed."
 msgstr "O certificado non cambiou."
 
-#: src/commands/refreshcertificatescommand.cpp:269
+#: src/commands/refreshcertificatescommand.cpp:283
 #, kde-format
 msgid "The certificate has been revoked."
 msgstr "Revogouse o certificado."
 
-#: src/commands/refreshcertificatescommand.cpp:272
+#: src/commands/refreshcertificatescommand.cpp:286
 #, kde-format
 msgid "The certificate has been updated."
 msgstr "Actualizouse o certificado."
 
-#: src/commands/refreshcertificatescommand.cpp:276
+#: src/commands/refreshcertificatescommand.cpp:290
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Novos identificadores de persoas usuarias: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:279
+#: src/commands/refreshcertificatescommand.cpp:293
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Novas subchaves: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:282
+#: src/commands/refreshcertificatescommand.cpp:296
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Novas sinaturas: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:292
+#: src/commands/refreshcertificatescommand.cpp:306
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "Ademais obtívose unha nova chave."
 msgstr[1] "Ademais obtivéronse %1 novas chaves."
 
-#: src/commands/refreshcertificatescommand.cpp:388
+#: src/commands/refreshcertificatescommand.cpp:404
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3192,15 +3209,15 @@ msgstr ""
 "Resultado da actualización do certificado de OpenPGP dun servidor de chaves, "
 "dun servidor de LDAP ou dun directorio activo."
 
-#: src/commands/refreshcertificatescommand.cpp:391
-#: src/commands/refreshcertificatescommand.cpp:408
-#: src/commands/refreshcertificatescommand.cpp:425
+#: src/commands/refreshcertificatescommand.cpp:407
+#: src/commands/refreshcertificatescommand.cpp:424
+#: src/commands/refreshcertificatescommand.cpp:441
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update failed:</para><para><message>%1</message></para>"
 msgstr "<para>A actualización fallou:</para><para><message>%1</message></para>"
 
-#: src/commands/refreshcertificatescommand.cpp:393
+#: src/commands/refreshcertificatescommand.cpp:409
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
@@ -3208,8 +3225,8 @@ msgstr ""
 "<para>Omitiuse a actualización porque non hai ningún servidor de chaves de "
 "OpenPGP configurado.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:395
 #: src/commands/refreshcertificatescommand.cpp:411
+#: src/commands/refreshcertificatescommand.cpp:427
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
@@ -3217,9 +3234,9 @@ msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>Non se atopou o certificado.</para>"
 msgstr[1] "<para>Non se atoparon os certificados.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:398
-#: src/commands/refreshcertificatescommand.cpp:415
-#: src/commands/refreshcertificatescommand.cpp:428
+#: src/commands/refreshcertificatescommand.cpp:414
+#: src/commands/refreshcertificatescommand.cpp:431
+#: src/commands/refreshcertificatescommand.cpp:444
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
@@ -3228,19 +3245,19 @@ msgstr[0] "<para>Actualizouse o certificado.</para>"
 msgstr[1] "<para>Actualizáronse os certificados.</para>"
 
 # skip-rule: proposta-gl-directorio
-#: src/commands/refreshcertificatescommand.cpp:406
+#: src/commands/refreshcertificatescommand.cpp:422
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Resultado da actualización do directorio de chaves web."
 
-#: src/commands/refreshcertificatescommand.cpp:423
+#: src/commands/refreshcertificatescommand.cpp:439
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Resultado da actualización do certificado de S/MIME"
 
-#: src/commands/refreshcertificatescommand.cpp:433
+#: src/commands/refreshcertificatescommand.cpp:449
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
@@ -3248,7 +3265,7 @@ msgid_plural "Certificates Updated"
 msgstr[0] "Actualizouse o certificado"
 msgstr[1] "Actualizáronse os certificados"
 
-#: src/commands/refreshcertificatescommand.cpp:433
+#: src/commands/refreshcertificatescommand.cpp:449
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -3741,19 +3758,19 @@ msgctxt "@action:button"
 msgid "Disable Certificate"
 msgstr "Desactivar o certificado"
 
-#: src/conf/appearanceconfigwidget.cpp:133
+#: src/conf/appearanceconfigwidget.cpp:131
 #, kde-format
 msgctxt "Key filter without user-assigned name"
 msgid "<unnamed>"
 msgstr "<sennome>"
 
-#: src/conf/appearanceconfigwidget.cpp:298
+#: src/conf/appearanceconfigwidget.cpp:293
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
 msgstr "A administración do sistema bloqueou este parámetro."
 
-#: src/conf/appearanceconfigwidget.cpp:343
+#: src/conf/appearanceconfigwidget.cpp:338
 #, kde-format
 msgctxt "@info"
 msgid "Show the following information in certificate list tooltips:"
@@ -3761,45 +3778,45 @@ msgstr ""
 "Amosar a información seguinte nas indicacións emerxentes das listas de "
 "certificados:"
 
-#: src/conf/appearanceconfigwidget.cpp:346
+#: src/conf/appearanceconfigwidget.cpp:341
 #, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
 msgstr "Amosar a validez"
 
-#: src/conf/appearanceconfigwidget.cpp:349
+#: src/conf/appearanceconfigwidget.cpp:344
 #, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
 msgstr "Amosar a información do propietario"
 
-#: src/conf/appearanceconfigwidget.cpp:352
+#: src/conf/appearanceconfigwidget.cpp:347
 #, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
 msgstr "Amosar os detalles técnicos"
 
-#: src/conf/appearanceconfigwidget.cpp:357
+#: src/conf/appearanceconfigwidget.cpp:352
 #, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
 msgstr "Amosar a vindeira caducidade de certificado"
 
-#: src/conf/appearanceconfigwidget.cpp:364
+#: src/conf/appearanceconfigwidget.cpp:359
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
 msgstr "Limiar dos certificados propios:"
 
-#: src/conf/appearanceconfigwidget.cpp:370
-#: src/conf/appearanceconfigwidget.cpp:384
+#: src/conf/appearanceconfigwidget.cpp:365
+#: src/conf/appearanceconfigwidget.cpp:379
 #, kde-format
 msgctxt "@item never show expiry notification"
 msgid "never"
 msgstr "nunca"
 
-#: src/conf/appearanceconfigwidget.cpp:371
-#: src/conf/appearanceconfigwidget.cpp:385
+#: src/conf/appearanceconfigwidget.cpp:366
+#: src/conf/appearanceconfigwidget.cpp:380
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid "%v day"
@@ -3807,7 +3824,7 @@ msgid_plural "%v days"
 msgstr[0] "%v día"
 msgstr[1] "%v días"
 
-#: src/conf/appearanceconfigwidget.cpp:373
+#: src/conf/appearanceconfigwidget.cpp:368
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3817,13 +3834,13 @@ msgstr ""
 "Seleccione o número de días de antelación para avisar cando o certificado "
 "propio estea a piques de caducar."
 
-#: src/conf/appearanceconfigwidget.cpp:378
+#: src/conf/appearanceconfigwidget.cpp:373
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
 msgstr "Limiar doutros certificados:"
 
-#: src/conf/appearanceconfigwidget.cpp:388
+#: src/conf/appearanceconfigwidget.cpp:383
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -3833,67 +3850,67 @@ msgstr ""
 "Seleccione o número de días de antelación para avisar cando o certificado "
 "doutra persoa estea a piques de caducar."
 
-#: src/conf/appearanceconfigwidget.cpp:398
+#: src/conf/appearanceconfigwidget.cpp:393
 #, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Xeral"
 
-#: src/conf/appearanceconfigwidget.cpp:418
+#: src/conf/appearanceconfigwidget.cpp:413
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Icon..."
 msgstr "Definir unha icona…"
 
-#: src/conf/appearanceconfigwidget.cpp:425
+#: src/conf/appearanceconfigwidget.cpp:420
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Text Color..."
 msgstr "Definir a cor do texto…"
 
-#: src/conf/appearanceconfigwidget.cpp:432
+#: src/conf/appearanceconfigwidget.cpp:427
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Background Color..."
 msgstr "Definir a cor de fondo…"
 
-#: src/conf/appearanceconfigwidget.cpp:439
+#: src/conf/appearanceconfigwidget.cpp:434
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Font..."
 msgstr "Definir a fonte…"
 
-#: src/conf/appearanceconfigwidget.cpp:446
+#: src/conf/appearanceconfigwidget.cpp:441
 #, kde-format
 msgctxt "@option:check"
 msgid "Italic"
 msgstr "Cursiva"
 
-#: src/conf/appearanceconfigwidget.cpp:453
+#: src/conf/appearanceconfigwidget.cpp:448
 #, kde-format
 msgctxt "@option:check"
 msgid "Bold"
 msgstr "Grosa"
 
-#: src/conf/appearanceconfigwidget.cpp:460
+#: src/conf/appearanceconfigwidget.cpp:455
 #, kde-format
 msgctxt "@option:check"
 msgid "Strikeout"
 msgstr "Riscada"
 
-#: src/conf/appearanceconfigwidget.cpp:469
+#: src/conf/appearanceconfigwidget.cpp:464
 #, kde-format
 msgctxt "@action:button"
 msgid "Default Appearance"
 msgstr "Aparencia predeterminada"
 
-#: src/conf/appearanceconfigwidget.cpp:477
+#: src/conf/appearanceconfigwidget.cpp:472
 #, kde-format
 msgctxt "@title:tab"
 msgid "Certificate Categories"
 msgstr "Categorías de certificado"
 
-#: src/conf/appearanceconfigwidget.cpp:502
+#: src/conf/appearanceconfigwidget.cpp:497
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
@@ -3901,7 +3918,7 @@ msgstr ""
 "está activo."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:511 src/kcfg/settings.kcfg:148
+#: src/conf/appearanceconfigwidget.cpp:506 src/kcfg/settings.kcfg:148
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Orde dos atributos DN"
@@ -12392,7 +12409,7 @@ msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Desactivar o certificado"
 
-#: src/view/keylistcontroller.cpp:617
+#: src/view/keylistcontroller.cpp:618
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12404,58 +12421,58 @@ msgstr ""
 "para asinar ou para cifrar. Non se amosan na lista de certificados coa "
 "maioría dos filtros."
 
-#: src/view/keylistcontroller.cpp:628
+#: src/view/keylistcontroller.cpp:629
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Nova solicitude de certificación S/MIME…"
 
-#: src/view/keylistcontroller.cpp:629
+#: src/view/keylistcontroller.cpp:630
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Crear unha nova solicitude de certificado S/MIME de sinatura (CSR)"
 
-#: src/view/keylistcontroller.cpp:637
+#: src/view/keylistcontroller.cpp:638
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Confiar no certificado raíz"
 
-#: src/view/keylistcontroller.cpp:646
+#: src/view/keylistcontroller.cpp:647
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Desconfiar do certificado raíz"
 
-#: src/view/keylistcontroller.cpp:656
+#: src/view/keylistcontroller.cpp:657
 #, kde-format
 msgid "Technical Details"
 msgstr "Detalles técnicos"
 
-#: src/view/keylistcontroller.cpp:666
+#: src/view/keylistcontroller.cpp:667
 #, kde-format
 msgid "Refresh S/MIME Certificates"
 msgstr "Actualizar os certificados S/MIME"
 
-#: src/view/keylistcontroller.cpp:675
+#: src/view/keylistcontroller.cpp:676
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Limpar a caché de CRL"
 
-#: src/view/keylistcontroller.cpp:684
+#: src/view/keylistcontroller.cpp:685
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Envorcar a caché de CRL"
 
-#: src/view/keylistcontroller.cpp:693
+#: src/view/keylistcontroller.cpp:694
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Importar a CRL dun ficheiro…"
 
-#: src/view/keylistcontroller.cpp:1153
+#: src/view/keylistcontroller.cpp:1154
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
 msgstr "Activar e amosar o certificado"
 
-#: src/view/keylistcontroller.cpp:1153
+#: src/view/keylistcontroller.cpp:1154
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
