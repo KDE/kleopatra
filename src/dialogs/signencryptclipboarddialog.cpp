@@ -236,6 +236,8 @@ void SignEncryptClipboardDialog::updateButtons()
 
             mOkButton->setToolTip(DeVSCompliance::name(de_vs));
             mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
+            // set the style-sheet again to update the colors on palette changes
+            mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
         }
     } else {
         mOkButton->setText(i18nc("@action:button", "Next"));

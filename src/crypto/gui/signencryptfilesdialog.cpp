@@ -597,6 +597,8 @@ void SignEncryptFilesDialog::updateButtons()
             mOkButton->setToolTip(DeVSCompliance::name(de_vs));
             if (mComplianceLabelButton) {
                 mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
+                // set the style-sheet again to update the colors on palette changes
+                mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
             }
         }
     } else {
