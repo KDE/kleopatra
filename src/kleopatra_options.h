@@ -14,6 +14,8 @@
 
 static void kleopatra_options(QCommandLineParser *parser)
 {
+    using namespace Qt::StringLiterals;
+
     parser->addOptions({
         QCommandLineOption({QStringLiteral("openpgp"), QStringLiteral("p")}, i18nc("@info:shell", "Use OpenPGP for the following operation")),
         QCommandLineOption({QStringLiteral("cms"), QStringLiteral("c")}, i18nc("@info:shell", "Use CMS (X.509, S/MIME) for the following operation")),
@@ -38,6 +40,7 @@ static void kleopatra_options(QCommandLineParser *parser)
         QCommandLineOption(QStringLiteral("gen-key"), i18nc("@info:shell", "Create a new key pair or certificate signing request")),
         QCommandLineOption(QStringLiteral("parent-windowid"), i18nc("@info:shell", "Parent Window Id for dialogs"), QStringLiteral("windowId")),
         QCommandLineOption(QStringLiteral("config"), i18nc("@info:shell", "Open the config dialog")),
+        QCommandLineOption(u"standalone"_s, i18nc("@info:shell", "Run as standalone app without system tray icon")),
     });
 
     /* Security note: To avoid code execution by shared library injection

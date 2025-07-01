@@ -71,6 +71,8 @@
 #include <iostream>
 #include <memory>
 
+using namespace Qt::StringLiterals;
+
 QElapsedTimer startupTimer;
 
 static bool selfCheck()
@@ -127,23 +129,31 @@ int main(int argc, char **argv)
     // name that will be registered on the bus.
     app.setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
     app.setOrganizationDomain(QStringLiteral("kde.org"));
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
 
     STARTUP_TIMING << "Application created";
+
+    // Early parsing of command line to handle --standalone option
+    QCommandLineParser parser;
+    kleopatra_options(&parser);
+    (void)parser.parse(QApplication::arguments()); // ignore errors; they are handled later
+    app.setIsStandalone(parser.isSet(u"standalone"_s));
+
     /* Create the unique service ASAP to prevent double starts if
      * the application is started twice very quickly. */
-    KUniqueService service;
-    QObject::connect(&service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
-    QObject::connect(&app, &KleopatraApplication::setExitValue, &service, [&service](int i) {
-        service.setExitValue(i);
-    });
-    STARTUP_TIMING << "Service created";
+    if (!app.isStandalone()) {
+        KUniqueService service;
+        QObject::connect(&service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
+        QObject::connect(&app, &KleopatraApplication::setExitValue, &service, [&service](int i) {
+            service.setExitValue(i);
+        });
+        STARTUP_TIMING << "Unique service created";
+    }
 
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
     qCDebug(KLEOPATRA_LOG) << "Application created";
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
-
-    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
 
     if (gpgmeInitError) {
         // Show a failed initialization of GpgME after creating QApplication and KUniqueService,
@@ -194,10 +204,7 @@ int main(int argc, char **argv)
     app.init();
     STARTUP_TIMING << "Application initialized";
 
-    QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
-    kleopatra_options(&parser);
-
     parser.process(QApplication::arguments());
     aboutData.processCommandLine(&parser);
     {
