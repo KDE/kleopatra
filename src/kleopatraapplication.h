@@ -40,6 +40,13 @@ public:
     KleopatraApplication(int &argc, char *argv[]);
     ~KleopatraApplication() override;
 
+    /** By default, Kleopatra is started as unique application. This can be changed
+     * by calling setIsStandalone with \c true. A standalone Kleopatra instance doesn't
+     * have a system tray icon.
+     */
+    void setIsStandalone(bool standalone);
+    bool isStandalone() const;
+
     /** Initialize the application. Without calling init any
      * other call to KleopatraApplication will result in undefined behavior
      * and likely crash. */

@@ -205,9 +205,7 @@ public:
 
     void closeAndQuit()
     {
-        if (Kleo::userIsElevated()) {
-            // For users running Kleo with elevated permissions on Windows we
-            // always quit the application to avoid some problems.
+        if (qApp->quitOnLastWindowClosed()) {
             qApp->quit();
         }
 
@@ -850,7 +848,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
             setEnabled(true);
         }
     }
-    if (isQuitting || qApp->isSavingSession() || Kleo::userIsElevated()) {
+    if (isQuitting || qApp->isSavingSession() || qApp->quitOnLastWindowClosed()) {
         d->ui.searchTab->tabWidget()->saveViews();
         KConfigGroup grp(KConfigGroup(KSharedConfig::openConfig(), autoSaveGroup()));
         saveMainWindowSettings(grp);

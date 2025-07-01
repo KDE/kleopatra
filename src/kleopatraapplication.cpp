@@ -211,6 +211,7 @@ private:
     }
 
 public:
+    bool isStandalone = false;
     bool ignoreNewInstance;
     bool firstNewInstance;
     QPointer<FocusFrame> focusFrame;
@@ -364,7 +365,9 @@ void KleopatraApplication::init()
     d->readerStatus.reset(new SmartCard::ReaderStatus);
     connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested, this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
-    d->setUpSysTrayIcon();
+    if (!d->isStandalone) {
+        d->setUpSysTrayIcon();
+    }
     d->setUpFilterManager();
     d->setupLogging();
 #ifdef Q_OS_WIN
@@ -381,11 +384,11 @@ void KleopatraApplication::init()
         d->sysTray->show();
     }
 #endif
-    if (!Kleo::userIsElevated()) {
-        // For users running Kleo with elevated permissions on Windows we
-        // always quit the application when the last window is closed.
-        setQuitOnLastWindowClosed(false);
-    }
+
+    // If Kleopatra is running in standalone mode or if it is running
+    // with elevated permissions on Windows then we quit the application
+    // when the last window is closed.
+    setQuitOnLastWindowClosed(isStandalone() || Kleo::userIsElevated());
 
     // Sync config when we are about to quit
     connect(this, &QApplication::aboutToQuit, this, []() {
@@ -398,6 +401,16 @@ KleopatraApplication::~KleopatraApplication()
     delete d->groupsConfigDialog;
     delete d->smartCardWindow;
     delete d->mainWindow;
+}
+
+void KleopatraApplication::setIsStandalone(bool standalone)
+{
+    d->isStandalone = standalone;
+}
+
+bool KleopatraApplication::isStandalone() const
+{
+    return d->isStandalone;
 }
 
 namespace
