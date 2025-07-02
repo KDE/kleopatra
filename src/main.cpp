@@ -217,9 +217,8 @@ int main(int argc, char **argv)
     Kleo::ChecksumDefinition::setInstallPath(Kleo::gpg4winInstallPath());
     Kleo::ArchiveDefinition::setInstallPath(Kleo::gnupgInstallPath());
 
-#ifndef DISABLE_UISERVER
-    int rc;
     Kleo::UiServer *server = nullptr;
+#ifndef DISABLE_UISERVER
     try {
         server = new Kleo::UiServer(parser.value(QStringLiteral("uiserver-socket")));
         STARTUP_TIMING << "UiServer created";
@@ -304,7 +303,7 @@ int main(int argc, char **argv)
     KMessageBox::setDontShowAgainInterface(messageBoxConfigStorage.get());
 #endif
 
-    rc = app.exec();
+    const int rc = app.exec();
 
     app.setIgnoreNewInstance(true);
     QObject::disconnect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
