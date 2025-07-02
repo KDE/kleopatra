@@ -180,7 +180,7 @@ void OpenPGPGenerateCardKeyCommand::doStart()
         const QString warningText = i18nc("@info",
                                           "<p>This card already contains a key in this slot. Continuing will <b>overwrite</b> that key.</p>"
                                           "<p>If there is no backup the existing key will be irrecoverably lost.</p>")
-            + i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(QString::fromStdString(existingKey))
+            + i18n("The existing key has the ID:") + QStringLiteral("<pre>%1</pre>").arg(Formatting::prettyID(existingKey.data()))
             + (d->keyRef == OpenPGPCard::pgpEncKeyRef() ? i18n("It will no longer be possible to decrypt past communication encrypted for the existing key.")
                                                         : QString());
         const auto choice = KMessageBox::warningContinueCancel(d->parentWidgetOrView(),
