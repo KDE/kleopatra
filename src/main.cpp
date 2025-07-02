@@ -219,56 +219,58 @@ int main(int argc, char **argv)
 
     Kleo::UiServer *server = nullptr;
 #ifndef DISABLE_UISERVER
-    try {
-        server = new Kleo::UiServer(parser.value(QStringLiteral("uiserver-socket")));
-        STARTUP_TIMING << "UiServer created";
+    if (!app.isStandalone()) {
+        try {
+            server = new Kleo::UiServer(parser.value(QStringLiteral("uiserver-socket")));
+            STARTUP_TIMING << "UiServer created";
 
-        QObject::connect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
+            QObject::connect(server, &Kleo::UiServer::startKeyManagerRequested, &app, &KleopatraApplication::openOrRaiseMainWindow);
 
-        QObject::connect(server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
+            QObject::connect(server, &Kleo::UiServer::startConfigDialogRequested, &app, &KleopatraApplication::openOrRaiseConfigDialog);
 
 #define REGISTER(Command) server->registerCommandFactory(std::shared_ptr<Kleo::AssuanCommandFactory>(new Kleo::GenericAssuanCommandFactory<Kleo::Command>))
-        REGISTER(CreateChecksumsCommand);
-        REGISTER(DecryptCommand);
-        REGISTER(DecryptFilesCommand);
-        REGISTER(DecryptVerifyFilesCommand);
-        REGISTER(EchoCommand);
-        REGISTER(EncryptCommand);
-        REGISTER(EncryptFilesCommand);
-        REGISTER(EncryptSignFilesCommand);
-        REGISTER(ImportFilesCommand);
-        REGISTER(PrepEncryptCommand);
-        REGISTER(PrepSignCommand);
-        REGISTER(SelectCertificateCommand);
-        REGISTER(SignCommand);
-        REGISTER(SignEncryptFilesCommand);
-        REGISTER(SignFilesCommand);
-        REGISTER(VerifyChecksumsCommand);
-        REGISTER(VerifyCommand);
-        REGISTER(VerifyFilesCommand);
+            REGISTER(CreateChecksumsCommand);
+            REGISTER(DecryptCommand);
+            REGISTER(DecryptFilesCommand);
+            REGISTER(DecryptVerifyFilesCommand);
+            REGISTER(EchoCommand);
+            REGISTER(EncryptCommand);
+            REGISTER(EncryptFilesCommand);
+            REGISTER(EncryptSignFilesCommand);
+            REGISTER(ImportFilesCommand);
+            REGISTER(PrepEncryptCommand);
+            REGISTER(PrepSignCommand);
+            REGISTER(SelectCertificateCommand);
+            REGISTER(SignCommand);
+            REGISTER(SignEncryptFilesCommand);
+            REGISTER(SignFilesCommand);
+            REGISTER(VerifyChecksumsCommand);
+            REGISTER(VerifyCommand);
+            REGISTER(VerifyFilesCommand);
 #undef REGISTER
 
-        server->start();
-        STARTUP_TIMING << "UiServer started";
-    } catch (const std::exception &e) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
+            server->start();
+            STARTUP_TIMING << "UiServer started";
+        } catch (const std::exception &e) {
+            qCDebug(KLEOPATRA_LOG) << "Failed to start UI Server: " << e.what();
 #ifdef Q_OS_WIN
-        // We should probably change the UIServer to be only run on Windows at all because
-        // only the Windows Explorer Plugin uses it. But the plan of GnuPG devs as of 2022 is to
-        // change the Windows Explorer Plugin to use the command line and then remove the
-        // UiServer for everyone.
-        QMessageBox::information(nullptr,
-                                 i18n("GPG UI Server Error"),
-                                 i18nc("This error message is only shown on Windows when the socket to communicate with "
-                                       "Windows Explorer could not be created. This often times means that the whole installation is "
-                                       "buggy. e.g. GnuPG is not installed at all.",
-                                       "<qt>The Kleopatra Windows Explorer Module could not be initialized.<br/>"
-                                       "The error given was: <b>%1</b><br/>"
-                                       "This likely means that there is a problem with your installation. Try reinstalling or "
-                                       "contact your Administrator for support.<br/>"
-                                       "You can try to continue to use Kleopatra but there might be other problems.</qt>",
-                                       QString::fromUtf8(e.what()).toHtmlEscaped()));
+            // We should probably change the UIServer to be only run on Windows at all because
+            // only the Windows Explorer Plugin uses it. But the plan of GnuPG devs as of 2022 is to
+            // change the Windows Explorer Plugin to use the command line and then remove the
+            // UiServer for everyone.
+            QMessageBox::information(nullptr,
+                                     i18n("GPG UI Server Error"),
+                                     i18nc("This error message is only shown on Windows when the socket to communicate with "
+                                           "Windows Explorer could not be created. This often times means that the whole installation is "
+                                           "buggy. e.g. GnuPG is not installed at all.",
+                                           "<qt>The Kleopatra Windows Explorer Module could not be initialized.<br/>"
+                                           "The error given was: <b>%1</b><br/>"
+                                           "This likely means that there is a problem with your installation. Try reinstalling or "
+                                           "contact your Administrator for support.<br/>"
+                                           "You can try to continue to use Kleopatra but there might be other problems.</qt>",
+                                           QString::fromUtf8(e.what()).toHtmlEscaped()));
 #endif
+        }
     }
 #endif // DISABLE_UISERVER
     const bool daemon = parser.isSet(QStringLiteral("daemon"));
