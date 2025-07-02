@@ -41,7 +41,7 @@ public:
     /**
      * Default constructor
      */
-    KUniqueService();
+    KUniqueService(QObject *parent = nullptr);
     ~KUniqueService() override;
 
 public Q_SLOTS:

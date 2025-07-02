@@ -9,6 +9,9 @@
 */
 
 #include "kuniqueservice.h"
+
+#include <kleopatra_debug.h>
+
 #include <KDBusService>
 
 class KUniqueService::KUniqueServicePrivate
@@ -31,13 +34,15 @@ private:
     KDBusService mService;
 };
 
-KUniqueService::KUniqueService()
-    : d_ptr(new KUniqueServicePrivate(this))
+KUniqueService::KUniqueService(QObject *parent)
+    : QObject(parent)
+    , d_ptr(new KUniqueServicePrivate(this))
 {
 }
 
 KUniqueService::~KUniqueService()
 {
+    qCDebug(KLEOPATRA_LOG) << __func__;
     delete d_ptr;
 }
 

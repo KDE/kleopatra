@@ -183,13 +183,15 @@ private:
     }
 };
 
-KUniqueService::KUniqueService()
-    : d_ptr(KUniqueServicePrivate::instance(this))
+KUniqueService::KUniqueService(QObject *parent)
+    : QObject(parent)
+    , d_ptr(KUniqueServicePrivate::instance(this))
 {
 }
 
 KUniqueService::~KUniqueService()
 {
+    qCDebug(KLEOPATRA_LOG) << __func__;
     delete d_ptr;
 }
 

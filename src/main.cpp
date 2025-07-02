@@ -136,10 +136,10 @@ int main(int argc, char **argv)
     /* Create the unique service ASAP to prevent double starts if
      * the application is started twice very quickly. */
     if (!app.isStandalone()) {
-        KUniqueService service;
-        QObject::connect(&service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
-        QObject::connect(&app, &KleopatraApplication::setExitValue, &service, [&service](int i) {
-            service.setExitValue(i);
+        auto service = new KUniqueService(&app);
+        QObject::connect(service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
+        QObject::connect(&app, &KleopatraApplication::setExitValue, service, [service](int i) {
+            service->setExitValue(i);
         });
         STARTUP_TIMING << "Unique service created";
     }
