@@ -151,7 +151,6 @@ int main(int argc, char **argv)
     }
 
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
-    qCDebug(KLEOPATRA_LOG) << "Application created";
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
