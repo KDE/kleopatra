@@ -172,6 +172,7 @@ public:
 
         mEdit->setFont(fixedFont);
         mEdit->setAcceptRichText(false);
+        mEdit->setTabChangesFocus(true);
         mEdit->setMinimumWidth(QFontMetrics(fixedFont).averageCharWidth() * 70);
 
         updateButtons();
