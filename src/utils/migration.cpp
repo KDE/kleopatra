@@ -9,6 +9,7 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -48,17 +49,13 @@ static void migrateGroupState(const QString &configName, const QString &name)
     }
 }
 
-static void migrateConfigFile(const QString &fileName)
+static void migrateConfigFile(const QString &oldFileName, const QString &newFileName, const QString &oldConfigLocation)
 {
-#ifdef Q_OS_WIN
-    // On Windows, Gpg4win 4.x used %APPDATA%/kleopatra as GenericConfigLocation;
-    // Gpg4win 5.x uses %GNUPGHOME%/kleopatra as GenericConfigLocation
-    const QFileInfo oldConfigPath{qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 + fileName};
-#else
-    const QFileInfo oldConfigPath{QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation) + u'/' + fileName};
-#endif
+    const QFileInfo oldConfigPath{oldConfigLocation + u'/' + oldFileName};
+    // all versions of Kleopatra use GNUPGHOME/kleopatra as location for the group config file;
+    // Gpg4win 5.x and VSD 3.4 use GNUPGHOME/kleopatra for all config files
     const QDir newConfigDir{Kleo::gnupgHomeDirectory() + "/kleopatra"_L1};
-    const QFileInfo newConfigPath{newConfigDir.absoluteFilePath(fileName)};
+    const QFileInfo newConfigPath{newConfigDir.absoluteFilePath(newFileName)};
 
     if (!newConfigPath.exists() && oldConfigPath.exists()) {
         qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath.absoluteFilePath() << "to" << newConfigPath.absoluteFilePath();
@@ -73,16 +70,40 @@ static void migrateConfigFile(const QString &fileName)
     }
 }
 
+static void migrateConfigFile(const QString &fileName, const QString &oldConfigLocation)
+{
+    migrateConfigFile(fileName, fileName, oldConfigLocation);
+}
+
 #ifdef Q_OS_WIN
+static QString getOldGenericConfigLocation(const QString &applicationName)
+{
+    // Gpg4win 4.[34] used %APPDATA%/kleopatra as GenericConfigLocation;
+    // VSD 3.[123] and GPD 4.3 used %LOCALAPPDATA% as GenericConfigLocation;
+    // if application name is not "kleopatra" then we assume VSD/GPD
+    return applicationName == "kleopatra"_L1 //
+        ? qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 //
+        : qEnvironmentVariable("LOCALAPPDATA") + u'/';
+}
+
 void Migration::migrateApplicationConfigFiles(const QString &applicationName)
 {
-    // On Windows, also migrate the main config file and the state config file to GNUPGHOME/kleopatra/
-    migrateConfigFile(applicationName + "rc"_L1);
-    migrateConfigFile(applicationName + "staterc"_L1);
+    const QString oldGenericConfigLocation = getOldGenericConfigLocation(applicationName);
+
+    // Migrate the main config file and the state config file to GNUPGHOME/kleopatra/
+    migrateConfigFile(u"kleopatrarc"_s, applicationName + "rc"_L1, oldGenericConfigLocation);
+    // all Gpg4win-based versions used %APPDATA%/kleopatra as AppDataLocation (for the *staterc file);
+    migrateConfigFile(u"kleopatrastaterc"_s, applicationName + "staterc"_L1, qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1);
     // Migrate some more config files
-    migrateConfigFile(u"klanguageoverridesrc"_s);
-    migrateConfigFile(u"libkleopatrarc"_s);
-    migrateConfigFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s);
+    migrateConfigFile(u"klanguageoverridesrc"_s, oldGenericConfigLocation);
+    migrateConfigFile(u"libkleopatrarc"_s, oldGenericConfigLocation);
+    migrateConfigFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s, oldGenericConfigLocation);
+}
+#else
+static QString getOldGenericConfigLocation(const QString &applicationName)
+{
+    Q_UNUSED(applicationName)
+    return QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
 }
 #endif
 
@@ -118,7 +139,7 @@ void Migration::migrate()
     }
 
     // Migrate kleopatragroupsrc from old location to GNUPGHOME/kleopatra/
-    migrateConfigFile(u"kleopatragroupsrc"_s);
+    migrateConfigFile(u"kleopatragroupsrc"_s, getOldGenericConfigLocation(qApp->applicationName()));
 
     removeFilterNames(u"libkleopatrarc"_s);
 }
