@@ -21,6 +21,7 @@
 #include <settings.h>
 
 #include <Libkleo/Compliance>
+#include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 
@@ -185,7 +186,7 @@ static void updateNullPinWidget(KMessageWidget *nullPinWidget, const Card *card)
      * So it should be optional to set the SigG pins. */
     if (card->hasNKSNullPin()) {
         nullPinWidget->setMessageType(KMessageWidget::Information);
-        nullPinWidget->setIcon(QIcon::fromTheme(u"data-information"_s));
+        nullPinWidget->setIcon(Formatting::infoIcon());
         const auto nullTitle = i18nc(
             "NullPIN is a word that is used all over in the netkey "
             "documentation and should be understandable by Netkey cardholders",

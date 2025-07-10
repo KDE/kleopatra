@@ -480,19 +480,19 @@ void CertificateDetailsWidget::Private::keysMayHaveChanged()
 QIcon CertificateDetailsWidget::Private::trustLevelIcon(const GpgME::UserID &uid) const
 {
     if (updateInProgress) {
-        return QIcon::fromTheme(QStringLiteral("data-question"));
+        return Formatting::questionIcon();
     }
     switch (uid.validity()) {
     case GpgME::UserID::Unknown:
     case GpgME::UserID::Undefined:
-        return QIcon::fromTheme(QStringLiteral("data-question"));
+        return Formatting::questionIcon();
     case GpgME::UserID::Never:
-        return QIcon::fromTheme(QStringLiteral("data-error"));
+        return Formatting::errorIcon();
     case GpgME::UserID::Marginal:
-        return QIcon::fromTheme(QStringLiteral("data-warning"));
+        return Formatting::warningIcon();
     case GpgME::UserID::Full:
     case GpgME::UserID::Ultimate:
-        return QIcon::fromTheme(QStringLiteral("data-success"));
+        return Formatting::successIcon();
     }
     return {};
 }

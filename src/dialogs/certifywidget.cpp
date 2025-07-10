@@ -206,7 +206,7 @@ public:
 
         mBadCertificatesInfo = new KMessageWidget{q};
         mBadCertificatesInfo->setMessageType(KMessageWidget::Warning);
-        mBadCertificatesInfo->setIcon(QIcon::fromTheme(QStringLiteral("data-warning"), QIcon::fromTheme(QStringLiteral("dialog-warning"))));
+        mBadCertificatesInfo->setIcon(Formatting::warningIcon());
         mBadCertificatesInfo->setText(i18nc("@info", "One or more certificates cannot be certified."));
         mBadCertificatesInfo->setCloseButtonVisible(false);
         mBadCertificatesInfo->setVisible(false);

@@ -16,6 +16,7 @@
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
 #include <Libkleo/DefaultKeyFilter>
+#include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyFilter>
 #include <Libkleo/KeyFilterManager>
@@ -112,7 +113,7 @@ public:
         const auto &key = sourceIndex.data(KeyList::KeyRole).value<Key>();
         if (!Kleo::canBeUsedForEncryption(key)) {
             if (role == Qt::DecorationRole && index.column() == KeyList::Columns::Validity) {
-                return QIcon::fromTheme(QStringLiteral("data-error"));
+                return Formatting::errorIcon();
             }
             if (role == Qt::DisplayRole && index.column() == KeyList::Columns::Validity) {
                 return i18nc("@info as in 'this certificate is unusable'", "unusable");
