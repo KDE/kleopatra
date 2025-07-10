@@ -22,6 +22,7 @@
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/AuditLogViewer>
 #include <Libkleo/Classify>
+#include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
 
 #include <gpgme++/decryptionresult.h>
@@ -217,15 +218,15 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         auto row = new QHBoxLayout(frame);
 
         auto iconLabel = new QLabel;
-        QString icon;
+        QIcon icon;
         if (detail.code == Task::Result::AllGood) {
-            icon = QStringLiteral("data-success");
+            icon = Formatting::successIcon();
         } else if (detail.code == Task::Result::Warning) {
-            icon = QStringLiteral("data-warning");
+            icon = Formatting::warningIcon();
         } else {
-            icon = QStringLiteral("data-error");
+            icon = Formatting::errorIcon();
         }
-        iconLabel->setPixmap(QIcon::fromTheme(icon).pixmap(32, 32));
+        iconLabel->setPixmap(icon.pixmap(32, 32));
         row->addWidget(iconLabel, 0);
 
         auto detailsLabel = new HtmlLabel;
