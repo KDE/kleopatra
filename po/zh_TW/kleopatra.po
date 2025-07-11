@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-07-04 00:43+0000\n"
+"POT-Creation-Date: 2025-07-11 00:43+0000\n"
 "PO-Revision-Date: 2024-12-30 16:47+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -597,7 +597,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1' 是您自己的憑證嗎？"
 
 #: src/commands/changeownertrustcommand.cpp:102
-#: src/commands/importcertificatescommand.cpp:645
+#: src/commands/importcertificatescommand.cpp:534
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1661,7 +1661,7 @@ msgstr ""
 "束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:163
-#: src/commands/importcertificatescommand.cpp:627
+#: src/commands/importcertificatescommand.cpp:516
 #, kde-format
 msgid " "
 msgstr " "
@@ -2101,7 +2101,7 @@ msgid "Notepad"
 msgstr "筆記本"
 
 #: src/commands/importcertificatefromfilecommand.cpp:124
-#: src/commands/importcertificatescommand.cpp:186
+#: src/commands/importcertificatescommand.cpp:107
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -2114,8 +2114,8 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "正在從 %1 個檔案中匯入憑證..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
-#: src/commands/importcertificatescommand.cpp:906
-#: src/commands/importcertificatescommand.cpp:959
+#: src/commands/importcertificatescommand.cpp:795
+#: src/commands/importcertificatescommand.cpp:848
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "匯入憑證失敗"
@@ -2126,7 +2126,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "無法開啟檔案 %1 以讀取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:154
-#: src/commands/importcertificatescommand.cpp:287 src/view/keytreeview.cpp:232
+#: src/commands/importcertificatescommand.cpp:156 src/view/keytreeview.cpp:232
 #, kde-format
 msgid "Certificates"
 msgstr "憑證"
@@ -2163,237 +2163,230 @@ msgstr "抱歉！沒有找到要從這個卡片欄位匯入的憑證。"
 msgid "Card Certificate"
 msgstr "卡片憑證"
 
-#: src/commands/importcertificatescommand.cpp:187
+#: src/commands/importcertificatescommand.cpp:108
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "正在匯入憑證...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:242
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Imported Certificates from %1"
-msgstr "已從 %1 匯入憑證"
-
-#: src/commands/importcertificatescommand.cpp:244
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Imported certificates from these sources:<br/>%1"
-msgstr "已從這些來源匯入憑證：<br/>%1"
-
-#: src/commands/importcertificatescommand.cpp:259
-#, kde-format
-msgctxt "@title:tab"
-msgid "Imported Certificates"
-msgstr "已匯入憑證"
-
-#: src/commands/importcertificatescommand.cpp:272
+#: src/commands/importcertificatescommand.cpp:141
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:142
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:143
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:288
-#: src/commands/importcertificatescommand.cpp:328
+#: src/commands/importcertificatescommand.cpp:157
+#: src/commands/importcertificatescommand.cpp:197
 #, kde-format
 msgid "Total number processed:"
 msgstr "已處理總數："
 
-#: src/commands/importcertificatescommand.cpp:289
+#: src/commands/importcertificatescommand.cpp:158
 #, kde-format
 msgid "Imported:"
 msgstr "已匯入："
 
-#: src/commands/importcertificatescommand.cpp:291
+#: src/commands/importcertificatescommand.cpp:160
 #, kde-format
 msgid "New signatures:"
 msgstr "新的簽章："
 
-#: src/commands/importcertificatescommand.cpp:293
+#: src/commands/importcertificatescommand.cpp:162
 #, kde-format
 msgid "New user IDs:"
 msgstr "新的使用者 ID："
 
-#: src/commands/importcertificatescommand.cpp:295
+#: src/commands/importcertificatescommand.cpp:164
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "沒有使用者 ID 的憑證："
 
-#: src/commands/importcertificatescommand.cpp:297
+#: src/commands/importcertificatescommand.cpp:166
 #, kde-format
 msgid "New subkeys:"
 msgstr "新的子金鑰："
 
-#: src/commands/importcertificatescommand.cpp:299
+#: src/commands/importcertificatescommand.cpp:168
 #, kde-format
 msgid "Newly revoked:"
 msgstr "新撤銷的："
 
-#: src/commands/importcertificatescommand.cpp:301
+#: src/commands/importcertificatescommand.cpp:170
 #, kde-format
 msgid "Not imported:"
 msgstr "未匯入："
 
-#: src/commands/importcertificatescommand.cpp:303
+#: src/commands/importcertificatescommand.cpp:172
 #, kde-format
 msgid "Unchanged:"
 msgstr "未改變的："
 
-#: src/commands/importcertificatescommand.cpp:305
+#: src/commands/importcertificatescommand.cpp:174
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "已處理的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:307
+#: src/commands/importcertificatescommand.cpp:176
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "已匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:311
+#: src/commands/importcertificatescommand.cpp:180
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "<em>未</em>匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:313
+#: src/commands/importcertificatescommand.cpp:182
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "未變更的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:315
+#: src/commands/importcertificatescommand.cpp:184
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "由於已棄用而略過的 PGP-2 金鑰："
 
-#: src/commands/importcertificatescommand.cpp:327
+#: src/commands/importcertificatescommand.cpp:196
 #, kde-format
 msgid "Certificate Groups"
 msgstr "憑證群組"
 
-#: src/commands/importcertificatescommand.cpp:329
+#: src/commands/importcertificatescommand.cpp:198
 #, kde-format
 msgid "New groups:"
 msgstr "新群組："
 
-#: src/commands/importcertificatescommand.cpp:330
+#: src/commands/importcertificatescommand.cpp:199
 #, kde-format
 msgid "Updated groups:"
 msgstr "已更新群組："
 
-#: src/commands/importcertificatescommand.cpp:345
+#: src/commands/importcertificatescommand.cpp:214
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "沒有匯入（不應該發生此情形，請回報此錯誤。）"
 
-#: src/commands/importcertificatescommand.cpp:347
+#: src/commands/importcertificatescommand.cpp:216
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "匯入 %1 個詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:348
+#: src/commands/importcertificatescommand.cpp:217
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "匯入的詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:406
+#: src/commands/importcertificatescommand.cpp:275
 #, kde-format
 msgid "A phone call to the person."
 msgstr "打電話給那個人。"
 
-#: src/commands/importcertificatescommand.cpp:407
+#: src/commands/importcertificatescommand.cpp:276
 #, kde-format
 msgid "Using a business card."
 msgstr "利用名片。"
 
-#: src/commands/importcertificatescommand.cpp:408
+#: src/commands/importcertificatescommand.cpp:277
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "在一個信任的網站上進行確認。"
 
-#: src/commands/importcertificatescommand.cpp:412
+#: src/commands/importcertificatescommand.cpp:281
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr "要標記憑證為有效，它必須是被保證的。"
 
-#: src/commands/importcertificatescommand.cpp:413
+#: src/commands/importcertificatescommand.cpp:282
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "保證代表您檢查過指紋。"
 
-#: src/commands/importcertificatescommand.cpp:414
+#: src/commands/importcertificatescommand.cpp:283
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "以下是一些這麼做的建議："
 
-#: src/commands/importcertificatescommand.cpp:416
+#: src/commands/importcertificatescommand.cpp:285
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "您要現在開始這個流程嗎？"
 
-#: src/commands/importcertificatescommand.cpp:417
+#: src/commands/importcertificatescommand.cpp:286
 #, kde-format
 msgctxt "@title"
 msgid "You have imported a new certificate (public key)"
 msgstr "您已匯入了新的憑證（公鑰）"
 
-#: src/commands/importcertificatescommand.cpp:418
+#: src/commands/importcertificatescommand.cpp:287
 #: src/conf/groupsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "保證"
 
-#: src/commands/importcertificatescommand.cpp:471
+#: src/commands/importcertificatescommand.cpp:340
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1（利用 %2 匯入）"
 
-#: src/commands/importcertificatescommand.cpp:475
+#: src/commands/importcertificatescommand.cpp:344
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "稽核紀錄是空的。"
 
-#: src/commands/importcertificatescommand.cpp:477
+#: src/commands/importcertificatescommand.cpp:346
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "匯入已取消。"
 
-#: src/commands/importcertificatescommand.cpp:499
-#, kde-format
-msgid "Certificate Import Result"
-msgstr "憑證匯入結果"
+#: src/commands/importcertificatescommand.cpp:373
+#, fuzzy, kde-format
+#| msgctxt "@title:tab"
+#| msgid "Imported Certificates"
+msgctxt "@action:button"
+msgid "List Imported Certificates"
+msgstr "已匯入憑證"
 
-#: src/commands/importcertificatescommand.cpp:508
+#: src/commands/importcertificatescommand.cpp:374
+#, fuzzy, kde-format
+#| msgctxt "The Audit Log is a detailed error log from the gnupg backend"
+#| msgid "Show Audit Log"
+msgctxt "@action:button"
+msgid "Show Audit Log"
+msgstr "顯示稽核紀錄"
+
+#: src/commands/importcertificatescommand.cpp:397
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證時發生錯誤：</p> <p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:513
+#: src/commands/importcertificatescommand.cpp:402
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證 %1 時發生錯誤：</p> <p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:629
+#: src/commands/importcertificatescommand.cpp:518
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:633
+#: src/commands/importcertificatescommand.cpp:522
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2404,19 +2397,19 @@ msgstr ""
 "<para>您已匯入憑證，它的指紋是：</para><para><numid>%1</numid></para><para>它"
 "的使用者 ID 是：<list>%2</list></para><para>這是您自己的憑證嗎？</para>"
 
-#: src/commands/importcertificatescommand.cpp:646
+#: src/commands/importcertificatescommand.cpp:535
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, It's Mine"
 msgstr "對，它是我的"
 
-#: src/commands/importcertificatescommand.cpp:647
+#: src/commands/importcertificatescommand.cpp:536
 #, kde-format
 msgctxt "@action:button"
 msgid "No, It's Not Mine"
 msgstr "它不是我的"
 
-#: src/commands/importcertificatescommand.cpp:806
+#: src/commands/importcertificatescommand.cpp:695
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2430,14 +2423,14 @@ msgid ""
 msgstr ""
 "<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 
-#: src/commands/importcertificatescommand.cpp:870
+#: src/commands/importcertificatescommand.cpp:759
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在取得 %1 個簽署者金鑰...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:905
-#: src/commands/importcertificatescommand.cpp:958
+#: src/commands/importcertificatescommand.cpp:794
+#: src/commands/importcertificatescommand.cpp:847
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -3994,7 +3987,7 @@ msgid "handout_group-feature_gnupg_en.pdf"
 msgstr "handout_group-feature_gnupg_en.pdf"
 
 #: src/conf/groupsconfigwidget.cpp:142 src/dialogs/debugdialog.cpp:136
-#: src/dialogs/editgroupdialog.cpp:191 src/dialogs/editgroupdialog.cpp:280
+#: src/dialogs/editgroupdialog.cpp:192 src/dialogs/editgroupdialog.cpp:281
 #, kde-format
 msgctxt "@label"
 msgid "Search:"
@@ -4012,8 +4005,8 @@ msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr "在清單中搜尋符合條件的群組。"
 
-#: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:200
-#: src/dialogs/editgroupdialog.cpp:289
+#: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:201
+#: src/dialogs/editgroupdialog.cpp:290
 #, kde-format
 msgctxt "@info::placeholder"
 msgid "Enter search term"
@@ -5077,7 +5070,7 @@ msgid "This certificate is revoked"
 msgstr "此憑證已撤銷"
 
 #: src/crypto/gui/certificatelineedit.cpp:730 src/dialogs/expirydialog.cpp:217
-#: src/view/smartcardwidget.cpp:369
+#: src/view/smartcardwidget.cpp:370
 #, kde-format
 msgctxt "@info"
 msgid "Error: %1"
@@ -5229,18 +5222,18 @@ msgstr "收件者（%1）"
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
 msgstr "<qt><p>GnuPG 設定預先定義的收件者：</p>%1</qt>"
 
-#: src/crypto/gui/resultitemwidget.cpp:120
+#: src/crypto/gui/resultitemwidget.cpp:121
 #, kde-format
 msgctxt "@action:button"
 msgid "Force decryption"
 msgstr "強制解密"
 
-#: src/crypto/gui/resultitemwidget.cpp:145
+#: src/crypto/gui/resultitemwidget.cpp:146
 #, kde-format
 msgid "Diagnostics"
 msgstr "診斷"
 
-#: src/crypto/gui/resultitemwidget.cpp:146
+#: src/crypto/gui/resultitemwidget.cpp:147
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
@@ -5783,13 +5776,13 @@ msgid "Certificates that can be used for signing"
 msgstr "此憑證無法用來加密。"
 
 #: src/crypto/gui/signencryptwidget.cpp:490
-#: src/crypto/gui/signencryptwidget.cpp:524 src/dialogs/editgroupdialog.cpp:218
+#: src/crypto/gui/signencryptwidget.cpp:524 src/dialogs/editgroupdialog.cpp:219
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "可用作加密"
 
 #: src/crypto/gui/signencryptwidget.cpp:491
-#: src/crypto/gui/signencryptwidget.cpp:525 src/dialogs/editgroupdialog.cpp:219
+#: src/crypto/gui/signencryptwidget.cpp:525 src/dialogs/editgroupdialog.cpp:220
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "This certificate cannot be used for encryption."
@@ -7485,97 +7478,97 @@ msgctxt "@title:window"
 msgid "Secret Key Deletion"
 msgstr "私鑰刪除"
 
-#: src/dialogs/editgroupdialog.cpp:118
+#: src/dialogs/editgroupdialog.cpp:119
 #, kde-format
 msgctxt "@info as in 'this certificate is unusable'"
 msgid "unusable"
 msgstr "無法使用"
 
-#: src/dialogs/editgroupdialog.cpp:121
+#: src/dialogs/editgroupdialog.cpp:122
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This certificate cannot be used for encryption."
 msgstr "此憑證無法用來加密。"
 
-#: src/dialogs/editgroupdialog.cpp:173
+#: src/dialogs/editgroupdialog.cpp:174
 #, kde-format
 msgctxt "Name of a group of keys"
 msgid "Name:"
 msgstr "名稱："
 
-#: src/dialogs/editgroupdialog.cpp:185
+#: src/dialogs/editgroupdialog.cpp:186
 #, kde-format
 msgctxt "@title"
 msgid "Available Certificates"
 msgstr "可用憑證"
 
-#: src/dialogs/editgroupdialog.cpp:192 src/dialogs/editgroupdialog.cpp:198
+#: src/dialogs/editgroupdialog.cpp:193 src/dialogs/editgroupdialog.cpp:199
 #, kde-format
 msgctxt "@label"
 msgid "Search available certificates"
 msgstr "搜尋可用憑證"
 
-#: src/dialogs/editgroupdialog.cpp:193 src/dialogs/editgroupdialog.cpp:199
+#: src/dialogs/editgroupdialog.cpp:194 src/dialogs/editgroupdialog.cpp:200
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Search the list of available certificates for any that match the search term."
 msgstr "在可用憑證清單中搜尋符合條件的憑證。"
 
-#: src/dialogs/editgroupdialog.cpp:206 src/view/searchbar.cpp:136
+#: src/dialogs/editgroupdialog.cpp:207 src/view/searchbar.cpp:136
 #, kde-format
 msgid "Filter certificates by category"
 msgstr "依分類篩選憑證"
 
-#: src/dialogs/editgroupdialog.cpp:207 src/view/searchbar.cpp:137
+#: src/dialogs/editgroupdialog.cpp:208 src/view/searchbar.cpp:137
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show only certificates that belong to the selected category."
 msgstr "只顯示屬於選取分類的憑證。"
 
-#: src/dialogs/editgroupdialog.cpp:242
+#: src/dialogs/editgroupdialog.cpp:243
 #, kde-format
 msgctxt "@label"
 msgid "Available certificates"
 msgstr "可用憑證"
 
-#: src/dialogs/editgroupdialog.cpp:258
+#: src/dialogs/editgroupdialog.cpp:259
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Selected Certificates"
 msgstr "加入選擇憑證"
 
-#: src/dialogs/editgroupdialog.cpp:259
+#: src/dialogs/editgroupdialog.cpp:260
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the selected certificates to the group"
 msgstr "將所選憑證加入群組"
 
-#: src/dialogs/editgroupdialog.cpp:265
+#: src/dialogs/editgroupdialog.cpp:266
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Selected Certificates"
 msgstr "移除選取的憑證"
 
-#: src/dialogs/editgroupdialog.cpp:266
+#: src/dialogs/editgroupdialog.cpp:267
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Remove the selected certificates from the group"
 msgstr "從群組移除選取的憑證"
 
-#: src/dialogs/editgroupdialog.cpp:274
+#: src/dialogs/editgroupdialog.cpp:275
 #, kde-format
 msgctxt "@title"
 msgid "Certificates in the Group"
 msgstr "群組中的憑證"
 
-#: src/dialogs/editgroupdialog.cpp:281 src/dialogs/editgroupdialog.cpp:287
+#: src/dialogs/editgroupdialog.cpp:282 src/dialogs/editgroupdialog.cpp:288
 #, kde-format
 msgctxt "@label"
 msgid "Search for certificates in the group"
 msgstr "搜尋群組中的憑證"
 
-#: src/dialogs/editgroupdialog.cpp:282 src/dialogs/editgroupdialog.cpp:288
+#: src/dialogs/editgroupdialog.cpp:283 src/dialogs/editgroupdialog.cpp:289
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -7583,13 +7576,13 @@ msgid ""
 "term."
 msgstr "在群組憑證清單中搜尋符合條件的憑證。"
 
-#: src/dialogs/editgroupdialog.cpp:301
+#: src/dialogs/editgroupdialog.cpp:302
 #, kde-format
 msgctxt "@label"
 msgid "Certificates in group"
 msgstr "群組中的憑證"
 
-#: src/dialogs/editgroupdialog.cpp:481
+#: src/dialogs/editgroupdialog.cpp:482
 #, kde-format
 msgctxt "@title:window"
 msgid "Edit Group"
@@ -7718,6 +7711,14 @@ msgstr "群組詳情"
 #, kde-format
 msgid "Note: This group is defined in the configuration files of gpg."
 msgstr "請注意：這個群組是在 gpg 設定檔案中所定義的。"
+
+#: src/dialogs/importedcertificatesdialog.cpp:112
+#, fuzzy, kde-format
+#| msgctxt "@title:tab"
+#| msgid "Imported Certificates"
+msgctxt "@title:dialog as in 'list of certificates that were imported'"
+msgid "Imported Certificates"
+msgstr "已匯入憑證"
 
 #: src/dialogs/lookupcertificatesdialog.cpp:171
 #, kde-format
@@ -12305,7 +12306,7 @@ msgctxt "@info:tooltip"
 msgid "Change the PIN required for administrative operations."
 msgstr "變更管理員操作所需要的 Admin PIN 碼。"
 
-#: src/view/smartcardactions.cpp:72 src/view/smartcardwidget.cpp:138
+#: src/view/smartcardactions.cpp:72 src/view/smartcardwidget.cpp:139
 #, kde-format
 msgctxt "@action"
 msgid "Set PUK"
@@ -12362,7 +12363,7 @@ msgid "Change the PIN required for using the keys on the smart card."
 msgstr ""
 "變更要使用智慧卡上的金鑰前所需要的 PIN 碼。PIN 碼必須包含至少 6 個字元。"
 
-#: src/view/smartcardactions.cpp:88 src/view/smartcardwidget.cpp:138
+#: src/view/smartcardactions.cpp:88 src/view/smartcardwidget.cpp:139
 #, kde-format
 msgctxt "@action"
 msgid "Change PUK"
@@ -12584,50 +12585,50 @@ msgctxt "@info"
 msgid "URL change failed: %1"
 msgstr "網址變更失敗：%1"
 
-#: src/view/smartcardwidget.cpp:52
+#: src/view/smartcardwidget.cpp:53
 #, kde-format
 msgctxt "1 is a Version number"
 msgid "NetKey v%1 Card"
 msgstr "NetKey v%1 卡片"
 
-#: src/view/smartcardwidget.cpp:57
+#: src/view/smartcardwidget.cpp:58
 #, kde-format
 msgctxt "Placeholder is a version number"
 msgid "Unknown OpenPGP v%1 card"
 msgstr "未知的 OpenPGP v%1 卡片"
 
-#: src/view/smartcardwidget.cpp:59
+#: src/view/smartcardwidget.cpp:60
 #, kde-format
 msgctxt ""
 "First placeholder is manufacturer, second placeholder is a version number"
 msgid "%1 OpenPGP v%2 card"
 msgstr "%1 OpenPGP v%2 卡片"
 
-#: src/view/smartcardwidget.cpp:64
+#: src/view/smartcardwidget.cpp:65
 #, kde-format
 msgctxt "%1 is a smartcard manufacturer"
 msgid "%1 PKCS#15 card"
 msgstr "%1 PKCS#15 卡片"
 
-#: src/view/smartcardwidget.cpp:66
+#: src/view/smartcardwidget.cpp:67
 #, kde-format
 msgctxt "%1 version number"
 msgid "PIV v%1 card"
 msgstr "PIV v%1 卡片"
 
-#: src/view/smartcardwidget.cpp:125
+#: src/view/smartcardwidget.cpp:126
 #, kde-format
 msgctxt "@action NKS is an identifier for a type of keys on a NetKey card"
 msgid "Change NKS PIN"
 msgstr "變更 NKS PIN 碼"
 
-#: src/view/smartcardwidget.cpp:129
+#: src/view/smartcardwidget.cpp:130
 #, kde-format
 msgctxt "@action SigG is an identifier for a type of keys on a NetKey card"
 msgid "Change SigG PIN"
 msgstr "變更 SigG PIN 碼"
 
-#: src/view/smartcardwidget.cpp:192
+#: src/view/smartcardwidget.cpp:193
 #, kde-format
 msgctxt ""
 "NullPIN is a word that is used all over in the netkey documentation and "
@@ -12635,24 +12636,24 @@ msgctxt ""
 msgid "The NullPIN is still active on this card."
 msgstr "NullPIN 在這張卡片上仍為作用中。"
 
-#: src/view/smartcardwidget.cpp:193
+#: src/view/smartcardwidget.cpp:194
 #, kde-format
 msgid "You need to set a PIN before you can use the certificates."
 msgstr "您必須先設定 PIN 碼才能使用憑證。"
 
-#: src/view/smartcardwidget.cpp:230
+#: src/view/smartcardwidget.cpp:231
 #, kde-format
 msgctxt "@label"
 msgid "Card type:"
 msgstr "卡片類型："
 
-#: src/view/smartcardwidget.cpp:235
+#: src/view/smartcardwidget.cpp:236
 #, kde-format
 msgctxt "@label"
 msgid "Serial number:"
 msgstr "序號："
 
-#: src/view/smartcardwidget.cpp:242
+#: src/view/smartcardwidget.cpp:243
 #, fuzzy, kde-format
 #| msgctxt "The owner of a smartcard. GnuPG refers to this as cardholder."
 #| msgid "Cardholder:"
@@ -12660,7 +12661,7 @@ msgctxt "@label The owner of a smartcard. GnuPG refers to this as cardholder."
 msgid "Cardholder:"
 msgstr "卡片持有者："
 
-#: src/view/smartcardwidget.cpp:254
+#: src/view/smartcardwidget.cpp:255
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "The URL under which a public key that corresponds to a smartcard can be "
@@ -12670,7 +12671,7 @@ msgctxt "@label"
 msgid "Public key URL:"
 msgstr "公鑰網址："
 
-#: src/view/smartcardwidget.cpp:271
+#: src/view/smartcardwidget.cpp:272
 #, kde-format
 msgctxt ""
 "@label The number of remaining attempts to enter a PIN or PUK, as in "
@@ -12678,142 +12679,142 @@ msgctxt ""
 msgid "Remaining attempts:"
 msgstr "剩餘嘗試次數："
 
-#: src/view/smartcardwidget.cpp:273
+#: src/view/smartcardwidget.cpp:274
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Shows the number of remaining attempts for entering the correct PIN or PUK."
 msgstr "顯示輸入正確 PIN 碼或 PUK 碼的剩餘嘗試次數。"
 
-#: src/view/smartcardwidget.cpp:284
+#: src/view/smartcardwidget.cpp:285
 #, kde-format
 msgctxt "@action:button"
 msgid "Card Actions"
 msgstr "卡片動作"
 
-#: src/view/smartcardwidget.cpp:285
+#: src/view/smartcardwidget.cpp:286
 #, kde-format
 msgctxt "@info"
 msgid "Show actions available for this smart card"
 msgstr "顯示可供此智慧卡使用的動作"
 
-#: src/view/smartcardwidget.cpp:341 src/view/smartcardwidget.cpp:344
+#: src/view/smartcardwidget.cpp:342 src/view/smartcardwidget.cpp:345
 #, kde-format
 msgid "not set"
 msgstr "未設定"
 
-#: src/view/smartcardwidget.cpp:356
+#: src/view/smartcardwidget.cpp:357
 #, kde-format
 msgctxt "label: value"
 msgid "%1: %2"
 msgstr "%1：%2"
 
-#: src/view/smartcardwidget.cpp:441
+#: src/view/smartcardwidget.cpp:442
 #, fuzzy, kde-format
 #| msgid "Searching in directory service..."
 msgid "Searching matching certificate in directory service..."
 msgstr "正於目錄服務中搜尋..."
 
-#: src/view/smartcardwidget.cpp:454
+#: src/view/smartcardwidget.cpp:455
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "The certificate was revoked successfully."
 msgid "The matching certificate was imported successfully."
 msgstr "憑證已成功撤銷。"
 
-#: src/view/smartcardwidget.cpp:459
+#: src/view/smartcardwidget.cpp:460
 #, fuzzy, kde-format
 #| msgid "Multiple matching certificates or groups found"
 msgid "Multiple matching certificates were found in directory service."
 msgstr "找到了不只一個符合的憑證或群組"
 
-#: src/view/smartcardwidget.cpp:462
+#: src/view/smartcardwidget.cpp:463
 #, fuzzy, kde-format
 #| msgid "Key not found in directory service."
 msgid "No matching certificate was found in directory service."
 msgstr "金鑰未於目錄服務中找到。"
 
-#: src/view/tabwidget.cpp:660
+#: src/view/tabwidget.cpp:639
 #, kde-format
 msgid "Rename Tab"
 msgstr "重新命名分頁"
 
-#: src/view/tabwidget.cpp:660
+#: src/view/tabwidget.cpp:639
 #, kde-format
 msgid "New tab title:"
 msgstr "新分頁標題："
 
-#: src/view/tabwidget.cpp:864
+#: src/view/tabwidget.cpp:843
 #, kde-format
 msgid "New Tab"
 msgstr "新增分頁"
 
-#: src/view/tabwidget.cpp:865
+#: src/view/tabwidget.cpp:844
 #, kde-format
 msgid "Open a new tab"
 msgstr "開啟新分頁"
 
-#: src/view/tabwidget.cpp:879
+#: src/view/tabwidget.cpp:858
 #, kde-format
 msgid "Rename Tab..."
 msgstr "重新命名分頁..."
 
-#: src/view/tabwidget.cpp:880
+#: src/view/tabwidget.cpp:859
 #, kde-format
 msgid "Rename this tab"
 msgstr "重新命名此分頁"
 
-#: src/view/tabwidget.cpp:892
+#: src/view/tabwidget.cpp:871
 #, kde-format
 msgid "Duplicate Tab"
 msgstr "複製分頁"
 
-#: src/view/tabwidget.cpp:893
+#: src/view/tabwidget.cpp:872
 #, kde-format
 msgid "Duplicate this tab"
 msgstr "複製此分頁"
 
-#: src/view/tabwidget.cpp:903
+#: src/view/tabwidget.cpp:882
 #, kde-format
 msgid "Close Tab"
 msgstr "關閉分頁"
 
-#: src/view/tabwidget.cpp:904
+#: src/view/tabwidget.cpp:883
 #, kde-format
 msgid "Close this tab"
 msgstr "關閉此分頁"
 
-#: src/view/tabwidget.cpp:916
+#: src/view/tabwidget.cpp:895
 #, kde-format
 msgid "Move Tab Left"
 msgstr "將分頁左移"
 
-#: src/view/tabwidget.cpp:917
+#: src/view/tabwidget.cpp:896
 #, kde-format
 msgid "Move this tab left"
 msgstr "將分頁左移"
 
-#: src/view/tabwidget.cpp:929
+#: src/view/tabwidget.cpp:908
 #, kde-format
 msgid "Move Tab Right"
 msgstr "將分頁右移"
 
-#: src/view/tabwidget.cpp:930
+#: src/view/tabwidget.cpp:909
 #, kde-format
 msgid "Move this tab right"
 msgstr "將分頁右移"
 
-#: src/view/tabwidget.cpp:942
+#: src/view/tabwidget.cpp:921
 #, kde-format
 msgid "Hierarchical Certificate List"
 msgstr "階層式憑證清單"
 
-#: src/view/tabwidget.cpp:955
+#: src/view/tabwidget.cpp:934
 #, kde-format
 msgid "Expand All"
 msgstr "全部展開"
 
-#: src/view/tabwidget.cpp:968
+#: src/view/tabwidget.cpp:947
 #, kde-format
 msgid "Collapse All"
 msgstr "全部收起"
@@ -12923,6 +12924,17 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Imported Certificates from %1"
+#~ msgstr "已從 %1 匯入憑證"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Imported certificates from these sources:<br/>%1"
+#~ msgstr "已從這些來源匯入憑證：<br/>%1"
+
+#~ msgid "Certificate Import Result"
+#~ msgstr "憑證匯入結果"
 
 #~ msgctxt "@title:window"
 #~ msgid "OpenPGP Certificate Export Finished"
