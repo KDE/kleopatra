@@ -22,6 +22,17 @@
 
 using namespace Qt::Literals::StringLiterals;
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
+#ifdef Q_OS_WIN
+static void win_outputDebugString_helper(QStringView message)
+{
+    OutputDebugString(reinterpret_cast<const wchar_t *>(message.utf16()));
+}
+#endif
+
 static const QStringList groupStateIgnoredKeys = {
     QStringLiteral("magic"),
 };
@@ -60,14 +71,38 @@ static void migrateConfigFile(const QString &oldFileName, const QString &newFile
     const QFileInfo newConfigPath{newConfigDir.absoluteFilePath(newFileName)};
 
     if (!newConfigPath.exists() && oldConfigPath.exists()) {
-        qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath.absoluteFilePath() << "to" << newConfigPath.absoluteFilePath();
+#ifdef Q_OS_WIN
+        if (qApp) {
+#endif
+            qCInfo(KLEOPATRA_LOG) << "Copying" << oldConfigPath.absoluteFilePath() << "to" << newConfigPath.absoluteFilePath();
+#ifdef Q_OS_WIN
+        } else {
+            win_outputDebugString_helper(u"Copying "_s + oldConfigPath.absoluteFilePath() + u" to "_s + newConfigPath.absoluteFilePath());
+        }
+#endif
         if (!QDir{}.mkpath(newConfigPath.absolutePath())) {
-            qCWarning(KLEOPATRA_LOG) << "Failed to create folder" << newConfigPath.absolutePath();
+#ifdef Q_OS_WIN
+            if (qApp) {
+#endif
+                qCWarning(KLEOPATRA_LOG) << "Failed to create folder" << newConfigPath.absolutePath();
+#ifdef Q_OS_WIN
+            } else {
+                win_outputDebugString_helper(u"Failed to create folder "_s + newConfigPath.absolutePath());
+            }
+#endif
             return;
         }
         const bool ok = QFile::copy(oldConfigPath.absoluteFilePath(), newConfigPath.absoluteFilePath());
         if (!ok) {
-            qCWarning(KLEOPATRA_LOG) << "Unable to copy the old configuration to" << newConfigPath.absoluteFilePath();
+#ifdef Q_OS_WIN
+            if (qApp) {
+#endif
+                qCWarning(KLEOPATRA_LOG) << "Unable to copy the old configuration to" << newConfigPath.absoluteFilePath();
+#ifdef Q_OS_WIN
+            } else {
+                win_outputDebugString_helper(u"Unable to copy the old configuration to "_s + newConfigPath.absoluteFilePath());
+            }
+#endif
         }
     }
 }
