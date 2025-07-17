@@ -77,6 +77,10 @@
 #include <iostream>
 #include <memory>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 using namespace Qt::StringLiterals;
 
 QElapsedTimer startupTimer;
@@ -104,19 +108,28 @@ static void fillKeyCache(Kleo::UiServer *server)
     cmd->start();
 }
 
+#ifdef Q_OS_WIN
+static void win_outputDebugString_helper(QStringView message)
+{
+    OutputDebugString(reinterpret_cast<const wchar_t *>(message.utf16()));
+}
+#endif
+
 int main(int argc, char **argv)
 {
     startupTimer.start();
 
     // Initialize GpgME
     const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
+#ifndef Q_OS_WIN
     STARTUP_TIMING << "GPGME Initialized";
-#ifdef Q_OS_WIN
+#else
+    OutputDebugString(L"GPGME Initialized");
     if (qEnvironmentVariableIsEmpty("GNUPGHOME")) {
         if (qputenv("GNUPGHOME", Kleo::gnupgHomeDirectory().toUtf8())) {
-            qCDebug(KLEOPATRA_LOG) << "Set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
+            win_outputDebugString_helper(u"Set GNUPGHOME to "_s + Kleo::gnupgHomeDirectory());
         } else {
-            qCWarning(KLEOPATRA_LOG) << "Failed to set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
+            win_outputDebugString_helper(u"Failed to set GNUPGHOME to "_s + Kleo::gnupgHomeDirectory());
         }
     }
 #endif
