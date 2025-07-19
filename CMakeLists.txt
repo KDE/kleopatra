@@ -42,7 +42,7 @@ project(kleopatra VERSION ${kleopatra_version})
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
-set(KF_MIN_VERSION "6.14.0")
+set(KF_MIN_VERSION "6.15.0")
 set(KIDENTITYMANAGEMENT_VERSION "6.4.80")
 set(KMAILTRANSPORT_VERSION "6.4.80")
 set(AKONADI_MIME_VERSION "6.4.80")
