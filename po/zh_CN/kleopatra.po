@@ -1677,7 +1677,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "Upload successful."
-msgstr ""
+msgstr "上传成功。"
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -2340,7 +2340,7 @@ msgstr "导入被取消"
 #, kde-format
 msgctxt "@action:button"
 msgid "List Imported Certificates"
-msgstr ""
+msgstr "列出已导入证书"
 
 #: src/commands/importcertificatescommand.cpp:374
 #, kde-format
@@ -2962,7 +2962,7 @@ msgstr "您无法在此智能卡上生成密钥，因为它不支持任何兼容
 msgctxt "@info"
 msgid "Updating certificate…"
 msgid_plural "Updating %1 certificates…"
-msgstr[0] ""
+msgstr[0] "正在更新 %1 证书..."
 
 #: src/commands/refreshcertificatescommand.cpp:120
 #, kde-format
@@ -3379,18 +3379,23 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>已禁用的证书无法被选中用于签名或加密。它们仅在 <interface>%2</"
+"interface> 过滤器生效时可见。</para><para>您可以通过切换到 <interface>%2</"
+"interface> 过滤器并重新启用证书来撤销此操作。</para><para><emphasis "
+"strong='true'>您确定要禁用并隐藏以下证书吗？</emphasis></para><list><item>"
+"%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Disable Certificate"
-msgstr ""
+msgstr "禁用证书"
 
 #: src/commands/togglecertificateenabledcommand.cpp:128
 #, kde-format
 msgctxt "@action:button"
 msgid "Disable Certificate"
-msgstr ""
+msgstr "禁用证书"
 
 #: src/conf/appearanceconfigwidget.cpp:131
 #, kde-format
@@ -4532,6 +4537,8 @@ msgid_plural ""
 "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
 "filename>."
 msgstr[0] ""
+"已验证文件 <filename>%2</filename> 中的 %1 (个) 签名，位于 <filename>%3</"
+"filename>。"
 
 #: src/crypto/decryptverifytask.cpp:251
 #, kde-format
@@ -7937,6 +7944,9 @@ msgid ""
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality.</html>"
 msgstr ""
+"<html>将 GnuPG 配置中指定的 ADSK 添加到您的证书中。通过向证书添加 ADSK，您允"
+"许 ADSK 拥有者解密所有针对您的证书加密的新消息 (前提是加密该消息的客户端支持"
+"此功能) 。</html>"
 
 #: src/dialogs/subkeyswidget.cpp:198 src/dialogs/useridswidget.cpp:165
 #: src/dialogs/weboftrustwidget.cpp:133
@@ -9155,7 +9165,7 @@ msgstr "打开配置对话框"
 #, kde-format
 msgctxt "@info:shell"
 msgid "Run as standalone app without system tray icon"
-msgstr ""
+msgstr "作为独立应用运行 (不显示系统托盘图标) "
 
 #: src/kleopatra_options.h:54
 #, kde-format
@@ -9182,6 +9192,7 @@ msgid ""
 "For technical reasons you can only use this option if <application>%1</"
 "application> is not already running."
 msgstr ""
+"由于技术原因，只有当 <application>%1</application> 未运行时，才能使用此选项。"
 
 #: src/kleopatraapplication.cpp:512
 #, kde-format
@@ -9346,10 +9357,9 @@ msgid "GnuPG Log Viewer"
 msgstr "GnuPG 日志查看器"
 
 #: src/mainwindow.cpp:532
-#, fuzzy, kde-format
-#| msgid "GnuPG Command&line"
+#, kde-format
 msgid "GnuPG Command Line"
-msgstr "GnuPG 命令行​​(&L)"
+msgstr ""
 
 #: src/mainwindow.cpp:545
 #, kde-format
@@ -9400,10 +9410,9 @@ msgid "Perform Self-Test"
 msgstr "执行自检"
 
 #: src/mainwindow.cpp:605
-#, fuzzy, kde-format
-#| msgid "Manage groups"
+#, kde-format
 msgid "Manage Groups..."
-msgstr "管理分组"
+msgstr ""
 
 #: src/mainwindow.cpp:617
 #, kde-format
@@ -11694,13 +11703,13 @@ msgstr "从文件导入 CRL..."
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
-msgstr ""
+msgstr "启用并显示证书"
 
 #: src/view/keylistcontroller.cpp:1116
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
-msgstr ""
+msgstr "禁用并隐藏证书"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
@@ -12543,125 +12552,3 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Refreshing the OpenPGP certificates is not possible because the usage of "
-#~ "key servers has been disabled explicitly."
-#~ msgstr "无法刷新 OpenPGP 证书，因为密钥服务器的使用已被明确禁用。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>刷新 OpenPGP 证书意味着重新下载所有证书，以检查其中是否有证书已被撤"
-#~ "销。</para><para>这可能会给您自己和其他人的网络连接带来严重的压力， 根据您"
-#~ "的网络连接和要检查的证书数量，可能需要一小时或更长时间才能完成。</para> "
-#~ "<para>您确定要继续吗？</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh"
-#~ msgstr "OpenPGP 证书刷新"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "OpenPGP 证书刷新错误"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "OpenPGP 证书刷新完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 进程在尝试刷新 OpenPGP 证书时，因非预期错误而提前结束。</"
-#~ "para><para>请检查 <icode>%1</icode> 的输出了解详情。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>尝试刷新 OpenPGP 证书时出错。</para><para><command>%1</command> 的输"
-#~ "出为：<bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "OpenPGP 证书刷新成功。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>刷新 X.509 证书意味着下载所有证书的 CRL，即使它们可能仍然有效。</"
-#~ "para><para>这可能会给您自己和其他人的网络连接带来严重的压力， 根据您的网络"
-#~ "连接和要检查的证书数量，可能需要一小时或更长时间才能完成。</para> <para>您"
-#~ "确定要继续吗？</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "X.509 证书刷新"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "X.509 证书刷新错误"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "X.509 证书刷新完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GpgSM 进程在尝试刷新 X.509 证书时，因非预期错误而提前结束。</"
-#~ "para><para>请检查 <icode>%1</icode> 的输出了解详情。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>尝试刷新 X.509 证书时出错。</para><para><command>%1</command>的输出"
-#~ "为：<bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "X.509 证书刷新成功。"
-
-#~ msgid "&Window"
-#~ msgstr "窗口(&W)"
-
-#~ msgid "Show GnuPG Configuration"
-#~ msgstr "显示GnuPG配置"
-
-#~ msgid "Configure Groups..."
-#~ msgstr "配置组..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "停止操作"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "刷新 OpenPGP 证书"
-
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "刷新 S/MIME 证书"
