@@ -97,7 +97,7 @@ void Migration::migrateApplicationConfigFiles(const QString &applicationName)
     // Migrate some more config files
     migrateConfigFile(u"klanguageoverridesrc"_s, oldGenericConfigLocation);
     migrateConfigFile(u"libkleopatrarc"_s, oldGenericConfigLocation);
-    migrateConfigFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s, oldGenericConfigLocation);
+    migrateConfigFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s, "kxmlgui5/"_L1 + applicationName + "/kleopatra.rc"_L1, oldGenericConfigLocation);
 }
 #else
 static QString getOldGenericConfigLocation(const QString &applicationName)
