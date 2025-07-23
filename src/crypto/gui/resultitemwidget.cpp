@@ -62,20 +62,6 @@ static QColor colorForVisualCode(Task::Result::VisualCode code)
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     }
 }
-static QColor txtColorForVisualCode(Task::Result::VisualCode code)
-{
-    switch (code) {
-    case Task::Result::AllGood:
-    case Task::Result::NeutralError:
-    case Task::Result::Warning:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();
-    case Task::Result::Danger:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
-    case Task::Result::NeutralSuccess:
-    default:
-        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();
-    }
-}
 }
 
 class ResultItemWidget::Private
@@ -236,20 +222,18 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
     , d(new Private(result, this))
 {
     const QColor color = colorForVisualCode(d->m_result->code());
-    const QColor txtColor = txtColorForVisualCode(d->m_result->code());
-    const QColor linkColor = SystemInfo::isHighContrastModeActive() ? QColor{} : txtColor;
+    const QColor linkColor = SystemInfo::isHighContrastModeActive() ? QColor{} : KColorScheme(QPalette::Active, KColorScheme::View).foreground().color();
     const QString styleSheet = SystemInfo::isHighContrastModeActive()
         ? QStringLiteral(
-            "QFrame,QLabel { margin: 0px; }"
-            "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
-            "QLabel { padding: 5px; border-radius: 3px }")
+              "QFrame,QLabel { margin: 0px; }"
+              "QFrame#resultFrame{ border-style: solid; border-radius: 3px; border-width: 1px }"
+              "QLabel { padding: 5px; border-radius: 3px }")
         : QStringLiteral(
               "QFrame,QLabel { background-color: %1; margin: 0px; }"
               "QFrame#resultFrame{ border-color: %2; border-style: solid; border-radius: 3px; border-width: 1px }"
-              "QLabel { color: %3; padding: 5px; border-radius: 3px }")
+              "QLabel { padding: 5px; border-radius: 3px }")
               .arg(color.name())
-              .arg(color.darker(150).name())
-              .arg(txtColor.name());
+              .arg(color.darker(150).name());
     auto topLayout = new QVBoxLayout(this);
     auto frame = new QFrame;
     frame->setObjectName(QStringLiteral("resultFrame"));
