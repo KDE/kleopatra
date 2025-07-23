@@ -59,7 +59,7 @@ static QColor colorForVisualCode(Task::Result::VisualCode code)
         return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NegativeBackground).color();
     case Task::Result::NeutralSuccess:
     default:
-        return QColor(0x00, 0x80, 0xFF); // light blue
+        return KColorScheme(QPalette::Active, KColorScheme::View).background(KColorScheme::NormalBackground).color();
     }
 }
 static QColor txtColorForVisualCode(Task::Result::VisualCode code)
@@ -73,7 +73,7 @@ static QColor txtColorForVisualCode(Task::Result::VisualCode code)
         return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NegativeText).color();
     case Task::Result::NeutralSuccess:
     default:
-        return QColor(0xFF, 0xFF, 0xFF); // white
+        return KColorScheme(QPalette::Active, KColorScheme::View).foreground(KColorScheme::NormalText).color();
     }
 }
 }
