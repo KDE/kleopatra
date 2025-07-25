@@ -159,6 +159,9 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
 
     connect(mOkButton, &QPushButton::clicked, this, [this, stackedLayout, resultPage, title]() {
         if (stackedLayout->currentIndex() == 0) {
+            if (!mSignEncryptPage->signEncryptWidget()->validate()) {
+                return;
+            }
             m_task = std::make_shared<SignEncryptTask>();
             m_task->setDataSource(Task::Clipboard);
             auto output = Output::createFromClipboard();

@@ -447,6 +447,9 @@ public:
 
     void doEncryptSign()
     {
+        if (!mSigEncWidget->validate()) {
+            return;
+        }
         if (DeVSCompliance::isActive() && !DeVSCompliance::isCompliant()) {
             KMessageBox::error(q->topLevelWidget(),
                                xi18nc("@info %1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",

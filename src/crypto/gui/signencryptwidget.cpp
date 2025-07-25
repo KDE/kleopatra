@@ -147,7 +147,7 @@ public:
     AbstractKeyListModel *mModel = nullptr;
     QCheckBox *mSymmetric = nullptr;
     QCheckBox *mSigChk = nullptr;
-    QLabel *mEncOtherLabel = nullptr;
+    QCheckBox *mEncOtherChk = nullptr;
     QCheckBox *mEncSelfChk = nullptr;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
@@ -277,10 +277,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
         // Checkbox for other keys
-        d->mEncOtherLabel = new QLabel(i18nc("@label", "Encrypt for others:"), this);
-        d->mEncOtherLabel->setEnabled(havePublicKeys && !symmetricOnly);
-        d->mEncOtherLabel->setFont(checkFont);
-        lay->addWidget(d->mEncOtherLabel);
+        d->mEncOtherChk = new QCheckBox(i18nc("@label", "Encrypt for others:"), this);
+        d->mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
+        d->mEncOtherChk->setChecked(d->mEncOtherChk->isEnabled());
+        d->mEncOtherChk->setFont(checkFont);
+        lay->addWidget(d->mEncOtherChk);
 
         d->mRecpLayout = new QVBoxLayout;
         lay->addLayout(d->mRecpLayout);
@@ -314,6 +315,12 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
         });
+        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](const auto enabled) {
+            for (const auto &widget : d->mRecpWidgets) {
+                widget.edit->setEnabled(enabled);
+            }
+            updateOp();
+        });
         connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
 
         if (d->mIsExclusive) {
@@ -325,23 +332,31 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                     d->mSigChk->setChecked(false);
                 }
             });
+            connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
+                if (d->mCurrentProto != GpgME::CMS || !value) {
+                    return;
+                }
+                d->mSigChk->setChecked(false);
+            });
             connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool value) {
                 if (d->mCurrentProto != GpgME::CMS) {
                     return;
                 }
                 if (value) {
                     d->mEncSelfChk->setChecked(false);
+                    d->mEncOtherChk->setChecked(false);
                     // Copying the vector makes sure that all items are actually deleted.
                     for (const auto &widget : std::vector(d->mRecpWidgets)) {
                         d->recpRemovalRequested(widget);
                     }
                     d->addRecipientWidget();
+                    d->mRecpWidgets[0].edit->setEnabled(false);
                 }
             });
         }
 
         // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
-        d->mSigChk->setMinimumWidth(qMax(d->mEncOtherLabel->width(), d->mEncSelfChk->width()));
+        d->mSigChk->setMinimumWidth(qMax(d->mEncOtherChk->width(), d->mEncSelfChk->width()));
     }
 
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
@@ -388,7 +403,7 @@ void SignEncryptWidget::setEncryptForMeText(const QString &text)
 
 void SignEncryptWidget::setEncryptForOthersText(const QString &text)
 {
-    d->mEncOtherLabel->setText(text);
+    d->mEncOtherChk->setText(text);
 }
 
 void SignEncryptWidget::setEncryptWithPasswordText(const QString &text)
@@ -411,9 +426,7 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
     recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !Settings().symmetricEncryptionOnly());
     recipient.expiryMessage->setVisible(false);
-    if (!after) {
-        mEncOtherLabel->setBuddy(recipient.edit);
-    }
+
     if (static_cast<unsigned>(index / 2) < mRecpWidgets.size()) {
         mRecpWidgets.insert(mRecpWidgets.begin() + index / 2, recipient);
     } else {
@@ -447,6 +460,8 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
             mSigChk->setChecked(false);
         });
     }
+
+    updateAllExpiryMessages();
 
     return recipient.edit;
 }
@@ -733,13 +748,11 @@ static QString expiryMessage(const ExpiryChecker::Result &result)
 
 void SignEncryptWidget::updateOp()
 {
-    const std::vector<Key> recp = recipients();
-
     Operations op = NoOperation;
     if (!signUserId().isNull()) {
         op |= Sign;
     }
-    if (!recp.empty() || encryptSymmetric()) {
+    if (d->mEncSelfChk->isChecked() || d->mEncOtherChk->isChecked() || encryptSymmetric()) {
         op |= Encrypt;
     }
     d->mOp = op;
@@ -943,26 +956,37 @@ bool SignEncryptWidget::isComplete() const
 
 bool SignEncryptWidget::validate()
 {
-    CertificateLineEdit *firstUnresolvedRecipient = nullptr;
-    QStringList unresolvedRecipients;
-    for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
-        if (recipient.edit->isEnabled() && !recipient.edit->hasAcceptableInput()) {
-            if (!firstUnresolvedRecipient) {
-                firstUnresolvedRecipient = recipient.edit;
-            }
-            unresolvedRecipients.push_back(recipient.edit->text().toHtmlEscaped());
+    if (d->mEncOtherChk->isChecked()) {
+        if (std::ranges::all_of(d->mRecpWidgets, [](const auto &widget) {
+                return widget.edit->isEmpty();
+            })) {
+            KMessageBox::error(this,
+                               xi18nc("@info translate 'Encrypt for others' the same way as for the other string in this file",
+                                      "Please choose at least one recipient or deselect <interface>Encrypt for others</interface>."));
+            return false;
         }
+        CertificateLineEdit *firstUnresolvedRecipient = nullptr;
+        QStringList unresolvedRecipients;
+        for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
+            if (recipient.edit->isEnabled() && !recipient.edit->hasAcceptableInput()) {
+                if (!firstUnresolvedRecipient) {
+                    firstUnresolvedRecipient = recipient.edit;
+                }
+                unresolvedRecipients.push_back(recipient.edit->text().toHtmlEscaped());
+            }
+        }
+        if (!unresolvedRecipients.isEmpty()) {
+            KMessageBox::errorList(this,
+                                   i18n("Could not find a key for the following recipients:"),
+                                   unresolvedRecipients,
+                                   i18nc("@title:window", "Failed to find some keys"));
+        }
+        if (firstUnresolvedRecipient) {
+            firstUnresolvedRecipient->setFocus();
+        }
+        return unresolvedRecipients.isEmpty();
     }
-    if (!unresolvedRecipients.isEmpty()) {
-        KMessageBox::errorList(this,
-                               i18n("Could not find a key for the following recipients:"),
-                               unresolvedRecipients,
-                               i18nc("@title:window", "Failed to find some keys"));
-    }
-    if (firstUnresolvedRecipient) {
-        firstUnresolvedRecipient->setFocus();
-    }
-    return unresolvedRecipients.isEmpty();
+    return true;
 }
 
 void SignEncryptWidget::Private::updateCheckBoxes()
