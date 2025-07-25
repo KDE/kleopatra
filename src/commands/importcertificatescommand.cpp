@@ -378,8 +378,8 @@ void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportRes
         new ImportedCertificatesDialog(res);
     });
 
-    connect(auditLogButton, &QPushButton::clicked, auditLogButton, [this, res]() {
-        AuditLogViewer::showAuditLog(parentWidgetOrView(), consolidatedAuditLogEntries(res));
+    connect(auditLogButton, &QPushButton::clicked, auditLogButton, [parent = parentWidgetOrView(), res]() {
+        AuditLogViewer::showAuditLog(parent, consolidatedAuditLogEntries(res));
     });
 
     connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
