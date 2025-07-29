@@ -35,7 +35,6 @@ private:
     class Private;
     std::unique_ptr<Private> d;
 
-    void fillKeySizeComboBoxes();
     bool unlimitedValidityIsAllowed() const;
     void setKeyType(const QString &algorithm);
     void loadDefaults();
