@@ -26,6 +26,7 @@
 #include "utils/kuniqueservice.h"
 #include "utils/userinfo.h"
 #include <Libkleo/GnuPG>
+#include <utils/accessibility.h>
 #include <utils/archivedefinition.h>
 
 #include <uiserver/assuancommand.h>
@@ -151,6 +152,9 @@ int main(int argc, char **argv)
     }
 
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
+    if (qEnvironmentVariableIntValue("KLEO_LOG_A11Y_EVENTS") != 0) {
+        Kleo::installAccessibleEventLogger();
+    }
 
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 

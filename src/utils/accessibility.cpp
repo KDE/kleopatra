@@ -21,6 +21,8 @@
 
 #include "kleopatra_debug.h"
 
+Q_LOGGING_CATEGORY(KLEOPATRA_A11Y_LOG, "org.kde.pim.kleopatra.a11y", QtWarningMsg)
+
 using namespace Kleo;
 
 static const char *accessibleNameProperty = "_kleo_accessibleName";
@@ -140,4 +142,18 @@ void LabelHelper::accessibilityActiveChanged(bool active)
             label->setFocusPolicy(focusPolicy);
         }
     });
+}
+
+static void accessibleUpdateHandler(QAccessibleEvent *event)
+{
+    qCDebug(KLEOPATRA_A11Y_LOG) << event->object() << event->child() << event->type();
+    QAccessible::installUpdateHandler(nullptr);
+    QAccessible::updateAccessibility(event);
+    QAccessible::installUpdateHandler(&accessibleUpdateHandler);
+}
+
+void Kleo::installAccessibleEventLogger()
+{
+    qCDebug(KLEOPATRA_LOG) << __func__ << "Installing accessible update handler";
+    QAccessible::installUpdateHandler(&accessibleUpdateHandler);
 }

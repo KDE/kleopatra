@@ -96,4 +96,6 @@ private:
 
     std::vector<QPointer<QLabel>> mLabels;
 };
+
+void installAccessibleEventLogger();
 }
