@@ -52,12 +52,13 @@ static constexpr auto credits = std::to_array<about_data>({
     {kli18n("Alexander Kulbartsch"), kli18nc("@info:credit", "UX redesign of smartcard view and certificate details")},
     {kli18n("Carl Schwan"), kli18nc("@info:credit", "Mail viewer")},
     {kli18n("David Faure"), kli18n("Backend configuration framework, KIO integration")},
-    {kli18n("Frank Osterfeld"), kli18n("Resident gpgme/win wrangler, UI Server commands and dialogs")},
+    {kli18n("Frank Osterfeld"), kli18n("UI Server commands and dialogs")},
     {kli18n("Karl-Heinz Zimmer"), kli18n("DN display ordering support, infrastructure")},
     {kli18n("Laurent Montel"), kli18n("Qt5 port, general code maintenance")},
     {kli18n("Matthias Kalle Dalheimer"), kli18n("Original Author")},
     {kli18n("Michel Boyer de la Giroday"), kli18n("Key-state dependent colors and fonts in the certificates list")},
     {kli18n("Thomas Moenicke"), kli18n("Artwork")},
+    {kli18n("Werner Koch"), kli18n("GnuPG consulting")},
 });
 
 static void updateAboutDataFromSettings(KAboutData &about, const QSettings *settings)
