@@ -224,6 +224,7 @@ public:
         mLastOperation = NoOperation;
         setText(QString::fromUtf8(mInputData));
         mRevertBtn->setVisible(false);
+        removeLastResultItem();
     }
 
     void updateRecipientsFromResult(const Kleo::Crypto::DecryptVerifyResult &result)
