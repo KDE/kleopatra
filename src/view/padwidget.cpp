@@ -108,26 +108,7 @@ public:
         mMessageWidget->setPosition(KMessageWidget::Position::Header);
         vLay->addWidget(mMessageWidget);
 
-        auto btnLay = new QHBoxLayout;
-        btnLay->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
-        btnLay->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
-                                   q->style()->pixelMetric(QStyle::PM_LayoutTopMargin),
-                                   q->style()->pixelMetric(QStyle::PM_LayoutRightMargin),
-                                   q->style()->pixelMetric(QStyle::PM_LayoutBottomMargin));
-        vLay->addLayout(btnLay);
-        btnLay->addWidget(mCryptBtn);
-        btnLay->addWidget(mDecryptBtn);
-        btnLay->addWidget(mImportBtn);
-        btnLay->addWidget(mRevertBtn);
-
-        auto separator = new KSeparator(Qt::Horizontal, q);
-        vLay->addWidget(separator);
-
         mRevertBtn->setVisible(false);
-
-        btnLay->addWidget(mAdditionalInfoLabel);
-
-        btnLay->addStretch(-1);
 
         mProgressBar->setRange(0, 0);
         mProgressBar->setVisible(false);
@@ -159,10 +140,20 @@ public:
         recipientsVLay->addWidget(mSigEncWidget);
 
         mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        auto hLay = new QHBoxLayout;
-        hLay->addStretch();
-        hLay->addWidget(mCryptBtn);
-        recipientsVLay->addLayout(hLay);
+
+        auto btnLay = new QHBoxLayout;
+        btnLay->setSpacing(q->style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
+        btnLay->setContentsMargins(q->style()->pixelMetric(QStyle::PM_LayoutLeftMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutTopMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutRightMargin),
+                                   q->style()->pixelMetric(QStyle::PM_LayoutBottomMargin));
+        vLay->addLayout(btnLay);
+        btnLay->addWidget(mDecryptBtn);
+        btnLay->addWidget(mImportBtn);
+        btnLay->addWidget(mRevertBtn);
+        btnLay->addStretch();
+        btnLay->addWidget(mAdditionalInfoLabel);
+        btnLay->addWidget(mCryptBtn);
         splitterWidget->addWidget(scrollArea);
 
         mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
