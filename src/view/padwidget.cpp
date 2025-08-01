@@ -209,6 +209,8 @@ public:
     {
         mEdit->setPlainText(QString::fromUtf8(mInputData));
         mRevertBtn->setVisible(false);
+        mMessageWidget->setVisible(false);
+        mLastResultWidget->setVisible(false);
     }
 
     void updateRecipientsFromResult(const Kleo::Crypto::DecryptVerifyResult &result)
