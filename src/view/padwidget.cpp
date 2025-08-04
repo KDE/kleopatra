@@ -232,6 +232,15 @@ public:
         });
     }
 
+    void resetAccessibleNameAndDescription()
+    {
+        mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Text to process"));
+        mEdit->setAccessibleDescription(i18nc("@info for assistive tools",
+                                              "Either enter a text you want to sign or encrypt, "
+                                              "or an encrypted or signed text you want to decrypt or verify. "
+                                              "You can also enter certificates in text form to import them."));
+    }
+
     void setText(const QString &text)
     {
         mSettingText = true;
@@ -244,6 +253,7 @@ public:
         if (!mSettingText) {
             // the user changed the text
             mLastOperation = NoOperation;
+            resetAccessibleNameAndDescription();
         }
         updateButtons();
     }
@@ -251,6 +261,7 @@ public:
     void revert()
     {
         mLastOperation = NoOperation;
+        resetAccessibleNameAndDescription();
         setText(QString::fromUtf8(mInputData));
         mRevertBtn->setVisible(false);
     }
@@ -335,14 +346,52 @@ public:
                 KMessageBox::error(q, result->errorString(), i18nc("@title", "Error in crypto action"));
             }
         } else if (!result->error().isCanceled()) {
-            setText(QString::fromUtf8(mOutputData));
-            mOutputData.clear();
-            mRevertBtn->setVisible(true);
-
             const auto decryptVerifyResult = dynamic_cast<const Kleo::Crypto::DecryptVerifyResult *>(result.get());
             if (decryptVerifyResult) {
                 updateRecipientsFromResult(*decryptVerifyResult);
             }
+
+            switch (mLastOperation) {
+            case SignEncrypt: {
+                switch (mSigEncWidget->currentOp()) {
+                case SignEncryptWidget::Sign:
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Signed text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the sign operation."));
+                    break;
+                case SignEncryptWidget::Encrypt:
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Encrypted text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the encryption."));
+                    break;
+                case SignEncryptWidget::SignAndEncrypt:
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Signed and encrypted text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the sign and encrypt operation."));
+                    break;
+                default:;
+                }
+                break;
+            }
+            case DecryptVerify: {
+                const bool wasDecrypted = decryptVerifyResult && !decryptVerifyResult->decryptionResult().isNull();
+                const bool wasVerified = decryptVerifyResult && (decryptVerifyResult->verificationResult().numSignatures() > 0);
+                if (wasDecrypted && wasVerified) {
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Decrypted and verified text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of decryption and signature verification."));
+                } else if (wasDecrypted) {
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Decrypted text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the decryption."));
+                } else if (wasVerified) {
+                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Verified text"));
+                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the signature verification."));
+                }
+                break;
+            }
+            default:
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Unexpected last operation:" << mLastOperation;
+            };
+
+            setText(QString::fromUtf8(mOutputData));
+            mOutputData.clear();
+            mRevertBtn->setVisible(true);
         }
     }
 
