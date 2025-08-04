@@ -77,6 +77,13 @@ class PadWidget::Private
     friend class ::Kleo::PadWidget;
 
 public:
+    enum Operation {
+        NoOperation,
+        SignEncrypt,
+        DecryptVerify,
+        Import,
+    };
+
     Private(PadWidget *qq)
         : q(qq)
         , mEdit(new QTextEdit)
@@ -201,7 +208,7 @@ public:
         updateButtons();
 
         connect(mEdit, &QTextEdit::textChanged, q, [this]() {
-            updateButtons();
+            onTextChanged();
         });
 
         connect(mCryptBtn, &QPushButton::clicked, q, [this]() {
@@ -225,9 +232,26 @@ public:
         });
     }
 
+    void setText(const QString &text)
+    {
+        mSettingText = true;
+        mEdit->setPlainText(text);
+        mSettingText = false;
+    }
+
+    void onTextChanged()
+    {
+        if (!mSettingText) {
+            // the user changed the text
+            mLastOperation = NoOperation;
+        }
+        updateButtons();
+    }
+
     void revert()
     {
-        mEdit->setPlainText(QString::fromUtf8(mInputData));
+        mLastOperation = NoOperation;
+        setText(QString::fromUtf8(mInputData));
         mRevertBtn->setVisible(false);
     }
 
@@ -311,7 +335,7 @@ public:
                 KMessageBox::error(q, result->errorString(), i18nc("@title", "Error in crypto action"));
             }
         } else if (!result->error().isCanceled()) {
-            mEdit->setPlainText(QString::fromUtf8(mOutputData));
+            setText(QString::fromUtf8(mOutputData));
             mOutputData.clear();
             mRevertBtn->setVisible(true);
 
@@ -358,6 +382,7 @@ public:
             task->deleteLater();
             cryptDone(result);
         });
+        mLastOperation = DecryptVerify;
         task->start();
     }
 
@@ -441,6 +466,7 @@ public:
             task->deleteLater();
             cryptDone(result);
         });
+        mLastOperation = SignEncrypt;
         task->start();
     }
 
@@ -455,8 +481,9 @@ public:
             mProgressLabel->setVisible(false);
 
             mRevertBtn->setVisible(true);
-            mEdit->setPlainText(QString());
+            setText(QString());
         });
+        mLastOperation = Import;
         cmd->start();
     }
 
@@ -531,6 +558,8 @@ private:
     QRadioButton *mPGPRB;
     QRadioButton *mCMSRB;
     GpgME::Protocol mImportProto;
+    bool mSettingText = false;
+    Operation mLastOperation = NoOperation;
 };
 
 PadWidget::PadWidget(QWidget *parent)
