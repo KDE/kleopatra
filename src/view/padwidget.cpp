@@ -38,6 +38,7 @@
 #include <QFontMetrics>
 #include <QFrame>
 #include <QLabel>
+#include <QPointer>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRadioButton>
@@ -210,6 +211,19 @@ public:
         mSettingText = false;
     }
 
+    void saveFocusWidget()
+    {
+        mFocusWidget = q->focusWidget();
+    }
+
+    void restoreFocusWidget()
+    {
+        if (mFocusWidget) {
+            mFocusWidget->setFocus();
+            mFocusWidget.clear();
+        }
+    }
+
     void onTextChanged()
     {
         if (!mSettingText) {
@@ -269,6 +283,7 @@ public:
     void cryptDone(const std::shared_ptr<const Kleo::Crypto::Task::Result> &result)
     {
         updateButtons();
+        restoreFocusWidget();
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);
 
@@ -329,6 +344,7 @@ public:
         } catch (const Kleo::Exception &e) {
             KMessageBox::error(q, e.message());
             updateButtons();
+            restoreFocusWidget();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
             return;
@@ -355,6 +371,8 @@ public:
 
     void doCryptoCommon()
     {
+        // remember the current focus widget before we disable any widgets
+        saveFocusWidget();
         mCryptBtn->setEnabled(false);
         mDecryptBtn->setEnabled(false);
         mImportBtn->setEnabled(false);
@@ -436,6 +454,7 @@ public:
         auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
         connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this]() {
             updateButtons();
+            restoreFocusWidget();
             mProgressBar->setVisible(false);
             mProgressLabel->setVisible(false);
 
@@ -522,6 +541,7 @@ private:
     GpgME::Protocol mImportProto;
     bool mSettingText = false;
     Operation mLastOperation = NoOperation;
+    QPointer<QWidget> mFocusWidget;
 };
 
 PadWidget::PadWidget(QWidget *parent)
