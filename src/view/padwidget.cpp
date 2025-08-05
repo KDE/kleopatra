@@ -147,6 +147,7 @@ public:
 
         mSigEncWidget = new SignEncryptWidget(nullptr, true);
         recipientsVLay->addWidget(mSigEncWidget);
+        splitterWidget->addWidget(scrollArea);
 
         mCryptBtn->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
@@ -163,7 +164,6 @@ public:
         btnLay->addStretch();
         btnLay->addWidget(mAdditionalInfoLabel);
         btnLay->addWidget(mCryptBtn);
-        splitterWidget->addWidget(scrollArea);
 
         mEdit->setPlaceholderText(i18nc("@info:placeholder", "Enter a message to encrypt or decrypt..."));
 
