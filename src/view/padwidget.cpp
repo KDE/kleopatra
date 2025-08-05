@@ -291,6 +291,7 @@ public:
             mLastResultWidget = new ResultItemWidget(result);
             mLastResultWidget->showCloseButton(true);
             mStatusLay->addWidget(mLastResultWidget);
+            mLastResultWidget->setFocus(); // trigger screen readers
 
             connect(mLastResultWidget, &ResultItemWidget::closeButtonClicked, q, [this]() {
                 removeLastResultItem();
