@@ -121,6 +121,7 @@ public:
         mProgressBar->setRange(0, 0);
         mProgressBar->setVisible(false);
         mProgressLabel->setVisible(false);
+        mProgressLabel->setFocusPolicy(Qt::TabFocus);
         auto progLay = new QHBoxLayout;
 
         progLay->addWidget(mProgressLabel);
@@ -224,6 +225,21 @@ public:
         }
     }
 
+    /* Show progress widgets and move focus to progress label to trigger screen readers. */
+    void startProgress(const QString &text)
+    {
+        mProgressBar->setVisible(true);
+        mProgressLabel->setText(text);
+        mProgressLabel->setVisible(true);
+        mProgressLabel->setFocus();
+    }
+
+    void stopProgress()
+    {
+        mProgressBar->setVisible(false);
+        mProgressLabel->setVisible(false);
+    }
+
     void onTextChanged()
     {
         if (!mSettingText) {
@@ -284,8 +300,7 @@ public:
     {
         updateButtons();
         restoreFocusWidget();
-        mProgressBar->setVisible(false);
-        mProgressLabel->setVisible(false);
+        stopProgress();
 
         if (!result->error().isCanceled()) {
             mLastResultWidget = new ResultItemWidget(result);
@@ -323,7 +338,7 @@ public:
     {
         doCryptoCommon();
         mSigEncWidget->clearAddedRecipients();
-        mProgressLabel->setText(i18n("Decrypt / Verify") + QStringLiteral("..."));
+        startProgress(i18n("Decrypting and/or verifying..."));
         auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
@@ -346,8 +361,7 @@ public:
             KMessageBox::error(q, e.message());
             updateButtons();
             restoreFocusWidget();
-            mProgressBar->setVisible(false);
-            mProgressLabel->setVisible(false);
+            stopProgress();
             return;
         }
         task->setDataSource(Task::Notepad);
@@ -377,8 +391,6 @@ public:
         mCryptBtn->setEnabled(false);
         mDecryptBtn->setEnabled(false);
         mImportBtn->setEnabled(false);
-        mProgressBar->setVisible(true);
-        mProgressLabel->setVisible(true);
         mInputData = mEdit->toPlainText().toUtf8();
         removeLastResultItem();
     }
@@ -398,13 +410,13 @@ public:
         doCryptoCommon();
         switch (mSigEncWidget->currentOp()) {
         case SignEncryptWidget::Sign:
-            mProgressLabel->setText(i18nc("@info:progress", "Signing notepad..."));
+            startProgress(i18nc("@info:progress", "Signing notepad..."));
             break;
         case SignEncryptWidget::Encrypt:
-            mProgressLabel->setText(i18nc("@info:progress", "Encrypting notepad..."));
+            startProgress(i18nc("@info:progress", "Encrypting notepad..."));
             break;
         case SignEncryptWidget::SignAndEncrypt:
-            mProgressLabel->setText(i18nc("@info:progress", "Signing and encrypting notepad..."));
+            startProgress(i18nc("@info:progress", "Signing and encrypting notepad..."));
             break;
         default:;
         };
@@ -451,13 +463,12 @@ public:
     void doImport()
     {
         doCryptoCommon();
-        mProgressLabel->setText(i18n("Importing..."));
+        startProgress(i18n("Importing..."));
         auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
         connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this]() {
             updateButtons();
             restoreFocusWidget();
-            mProgressBar->setVisible(false);
-            mProgressLabel->setVisible(false);
+            stopProgress();
 
             mRevertBtn->setVisible(true);
             setText(QString());
