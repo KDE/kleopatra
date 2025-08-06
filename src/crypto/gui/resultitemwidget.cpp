@@ -250,6 +250,7 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
 
     m_closeButton = new QPushButton;
     KGuiItem::assign(m_closeButton, KStandardGuiItem::close());
+    m_closeButton->setToolTip(i18nc("@info:tooltip", "Close message"));
     m_closeButton->setFixedSize(m_closeButton->sizeHint());
     connect(m_closeButton, &QAbstractButton::clicked, q, &ResultItemWidget::closeButtonClicked);
     actionLayout->addWidget(m_closeButton);
