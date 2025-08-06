@@ -146,7 +146,7 @@ void LabelHelper::accessibilityActiveChanged(bool active)
 
 static void accessibleUpdateHandler(QAccessibleEvent *event)
 {
-    qCDebug(KLEOPATRA_A11Y_LOG) << event->object() << event->child() << event->type();
+    qCDebug(KLEOPATRA_A11Y_LOG) << *event;
     QAccessible::installUpdateHandler(nullptr);
     QAccessible::updateAccessibility(event);
     QAccessible::installUpdateHandler(&accessibleUpdateHandler);
