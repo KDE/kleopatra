@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-07 00:43+0000\n"
+"POT-Creation-Date: 2025-08-07 18:30+0000\n"
 "PO-Revision-Date: 2025-07-22 11:32+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
@@ -2250,8 +2250,8 @@ msgid "Clipboard"
 msgstr "Zwischenablage"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
-#: src/view/padwidget.cpp:342 src/view/padwidget.cpp:343
-#: src/view/padwidget.cpp:423 src/view/padwidget.cpp:424
+#: src/view/padwidget.cpp:392 src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:473 src/view/padwidget.cpp:474
 #, kde-format
 msgid "Notepad"
 msgstr "Notizblock"
@@ -12491,19 +12491,124 @@ msgstr ""
 "application> verwendete <application>GnuPG</application>-System nicht %1 ist."
 "</para>"
 
-#: src/view/padwidget.cpp:168
+#: src/view/padwidget.cpp:169
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Geben Sie eine zu ver- oder entschlüsselnde Nachricht ein …"
 
-#: src/view/padwidget.cpp:341
+#: src/view/padwidget.cpp:211
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "File(s) to process"
+msgctxt "@label:textbox for assistive tools"
+msgid "Text to process"
+msgstr "Zu bearbeitende Datei(en)"
+
+#: src/view/padwidget.cpp:213
+#, kde-format
+msgctxt "@info for assistive tools"
+msgid ""
+"Either enter a text you want to sign or encrypt, or an encrypted or signed "
+"text you want to decrypt or verify. You can also enter certificates in text "
+"form to import them."
+msgstr ""
+
+#: src/view/padwidget.cpp:347
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Sign Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed text"
+msgstr "Text signieren"
+
+#: src/view/padwidget.cpp:348
+#, fuzzy, kde-format
+#| msgid "This is the result of the GnuPG configuration self-check:"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign operation."
+msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+
+#: src/view/padwidget.cpp:351
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Encrypted text"
+msgstr "Text verschlüsseln"
+
+#: src/view/padwidget.cpp:352
+#, fuzzy, kde-format
+#| msgid "This is the result of the GnuPG configuration self-check:"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the encryption."
+msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+
+#: src/view/padwidget.cpp:355
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed and encrypted text"
+msgstr "Mit OpenPGP signierte und verschlüsselte Datei"
+
+#: src/view/padwidget.cpp:356
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign and encrypt operation."
+msgstr ""
+"Dies ist der Dateiname der mit OpenPGP signierten und verschlüsselten Datei."
+
+#: src/view/padwidget.cpp:366
+#, fuzzy, kde-format
+#| msgid "Decrypt and/or verify files"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted and verified text"
+msgstr "Dateien entschlüsseln/prüfen"
+
+#: src/view/padwidget.cpp:367
+#, kde-format
+msgctxt "@info for assistive tools"
+msgid "This is the result of decryption and signature verification."
+msgstr ""
+
+#: src/view/padwidget.cpp:369
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted text"
+msgstr "Text verschlüsseln"
+
+#: src/view/padwidget.cpp:370
+#, fuzzy, kde-format
+#| msgid "This is the result of the GnuPG configuration self-check:"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the decryption."
+msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+
+#: src/view/padwidget.cpp:372
+#, kde-format
+msgctxt "@label:textbox for assistive tools"
+msgid "Verified text"
+msgstr ""
+
+#: src/view/padwidget.cpp:373
+#, fuzzy, kde-format
+#| msgid "This is the result of the GnuPG configuration self-check:"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the signature verification."
+msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+
+#: src/view/padwidget.cpp:391
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify files"
 msgid "Decrypting and/or verifying..."
 msgstr "Dateien entschlüsseln/prüfen"
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:453
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12518,42 +12623,42 @@ msgstr ""
 "application> verwendete <application>GnuPG</application>-System nicht %1 ist."
 "</para>"
 
-#: src/view/padwidget.cpp:413
+#: src/view/padwidget.cpp:463
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Notizblock signieren …"
 
-#: src/view/padwidget.cpp:416
+#: src/view/padwidget.cpp:466
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Notizblock verschlüsseln…"
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:469
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Notizblock signieren/verschlüsseln…"
 
-#: src/view/padwidget.cpp:466
+#: src/view/padwidget.cpp:516
 #, kde-format
 msgid "Importing..."
 msgstr "Wird importiert …"
 
-#: src/view/padwidget.cpp:506
+#: src/view/padwidget.cpp:556
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Signiere Notizblock"
 
-#: src/view/padwidget.cpp:509
+#: src/view/padwidget.cpp:559
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Verschlüssele Notizblock"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:563
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -17941,9 +18046,6 @@ msgstr ""
 #~ msgid_plural "<b>%1 good signatures</b>"
 #~ msgstr[0] "<b>Gültige Unterschrift</b>"
 #~ msgstr[1] "<b>%1 gültige Unterschriften.</b>"
-
-#~ msgid "This is the result of the GnuPG configuration self-check:"
-#~ msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
 
 #~ msgid ""
 #~ "The GnuPG configuration self-check succeeded.\n"

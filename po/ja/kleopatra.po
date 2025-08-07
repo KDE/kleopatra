@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-07 00:43+0000\n"
+"POT-Creation-Date: 2025-08-07 18:30+0000\n"
 "PO-Revision-Date: 2025-03-07 13:41+0900\n"
 "Last-Translator: NIIBE Yutaka <gniibe@fsij.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -2182,8 +2182,8 @@ msgid "Clipboard"
 msgstr "クリップボード"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
-#: src/view/padwidget.cpp:342 src/view/padwidget.cpp:343
-#: src/view/padwidget.cpp:423 src/view/padwidget.cpp:424
+#: src/view/padwidget.cpp:392 src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:473 src/view/padwidget.cpp:474
 #, kde-format
 msgid "Notepad"
 msgstr "ノートパッド"
@@ -12142,19 +12142,125 @@ msgstr ""
 "ん。<application>Kleopatra</application> が使う <application>GnuPG</"
 "application> システムが %1 でないためです。</para>"
 
-#: src/view/padwidget.cpp:168
+#: src/view/padwidget.cpp:169
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "暗号化するか復号するメッセージを入力してください..."
 
-#: src/view/padwidget.cpp:341
+#: src/view/padwidget.cpp:211
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "File(s) to process"
+msgctxt "@label:textbox for assistive tools"
+msgid "Text to process"
+msgstr "処理するファイル"
+
+#: src/view/padwidget.cpp:213
+#, kde-format
+msgctxt "@info for assistive tools"
+msgid ""
+"Either enter a text you want to sign or encrypt, or an encrypted or signed "
+"text you want to decrypt or verify. You can also enter certificates in text "
+"form to import them."
+msgstr ""
+
+#: src/view/padwidget.cpp:347
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Sign Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed text"
+msgstr "テキストに署名"
+
+#: src/view/padwidget.cpp:348
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the S/MIME signature."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign operation."
+msgstr "これは S/MIME 署名のファイル名です。"
+
+#: src/view/padwidget.cpp:351
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Encrypted text"
+msgstr "テキストを暗号化"
+
+#: src/view/padwidget.cpp:352
+#, fuzzy, kde-format
+#| msgid "Show results after encryption"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the encryption."
+msgstr "暗号化の後、結果を表示する"
+
+#: src/view/padwidget.cpp:355
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed and encrypted text"
+msgstr "OpenPGP 署名/暗号化のファイル"
+
+#: src/view/padwidget.cpp:356
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign and encrypt operation."
+msgstr "これは OpenPGP 署名/暗号化のファイル名です。"
+
+#: src/view/padwidget.cpp:366
+#, fuzzy, kde-format
+#| msgid "Decrypt and/or verify files"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted and verified text"
+msgstr "ファイルを復号/検証"
+
+#: src/view/padwidget.cpp:367
+#, kde-format
+msgctxt "@info for assistive tools"
+msgid "This is the result of decryption and signature verification."
+msgstr ""
+
+#: src/view/padwidget.cpp:369
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted text"
+msgstr "テキストを暗号化"
+
+#: src/view/padwidget.cpp:370
+#, fuzzy, kde-format
+#| msgid "Show results after encryption"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the decryption."
+msgstr "暗号化の後、結果を表示する"
+
+#: src/view/padwidget.cpp:372
+#, kde-format
+msgctxt "@label:textbox for assistive tools"
+msgid "Verified text"
+msgstr ""
+
+#: src/view/padwidget.cpp:373
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the S/MIME signature."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the signature verification."
+msgstr "これは S/MIME 署名のファイル名です。"
+
+#: src/view/padwidget.cpp:391
 #, fuzzy, kde-format
 #| msgid "Decrypt and/or verify files"
 msgid "Decrypting and/or verifying..."
 msgstr "ファイルを復号/検証"
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:453
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12168,42 +12274,42 @@ msgstr ""
 "めに使えません。<application>Kleopatra</application> が使う "
 "<application>GnuPG</application> システムが %1 でないためです。</para>"
 
-#: src/view/padwidget.cpp:413
+#: src/view/padwidget.cpp:463
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "ノートパッドに署名..."
 
-#: src/view/padwidget.cpp:416
+#: src/view/padwidget.cpp:466
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "ノートパッドを暗号化..."
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:469
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "ノートパッドの署名と暗号化..."
 
-#: src/view/padwidget.cpp:466
+#: src/view/padwidget.cpp:516
 #, kde-format
 msgid "Importing..."
 msgstr "インポート..."
 
-#: src/view/padwidget.cpp:506
+#: src/view/padwidget.cpp:556
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "ノートパッドに署名"
 
-#: src/view/padwidget.cpp:509
+#: src/view/padwidget.cpp:559
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "ノートパッドの暗号化"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:563
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
