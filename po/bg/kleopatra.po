@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-06 00:45+0000\n"
+"POT-Creation-Date: 2025-08-07 00:43+0000\n"
 "PO-Revision-Date: 2025-07-21 00:07+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -2210,8 +2210,8 @@ msgid "Clipboard"
 msgstr "Клипборд"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
-#: src/view/padwidget.cpp:311 src/view/padwidget.cpp:312
-#: src/view/padwidget.cpp:392 src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:342 src/view/padwidget.cpp:343
+#: src/view/padwidget.cpp:423 src/view/padwidget.cpp:424
 #, kde-format
 msgid "Notepad"
 msgstr "Бележник"
@@ -5311,6 +5311,13 @@ msgstr "Диагностика"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Показване на дневника на одита"
+
+#: src/crypto/gui/resultitemwidget.cpp:253
+#, fuzzy, kde-format
+#| msgid "Last message"
+msgctxt "@info:tooltip"
+msgid "Close message"
+msgstr "Последно съобщение"
 
 #: src/crypto/gui/resultlistwidget.cpp:118
 #, kde-format
@@ -12340,32 +12347,32 @@ msgstr "Иерархичен списък от сертификати"
 msgid "List of certificates"
 msgstr "Списък от сертификати"
 
-#: src/view/padwidget.cpp:90
+#: src/view/padwidget.cpp:91
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Подписване/шифроване на бележник"
 
-#: src/view/padwidget.cpp:91
+#: src/view/padwidget.cpp:92
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Дешифриране/Проверка на бележника"
 
-#: src/view/padwidget.cpp:92
+#: src/view/padwidget.cpp:93
 #, kde-format
 msgid "Import Notepad"
 msgstr "Импортиране на бележник"
 
-#: src/view/padwidget.cpp:93
+#: src/view/padwidget.cpp:94
 #, kde-format
 msgid "Revert"
 msgstr "Отмяна"
 
-#: src/view/padwidget.cpp:108
+#: src/view/padwidget.cpp:109
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Подписването и шифрирането не е възможно."
 
-#: src/view/padwidget.cpp:110
+#: src/view/padwidget.cpp:111
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12379,18 +12386,19 @@ msgstr ""
 "подписване или шифроване, защото системата <application>GnuPG</application>, "
 "използвана от <application>Kleopatra</application>, не е %1.</para>"
 
-#: src/view/padwidget.cpp:166
+#: src/view/padwidget.cpp:168
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Въведете съобщение за шифроване или дешифриране..."
 
-#: src/view/padwidget.cpp:310
-#, kde-format
-msgid "Decrypt / Verify"
-msgstr "Дешифриране/потвърждаване"
+#: src/view/padwidget.cpp:341
+#, fuzzy, kde-format
+#| msgid "Decrypt and/or verify files"
+msgid "Decrypting and/or verifying..."
+msgstr "Дешифриране и/или проверка на файлове"
 
-#: src/view/padwidget.cpp:372
+#: src/view/padwidget.cpp:403
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12405,42 +12413,42 @@ msgstr ""
 "<application>GnuPG</application>, използвана от <application>Kleopatra</"
 "application>, не е %1.</para>"
 
-#: src/view/padwidget.cpp:382
+#: src/view/padwidget.cpp:413
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Подписване на бележник..."
 
-#: src/view/padwidget.cpp:385
+#: src/view/padwidget.cpp:416
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Шифроване на бележник..."
 
-#: src/view/padwidget.cpp:388
+#: src/view/padwidget.cpp:419
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Подписване и криптиране на бележник..."
 
-#: src/view/padwidget.cpp:435
+#: src/view/padwidget.cpp:466
 #, kde-format
 msgid "Importing..."
 msgstr "Импортиране..."
 
-#: src/view/padwidget.cpp:475
+#: src/view/padwidget.cpp:506
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Подписване на бележник"
 
-#: src/view/padwidget.cpp:478
+#: src/view/padwidget.cpp:509
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Шифроване на бележник"
 
-#: src/view/padwidget.cpp:482
+#: src/view/padwidget.cpp:513
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -13201,6 +13209,9 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgid "Decrypt / Verify"
+#~ msgstr "Дешифриране/потвърждаване"
 
 #~ msgctxt "@info"
 #~ msgid ""
