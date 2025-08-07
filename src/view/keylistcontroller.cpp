@@ -127,7 +127,6 @@ public:
         std::erase(views, o);
         std::erase(commands, o);
     }
-    void slotDoubleClicked(const QModelIndex &idx);
     void slotActivated(const QModelIndex &idx);
     void slotSelectionChanged(const QItemSelection &old, const QItemSelection &new_);
     void slotContextMenu(const QPoint &pos);
@@ -817,9 +816,6 @@ void KeyListController::Private::connectView(QAbstractItemView *view)
     connect(view, &QObject::destroyed, q, [this](QObject *obj) {
         slotDestroyed(obj);
     });
-    connect(view, &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
-        slotDoubleClicked(index);
-    });
     connect(view, &QAbstractItemView::activated, q, [this](const QModelIndex &index) {
         slotActivated(index);
     });
@@ -849,7 +845,7 @@ void KeyListController::Private::connectCommand(Command *cmd)
     connect(cmd, &Command::progress, q, &KeyListController::progress);
 }
 
-void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
+void KeyListController::Private::slotActivated(const QModelIndex &idx)
 {
     QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
     if (!view || !ranges::binary_search(views, view)) {
@@ -860,15 +856,6 @@ void KeyListController::Private::slotDoubleClicked(const QModelIndex &idx)
         DetailsCommand *const c = new DetailsCommand{keyListModel->key(idx)};
         c->setParentWidget(parentWidget ? parentWidget : view);
         c->start();
-    }
-}
-
-void KeyListController::Private::slotActivated(const QModelIndex &idx)
-{
-    Q_UNUSED(idx)
-    QAbstractItemView *const view = qobject_cast<QAbstractItemView *>(q->sender());
-    if (!view || !ranges::binary_search(views, view)) {
-        return;
     }
 }
 

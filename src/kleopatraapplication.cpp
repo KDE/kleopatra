@@ -320,6 +320,10 @@ public:
         // for accessibility
         if (hint == QStyle::SH_ItemView_ArrowKeysNavigateIntoChildren)
             return 0;
+
+        if (hint == QStyle::SH_ItemView_ActivateItemOnSingleClick)
+            return 0;
+
         return QProxyStyle::styleHint(hint, option, widget, returnData);
     }
 };
