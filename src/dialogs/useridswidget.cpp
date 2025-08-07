@@ -33,6 +33,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
+#include <QGpgME/Debug>
 #include <QGpgME/KeyListJob>
 #include <QGpgME/Protocol>
 
