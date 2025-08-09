@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-07 00:43+0000\n"
+"POT-Creation-Date: 2025-08-07 18:30+0000\n"
 "PO-Revision-Date: 2025-08-07 09:31+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -24,8 +24,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && n "
-"% 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Lokalize 25.04.3\n"
 
 #, kde-format
@@ -2161,8 +2161,8 @@ msgid "Clipboard"
 msgstr "לוח גזירים"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
-#: src/view/padwidget.cpp:342 src/view/padwidget.cpp:343
-#: src/view/padwidget.cpp:423 src/view/padwidget.cpp:424
+#: src/view/padwidget.cpp:392 src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:473 src/view/padwidget.cpp:474
 #, kde-format
 msgid "Notepad"
 msgstr "מחברת"
@@ -5184,7 +5184,6 @@ msgstr "הצגת יומן פיקוח"
 
 #: src/crypto/gui/resultitemwidget.cpp:253
 #, kde-format
-#| msgid "Last message"
 msgctxt "@info:tooltip"
 msgid "Close message"
 msgstr "סגירת הודעה"
@@ -12136,19 +12135,124 @@ msgstr ""
 "כיוון שמערכת ה־<application>GnuPG</application> בה משתמשת "
 "<application>Kleopatra</application> אינה %1.</para>"
 
-#: src/view/padwidget.cpp:168
+#: src/view/padwidget.cpp:169
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "נא למלא הודעה להצפנה או לפענוח…"
 
-#: src/view/padwidget.cpp:341
+#: src/view/padwidget.cpp:211
+#, fuzzy, kde-format
+#| msgctxt "@info:shell"
+#| msgid "File(s) to process"
+msgctxt "@label:textbox for assistive tools"
+msgid "Text to process"
+msgstr "קצבים לעיבוד"
+
+#: src/view/padwidget.cpp:213
 #, kde-format
+msgctxt "@info for assistive tools"
+msgid ""
+"Either enter a text you want to sign or encrypt, or an encrypted or signed "
+"text you want to decrypt or verify. You can also enter certificates in text "
+"form to import them."
+msgstr ""
+
+#: src/view/padwidget.cpp:347
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Sign Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed text"
+msgstr "טקסט חתימה"
+
+#: src/view/padwidget.cpp:348
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the S/MIME signature."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign operation."
+msgstr "זה שם קובץ חתימת ה־S/MIME."
+
+#: src/view/padwidget.cpp:351
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Encrypted text"
+msgstr "הצפנת טקסט"
+
+#: src/view/padwidget.cpp:352
+#, fuzzy, kde-format
+#| msgid "Show results after encryption"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the encryption."
+msgstr "להציג תוצאות אחרי ההצפנה"
+
+#: src/view/padwidget.cpp:355
+#, fuzzy, kde-format
+#| msgctxt "Lineedit accessible name"
+#| msgid "OpenPGP signed and encrypted file"
+msgctxt "@label:textbox for assistive tools"
+msgid "Signed and encrypted text"
+msgstr "קובץ שנחתם והוצפן ב־OpenPGP"
+
+#: src/view/padwidget.cpp:356
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the sign and encrypt operation."
+msgstr "זה שם הקובץ שנחתם ומוצפן ב־OpenPGP."
+
+#: src/view/padwidget.cpp:366
+#, fuzzy, kde-format
 #| msgid "Decrypt and/or verify files"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted and verified text"
+msgstr "פענוח ו/או אימות קבצים"
+
+#: src/view/padwidget.cpp:367
+#, kde-format
+msgctxt "@info for assistive tools"
+msgid "This is the result of decryption and signature verification."
+msgstr ""
+
+#: src/view/padwidget.cpp:369
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
+msgctxt "@label:textbox for assistive tools"
+msgid "Decrypted text"
+msgstr "הצפנת טקסט"
+
+#: src/view/padwidget.cpp:370
+#, fuzzy, kde-format
+#| msgid "Show results after encryption"
+msgctxt "@info for assistive tools"
+msgid "This is the result of the decryption."
+msgstr "להציג תוצאות אחרי ההצפנה"
+
+#: src/view/padwidget.cpp:372
+#, kde-format
+msgctxt "@label:textbox for assistive tools"
+msgid "Verified text"
+msgstr ""
+
+#: src/view/padwidget.cpp:373
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "This is the filename of the S/MIME signature."
+msgctxt "@info for assistive tools"
+msgid "This is the result of the signature verification."
+msgstr "זה שם קובץ חתימת ה־S/MIME."
+
+#: src/view/padwidget.cpp:391
+#, kde-format
 msgid "Decrypting and/or verifying..."
 msgstr "פענוח ו/או אימות…"
 
-#: src/view/padwidget.cpp:403
+#: src/view/padwidget.cpp:453
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12162,42 +12266,42 @@ msgstr ""
 "כיוון שמערכת ה־<application>GnuPG</application> בה משתמשת "
 "<application>Kleopatra</application> אינה %1, עמך הסליחה.</para>"
 
-#: src/view/padwidget.cpp:413
+#: src/view/padwidget.cpp:463
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "המחברת נחתמת…"
 
-#: src/view/padwidget.cpp:416
+#: src/view/padwidget.cpp:466
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "המחברת מוצפנת…"
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:469
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "המחברת נחתמת ומוצפנת…"
 
-#: src/view/padwidget.cpp:466
+#: src/view/padwidget.cpp:516
 #, kde-format
 msgid "Importing..."
 msgstr "מתבצע ייבוא…"
 
-#: src/view/padwidget.cpp:506
+#: src/view/padwidget.cpp:556
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "חתימה על מחברת"
 
-#: src/view/padwidget.cpp:509
+#: src/view/padwidget.cpp:559
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "הצפנת מחברת"
 
-#: src/view/padwidget.cpp:513
+#: src/view/padwidget.cpp:563
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
