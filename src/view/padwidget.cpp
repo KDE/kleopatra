@@ -388,7 +388,7 @@ public:
     {
         doCryptoCommon();
         mSigEncWidget->clearAddedRecipients();
-        startProgress(i18n("Decrypting and/or verifying..."));
+        startProgress(i18nc("@info:progress", "Decrypting and/or verifying..."));
         auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
