@@ -655,6 +655,40 @@ void MainWindow::Private::setupActions()
     clipboadMenu->clipboardMenu()->setPopupMode(QToolButton::InstantPopup);
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
+    auto columnsMenu = new KActionMenu(i18nc("@action:inmenu", "Configure visible columns"), q);
+    columnsMenu->setPopupMode(QToolButton::InstantPopup);
+    columnsMenu->setIcon(QIcon::fromTheme(u"show_table_column"_s));
+    coll->addAction(QStringLiteral("columns_menu"), columnsMenu);
+
+    connect(
+        ui.searchTab->tabWidget(),
+        &TabWidget::viewAdded,
+        q,
+        [this, columnsMenu]() {
+            const auto model = ui.searchTab->tabWidget()->currentView()->model();
+
+            auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+            QList<QAction *> actions;
+            for (auto i = 0; i < model->columnCount(); ++i) {
+                auto action = new QAction(q);
+                action->setText(model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+                action->setChecked(!treeView->isColumnHidden(i));
+                action->setCheckable(true);
+                connect(action, &QAction::triggered, q, [actions, action, i, treeView]() {
+                    treeView->setColumnHidden(i, !action->isChecked());
+                });
+                columnsMenu->addAction(action);
+                actions += action;
+            }
+            connect(treeView, &TreeView::columnDisabled, q, [actions](const auto index) {
+                actions[index]->setChecked(false);
+            });
+            connect(treeView, &TreeView::columnEnabled, q, [actions](const auto index) {
+                actions[index]->setChecked(true);
+            });
+        },
+        (Qt::ConnectionType)(Qt::SingleShotConnection + Qt::QueuedConnection));
+
     /* Add additional help actions for documentation */
     const auto compendium = new DocAction(QIcon{u":/gpg4win/gpg4win-compact"_s},
                                           i18n("Gpg4win Compendium"),
