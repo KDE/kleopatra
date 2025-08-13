@@ -372,6 +372,9 @@ private:
         CertificateView *searchTab = nullptr;
         WelcomeWidget *welcomeWidget = nullptr;
         QStackedWidget *stackWidget = nullptr;
+        KActionMenu *columnsMenu = nullptr;
+        QList<QAction *> actions;
+        TreeView *previousTreeView = nullptr;
         explicit UI(MainWindow *q);
     } ui;
     QAction *focusToClickSearchAction = nullptr;
@@ -655,6 +658,17 @@ void MainWindow::Private::setupActions()
     clipboadMenu->clipboardMenu()->setPopupMode(QToolButton::InstantPopup);
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
+    ui.columnsMenu = new KActionMenu(i18nc("@action:inmenu", "Configure visible columns"), q);
+    ui.columnsMenu->setPopupMode(QToolButton::InstantPopup);
+    ui.columnsMenu->setIcon(QIcon::fromTheme(u"show_table_column"_s));
+    coll->addAction(QStringLiteral("columns_menu"), ui.columnsMenu);
+
+    connect(ui.searchTab->tabWidget(),
+            &TabWidget::viewAdded,
+            q,
+            &MainWindow::setupColumnVisibility,
+            (Qt::ConnectionType)(Qt::SingleShotConnection | Qt::QueuedConnection));
+
     /* Add additional help actions for documentation */
     const auto compendium = new DocAction(QIcon{u":/gpg4win/gpg4win-compact"_s},
                                           i18n("Gpg4win Compendium"),
@@ -904,6 +918,47 @@ std::unique_ptr<DocAction> MainWindow::createSymmetricGuideAction(QObject *paren
         QStringLiteral("../share/doc/gnupg-vsd"),
         QUrl(),
         parent);
+}
+
+void MainWindow::setupColumnVisibility()
+{
+    const auto model = d->ui.searchTab->tabWidget()->currentView()->model();
+
+    for (auto i = 0; i < model->columnCount(); ++i) {
+        auto action = new QAction(this);
+        action->setText(model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        action->setCheckable(true);
+        d->ui.columnsMenu->addAction(action);
+        d->ui.actions += action;
+    }
+    connect(d->ui.searchTab->tabWidget(), &TabWidget::currentViewChanged, this, &MainWindow::connectColumnVisibility);
+    connectColumnVisibility();
+}
+
+void MainWindow::connectColumnVisibility()
+{
+    if (d->ui.previousTreeView) {
+        disconnect(d->ui.previousTreeView, &TreeView::columnEnabled, this, nullptr);
+        disconnect(d->ui.previousTreeView, &TreeView::columnDisabled, this, nullptr);
+    }
+
+    auto treeView = dynamic_cast<TreeView *>(d->ui.searchTab->tabWidget()->currentView());
+    const auto model = treeView->model();
+
+    for (auto i = 0; i < model->columnCount(); ++i) {
+        disconnect(d->ui.actions[i], &QAction::triggered, this, nullptr);
+        d->ui.actions[i]->setChecked(!treeView->isColumnHidden(i));
+        connect(d->ui.actions[i], &QAction::triggered, this, [this, i, treeView]() {
+            treeView->setColumnHidden(i, !d->ui.actions[i]->isChecked());
+        });
+    }
+    connect(treeView, &TreeView::columnDisabled, this, [this](const auto index) {
+        d->ui.actions[index]->setChecked(false);
+    });
+    connect(treeView, &TreeView::columnEnabled, this, [this](const auto index) {
+        d->ui.actions[index]->setChecked(true);
+    });
+    d->ui.previousTreeView = treeView;
 }
 
 #include "mainwindow.moc"
