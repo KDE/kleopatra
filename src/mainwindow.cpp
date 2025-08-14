@@ -127,7 +127,7 @@ class CertificateView : public QWidget, public FocusFirstChild
 {
     Q_OBJECT
 public:
-    CertificateView(QWidget *parent = nullptr)
+    explicit CertificateView(QWidget *parent = nullptr)
         : QWidget{parent}
         , ui{this}
     {

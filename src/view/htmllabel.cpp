@@ -22,7 +22,7 @@ class HtmlLabel::Private
     HtmlLabel *q;
 
 public:
-    Private(HtmlLabel *qq)
+    explicit Private(HtmlLabel *qq)
         : q{qq}
     {
     }

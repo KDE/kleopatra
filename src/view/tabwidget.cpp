@@ -66,7 +66,7 @@ public:
          QWidget *parent = nullptr,
          const KConfigGroup &group = KConfigGroup(),
          KeyTreeView::Options options = KeyTreeView::Default);
-    Page(const KConfigGroup &group, KeyTreeView::Options options = KeyTreeView::Default, QWidget *parent = nullptr);
+    explicit Page(const KConfigGroup &group, KeyTreeView::Options options = KeyTreeView::Default, QWidget *parent = nullptr);
     ~Page() override;
 
     void setHierarchicalView(bool hierarchical) override;

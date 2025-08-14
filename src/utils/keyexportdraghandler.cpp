@@ -78,7 +78,6 @@ public:
     }
     QStringList pgpFprs;
     QStringList smimeFprs;
-    QString name;
     QTemporaryFile *file;
 };
 

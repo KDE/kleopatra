@@ -38,7 +38,7 @@ class SelectCertificateCommand::Private
     SelectCertificateCommand *const q;
 
 public:
-    Private(SelectCertificateCommand *qq)
+    explicit Private(SelectCertificateCommand *qq)
         : q(qq)
         , dialog()
     {

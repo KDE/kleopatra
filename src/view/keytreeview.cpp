@@ -67,9 +67,6 @@ public:
         const QSize min = QTreeView::minimumSizeHint();
         return QSize(min.width(), min.height() + 5 * fontMetrics().height());
     }
-
-private:
-    QList<QAction *> mColumnActions;
 };
 
 const KeyListModelInterface *keyListModel(const QTreeView &view)

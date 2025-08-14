@@ -129,7 +129,7 @@ class SmartCardsWidget::Private
     friend class ::Kleo::SmartCardsWidget;
 
 public:
-    Private(SmartCardsWidget *qq);
+    explicit Private(SmartCardsWidget *qq);
 
     const SmartCardWidget *currentCardWidget() const;
     AppType currentCardType() const;

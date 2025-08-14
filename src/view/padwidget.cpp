@@ -85,7 +85,7 @@ public:
         Import,
     };
 
-    Private(PadWidget *qq)
+    explicit Private(PadWidget *qq)
         : q(qq)
         , mEdit(new QTextEdit)
         , mCryptBtn(new QPushButton(QIcon::fromTheme(QStringLiteral("document-edit-sign-encrypt")), i18n("Sign / Encrypt Notepad")))
@@ -599,7 +599,6 @@ private:
     QLabel *mProgressLabel;
     QVBoxLayout *mStatusLay;
     ResultItemWidget *mLastResultWidget;
-    QList<GpgME::Key> mAutoAddedKeys;
     GpgME::Protocol mImportProto;
     bool mSettingText = false;
     Operation mLastOperation = NoOperation;

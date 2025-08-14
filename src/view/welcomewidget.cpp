@@ -116,7 +116,7 @@ protected:
 class WelcomeWidget::Private
 {
 public:
-    Private(WelcomeWidget *qq)
+    explicit Private(WelcomeWidget *qq)
         : q(qq)
     {
         auto vLay = new QVBoxLayout(q);
