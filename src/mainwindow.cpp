@@ -69,6 +69,7 @@
 #include <QCloseEvent>
 #include <QDesktopServices>
 #include <QDir>
+#include <QHeaderView>
 #include <QLabel>
 #include <QMenu>
 #include <QMimeData>
@@ -585,6 +586,62 @@ void MainWindow::Private::setupActions()
             q,
             [](bool) {
                 KleopatraApplication::instance()->openOrRaiseSmartCardWindow();
+            },
+            QString(),
+        },
+        {
+            "move_column_front",
+            i18nc("@action:inmenu", "Move column to front"),
+            i18nc("@info", "Move the current column to the beginning of the table"),
+            "arrow-left-double",
+            q,
+            [this](bool) {
+                auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+                auto logicalIndex = treeView->currentIndex().column();
+                auto visualIndex = treeView->header()->visualIndex(logicalIndex);
+                treeView->header()->moveSection(visualIndex, 0);
+            },
+            QString(),
+        },
+        {
+            "move_column_left",
+            i18nc("@action:inmenu", "Move column left"),
+            i18nc("@info", "Move the current column to the left"),
+            "arrow-left",
+            q,
+            [this](bool) {
+                auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+                auto logicalIndex = treeView->currentIndex().column();
+                auto visualIndex = treeView->header()->visualIndex(logicalIndex);
+                treeView->header()->moveSection(visualIndex, visualIndex - 1);
+            },
+            QString(),
+        },
+        {
+            "move_column_right",
+            i18nc("@action:inmenu", "Move column right"),
+            i18nc("@info", "Move the current column to the right"),
+            "arrow-right",
+            q,
+            [this](bool) {
+                auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+                auto logicalIndex = treeView->currentIndex().column();
+                auto visualIndex = treeView->header()->visualIndex(logicalIndex);
+                treeView->header()->moveSection(visualIndex, visualIndex + 1);
+            },
+            QString(),
+        },
+        {
+            "move_column_back",
+            i18nc("@action:inmenu", "Move column to the back"),
+            i18nc("@info", "Move the current column to the end of the table"),
+            "arrow-right-double",
+            q,
+            [this](bool) {
+                auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+                auto logicalIndex = treeView->currentIndex().column();
+                auto visualIndex = treeView->header()->visualIndex(logicalIndex);
+                treeView->header()->moveSection(visualIndex, treeView->model()->columnCount({}) - 1);
             },
             QString(),
         },
