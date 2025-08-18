@@ -150,7 +150,7 @@ public:
         if (!Settings{}.cmsEnabled()) {
             mWidget->setProtocol(GpgME::OpenPGP);
         }
-        mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage", "&Sign as:"));
+        mWidget->setSignAsText(i18nc("@option:check on SignEncryptPage", "Sign &as:"));
         mWidget->setEncryptForMeText(i18nc("@option:check on SignEncryptPage", "Encrypt for &me:"));
         mWidget->setEncryptForOthersText(i18nc("@label on SignEncryptPage", "Encrypt for &others:"));
         mWidget->setEncryptWithPasswordText(i18nc("@option:check on SignEncryptPage", "Encrypt with &password:"));
@@ -173,7 +173,7 @@ public:
 
         createRequesters(mOutLayout);
 
-        mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage", "Encrypt / Sign &each file separately."));
+        mUseOutputDirChk = new QCheckBox(i18nc("@option:check on SignEncryptPage", "Enc&rypt / Sign each file separately."));
         mUseOutputDirChk->setToolTip(i18nc("@info:tooltip", "Keep each file separate instead of creating an archive for all."));
         mOutLayout->addWidget(mUseOutputDirChk);
         connect(mUseOutputDirChk, &QCheckBox::toggled, this, [this](bool state) {
@@ -578,13 +578,13 @@ void SignEncryptFilesDialog::updateButtons()
     QString label;
     switch (mSigEncPage->currentOp()) {
     case SignEncryptWidget::Sign:
-        label = i18nc("@action:button", "Sign");
+        label = i18nc("@action:button", "&Sign");
         break;
     case SignEncryptWidget::Encrypt:
-        label = i18nc("@action:button", "Encrypt");
+        label = i18nc("@action:button", "&Encrypt");
         break;
     case SignEncryptWidget::SignAndEncrypt:
-        label = i18nc("@action:button", "Sign / Encrypt");
+        label = i18nc("@action:button", "&Sign / Encrypt");
         break;
     default:;
     }

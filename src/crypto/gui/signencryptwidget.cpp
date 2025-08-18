@@ -207,7 +207,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
     /* The signature selection */
     {
-        d->mSigChk = new QCheckBox{i18n("&Sign as:"), this};
+        d->mSigChk = new QCheckBox{i18n("Sign &as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
         d->mSigChk->setChecked(haveSecretKeys);
         auto checkFont = d->mSigChk->font();
