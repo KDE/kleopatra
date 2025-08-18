@@ -121,6 +121,7 @@ void RefreshCertificatesCommand::Private::start()
                                          0,
                                          0,
                                          parentWidgetOrView());
+    progressDialog->setValue(0);
     connect(progressDialog.get(), &QProgressDialog::canceled, q, &RefreshCertificatesCommand::cancel);
     progressDialog->setMinimumDuration(500);
 
