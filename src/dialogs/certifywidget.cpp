@@ -10,7 +10,6 @@
 
 #include "certifywidget.h"
 
-#include "dialogs/animatedexpander.h"
 #include "view/infofield.h"
 #include <utils/accessibility.h>
 #include <utils/gui-helper.h>
@@ -28,6 +27,7 @@
 #include <KSharedConfig>
 
 #include <Libkleo/Algorithm>
+#include <Libkleo/AnimatedExpander>
 #include <Libkleo/DefaultKeyFilter>
 #include <Libkleo/Expiration>
 #include <Libkleo/Formatting>

@@ -8,9 +8,9 @@
 
 #include "revokekeydialog.h"
 
-#include "dialogs/animatedexpander.h"
 #include "utils/accessibility.h"
 
+#include <Libkleo/AnimatedExpander>
 #include <Libkleo/ErrorLabel>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
