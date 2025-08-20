@@ -16,7 +16,6 @@
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
 #include "view/htmllabel.h"
-#include "view/urllabel.h"
 
 #include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/AuditLogEntry>
@@ -85,7 +84,7 @@ public:
     QList<QPointer<QWidget>> m_mainStylesheetWidgets;
     QList<ResultItemData> m_itemStylesheetWidgets;
     const std::shared_ptr<const Task::Result> m_result;
-    UrlLabel *m_auditLogLabel = nullptr;
+    QPushButton *m_auditLogButton = nullptr;
     QPushButton *m_closeButton = nullptr;
     QPushButton *m_showButton = nullptr;
     bool m_importCanceled = false;
@@ -145,8 +144,9 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
     const auto auditLogUrl = m_result->auditLog().asUrl(auditlog_url_template());
     const auto auditLogLinkText = m_result->hasError() ? i18n("Diagnostics") //
                                                        : i18nc("The Audit Log is a detailed error log from the gnupg backend", "Show Audit Log");
-    m_auditLogLabel->setUrl(auditLogUrl, auditLogLinkText);
-    m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
+    m_auditLogButton->setText(auditLogLinkText);
+
+    m_auditLogButton->setVisible(!auditLogUrl.isEmpty());
 }
 
 void ResultItemWidget::Private::updateStyleSheets()
@@ -206,12 +206,14 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
 
     addIgnoreMDCButton(actionLayout);
 
-    m_auditLogLabel = new UrlLabel;
-    connect(m_auditLogLabel, &QLabel::linkActivated, q, [this](const auto &link) {
-        slotLinkActivated(link);
+    m_auditLogButton = new QPushButton;
+    // m_auditLogButton->setFlat(true); //TODO maybe?
+
+    connect(m_auditLogButton, &QPushButton::clicked, q, [this]() {
+        q->showAuditLog();
     });
-    actionLayout->addWidget(m_auditLogLabel);
-    m_mainStylesheetWidgets.push_back(m_auditLogLabel);
+    actionLayout->addWidget(m_auditLogButton);
+    m_mainStylesheetWidgets.push_back(m_auditLogButton);
 
     for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
@@ -315,11 +317,6 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
     }
 
     const QUrl url(link);
-
-    if (url.host() == QLatin1StringView("showauditlog")) {
-        q->showAuditLog();
-        return;
-    }
 
     if (url.scheme() == QStringLiteral("certificate")) {
         auto cmd = new Kleo::Commands::LookupCertificatesCommand(url.path(), nullptr);
