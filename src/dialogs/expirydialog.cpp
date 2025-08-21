@@ -97,12 +97,12 @@ private:
             {
                 auto hboxLayout = new QHBoxLayout;
 
-                const auto range = Kleo::Expiration::expirationDateRange();
+                const auto range = expirationDateRange();
                 onRB = new QRadioButton{mainWidget};
                 onRB->setText(i18nc("The placeholders are dates",
                                     "Valid until (between %1 and %2):",
                                     Formatting::dateString(range.minimum),
-                                    Formatting::dateString(range.maximum.isValid() ? range.maximum : Expiration::maximumAllowedDate())));
+                                    Formatting::dateString(range.maximum.isValid() ? range.maximum : maximumAllowedDate())));
 
                 onRB->setChecked(true);
 
