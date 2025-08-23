@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Russian
 # Copyright (c) 2004, KDE Team.
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2023, 2024 Alexander Yavorsky <kekcuha@gmail.com>
+# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2023, 2024, 2025 Alexander Yavorsky <kekcuha@gmail.com>
 # Oleg Batalov <olegbatalov@mail.ru>, 2004.
 # Олег Баталов <batalov@twiga.kz>, 2004.
 # Andrey Cherepanov <skull@kde.ru>, 2005, 2009.
@@ -16,14 +16,14 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-15 02:42+0000\n"
-"PO-Revision-Date: 2025-04-02 12:03+0300\n"
-"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
-"Language-Team: Basealt Translation Team\n"
+"PO-Revision-Date: 2025-08-22 18:12+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.08.0\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -1765,11 +1765,10 @@ msgstr ""
 "команды <command>%1</command>: <nl /> <message>%2</message> </para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:177
-#, fuzzy, kde-format
-#| msgid "Revocation successful."
+#, kde-format
 msgctxt "@info"
 msgid "Upload successful."
-msgstr "Успешный отзыв."
+msgstr "Отправка завершилась успешно."
 
 #: src/commands/exportopenpgpcerttoprovidercommand.cpp:72
 #, kde-kuit-format
@@ -3138,23 +3137,20 @@ msgstr ""
 "она не поддерживает ни одного из совместимых алгоритмов."
 
 #: src/commands/refreshcertificatescommand.cpp:119
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "Updating certificate..."
+#, kde-format
 msgctxt "@info"
 msgid "Updating certificate…"
 msgid_plural "Updating %1 certificates…"
-msgstr[0] "Обновление сертификата..."
-msgstr[1] "Обновление сертификата..."
-msgstr[2] "Обновление сертификата..."
+msgstr[0] "Обновление %1 сертификата…"
+msgstr[1] "Обновление %1 сертификатов…"
+msgstr[2] "Обновление %1 сертификатов…"
 msgstr[3] "Обновление сертификата..."
 
 #: src/commands/refreshcertificatescommand.cpp:120
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Отмена"
 
 #: src/commands/refreshcertificatescommand.cpp:187
 #: src/commands/refreshcertificatescommand.cpp:260
@@ -3751,19 +3747,22 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>Отключённые сертификаты не могут быть выбраны для создания подписи или "
+"для шифрования. Такие сертификаты видны только при включённом фильтре "
+"<interface>%2</interface>.</para> <para>Вы можете в любое время отменить это "
+"действие. Для этого следует включить фильтр <interface>%2</interface> и "
+"снова активировать сертификат.</para> <para><emphasis "
+"strong='true'>Отключить и скрыть следующий сертификат?</emphasis></para> "
+"<list><item>%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Disable Certificate"
 msgstr "Отключить сертификат"
 
 #: src/commands/togglecertificateenabledcommand.cpp:128
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Disable Certificate"
 msgstr "Отключить сертификат"
@@ -4998,8 +4997,8 @@ msgstr[0] ""
 "Выполнена проверка файла <filename>%1</filename> с помощью подписи в "
 "<filename>%2</filename>."
 msgstr[1] ""
-"Выполнена проверка файла <filename>%1</filename> с помощью подписи в "
-"<filename>%2</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
+"<filename>%3</filename>."
 msgstr[2] ""
 "Выполнена проверка файла <filename>%1</filename> с помощью подписи в "
 "<filename>%2</filename>."
@@ -5498,7 +5497,7 @@ msgstr "Показать эл. почту"
 #, kde-format
 msgctxt "@option:check"
 msgid "Close window automatically on success"
-msgstr ""
+msgstr "Закрывать окно автоматически при отсутствии ошибок"
 
 #: src/crypto/gui/signemailwizard.cpp:69
 #, kde-format
@@ -7648,10 +7647,10 @@ msgid "Run Command"
 msgstr "Запустить команду"
 
 #: src/dialogs/debugdialog.cpp:137
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Search in output"
-msgstr "Поиск среди групп"
+msgstr "Искать в выводе"
 
 #: src/dialogs/debugdialog.cpp:138 src/view/searchbar.cpp:131
 #, kde-format
@@ -7663,25 +7662,25 @@ msgstr "Введите поисковый запрос"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to next match"
-msgstr ""
+msgstr "Перейти к следующему вхождению"
 
 #: src/dialogs/debugdialog.cpp:157
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Find Next"
-msgstr "Далее"
+msgstr "Найти следующее"
 
 #: src/dialogs/debugdialog.cpp:162
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Jump to previous match"
-msgstr ""
+msgstr "Перейти к предыдущему вхождению"
 
 #: src/dialogs/debugdialog.cpp:163
 #, kde-format
 msgctxt "@action:button"
 msgid "Find Previous"
-msgstr ""
+msgstr "Найти предыдущее"
 
 #: src/dialogs/debugdialog.cpp:176
 #, kde-format
@@ -8201,7 +8200,7 @@ msgid "Keyserver"
 msgstr "Сервер ключей"
 
 #: src/dialogs/padwindow.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Notepad"
 msgstr "Блокнот"
@@ -8600,13 +8599,7 @@ msgid "Add ADSK"
 msgstr "Добавить ADSK"
 
 #: src/dialogs/subkeyswidget.cpp:186
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Add the ADSK specified in the GnuPG configuration to your certificate. By "
-#| "adding an ADSK to your certificate, you allow the owner of the ADSK to "
-#| "decrypt all new messages that are encrypted for your certificate, if the "
-#| "client encrypting the message supports this functionality."
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "<html>Add the ADSK specified in the GnuPG configuration to your certificate. "
@@ -8614,10 +8607,10 @@ msgid ""
 "decrypt all new messages that are encrypted for your certificate, if the "
 "client encrypting the message supports this functionality.</html>"
 msgstr ""
-"Добавить к сертификату ADSK, указанный в конфигурации GnuPG. Таким образом "
-"вы разрешите владельцу ADSK расшифровывать все новые сообщения, "
+"<html>Добавить к сертификату ADSK, указанный в конфигурации GnuPG. Таким "
+"образом вы разрешите владельцу ADSK расшифровывать все новые сообщения, "
 "зашифрованные для расшифровывания вашим сертификатом, если соответствующая "
-"функциональность поддерживается клиентом, зашифровывающим сообщение."
+"функциональность поддерживается клиентом, зашифровывающим сообщение.</html>"
 
 #: src/dialogs/subkeyswidget.cpp:198 src/dialogs/useridswidget.cpp:165
 #: src/dialogs/weboftrustwidget.cpp:133
@@ -9712,9 +9705,9 @@ msgstr "Разрешить пользовательские команды от�
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
 #: src/kcfg/settings.kcfg:263
-#, fuzzy, kde-format
+#, kde-format
 msgid "Show results after signing and encrypting files"
-msgstr "Показать результаты после шифрования"
+msgstr "Показать результаты после создания подписи и шифрования файлов"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/settings.kcfg:269
@@ -9938,7 +9931,7 @@ msgstr "Открыть диалог конфигурации"
 #, kde-format
 msgctxt "@info:shell"
 msgid "Run as standalone app without system tray icon"
-msgstr ""
+msgstr "Запустить как отдельное приложение без значка в системном лотке"
 
 #: src/kleopatra_options.h:54
 #, kde-format
@@ -9965,6 +9958,8 @@ msgid ""
 "For technical reasons you can only use this option if <application>%1</"
 "application> is not already running."
 msgstr ""
+"По техническим причинам, эту возможность можно использовать только если "
+"приложение <application>%1</application> ещё не запущено."
 
 #: src/kleopatraapplication.cpp:512
 #, kde-format
@@ -12576,20 +12571,16 @@ msgid "Import CRL From File..."
 msgstr "Импорт списка отозванных сертификатов (CRL) из файла…"
 
 #: src/view/keylistcontroller.cpp:1154
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Enable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
-msgstr "Включить сертификат"
+msgstr "Включить и показать сертификат"
 
 #: src/view/keylistcontroller.cpp:1154
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu"
-#| msgid "Disable Certificate"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
-msgstr "Отключить сертификат"
+msgstr "Отключить и скрыть сертификат"
 
 #: src/view/keytreeview.cpp:233 src/view/keytreeview.cpp:515
 #, kde-format
