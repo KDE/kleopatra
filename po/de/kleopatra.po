@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-08-20 00:44+0000\n"
-"PO-Revision-Date: 2025-08-04 10:37+0200\n"
+"PO-Revision-Date: 2025-08-21 11:49+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
 "Language: de\n"
@@ -2371,7 +2371,7 @@ msgstr "Neue Unterschlüssel:"
 #: src/commands/importcertificatescommand.cpp:168
 #, kde-format
 msgid "Newly revoked:"
-msgstr "Kürzlich zurückgezogen:"
+msgstr "Kürzlich widerrufen:"
 
 #: src/commands/importcertificatescommand.cpp:170
 #, kde-format
@@ -3370,11 +3370,11 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
-"<para>Die Beglaubigung wurde erfolgreich zurückgezogen.</para> <para>Wollen "
-"Sie sie veröffentlichen?</para>"
+"<para>Die Beglaubigung wurde erfolgreich widerrufen.</para> <para>Wollen Sie "
+"den Widerruf veröffentlichen?</para>"
 msgstr[1] ""
-"<para>%1 Beglaubigungen wurden erfolgreich zurückgezogen.</para> "
-"<para>Wollen Sie sie veröffentlichen?</para>"
+"<para>%1 Beglaubigungen wurden erfolgreich widerrufen.</para> <para>Wollen "
+"Sie die Widerrufe veröffentlichen?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:232
 #, kde-format
@@ -5087,8 +5087,8 @@ msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
-"Es kann nicht ermittelt werden, ob es sich um eine S/MIME-/OpenPGP-Signatur "
-"oder verschlüsselten Text handelt – möglicherweise ist es weder noch?"
+"Signaturprüfung oder Entschlüsselung ist nicht möglich. Die Eingabe wurde "
+"weder als signierter noch verschlüsselter Text erkannt."
 
 #: src/crypto/decryptverifytask.cpp:805
 #, kde-format
@@ -5382,11 +5382,10 @@ msgid "Show Audit Log"
 msgstr "Prüfprotokoll anzeigen"
 
 #: src/crypto/gui/resultitemwidget.cpp:253
-#, fuzzy, kde-format
-#| msgid "Last message"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Close message"
-msgstr "Letzte Nachricht"
+msgstr "Nachricht schließen"
 
 #: src/crypto/gui/resultlistwidget.cpp:118
 #, kde-format
@@ -7261,7 +7260,7 @@ msgstr "Beglaubigen mit:"
 #, kde-format
 msgctxt "@action:button"
 msgid "Set Owner Trust"
-msgstr "Vertrauen in den Eigentümer einrichten"
+msgstr "Dem Eigentümer ultimativ vertrauen"
 
 #: src/dialogs/certifywidget.cpp:195
 #, kde-format
@@ -9617,7 +9616,7 @@ msgid ""
 "certificate is expired or revoked."
 msgstr ""
 "Zeigt die Gültigkeit des Zertifikats in der Kurzinfo, z. B. ob das "
-"Zertifikat abgelaufen ist oder zurückgezogen wurde."
+"Zertifikat abgelaufen ist oder widerrufen wurde."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
 #: src/kcfg/settings.kcfg:274
@@ -12529,12 +12528,10 @@ msgid "Enter a message to encrypt or decrypt..."
 msgstr "Geben Sie eine zu ver- oder entschlüsselnde Nachricht ein …"
 
 #: src/view/padwidget.cpp:211
-#, fuzzy, kde-format
-#| msgctxt "@info:shell"
-#| msgid "File(s) to process"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Text to process"
-msgstr "Zu bearbeitende Datei(en)"
+msgstr "Zu verarbeitender Text"
 
 #: src/view/padwidget.cpp:213
 #, kde-format
@@ -12544,94 +12541,82 @@ msgid ""
 "text you want to decrypt or verify. You can also enter certificates in text "
 "form to import them."
 msgstr ""
+"Geben Sie entweder einen Text ein, den Sie signieren oder verschlüsseln "
+"möchten, oder einen verschlüsselten oder signierten Text, den Sie "
+"entschlüsseln oder überprüfen möchten. Sie können auch Zertifikate in "
+"Textform eingeben, um sie zu importieren."
 
 #: src/view/padwidget.cpp:347
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Sign Text"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed text"
-msgstr "Text signieren"
+msgstr "Signierter Text"
 
 #: src/view/padwidget.cpp:348
-#, fuzzy, kde-format
-#| msgid "This is the result of the GnuPG configuration self-check:"
+#, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign operation."
-msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+msgstr "Dies ist das Ergebnis der Signatur-Operation."
 
 #: src/view/padwidget.cpp:351
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Encrypt Text"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Encrypted text"
-msgstr "Text verschlüsseln"
+msgstr "Verschlüsselter Text"
 
 #: src/view/padwidget.cpp:352
-#, fuzzy, kde-format
-#| msgid "This is the result of the GnuPG configuration self-check:"
+#, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the encryption."
-msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+msgstr "Dies ist das Ergebnis der Verschlüsselung."
 
 #: src/view/padwidget.cpp:355
-#, fuzzy, kde-format
-#| msgctxt "Lineedit accessible name"
-#| msgid "OpenPGP signed and encrypted file"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed and encrypted text"
-msgstr "Mit OpenPGP signierte und verschlüsselte Datei"
+msgstr "Signierter und verschlüsselter Text"
 
 #: src/view/padwidget.cpp:356
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+#, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign and encrypt operation."
-msgstr ""
-"Dies ist der Dateiname der mit OpenPGP signierten und verschlüsselten Datei."
+msgstr "Dies ist das Ergebnis der Signatur- und Verschlüsselungsoperation."
 
 #: src/view/padwidget.cpp:366
-#, fuzzy, kde-format
-#| msgid "Decrypt and/or verify files"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted and verified text"
-msgstr "Dateien entschlüsseln/prüfen"
+msgstr "Entschlüsselter und geprüfter Text"
 
 #: src/view/padwidget.cpp:367
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of decryption and signature verification."
-msgstr ""
+msgstr "Dies ist das Ergebnis der Entschlüsselung und Signaturprüfung."
 
 #: src/view/padwidget.cpp:369
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Encrypt Text"
+#, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted text"
-msgstr "Text verschlüsseln"
+msgstr "Entschlüsselter Text"
 
 #: src/view/padwidget.cpp:370
-#, fuzzy, kde-format
-#| msgid "This is the result of the GnuPG configuration self-check:"
+#, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the decryption."
-msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+msgstr "Dies ist das Ergebnis der Entschlüsselung."
 
 #: src/view/padwidget.cpp:372
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Verified text"
-msgstr ""
+msgstr "Geprüfter Text"
 
 #: src/view/padwidget.cpp:373
-#, fuzzy, kde-format
-#| msgid "This is the result of the GnuPG configuration self-check:"
+#, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the signature verification."
-msgstr "Dies ist das Ergebnis der Überprüfung der GnuPG-Einstellungen:"
+msgstr "Dies ist das Ergebnis der Signaturprüfung."
 
 #: src/view/padwidget.cpp:391
 #, fuzzy, kde-format
@@ -12659,19 +12644,19 @@ msgstr ""
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
-msgstr "Notizblock signieren …"
+msgstr "Notizblock wird signiert …"
 
 #: src/view/padwidget.cpp:469
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
-msgstr "Notizblock verschlüsseln…"
+msgstr "Notizblock wird verschlüsselt …"
 
 #: src/view/padwidget.cpp:472
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
-msgstr "Notizblock signieren/verschlüsseln…"
+msgstr "Notizblock wird signiert und verschlüsselt …"
 
 #: src/view/padwidget.cpp:519
 #, kde-format
