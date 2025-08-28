@@ -7,9 +7,7 @@
 
 #pragma once
 
-#include <commands/command.h>
-
-#include <gpgme++/global.h>
+#include "command.h"
 
 namespace Kleo
 {
