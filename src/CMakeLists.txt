@@ -178,6 +178,8 @@ set(_kleopatra_SRCS
   commands/newcertificatesigningrequestcommand.h
   commands/newopenpgpcertificatecommand.cpp
   commands/newopenpgpcertificatecommand.h
+  commands/newopenpgpteamcertificatecommand.cpp
+  commands/newopenpgpteamcertificatecommand.h
   commands/openpgpgeneratecardkeycommand.cpp
   commands/openpgpgeneratecardkeycommand.h
   commands/pivgeneratecardkeycommand.cpp
