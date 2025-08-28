@@ -31,6 +31,7 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <QGpgME/QuickJob>
 
 #include <QProgressDialog>
 #include <QSettings>
@@ -59,12 +60,13 @@ public:
 
     void getCertificateDetails();
     void createCertificate();
-    void showResult(const KeyGenerationResult &result);
+    void handleKeyGenerationResult(const KeyGenerationResult &result);
     void showErrorDialog(const KeyGenerationResult &result);
 
 private:
     KeyParameters keyParameters;
     bool protectKeyWithPassword = false;
+    bool teamKey = false;
     EmptyPassphraseProvider emptyPassphraseProvider;
     QPointer<OpenPGPCertificateCreationDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
@@ -88,6 +90,7 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
 {
     detailsDialog = new OpenPGPCertificateCreationDialog;
     detailsDialog->setAttribute(Qt::WA_DeleteOnClose);
+    detailsDialog->showTeamKeyOption(true);
     applyWindowID(detailsDialog);
 
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
@@ -110,6 +113,7 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     connect(detailsDialog, &QDialog::accepted, q, [this]() {
         keyParameters = detailsDialog->keyParameters();
         protectKeyWithPassword = detailsDialog->protectKeyWithPassword();
+        teamKey = detailsDialog->isTeamKey();
         QMetaObject::invokeMethod(
             q,
             [this] {
@@ -150,7 +154,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         QMetaObject::invokeMethod(
             q,
             [this, result] {
-                showResult(result);
+                handleKeyGenerationResult(result);
             },
             Qt::QueuedConnection);
     });
@@ -177,7 +181,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     progressDialog->show();
 }
 
-void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult &result)
+void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyGenerationResult &result)
 {
     if (result.error().isCanceled()) {
         finished();
@@ -198,16 +202,63 @@ void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult
         }
     }
 
-    keyCacheAutoRefreshSuspension.reset();
+    if (key.isNull()) {
+        showErrorDialog(result);
+        finished();
+        return;
+    }
 
-    if (!key.isNull()) {
+    if (teamKey) {
+        auto quickJob = std::unique_ptr<QGpgME::QuickJob>(QGpgME::openpgp()->quickJob());
+        auto flags = Context::CreationFlags::CreateSign;
+        if (!protectKeyWithPassword) {
+            flags |= GpgME::Context::CreationFlags::CreateNoPassword;
+        }
+        connect(quickJob.get(), &QGpgME::QuickJob::result, q, [this, result](const auto &err) {
+            if (err) {
+                error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
+                finished();
+                return;
+            }
+
+            if (err.isCanceled()) {
+                finished();
+                return;
+            }
+
+            // Ensure that we have the key in the cache
+            Key key;
+            if (!result.error().code() && result.fingerprint()) {
+                std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
+                if (ctx) {
+                    Error err;
+                    ctx->addKeyListMode(KeyListMode::Validate | KeyListMode::Signatures | KeyListMode::SignatureNotations);
+                    key = ctx->key(result.fingerprint(), err, /*secret=*/true);
+                    if (!key.isNull()) {
+                        KeyCache::mutableInstance()->insert(key);
+                    }
+                }
+            }
+
+            success(xi18nc("@info",
+                           "<para>A new OpenPGP certificate was created successfully.</para>"
+                           "<para>Fingerprint of the new certificate: %1</para>",
+                           Formatting::prettyID(key.primaryFingerprint())));
+            finished();
+        });
+        auto err = quickJob->startAddSubkey(key, QByteArray::fromStdString(key.subkey(0).algoName()), {}, flags);
+        if (err) {
+            error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
+            finished();
+            return;
+        }
+        quickJob.release();
+    } else {
         success(xi18nc("@info",
                        "<para>A new OpenPGP certificate was created successfully.</para>"
                        "<para>Fingerprint of the new certificate: %1</para>",
                        Formatting::prettyID(key.primaryFingerprint())));
         finished();
-    } else {
-        showErrorDialog(result);
     }
 }
 
