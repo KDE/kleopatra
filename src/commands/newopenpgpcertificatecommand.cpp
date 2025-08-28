@@ -65,6 +65,7 @@ public:
 private:
     KeyParameters keyParameters;
     bool protectKeyWithPassword = false;
+    bool isTeamKey = false;
     EmptyPassphraseProvider emptyPassphraseProvider;
     QPointer<OpenPGPCertificateCreationDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
@@ -90,17 +91,25 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     detailsDialog->setAttribute(Qt::WA_DeleteOnClose);
     applyWindowID(detailsDialog);
 
+    if (isTeamKey) {
+        detailsDialog->setWindowTitle(i18nc("title:window", "Create OpenPGP Team Certificate"));
+        detailsDialog->setInfoText(
+            i18nc("@info", "Enter a name and/or an email address to use for the certificate. The certificate will be set up for shared usage in a team."));
+    }
+
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
         const auto settings = Kleo::Settings{};
         const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("CertificateCreationWizard")};
-        // prefer the last used name and email address over the values retrieved from the system
-        detailsDialog->setName(config.readEntry("NAME", QString{}));
-        if (detailsDialog->name().isEmpty() && settings.prefillName()) {
-            detailsDialog->setName(userFullName());
-        }
-        detailsDialog->setEmail(config.readEntry("EMAIL", QString{}));
-        if (detailsDialog->email().isEmpty() && settings.prefillEmail()) {
-            detailsDialog->setEmail(userEmailAddress());
+        if (!isTeamKey) {
+            // prefer the last used name and email address over the values retrieved from the system
+            detailsDialog->setName(config.readEntry("NAME", QString{}));
+            if (detailsDialog->name().isEmpty() && settings.prefillName()) {
+                detailsDialog->setName(userFullName());
+            }
+            detailsDialog->setEmail(config.readEntry("EMAIL", QString{}));
+            if (detailsDialog->email().isEmpty() && settings.prefillEmail()) {
+                detailsDialog->setEmail(userEmailAddress());
+            }
         }
     } else {
         detailsDialog->setKeyParameters(keyParameters);
@@ -145,6 +154,10 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     }
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+
+    auto usage = keyParameters.keyUsage();
+    usage.setIsGroupKey(isTeamKey);
+    keyParameters.setKeyUsage(usage);
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
@@ -269,6 +282,11 @@ void NewOpenPGPCertificateCommand::doCancel()
     if (d->job) {
         d->job->slotCancel();
     }
+}
+
+void NewOpenPGPCertificateCommand::setIsTeamKey(bool isTeamKey)
+{
+    d->isTeamKey = isTeamKey;
 }
 
 #undef d
