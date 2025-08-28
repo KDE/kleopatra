@@ -375,22 +375,6 @@ set(_kleopatra_SRCS
   dialogs/weboftrustwidget.h
   interfaces/anchorprovider.h
   interfaces/focusfirstchild.h
-  newcertificatewizard/advancedsettingsdialog.cpp
-  newcertificatewizard/advancedsettingsdialog_p.h
-  newcertificatewizard/enterdetailspage.cpp
-  newcertificatewizard/enterdetailspage_p.h
-  newcertificatewizard/keyalgo.cpp
-  newcertificatewizard/keyalgo_p.h
-  newcertificatewizard/keycreationpage.cpp
-  newcertificatewizard/keycreationpage_p.h
-  newcertificatewizard/listwidget.cpp
-  newcertificatewizard/listwidget.h
-  newcertificatewizard/newcertificatewizard.cpp
-  newcertificatewizard/newcertificatewizard.h
-  newcertificatewizard/resultpage.cpp
-  newcertificatewizard/resultpage_p.h
-  newcertificatewizard/wizardpage.cpp
-  newcertificatewizard/wizardpage_p.h
   selftest/compliancecheck.cpp
   selftest/compliancecheck.h
   selftest/enginecheck.cpp
@@ -582,7 +566,6 @@ endif()
 
 ki18n_wrap_ui(_kleopatra_SRCS
   dialogs/setinitialpindialog.ui
-  newcertificatewizard/listwidget.ui
 )
 
 kconfig_add_kcfg_files(_kleopatra_SRCS

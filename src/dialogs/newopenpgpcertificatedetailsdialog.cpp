@@ -16,7 +16,6 @@
 #include "nameandemailwidget.h"
 
 #include "dialogs/animatedexpander.h"
-#include "newcertificatewizard/keyalgo_p.h"
 #include "utils/expiration.h"
 #include "utils/keyparameters.h"
 #include "utils/scrollarea.h"
@@ -48,7 +47,6 @@
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
-using namespace Kleo::NewCertificateUi;
 
 static bool unlimitedValidityIsAllowed()
 {
