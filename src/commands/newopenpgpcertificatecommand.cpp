@@ -31,6 +31,7 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <QGpgME/QuickJob>
 
 #include <QProgressDialog>
 #include <QSettings>
@@ -65,11 +66,13 @@ public:
 private:
     KeyParameters keyParameters;
     bool protectKeyWithPassword = false;
+    bool teamKey = false;
     EmptyPassphraseProvider emptyPassphraseProvider;
     QPointer<OpenPGPCertificateCreationDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
+    QString algoString;
 };
 
 NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_func()
@@ -88,6 +91,7 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
 {
     detailsDialog = new OpenPGPCertificateCreationDialog;
     detailsDialog->setAttribute(Qt::WA_DeleteOnClose);
+    detailsDialog->showTeamKeyOption(true);
     applyWindowID(detailsDialog);
 
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
@@ -110,6 +114,8 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     connect(detailsDialog, &QDialog::accepted, q, [this]() {
         keyParameters = detailsDialog->keyParameters();
         protectKeyWithPassword = detailsDialog->protectKeyWithPassword();
+        teamKey = detailsDialog->isTeamKey();
+        algoString = detailsDialog->algoString();
         QMetaObject::invokeMethod(
             q,
             [this] {
@@ -150,7 +156,39 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         QMetaObject::invokeMethod(
             q,
             [this, result] {
-                showResult(result);
+                if (teamKey) {
+                    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [result, this]() {
+                        auto key = KeyCache::instance()->findByFingerprint(result.fingerprint());
+                        if (key.isNull()) {
+                            error(i18nc("@info", "Created team key was not found"));
+                            return;
+                        }
+                        auto quickJob = QGpgME::openpgp()->quickJob();
+                        auto flags = Context::CreationFlags::CreateSign;
+                        if (!protectKeyWithPassword) {
+                            flags |= GpgME::Context::CreationFlags::CreateNoPassword;
+                        }
+                        auto err = quickJob->startAddSubkey(key, algoString.toLatin1(), {}, flags);
+                        disconnect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, nullptr);
+                        if (err) {
+                            error(i18nc("@info", "Failed to create encryption subkey: %1", Formatting::errorAsString(err)));
+                            return;
+                        }
+                        connect(quickJob, &QGpgME::QuickJob::result, q, [this, result](const auto &err) {
+                            if (err) {
+                                error(i18nc("@info", "Failed to create encryption subkey: %1", Formatting::errorAsString(err)));
+                                return;
+                            }
+
+                            if (err.isCanceled()) {
+                                return;
+                            }
+                            showResult(result);
+                        });
+                    });
+                } else {
+                    showResult(result);
+                }
             },
             Qt::QueuedConnection);
     });
