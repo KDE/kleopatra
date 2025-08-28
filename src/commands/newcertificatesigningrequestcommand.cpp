@@ -28,6 +28,7 @@
 #include <QGpgME/DN>
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <qgpgme/qgpgme_version.h>
 
 #include <QDir>
 #include <QFile>
@@ -163,7 +164,11 @@ void NewCertificateSigningRequestCommand::Private::showResult(const KeyGeneratio
     if (result.error().isCanceled()) {
         finished();
         return;
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
     } else if (result.error().isError()) {
+#else
+    } else if (result.error().code()) {
+#endif
         showErrorDialog(result, auditLog);
         return;
     }
