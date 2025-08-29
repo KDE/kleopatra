@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2024-03-21 13:10+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1220,7 +1220,7 @@ msgid ""
 msgstr "Importált tanúsítványok innen: %1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1231,21 +1231,18 @@ msgstr ""
 "para><para>Most már elküldheti a kérést a tanúsítványkiadónak.</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "A kérés elmentve"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "A kérés elmentése"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10-kérések (*.p10)"
@@ -1264,7 +1261,6 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -3226,22 +3222,15 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Nincs beállítva címtárszolgáltató"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, fuzzy, kde-format
-#| msgid "Create a personal X.509 key pair and certification request "
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "Személyes X.509 kulcspár és tanúsítványkérés létrehozása "
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, fuzzy, kde-format
 #| msgid "Could not start certificate creation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Nem sikerült elindítani a tanúsítványkészítést: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -3249,13 +3238,50 @@ msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Kulcs létrehozása…"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
 "may require several minutes..."
 msgstr ""
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file \"%1\" for reading"
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "Nem sikerült megnyitni olvasásra: \"%1\""
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Hiba"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>Hiba történt a tanúsítványok betöltése közben: <message>%1</message></"
+"para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, fuzzy, kde-format
+#| msgid "Create a personal X.509 key pair and certification request "
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "Személyes X.509 kulcspár és tanúsítványkérés létrehozása "
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3287,14 +3313,6 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "Hiba"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -7062,7 +7080,6 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Ellenőrzőösszegek (%2) ellenőrzése ebben: %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgctxt "@title:window"
@@ -7070,7 +7087,6 @@ msgid "Advanced Settings"
 msgstr "Speciális beállítások"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, fuzzy, kde-format
 #| msgid "Key Material"
 msgctxt "@title:group"
@@ -7083,23 +7099,20 @@ msgid "Algorithm:"
 msgstr ""
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Tanúsítványhasználat"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, fuzzy, kde-format
 #| msgid "Signing"
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Aláírás"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@option:check"
@@ -7157,12 +7170,12 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr ""
@@ -7233,7 +7246,6 @@ msgid "Update the key from external sources."
 msgstr ""
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -7241,35 +7253,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(kötelező)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(opcionális)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> megadása kötelező, de üres."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7280,14 +7285,12 @@ msgstr ""
 "adminisztrátori szabály: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> nem teljes."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7298,14 +7301,12 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> érvénytelen."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -8032,6 +8033,80 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, kde-format
+msgid "Enter a name and an email address to use for the certificate."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, kde-format
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, fuzzy, kde-format
+#| msgid "Advanced Settings"
+msgid "Advanced options"
+msgstr "Speciális beállítások"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "Kulcsforma"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgid "Certificate usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "Tanúsítványhasználat"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, fuzzy, kde-format
+#| msgid "Add. Email Address:"
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr "E-mail cím hozzáadása:"
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, kde-format
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Kiszel Kristóf,Úr Balázs"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, kde-format
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URI-k"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, kde-format
+msgid "Enter URIs in the correct format."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgid "S/MIME Certificates"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "S/MIME-tanúsítványok"
 
 #: src/dialogs/debugdialog.cpp:67
 #, fuzzy, kde-format
@@ -9256,7 +9331,6 @@ msgid "Revoke Certifications"
 msgstr "Ellenőrzés"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "Név"
@@ -10783,346 +10857,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr ""
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, fuzzy, kde-format
-#| msgid "Subkey Strength:"
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "Alkulcserősség:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, fuzzy, kde-format
-#| msgid "Technical Details"
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "Technikai részletek"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, fuzzy, kde-format
-#| msgid "EMail Addresses"
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "E-mail címek"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, fuzzy, kde-format
-#| msgid "DNS Names"
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "DNS-nevek"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, fuzzy, kde-format
-#| msgid "URIs"
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URI-k"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, fuzzy, kde-format
-#| msgid "Personal Details"
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "Személyi adatok"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "új e-mail"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "új DNS-név"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "új url"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (%1 bit):"
-msgstr[1] "%2 (%1 bit):"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "1 bit"
-msgstr[1] "%1 bit"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "E-mail"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "Részletek megadása"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "Valódi név:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "E-mail cím:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr ""
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Speciális beállítások…"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr ""
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "Please enter your personal details below. If you want more control over "
-#| "the certificate parameters, click on the Advanced Settings button."
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"Adja meg alább a személyi adatait. Ha egyéb adatokat szeretni átállítani a "
-"tanúsítványban, kattintson a Speciális beállítások gombra."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Create Key"
-msgctxt "@action"
-msgid "Create"
-msgstr "Új kulcs"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "A művelet félbeszakadt."
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, fuzzy, kde-format
-#| msgid "Could not create socket: %1"
-msgid "Could not create key pair: %1"
-msgstr "Nem sikerült létrehozni ezt az aljazatot: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "Nem sikerült írni ebbe fájlba: %1. %2"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, fuzzy, kde-format
-#| msgid "Certificate created successfully."
-msgid "Key pair created successfully."
-msgstr "A tanúsítvány sikeresen létrejött."
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr ""
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, fuzzy, kde-format
-#| msgid "Remove"
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "Eltávolítás"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr ""
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr ""
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "Certificate Creation Wizard"
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "Tanúsítványkészítő varázsló"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, fuzzy, kde-format
-#| msgid "Result"
-msgctxt "@title:group"
-msgid "Result"
-msgstr "Eredmény"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, fuzzy, kde-format
-#| msgid ""
-#| "Drag this icon to your mail application's composer to attach the request "
-#| "to a mail."
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr ""
-"Ejtse ezt az ikont a levelezőprogram szerkesztőablakára, ha csatolni "
-"szeretné a kérést egy üzenethez."
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "A varázsló újrakezdése (a paraméterek megőrzésével)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, fuzzy, kde-format
-#| msgid "Next Steps"
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "További lépések"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "Tanúsítványkérés mentése fájlba…"
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "Tanúsítványkérés küldése e-mailben…"
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "Aláírási tanúsítvány létrehozása ugyanezekkel a paraméterekkel"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "Titkosítási tanúsítvány létrehozása ugyanezekkel a paraméterekkel"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "A kulcskészítés nem sikerült"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr ""
-"Nem sikerült létrehozni a kulcspárt. A hiba részletei alább találhatók."
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "Sikerült létrehozni a kulcspárt"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"Sikerült létrehozni az új kulcspárt. Alább megtekinthető a részletes "
-"eredmény és néhány felhasználási tipp."
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
-"ide: <filename>%2</filename>. <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Kérem dolgozza fel ezt a tanúsítványt."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Kérem dolgozza fel a tanúsítványt és értesítse a feladót, honnan töltheti le "
-"az elkészült tanúsítványt.\n"
-"\n"
-"Köszönöm,\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para>A <application>Kleopatra</application> megpróbált üzenetet küldeni az "
-"alapértelmezett levelezőprogrammal.</para><para>Néhány levelezőprogram nem "
-"támogatja csatolások küldését ilyen meghívás esetén.</para><para>Ha a "
-"levelezőprogramban nincs benne a csatolás, ejtse a levélszerkesztő ablakra a "
-"<application>Kleopatra</application> ikonját.</para><para>Ha így sem "
-"működik, mentse el a kérést egy fájlba, majd csatolja a fájlt.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "Üzenetküldés"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"A művelet törli a tanúsítványkérést. Csak akkor lépjen tovább, ha már "
-"továbbította vagy elmentette a kérést."
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "A tanúsítványkérelem törlése következik"
 
 #: src/selftest/compliancecheck.cpp:33
 #, fuzzy, kde-format
@@ -14139,6 +13873,235 @@ msgid ""
 msgstr ""
 
 #, fuzzy
+#~| msgid "Subkey Strength:"
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "Alkulcserősség:"
+
+#, fuzzy
+#~| msgid "Technical Details"
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "Technikai részletek"
+
+#, fuzzy
+#~| msgid "EMail Addresses"
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "E-mail címek"
+
+#, fuzzy
+#~| msgid "DNS Names"
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "DNS-nevek"
+
+#, fuzzy
+#~| msgid "Personal Details"
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "Személyi adatok"
+
+#~ msgid "new email"
+#~ msgstr "új e-mail"
+
+#~ msgid "new dns name"
+#~ msgstr "új DNS-név"
+
+#~ msgid "new uri"
+#~ msgstr "új url"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (%1 bit):"
+#~ msgstr[1] "%2 (%1 bit):"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "1 bit"
+#~ msgstr[1] "%1 bit"
+
+#~ msgid "EMail"
+#~ msgstr "E-mail"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "Részletek megadása"
+
+#~ msgid "Real name:"
+#~ msgstr "Valódi név:"
+
+#~ msgid "EMail address:"
+#~ msgstr "E-mail cím:"
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "Speciális beállítások…"
+
+#, fuzzy
+#~| msgid ""
+#~| "Please enter your personal details below. If you want more control over "
+#~| "the certificate parameters, click on the Advanced Settings button."
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "Adja meg alább a személyi adatait. Ha egyéb adatokat szeretni átállítani "
+#~ "a tanúsítványban, kattintson a Speciális beállítások gombra."
+
+#, fuzzy
+#~| msgctxt "@action"
+#~| msgid "Create Key"
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "Új kulcs"
+
+#~ msgid "Operation canceled."
+#~ msgstr "A művelet félbeszakadt."
+
+#, fuzzy
+#~| msgid "Could not create socket: %1"
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "Nem sikerült létrehozni ezt az aljazatot: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "Nem sikerült írni ebbe fájlba: %1. %2"
+
+#, fuzzy
+#~| msgid "Certificate created successfully."
+#~ msgid "Key pair created successfully."
+#~ msgstr "A tanúsítvány sikeresen létrejött."
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "Eltávolítás"
+
+#, fuzzy
+#~| msgctxt "@title"
+#~| msgid "Certificate Creation Wizard"
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "Tanúsítványkészítő varázsló"
+
+#, fuzzy
+#~| msgid "Result"
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "Eredmény"
+
+#, fuzzy
+#~| msgid ""
+#~| "Drag this icon to your mail application's composer to attach the request "
+#~| "to a mail."
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr ""
+#~ "Ejtse ezt az ikont a levelezőprogram szerkesztőablakára, ha csatolni "
+#~ "szeretné a kérést egy üzenethez."
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "A varázsló újrakezdése (a paraméterek megőrzésével)"
+
+#, fuzzy
+#~| msgid "Next Steps"
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "További lépések"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "Tanúsítványkérés mentése fájlba…"
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "Tanúsítványkérés küldése e-mailben…"
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "Aláírási tanúsítvány létrehozása ugyanezekkel a paraméterekkel"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "Titkosítási tanúsítvány létrehozása ugyanezekkel a paraméterekkel"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "A kulcskészítés nem sikerült"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr ""
+#~ "Nem sikerült létrehozni a kulcspárt. A hiba részletei alább találhatók."
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "Sikerült létrehozni a kulcspárt"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "Sikerült létrehozni az új kulcspárt. Alább megtekinthető a részletes "
+#~ "eredmény és néhány felhasználási tipp."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
+#~ "ide: <filename>%2</filename>. <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Kérem dolgozza fel ezt a tanúsítványt."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Kérem dolgozza fel a tanúsítványt és értesítse a feladót, honnan töltheti "
+#~ "le az elkészült tanúsítványt.\n"
+#~ "\n"
+#~ "Köszönöm,\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para>A <application>Kleopatra</application> megpróbált üzenetet küldeni "
+#~ "az alapértelmezett levelezőprogrammal.</para><para>Néhány levelezőprogram "
+#~ "nem támogatja csatolások küldését ilyen meghívás esetén.</para><para>Ha a "
+#~ "levelezőprogramban nincs benne a csatolás, ejtse a levélszerkesztő "
+#~ "ablakra a <application>Kleopatra</application> ikonját.</para><para>Ha "
+#~ "így sem működik, mentse el a kérést egy fájlba, majd csatolja a fájlt.</"
+#~ "para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "Üzenetküldés"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "A művelet törli a tanúsítványkérést. Csak akkor lépjen tovább, ha már "
+#~ "továbbította vagy elmentette a kérést."
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "A tanúsítványkérelem törlése következik"
+
+#, fuzzy
 #~| msgid "Sign Files"
 #~ msgctxt "@option:check on SignEncryptPage"
 #~ msgid "&Sign as:"
@@ -15137,17 +15100,6 @@ msgstr ""
 #~| msgid "Add. Email Address:"
 #~ msgid "Enter an email address."
 #~ msgstr "E-mail cím hozzáadása:"
-
-#, fuzzy
-#~| msgid "Advanced Settings"
-#~ msgid "Advanced options"
-#~ msgstr "Speciális beállítások"
-
-#, fuzzy
-#~| msgid "Key Material"
-#~ msgctxt "The algorithm and strength of encryption key"
-#~ msgid "Key Material"
-#~ msgstr "Kulcsforma"
 
 #, fuzzy
 #~| msgid "The validity of the signature cannot be verified."
@@ -16484,9 +16436,6 @@ msgstr ""
 #~ msgid "Valid Until:"
 #~ msgstr "Érvényes eddig:"
 
-#~ msgid "Add. Email Address:"
-#~ msgstr "E-mail cím hozzáadása:"
-
 #~ msgid "DNS Name:"
 #~ msgstr "DNS-név:"
 
@@ -17085,9 +17034,6 @@ msgstr ""
 
 #~ msgid "Certificate type"
 #~ msgstr "Tanúsítványtípus"
-
-#~ msgid "Certificate usage"
-#~ msgstr "Tanúsítványhasználat"
 
 #~ msgid "No"
 #~ msgstr "Nem"

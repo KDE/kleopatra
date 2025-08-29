@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -1104,7 +1104,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1115,21 +1115,18 @@ msgstr ""
 "भवता प्रमाणीकरणप्राधिकरणाय (CA) अनुरोधं प्रेषयितव्यम् ।</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "अनुरोध रक्षित"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "अनुरोधं रक्षतु"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS # 10 अनुरोधाः (*.p10)"
@@ -1142,7 +1139,6 @@ msgid ""
 msgstr "<para>अनुरोधस्य रक्षणं विफलम् ।</para><para><message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2943,27 +2939,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "कोऽपि निर्देशिकासर्वरः विन्यस्तः नास्ति"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "भवता S/MIME प्रमाणपत्रहस्ताक्षरानुरोधं निर्मातुं अनुमतिः नास्ति ।"
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "कीलयुग्मनिर्माणं आरभुं न शक्तम्: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "कीलयुग्मस्य निर्माणम्..."
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -2971,6 +2961,43 @@ msgid ""
 msgstr ""
 "कीलस्य निर्माणप्रक्रियायां बहूनां यादृच्छिकसङ्ख्यानां आवश्यकता भवति । अस्य कृते कतिपयानि "
 "निमेषाणि आवश्यकानि भवितुम् अर्हन्ति..."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "अधिलेखनार्थं <filename>%1</filename> सञ्चिकां निष्कासयितुं न शक्यते ।"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "त्रुटि"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>प्रमाणपत्राणां प्रमाणीकरणं विफलम् ।</para><para>दोषः : <message>%1</"
+"message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "भवता S/MIME प्रमाणपत्रहस्ताक्षरानुरोधं निर्मातुं अनुमतिः नास्ति ।"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3002,14 +3029,6 @@ msgid ""
 msgstr ""
 "<para>नवीन OpenPGP प्रमाणपत्रं सफलतया निर्मितम्, परन्तु कीलवलये न प्राप्तम् ।</"
 "para><para>नवप्रमाणपत्रस्य अङ्गुलिचिह्नम्:<nl/>%1</para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "त्रुटि"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6424,14 +6443,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "%1 मध्ये चेकसम (%2) सत्यापनम्"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "उन्नत सेटिंग्स्"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6443,21 +6460,18 @@ msgid "Algorithm:"
 msgstr "एल्गोरिदम् :"
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "प्रमाणपत्रस्य उपयोगः"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "हस्ताक्षरं करणम्"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6508,12 +6522,12 @@ msgstr "उपयोक्तृ-ID कृते उपयोक्तुं न
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "उपयोक्तृ-ID कृते उपयोक्तुं नाम तथा/वा ईमेल-सङ्केतं प्रविशतु ।"
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "नाम वा ईमेल-सङ्केतं वा प्रविशतु।"
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "समस्या अस्ति।"
@@ -6582,7 +6596,6 @@ msgid "Update the key from external sources."
 msgstr "बाह्यस्रोताभ्यां कीलं अद्यतनं कुर्वन्तु।"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6590,35 +6603,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(आवश्यकः)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(वैकल्पिक)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> आवश्यकं, परन्तु रिक्तम् ।"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6629,14 +6635,12 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> अपूर्णम् अस्ति ।"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6647,14 +6651,12 @@ msgstr ""
 "icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> असिद्धम् अस्ति ।"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7312,6 +7314,85 @@ msgstr ""
 "<para>चयनितकुंजी: <emphasis>%1</emphasis></para><para>चयनितं स्मार्टकार्ड: "
 "<emphasis>%2</emphasis></para><para>अन्तर्निर्मितार्थं निम्नलिखितविकल्पेषु एकं चिनोतु: "
 "</para> इति"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, fuzzy, kde-format
+#| msgid "Enter a name and an email address to use for the user ID."
+msgid "Enter a name and an email address to use for the certificate."
+msgstr "उपयोक्तृ-ID कृते उपयोक्तुं नाम, ईमेल-सङ्केतं च प्रविशन्तु ।"
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, fuzzy, kde-format
+#| msgid "Enter a name and/or an email address to use for the user ID."
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr "उपयोक्तृ-ID कृते उपयोक्तुं नाम तथा/वा ईमेल-सङ्केतं प्रविशतु ।"
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "उन्नतविकल्पान् दर्शयतु"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "मुख्य सामग्री"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Certificate Usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "प्रमाणपत्रस्य उपयोगः"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, kde-format
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "श्रीकान्त् कलवार्"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, kde-format
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URIs इति"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, kde-format
+msgid "Enter URIs in the correct format."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "S/MIME प्रमाणीकरणानुरोधं रचयन्तु"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8421,7 +8502,6 @@ msgid "Revoke Certifications"
 msgstr "प्रमाणपत्राणि निरस्तं कुर्वन्तु"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "नामः"
@@ -9935,324 +10015,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "सममित_एन्क्रिप्शन_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "आरएसए प्रमुखशक्तिः :"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "तकनीकी विवरण"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "ईमेल पता"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "DNS नाम"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URIs इति"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "व्यक्तिगत विवरण"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "नूतनं ईमेल"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "नव द्न्स् नाम"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "नव उरी"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (१ बिट्)"
-msgstr[1] "%2 (%1 बिट्)"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "१ बिट्"
-msgstr[1] "%1 बिट्"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "ईमेल"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "विवरणं प्रविष्टं कुर्वन्तु"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "वास्तविक नाम :"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "ईमेल-सङ्केतः :"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "उत्पन्नं कीलं गुप्तवाक्येन रक्षन्तु ।"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"गुप्तकुंजीम् अपुनर्प्राप्तियुक्तेन गुप्तवाक्येन गुप्तीकरणं करोति । कीलजननस्य समये भवन्तः गुप्तवाक्यं "
-"पृष्टाः भविष्यन्ति ।"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "उन्नत सेटिंग्स्..."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "कृपया अधः स्वस्य व्यक्तिगतविवरणं प्रविशन्तु।"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"कृपया अधः स्वस्य व्यक्तिगतविवरणं प्रविशन्तु। यदि भवान् पैरामीटर्स् इत्यस्य उपरि अधिकं "
-"नियन्त्रणं इच्छति तर्हि Advanced Settings इति बटन् नुदतु ।"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "निर्मियताम्"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "संचालन रद्द।"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "कीलयुग्मं निर्मातुं न शक्तम्: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "%1: %2 इति निर्गमसञ्चिकां लिखितुं न शक्यते"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "कीलयुग्मं सफलतया निर्मितम्।"
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "प्रविष्टि योजयतु"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "प्रविष्टि निष्कासयन्तु"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "उपरि गच्छतु"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "अधः गच्छतु"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "कील युग्म निर्माण विज़ार्ड"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "परिणाम"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr "अनुरोधं मेल-सङ्गतिं कर्तुं स्वस्य मेल-अनुप्रयोगस्य रचनाकारं प्रति एतत् चिह्नं कर्षयन्तु ।"
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "एतत् विजार्डं पुनः आरभत (भवतः पैरामीटर् रक्षति)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "अग्रिमपदार्थाः"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "प्रमाणपत्रस्य अनुरोधं सञ्चिकां कर्तुं रक्षन्तु..."
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "प्रमाणपत्रस्य अनुरोधं ईमेलद्वारा प्रेषयन्तु..."
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "समानपैरामीटर् सह हस्ताक्षरप्रमाणपत्रं रचयन्तु"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "समानपैरामीटर् सह एन्क्रिप्शन प्रमाणपत्रं रचयन्तु"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "कुञ्जीनिर्माणं विफलम्"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr "कीलयुग्मनिर्माणं विफलम् अभवत् । कृपया अधः असफलतायाः विषये विवरणं पश्यन्तु।"
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "कीलयुग्मं सफलतया निर्मितम्"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"भवतः नूतनं कीलयुगलं सफलतया निर्मितम् । कृपया परिणामस्य विवरणं तथा च केचन सुझाताः "
-"अग्रिमपदार्थाः अधः पश्यन्तु।"
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"अस्थायी सञ्चिका <filename>%1</filename> <filename>%2</filename> सञ्चिकायां "
-"प्रतिलिपिं कर्तुं न शक्यते: <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "कृपया एतत् प्रमाणपत्रं संसाधयन्तु।"
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"कृपया एतत् प्रमाणपत्रं संसाधयन्तु तथा च परिणामितं प्रमाणपत्रं आनेतुं स्थानस्य विषये प्रेषकं "
-"सूचयन्तु।\n"
-"\n"
-"धन्यवादा,\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para><application>Kleopatra</application> इत्यनेन भवतः "
-"पूर्वनिर्धारितमेलग्राहकद्वारा मेलप्रेषणस्य प्रयासः कृतः ।</para><para>केचन मेलग्राहकाः एवं "
-"आह्वयितुं संलग्नानाम् समर्थनं न कुर्वन्ति इति ज्ञायते ।</para><para> यदि भवतः मेलग्राहकस्य "
-"संलग्नकं नास्ति तर्हि <application>Kleopatra</application> चिह्नं कर्षयित्वा भवतः "
-"मेलस्य सन्देशरचनाविण्डो मध्ये पातयन्तु client.</para><para>यदि तदपि न कार्यं करोति तर्हि "
-"अनुरोधं सञ्चिकायां रक्षन्तु, ततः तत् संलग्नं कुर्वन्तु ।</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "मेल प्रेषणम्"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"एतत् क्रिया प्रमाणीकरणानुरोधं विलोपयिष्यति । कृपया प्रगन्तुं पूर्वं भवता प्रेषितं वा रक्षितं वा "
-"इति सुनिश्चितं कुर्वन्तु ।"
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "प्रमाणीकरणानुरोधः विलोपनीयः इति विषये"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -13099,6 +12861,223 @@ msgid ""
 msgstr ""
 "सञ्चिकातः प्रमाणपत्रं आयातयन्तु।<nl/>सार्वजनिककीसर्वरतः आयातयितुं तस्य स्थाने "
 "<interface>Lookup on Server</interface> इत्यस्य उपयोगं कुर्वन्तु ।"
+
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "आरएसए प्रमुखशक्तिः :"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "तकनीकी विवरण"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "ईमेल पता"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "DNS नाम"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "व्यक्तिगत विवरण"
+
+#~ msgid "new email"
+#~ msgstr "नूतनं ईमेल"
+
+#~ msgid "new dns name"
+#~ msgstr "नव द्न्स् नाम"
+
+#~ msgid "new uri"
+#~ msgstr "नव उरी"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (१ बिट्)"
+#~ msgstr[1] "%2 (%1 बिट्)"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "१ बिट्"
+#~ msgstr[1] "%1 बिट्"
+
+#~ msgid "EMail"
+#~ msgstr "ईमेल"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "विवरणं प्रविष्टं कुर्वन्तु"
+
+#~ msgid "Real name:"
+#~ msgstr "वास्तविक नाम :"
+
+#~ msgid "EMail address:"
+#~ msgstr "ईमेल-सङ्केतः :"
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "उत्पन्नं कीलं गुप्तवाक्येन रक्षन्तु ।"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "गुप्तकुंजीम् अपुनर्प्राप्तियुक्तेन गुप्तवाक्येन गुप्तीकरणं करोति । कीलजननस्य समये भवन्तः "
+#~ "गुप्तवाक्यं पृष्टाः भविष्यन्ति ।"
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "उन्नत सेटिंग्स्..."
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "कृपया अधः स्वस्य व्यक्तिगतविवरणं प्रविशन्तु।"
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "कृपया अधः स्वस्य व्यक्तिगतविवरणं प्रविशन्तु। यदि भवान् पैरामीटर्स् इत्यस्य उपरि अधिकं "
+#~ "नियन्त्रणं इच्छति तर्हि Advanced Settings इति बटन् नुदतु ।"
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "निर्मियताम्"
+
+#~ msgid "Operation canceled."
+#~ msgstr "संचालन रद्द।"
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "कीलयुग्मं निर्मातुं न शक्तम्: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "%1: %2 इति निर्गमसञ्चिकां लिखितुं न शक्यते"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "कीलयुग्मं सफलतया निर्मितम्।"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "प्रविष्टि योजयतु"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "प्रविष्टि निष्कासयन्तु"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "उपरि गच्छतु"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "अधः गच्छतु"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "कील युग्म निर्माण विज़ार्ड"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "परिणाम"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr "अनुरोधं मेल-सङ्गतिं कर्तुं स्वस्य मेल-अनुप्रयोगस्य रचनाकारं प्रति एतत् चिह्नं कर्षयन्तु ।"
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "एतत् विजार्डं पुनः आरभत (भवतः पैरामीटर् रक्षति)"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "अग्रिमपदार्थाः"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "प्रमाणपत्रस्य अनुरोधं सञ्चिकां कर्तुं रक्षन्तु..."
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "प्रमाणपत्रस्य अनुरोधं ईमेलद्वारा प्रेषयन्तु..."
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "समानपैरामीटर् सह हस्ताक्षरप्रमाणपत्रं रचयन्तु"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "समानपैरामीटर् सह एन्क्रिप्शन प्रमाणपत्रं रचयन्तु"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "कुञ्जीनिर्माणं विफलम्"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr "कीलयुग्मनिर्माणं विफलम् अभवत् । कृपया अधः असफलतायाः विषये विवरणं पश्यन्तु।"
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "कीलयुग्मं सफलतया निर्मितम्"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "भवतः नूतनं कीलयुगलं सफलतया निर्मितम् । कृपया परिणामस्य विवरणं तथा च केचन सुझाताः "
+#~ "अग्रिमपदार्थाः अधः पश्यन्तु।"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "अस्थायी सञ्चिका <filename>%1</filename> <filename>%2</filename> सञ्चिकायां "
+#~ "प्रतिलिपिं कर्तुं न शक्यते: <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "कृपया एतत् प्रमाणपत्रं संसाधयन्तु।"
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "कृपया एतत् प्रमाणपत्रं संसाधयन्तु तथा च परिणामितं प्रमाणपत्रं आनेतुं स्थानस्य विषये प्रेषकं "
+#~ "सूचयन्तु।\n"
+#~ "\n"
+#~ "धन्यवादा,\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> इत्यनेन भवतः "
+#~ "पूर्वनिर्धारितमेलग्राहकद्वारा मेलप्रेषणस्य प्रयासः कृतः ।</para><para>केचन मेलग्राहकाः "
+#~ "एवं आह्वयितुं संलग्नानाम् समर्थनं न कुर्वन्ति इति ज्ञायते ।</para><para> यदि भवतः "
+#~ "मेलग्राहकस्य संलग्नकं नास्ति तर्हि <application>Kleopatra</application> चिह्नं "
+#~ "कर्षयित्वा भवतः मेलस्य सन्देशरचनाविण्डो मध्ये पातयन्तु client.</para><para>यदि तदपि "
+#~ "न कार्यं करोति तर्हि अनुरोधं सञ्चिकायां रक्षन्तु, ततः तत् संलग्नं कुर्वन्तु ।</para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "मेल प्रेषणम्"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "एतत् क्रिया प्रमाणीकरणानुरोधं विलोपयिष्यति । कृपया प्रगन्तुं पूर्वं भवता प्रेषितं वा रक्षितं "
+#~ "वा इति सुनिश्चितं कुर्वन्तु ।"
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "प्रमाणीकरणानुरोधः विलोपनीयः इति विषये"
 
 #~ msgid "Decrypt / Verify"
 #~ msgstr "विगुप्तीकरण / सत्यापन"

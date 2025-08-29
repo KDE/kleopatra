@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2025-08-21 12:33+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1111,7 +1111,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1123,21 +1123,18 @@ msgstr ""
 "(CA).</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Pieprasījums saglabāts"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Saglabāt pieprasījumu"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10 pieprasījumi (*.p10)"
@@ -1150,7 +1147,6 @@ msgid ""
 msgstr "<para>Pieprasījuma saglabāšana neizdevās: <message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2978,28 +2974,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Nav konfigurēts neviens direktoriju serveris"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr ""
-"Jums nav tiesību izveidot S/MIME sertifikāta parakstīšanas pieprasījumus."
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Neizdevās palaist atslēgu pāra izveidi: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Izveido atslēgu pāri..."
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3007,6 +2996,44 @@ msgid ""
 msgstr ""
 "Atslēgu izveides procesam ir nepieciešams liels daudzums nejaušu skaitļu. To "
 "ģenerēšana var prasīt vairākas minūtes..."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "Neizdevās pārrakstīšanai noņemt datni „<filename>%1</filename>“."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Kļūda"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>Sertifikātu sertificēšana neizdevās.</para><para>Kļūda: <message>%1</"
+"message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr ""
+"Jums nav tiesību izveidot S/MIME sertifikāta parakstīšanas pieprasījumus."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3039,14 +3066,6 @@ msgstr ""
 "<para>Ir veiksmīgi izveidots jauns „OpenPGP“ sertifikāts, bet tas nav "
 "atrasts atslēgu saišķī.</para><para>Jaunā sertifikāta digitālais nospiedums:"
 "<nl/>%1</para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "Kļūda"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6495,14 +6514,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Verificē kontrolsummas (%2) datnē „%1“"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Paplašinātie iestatījumi"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6514,21 +6531,18 @@ msgid "Algorithm:"
 msgstr "Algoritms:"
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Sertifikāta izmantošana"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Parakstīšana"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6579,12 +6593,12 @@ msgstr "Ierakstiet lietotāja ID izmantoto vārdu un e-pasta adresi."
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Ierakstiet lietotāja ID izmantoto vārdu un/vai e-pasta adresei."
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Ierakstiet vārdu vai e-pasta adresei."
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "Atklājusies problēma."
@@ -6655,7 +6669,6 @@ msgid "Update the key from external sources."
 msgstr "Atjaunināt atslēgu no ārējiem avotiem."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6663,35 +6676,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(nepieciešams)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(neobligāts)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> is nepieciešams, bet tas ir tukšs."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6702,14 +6708,12 @@ msgstr ""
 "administratora noteikums: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> ir nepilnīgs."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6720,14 +6724,12 @@ msgstr ""
 "<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> ir nederīgs."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7392,6 +7394,84 @@ msgstr ""
 "<para>Atlasītā karte: <emphasis>%1</emphasis></para><para>Atlasītā "
 "viedkarte: <emphasis>%2</emphasis></para><para>Lai turpinātu, izvēlieties "
 "kādu no šīm izvēlēm:</para>"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, fuzzy, kde-format
+#| msgid "Enter a name and an email address to use for the user ID."
+msgid "Enter a name and an email address to use for the certificate."
+msgstr "Ierakstiet lietotāja ID izmantoto vārdu un e-pasta adresi."
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, fuzzy, kde-format
+#| msgid "Enter a name and/or an email address to use for the user ID."
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr "Ierakstiet lietotāja ID izmantoto vārdu un/vai e-pasta adresei."
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, fuzzy, kde-format
+#| msgid "Advanced Settings"
+msgid "Advanced options"
+msgstr "Paplašinātie iestatījumi"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "Atslēgas materiāls"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgid "Certificate usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "Sertifikāta izmantošana"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, fuzzy, kde-format
+#| msgid "Add. Email Address:"
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr "Pievienot e-pasta adresi:"
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, kde-format
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Einārs Sprūģis, Toms Trasūns"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, kde-format
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URI"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, kde-format
+msgid "Enter URIs in the correct format."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "Izveidot S/MIME sertifikācijas pieprasījumu"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8512,7 +8592,6 @@ msgid "Revoke Certifications"
 msgstr "Atsaukt sertifikācijas"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "Nosaukums"
@@ -10058,330 +10137,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "RSA atslēgas stiprība:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "Tehniskā informācija"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "E-pasta adreses"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "DNS nosaukumi"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URI"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "Personīgā informācija"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "jauna e-pasta vēstule"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "jauns dns nosaukums"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "jauns uri"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (%1 bits)"
-msgstr[1] "%2 (%1 biti)"
-msgstr[2] "%2 (%1 bitu)"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "%1 bits"
-msgstr[1] "%1 biti"
-msgstr[2] "%1 bitu"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "E-pasts"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "Ievadiet informāciju"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "Īstais vārds:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "E-pasta adrese:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Aizsargāt ģenerēto atslēgu ar paroli."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Šifrē slepeno atslēgu ar neatgūstamu paroli. Atslēgas ģenerēšanas laikā lūgs "
-"paroli ievadīt."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Paplašinātie iestatījumi..."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "Ievadiet savus personas datus."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"Lūdzu, zemāk ievadiet savus personas datus. Ja vēlaties lielāko parametru "
-"kontroli, klikšķiniet uz paplašināto iestatījumu pogas."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "Izveidot"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "Darbība ir atcelta."
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "Neizdevās izveidot atslēgu pāri: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "Neizdevās rakstīt izvades datnē „%1“: %2"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "Atslēgu pāris ir izveidots."
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "Pievienot ierakstu"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "Noņemt ierakstu"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "Pārvietot augšup"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "Pārvietot lejup"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "Atslēgas pāra izveides vednis"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "Rezultāts"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr ""
-"Velciet šo ikonu savas e-pasta programmas redaktora lodziņā, lai e-pastam "
-"pievienotu pieprasījumu."
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "Pārstartēt šo vedni (patur jūsu parametrus)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "Nākamie soļi"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "Saglabāt sertifikāta pieprasījumu datnē..."
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "Sūtīt sertifikāta pieprasījumu e-pasta vēstulē..."
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "Izveidot parakstīšanas sertifikātu ar tādiem pašiem parametriem"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "Izveidot šifrēšanas sertifikātu ar tādiem pašiem parametriem"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "Atslēgas izveide neizdevās"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr ""
-"Atslēgu pāra izveide neizdevās. Apakšā sameklējiet informāciju par kļūdu."
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "Atslēgu pāris ir izveidots"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"Jūsu jaunais atslēgu pāris ir izveidots. Apakšā sameklējiet informāciju par "
-"rezultātu un dažus nākamos ieteicamos soļus."
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"Neizdevās nokopēt pagaidu datni „<filename>%1</filename>“ datnē „<filename>"
-"%2</filename>“: <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Lūdzu, apstrādājiet šo sertifikātu."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Lūdzu, apstrādājiet šo sertifikātu un informējiet nosūtītāju par vietu, no "
-"kuras saņemt iegūto sertifikātu.\n"
-"\n"
-"Paldies\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para>„<application>Kleopatra</application>“ mēģināja nosūtīt e-pastu ar "
-"jūsu noklusēto e-pasta klientu.</para><para>Daži e-pasta klienti neatbalsta "
-"pielikumu pievienošanu šādā veidā.</para><para>Ja jūsu e-pasta klientā nav "
-"pielikuma, nesiet „<application>Kleopatra</application>“ ikonu un nometiet "
-"to uz jūsu e-pasta klienta vēstules rediģēšanas loga. </para><para>Ja arī "
-"tas nedarbojas, saglabājiet pieprasījumu datnē un pievienojiet to pielikumam."
-"</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "Sūta pastu"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"Šī operācija izdzēsīs sertifikācijas pieprasījumu. Pirms turpiniet "
-"pārliecinieties, ka to nosūtījāt vai saglabājāt."
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "Sertifikācijas pieprasījums tiks dzēsts"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -13245,6 +13000,229 @@ msgstr ""
 "Importēt sertifikātu no datnes.<nl/>Lai importētu no publiskā atslēgu "
 "servera, izmantojiet <interface>Uzmeklēt serverī</interface>."
 
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "RSA atslēgas stiprība:"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "Tehniskā informācija"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "E-pasta adreses"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "DNS nosaukumi"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "Personīgā informācija"
+
+#~ msgid "new email"
+#~ msgstr "jauna e-pasta vēstule"
+
+#~ msgid "new dns name"
+#~ msgstr "jauns dns nosaukums"
+
+#~ msgid "new uri"
+#~ msgstr "jauns uri"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (%1 bits)"
+#~ msgstr[1] "%2 (%1 biti)"
+#~ msgstr[2] "%2 (%1 bitu)"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "%1 bits"
+#~ msgstr[1] "%1 biti"
+#~ msgstr[2] "%1 bitu"
+
+#~ msgid "EMail"
+#~ msgstr "E-pasts"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "Ievadiet informāciju"
+
+#~ msgid "Real name:"
+#~ msgstr "Īstais vārds:"
+
+#~ msgid "EMail address:"
+#~ msgstr "E-pasta adrese:"
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "Aizsargāt ģenerēto atslēgu ar paroli."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Šifrē slepeno atslēgu ar neatgūstamu paroli. Atslēgas ģenerēšanas laikā "
+#~ "lūgs paroli ievadīt."
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "Paplašinātie iestatījumi..."
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "Ievadiet savus personas datus."
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "Lūdzu, zemāk ievadiet savus personas datus. Ja vēlaties lielāko parametru "
+#~ "kontroli, klikšķiniet uz paplašināto iestatījumu pogas."
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "Izveidot"
+
+#~ msgid "Operation canceled."
+#~ msgstr "Darbība ir atcelta."
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "Neizdevās izveidot atslēgu pāri: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "Neizdevās rakstīt izvades datnē „%1“: %2"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "Atslēgu pāris ir izveidots."
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "Pievienot ierakstu"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "Noņemt ierakstu"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "Pārvietot augšup"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "Pārvietot lejup"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "Atslēgas pāra izveides vednis"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "Rezultāts"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr ""
+#~ "Velciet šo ikonu savas e-pasta programmas redaktora lodziņā, lai e-pastam "
+#~ "pievienotu pieprasījumu."
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "Pārstartēt šo vedni (patur jūsu parametrus)"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "Nākamie soļi"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "Saglabāt sertifikāta pieprasījumu datnē..."
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "Sūtīt sertifikāta pieprasījumu e-pasta vēstulē..."
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "Izveidot parakstīšanas sertifikātu ar tādiem pašiem parametriem"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "Izveidot šifrēšanas sertifikātu ar tādiem pašiem parametriem"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "Atslēgas izveide neizdevās"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr ""
+#~ "Atslēgu pāra izveide neizdevās. Apakšā sameklējiet informāciju par kļūdu."
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "Atslēgu pāris ir izveidots"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "Jūsu jaunais atslēgu pāris ir izveidots. Apakšā sameklējiet informāciju "
+#~ "par rezultātu un dažus nākamos ieteicamos soļus."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "Neizdevās nokopēt pagaidu datni „<filename>%1</filename>“ datnē "
+#~ "„<filename>%2</filename>“: <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Lūdzu, apstrādājiet šo sertifikātu."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Lūdzu, apstrādājiet šo sertifikātu un informējiet nosūtītāju par vietu, "
+#~ "no kuras saņemt iegūto sertifikātu.\n"
+#~ "\n"
+#~ "Paldies\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para>„<application>Kleopatra</application>“ mēģināja nosūtīt e-pastu ar "
+#~ "jūsu noklusēto e-pasta klientu.</para><para>Daži e-pasta klienti "
+#~ "neatbalsta pielikumu pievienošanu šādā veidā.</para><para>Ja jūsu e-pasta "
+#~ "klientā nav pielikuma, nesiet „<application>Kleopatra</application>“ "
+#~ "ikonu un nometiet to uz jūsu e-pasta klienta vēstules rediģēšanas loga. </"
+#~ "para><para>Ja arī tas nedarbojas, saglabājiet pieprasījumu datnē un "
+#~ "pievienojiet to pielikumam.</para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "Sūta pastu"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "Šī operācija izdzēsīs sertifikācijas pieprasījumu. Pirms turpiniet "
+#~ "pārliecinieties, ka to nosūtījāt vai saglabājāt."
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "Sertifikācijas pieprasījums tiks dzēsts"
+
 #~ msgctxt "@option:check on SignEncryptPage"
 #~ msgid "&Sign as:"
 #~ msgstr "&Parakstīt kā:"
@@ -14272,17 +14250,6 @@ msgstr ""
 #~| msgid "Add. Email Address:"
 #~ msgid "Enter an email address."
 #~ msgstr "Pievienot e-pasta adresi:"
-
-#, fuzzy
-#~| msgid "Advanced Settings"
-#~ msgid "Advanced options"
-#~ msgstr "Paplašinātie iestatījumi"
-
-#, fuzzy
-#~| msgid "Key Material"
-#~ msgctxt "The algorithm and strength of encryption key"
-#~ msgid "Key Material"
-#~ msgstr "Atslēgas materiāls"
 
 #, fuzzy
 #~| msgid "The validity of the signature cannot be verified."
@@ -15640,9 +15607,6 @@ msgstr ""
 #~ msgid "Valid Until:"
 #~ msgstr "Derīgs līdz:"
 
-#~ msgid "Add. Email Address:"
-#~ msgstr "Pievienot e-pasta adresi:"
-
 #~ msgid "DNS Name:"
 #~ msgstr "DNS nosaukums:"
 
@@ -16180,9 +16144,6 @@ msgstr ""
 
 #~ msgid "Certificate type"
 #~ msgstr "Sertifikāta tips"
-
-#~ msgid "Certificate usage"
-#~ msgstr "Sertifikāta izmantošana"
 
 #~ msgid "No"
 #~ msgstr "Nē"

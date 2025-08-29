@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2025-07-14 11:24+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1129,7 +1129,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1141,21 +1141,18 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Pyyntö tallennettu"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Tallenna pyyntö"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10-pyynnöt (*.p10)"
@@ -1170,7 +1167,6 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2982,27 +2978,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Ei määritettyjä hakemistopalvelimia"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Avainparin luontia ei voitu käynnistää: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Luodaan avainparia…"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3010,6 +3000,43 @@ msgid ""
 msgstr ""
 "Avaimen luominen vaatii suurta määrää satunnaislukuja. Tämä voi kestää "
 "useita minuutteja…"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "Tiedostoa <filename>%1</filename> ei voitu sen korvaamiseksi poistaa."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Virhe"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>Varmenteiden varmentaminen epäonnistui.</para><para>Virhe: <message>"
+"%1</message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3041,14 +3068,6 @@ msgid ""
 msgstr ""
 "<para>Uuden OpenPGP-varmenteen luonti onnistui, mutta sitä ei löydy "
 "avainrenkaasta.</para><para>Uuden varmenteen sormenjälki:<nl/>%1</para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "Virhe"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6478,14 +6497,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Todennetaan tarkistussummia (%2) kohteesta %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Lisäasetukset"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6497,21 +6514,18 @@ msgid "Algorithm:"
 msgstr "Algoritmi:"
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Varmenteen käyttö"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Allekirjoittaminen"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6562,12 +6576,12 @@ msgstr "Anna käyttäjätunnuksen käyttämä nimi ja sähköpostiosoite."
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "Anna käyttäjätunnuksen käyttämä nimi tai sähköpostiosoite."
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Anna nimi tai sähköpostiosoite."
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "Havaittiin ongelma."
@@ -6636,7 +6650,6 @@ msgid "Update the key from external sources."
 msgstr "Päivitä avain ulkoisista lähteistä."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6644,35 +6657,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(vaadittu)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(valinnainen)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> vaaditaan mutta on tyhjä."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6683,14 +6689,12 @@ msgstr ""
 "ylläpitäjän sääntö: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> on epätäydellinen."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6701,14 +6705,12 @@ msgstr ""
 "sääntö: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> on virheellinen."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7367,6 +7369,86 @@ msgstr ""
 "<para>Valittu avain: <emphasis>%1</emphasis></para><para>Valittu älykortti: "
 "<emphasis>%2</emphasis></para><para>Jatka valitsemalla jokin seuraavista "
 "vaihtoehdoista:</para>"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, kde-format
+msgid "Enter a name and an email address to use for the certificate."
+msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, kde-format
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr "Anna varmenteessa käytettävä nimi tai sähköpostiosoite tai kumpikin."
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "Näytä lisäasetukset"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "Avainmateriaali"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgid "Certificate usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "Varmenteen käyttö"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, fuzzy, kde-format
+#| msgid "Add email address"
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr "Lisää sähköpostiosoite"
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr "Anna sähköpostiosoite oikeassa muodossa, esim. nimi@esimerkki.fi."
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Tommi Nieminen, Kim Enkovaara, Mikko Piippo"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr "Anna sähköpostiosoite oikeassa muodossa, esim. nimi@esimerkki.fi."
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URIt"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, fuzzy, kde-format
+#| msgid "Error: Enter a value in the correct format."
+msgid "Enter URIs in the correct format."
+msgstr "Virhe: Anna arvo oikeassa muodossa."
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "Luo S/MIME-varmennepyyntö"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8468,7 +8550,6 @@ msgid "Revoke Certifications"
 msgstr "Mitätöi varmenteet"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "Nimi"
@@ -10012,326 +10093,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "RSA-avaimen vahvuus:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "Tekniset tiedot"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "Sähköpostiosoitteet"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "DNS-nimet"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URIt"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "Henkilökohtaiset tiedot"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "uusi sähköposti"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "uusi DNS-nimi"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "uusi URI"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (1 bitti)"
-msgstr[1] "%2 (%1 bittiä)"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "1 bitti"
-msgstr[1] "%1 bittiä"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "Sähköposti"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "Anna tiedot"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "Oikea nimi:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "Sähköpostiosoite:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Suojaa luotu avain salasanalla."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasanaa "
-"kysytään avainta luotaessa."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Lisäasetukset…"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "Syötä alle henkilökohtaiset tietosi."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"Kirjoita omat tietosi alle. Jos haluat mukauttaa parametreja tarkemmin, "
-"napsauta Lisäasetukset-painiketta."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "Luo"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "Toiminto peruttu."
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "Avainparin luonti epäonnistui: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "Ei voida kirjoittaa tulostiedostoa %1: %2"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "Avainparin luonti onnistui."
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "Lisää kohde"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "Poista kenttä"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "Siirrä ylemmäs"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "Siirrä alemmas"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "Opastettu avainparin luonti"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "Tulos"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr ""
-"Vedä tämä kuvake postiohjelmasi kirjoitusikkunaan liittääksesi viestiin "
-"pyynnön."
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "Käynnistä opastettu luonti uudelleen (säilyttäen parametrisi)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "Seuraavat vaiheet"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "Tallenna varmennepyyntö tiedostoon…"
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "Lähetä varmennepyyntö sähköpostitse…"
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "Luo allekirjoitusvarmenne samoin parametrein"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "Luo salausvarmenne samoin parametrein"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "Avaimen luominen epäonnistui"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr "Avainparin luonti epäonnistui. Löydät lisätietoa ongelmasta alta."
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "Avainparin luonti onnistui"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"Uuden avainparin luonti onnistui. Lisätietoa ja ehdotettuja lisätoimia "
-"löytyy alta."
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"Ei voida kopioida väliaikaistiedostoa <filename>%1</filename> tiedostoon "
-"<filename>%2</filename>: <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Käsitelkää tämä varmenne."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Käsitelkää tämä varmenne ja tiedottakaa lähettäjälle, mistä tulosvarmenteen "
-"voi noutaa.\n"
-"\n"
-"Kiitos,\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para><application>Kleopatra</application> yritti lähettää sähköpostia "
-"oletussähköpostiohjelmallasi.</para> <para>Jotkin postiohjelmat eivät tue "
-"liitteitä käynnistettäessä tällä tavoin.</para> <para>Ellei "
-"postiohjelmassasi näy liitettä, vedä <application>Kleopatra</application>-"
-"kuvake postiohjelman viestinkirjoitusikkunaan.</para> <para>Ellei tämäkään "
-"toimi, tallenna pyyntö tiedostoon ja liitä se.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "Sähköpostin lähettäminen"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"Tämä toiminto poistaa varmennepyynnön. Varmista, että olet lähettänyt tai "
-"tallentanut sen ennen kuin jatkat."
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "Varmennepyyntöä ollaan poistamassa"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -13213,6 +12974,225 @@ msgstr ""
 "Tuo varmenne tiedostosta.<nl/>Tuodaksesi julkisesta avainpalvelimesta käytä "
 "tämän sijaan toimintoa<interface>Etsi palvelimesta</interface>."
 
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "RSA-avaimen vahvuus:"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "Tekniset tiedot"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "Sähköpostiosoitteet"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "DNS-nimet"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "Henkilökohtaiset tiedot"
+
+#~ msgid "new email"
+#~ msgstr "uusi sähköposti"
+
+#~ msgid "new dns name"
+#~ msgstr "uusi DNS-nimi"
+
+#~ msgid "new uri"
+#~ msgstr "uusi URI"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (1 bitti)"
+#~ msgstr[1] "%2 (%1 bittiä)"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "1 bitti"
+#~ msgstr[1] "%1 bittiä"
+
+#~ msgid "EMail"
+#~ msgstr "Sähköposti"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "Anna tiedot"
+
+#~ msgid "Real name:"
+#~ msgstr "Oikea nimi:"
+
+#~ msgid "EMail address:"
+#~ msgstr "Sähköpostiosoite:"
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "Suojaa luotu avain salasanalla."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasanaa "
+#~ "kysytään avainta luotaessa."
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "Lisäasetukset…"
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "Syötä alle henkilökohtaiset tietosi."
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "Kirjoita omat tietosi alle. Jos haluat mukauttaa parametreja tarkemmin, "
+#~ "napsauta Lisäasetukset-painiketta."
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "Luo"
+
+#~ msgid "Operation canceled."
+#~ msgstr "Toiminto peruttu."
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "Avainparin luonti epäonnistui: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "Ei voida kirjoittaa tulostiedostoa %1: %2"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "Avainparin luonti onnistui."
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "Lisää kohde"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "Poista kenttä"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "Siirrä ylemmäs"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "Siirrä alemmas"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "Opastettu avainparin luonti"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "Tulos"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr ""
+#~ "Vedä tämä kuvake postiohjelmasi kirjoitusikkunaan liittääksesi viestiin "
+#~ "pyynnön."
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "Käynnistä opastettu luonti uudelleen (säilyttäen parametrisi)"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "Seuraavat vaiheet"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "Tallenna varmennepyyntö tiedostoon…"
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "Lähetä varmennepyyntö sähköpostitse…"
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "Luo allekirjoitusvarmenne samoin parametrein"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "Luo salausvarmenne samoin parametrein"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "Avaimen luominen epäonnistui"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr "Avainparin luonti epäonnistui. Löydät lisätietoa ongelmasta alta."
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "Avainparin luonti onnistui"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "Uuden avainparin luonti onnistui. Lisätietoa ja ehdotettuja lisätoimia "
+#~ "löytyy alta."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "Ei voida kopioida väliaikaistiedostoa <filename>%1</filename> tiedostoon "
+#~ "<filename>%2</filename>: <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Käsitelkää tämä varmenne."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Käsitelkää tämä varmenne ja tiedottakaa lähettäjälle, mistä "
+#~ "tulosvarmenteen voi noutaa.\n"
+#~ "\n"
+#~ "Kiitos,\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> yritti lähettää sähköpostia "
+#~ "oletussähköpostiohjelmallasi.</para> <para>Jotkin postiohjelmat eivät tue "
+#~ "liitteitä käynnistettäessä tällä tavoin.</para> <para>Ellei "
+#~ "postiohjelmassasi näy liitettä, vedä <application>Kleopatra</application>-"
+#~ "kuvake postiohjelman viestinkirjoitusikkunaan.</para> <para>Ellei "
+#~ "tämäkään toimi, tallenna pyyntö tiedostoon ja liitä se.</para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "Sähköpostin lähettäminen"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "Tämä toiminto poistaa varmennepyynnön. Varmista, että olet lähettänyt tai "
+#~ "tallentanut sen ennen kuin jatkat."
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "Varmennepyyntöä ollaan poistamassa"
+
 #~ msgctxt "@option:check on SignEncryptPage"
 #~ msgid "&Sign as:"
 #~ msgstr "&Allekirjoita henkilönä:"
@@ -14241,9 +14221,6 @@ msgstr ""
 #~ "On oltava organisaation vaatimassa muodossa eikä saa sisältää pienempi "
 #~ "kuin-, suurempi kuin- tai miukumaukumerkkiä."
 
-#~ msgid "Enter an email address in the correct format, like name@example.com."
-#~ msgstr "Anna sähköpostiosoite oikeassa muodossa, esim. nimi@esimerkki.fi."
-
 #~ msgid ""
 #~ "Enter an email address in the correct format required by your "
 #~ "organization."
@@ -14255,25 +14232,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Salaa salaisen avaimen palauttamattomissa olevalla salasanalla. Salasana "
 #~ "kysytään avainta luotaessa."
-
-#, fuzzy
-#~| msgid "Show advanced options"
-#~ msgid "Advanced options"
-#~ msgstr "Näytä lisäasetukset"
-
-#, fuzzy
-#~| msgctxt "@title:group"
-#~| msgid "Key Material"
-#~ msgctxt "The algorithm and strength of encryption key"
-#~ msgid "Key Material"
-#~ msgstr "Avainmateriaali"
-
-#~ msgid "Enter a name and an email address to use for the certificate."
-#~ msgstr "Anna varmenteessa käytettävä nimi ja sähköpostiosoite."
-
-#~ msgid "Enter a name and/or an email address to use for the certificate."
-#~ msgstr ""
-#~ "Anna varmenteessa käytettävä nimi tai sähköpostiosoite tai kumpikin."
 
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
@@ -14293,9 +14251,6 @@ msgstr ""
 
 #~ msgid "Error: Enter a value."
 #~ msgstr "Virhe: Anna arvo."
-
-#~ msgid "Error: Enter a value in the correct format."
-#~ msgstr "Virhe: Anna arvo oikeassa muodossa."
 
 #~ msgctxt "@label label text (required)"
 #~ msgid "%1 (required)"
@@ -15548,9 +15503,6 @@ msgstr ""
 #~ msgid "Add New User-ID"
 #~ msgstr "Lisää uusi käyttäjätunniste"
 
-#~ msgid "Add email address"
-#~ msgstr "Lisää sähköpostiosoite"
-
 #~ msgid "Open selection dialog."
 #~ msgstr "Avaa valintaikkuna."
 
@@ -16342,9 +16294,6 @@ msgstr ""
 
 #~ msgid "Certificate type"
 #~ msgstr "Varmenteen tyyppi"
-
-#~ msgid "Certificate usage"
-#~ msgstr "Varmenteen käyttö"
 
 #~ msgid "No"
 #~ msgstr "Ei"

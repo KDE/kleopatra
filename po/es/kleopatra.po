@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2025-08-20 12:19+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -1133,7 +1133,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1145,21 +1145,18 @@ msgstr ""
 "(CA).</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Petición guardada"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Guardar petición"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "Peticiones PKCS#10 (*.p10)"
@@ -1174,7 +1171,6 @@ msgstr ""
 "message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -3038,27 +3034,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "No hay servidores de directorio configurados"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "No se le permite crear solicitudes de firma de certificado S/MIME."
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "No se ha podido iniciar la creación del par de claves: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Creando par de claves…"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3066,6 +3056,45 @@ msgid ""
 msgstr ""
 "El proceso de creación de una clave necesita grandes cantidades de números "
 "aleatorios. Esto puede tardar varios minutos…"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr ""
+"No se ha podido eliminar el archivo <filename>%1</filename> para "
+"sobrescribirlo."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Error"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>La certificación de los los certificados ha fallado.</"
+"para><para>Error: <message>%1</message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "No se le permite crear solicitudes de firma de certificado S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3098,14 +3127,6 @@ msgstr ""
 "<para>Se ha creado con éxito un nuevo certificado OpenPGP, pero no se ha "
 "encontrado en el anillo de claves.</para><para>Huella digital del nuevo "
 "certificado:<nl/>%1</para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "Error"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6554,14 +6575,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Comprobar sumas de verificación (%2) en %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Preferencias avanzadas"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6573,21 +6592,18 @@ msgid "Algorithm:"
 msgstr "Algoritmo:"
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Uso del certificado"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Firmado"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6642,12 +6658,12 @@ msgstr ""
 "Introduzca un nombre y/o una dirección de correo electrónico para usar la ID "
 "de usuario."
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Introduzca un nombre o dirección de correo electrónico."
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "Ha ocurrido un problema."
@@ -6719,7 +6735,6 @@ msgid "Update the key from external sources."
 msgstr "Actualizar la clave usando fuentes externas."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6727,35 +6742,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(requerido)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(opcional)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "<interface>%1</interface> es necesaria, pero está vacía."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6766,14 +6774,12 @@ msgstr ""
 "admin: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> no está completo."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6784,14 +6790,12 @@ msgstr ""
 "%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface> no es válido."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7458,6 +7462,89 @@ msgstr ""
 "<para>Clave seleccionada: <emphasis>%1</emphasis></para><para>Tarjeta "
 "inteligente seleccionada: <emphasis>%2</emphasis></para><para>Escoja una de "
 "las siguientes opciones para continuar:</para>"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, fuzzy, kde-format
+#| msgid "Enter a name and an email address to use for the user ID."
+msgid "Enter a name and an email address to use for the certificate."
+msgstr ""
+"Introduzca un nombre y una dirección de correo electrónico para usar la ID "
+"de usuario."
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, fuzzy, kde-format
+#| msgid "Enter a name and/or an email address to use for the user ID."
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr ""
+"Introduzca un nombre y/o una dirección de correo electrónico para usar la ID "
+"de usuario."
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, fuzzy, kde-format
+#| msgid "Show advanced options"
+msgid "Advanced options"
+msgstr "Mostrar las opciones avanzadas"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "Material de clave"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Certificate Usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "Uso del certificado"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, kde-format
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, kde-format
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Eloy Cuadra,Juan Manuel García Molina,Franco Mariluis,Javier Viñal"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, kde-format
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URI"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, kde-format
+msgid "Enter URIs in the correct format."
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "Crear petición de certificación S/MIME"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8576,7 +8663,6 @@ msgid "Revoke Certifications"
 msgstr "Revocar certificaciones"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "Nombre"
@@ -10151,329 +10237,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "Fortaleza de la clave RSA:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "Detalles técnicos"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "Direcciones de correo electrónico"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "Nombres de DNS"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URI"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "Detalles personales"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "nuevo correo"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "nuevo nombre de dns"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "nueva uri"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (1 bit)"
-msgstr[1] "%2 (%1 bits)"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "1 bit"
-msgstr[1] "%1 bits"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "Correo"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "Introduzca detalles"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "Nombre real:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "Dirección de correo:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Proteger la clave generada con una frase de contraseña."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Cifra la clave secreta con una frase de contraseña irrecuperable. Se le "
-"solicitará dicha frase de contraseña durante la generación de la clave."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Configuración avanzada…"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "Introduzca sus detalles personales en la parte inferior."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"Introduzca sus detalles personales debajo. Si desea más control sobre los "
-"parámetros, pulse el botón «Configuración avanzada»."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "Crear"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "Operación cancelada."
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "No se ha podido crear el par de claves: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "No se ha podido escribir el archivo de salida %1: %2"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "Par de claves creado correctamente."
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "Añadir entrada"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "Eliminar entrada"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "Subir"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "Bajar"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "Asistente de creación del par de claves"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "Resultado"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr ""
-"Arrastre este icono al editor de su aplicación de correo para adjuntar una "
-"petición a un correo."
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "Reinicie este asistente (mantiene sus parámetros)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "Siguientes pasos"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "Guardar petición de certificado en archivo…"
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "Enviar petición de certificado por correo…"
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "Crear un certificado de firma con los mismos parámetros"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "Crear un certificado de cifrado con los mismos parámetros"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "Ha fallado la creación de la clave"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr ""
-"Ha fallado la creación del par de claves. Encuentre detalles sobre el fallo "
-"más abajo."
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "Par de claves creado correctamente"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"Su nuevo par de claves se ha creado correctamente. Consulte los detalles "
-"sobre el resultado y algunos pasos a seguir sugeridos más abajo."
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"No se ha podido copiar el archivo temporal <filename>%1</filename> al "
-"archivo <filename>%2</filename>: <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Procese este certificado."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Procese este certificado e informe al remitente sobre la ubicación donde "
-"obtener el certificado resultante.\n"
-"\n"
-"Gracias,\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para><application>Kleopatra</application> intentó enviar un correo a través "
-"de su cliente de correo predeterminado.</para><para>Algunos clientes de "
-"correo no admiten adjuntos cuando son invocados de esta manera</"
-"para><para>Si su cliente de correo no tiene un adjunto, arrastre el icono de "
-"<application>Kleopatra</application> y suéltelo en la ventana de redacción "
-"del mensaje de su cliente de correo.</para><para>Si esto no funciona, puede "
-"guardar la petición en un archivo para luego adjuntarlo</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "Envío de correo"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"Esta operación borrará la petición de certificación. Asegúrese de haberla "
-"enviado o guardado antes de continuar."
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "Petición de certificación a punto de borrarse"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -13356,3 +13119,226 @@ msgid ""
 msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
+
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "Fortaleza de la clave RSA:"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "Detalles técnicos"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "Direcciones de correo electrónico"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "Nombres de DNS"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "Detalles personales"
+
+#~ msgid "new email"
+#~ msgstr "nuevo correo"
+
+#~ msgid "new dns name"
+#~ msgstr "nuevo nombre de dns"
+
+#~ msgid "new uri"
+#~ msgstr "nueva uri"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (1 bit)"
+#~ msgstr[1] "%2 (%1 bits)"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "1 bit"
+#~ msgstr[1] "%1 bits"
+
+#~ msgid "EMail"
+#~ msgstr "Correo"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "Introduzca detalles"
+
+#~ msgid "Real name:"
+#~ msgstr "Nombre real:"
+
+#~ msgid "EMail address:"
+#~ msgstr "Dirección de correo:"
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "Proteger la clave generada con una frase de contraseña."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Cifra la clave secreta con una frase de contraseña irrecuperable. Se le "
+#~ "solicitará dicha frase de contraseña durante la generación de la clave."
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "Configuración avanzada…"
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "Introduzca sus detalles personales en la parte inferior."
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "Introduzca sus detalles personales debajo. Si desea más control sobre los "
+#~ "parámetros, pulse el botón «Configuración avanzada»."
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "Crear"
+
+#~ msgid "Operation canceled."
+#~ msgstr "Operación cancelada."
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "No se ha podido crear el par de claves: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "No se ha podido escribir el archivo de salida %1: %2"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "Par de claves creado correctamente."
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "Añadir entrada"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "Eliminar entrada"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "Subir"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "Bajar"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "Asistente de creación del par de claves"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "Resultado"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr ""
+#~ "Arrastre este icono al editor de su aplicación de correo para adjuntar "
+#~ "una petición a un correo."
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "Reinicie este asistente (mantiene sus parámetros)"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "Siguientes pasos"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "Guardar petición de certificado en archivo…"
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "Enviar petición de certificado por correo…"
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "Crear un certificado de firma con los mismos parámetros"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "Crear un certificado de cifrado con los mismos parámetros"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "Ha fallado la creación de la clave"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr ""
+#~ "Ha fallado la creación del par de claves. Encuentre detalles sobre el "
+#~ "fallo más abajo."
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "Par de claves creado correctamente"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "Su nuevo par de claves se ha creado correctamente. Consulte los detalles "
+#~ "sobre el resultado y algunos pasos a seguir sugeridos más abajo."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "No se ha podido copiar el archivo temporal <filename>%1</filename> al "
+#~ "archivo <filename>%2</filename>: <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Procese este certificado."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Procese este certificado e informe al remitente sobre la ubicación donde "
+#~ "obtener el certificado resultante.\n"
+#~ "\n"
+#~ "Gracias,\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> intentó enviar un correo a "
+#~ "través de su cliente de correo predeterminado.</para><para>Algunos "
+#~ "clientes de correo no admiten adjuntos cuando son invocados de esta "
+#~ "manera</para><para>Si su cliente de correo no tiene un adjunto, arrastre "
+#~ "el icono de <application>Kleopatra</application> y suéltelo en la ventana "
+#~ "de redacción del mensaje de su cliente de correo.</para><para>Si esto no "
+#~ "funciona, puede guardar la petición en un archivo para luego adjuntarlo</"
+#~ "para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "Envío de correo"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "Esta operación borrará la petición de certificación. Asegúrese de haberla "
+#~ "enviado o guardado antes de continuar."
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "Petición de certificación a punto de borrarse"

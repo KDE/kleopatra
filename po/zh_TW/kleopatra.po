@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2024-12-30 16:47+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1088,7 +1088,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1099,21 +1099,18 @@ msgstr ""
 "將此要求送到憑證認證中心（CA）。</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "要求已儲存"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "儲存要求"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "PKCS#10 Requests (*.p10)"
@@ -1126,7 +1123,6 @@ msgid ""
 msgstr "<para>儲存請求時失敗。</para><para><message>%1</message></para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -2892,32 +2888,61 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "沒有設定目錄伺服器"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "您不被允許建立 S/MIME 憑證簽章請求。"
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "無法開始建立金鑰對：%1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "正在建立金鑰對..."
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
 "may require several minutes..."
 msgstr "建立金鑰的流程需要很多隨機數字。這可能會需要幾分鐘..."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "無法移除檔案 <filename>%1</filename> 以覆寫。"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "錯誤"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr "<para>保證憑證時失敗。</para><para>錯誤：<message>%1</message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "您不被允許建立 S/MIME 憑證簽章請求。"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, fuzzy, kde-kuit-format
@@ -2958,14 +2983,6 @@ msgid ""
 msgstr ""
 "<para>已成功建立新的 OpenPGP 憑證，但它並不在鑰匙圈裡。</para><para>新憑證的"
 "指紋：<nl/>%1</para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "錯誤"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6357,14 +6374,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "確認 %1 中的 %2 的檢查碼"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "進階設定"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6376,21 +6391,18 @@ msgid "Algorithm:"
 msgstr "演算法："
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "憑證用途"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "簽署"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6441,12 +6453,12 @@ msgstr "輸入使用者 ID 用的名稱及電子郵件地址。"
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "輸入使用者 ID 用的名稱或電子郵件地址。"
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "輸入名稱或是電子郵件地址。"
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "有問題。"
@@ -6513,7 +6525,6 @@ msgid "Update the key from external sources."
 msgstr "從外部來源更新金鑰。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6521,35 +6532,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1："
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "（必要）"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "（可選）"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "需要有<interface>%1</interface>，但未填入。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6560,14 +6564,12 @@ msgstr ""
 "icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "<interface>%1</interface> 不完整。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6577,14 +6579,12 @@ msgstr ""
 "<interface>%1</interface> 不完整。<nl/>本地端管理規則：<icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "<interface>%1</interface>無效。"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7223,6 +7223,85 @@ msgid ""
 msgstr ""
 "<para>已選金鑰：<emphasis>%1</emphasis></para><para>已選智慧卡：<emphasis>"
 "%2</emphasis></para><para>選擇一下選項之一來繼續：</para>"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, kde-format
+msgid "Enter a name and an email address to use for the certificate."
+msgstr "輸入憑證用的名稱及電子郵件地址。"
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, kde-format
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr "輸入憑證用的名稱或電子郵件地址。"
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, kde-format
+msgid "Advanced options"
+msgstr "進階選項"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "金鑰型式"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Certificate Usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "憑證用途"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, fuzzy, kde-format
+#| msgid "Add. Email Address:"
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr "額外的電子郵件地址："
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr "請輸入正確格式的電子郵件地址，如 name@example.com。"
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Franklin Weng, Kisaragi Hiu"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr "請輸入正確格式的電子郵件地址，如 name@example.com。"
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URI"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, fuzzy, kde-format
+#| msgid "Error: Enter a value in the correct format."
+msgid "Enter URIs in the correct format."
+msgstr "錯誤：請輸入正確格式的值。"
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "建立 S/MIME 憑證請求"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8307,7 +8386,6 @@ msgid "Revoke Certifications"
 msgstr "撤銷保證"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "名稱"
@@ -9783,314 +9861,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "RSA 金鑰強度："
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "技術詳情"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "電子郵件地址"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "DNS 名稱"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URI"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "個人資料"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "新郵件"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "新 dns 名稱"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "新 uri"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2（%1 位元）"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "%1 位元"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "電子郵件"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "輸入詳情"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "真實姓名："
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "電子郵件地址："
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "用密碼保護產生的金鑰。"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "進階設定..."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "請在下方輸入您的個人資料。"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"請在下方輸入您的個人資料。如果您要更進一步控制參數，請點擊「進階設定」按鍵。"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "建立"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "操作已取消。"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "無法建立金鑰對：%1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "無法寫入輸出檔案 %1：%2。"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "已成功產生金鑰對。"
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "新增項目"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "移除項目"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "上移"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "下移"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "金鑰對建立精靈"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "結果"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr "將底下的圖示拖曳到您的郵件編寫器中，就可以將此要求附加到郵件中。"
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "重新啟動此精靈（保存您的參數）"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "接下來的步驟"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "儲存憑證要求到檔案..."
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "以電子郵件送出憑證要求..."
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "用相同的參數建立簽署憑證"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "用相同的參數建立加密憑證"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "金鑰建立失敗"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr "金鑰對建立失敗。請參考以下的失敗詳情。"
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "已成功產生金鑰對"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr "您已成功建立新的金鑰對。請參考以下的詳情，以及下一步驟的建議。"
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
-"<message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Please process this certificate."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para><application>Kleopatra</application> 試圖透過您預設的電子郵件程式傳送郵"
-"件。</para> <para>目前已知有些郵件程式使用這種方式傳送的話不支援夾檔。</"
-"para> <para>若您的電子郵件沒有夾檔，則請試試將 <application>Kleopatra</"
-"application> 圖示拖曳到信件編輯器中</para> <para>若是這樣還沒用，則請您將要求"
-"存成檔案，再自行附件。</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "傳送郵件中"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr "此操作會刪除憑證的要求。請確定您已送出該要求，或已另外存檔。"
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "憑證要求將被刪除"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -12938,6 +12708,214 @@ msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
 
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "RSA 金鑰強度："
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "技術詳情"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "電子郵件地址"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "DNS 名稱"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "個人資料"
+
+#~ msgid "new email"
+#~ msgstr "新郵件"
+
+#~ msgid "new dns name"
+#~ msgstr "新 dns 名稱"
+
+#~ msgid "new uri"
+#~ msgstr "新 uri"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2（%1 位元）"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "%1 位元"
+
+#~ msgid "EMail"
+#~ msgstr "電子郵件"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "輸入詳情"
+
+#~ msgid "Real name:"
+#~ msgstr "真實姓名："
+
+#~ msgid "EMail address:"
+#~ msgstr "電子郵件地址："
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "用密碼保護產生的金鑰。"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "進階設定..."
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "請在下方輸入您的個人資料。"
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "請在下方輸入您的個人資料。如果您要更進一步控制參數，請點擊「進階設定」按"
+#~ "鍵。"
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "建立"
+
+#~ msgid "Operation canceled."
+#~ msgstr "操作已取消。"
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "無法建立金鑰對：%1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "無法寫入輸出檔案 %1：%2。"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "已成功產生金鑰對。"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "新增項目"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "移除項目"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "上移"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "下移"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "金鑰對建立精靈"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "結果"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr "將底下的圖示拖曳到您的郵件編寫器中，就可以將此要求附加到郵件中。"
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "重新啟動此精靈（保存您的參數）"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "接下來的步驟"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "儲存憑證要求到檔案..."
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "以電子郵件送出憑證要求..."
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "用相同的參數建立簽署憑證"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "用相同的參數建立加密憑證"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "金鑰建立失敗"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr "金鑰對建立失敗。請參考以下的失敗詳情。"
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "已成功產生金鑰對"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr "您已成功建立新的金鑰對。請參考以下的詳情，以及下一步驟的建議。"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
+#~ "<message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Please process this certificate."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para><application>Kleopatra</application> 試圖透過您預設的電子郵件程式傳"
+#~ "送郵件。</para> <para>目前已知有些郵件程式使用這種方式傳送的話不支援夾檔。"
+#~ "</para> <para>若您的電子郵件沒有夾檔，則請試試將 <application>Kleopatra</"
+#~ "application> 圖示拖曳到信件編輯器中</para> <para>若是這樣還沒用，則請您將"
+#~ "要求存成檔案，再自行附件。</para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "傳送郵件中"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr "此操作會刪除憑證的要求。請確定您已送出該要求，或已另外存檔。"
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "憑證要求將被刪除"
+
 #~ msgctxt "@option:check on SignEncryptPage"
 #~ msgid "&Sign as:"
 #~ msgstr "簽署名義(&S)："
@@ -13863,9 +13841,6 @@ msgstr ""
 #~ "名稱必須符合您的組織所要求的格式，並且包含小於符號、大於符號，或小老鼠 "
 #~ "(at) 符號。"
 
-#~ msgid "Enter an email address in the correct format, like name@example.com."
-#~ msgstr "請輸入正確格式的電子郵件地址，如 name@example.com。"
-
 #~ msgid ""
 #~ "Enter an email address in the correct format required by your "
 #~ "organization."
@@ -13875,21 +13850,6 @@ msgstr ""
 #~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
 #~ "asked for the passphrase during key generation."
 #~ msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
-
-#~ msgid "Advanced options"
-#~ msgstr "進階選項"
-
-#, fuzzy
-#~| msgid "Key Material"
-#~ msgctxt "The algorithm and strength of encryption key"
-#~ msgid "Key Material"
-#~ msgstr "金鑰型式"
-
-#~ msgid "Enter a name and an email address to use for the certificate."
-#~ msgstr "輸入憑證用的名稱及電子郵件地址。"
-
-#~ msgid "Enter a name and/or an email address to use for the certificate."
-#~ msgstr "輸入憑證用的名稱或電子郵件地址。"
 
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
@@ -13909,9 +13869,6 @@ msgstr ""
 
 #~ msgid "Error: Enter a value."
 #~ msgstr "錯誤：請輸入值。"
-
-#~ msgid "Error: Enter a value in the correct format."
-#~ msgstr "錯誤：請輸入正確格式的值。"
 
 #~ msgctxt "@label label text (required)"
 #~ msgid "%1 (required)"
@@ -15181,9 +15138,6 @@ msgstr ""
 
 #~ msgid "Valid Until:"
 #~ msgstr "合法結束時間："
-
-#~ msgid "Add. Email Address:"
-#~ msgstr "額外的電子郵件地址："
 
 #~ msgid "DNS Name:"
 #~ msgstr "DNS 名稱："

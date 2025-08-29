@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-20 00:44+0000\n"
+"POT-Creation-Date: 2025-08-29 00:43+0000\n"
 "PO-Revision-Date: 2025-08-20 06:17+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -1129,7 +1129,7 @@ msgstr ""
 "%1"
 
 #: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/newcertificatewizard/resultpage.cpp:226
+#: src/commands/newcertificatesigningrequestcommand.cpp:185
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1140,21 +1140,18 @@ msgstr ""
 "para><para>Zahtevo bi sedaj morali poslati overitelju potrdil (CA).</para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:213
-#: src/newcertificatewizard/resultpage.cpp:229
 #, kde-format
 msgctxt "@title"
 msgid "Request Saved"
 msgstr "Zahteva shranjena"
 
 #: src/commands/createcsrforcardkeycommand.cpp:247
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgctxt "@title"
 msgid "Save Request"
 msgstr "Shrani zahtevo"
 
 #: src/commands/createcsrforcardkeycommand.cpp:250
-#: src/newcertificatewizard/resultpage.cpp:206
 #, kde-format
 msgid "PKCS#10 Requests (*.p10)"
 msgstr "Zahteve PKCS#10 (*.p10)"
@@ -1169,7 +1166,6 @@ msgstr ""
 "para>"
 
 #: src/commands/createcsrforcardkeycommand.cpp:259
-#: src/newcertificatewizard/resultpage.cpp:222
 #, kde-format
 msgctxt "@title"
 msgid "Error Saving Request"
@@ -3022,27 +3018,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Ni nobenega nastavljenega imeniškega strežnika"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:103
-#: src/kleopatraapplication.cpp:578
-#, kde-format
-msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr "Nimate dovoljenja za kreiranje zahtevkov podpisovanja potrdil S/MIME."
-
+#: src/commands/newcertificatesigningrequestcommand.cpp:131
 #: src/commands/newopenpgpcertificatecommand.cpp:155
-#: src/newcertificatewizard/keycreationpage.cpp:83
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Ustvarjanja potrdila ni bilo mogoče začeti: %1"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:165
-#: src/newcertificatewizard/keycreationpage.cpp:46
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Ustvarjanje para ključev…"
 
+#: src/commands/newcertificatesigningrequestcommand.cpp:142
 #: src/commands/newopenpgpcertificatecommand.cpp:166
-#: src/newcertificatewizard/keycreationpage.cpp:50
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3050,6 +3040,43 @@ msgid ""
 msgstr ""
 "Proces ustvarjanja ključa zahteva velike količine naključnih števil. To "
 "lahko traja nekaj minut…"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:178
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Could not remove file <filename>%1</filename> for overwriting."
+msgctxt "@info"
+msgid "Could not write the request to the file <filename>%1</filename>: %2"
+msgstr "Ni mogoče odstraniti datoteke <filename>%1</filename> za prepisovanje."
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:197
+#: src/commands/newopenpgpcertificatecommand.cpp:227
+#: src/crypto/newsignencryptemailcontroller.cpp:378
+#: src/crypto/newsignencryptemailcontroller.cpp:380
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Napaka"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:203
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The certification of the certificates failed.</para><para>Error: "
+#| "<message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>The creation of the certificate signing request failed.</"
+"para><para>Error: <message>%1</message></para>"
+msgstr ""
+"<para>Potrjevanje potrdil je bilo neuspešno.</para><para>Napaka: <message>"
+"%1</message></para>"
+
+#: src/commands/newcertificatesigningrequestcommand.cpp:240
+#: src/kleopatraapplication.cpp:578
+#, kde-format
+msgid "You are not allowed to create S/MIME certificate signing requests."
+msgstr "Nimate dovoljenja za kreiranje zahtevkov podpisovanja potrdil S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:200
 #, kde-kuit-format
@@ -3082,14 +3109,6 @@ msgstr ""
 "<para>Novo potrdilo OpenPGP je bilo uspešno kreirano, a ga ni bilo mogoče "
 "najti v hrambi ključev.</para><para>Prstni odtis novega potrdila:<nl/>%1</"
 "para>"
-
-#: src/commands/newopenpgpcertificatecommand.cpp:227
-#: src/crypto/newsignencryptemailcontroller.cpp:378
-#: src/crypto/newsignencryptemailcontroller.cpp:380
-#, kde-format
-msgctxt "@title:window"
-msgid "Error"
-msgstr "Napaka"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -6588,14 +6607,12 @@ msgid "Verifying checksums (%2) in %1"
 msgstr "Verificiranje nadzornih vsot (%2) v %1"
 
 #: src/dialogs/addsubkeydialog.cpp:76
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:111
 #, kde-format
 msgctxt "@title:window"
 msgid "Advanced Settings"
 msgstr "Napredne nastavitve"
 
 #: src/dialogs/addsubkeydialog.cpp:92
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:133
 #, kde-format
 msgctxt "@title:group"
 msgid "Key Material"
@@ -6607,21 +6624,18 @@ msgid "Algorithm:"
 msgstr "Algoritem:"
 
 #: src/dialogs/addsubkeydialog.cpp:102
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:153
 #, kde-format
 msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Uporaba potrdila"
 
-#: src/dialogs/addsubkeydialog.cpp:105
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:157
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:447
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Podpisovanje"
 
-#: src/dialogs/addsubkeydialog.cpp:108
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:162
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:450
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6674,12 +6688,12 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 "Vnesite ime in/ali naslov e-pošte za uporabo v uporabnikovem določilniku."
 
-#: src/dialogs/adduseriddialog.cpp:131
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Vnesite ime ali e-poštni naslov."
 
-#: src/dialogs/adduseriddialog.cpp:142
+#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
 #, kde-format
 msgid "There is a problem."
 msgstr "Obstaja problem."
@@ -6750,7 +6764,6 @@ msgid "Update the key from external sources."
 msgstr "Posodobi ključ iz zunanjih virov."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:59
-#: src/newcertificatewizard/enterdetailspage.cpp:80
 #, kde-format
 msgctxt "Format string for the labels in the \"Your Personal Data\" page"
 msgid "%1 (%2)"
@@ -6758,35 +6771,28 @@ msgstr "%1 (%2)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
-#: src/newcertificatewizard/enterdetailspage.cpp:313
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:128
-#: src/newcertificatewizard/enterdetailspage.cpp:136
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(required)"
 msgstr "(zahtevano)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:80
-#: src/newcertificatewizard/enterdetailspage.cpp:315
 #, kde-format
 msgid "(optional)"
 msgstr "(neobvezno)"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:108
-#: src/newcertificatewizard/enterdetailspage.cpp:476
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is required, but empty."
 msgstr "Polje <interface>%1</interface> je zahtevano, a je prazno."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:111
-#: src/newcertificatewizard/enterdetailspage.cpp:479
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6797,14 +6803,12 @@ msgstr ""
 "pravilo skrbnika: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:119
-#: src/newcertificatewizard/enterdetailspage.cpp:487
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is incomplete."
 msgstr "Polje <interface>%1</interface> ni zaključeno."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:122
-#: src/newcertificatewizard/enterdetailspage.cpp:490
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6815,14 +6819,12 @@ msgstr ""
 "skrbnika: <icode>%2</icode>"
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:129
-#: src/newcertificatewizard/enterdetailspage.cpp:497
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<interface>%1</interface> is invalid."
 msgstr "Polje <interface>%1</interface> ni veljavno."
 
 #: src/dialogs/certificatedetailsinputwidget.cpp:132
-#: src/newcertificatewizard/enterdetailspage.cpp:500
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -7484,6 +7486,86 @@ msgstr ""
 "<para>Izbrani ključ: <emphasis>%1</emphasis></para><para>Izbrana pametna "
 "kartica: <emphasis>%2</emphasis></para><para>Za nadaljevanje izberite eno od "
 "naslednjih možnosti: </para>"
+
+#: src/dialogs/createcsrdialog.cpp:388
+#, kde-format
+msgid "Enter a name and an email address to use for the certificate."
+msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
+
+#: src/dialogs/createcsrdialog.cpp:389
+#, kde-format
+msgid "Enter a name and/or an email address to use for the certificate."
+msgstr "Vnesite ime in/ali naslov e-pošte za uporabo tega potrdila."
+
+#: src/dialogs/createcsrdialog.cpp:420
+#, kde-format
+msgid "Advanced options"
+msgstr "Napredne možnosti"
+
+#: src/dialogs/createcsrdialog.cpp:427
+#, fuzzy, kde-format
+#| msgctxt "The algorithm and strength of encryption key"
+#| msgid "Key Material"
+msgctxt "The algorithm and strength of encryption key"
+msgid "Key material"
+msgstr "Snov ključa"
+
+#: src/dialogs/createcsrdialog.cpp:442
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "Certificate Usage"
+msgctxt "@label"
+msgid "Certificate usage"
+msgstr "Uporaba potrdila"
+
+#: src/dialogs/createcsrdialog.cpp:476
+#, fuzzy, kde-format
+#| msgid "Add email address"
+msgctxt "@label:textbox"
+msgid "Additional email addresses"
+msgstr "Dodaj e-poštni naslov"
+
+#: src/dialogs/createcsrdialog.cpp:478
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter email addresses in the correct format, like name@example.com."
+msgstr "Vnesite e-poštni naslov v pravilnem formatu kot npr. ime@primer.com."
+
+#: src/dialogs/createcsrdialog.cpp:486
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@label:textbox"
+msgid "Domain names"
+msgstr "Jure Repinc,Gregor Rakar,Martin Srebotnjak,Andrej Mernik,Matjaž Jeran"
+
+#: src/dialogs/createcsrdialog.cpp:488
+#, fuzzy, kde-format
+#| msgid "Enter an email address in the correct format, like name@example.com."
+msgid "Enter domain names in the correct format, like www.example.com."
+msgstr "Vnesite e-poštni naslov v pravilnem formatu kot npr. ime@primer.com."
+
+#: src/dialogs/createcsrdialog.cpp:496
+#, fuzzy, kde-format
+#| msgctxt "@title:group"
+#| msgid "URIs"
+msgctxt "@label:textbox"
+msgid "URIs"
+msgstr "URI-ji"
+
+#: src/dialogs/createcsrdialog.cpp:498
+#, fuzzy, kde-format
+#| msgid "Error: Enter a value in the correct format."
+msgid "Enter URIs in the correct format."
+msgstr "Napaka: vnesite vrednost v ustreznem formatu."
+
+#: src/dialogs/createcsrdialog.cpp:646
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Create S/MIME Certification Request"
+msgctxt "title:window"
+msgid "Create S/MIME Certificate Signing Request"
+msgstr "Ustvari zahtevek za potrditev S/MIME"
 
 #: src/dialogs/debugdialog.cpp:67
 #, kde-format
@@ -8624,7 +8706,6 @@ msgid "Revoke Certifications"
 msgstr "Prekliči potrdila"
 
 #: src/dialogs/useridswidget.cpp:253
-#: src/newcertificatewizard/enterdetailspage.cpp:62
 #, kde-format
 msgid "Name"
 msgstr "Ime"
@@ -10175,332 +10256,6 @@ msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "symmetric_encryption_gnupgvsd_en.pdf"
 msgstr "symmetric_encryption_gnupgvsd_en.pdf"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:138
-#, kde-format
-msgctxt "@info:label"
-msgid "RSA key strength:"
-msgstr "Moč ključa RSA:"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:177
-#, kde-format
-msgctxt "@title:tab"
-msgid "Technical Details"
-msgstr "Tehnične podrobnosti"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:196
-#, kde-format
-msgctxt "@title:group"
-msgid "EMail Addresses"
-msgstr "E-poštni naslovi"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:204
-#, kde-format
-msgctxt "@title:group"
-msgid "DNS Names"
-msgstr "Imena DNS"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:212
-#, kde-format
-msgctxt "@title:group"
-msgid "URIs"
-msgstr "URI-ji"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:222
-#, kde-format
-msgctxt "@title:tab"
-msgid "Personal Details"
-msgstr "Podrobnosti o osebi"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:240
-#, kde-format
-msgid "new email"
-msgstr "nova e-pošta"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:241
-#, kde-format
-msgid "new dns name"
-msgstr "novo ime DNS"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:242
-#, kde-format
-msgid "new uri"
-msgstr "nov uri"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:345
-#, kde-format
-msgctxt "%2: some admin-supplied text, %1: key size in bits"
-msgid "%2 (1 bit)"
-msgid_plural "%2 (%1 bits)"
-msgstr[0] "%2 (%1 bitov)"
-msgstr[1] "%2 (%1 bit)"
-msgstr[2] "%2 (%1 bita)"
-msgstr[3] "%2 (%1 biti)"
-
-#: src/newcertificatewizard/advancedsettingsdialog.cpp:346
-#, kde-format
-msgctxt "%1: key size in bits"
-msgid "1 bit"
-msgid_plural "%1 bits"
-msgstr[0] "%1 bitov"
-msgstr[1] "%1 bit"
-msgstr[2] "%1 bita"
-msgstr[3] "%1 biti"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:65
-#, kde-format
-msgid "EMail"
-msgstr "E-pošta"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:106
-#, kde-format
-msgctxt "@title"
-msgid "Enter Details"
-msgstr "Vnesite podrobnosti"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:126
-#, kde-format
-msgid "Real name:"
-msgstr "Resnično ime:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:134
-#, kde-format
-msgid "EMail address:"
-msgstr "E-poštni naslov:"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:143
-#, kde-format
-msgid "Protect the generated key with a passphrase."
-msgstr "Zavaruj generiran ključ s geselno frazo."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:145
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Encrypts the secret key with an unrecoverable passphrase. You will be asked "
-"for the passphrase during key generation."
-msgstr ""
-"Šifrira tajni ključ z neobnovljivo geselno frazo. Po gesel frazi boste "
-"vprašani med generiranjem ključa."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:181
-#, kde-format
-msgid "Advanced Settings..."
-msgstr "Napredne nastavitve…"
-
-#: src/newcertificatewizard/enterdetailspage.cpp:201
-#, kde-format
-msgid "Please enter your personal details below."
-msgstr "Vnesite vaše osebne podatke spodaj."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:203
-#, kde-format
-msgid ""
-"Please enter your personal details below. If you want more control over the "
-"parameters, click on the Advanced Settings button."
-msgstr ""
-"Spodaj vnesite svoje osebne podatke. Če želite več nadzora nad parametri "
-"potrdila, kliknite na gumb Napredne nastavitve."
-
-#: src/newcertificatewizard/enterdetailspage.cpp:223
-#, kde-format
-msgctxt "@action"
-msgid "Create"
-msgstr "Ustvari"
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Operation canceled."
-msgstr "Opravilo preklicano."
-
-#: src/newcertificatewizard/keycreationpage.cpp:136
-#, kde-format
-msgid "Could not create key pair: %1"
-msgstr "Ni bilo mogoče ustvariti para ključev: %1"
-
-#: src/newcertificatewizard/keycreationpage.cpp:143
-#, kde-format
-msgid "Could not write output file %1: %2"
-msgstr "Ni mogoče pisati v izhodno datoteko %1: %2"
-
-#: src/newcertificatewizard/keycreationpage.cpp:150
-#, kde-format
-msgid "Key pair created successfully."
-msgstr "Par ključev uspešno ustvarjen."
-
-#: src/newcertificatewizard/listwidget.cpp:178
-#, kde-format
-msgctxt "@action:button"
-msgid "Add Entry"
-msgstr "Dodaj vnos"
-
-#: src/newcertificatewizard/listwidget.cpp:180
-#, kde-format
-msgctxt "@action:button"
-msgid "Remove Entry"
-msgstr "Odstrani vnos"
-
-#: src/newcertificatewizard/listwidget.cpp:182
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Up"
-msgstr "Pomakni gor"
-
-#: src/newcertificatewizard/listwidget.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Move Down"
-msgstr "Pomakni dol"
-
-#: src/newcertificatewizard/newcertificatewizard.cpp:39
-#, kde-format
-msgctxt "@title:window"
-msgid "Key Pair Creation Wizard"
-msgstr "Čarovnik za ustvarjanje para ključev"
-
-#: src/newcertificatewizard/resultpage.cpp:75
-#, kde-format
-msgctxt "@title:group"
-msgid "Result"
-msgstr "Rezultat"
-
-#: src/newcertificatewizard/resultpage.cpp:85
-#, kde-format
-msgctxt "@info:tooltip"
-msgid ""
-"Drag this icon to your mail application's composer to attach the request to "
-"a mail."
-msgstr ""
-"Povlecite to ikono v sestavljalnik e-pošte, da zahtevo priložite poštnemu "
-"sporočilu."
-
-#: src/newcertificatewizard/resultpage.cpp:91
-#, kde-format
-msgid "Restart This Wizard (Keeps Your Parameters)"
-msgstr "Znova zaženi tega čarovnika (ohrani vaše parametre)"
-
-#: src/newcertificatewizard/resultpage.cpp:95
-#, kde-format
-msgctxt "@title:group"
-msgid "Next Steps"
-msgstr "Naslednji koraki"
-
-#: src/newcertificatewizard/resultpage.cpp:98
-#, kde-format
-msgid "Save Certificate Request To File..."
-msgstr "Shrani zahtevo za potrdilo v datoteko…"
-
-#: src/newcertificatewizard/resultpage.cpp:101
-#, kde-format
-msgid "Send Certificate Request By EMail..."
-msgstr "Pošlji zahtevo za potrdilo po e-pošti…"
-
-#: src/newcertificatewizard/resultpage.cpp:104
-#, kde-format
-msgid "Create Signing Certificate With Same Parameters"
-msgstr "Ustvari potrdilo za podpisovanje z enakimi parametri"
-
-#: src/newcertificatewizard/resultpage.cpp:107
-#, kde-format
-msgid "Create Encryption Certificate With Same Parameters"
-msgstr "Ustvari potrdilo za šifriranje z enakimi parametri"
-
-#: src/newcertificatewizard/resultpage.cpp:147
-#, kde-format
-msgctxt "@title"
-msgid "Key Creation Failed"
-msgstr "Ustvarjanje ključev ni uspelo"
-
-#: src/newcertificatewizard/resultpage.cpp:148
-#, kde-format
-msgid "Key pair creation failed. Please find details about the failure below."
-msgstr ""
-"Ustvarjanje para ključev ni uspelo. Podrobnosti o neuspehu najdete spodaj."
-
-#: src/newcertificatewizard/resultpage.cpp:150
-#, kde-format
-msgctxt "@title"
-msgid "Key Pair Successfully Created"
-msgstr "Par ključev uspešno ustvarjen"
-
-#: src/newcertificatewizard/resultpage.cpp:151
-#, kde-format
-msgid ""
-"Your new key pair was created successfully. Please find details on the "
-"result and some suggested next steps below."
-msgstr ""
-"Vaš novi par ključev je bil uspešno ustvarjen. Podrobnosti o rezultatu in "
-"nekatere predloge za nadaljevanje najdete spodaj."
-
-#: src/newcertificatewizard/resultpage.cpp:217
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Could not copy temporary file <filename>%1</filename> to file <filename>%2</"
-"filename>: <message>%3</message>"
-msgstr ""
-"Začasne datoteke <filename>%1</filename> ni bilo mogoče kopirati v datoteko "
-"<filename>%2</filename>: <message>%3</message>"
-
-#: src/newcertificatewizard/resultpage.cpp:236
-#, kde-format
-msgid "Please process this certificate."
-msgstr "Obdelajte to potrdilo."
-
-#: src/newcertificatewizard/resultpage.cpp:237
-#, kde-format
-msgid ""
-"Please process this certificate and inform the sender about the location to "
-"fetch the resulting certificate.\n"
-"\n"
-"Thanks,\n"
-msgstr ""
-"Obdelajte to potrdilo in prejemnika obvestite o mestu za pridobivanje "
-"potrdila, ki je nastalo.\n"
-"\n"
-"Hvala.\n"
-
-#: src/newcertificatewizard/resultpage.cpp:241
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> tried to send a mail via your "
-"default mail client.</para><para>Some mail clients are known not to support "
-"attachments when invoked this way.</para><para>If your mail client does not "
-"have an attachment, then drag the <application>Kleopatra</application> icon "
-"and drop it on the message compose window of your mail client.</"
-"para><para>If that does not work, either, save the request to a file, and "
-"then attach that.</para>"
-msgstr ""
-"<para>Program <application>Kleopatra</application> je s privzetim odjemalcem "
-"za e-pošto poskusil poslati pošto.</para><para>Nekateri odjemalci za e-pošto "
-"ne podpirajo prilog, če jih zaženete na ta način.</para><para>Če vaš "
-"odjemalec e-pošte ne vsebuje priloge, povlecite ikono programa "
-"<application>Kleopatra</application> in jo spustite na okno sestavljalnika e-"
-"pošte.</para><para>Če tudi to ne deluje, shranite zahtevo v datoteko in jo "
-"potem priložite.</para>"
-
-#: src/newcertificatewizard/resultpage.cpp:246
-#, kde-format
-msgctxt "@title"
-msgid "Sending Mail"
-msgstr "Pošiljanje pošte"
-
-#: src/newcertificatewizard/resultpage.cpp:273
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This operation will delete the certification request. Please make sure that "
-"you have sent or saved it before proceeding."
-msgstr ""
-"S tem dejanjem boste izbrisali zahtevo za potrditev. Pred nadaljevanjem se "
-"prepričajte, da ste zahtevo poslali ali jo shranili za nadaljnje postopke."
-
-#: src/newcertificatewizard/resultpage.cpp:275
-#, kde-format
-msgctxt "@title"
-msgid "Certification Request About To Be Deleted"
-msgstr "Zahteva za potrditev bo izbrisana"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -13364,6 +13119,232 @@ msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
 
+#~ msgctxt "@info:label"
+#~ msgid "RSA key strength:"
+#~ msgstr "Moč ključa RSA:"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Technical Details"
+#~ msgstr "Tehnične podrobnosti"
+
+#~ msgctxt "@title:group"
+#~ msgid "EMail Addresses"
+#~ msgstr "E-poštni naslovi"
+
+#~ msgctxt "@title:group"
+#~ msgid "DNS Names"
+#~ msgstr "Imena DNS"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Personal Details"
+#~ msgstr "Podrobnosti o osebi"
+
+#~ msgid "new email"
+#~ msgstr "nova e-pošta"
+
+#~ msgid "new dns name"
+#~ msgstr "novo ime DNS"
+
+#~ msgid "new uri"
+#~ msgstr "nov uri"
+
+#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
+#~ msgid "%2 (1 bit)"
+#~ msgid_plural "%2 (%1 bits)"
+#~ msgstr[0] "%2 (%1 bitov)"
+#~ msgstr[1] "%2 (%1 bit)"
+#~ msgstr[2] "%2 (%1 bita)"
+#~ msgstr[3] "%2 (%1 biti)"
+
+#~ msgctxt "%1: key size in bits"
+#~ msgid "1 bit"
+#~ msgid_plural "%1 bits"
+#~ msgstr[0] "%1 bitov"
+#~ msgstr[1] "%1 bit"
+#~ msgstr[2] "%1 bita"
+#~ msgstr[3] "%1 biti"
+
+#~ msgid "EMail"
+#~ msgstr "E-pošta"
+
+#~ msgctxt "@title"
+#~ msgid "Enter Details"
+#~ msgstr "Vnesite podrobnosti"
+
+#~ msgid "Real name:"
+#~ msgstr "Resnično ime:"
+
+#~ msgid "EMail address:"
+#~ msgstr "E-poštni naslov:"
+
+#~ msgid "Protect the generated key with a passphrase."
+#~ msgstr "Zavaruj generiran ključ s geselno frazo."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
+#~ "asked for the passphrase during key generation."
+#~ msgstr ""
+#~ "Šifrira tajni ključ z neobnovljivo geselno frazo. Po gesel frazi boste "
+#~ "vprašani med generiranjem ključa."
+
+#~ msgid "Advanced Settings..."
+#~ msgstr "Napredne nastavitve…"
+
+#~ msgid "Please enter your personal details below."
+#~ msgstr "Vnesite vaše osebne podatke spodaj."
+
+#~ msgid ""
+#~ "Please enter your personal details below. If you want more control over "
+#~ "the parameters, click on the Advanced Settings button."
+#~ msgstr ""
+#~ "Spodaj vnesite svoje osebne podatke. Če želite več nadzora nad parametri "
+#~ "potrdila, kliknite na gumb Napredne nastavitve."
+
+#~ msgctxt "@action"
+#~ msgid "Create"
+#~ msgstr "Ustvari"
+
+#~ msgid "Operation canceled."
+#~ msgstr "Opravilo preklicano."
+
+#~ msgid "Could not create key pair: %1"
+#~ msgstr "Ni bilo mogoče ustvariti para ključev: %1"
+
+#~ msgid "Could not write output file %1: %2"
+#~ msgstr "Ni mogoče pisati v izhodno datoteko %1: %2"
+
+#~ msgid "Key pair created successfully."
+#~ msgstr "Par ključev uspešno ustvarjen."
+
+#~ msgctxt "@action:button"
+#~ msgid "Add Entry"
+#~ msgstr "Dodaj vnos"
+
+#~ msgctxt "@action:button"
+#~ msgid "Remove Entry"
+#~ msgstr "Odstrani vnos"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Up"
+#~ msgstr "Pomakni gor"
+
+#~ msgctxt "@action:button"
+#~ msgid "Move Down"
+#~ msgstr "Pomakni dol"
+
+#~ msgctxt "@title:window"
+#~ msgid "Key Pair Creation Wizard"
+#~ msgstr "Čarovnik za ustvarjanje para ključev"
+
+#~ msgctxt "@title:group"
+#~ msgid "Result"
+#~ msgstr "Rezultat"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Drag this icon to your mail application's composer to attach the request "
+#~ "to a mail."
+#~ msgstr ""
+#~ "Povlecite to ikono v sestavljalnik e-pošte, da zahtevo priložite poštnemu "
+#~ "sporočilu."
+
+#~ msgid "Restart This Wizard (Keeps Your Parameters)"
+#~ msgstr "Znova zaženi tega čarovnika (ohrani vaše parametre)"
+
+#~ msgctxt "@title:group"
+#~ msgid "Next Steps"
+#~ msgstr "Naslednji koraki"
+
+#~ msgid "Save Certificate Request To File..."
+#~ msgstr "Shrani zahtevo za potrdilo v datoteko…"
+
+#~ msgid "Send Certificate Request By EMail..."
+#~ msgstr "Pošlji zahtevo za potrdilo po e-pošti…"
+
+#~ msgid "Create Signing Certificate With Same Parameters"
+#~ msgstr "Ustvari potrdilo za podpisovanje z enakimi parametri"
+
+#~ msgid "Create Encryption Certificate With Same Parameters"
+#~ msgstr "Ustvari potrdilo za šifriranje z enakimi parametri"
+
+#~ msgctxt "@title"
+#~ msgid "Key Creation Failed"
+#~ msgstr "Ustvarjanje ključev ni uspelo"
+
+#~ msgid ""
+#~ "Key pair creation failed. Please find details about the failure below."
+#~ msgstr ""
+#~ "Ustvarjanje para ključev ni uspelo. Podrobnosti o neuspehu najdete spodaj."
+
+#~ msgctxt "@title"
+#~ msgid "Key Pair Successfully Created"
+#~ msgstr "Par ključev uspešno ustvarjen"
+
+#~ msgid ""
+#~ "Your new key pair was created successfully. Please find details on the "
+#~ "result and some suggested next steps below."
+#~ msgstr ""
+#~ "Vaš novi par ključev je bil uspešno ustvarjen. Podrobnosti o rezultatu in "
+#~ "nekatere predloge za nadaljevanje najdete spodaj."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
+#~ "%2</filename>: <message>%3</message>"
+#~ msgstr ""
+#~ "Začasne datoteke <filename>%1</filename> ni bilo mogoče kopirati v "
+#~ "datoteko <filename>%2</filename>: <message>%3</message>"
+
+#~ msgid "Please process this certificate."
+#~ msgstr "Obdelajte to potrdilo."
+
+#~ msgid ""
+#~ "Please process this certificate and inform the sender about the location "
+#~ "to fetch the resulting certificate.\n"
+#~ "\n"
+#~ "Thanks,\n"
+#~ msgstr ""
+#~ "Obdelajte to potrdilo in prejemnika obvestite o mestu za pridobivanje "
+#~ "potrdila, ki je nastalo.\n"
+#~ "\n"
+#~ "Hvala.\n"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para><application>Kleopatra</application> tried to send a mail via your "
+#~ "default mail client.</para><para>Some mail clients are known not to "
+#~ "support attachments when invoked this way.</para><para>If your mail "
+#~ "client does not have an attachment, then drag the <application>Kleopatra</"
+#~ "application> icon and drop it on the message compose window of your mail "
+#~ "client.</para><para>If that does not work, either, save the request to a "
+#~ "file, and then attach that.</para>"
+#~ msgstr ""
+#~ "<para>Program <application>Kleopatra</application> je s privzetim "
+#~ "odjemalcem za e-pošto poskusil poslati pošto.</para><para>Nekateri "
+#~ "odjemalci za e-pošto ne podpirajo prilog, če jih zaženete na ta način.</"
+#~ "para><para>Če vaš odjemalec e-pošte ne vsebuje priloge, povlecite ikono "
+#~ "programa <application>Kleopatra</application> in jo spustite na okno "
+#~ "sestavljalnika e-pošte.</para><para>Če tudi to ne deluje, shranite "
+#~ "zahtevo v datoteko in jo potem priložite.</para>"
+
+#~ msgctxt "@title"
+#~ msgid "Sending Mail"
+#~ msgstr "Pošiljanje pošte"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "This operation will delete the certification request. Please make sure "
+#~ "that you have sent or saved it before proceeding."
+#~ msgstr ""
+#~ "S tem dejanjem boste izbrisali zahtevo za potrditev. Pred nadaljevanjem "
+#~ "se prepričajte, da ste zahtevo poslali ali jo shranili za nadaljnje "
+#~ "postopke."
+
+#~ msgctxt "@title"
+#~ msgid "Certification Request About To Be Deleted"
+#~ msgstr "Zahteva za potrditev bo izbrisana"
+
 #~ msgctxt "@option:check on SignEncryptPage"
 #~ msgid "&Sign as:"
 #~ msgstr "Podpiši kot:"
@@ -14374,10 +14355,6 @@ msgstr ""
 #~ "Ime mora biti v formatu, kot jo zahteva vaša organizacija in ne sme "
 #~ "vsebovati znakov: manj, več in afne."
 
-#~ msgid "Enter an email address in the correct format, like name@example.com."
-#~ msgstr ""
-#~ "Vnesite e-poštni naslov v pravilnem formatu kot npr. ime@primer.com."
-
 #~ msgid ""
 #~ "Enter an email address in the correct format required by your "
 #~ "organization."
@@ -14391,19 +14368,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Šifrira tajni ključ z neobnovljivo geselno frazo. Po gesel frazi boste "
 #~ "vprašani med generiranjem ključa."
-
-#~ msgid "Advanced options"
-#~ msgstr "Napredne možnosti"
-
-#~ msgctxt "The algorithm and strength of encryption key"
-#~ msgid "Key Material"
-#~ msgstr "Snov ključa"
-
-#~ msgid "Enter a name and an email address to use for the certificate."
-#~ msgstr "Vnesite ime in naslov e-pošte za uporabo tega potrdila."
-
-#~ msgid "Enter a name and/or an email address to use for the certificate."
-#~ msgstr "Vnesite ime in/ali naslov e-pošte za uporabo tega potrdila."
 
 #~ msgctxt "@info"
 #~ msgid "The date cannot be changed."
@@ -14423,9 +14387,6 @@ msgstr ""
 
 #~ msgid "Error: Enter a value."
 #~ msgstr "Napaka: vnesite vrednost."
-
-#~ msgid "Error: Enter a value in the correct format."
-#~ msgstr "Napaka: vnesite vrednost v ustreznem formatu."
 
 #~ msgctxt "@label label text (required)"
 #~ msgid "%1 (required)"
@@ -15707,9 +15668,6 @@ msgstr ""
 
 #~ msgid "Add New User-ID"
 #~ msgstr "Dodaj nov uporabnikov določilnik"
-
-#~ msgid "Add email address"
-#~ msgstr "Dodaj e-poštni naslov"
 
 #~ msgid "Open selection dialog."
 #~ msgstr "Odprite okno z izbiro."
