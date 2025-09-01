@@ -592,28 +592,48 @@ private:
 
     void checkAccept()
     {
-        QStringList errors;
+        struct LabelAndError {
+            QString label;
+            QString error;
+        };
+        std::vector<LabelAndError> labelsAndErrors;
         if (ui.nameAndEmail->userID().isEmpty() && !ui.nameAndEmail->nameIsRequired() && !ui.nameAndEmail->emailIsRequired()) {
-            errors.push_back(i18n("Enter a name or an email address."));
+            labelsAndErrors.push_back({{}, i18n("Enter a name or an email address.")});
         }
-        const auto nameError = ui.nameAndEmail->nameError();
-        if (!nameError.isEmpty()) {
-            errors.push_back(nameError);
+        if (const QString error = ui.nameAndEmail->nameError(); !error.isEmpty()) {
+            labelsAndErrors.push_back({ui.nameAndEmail->nameLabel(), error});
         }
-        const auto emailError = ui.nameAndEmail->emailError();
-        if (!emailError.isEmpty()) {
-            errors.push_back(emailError);
+        if (const auto error = ui.nameAndEmail->emailError(); !error.isEmpty()) {
+            labelsAndErrors.push_back({ui.nameAndEmail->emailLabel(), error});
         }
         for (const auto &attr : ui.additionalAttributes) {
-            const QString error = attr.input->currentError();
-            if (!error.isEmpty()) {
-                errors.push_back(error);
+            if (const QString error = attr.input->currentError(); !error.isEmpty()) {
+                labelsAndErrors.push_back({attr.input->labelText(), error});
             }
         }
-        if (errors.size() > 1) {
-            KMessageBox::errorList(q, i18n("There is a problem."), errors);
-        } else if (!errors.empty()) {
-            KMessageBox::error(q, errors.first());
+        if (const QString error = ui.emailsField->currentError(); !error.isEmpty()) {
+            labelsAndErrors.push_back({ui.emailsField->labelText(), error});
+        }
+        if (const QString error = ui.domainNamesField->currentError(); !error.isEmpty()) {
+            labelsAndErrors.push_back({ui.domainNamesField->labelText(), error});
+        }
+        if (const QString error = ui.urisField->currentError(); !error.isEmpty()) {
+            labelsAndErrors.push_back({ui.urisField->labelText(), error});
+        }
+
+        if (labelsAndErrors.size() > 1) {
+            QStringList errors;
+            errors.reserve(labelsAndErrors.size());
+            for (const auto &[label, error] : labelsAndErrors) {
+                errors.push_back(label.isEmpty() ? error : i18nc("@info Error in Label of input field: Message", "Error in %1: %2", label, error));
+            }
+            KMessageBox::errorList(q, i18nc("@info", "Correct the following errors:"), errors);
+        } else if (!labelsAndErrors.empty()) {
+            const auto &[label, error] = labelsAndErrors.front();
+            const QString message = label.isEmpty()
+                ? error
+                : xi18nc("@info Error in Label of input field: Message", "Error in <interface>%1</interface>: <message>%2</message>", label, error);
+            KMessageBox::error(q, message);
         } else {
             q->accept();
         }
