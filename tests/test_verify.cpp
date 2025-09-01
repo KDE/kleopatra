@@ -168,7 +168,7 @@ private Q_SLOTS:
 
         QVERIFY(result.second.numSignatures());
         GpgME::Signature sig = result.second.signature(0);
-        QVERIFY(sig.validity() == GpgME::Signature::Validity::Full);
+        QCOMPARE(sig.validity(), GpgME::Signature::Validity::Full);
         QVERIFY(!sig.status().code());
         QVERIFY(QString::fromUtf8(plaintext).startsWith(QLatin1StringView("/* -*- mode: c++; c-basic-offset:4 -*-")));
     }
