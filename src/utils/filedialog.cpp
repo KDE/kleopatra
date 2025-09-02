@@ -1,6 +1,8 @@
 /*
     This file is part of Kleopatra, the KDE keymanager
     SPDX-FileCopyrightText: 2009 Klarälvdalens Datakonsult AB
+    SPDX-FileCopyrightText: 2025 g10 Code GmbH
+    SPDX-FileContributor: Ingo Klöcker <dev@ingo-kloecker.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -9,32 +11,28 @@
 
 #include "filedialog.h"
 
+#include <KConfigGroup>
+#include <KSharedConfig>
+
 #include <QDir>
 #include <QFileDialog>
-#include <QMap>
 
 using namespace Kleo;
-
-namespace
-{
-using Map = QMap<QString, QString>;
-Q_GLOBAL_STATIC(Map, dir_id_2_dir_map)
-}
+using namespace Qt::Literals;
 
 static QString dir(const QString &id)
 {
-    const QString dir = (*dir_id_2_dir_map())[id];
-    if (dir.isEmpty()) {
-        return QDir::homePath();
-    } else {
-        return dir;
-    }
+    const KConfigGroup config{KSharedConfig::openStateConfig(), u"File System Locations"_s};
+    const QString path = config.readPathEntry(id, QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation));
+    return QFile::exists(path) ? path : QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
 }
 
 static void update(const QString &fname, const QString &id)
 {
     if (!fname.isEmpty()) {
-        (*dir_id_2_dir_map())[id] = QFileInfo(fname).absolutePath();
+        KConfigGroup config{KSharedConfig::openStateConfig(), u"File System Locations"_s};
+        config.writePathEntry(id, QFileInfo(fname).absolutePath());
+        config.sync();
     }
 }
 
