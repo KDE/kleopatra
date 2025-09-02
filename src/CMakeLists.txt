@@ -304,8 +304,6 @@ set(_kleopatra_SRCS
   dialogs/adduseriddialog.h
   dialogs/certificatedetailsdialog.cpp
   dialogs/certificatedetailsdialog.h
-  dialogs/certificatedetailsinputwidget.cpp
-  dialogs/certificatedetailsinputwidget.h
   dialogs/certificatedetailswidget.cpp
   dialogs/certificatedetailswidget.h
   dialogs/certificatedumpwidget.cpp
@@ -316,8 +314,6 @@ set(_kleopatra_SRCS
   dialogs/certifycertificatedialog.h
   dialogs/certifywidget.cpp
   dialogs/certifywidget.h
-  dialogs/createcsrforcardkeydialog.cpp
-  dialogs/createcsrforcardkeydialog.h
   dialogs/createcsrdialog.cpp
   dialogs/createcsrdialog.h
   dialogs/copytosmartcarddialog.cpp

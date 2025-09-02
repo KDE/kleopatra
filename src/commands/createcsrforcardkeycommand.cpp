@@ -12,7 +12,7 @@
 
 #include "cardcommand_p.h"
 
-#include "dialogs/createcsrforcardkeydialog.h"
+#include <dialogs/createcsrdialog.h>
 
 #include "smartcard/netkeycard.h"
 #include "smartcard/openpgpcard.h"
@@ -45,7 +45,6 @@
 
 using namespace Kleo;
 using namespace Kleo::Commands;
-using namespace Kleo::Dialogs;
 using namespace Kleo::SmartCard;
 using namespace GpgME;
 using namespace QGpgME;
@@ -76,8 +75,7 @@ private:
 private:
     std::string appName;
     std::string keyRef;
-    KeyUsage keyUsage;
-    QPointer<CreateCSRForCardKeyDialog> dialog;
+    QPointer<CreateCSRDialog> dialog;
 };
 
 CreateCSRForCardKeyCommand::Private *CreateCSRForCardKeyCommand::d_func()
@@ -141,15 +139,15 @@ void CreateCSRForCardKeyCommand::Private::start()
         return;
     }
 
-    const KeyPairInfo &keyInfo = card->keyInfo(keyRef);
-    keyUsage = getKeyUsage(keyInfo);
-
     ensureDialogCreated();
 
-    dialog->setWindowTitle(i18nc("@title:window", "Certificate Details"));
     if (!card->cardHolder().isEmpty()) {
         dialog->setName(card->cardHolder());
     }
+    const KeyPairInfo &keyInfo = card->keyInfo(keyRef);
+    dialog->setUsage(getKeyUsage(keyInfo));
+    dialog->setAlgorithm(QString::fromStdString(keyInfo.algorithm));
+    dialog->setReadOnly(CreateCSRDialog::Algorithm | CreateCSRDialog::Usage);
 
     dialog->show();
 }
@@ -180,11 +178,12 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
         slotResult(result, pubKeyData);
     });
 
-    KeyParameters keyParameters(KeyParameters::CMS);
+    KeyParameters keyParameters = dialog->keyParameters();
     keyParameters.setCardKeyRef(QString::fromStdString(keyRef));
-    keyParameters.setKeyUsage(keyUsage);
-    keyParameters.setDN(dialog->dn());
-    keyParameters.setEmail(dialog->email());
+    // clear key parameters that are implicitly defined by the card key
+    keyParameters.setKeyType(Subkey::AlgoUnknown);
+    keyParameters.setKeyLength(0);
+    keyParameters.setKeyCurve({});
 
     if (const Error err = job->start(keyParameters.toString())) {
         error(i18nc("@info", "Creating a CSR for the card key failed:\n%1", Formatting::errorAsString(err)));
@@ -269,7 +268,7 @@ void CreateCSRForCardKeyCommand::Private::ensureDialogCreated()
         return;
     }
 
-    dialog = new CreateCSRForCardKeyDialog;
+    dialog = new CreateCSRDialog;
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
