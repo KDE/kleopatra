@@ -554,14 +554,7 @@ private:
         const auto algoString = ui.keyAlgoCB->currentText();
         parameters.setKeyLength(algoString.mid(3).toInt());
 
-        KeyUsage usage;
-        if (ui.signingCheck->isChecked()) {
-            usage.setCanSign(true);
-        }
-        if (ui.encryptionCheck->isChecked()) {
-            usage.setCanEncrypt(true);
-        }
-        parameters.setKeyUsage(usage);
+        parameters.setKeyUsage(q->usage());
 
         parameters.setDN(dn());
         parameters.setEmail(ui.nameAndEmail->email());
@@ -576,19 +569,6 @@ private:
         }
 
         return parameters;
-    }
-
-    void setTechnicalParameters(const KeyParameters &parameters)
-    {
-        int index = -1;
-        if (parameters.keyType() == GpgME::Subkey::AlgoRSA) {
-            index = ui.keyAlgoCB->findText(u"rsa"_s + QString::number(parameters.keyLength()));
-        } else {
-            qCWarning(KLEOPATRA_LOG) << __func__ << "Invalid key type:" << parameters.keyType();
-        }
-        if (index >= 0) {
-            ui.keyAlgoCB->setCurrentIndex(index);
-        }
     }
 
     QString dn()
@@ -691,6 +671,35 @@ QString CreateCSRDialog::email() const
     return d->ui.nameAndEmail->email();
 }
 
+void CreateCSRDialog::setAlgorithm(const QString &algorithm)
+{
+    int index = d->ui.keyAlgoCB->findText(algorithm);
+    if (index >= 0) {
+        d->ui.keyAlgoCB->setCurrentIndex(index);
+    } else {
+        qCWarning(KLEOPATRA_LOG) << this << __func__ << "Invalid algorithm:" << algorithm;
+    }
+}
+
+QString CreateCSRDialog::algorithm() const
+{
+    return d->ui.keyAlgoCB->currentText();
+}
+
+void CreateCSRDialog::setUsage(KeyUsage usage)
+{
+    d->ui.signingCheck->setChecked(usage.canSign());
+    d->ui.encryptionCheck->setChecked(usage.canEncrypt());
+}
+
+KeyUsage CreateCSRDialog::usage() const
+{
+    KeyUsage usage;
+    usage.setCanSign(d->ui.signingCheck->isChecked());
+    usage.setCanEncrypt(d->ui.encryptionCheck->isChecked());
+    return usage;
+}
+
 void Kleo::CreateCSRDialog::setKeyParameters(const Kleo::KeyParameters &parameters)
 {
     setName(parameters.name());
@@ -698,12 +707,30 @@ void Kleo::CreateCSRDialog::setKeyParameters(const Kleo::KeyParameters &paramete
     if (!emails.empty()) {
         setEmail(emails.front());
     }
-    d->setTechnicalParameters(parameters);
+    if (parameters.keyType() == GpgME::Subkey::AlgoRSA) {
+        setAlgorithm(u"rsa"_s + QString::number(parameters.keyLength()));
+    } else {
+        qCWarning(KLEOPATRA_LOG) << this << __func__ << "Invalid key type:" << parameters.keyType();
+    }
+    if (parameters.keyUsage().value() != KeyUsage::None) {
+        setUsage(parameters.keyUsage());
+    }
 }
 
 KeyParameters CreateCSRDialog::keyParameters() const
 {
     return d->keyParameters();
+}
+
+void CreateCSRDialog::setReadOnly(Fields fields)
+{
+    if (fields.testFlag(Algorithm)) {
+        d->ui.keyAlgoCB->setEnabled(false);
+    }
+    if (fields.testFlag(Usage)) {
+        d->ui.signingCheck->setEnabled(false);
+        d->ui.encryptionCheck->setEnabled(false);
+    }
 }
 
 #include "createcsrdialog.moc"
