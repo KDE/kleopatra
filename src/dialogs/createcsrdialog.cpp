@@ -519,26 +519,17 @@ public:
     explicit Private(CreateCSRDialog *qq)
         : q{qq}
         , ui{qq}
-        , technicalParameters{KeyParameters::CMS}
     {
-        connect(ui.keyAlgoCB, &QComboBox::currentIndexChanged, q, [this]() {
-            updateTechnicalParameters();
-        });
         connect(ui.signingCheck, &QCheckBox::toggled, q, [this]() {
             if (!ui.signingCheck->isChecked() && !ui.encryptionCheck->isChecked()) {
                 ui.encryptionCheck->setChecked(true);
-            } else {
-                updateTechnicalParameters();
             }
         });
         connect(ui.encryptionCheck, &QCheckBox::toggled, q, [this]() {
             if (!ui.encryptionCheck->isChecked() && !ui.signingCheck->isChecked()) {
                 ui.signingCheck->setChecked(true);
-            } else {
-                updateTechnicalParameters();
             }
         });
-        updateTechnicalParameters();
 
         const auto settings = Kleo::Settings{};
         ui.expander->setVisible(!settings.hideAdvanced());
@@ -555,13 +546,13 @@ public:
     }
 
 private:
-    void updateTechnicalParameters()
+    KeyParameters keyParameters()
     {
-        technicalParameters = KeyParameters{KeyParameters::CMS};
+        KeyParameters parameters{KeyParameters::CMS};
 
-        technicalParameters.setKeyType(GpgME::Subkey::AlgoRSA);
+        parameters.setKeyType(GpgME::Subkey::AlgoRSA);
         const auto algoString = ui.keyAlgoCB->currentText();
-        technicalParameters.setKeyLength(algoString.mid(3).toInt());
+        parameters.setKeyLength(algoString.mid(3).toInt());
 
         KeyUsage usage;
         if (ui.signingCheck->isChecked()) {
@@ -570,9 +561,21 @@ private:
         if (ui.encryptionCheck->isChecked()) {
             usage.setCanEncrypt(true);
         }
-        technicalParameters.setKeyUsage(usage);
+        parameters.setKeyUsage(usage);
 
-        // DN, email, etc. are set later
+        parameters.setDN(dn());
+        parameters.setEmail(ui.nameAndEmail->email());
+        for (const QString &email : ui.emailsField->widget()->values()) {
+            parameters.addEmail(email);
+        }
+        for (const QString &domainName : ui.domainNamesField->widget()->values()) {
+            parameters.addDomainName(domainName);
+        }
+        for (const QString &uri : ui.urisField->widget()->values()) {
+            parameters.addURI(uri);
+        }
+
+        return parameters;
     }
 
     void setTechnicalParameters(const KeyParameters &parameters)
@@ -653,9 +656,6 @@ private:
             q->accept();
         }
     }
-
-private:
-    KeyParameters technicalParameters;
 };
 
 CreateCSRDialog::CreateCSRDialog(QWidget *parent, Qt::WindowFlags f)
@@ -703,20 +703,7 @@ void Kleo::CreateCSRDialog::setKeyParameters(const Kleo::KeyParameters &paramete
 
 KeyParameters CreateCSRDialog::keyParameters() const
 {
-    // set DN, email, etc. on a copy of the technical parameters
-    auto parameters = d->technicalParameters;
-    parameters.setDN(d->dn());
-    parameters.setEmail(email());
-    for (const QString &email : d->ui.emailsField->widget()->values()) {
-        parameters.addEmail(email);
-    }
-    for (const QString &domainName : d->ui.domainNamesField->widget()->values()) {
-        parameters.addDomainName(domainName);
-    }
-    for (const QString &uri : d->ui.urisField->widget()->values()) {
-        parameters.addURI(uri);
-    }
-    return parameters;
+    return d->keyParameters();
 }
 
 #include "createcsrdialog.moc"
