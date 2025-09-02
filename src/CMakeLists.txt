@@ -408,6 +408,8 @@ set(_kleopatra_SRCS
   utils/certificatepair.h
   utils/clipboardmenu.cpp
   utils/clipboardmenu.h
+  utils/csrutils.cpp
+  utils/csrutils.h
   utils/debug-helpers.cpp
   utils/debug-helpers.h
   utils/dragqueen.cpp
