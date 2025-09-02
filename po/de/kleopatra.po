@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-30 00:43+0000\n"
-"PO-Revision-Date: 2025-08-21 11:49+0200\n"
+"POT-Creation-Date: 2025-09-02 00:44+0000\n"
+"PO-Revision-Date: 2025-08-26 16:22+0200\n"
 "Last-Translator: Eva Bolten <eva.bolten@gnupg.com>\n"
 "Language-Team: kde-i18n-de@kde.org\n"
 "Language: de\n"
@@ -4910,7 +4910,7 @@ msgid_plural ""
 "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
 "filename>."
 msgstr[0] ""
-"<filename>%2</filename> mit Signatur aus <filename>%3</filename> verifiziert."
+"<filename>%2</filename> mit Signatur aus <filename>%3</filename> geprüft."
 msgstr[1] ""
 "<filename>%2</filename> mit %1 Signaturen aus <filename>%3</filename> "
 "verifiziert."
@@ -5553,11 +5553,10 @@ msgid "Select Certificates for Message \"%1\""
 msgstr "Wählen Sie Zertifikate für die Nachricht „%1“"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:153
-#, fuzzy, kde-format
-#| msgid "Sign as:"
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Sign &as:"
-msgstr "Signieren als:"
+msgstr "Signieren &als:"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:154
 #, kde-format
@@ -5569,7 +5568,7 @@ msgstr "Für &mich verschlüsseln:"
 #, kde-format
 msgctxt "@label on SignEncryptPage"
 msgid "Encrypt for &others:"
-msgstr "Für &andere verschlüsseln:"
+msgstr "&Für andere verschlüsseln:"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:156
 #, kde-format
@@ -5590,12 +5589,10 @@ msgid "Output &files/folder:"
 msgstr "Ausgabe&dateien/-ordner:"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:176
-#, fuzzy, kde-format
-#| msgctxt "@option:check on SignEncryptPage"
-#| msgid "Encrypt / Sign &each file separately."
+#, kde-format
 msgctxt "@option:check on SignEncryptPage"
 msgid "Enc&rypt / Sign each file separately."
-msgstr "Jede Datei einzeln verschlüsseln/signieren."
+msgstr "&Jede Datei einzeln verschlüsseln / signieren"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:177
 #, kde-format
@@ -5858,28 +5855,22 @@ msgid "Finish"
 msgstr "Abschließen"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:581
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Sign"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Sign"
-msgstr "Signieren"
+msgstr "&Signieren"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:584
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Encrypt"
-msgstr "Verschlüsseln"
+msgstr "&Verschlüsseln"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:587
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Sign / Encrypt"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
-msgstr "Signieren/Verschlüsseln"
+msgstr "&Signieren/Verschlüsseln"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:605
 #: src/dialogs/signencryptclipboarddialog.cpp:246
@@ -5907,15 +5898,14 @@ msgid "S/MIME"
 msgstr "S/MIME"
 
 #: src/crypto/gui/signencryptwidget.cpp:210
-#, fuzzy, kde-format
-#| msgid "Sign as:"
+#, kde-format
 msgid "Sign &as:"
-msgstr "Signieren als:"
+msgstr "Signieren &als:"
 
 #: src/crypto/gui/signencryptwidget.cpp:250
 #, kde-format
 msgid "Encrypt for me:"
-msgstr "Für mich verschlüsseln:"
+msgstr "Für &mich verschlüsseln:"
 
 #: src/crypto/gui/signencryptwidget.cpp:280
 #, kde-format
@@ -6019,6 +6009,8 @@ msgid ""
 "Please choose at least one recipient or deselect <interface>Encrypt for "
 "others</interface>."
 msgstr ""
+"Bitte wählen Sie mindestens einen Empfänger aus oder deaktivieren Sie "
+"<interface>Für andere verschlüsseln</interface>."
 
 #: src/crypto/gui/signencryptwidget.cpp:980
 #, kde-format
@@ -6719,12 +6711,12 @@ msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 "Geben Sie einen Namen und/oder eine E-Mail-Adresse für die Nutzerkennung ein."
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:596
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Geben Sie einen Namen oder eine E-Mail-Adresse ein."
 
-#: src/dialogs/adduseriddialog.cpp:142 src/dialogs/createcsrdialog.cpp:613
+#: src/dialogs/adduseriddialog.cpp:142
 #, kde-format
 msgid "There is a problem."
 msgstr "Es gibt ein Problem."
@@ -7605,7 +7597,28 @@ msgstr "URIs"
 msgid "Enter URIs in the correct format."
 msgstr "Fehler: geben Sie einen Wert im korrekten Format ein."
 
-#: src/dialogs/createcsrdialog.cpp:646
+#: src/dialogs/createcsrdialog.cpp:627
+#, fuzzy, kde-format
+#| msgid "Error while running %1: %2"
+msgctxt "@info Error in Label of input field: Message"
+msgid "Error in %1: %2"
+msgstr "Fehler während der Ausführung von %1: %2"
+
+#: src/dialogs/createcsrdialog.cpp:629
+#, kde-format
+msgctxt "@info"
+msgid "Correct the following errors:"
+msgstr ""
+
+#: src/dialogs/createcsrdialog.cpp:634
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<interface>%1</interface> is incomplete."
+msgctxt "@info Error in Label of input field: Message"
+msgid "Error in <interface>%1</interface>: <message>%2</message>"
+msgstr "<interface>%1</interface> ist unvollständig."
+
+#: src/dialogs/createcsrdialog.cpp:666
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create S/MIME Certification Request"
@@ -12379,11 +12392,10 @@ msgid "This is the result of the signature verification."
 msgstr "Dies ist das Ergebnis der Signaturprüfung."
 
 #: src/view/padwidget.cpp:391
-#, fuzzy, kde-format
-#| msgid "Decrypt and/or verify files"
+#, kde-format
 msgctxt "@info:progress"
 msgid "Decrypting and/or verifying..."
-msgstr "Dateien entschlüsseln/prüfen"
+msgstr "Krypto-Operationen werden ausgeführt …"
 
 #: src/view/padwidget.cpp:456
 #, kde-kuit-format
