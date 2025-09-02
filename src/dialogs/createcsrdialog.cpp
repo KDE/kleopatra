@@ -581,7 +581,7 @@ private:
     {
         int index = -1;
         if (parameters.keyType() == GpgME::Subkey::AlgoRSA) {
-            index = ui.keyAlgoCB->findData(u"rsa"_s + QString::number(parameters.keyLength()));
+            index = ui.keyAlgoCB->findText(u"rsa"_s + QString::number(parameters.keyLength()));
         } else {
             qCWarning(KLEOPATRA_LOG) << __func__ << "Invalid key type:" << parameters.keyType();
         }
