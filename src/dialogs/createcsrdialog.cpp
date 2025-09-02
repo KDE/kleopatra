@@ -587,7 +587,22 @@ private:
         }
     }
 
-    QString dn();
+    QString dn()
+    {
+        QGpgME::DN dn;
+        dn.append(QGpgME::DN::Attribute{u"CN"_s, q->name()});
+        for (const auto &attr : ui.additionalAttributes) {
+            const QString value = attr.input->widget()->text().trimmed();
+            if (!value.isEmpty()) {
+                if (const char *const oid = Kleo::oidForAttributeName(attr.name)) {
+                    dn.append(QGpgME::DN::Attribute{QString::fromUtf8(oid), value});
+                } else {
+                    dn.append(QGpgME::DN::Attribute{attr.name, value});
+                }
+            }
+        }
+        return dn.dn();
+    }
 
     void checkAccept()
     {
@@ -641,23 +656,6 @@ private:
 private:
     KeyParameters technicalParameters;
 };
-
-QString CreateCSRDialog::Private::dn()
-{
-    QGpgME::DN dn;
-    dn.append(QGpgME::DN::Attribute{u"CN"_s, q->name()});
-    for (const auto &attr : ui.additionalAttributes) {
-        const QString value = attr.input->widget()->text().trimmed();
-        if (!value.isEmpty()) {
-            if (const char *const oid = Kleo::oidForAttributeName(attr.name)) {
-                dn.append(QGpgME::DN::Attribute{QString::fromUtf8(oid), value});
-            } else {
-                dn.append(QGpgME::DN::Attribute{attr.name, value});
-            }
-        }
-    }
-    return dn.dn();
-}
 
 CreateCSRDialog::CreateCSRDialog(QWidget *parent, Qt::WindowFlags f)
     : QDialog{parent, f}
