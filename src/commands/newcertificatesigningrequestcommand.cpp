@@ -18,21 +18,18 @@
 #include <kleopatraapplication.h>
 
 #include <dialogs/createcsrdialog.h>
+#include <utils/csrutils.h>
 #include <utils/keyparameters.h>
 
 #include <settings.h>
 
 #include <Libkleo/Formatting>
-#include <Libkleo/KeyCache>
 
-#include <KFileUtils>
+#include <KLocalizedString>
 
-#include <QGpgME/DN>
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
 
-#include <QDir>
-#include <QFile>
 #include <QProgressDialog>
 #include <QSettings>
 
@@ -121,6 +118,7 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
         finished();
         return;
     }
+    QGpgME::Job::context(keyGenJob)->setArmor(true);
 
     auto settings = KleopatraApplication::instance()->distributionSettings();
     if (settings) {
@@ -153,41 +151,17 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
     progressDialog->show();
 }
 
-static QString usageText(KeyUsage usage)
-{
-    if (usage.canEncrypt()) {
-        return usage.canSign() ? u"sign_encrypt"_s : u"encrypt"_s;
-    }
-    return u"sign"_s;
-}
-
 void NewCertificateSigningRequestCommand::Private::showResult(const KeyGenerationResult &result, const QByteArray &request, const QString &auditLog)
 {
-    if (result.error().isCanceled()) {
-        finished();
-        return;
-    } else if (result.error()) {
+    if (result.error()) {
         showErrorDialog(result, auditLog);
         return;
     }
 
-    QString filename = QStringLiteral("request_%1_%2.p10").arg(usageText(keyParameters.keyUsage()), keyParameters.emails().front());
-    const QDir saveLocation{QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)};
-    if (saveLocation.exists(filename)) {
-        filename = KFileUtils::suggestName(QUrl::fromLocalFile(saveLocation.path()), filename);
+    if (!result.error().isCanceled()) {
+        saveCSR(request, keyParameters, parentWidgetOrView());
     }
-    QFile file(saveLocation.absoluteFilePath(filename));
-    if (!file.open(QIODevice::WriteOnly)) {
-        error(xi18nc("@info", "Could not write the request to the file <filename>%1</filename>: %2", file.fileName(), file.errorString()));
-        finished();
-        return;
-    }
-    file.write(request);
-    file.close();
-    success(xi18nc("@info",
-                   "<para>Successfully wrote request to <filename>%1</filename>.</para>"
-                   "<para>You should now send the request to the Certification Authority (CA).</para>",
-                   file.fileName()));
+
     finished();
 }
 
