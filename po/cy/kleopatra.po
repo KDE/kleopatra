@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ../cy/messages//kdepim/kleopatra.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-02 00:44+0000\n"
+"POT-Creation-Date: 2025-09-03 00:44+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandrakesoft.com>\n"
 "Language-Team: cy <LL@li.org>\n"
@@ -766,7 +766,7 @@ msgid "Passphrase Change Succeeded"
 msgstr "Gwall Rheolwr Tystysgrifau"
 
 #: src/commands/changepincommand.cpp:122
-#: src/commands/createcsrforcardkeycommand.cpp:139
+#: src/commands/createcsrforcardkeycommand.cpp:127
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:105
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
@@ -1081,21 +1081,14 @@ msgid "CRL cache cleared successfully."
 msgstr ""
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:491
-#: src/commands/keytocardcommand.cpp:519
+#: src/commands/keytocardcommand.cpp:519 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
 msgstr ""
 
-#: src/commands/createcsrforcardkeycommand.cpp:149
-#, fuzzy, kde-format
-#| msgid "&Certificates"
-msgctxt "@title:window"
-msgid "Certificate Details"
-msgstr "&Tystysgrifau"
-
-#: src/commands/createcsrforcardkeycommand.cpp:190
-#: src/commands/createcsrforcardkeycommand.cpp:205
+#: src/commands/createcsrforcardkeycommand.cpp:179
+#: src/commands/createcsrforcardkeycommand.cpp:194
 #, fuzzy, kde-format
 #| msgid "In Local Certificates"
 msgctxt "@info"
@@ -1103,45 +1096,6 @@ msgid ""
 "Creating a CSR for the card key failed:\n"
 "%1"
 msgstr "Mewn tystysgrifau lleol"
-
-#: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/commands/newcertificatesigningrequestcommand.cpp:190
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
-"should now send the request to the Certification Authority (CA).</para>"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:213
-#, kde-format
-msgctxt "@title"
-msgid "Request Saved"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:247
-#, kde-format
-msgctxt "@title"
-msgid "Save Request"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:250
-#, kde-format
-msgid "PKCS#10 Requests (*.p10)"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:258
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Saving the request failed.</para><para><message>%1</message></para>"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:259
-#, kde-format
-msgctxt "@title"
-msgid "Error Saving Request"
-msgstr ""
 
 #: src/commands/creategroupcommand.cpp:101
 #, fuzzy, kde-format
@@ -2888,21 +2842,21 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:132
+#: src/commands/newcertificatesigningrequestcommand.cpp:130
 #: src/commands/newopenpgpcertificatecommand.cpp:155
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Methwyd creu tysysgrif : %1"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:142
+#: src/commands/newcertificatesigningrequestcommand.cpp:140
 #: src/commands/newopenpgpcertificatecommand.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:143
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:166
 #, kde-format
 msgid ""
@@ -2910,14 +2864,7 @@ msgid ""
 "may require several minutes..."
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:183
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
-msgctxt "@info"
-msgid "Could not write the request to the file <filename>%1</filename>: %2"
-msgstr "Methwyd creu tysysgrif : %1"
-
-#: src/commands/newcertificatesigningrequestcommand.cpp:202
+#: src/commands/newcertificatesigningrequestcommand.cpp:176
 #: src/commands/newopenpgpcertificatecommand.cpp:227
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
@@ -2926,7 +2873,7 @@ msgctxt "@title:window"
 msgid "Error"
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:208
+#: src/commands/newcertificatesigningrequestcommand.cpp:182
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2934,7 +2881,7 @@ msgid ""
 "para><para>Error: <message>%1</message></para>"
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:245
+#: src/commands/newcertificatesigningrequestcommand.cpp:219
 #: src/kleopatraapplication.cpp:578
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -6416,7 +6363,7 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:598
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
@@ -6487,75 +6434,17 @@ msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:59
-#, kde-format
-msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-msgid "%1 (%2)"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:70
-#: src/dialogs/certificatedetailswidget.cpp:173
-#, kde-format
-msgctxt "interpunctation for labels"
-msgid "%1:"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(required)"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(optional)"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:108
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is required, but empty."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:111
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-"<icode>%2</icode>"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:119
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is incomplete."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-"icode>"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:129
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is invalid."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:132
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
-msgstr ""
-
 #: src/dialogs/certificatedetailswidget.cpp:164
 #, fuzzy, kde-format
 #| msgid "Certificate Manager Error"
 msgid "User ID:"
 msgstr "Gwall Rheolwr Tystysgrifau"
+
+#: src/dialogs/certificatedetailswidget.cpp:173
+#, kde-format
+msgctxt "interpunctation for labels"
+msgid "%1:"
+msgstr ""
 
 #: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
@@ -7300,25 +7189,25 @@ msgstr ""
 msgid "Enter URIs in the correct format."
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:627
+#: src/dialogs/createcsrdialog.cpp:625
 #, kde-format
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in %1: %2"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:629
+#: src/dialogs/createcsrdialog.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid "Correct the following errors:"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:634
+#: src/dialogs/createcsrdialog.cpp:632
 #, kde-kuit-format
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in <interface>%1</interface>: <message>%2</message>"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:666
+#: src/dialogs/createcsrdialog.cpp:644
 #, fuzzy, kde-format
 #| msgid "In Local Certificates"
 msgctxt "title:window"
@@ -10997,6 +10886,34 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "&Manylion"
 
+#: src/utils/csrutils.cpp:65
+#, kde-format
+msgctxt "@title"
+msgid "Save Request"
+msgstr ""
+
+#: src/utils/csrutils.cpp:68
+#, kde-format
+msgid "PKCS#10 Requests (*.p10)"
+msgstr ""
+
+#: src/utils/csrutils.cpp:78
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid ""
+"<para>Failed to write the request to the file <filename>%1</filename>.</"
+"para><para><message>%2</message></para>"
+msgstr "Methwyd creu tysysgrif : %1"
+
+#: src/utils/csrutils.cpp:86
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
+"should now send the request to the Certification Authority (CA).</para>"
+msgstr ""
+
 #: src/utils/fileutils.cpp:22
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
@@ -12785,6 +12702,12 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "&Certificates"
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "&Tystysgrifau"
 
 #, fuzzy
 #~| msgid "&Certificates"

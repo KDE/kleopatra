@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-02 00:44+0000\n"
+"POT-Creation-Date: 2025-09-03 00:44+0000\n"
 "PO-Revision-Date: 2025-08-29 07:58+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -784,7 +784,7 @@ msgid "Passphrase Change Succeeded"
 msgstr "Ändring av lösenordsfras lyckades"
 
 #: src/commands/changepincommand.cpp:122
-#: src/commands/createcsrforcardkeycommand.cpp:139
+#: src/commands/createcsrforcardkeycommand.cpp:127
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:105
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
@@ -1092,20 +1092,14 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL-cachen rensades med lyckat resultat."
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:491
-#: src/commands/keytocardcommand.cpp:519
+#: src/commands/keytocardcommand.cpp:519 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
 msgstr "Lyckades"
 
-#: src/commands/createcsrforcardkeycommand.cpp:149
-#, kde-format
-msgctxt "@title:window"
-msgid "Certificate Details"
-msgstr "Certifikatinformation"
-
-#: src/commands/createcsrforcardkeycommand.cpp:190
-#: src/commands/createcsrforcardkeycommand.cpp:205
+#: src/commands/createcsrforcardkeycommand.cpp:179
+#: src/commands/createcsrforcardkeycommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1114,48 +1108,6 @@ msgid ""
 msgstr ""
 "Misslyckades skapa en CSR för kortnyckeln:\n"
 "%1"
-
-#: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/commands/newcertificatesigningrequestcommand.cpp:190
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
-"should now send the request to the Certification Authority (CA).</para>"
-msgstr ""
-"<para>Skrev begäran i <filename>%1</filename> med lyckat resultat.</"
-"para><para>Du bör nu skicka begäran till certifkatutfärdaren (CA).</para>"
-
-#: src/commands/createcsrforcardkeycommand.cpp:213
-#, kde-format
-msgctxt "@title"
-msgid "Request Saved"
-msgstr "Begäran sparad"
-
-#: src/commands/createcsrforcardkeycommand.cpp:247
-#, kde-format
-msgctxt "@title"
-msgid "Save Request"
-msgstr "Spara begäran"
-
-#: src/commands/createcsrforcardkeycommand.cpp:250
-#, kde-format
-msgid "PKCS#10 Requests (*.p10)"
-msgstr "PKCS#10-begäran (*.p10)"
-
-#: src/commands/createcsrforcardkeycommand.cpp:258
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Saving the request failed.</para><para><message>%1</message></para>"
-msgstr ""
-"<para>Misslyckades spara begäran.</para><para><message>%1</message></para>"
-
-#: src/commands/createcsrforcardkeycommand.cpp:259
-#, kde-format
-msgctxt "@title"
-msgid "Error Saving Request"
-msgstr "Fel när begäran skulle sparas"
 
 #: src/commands/creategroupcommand.cpp:101
 #, kde-format
@@ -2988,20 +2940,20 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "Några katalogservrar är inte inställda"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:132
+#: src/commands/newcertificatesigningrequestcommand.cpp:130
 #: src/commands/newopenpgpcertificatecommand.cpp:155
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Kunde inte starta skapa nyckelpar: %1"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:142
+#: src/commands/newcertificatesigningrequestcommand.cpp:140
 #: src/commands/newopenpgpcertificatecommand.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Skapar nyckelpar..."
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:143
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:166
 #, kde-format
 msgid ""
@@ -3011,13 +2963,7 @@ msgstr ""
 "Processen för att skapa en nyckel kräver ett stort antal slumptal. Den kan "
 "ta flera minuter..."
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:183
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Could not write the request to the file <filename>%1</filename>: %2"
-msgstr "Kunde inte skriva begäran till filen <filename>%1</filename>: %2"
-
-#: src/commands/newcertificatesigningrequestcommand.cpp:202
+#: src/commands/newcertificatesigningrequestcommand.cpp:176
 #: src/commands/newopenpgpcertificatecommand.cpp:227
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
@@ -3026,7 +2972,7 @@ msgctxt "@title:window"
 msgid "Error"
 msgstr "Fel"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:208
+#: src/commands/newcertificatesigningrequestcommand.cpp:182
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3036,7 +2982,7 @@ msgstr ""
 "<para>Misslyckades skapa begäran om certifikatsignering.</para><para>Fel: "
 "<message>%1</message></para>"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:245
+#: src/commands/newcertificatesigningrequestcommand.cpp:219
 #: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -6573,7 +6519,7 @@ msgstr ""
 "Ange ett namn och/eller en e-postadress att använda för "
 "användaridentifikationen."
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:598
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Ange ett namn eller en e-postadress."
@@ -6647,80 +6593,16 @@ msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "Uppdatera nyckeln från externa källor."
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:59
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, kde-format
-msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-msgid "%1 (%2)"
-msgstr "%1 (%2)"
+msgid "User ID:"
+msgstr "Användaridentifikation:"
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(required)"
-msgstr "(krävs)"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(optional)"
-msgstr "(valfri)"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:108
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is required, but empty."
-msgstr "<interface>%1</interface> krävs, men är tomt."
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:111
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-"<icode>%2</icode>"
-msgstr ""
-"<interface>%1</interface> krävs, men är tomt.<nl/>Lokal "
-"administrationsregel: <icode>%2</icode>"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:119
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is incomplete."
-msgstr "<interface>%1</interface> är ofullständig."
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-"icode>"
-msgstr ""
-"<interface>%1</interface> är ofullständig.<nl/>Lokal administrationsregel: "
-"<icode>%2</icode>"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:129
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is invalid."
-msgstr "<interface>%1</interface> är ogiltig."
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:132
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
-msgstr ""
-"<interface>%1</interface> är ogiltig.<nl/>Lokal administrationsregel: <icode>"
-"%2</icode>"
-
-#: src/dialogs/certificatedetailswidget.cpp:164
-#, kde-format
-msgid "User ID:"
-msgstr "Användaridentifikation:"
 
 #: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
@@ -7439,20 +7321,20 @@ msgstr "Webbadresser"
 msgid "Enter URIs in the correct format."
 msgstr "Ange webbadresser med rätt format."
 
-#: src/dialogs/createcsrdialog.cpp:627
+#: src/dialogs/createcsrdialog.cpp:625
 #, fuzzy, kde-format
 #| msgid "Error while running %1: %2"
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in %1: %2"
 msgstr "Fel vid körning av %1: %2"
 
-#: src/dialogs/createcsrdialog.cpp:629
+#: src/dialogs/createcsrdialog.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid "Correct the following errors:"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:634
+#: src/dialogs/createcsrdialog.cpp:632
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "<interface>%1</interface> is incomplete."
@@ -7460,7 +7342,7 @@ msgctxt "@info Error in Label of input field: Message"
 msgid "Error in <interface>%1</interface>: <message>%2</message>"
 msgstr "<interface>%1</interface> är ofullständig."
 
-#: src/dialogs/createcsrdialog.cpp:666
+#: src/dialogs/createcsrdialog.cpp:644
 #, kde-format
 msgctxt "title:window"
 msgid "Create S/MIME Certificate Signing Request"
@@ -11268,6 +11150,41 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "Avkoda och verifiera..."
 
+#: src/utils/csrutils.cpp:65
+#, kde-format
+msgctxt "@title"
+msgid "Save Request"
+msgstr "Spara begäran"
+
+#: src/utils/csrutils.cpp:68
+#, kde-format
+msgid "PKCS#10 Requests (*.p10)"
+msgstr "PKCS#10-begäran (*.p10)"
+
+#: src/utils/csrutils.cpp:78
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para><para><message>%3</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to write the request to the file <filename>%1</filename>.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para>Misslyckades flytta <filename>%1</filename> till <filename>%2</"
+"filename>.</para><para><message>%3</message></para>"
+
+#: src/utils/csrutils.cpp:86
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
+"should now send the request to the Certification Authority (CA).</para>"
+msgstr ""
+"<para>Skrev begäran i <filename>%1</filename> med lyckat resultat.</"
+"para><para>Du bör nu skicka begäran till certifkatutfärdaren (CA).</para>"
+
 #: src/utils/fileutils.cpp:22
 #, kde-format
 msgid "Please select an output folder."
@@ -12989,6 +12906,74 @@ msgid ""
 msgstr ""
 "Importera certifikat från en fil.<nl/>Använd istället <interface>Slå upp på "
 "server</interface> för att importera från en öppen nyckelserver."
+
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "Certifikatinformation"
+
+#~ msgctxt "@title"
+#~ msgid "Request Saved"
+#~ msgstr "Begäran sparad"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#~ msgstr ""
+#~ "<para>Misslyckades spara begäran.</para><para><message>%1</message></para>"
+
+#~ msgctxt "@title"
+#~ msgid "Error Saving Request"
+#~ msgstr "Fel när begäran skulle sparas"
+
+#~ msgctxt "@info"
+#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
+#~ msgstr "Kunde inte skriva begäran till filen <filename>%1</filename>: %2"
+
+#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "(required)"
+#~ msgstr "(krävs)"
+
+#~ msgid "(optional)"
+#~ msgstr "(valfri)"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is required, but empty."
+#~ msgstr "<interface>%1</interface> krävs, men är tomt."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
+#~ "<icode>%2</icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> krävs, men är tomt.<nl/>Lokal "
+#~ "administrationsregel: <icode>%2</icode>"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is incomplete."
+#~ msgstr "<interface>%1</interface> är ofullständig."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
+#~ "icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> är ofullständig.<nl/>Lokal "
+#~ "administrationsregel: <icode>%2</icode>"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is invalid."
+#~ msgstr "<interface>%1</interface> är ogiltig."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
+#~ "icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> är ogiltig.<nl/>Lokal administrationsregel: "
+#~ "<icode>%2</icode>"
 
 #~ msgctxt "@info:label"
 #~ msgid "RSA key strength:"

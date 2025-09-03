@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-02 00:44+0000\n"
+"POT-Creation-Date: 2025-09-03 00:44+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -776,7 +776,7 @@ msgid "Passphrase Change Succeeded"
 msgstr "गुप्तवाक्यपरिवर्तनं सफलम् अभवत्"
 
 #: src/commands/changepincommand.cpp:122
-#: src/commands/createcsrforcardkeycommand.cpp:139
+#: src/commands/createcsrforcardkeycommand.cpp:127
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:105
 #, kde-format
 msgid "Failed to find the smartcard with the serial number: %1"
@@ -1080,20 +1080,14 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL cache सफलतया स्वच्छं जातम्।"
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:491
-#: src/commands/keytocardcommand.cpp:519
+#: src/commands/keytocardcommand.cpp:519 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
 msgstr "सफलता"
 
-#: src/commands/createcsrforcardkeycommand.cpp:149
-#, kde-format
-msgctxt "@title:window"
-msgid "Certificate Details"
-msgstr "प्रमाणपत्र विवरण"
-
-#: src/commands/createcsrforcardkeycommand.cpp:190
-#: src/commands/createcsrforcardkeycommand.cpp:205
+#: src/commands/createcsrforcardkeycommand.cpp:179
+#: src/commands/createcsrforcardkeycommand.cpp:194
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1102,47 +1096,6 @@ msgid ""
 msgstr ""
 "कार्डकुंजी कृते CSR निर्मातुं विफलम् अभवत्:\n"
 "%1"
-
-#: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/commands/newcertificatesigningrequestcommand.cpp:190
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
-"should now send the request to the Certification Authority (CA).</para>"
-msgstr ""
-"<para><filename>%1</filename> इत्यत्र अनुरोधं सफलतया लिखितम् ।</para><para>अधुना "
-"भवता प्रमाणीकरणप्राधिकरणाय (CA) अनुरोधं प्रेषयितव्यम् ।</para>"
-
-#: src/commands/createcsrforcardkeycommand.cpp:213
-#, kde-format
-msgctxt "@title"
-msgid "Request Saved"
-msgstr "अनुरोध रक्षित"
-
-#: src/commands/createcsrforcardkeycommand.cpp:247
-#, kde-format
-msgctxt "@title"
-msgid "Save Request"
-msgstr "अनुरोधं रक्षतु"
-
-#: src/commands/createcsrforcardkeycommand.cpp:250
-#, kde-format
-msgid "PKCS#10 Requests (*.p10)"
-msgstr "PKCS # 10 अनुरोधाः (*.p10)"
-
-#: src/commands/createcsrforcardkeycommand.cpp:258
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Saving the request failed.</para><para><message>%1</message></para>"
-msgstr "<para>अनुरोधस्य रक्षणं विफलम् ।</para><para><message>%1</message></para>"
-
-#: src/commands/createcsrforcardkeycommand.cpp:259
-#, kde-format
-msgctxt "@title"
-msgid "Error Saving Request"
-msgstr "त्रुटि रक्षण अनुरोध"
 
 #: src/commands/creategroupcommand.cpp:101
 #, kde-format
@@ -2939,20 +2892,20 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr "कोऽपि निर्देशिकासर्वरः विन्यस्तः नास्ति"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:132
+#: src/commands/newcertificatesigningrequestcommand.cpp:130
 #: src/commands/newopenpgpcertificatecommand.cpp:155
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "कीलयुग्मनिर्माणं आरभुं न शक्तम्: %1"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:142
+#: src/commands/newcertificatesigningrequestcommand.cpp:140
 #: src/commands/newopenpgpcertificatecommand.cpp:165
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "कीलयुग्मस्य निर्माणम्..."
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:143
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:166
 #, kde-format
 msgid ""
@@ -2962,15 +2915,7 @@ msgstr ""
 "कीलस्य निर्माणप्रक्रियायां बहूनां यादृच्छिकसङ्ख्यानां आवश्यकता भवति । अस्य कृते कतिपयानि "
 "निमेषाणि आवश्यकानि भवितुम् अर्हन्ति..."
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:183
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Could not remove file <filename>%1</filename> for overwriting."
-msgctxt "@info"
-msgid "Could not write the request to the file <filename>%1</filename>: %2"
-msgstr "अधिलेखनार्थं <filename>%1</filename> सञ्चिकां निष्कासयितुं न शक्यते ।"
-
-#: src/commands/newcertificatesigningrequestcommand.cpp:202
+#: src/commands/newcertificatesigningrequestcommand.cpp:176
 #: src/commands/newopenpgpcertificatecommand.cpp:227
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
@@ -2979,7 +2924,7 @@ msgctxt "@title:window"
 msgid "Error"
 msgstr "त्रुटि"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:208
+#: src/commands/newcertificatesigningrequestcommand.cpp:182
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2993,7 +2938,7 @@ msgstr ""
 "<para>प्रमाणपत्राणां प्रमाणीकरणं विफलम् ।</para><para>दोषः : <message>%1</"
 "message></para>"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:245
+#: src/commands/newcertificatesigningrequestcommand.cpp:219
 #: src/kleopatraapplication.cpp:578
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
@@ -6522,7 +6467,7 @@ msgstr "उपयोक्तृ-ID कृते उपयोक्तुं न
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr "उपयोक्तृ-ID कृते उपयोक्तुं नाम तथा/वा ईमेल-सङ्केतं प्रविशतु ।"
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:598
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "नाम वा ईमेल-सङ्केतं वा प्रविशतु।"
@@ -6595,80 +6540,16 @@ msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr "बाह्यस्रोताभ्यां कीलं अद्यतनं कुर्वन्तु।"
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:59
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, kde-format
-msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-msgid "%1 (%2)"
-msgstr "%1 (%2)"
+msgid "User ID:"
+msgstr "उपयोक्तृपरिचयः :"
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
 #, kde-format
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1:"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(required)"
-msgstr "(आवश्यकः)"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(optional)"
-msgstr "(वैकल्पिक)"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:108
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is required, but empty."
-msgstr "<interface>%1</interface> आवश्यकं, परन्तु रिक्तम् ।"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:111
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-"<icode>%2</icode>"
-msgstr ""
-"<interface>%1</interface> आवश्यकम्, परन्तु रिक्तम्।<nl/>स्थानीयप्रशासकनियमः: <icode>"
-"%2</icode>"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:119
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is incomplete."
-msgstr "<interface>%1</interface> अपूर्णम् अस्ति ।"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-"icode>"
-msgstr ""
-"<interface>%1</interface> अपूर्णम् अस्ति ।<nl/>स्थानीयप्रशासकनियमः : <icode>%2</"
-"icode>"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:129
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is invalid."
-msgstr "<interface>%1</interface> असिद्धम् अस्ति ।"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:132
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
-msgstr ""
-"<interface>%1</interface> अमान्यम् अस्ति ।<nl/>स्थानीयप्रशासकनियमः : <icode>%2</"
-"icode>"
-
-#: src/dialogs/certificatedetailswidget.cpp:164
-#, kde-format
-msgid "User ID:"
-msgstr "उपयोक्तृपरिचयः :"
 
 #: src/dialogs/certificatedetailswidget.cpp:184
 #, kde-format
@@ -7386,20 +7267,20 @@ msgstr "URIs इति"
 msgid "Enter URIs in the correct format."
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:627
+#: src/dialogs/createcsrdialog.cpp:625
 #, fuzzy, kde-format
 #| msgid "Error while running %1: %2"
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in %1: %2"
 msgstr "%1 चालयन् त्रुटिः: %2"
 
-#: src/dialogs/createcsrdialog.cpp:629
+#: src/dialogs/createcsrdialog.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid "Correct the following errors:"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:634
+#: src/dialogs/createcsrdialog.cpp:632
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid "<interface>%1</interface> is incomplete."
@@ -7407,7 +7288,7 @@ msgctxt "@info Error in Label of input field: Message"
 msgid "Error in <interface>%1</interface>: <message>%2</message>"
 msgstr "<interface>%1</interface> अपूर्णम् अस्ति ।"
 
-#: src/dialogs/createcsrdialog.cpp:666
+#: src/dialogs/createcsrdialog.cpp:644
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Create S/MIME Certification Request"
@@ -11153,6 +11034,41 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "डिक्रिप्ट/सत्यापन..."
 
+#: src/utils/csrutils.cpp:65
+#, kde-format
+msgctxt "@title"
+msgid "Save Request"
+msgstr "अनुरोधं रक्षतु"
+
+#: src/utils/csrutils.cpp:68
+#, kde-format
+msgid "PKCS#10 Requests (*.p10)"
+msgstr "PKCS # 10 अनुरोधाः (*.p10)"
+
+#: src/utils/csrutils.cpp:78
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
+#| "para><para><message>%3</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to write the request to the file <filename>%1</filename>.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<para><filename>%1</filename> इत्येतत् <filename>%2</filename> इत्यत्र "
+"स्थानान्तरयितुं असफलम् ।</para><para><message>%3</message></para>"
+
+#: src/utils/csrutils.cpp:86
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
+"should now send the request to the Certification Authority (CA).</para>"
+msgstr ""
+"<para><filename>%1</filename> इत्यत्र अनुरोधं सफलतया लिखितम् ।</para><para>अधुना "
+"भवता प्रमाणीकरणप्राधिकरणाय (CA) अनुरोधं प्रेषयितव्यम् ।</para>"
+
 #: src/utils/fileutils.cpp:22
 #, kde-format
 msgid "Please select an output folder."
@@ -12882,6 +12798,76 @@ msgid ""
 msgstr ""
 "सञ्चिकातः प्रमाणपत्रं आयातयन्तु।<nl/>सार्वजनिककीसर्वरतः आयातयितुं तस्य स्थाने "
 "<interface>Lookup on Server</interface> इत्यस्य उपयोगं कुर्वन्तु ।"
+
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "प्रमाणपत्र विवरण"
+
+#~ msgctxt "@title"
+#~ msgid "Request Saved"
+#~ msgstr "अनुरोध रक्षित"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#~ msgstr "<para>अनुरोधस्य रक्षणं विफलम् ।</para><para><message>%1</message></para>"
+
+#~ msgctxt "@title"
+#~ msgid "Error Saving Request"
+#~ msgstr "त्रुटि रक्षण अनुरोध"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid "Could not remove file <filename>%1</filename> for overwriting."
+#~ msgctxt "@info"
+#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
+#~ msgstr "अधिलेखनार्थं <filename>%1</filename> सञ्चिकां निष्कासयितुं न शक्यते ।"
+
+#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "(required)"
+#~ msgstr "(आवश्यकः)"
+
+#~ msgid "(optional)"
+#~ msgstr "(वैकल्पिक)"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is required, but empty."
+#~ msgstr "<interface>%1</interface> आवश्यकं, परन्तु रिक्तम् ।"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
+#~ "<icode>%2</icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> आवश्यकम्, परन्तु रिक्तम्।<nl/>स्थानीयप्रशासकनियमः: "
+#~ "<icode>%2</icode>"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is incomplete."
+#~ msgstr "<interface>%1</interface> अपूर्णम् अस्ति ।"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
+#~ "icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> अपूर्णम् अस्ति ।<nl/>स्थानीयप्रशासकनियमः : <icode>%2</"
+#~ "icode>"
+
+#~ msgctxt "@info"
+#~ msgid "<interface>%1</interface> is invalid."
+#~ msgstr "<interface>%1</interface> असिद्धम् अस्ति ।"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
+#~ "icode>"
+#~ msgstr ""
+#~ "<interface>%1</interface> अमान्यम् अस्ति ।<nl/>स्थानीयप्रशासकनियमः : <icode>"
+#~ "%2</icode>"
 
 #~ msgctxt "@info:label"
 #~ msgid "RSA key strength:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-02 00:44+0000\n"
+"POT-Creation-Date: 2025-09-03 00:44+0000\n"
 "PO-Revision-Date: 2007-09-03 13:42+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -839,7 +839,7 @@ msgid "Passphrase Change Succeeded"
 msgstr "پاک کردن نهانگاه CRL..."
 
 #: src/commands/changepincommand.cpp:122
-#: src/commands/createcsrforcardkeycommand.cpp:139
+#: src/commands/createcsrforcardkeycommand.cpp:127
 #: src/commands/createopenpgpkeyfromcardkeyscommand.cpp:105
 #, fuzzy, kde-format
 #| msgid ""
@@ -1173,21 +1173,14 @@ msgid "CRL cache cleared successfully."
 msgstr "نهانگاه CRL با موفقیت پاک شد."
 
 #: src/commands/command_p.h:90 src/commands/keytocardcommand.cpp:491
-#: src/commands/keytocardcommand.cpp:519
+#: src/commands/keytocardcommand.cpp:519 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
 msgstr ""
 
-#: src/commands/createcsrforcardkeycommand.cpp:149
-#, fuzzy, kde-format
-#| msgid "Certificate Details..."
-msgctxt "@title:window"
-msgid "Certificate Details"
-msgstr "جزئیات گواهی‌نامه..."
-
-#: src/commands/createcsrforcardkeycommand.cpp:190
-#: src/commands/createcsrforcardkeycommand.cpp:205
+#: src/commands/createcsrforcardkeycommand.cpp:179
+#: src/commands/createcsrforcardkeycommand.cpp:194
 #, fuzzy, kde-format
 #| msgid "Import Certificates..."
 msgctxt "@info"
@@ -1195,50 +1188,6 @@ msgid ""
 "Creating a CSR for the card key failed:\n"
 "%1"
 msgstr "واردات گواهی‌نامه‌ها..."
-
-#: src/commands/createcsrforcardkeycommand.cpp:210
-#: src/commands/newcertificatesigningrequestcommand.cpp:190
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
-"should now send the request to the Certification Authority (CA).</para>"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:213
-#, kde-format
-msgctxt "@title"
-msgid "Request Saved"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:247
-#, kde-format
-msgctxt "@title"
-msgid "Save Request"
-msgstr ""
-
-#: src/commands/createcsrforcardkeycommand.cpp:250
-#, fuzzy, kde-format
-#| msgid "PKCS#12 Key Bundle (*.p12)"
-msgid "PKCS#10 Requests (*.p10)"
-msgstr "کلاف کلید PKCS#۱۲ )*.p12("
-
-#: src/commands/createcsrforcardkeycommand.cpp:258
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-#| "%1</b></p></qt>"
-msgctxt "@info"
-msgid ""
-"<para>Saving the request failed.</para><para><message>%1</message></para>"
-msgstr ""
-"<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
-
-#: src/commands/createcsrforcardkeycommand.cpp:259
-#, kde-format
-msgctxt "@title"
-msgid "Error Saving Request"
-msgstr ""
 
 #: src/commands/creategroupcommand.cpp:101
 #, fuzzy, kde-format
@@ -3142,14 +3091,14 @@ msgctxt "@title"
 msgid "No Directory Servers Configured"
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:132
+#: src/commands/newcertificatesigningrequestcommand.cpp:130
 #: src/commands/newopenpgpcertificatecommand.cpp:155
 #, fuzzy, kde-format
 #| msgid "Could not start certificate generation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "تولید گواهی‌نامه را نتوانست آغاز کند: %1"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:142
+#: src/commands/newcertificatesigningrequestcommand.cpp:140
 #: src/commands/newopenpgpcertificatecommand.cpp:165
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
@@ -3157,7 +3106,7 @@ msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "واکشی کلیدها..."
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:143
+#: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:166
 #, kde-format
 msgid ""
@@ -3165,14 +3114,7 @@ msgid ""
 "may require several minutes..."
 msgstr ""
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:183
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
-msgctxt "@info"
-msgid "Could not write the request to the file <filename>%1</filename>: %2"
-msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
-
-#: src/commands/newcertificatesigningrequestcommand.cpp:202
+#: src/commands/newcertificatesigningrequestcommand.cpp:176
 #: src/commands/newopenpgpcertificatecommand.cpp:227
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
@@ -3182,7 +3124,7 @@ msgctxt "@title:window"
 msgid "Error"
 msgstr "خطای Kleopatra"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:208
+#: src/commands/newcertificatesigningrequestcommand.cpp:182
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
@@ -3194,7 +3136,7 @@ msgid ""
 msgstr ""
 "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
 
-#: src/commands/newcertificatesigningrequestcommand.cpp:245
+#: src/commands/newcertificatesigningrequestcommand.cpp:219
 #: src/kleopatraapplication.cpp:578
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
@@ -6882,7 +6824,7 @@ msgstr ""
 msgid "Enter a name and/or an email address to use for the user ID."
 msgstr ""
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:598
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr ""
@@ -6954,15 +6896,12 @@ msgctxt "@info:tooltip"
 msgid "Update the key from external sources."
 msgstr ""
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:59
+#: src/dialogs/certificatedetailswidget.cpp:164
 #, fuzzy, kde-format
-#| msgid "%1 bit"
-#| msgid_plural "%1 bits"
-msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-msgid "%1 (%2)"
-msgstr "%1 بیت"
+#| msgid "New user IDs:"
+msgid "User ID:"
+msgstr "شناسه‌های کاربر جدید:"
 
-#: src/dialogs/certificatedetailsinputwidget.cpp:70
 #: src/dialogs/certificatedetailswidget.cpp:173
 #, fuzzy, kde-format
 #| msgid "%1 bit"
@@ -6970,64 +6909,6 @@ msgstr "%1 بیت"
 msgctxt "interpunctation for labels"
 msgid "%1:"
 msgstr "%1 بیت"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, kde-format
-msgid "(required)"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:80
-#, fuzzy, kde-format
-#| msgid "Stop Operation"
-msgid "(optional)"
-msgstr "ایست عمل"
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:108
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is required, but empty."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:111
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-"<icode>%2</icode>"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:119
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is incomplete."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:122
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-"icode>"
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:129
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<interface>%1</interface> is invalid."
-msgstr ""
-
-#: src/dialogs/certificatedetailsinputwidget.cpp:132
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</icode>"
-msgstr ""
-
-#: src/dialogs/certificatedetailswidget.cpp:164
-#, fuzzy, kde-format
-#| msgid "New user IDs:"
-msgid "User ID:"
-msgstr "شناسه‌های کاربر جدید:"
 
 #: src/dialogs/certificatedetailswidget.cpp:184
 #, fuzzy, kde-format
@@ -7779,26 +7660,26 @@ msgstr ""
 msgid "Enter URIs in the correct format."
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:627
+#: src/dialogs/createcsrdialog.cpp:625
 #, fuzzy, kde-format
 #| msgid "Kleopatra Error"
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in %1: %2"
 msgstr "خطای Kleopatra"
 
-#: src/dialogs/createcsrdialog.cpp:629
+#: src/dialogs/createcsrdialog.cpp:627
 #, kde-format
 msgctxt "@info"
 msgid "Correct the following errors:"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:634
+#: src/dialogs/createcsrdialog.cpp:632
 #, kde-kuit-format
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in <interface>%1</interface>: <message>%2</message>"
 msgstr ""
 
-#: src/dialogs/createcsrdialog.cpp:666
+#: src/dialogs/createcsrdialog.cpp:644
 #, fuzzy, kde-format
 #| msgid "ASCII Armored Certificate Bundles (*.pem)"
 msgctxt "title:window"
@@ -11546,6 +11427,38 @@ msgctxt "@action"
 msgid "Decrypt/Verify..."
 msgstr "در حال حذف کلیدها..."
 
+#: src/utils/csrutils.cpp:65
+#, kde-format
+msgctxt "@title"
+msgid "Save Request"
+msgstr ""
+
+#: src/utils/csrutils.cpp:68
+#, fuzzy, kde-format
+#| msgid "PKCS#12 Key Bundle (*.p12)"
+msgid "PKCS#10 Requests (*.p10)"
+msgstr "کلاف کلید PKCS#۱۲ )*.p12("
+
+#: src/utils/csrutils.cpp:78
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
+#| "%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Failed to write the request to the file <filename>%1</filename>.</"
+"para><para><message>%2</message></para>"
+msgstr ""
+"<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></qt>"
+
+#: src/utils/csrutils.cpp:86
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Successfully wrote request to <filename>%1</filename>.</para><para>You "
+"should now send the request to the Certification Authority (CA).</para>"
+msgstr ""
+
 #: src/utils/fileutils.cpp:22
 #, fuzzy, kde-format
 #| msgid "Do you really want to delete this certificate?"
@@ -13366,6 +13279,41 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Certificate Details..."
+#~ msgctxt "@title:window"
+#~ msgid "Certificate Details"
+#~ msgstr "جزئیات گواهی‌نامه..."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt><p>An error occurred while trying to delete the certificate:</"
+#~| "p><p><b>%1</b></p></qt>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
+#~ msgstr ""
+#~ "<qt><p>هنگام سعی برای حذف گواهی‌نامه‌ها، خطایی رخ داد:</p><p><b>%1</b></p></"
+#~ "qt>"
+
+#, fuzzy
+#~| msgid "Could not generate certificate: %1"
+#~ msgctxt "@info"
+#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
+#~ msgstr "گواهی‌نامه را نتوانست تولید کند: %1"
+
+#, fuzzy
+#~| msgid "%1 bit"
+#~| msgid_plural "%1 bits"
+#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 بیت"
+
+#, fuzzy
+#~| msgid "Stop Operation"
+#~ msgid "(optional)"
+#~ msgstr "ایست عمل"
 
 #, fuzzy
 #~| msgid "Choose &key length:"
