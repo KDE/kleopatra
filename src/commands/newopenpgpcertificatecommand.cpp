@@ -17,6 +17,7 @@
 #include "utils/emptypassphraseprovider.h"
 #include "utils/userinfo.h"
 
+#include <qgpgme/quickjob.h>
 #include <settings.h>
 
 #include <Libkleo/Formatting>
@@ -31,6 +32,7 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <QGpgME/QuickJob>
 
 #include <QProgressDialog>
 #include <QSettings>
@@ -157,13 +159,41 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
 
     auto usage = keyParameters.keyUsage();
     usage.setIsGroupKey(isTeamKey);
+    usage.setCanSign(!isTeamKey);
     keyParameters.setKeyUsage(usage);
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
             q,
             [this, result] {
-                showResult(result);
+                if (isTeamKey) {
+                    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [result, this]() {
+                        auto key = KeyCache::instance()->findByFingerprint(result.fingerprint());
+                        if (key.isNull()) {
+                            return;
+                        }
+                        auto quickJob = QGpgME::openpgp()->quickJob();
+                        auto err = quickJob->startAddSubkey(key, QByteArrayLiteral("rsa3072") /*TODO*/, {}, Context::CreationFlags::CreateSign);
+                        disconnect(KeyCache::instance().get(), nullptr, q, nullptr);
+                        if (err) {
+                            error(i18nc("@info", "Failed to create encryption subkey: %1", Formatting::errorAsString(err)));
+                            return;
+                        }
+                        connect(quickJob, &QGpgME::QuickJob::result, q, [this, result](const auto &err) {
+                            if (err) {
+                                error(i18nc("@info", "Failed to create encryption subkey: %1", Formatting::errorAsString(err)));
+                                return;
+                            }
+
+                            if (err.isCanceled()) {
+                                return;
+                            }
+                            showResult(result);
+                        });
+                    });
+                } else {
+                    showResult(result);
+                }
             },
             Qt::QueuedConnection);
     });
