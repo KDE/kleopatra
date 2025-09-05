@@ -53,6 +53,8 @@
 #include <QGpgME/DN>
 #include <QGpgME/Protocol>
 
+#include <span>
+
 #include <kleopatra_debug.h>
 
 using namespace Kleo;
