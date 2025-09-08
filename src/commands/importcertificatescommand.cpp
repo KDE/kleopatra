@@ -1085,7 +1085,9 @@ void ImportCertificatesCommand::Private::increaseProgressValue()
 void ImportCertificatesCommand::Private::setProgressToMaximum()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    progressDialog->setValue(progressDialog->maximum());
+    if (progressDialog) {
+        progressDialog->setValue(progressDialog->maximum());
+    }
 }
 
 void ImportCertificatesCommand::doCancel()
