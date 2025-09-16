@@ -121,7 +121,7 @@ static std::vector<AttributeInfo> readAttributeOrder(const KConfigGroup &config)
     }
 
     for (AttributeInfo &attribute : attributes) {
-        attribute.preset = config.readEntry(attribute.name);
+        attribute.preset = config.readEntry(attribute.name, attribute.preset);
         attribute.readonly = config.isEntryImmutable(attribute.name);
         attribute.label = config.readEntry(attribute.name + "_label"_L1, attributeLabel(attribute.name));
         attribute.regex = config.readEntry(attribute.name + "_regex"_L1);
