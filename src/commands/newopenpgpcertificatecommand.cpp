@@ -97,6 +97,8 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
         detailsDialog->setWindowTitle(i18nc("title:window", "Create OpenPGP Team Certificate"));
         detailsDialog->setInfoText(
             i18nc("@info", "Enter a name and/or an email address to use for the certificate. The certificate will be set up for shared usage in a team."));
+        detailsDialog->setEmailLabel(i18nc("@label", "Team email address"));
+        detailsDialog->setNameLabel(i18nc("@label", "Team name"));
     }
 
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
