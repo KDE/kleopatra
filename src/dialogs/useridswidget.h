@@ -11,7 +11,6 @@
 namespace GpgME
 {
 class Key;
-class KeyListResult;
 }
 
 namespace Kleo

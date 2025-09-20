@@ -25,7 +25,6 @@ namespace Kleo
 {
 
 class AbstractKeyListModel;
-class AbstractKeyListSortFilterProxyModel;
 class KeyFilter;
 class KeyListModelInterface;
 class SearchBar;

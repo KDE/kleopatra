@@ -23,7 +23,6 @@ extern QElapsedTimer startupTimer;
 #define STARTUP_TRACE qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:" << SRCNAME << __func__ << __LINE__;
 
 class MainWindow;
-class SysTrayIcon;
 class QSettings;
 
 class KleopatraApplication : public QApplication

@@ -10,8 +10,6 @@
 
 #include <gpgme++/key.h>
 
-class QDate;
-
 namespace Kleo
 {
 

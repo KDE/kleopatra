@@ -17,9 +17,7 @@
 #include <vector>
 
 class CardKeysWidgetItem;
-class QAction;
 class QToolButton;
-class QTreeWidgetItem;
 
 namespace GpgME
 {

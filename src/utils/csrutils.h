@@ -9,7 +9,6 @@
 #pragma once
 
 class QByteArray;
-class QUrl;
 class QWidget;
 
 namespace Kleo

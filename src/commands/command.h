@@ -16,7 +16,6 @@
 #include <memory>
 #include <vector>
 
-class QModelIndex;
 template<typename T>
 class QList;
 class QAbstractItemView;
@@ -30,7 +29,6 @@ namespace Kleo
 {
 
 class KeyListController;
-class AbstractKeyListSortFilterProxyModel;
 
 class Command : public QObject, public ExecutionContext
 {

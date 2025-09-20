@@ -14,14 +14,6 @@
 #include <memory>
 #include <vector>
 
-namespace KMime
-{
-namespace Types
-{
-class Mailbox;
-}
-}
-
 namespace Kleo
 {
 

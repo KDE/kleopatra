@@ -13,8 +13,6 @@
 #include <QProcess>
 #include <QString>
 
-class QWidget;
-
 namespace Kleo
 {
 namespace Commands

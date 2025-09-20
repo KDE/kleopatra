@@ -12,8 +12,6 @@
 #include <memory>
 #include <vector>
 
-class KActionCollection;
-
 namespace Kleo
 {
 namespace SmartCard

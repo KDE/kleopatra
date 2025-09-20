@@ -26,7 +26,6 @@ namespace GpgME
 {
 class DecryptionResult;
 class VerificationResult;
-class Key;
 class Signature;
 }
 
@@ -236,8 +235,6 @@ class DecryptVerifyResult : public Task::Result
     friend class ::Kleo::Crypto::AbstractDecryptVerifyTask;
 
 public:
-    class SenderInfo;
-
     QString overview() const override;
     QString details() const override;
     GpgME::Error error() const override;

@@ -19,7 +19,6 @@ namespace SmartCard
 {
 enum class AppType;
 struct AlgorithmInfo;
-class OpenPGPCard;
 
 std::string appName(Kleo::SmartCard::AppType appType);
 

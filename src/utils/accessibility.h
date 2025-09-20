@@ -12,7 +12,6 @@
 
 class QAction;
 class QLabel;
-class QObject;
 class QString;
 
 namespace Kleo

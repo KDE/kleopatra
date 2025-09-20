@@ -13,7 +13,6 @@
 
 class QCheckBox;
 class QComboBox;
-class QBoxLayout;
 class QPushButton;
 
 namespace Kleo

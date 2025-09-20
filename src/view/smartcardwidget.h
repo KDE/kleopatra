@@ -14,10 +14,7 @@
 #include <string>
 
 class KMessageWidget;
-class QGridLayout;
-class QLabel;
 class QToolButton;
-class QVBoxLayout;
 
 namespace GpgME
 {

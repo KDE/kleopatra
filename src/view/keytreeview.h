@@ -21,8 +21,6 @@
 
 #include <Libkleo/TreeView>
 
-class QTreeView;
-
 namespace Kleo
 {
 
