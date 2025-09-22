@@ -426,6 +426,7 @@ public:
         mMode = mode;
         switch (mMode) {
         case SingleCertification:
+            mFprField->valueLabel()->setFocus();
             break;
         case BulkCertification: {
             mInfoLabel->setText(i18nc("@info",
@@ -434,6 +435,7 @@ public:
                                       "<i>Note: Only the fingerprints clearly identify the certificate and its owner.</i>"));
             mFprField->setVisible(false);
             mTrustSignatureWidgets.setVisible(false);
+            mSecKeySelect->setFocus();
             break;
         }
         }
