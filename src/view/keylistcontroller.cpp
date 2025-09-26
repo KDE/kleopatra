@@ -45,7 +45,6 @@
 #include "commands/lookupcertificatescommand.h"
 #include "commands/newcertificatesigningrequestcommand.h"
 #include "commands/newopenpgpcertificatecommand.h"
-#include "commands/newopenpgpteamcertificatecommand.h"
 #include "commands/refreshcertificatescommand.h"
 #include "commands/reloadkeyscommand.h"
 #include "commands/revokecertificationcommand.h"
@@ -332,15 +331,6 @@ void KeyListController::createActions(KActionCollection *coll)
             nullptr,
             nullptr,
             QStringLiteral("Ctrl+N"),
-        },
-        {
-            "file_new_team_certificate",
-            i18n("New OpenPGP Team Key Pair..."),
-            i18n("Create a new OpenPGP certificate for shared usage in teams"),
-            "view-certificate-add",
-            nullptr,
-            nullptr,
-            QString(),
         },
         {
             "file_export_certificates",
@@ -697,7 +687,6 @@ void KeyListController::createActions(KActionCollection *coll)
 
     // ### somehow make this better...
     registerActionForCommand<NewOpenPGPCertificateCommand>(coll->action(QStringLiteral("file_new_certificate")));
-    registerActionForCommand<NewOpenPGPTeamCertificateCommand>(coll->action(QStringLiteral("file_new_team_certificate")));
     registerActionForCommand<NewCertificateSigningRequestCommand>(coll->action(QStringLiteral("file_new_certificate_signing_request")));
     //---
     registerActionForCommand<LookupCertificatesCommand>(coll->action(QStringLiteral("file_lookup_certificates")));
