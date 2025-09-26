@@ -67,7 +67,7 @@ public:
 private:
     KeyParameters keyParameters;
     bool protectKeyWithPassword = false;
-    bool isTeamKey = false;
+    bool teamKey = false;
     EmptyPassphraseProvider emptyPassphraseProvider;
     QPointer<OpenPGPCertificateCreationDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
@@ -92,27 +92,17 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     detailsDialog->setAttribute(Qt::WA_DeleteOnClose);
     applyWindowID(detailsDialog);
 
-    if (isTeamKey) {
-        detailsDialog->setWindowTitle(i18nc("title:window", "Create OpenPGP Team Certificate"));
-        detailsDialog->setInfoText(
-            i18nc("@info", "Enter a name and/or an email address to use for the certificate. The certificate will be set up for shared usage in a team."));
-        detailsDialog->setEmailLabel(i18nc("@label", "Team email address"));
-        detailsDialog->setNameLabel(i18nc("@label", "Team name"));
-    }
-
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
         const auto settings = Kleo::Settings{};
         const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("CertificateCreationWizard")};
-        if (!isTeamKey) {
-            // prefer the last used name and email address over the values retrieved from the system
-            detailsDialog->setName(config.readEntry("NAME", QString{}));
-            if (detailsDialog->name().isEmpty() && settings.prefillName()) {
-                detailsDialog->setName(userFullName());
-            }
-            detailsDialog->setEmail(config.readEntry("EMAIL", QString{}));
-            if (detailsDialog->email().isEmpty() && settings.prefillEmail()) {
-                detailsDialog->setEmail(userEmailAddress());
-            }
+        // prefer the last used name and email address over the values retrieved from the system
+        detailsDialog->setName(config.readEntry("NAME", QString{}));
+        if (detailsDialog->name().isEmpty() && settings.prefillName()) {
+            detailsDialog->setName(userFullName());
+        }
+        detailsDialog->setEmail(config.readEntry("EMAIL", QString{}));
+        if (detailsDialog->email().isEmpty() && settings.prefillEmail()) {
+            detailsDialog->setEmail(userEmailAddress());
         }
     } else {
         detailsDialog->setKeyParameters(keyParameters);
@@ -122,6 +112,7 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     connect(detailsDialog, &QDialog::accepted, q, [this]() {
         keyParameters = detailsDialog->keyParameters();
         protectKeyWithPassword = detailsDialog->protectKeyWithPassword();
+        teamKey = detailsDialog->isTeamKey();
         QMetaObject::invokeMethod(
             q,
             [this] {
@@ -157,22 +148,26 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     }
 
     auto usage = keyParameters.keyUsage();
-    usage.setIsGroupKey(isTeamKey);
-    usage.setCanSign(!isTeamKey);
+    usage.setIsGroupKey(teamKey);
+    usage.setCanSign(!teamKey);
     keyParameters.setKeyUsage(usage);
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
             q,
             [this, result] {
-                if (isTeamKey) {
+                if (teamKey) {
                     connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [result, this]() {
                         auto key = KeyCache::instance()->findByFingerprint(result.fingerprint());
                         if (key.isNull()) {
                             return;
                         }
                         auto quickJob = QGpgME::openpgp()->quickJob();
-                        auto err = quickJob->startAddSubkey(key, QByteArrayLiteral("rsa3072") /*TODO*/, {}, Context::CreationFlags::CreateSign);
+                        auto flags = Context::CreationFlags::CreateSign;
+                        if (!protectKeyWithPassword) {
+                            flags |= GpgME::Context::CreationFlags::CreateNoPassword;
+                        }
+                        auto err = quickJob->startAddSubkey(key, QByteArrayLiteral("rsa3072") /*TODO*/, {}, flags);
                         disconnect(KeyCache::instance().get(), nullptr, q, nullptr);
                         if (err) {
                             error(i18nc("@info", "Failed to create encryption subkey: %1", Formatting::errorAsString(err)));
@@ -309,11 +304,6 @@ void NewOpenPGPCertificateCommand::doCancel()
     if (d->job) {
         d->job->slotCancel();
     }
-}
-
-void NewOpenPGPCertificateCommand::setIsTeamKey(bool isTeamKey)
-{
-    d->isTeamKey = isTeamKey;
 }
 
 #undef d

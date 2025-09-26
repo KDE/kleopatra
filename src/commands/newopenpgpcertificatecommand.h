@@ -22,9 +22,6 @@ public:
     NewOpenPGPCertificateCommand(QAbstractItemView *view, KeyListController *parent);
     ~NewOpenPGPCertificateCommand() override;
 
-protected:
-    void setIsTeamKey(bool isTeamKey);
-
 private:
     void doStart() override;
     void doCancel() override;
