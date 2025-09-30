@@ -71,6 +71,7 @@ private:
     QPointer<NewOpenPGPCertificateDetailsDialog> detailsDialog;
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
+    std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
 };
 
 NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_func()
@@ -145,6 +146,8 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         keyParameters.setComment(settings->value(QStringLiteral("uidcomment"), {}).toString());
     }
 
+    keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
         QMetaObject::invokeMethod(
             q,
@@ -196,6 +199,8 @@ void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult
             }
         }
     }
+
+    keyCacheAutoRefreshSuspension.reset();
 
     if (!key.isNull()) {
         success(
