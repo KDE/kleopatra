@@ -28,6 +28,7 @@
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyHelpers>
+#include <Libkleo/KeyList>
 #include <Libkleo/TreeWidget>
 
 #include <KConfigGroup>
@@ -393,8 +394,10 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
         item->setData(Private::KeyId, Qt::DisplayRole, Formatting::prettyID(subkey.keyID()));
         item->setData(Private::KeyId, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.keyID()));
         item->setData(Private::KeyId, Qt::UserRole, QVariant::fromValue(subkey));
+        item->setData(Private::KeyId, Kleo::ClipboardRole, QString::fromLatin1(subkey.keyID()));
         item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(subkey.fingerprint()));
         item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(subkey.fingerprint()));
+        item->setData(Private::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(subkey.fingerprint()));
         item->setData(Private::Status, Qt::DisplayRole, Kleo::Formatting::validityShort(subkey));
         item->setData(Private::ValidFrom, Qt::DisplayRole, Kleo::Formatting::creationDateString(subkey));
         item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(subkey));
