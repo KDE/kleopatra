@@ -19,11 +19,11 @@
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
 #include "view/htmllabel.h"
-#include "view/urllabel.h"
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/AuditLogViewer>
 #include <Libkleo/Classify>
+#include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
 
 #include <gpgme++/decryptionresult.h>
@@ -85,7 +85,7 @@ public:
     void oneImportFinished();
 
     const std::shared_ptr<const Task::Result> m_result;
-    UrlLabel *m_auditLogLabel = nullptr;
+    QPushButton *m_auditLogButton = nullptr;
     QPushButton *m_closeButton = nullptr;
     QPushButton *m_showButton = nullptr;
     bool m_importCanceled = false;
@@ -210,11 +210,26 @@ static QUrl auditlog_url_template()
 
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
-    const auto auditLogUrl = m_result->auditLog().asUrl(auditlog_url_template());
+    m_auditLogButton->setVisible(false);
+    if (const int code = m_result->auditLog().error().code()) {
+        if (code == GPG_ERR_NOT_IMPLEMENTED) {
+            qCDebug(KLEOPATRA_LOG) << "not showing link (not implemented)";
+        } else if (code == GPG_ERR_NO_DATA) {
+            qCDebug(KLEOPATRA_LOG) << "not showing link (not available)";
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "Error Retrieving Audit Log:" << Formatting::errorAsString(m_result->auditLog().error());
+        }
+        return;
+    }
+
+    if (m_result->auditLog().text().isEmpty()) {
+        return;
+    }
+
     const auto auditLogLinkText = m_result->hasError() ? i18n("Diagnostics") //
                                                        : i18nc("The Audit Log is a detailed error log from the gnupg backend", "Show Audit Log");
-    m_auditLogLabel->setUrl(auditLogUrl, auditLogLinkText);
-    m_auditLogLabel->setVisible(!auditLogUrl.isEmpty());
+    m_auditLogButton->setText(auditLogLinkText);
+    m_auditLogButton->setVisible(true);
 }
 
 ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &result, QWidget *parent, Qt::WindowFlags flags)
@@ -264,13 +279,11 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
 
     d->addIgnoreMDCButton(actionLayout);
 
-    d->m_auditLogLabel = new UrlLabel;
-    connect(d->m_auditLogLabel, &QLabel::linkActivated, this, [this](const auto &link) {
-        d->slotLinkActivated(link);
+    d->m_auditLogButton = new QPushButton;
+    connect(d->m_auditLogButton, &QPushButton::clicked, this, [this]() {
+        AuditLogViewer::showAuditLog(parentWidget(), d->m_result->auditLog());
     });
-    actionLayout->addWidget(d->m_auditLogLabel);
-    d->m_auditLogLabel->setStyleSheet(styleSheet);
-    d->m_auditLogLabel->setLinkColor(linkColor);
+    actionLayout->addWidget(d->m_auditLogButton);
 
     auto detailsLabel = new HtmlLabel;
     detailsLabel->setWordWrap(true);
@@ -341,19 +354,7 @@ void ResultItemWidget::Private::slotLinkActivated(const QString &link)
         }
         return;
     }
-
-    const QUrl url(link);
-
-    if (url.host() == QLatin1String("showauditlog")) {
-        q->showAuditLog();
-        return;
-    }
     qCWarning(KLEOPATRA_LOG) << "Unexpected link scheme: " << link;
-}
-
-void ResultItemWidget::showAuditLog()
-{
-    AuditLogViewer::showAuditLog(parentWidget(), d->m_result->auditLog());
 }
 
 #include "moc_resultitemwidget.cpp"
