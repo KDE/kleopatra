@@ -13,7 +13,6 @@
 
 #include "utils/accessibility.h"
 #include "view/htmllabel.h"
-#include "view/urllabel.h"
 
 QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QObject *object)
 {
@@ -23,8 +22,7 @@ QAccessibleInterface *Kleo::accessibleWidgetFactory(const QString &classname, QO
 
     QWidget *widget = static_cast<QWidget *>(object);
 
-    if (classname == QString::fromLatin1(Kleo::HtmlLabel::staticMetaObject.className())
-        || classname == QString::fromLatin1(Kleo::UrlLabel::staticMetaObject.className())) {
+    if (classname == QString::fromLatin1(Kleo::HtmlLabel::staticMetaObject.className())) {
         iface = new AccessibleRichTextLabel{widget};
     } else if (classname == QLatin1StringView("QLabel") && Kleo::representAsAccessibleValueWidget(widget)) {
         iface = new AccessibleValueLabel{widget};
