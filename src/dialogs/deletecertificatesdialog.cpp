@@ -186,7 +186,7 @@ private:
             unselectedList->setVisible(false);
             groupsList->setVisible(false);
 
-            connect(&buttonBox, SIGNAL(accepted()), qq, SLOT(accept()));
+            connect(&buttonBox, &QDialogButtonBox::accepted, qq, &DeleteCertificatesDialog::accept);
             connect(&buttonBox, &QDialogButtonBox::rejected, qq, &QDialog::reject);
         }
     } ui;
