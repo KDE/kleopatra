@@ -420,6 +420,7 @@ public:
 
         categoriesLV = new QListWidget(tab_2);
         categoriesLV->setObjectName(QString::fromUtf8("categoriesLV"));
+        categoriesLV->setAccessibleName(i18nc("@label", "Categories"));
 
         gridLayout->addWidget(categoriesLV, 1, 0, 1, 1);
 

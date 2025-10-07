@@ -42,6 +42,7 @@ public:
             mainLayout->setContentsMargins({});
 
             treeWidget = new QTreeWidget{widget};
+            treeWidget->setAccessibleName(i18nc("@label", "Certificate chain"));
             // Breeze draws no frame for scroll areas that are the only widget in a layout...unless we force it
             treeWidget->setProperty("_breeze_force_frame", true);
             treeWidget->setHeaderHidden(true);

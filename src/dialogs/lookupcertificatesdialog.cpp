@@ -188,6 +188,7 @@ private:
 
             row++;
             resultTV = new Kleo::TreeWidget(dialog);
+            resultTV->setAccessibleName(i18nc("@label", "Results"));
             resultTV->setEnabled(true);
             resultTV->setMinimumSize(QSize(400, 0));
             overlay = new TextOverlay{resultTV, dialog};
