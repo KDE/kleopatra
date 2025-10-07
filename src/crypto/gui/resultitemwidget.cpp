@@ -202,12 +202,6 @@ void ResultItemWidget::Private::addKeyImportButton(QBoxLayout *lay, bool search)
     }
 }
 
-static QUrl auditlog_url_template()
-{
-    QUrl url(QStringLiteral("kleoresultitem://showauditlog"));
-    return url;
-}
-
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
     m_auditLogButton->setVisible(false);
