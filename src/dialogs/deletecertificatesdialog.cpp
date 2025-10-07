@@ -151,8 +151,11 @@ private:
             Q_SET_OBJECT_NAME(buttonBox);
             Q_SET_OBJECT_NAME(vlay);
 
+            selectedLB.setBuddy(selectedList);
             selectedList->setAccessibleName(i18nc("@label", "Certificates"));
+            unselectedLB.setBuddy(unselectedList);
             unselectedList->setAccessibleName(i18nc("@label", "Certificates"));
+            groupsLB.setBuddy(groupsList);
             groupsList->setAccessibleName(i18nc("@label", "Groups"));
 
             vlay.addWidget(&selectedLB);
