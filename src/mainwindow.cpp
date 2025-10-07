@@ -357,10 +357,12 @@ private:
 
     void keyListingDone()
     {
-        if (KeyCache::instance()->keys().empty()) {
-            showView(ui.welcomeWidget);
-        } else {
-            showView(ui.searchTab);
+        if (KeyCache::instance()->initialized()) {
+            if (KeyCache::instance()->keys().empty()) {
+                showView(ui.welcomeWidget);
+            } else {
+                showView(ui.searchTab);
+            }
         }
     }
 
@@ -435,6 +437,9 @@ MainWindow::Private::Private(MainWindow *qq)
 
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView *, QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView *, QPoint)));
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
+        keyListingDone();
+    });
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [this]() {
         keyListingDone();
     });
 
