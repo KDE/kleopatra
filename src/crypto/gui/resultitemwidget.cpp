@@ -133,12 +133,6 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
     lay->addWidget(btn);
 }
 
-static QUrl auditlog_url_template()
-{
-    QUrl url(QStringLiteral("kleoresultitem://showauditlog"));
-    return url;
-}
-
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
     m_auditLogButton->setVisible(false);
