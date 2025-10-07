@@ -49,6 +49,10 @@ public:
 #if HAVE_QDBUS
         QDBusConnection::sessionBus().connect(QString(), QString(), QStringLiteral("org.kde.kleo.CryptoConfig"), QStringLiteral("changed"), q, SLOT(load()));
 #endif
+        ui.customHTTPProxy->setAccessibleName(i18nc("@label", "HTTP Proxy"));
+        ui.customHTTPProxy->setToolTip(i18nc("@info:tooltip", "Enter the proxy to use for HTTP requests."));
+        ui.customLDAPLabel->setBuddy(ui.customLDAPProxy);
+
         auto changedSignal = &SMimeValidationConfigurationWidget::changed;
         connect(ui.intervalRefreshCB, &QCheckBox::toggled, q, changedSignal);
         connect(ui.intervalRefreshSB, &QSpinBox::valueChanged, q, changedSignal);
