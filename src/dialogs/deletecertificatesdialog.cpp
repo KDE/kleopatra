@@ -9,8 +9,6 @@
 
 #include "deletecertificatesdialog.h"
 
-#include <view/keytreeview.h>
-
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
@@ -30,7 +28,6 @@
 #include <QListWidget>
 #include <QPushButton>
 #include <QScreen>
-#include <QTreeView>
 #include <QVBoxLayout>
 #include <QWhatsThis>
 

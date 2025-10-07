@@ -62,7 +62,6 @@
 #include <QPushButton>
 #include <QStackedWidget>
 #include <QStringBuilder>
-#include <QTreeWidget>
 #include <QVBoxLayout>
 
 #include <map>
