@@ -344,10 +344,12 @@ public:
 
     void showCertificateView()
     {
-        if (KeyCache::instance()->keys().empty()) {
-            showView(QStringLiteral("view_certificate_overview"), ui.welcomeWidget);
-        } else {
-            showView(QStringLiteral("view_certificate_overview"), ui.searchTab);
+        if (KeyCache::instance()->initialized()) {
+            if (KeyCache::instance()->keys().empty()) {
+                showView(QStringLiteral("view_certificate_overview"), ui.welcomeWidget);
+            } else {
+                showView(QStringLiteral("view_certificate_overview"), ui.searchTab);
+            }
         }
     }
 
@@ -473,6 +475,9 @@ MainWindow::Private::Private(MainWindow *qq)
 
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView *, QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView *, QPoint)));
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
+        keyListingDone();
+    });
+    connect(KeyCache::instance().get(), &KeyCache::keysMayHaveChanged, q, [this]() {
         keyListingDone();
     });
 
