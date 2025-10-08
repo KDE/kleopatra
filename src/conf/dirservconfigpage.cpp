@@ -43,6 +43,7 @@
 
 using namespace Kleo;
 using namespace QGpgME;
+using namespace Qt::StringLiterals;
 
 // Option for configuring X.509 servers (available via gpgconf since GnuPG 2.3.5 and 2.2.34)
 static const char s_x509services_componentName[] = "dirmngr";
@@ -186,6 +187,8 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         groupBoxLayout->setContentsMargins({});
 
         mDirectoryServices = new Kleo::DirectoryServicesWidget(q);
+        // set a non-empty accessible name to prevent Qt from reporting the parent's group box title as accessible name
+        mDirectoryServices->setAccessibleName(u" "_s);
         if (QLayout *l = mDirectoryServices->layout()) {
             l->setContentsMargins(0, 0, 0, 0);
         }
