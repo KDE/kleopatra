@@ -46,6 +46,7 @@ private:
 private:
     bool shown = false;
     QWidget *mBaseWidget = nullptr;
+    QPointer<QWidget> mOldFocusWidget;
     QPointer<QWidget> mOverlay;
 };
 
