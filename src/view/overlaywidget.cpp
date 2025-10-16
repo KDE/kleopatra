@@ -13,6 +13,7 @@
 
 #include "kleopatra_debug.h"
 
+#include <QApplication>
 #include <QEvent>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -52,6 +53,12 @@ void OverlayWidget::showOverlay()
     shown = true;
     mBaseWidget->setEnabled(false);
     reposition();
+    // grab focus if the base widget (or one of its children) has focus
+    mOldFocusWidget.clear();
+    if ((focusPolicy() != Qt::NoFocus) && (mBaseWidget->hasFocus() || mBaseWidget->isAncestorOf(QApplication::focusWidget()))) {
+        mOldFocusWidget = QApplication::focusWidget();
+        setFocus();
+    }
     mBaseWidget->installEventFilter(this);
 }
 
@@ -62,6 +69,10 @@ void OverlayWidget::hideOverlay()
     }
     shown = false;
     mBaseWidget->removeEventFilter(this);
+    // return focus to the previous focus widget if the overlay had focus
+    if (hasFocus() && mOldFocusWidget) {
+        mOldFocusWidget->setFocus();
+    }
     hide();
     mBaseWidget->setEnabled(true);
 }

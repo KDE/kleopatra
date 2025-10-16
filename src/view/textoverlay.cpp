@@ -35,6 +35,8 @@ TextOverlay::TextOverlay(QWidget *baseWidget, QWidget *parent)
     vbox->addStretch(1);
 
     setOverlay(widget);
+    setFocusProxy(label);
+    setFocusPolicy(label->focusPolicy());
 }
 
 TextOverlay::~TextOverlay() = default;
