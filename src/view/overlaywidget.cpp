@@ -51,7 +51,6 @@ void OverlayWidget::showOverlay()
         return;
     }
     shown = true;
-    mBaseWidget->setEnabled(false);
     reposition();
     // grab focus if the base widget (or one of its children) has focus
     mOldFocusWidget.clear();
@@ -59,6 +58,7 @@ void OverlayWidget::showOverlay()
         mOldFocusWidget = QApplication::focusWidget();
         setFocus();
     }
+    mBaseWidget->setEnabled(false);
     mBaseWidget->installEventFilter(this);
 }
 
@@ -69,12 +69,12 @@ void OverlayWidget::hideOverlay()
     }
     shown = false;
     mBaseWidget->removeEventFilter(this);
+    mBaseWidget->setEnabled(true);
     // return focus to the previous focus widget if the overlay had focus
     if (hasFocus() && mOldFocusWidget) {
         mOldFocusWidget->setFocus();
     }
     hide();
-    mBaseWidget->setEnabled(true);
 }
 
 bool OverlayWidget::eventFilter(QObject *object, QEvent *event)
