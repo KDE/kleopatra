@@ -557,7 +557,7 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         // View menu
         {
-            "redisplay",
+            "view_redisplay",
             i18n("Redisplay"),
             QString(),
             "view-refresh",
