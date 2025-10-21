@@ -24,6 +24,7 @@
 #include <QGpgME/DeleteJob>
 #include <QGpgME/MultiDeleteJob>
 #include <QGpgME/Protocol>
+#include <qgpgme/qgpgme_version.h>
 
 #include <gpgme++/key.h>
 
@@ -103,6 +104,7 @@ private:
     QPointer<MultiDeleteJob> cmsJob, pgpJob;
     GpgME::Error cmsError, pgpError;
     std::vector<Key> cmsKeys, pgpKeys;
+    std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
 };
 
 DeleteCertificatesCommand::Private *DeleteCertificatesCommand::d_func()
@@ -286,6 +288,8 @@ void DeleteCertificatesCommand::Private::slotDialogAccepted()
     pgpKeys.swap(openpgp);
     cmsKeys.swap(cms);
 
+    keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
+
     if (!pgpKeys.empty()) {
         startDeleteJob(GpgME::OpenPGP);
     }
@@ -331,6 +335,30 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
     Q_ASSERT(!pgpJob);
     Q_ASSERT(!cmsJob);
 
+    // on success, we know which keys were removed
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+    if (!pgpKeys.empty() && pgpError.isSuccess()) {
+#else
+    if (!pgpKeys.empty() && !pgpError && !pgpError.isCanceled()) {
+#endif
+        KeyCache::mutableInstance()->remove(pgpKeys);
+    }
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+    if (!cmsKeys.empty() && cmsError.isSuccess()) {
+#else
+    if (!cmsKeys.empty() && !cmsError && !cmsError.isCanceled()) {
+#endif
+        KeyCache::mutableInstance()->remove(cmsKeys);
+    }
+
+    // force a keylisting in any case because the deleted keys might have certified other keys
+    const GpgME::Protocol protocolToUpdate = (!pgpKeys.empty() //
+                                                  ? (!cmsKeys.empty() //
+                                                         ? GpgME::Protocol::UnknownProtocol
+                                                         : GpgME::Protocol::OpenPGP)
+                                                  : GpgME::Protocol::CMS);
+    KeyCache::mutableInstance()->reload(protocolToUpdate, KeyCache::ForceReload);
+
     if (pgpError || cmsError) {
         QString pgpErrorString;
         if (pgpError) {
@@ -347,10 +375,6 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
             "<p><b>%1</b></p></qt>",
             pgpError ? cmsError ? pgpErrorString + QLatin1String("</br>") + cmsErrorString : pgpErrorString : cmsErrorString);
         error(msg, i18n("Certificate Deletion Failed"));
-    } else if (!pgpError.isCanceled() && !cmsError.isCanceled()) {
-        std::vector<Key> keys = pgpKeys;
-        keys.insert(keys.end(), cmsKeys.begin(), cmsKeys.end());
-        KeyCache::mutableInstance()->remove(keys);
     }
 
     finished();
