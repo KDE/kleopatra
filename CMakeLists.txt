@@ -260,10 +260,10 @@ ecm_qt_install_logging_categories(
         )
 
 ki18n_install(po)
-if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
-    kdoctools_install(po)
-    add_subdirectory(doc)
-endif()
+# if(KF${KF_MAJOR_VERSION}DocTools_FOUND)
+#     kdoctools_install(po)
+#     add_subdirectory(doc)
+# endif()
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 # add clang-format target for all our real source files
