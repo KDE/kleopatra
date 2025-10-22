@@ -31,6 +31,8 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 
+#include <QtVersionChecks>
+
 #include "kleopatra_debug.h"
 
 using namespace Kleo;
@@ -172,8 +174,14 @@ public Q_SLOTS:
         if (on == m_showAll) {
             return;
         }
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+        beginFilterChange();
+        m_showAll = on;
+        endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
         m_showAll = on;
         invalidateFilter();
+#endif
         Q_EMIT showAllChanged(on);
     }
 
