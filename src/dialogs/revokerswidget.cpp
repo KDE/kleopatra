@@ -46,12 +46,10 @@ public:
             if (!index.isValid()) {
                 return;
             }
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
             const auto fingerprint = QString::fromLatin1(key.revocationKey(ui.revokersTree->currentIndex().row()).fingerprint());
             auto cmd = Command::commandForQuery(fingerprint);
             cmd->setParentWidget(q->window());
             cmd->start();
-#endif
         });
     }
 
@@ -111,7 +109,6 @@ void RevokersWidget::setKey(const GpgME::Key &key)
 
     d->ui.revokersTree->clear();
 
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
     for (size_t i = 0; i < key.numRevocationKeys(); i++) {
         auto item = new QTreeWidgetItem;
 
@@ -136,7 +133,6 @@ void RevokersWidget::setKey(const GpgME::Key &key)
 
         d->ui.revokersTree->addTopLevelItem(item);
     }
-#endif
     QMetaObject::invokeMethod(
         this,
         [this]() {

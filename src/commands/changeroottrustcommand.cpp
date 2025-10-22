@@ -19,7 +19,6 @@
 #include <KLocalizedString>
 
 #include <QGpgME/DN>
-#include <qgpgme/qgpgme_version.h>
 
 #include <QSaveFile>
 
@@ -36,10 +35,6 @@
 #include <gpgme++/key.h>
 
 #include <algorithm>
-
-#if QGPGME_VERSION < QT_VERSION_CHECK(2, 0, 0)
-#include <Libkleo/Dn>
-#endif
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -217,16 +212,9 @@ static KLocalizedString joinAsIndentedLines(const QStringList &strings)
 
 bool ChangeRootTrustCommand::Private::confirmOperation(const Key &key)
 {
-#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
     QGpgME::DN dn(key.userID(0).id());
     dn.setAttributeOrder(DNAttributes::order());
     const QStringList certificateAttributes = dn.prettyAttributes();
-#else
-    QT_WARNING_PUSH
-    QT_WARNING_DISABLE_DEPRECATED
-    const QStringList certificateAttributes = DN(key.userID(0).id()).prettyAttributes();
-    QT_WARNING_POP
-#endif
     const KLocalizedString certificateInfo = joinAsIndentedLines(certificateAttributes);
     {
         const QString question = (trust == GpgME::Key::Ultimate) //

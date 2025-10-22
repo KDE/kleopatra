@@ -136,9 +136,7 @@ void ToggleCertificateEnabledCommand::doStart()
 
     d->createJob();
 
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
     d->job->startSetKeyEnabled(d->key(), d->key().isDisabled());
-#endif
 }
 
 void ToggleCertificateEnabledCommand::doCancel()
@@ -151,11 +149,7 @@ void ToggleCertificateEnabledCommand::doCancel()
 // static
 bool ToggleCertificateEnabledCommand::isSupported()
 {
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
     return engineInfo(GpgEngine).engineVersion() >= "2.4.6";
-#else
-    return false;
-#endif
 }
 
 #undef d

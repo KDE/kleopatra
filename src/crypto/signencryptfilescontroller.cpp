@@ -391,13 +391,9 @@ static std::shared_ptr<SignEncryptTask> createSignEncryptTaskForFileInfo(const Q
     task->setEncryptSymmetric(symmetric);
     const QString input = fi.absoluteFilePath();
     task->setInputFileName(input);
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
     if (task->protocol() != GpgME::OpenPGP) {
         task->setInput(Input::createFromFile(input));
     }
-#else
-    task->setInput(Input::createFromFile(input));
-#endif
 
     task->setOutputFileName(outputName);
 

@@ -17,9 +17,6 @@
 
 #include <gpgme++/key.h>
 
-// needed for GPGME_VERSION_NUMBER
-#include <gpgme.h>
-
 #include <QApplication>
 #include <QFileInfo>
 #include <QRegularExpression>
@@ -51,7 +48,6 @@ public:
     {
         Q_UNUSED(type);
 
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
         if (pgpData.isEmpty() && !pgpFprs.isEmpty()) {
             auto job = QGpgME::openpgp()->publicKeyExportJob(true);
             job->exec(pgpFprs, pgpData);
@@ -60,7 +56,6 @@ public:
             auto job = QGpgME::smime()->publicKeyExportJob(true);
             job->exec(smimeFprs, smimeData);
         }
-#endif
 
         if (mimeType == QLatin1StringView("text/uri-list")) {
             if (tempFileUrl.isEmpty()) {

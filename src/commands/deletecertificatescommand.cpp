@@ -343,18 +343,10 @@ void DeleteCertificatesCommand::Private::showErrorsAndFinish()
     Q_ASSERT(!cmsJob);
 
     // on success, we know which keys were removed
-#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
     if (!pgpKeys.empty() && pgpError.isSuccess()) {
-#else
-    if (!pgpKeys.empty() && !pgpError && !pgpError.isCanceled()) {
-#endif
         KeyCache::mutableInstance()->remove(pgpKeys);
     }
-#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
     if (!cmsKeys.empty() && cmsError.isSuccess()) {
-#else
-    if (!cmsKeys.empty() && !cmsError && !cmsError.isCanceled()) {
-#endif
         KeyCache::mutableInstance()->remove(cmsKeys);
     }
 

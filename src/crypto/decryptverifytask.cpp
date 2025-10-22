@@ -899,7 +899,6 @@ static void setIgnoreMDCErrorFlag(QGpgME::Job *job, bool ignoreMDCError)
 
 void DecryptVerifyTask::Private::startDecryptVerifyJob()
 {
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
     if (!m_outputFilePath.isEmpty() && QFile::exists(m_outputFilePath)) {
         // The output files are always written to a temporary location. Therefore, this can only occur
         // if two signed/encrypted files with the same name in different folders are verified/decrypted
@@ -912,7 +911,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
             Qt::QueuedConnection);
         return;
     }
-#endif
     try {
         std::unique_ptr<QGpgME::DecryptVerifyJob> job{m_backend->decryptVerifyJob()};
         kleo_assert(job);
@@ -924,10 +922,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
                              slotResult(decryptResult, verifyResult, plainText);
                          });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &DecryptVerifyTask::setProgress);
-#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
         job->setProcessAllSignatures(true);
-#endif
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (!m_inputFilePath.isEmpty() && !m_outputFilePath.isEmpty()) {
             job->setInputFile(m_inputFilePath);
             job->setOutputFile(m_outputFilePath);
@@ -936,10 +931,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
             ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
             job->start(m_input->ioDevice(), m_output->ioDevice());
         }
-#else
-        ensureIOOpen(m_input->ioDevice().get(), m_output->ioDevice().get());
-        job->start(m_input->ioDevice(), m_output->ioDevice());
-#endif
         q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromDecryptVerifyResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
@@ -971,9 +962,7 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
     }
     m_outputDirectory = outputDirectory;
     m_outputFilePath = outputDirectory;
-#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
     job->setProcessAllSignatures(true);
-#endif
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
@@ -1304,7 +1293,6 @@ void VerifyOpaqueTask::doStart()
 
 void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
 {
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
     if (!m_outputFilePath.isEmpty() && QFile::exists(m_outputFilePath)) {
         // The output files are always written to a temporary location. Therefore, this can only occur
         // if two signed/encrypted files with the same name in different folders are verified/decrypted
@@ -1317,7 +1305,6 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
             Qt::QueuedConnection);
         return;
     }
-#endif
     try {
         std::unique_ptr<QGpgME::VerifyOpaqueJob> job{m_backend->verifyOpaqueJob()};
         kleo_assert(job);
@@ -1325,10 +1312,7 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
             slotResult(result, plainText);
         });
         connect(job.get(), &QGpgME::Job::jobProgress, q, &VerifyOpaqueTask::setProgress);
-#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
         job->setProcessAllSignatures(true);
-#endif
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (!m_inputFilePath.isEmpty() && !m_outputFilePath.isEmpty()) {
             job->setInputFile(m_inputFilePath);
             job->setOutputFile(m_outputFilePath);
@@ -1337,10 +1321,6 @@ void VerifyOpaqueTask::Private::startVerifyOpaqueJob()
             ensureIOOpen(m_input->ioDevice().get(), m_output ? m_output->ioDevice().get() : nullptr);
             job->start(m_input->ioDevice(), m_output ? m_output->ioDevice() : std::shared_ptr<QIODevice>());
         }
-#else
-        ensureIOOpen(m_input->ioDevice().get(), m_output ? m_output->ioDevice().get() : nullptr);
-        job->start(m_input->ioDevice(), m_output ? m_output->ioDevice() : std::shared_ptr<QIODevice>());
-#endif
         q->setJob(job.release());
     } catch (const GpgME::Exception &e) {
         q->emitResult(q->fromVerifyOpaqueResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));
@@ -1368,9 +1348,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
     }
     m_outputFilePath = outputDirectory;
     m_outputDirectory = outputDirectory;
-#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
     job->setProcessAllSignatures(true);
-#endif
     job->setInputFile(m_inputFilePath);
     job->setOutputDirectory(m_outputDirectory);
     const auto err = job->startIt();
@@ -1534,10 +1512,7 @@ void VerifyDetachedTask::doStart()
         std::unique_ptr<QGpgME::VerifyDetachedJob> job{d->m_backend->verifyDetachedJob()};
         kleo_assert(job);
         d->registerJob(job.get());
-#if QGPGME_SUPPORTS_PROCESS_ALL_SIGNATURES
         job->setProcessAllSignatures(true);
-#endif
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (d->m_protocol == GpgME::OpenPGP && !d->m_signatureFilePath.isEmpty() && !d->m_signedFilePath.isEmpty()) {
             job->setSignatureFile(d->m_signatureFilePath);
             job->setSignedFile(d->m_signedFilePath);
@@ -1547,11 +1522,6 @@ void VerifyDetachedTask::doStart()
             ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
             job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
         }
-#else
-        ensureIOOpen(d->m_input->ioDevice().get(), nullptr);
-        ensureIOOpen(d->m_signedData->ioDevice().get(), nullptr);
-        job->start(d->m_input->ioDevice(), d->m_signedData->ioDevice());
-#endif
         setJob(job.release());
     } catch (const GpgME::Exception &e) {
         emitResult(fromVerifyDetachedResult(e.error(), QString::fromLocal8Bit(e.what()), AuditLogEntry()));

@@ -27,7 +27,6 @@
 #include <QGpgME/SignEncryptArchiveJob>
 #include <QGpgME/SignEncryptJob>
 #include <QGpgME/SignJob>
-#include <qgpgme/qgpgme_version.h>
 
 #include <gpgme++/encryptionresult.h>
 #include <gpgme++/key.h>
@@ -624,7 +623,6 @@ bool SignEncryptTask::Private::removeExistingOutputFile()
 
 void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
 {
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
     if (proto == GpgME::OpenPGP) {
         // either input and output are both set (e.g. when encrypting the notepad),
         // or they are both unset (when encrypting files)
@@ -636,13 +634,6 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
             output = Output::createFromFile(outputFileName, m_overwritePolicy);
         }
     }
-#else
-    kleo_assert(input);
-
-    if (!output) {
-        output = Output::createFromFile(outputFileName, m_overwritePolicy);
-    }
-#endif
 
     if (encrypt || symmetric) {
         Context::EncryptionFlags flags{Context::None};
@@ -656,7 +647,6 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         if (sign) {
             std::unique_ptr<QGpgME::SignEncryptJob> job = createSignEncryptJob(proto);
             kleo_assert(job.get());
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
             if (proto == GpgME::OpenPGP && !input && !output) {
                 kleo_assert(inputFileNames.size() == 1);
                 job->setSigners(signers);
@@ -674,17 +664,10 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
                 }
                 job->start(signers, recipients, input->ioDevice(), output->ioDevice(), flags);
             }
-#else
-            if (inputFileNames.size() == 1) {
-                job->setFileName(inputFileNames.front());
-            }
-            job->start(signers, recipients, input->ioDevice(), output->ioDevice(), flags);
-#endif
             this->job = job.release();
         } else {
             std::unique_ptr<QGpgME::EncryptJob> job = createEncryptJob(proto);
             kleo_assert(job.get());
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
             if (proto == GpgME::OpenPGP && !input && !output) {
                 kleo_assert(inputFileNames.size() == 1);
                 job->setRecipients(recipients);
@@ -701,12 +684,6 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
                 }
                 job->start(recipients, input->ioDevice(), output->ioDevice(), flags);
             }
-#else
-            if (inputFileNames.size() == 1) {
-                job->setFileName(inputFileNames.front());
-            }
-            job->start(recipients, input->ioDevice(), output->ioDevice(), flags);
-#endif
             this->job = job.release();
         }
     } else if (sign) {
@@ -714,7 +691,6 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         kleo_assert(job.get());
         kleo_assert(!(detached && clearsign));
         const GpgME::SignatureMode sigMode = detached ? GpgME::Detached : clearsign ? GpgME::Clearsigned : GpgME::NormalSignatureMode;
-#if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
         if (proto == GpgME::OpenPGP && !input && !output) {
             kleo_assert(inputFileNames.size() == 1);
             job->setSigners(signers);
@@ -730,9 +706,6 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
         } else {
             job->start(signers, input->ioDevice(), output->ioDevice(), sigMode);
         }
-#else
-        job->start(signers, input->ioDevice(), output->ioDevice(), sigMode);
-#endif
         this->job = job.release();
     } else {
         kleo_assert(!"Either 'sign' or 'encrypt' or 'symmetric' must be set!");
@@ -1010,15 +983,9 @@ QString SignEncryptFilesResult::overview() const
                             m_output.label,
                             !m_sresult.isNull(),
                             !m_eresult.isNull(),
-#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
                             m_sresult.error().isError(),
                             m_eresult.error().isError(),
                             m_sresult.error().isError() ? m_sresult.error() : m_eresult.error());
-#else
-                            m_sresult.error(),
-                            m_eresult.error(),
-                            m_sresult.error().code() ? m_sresult.error() : m_eresult.error());
-#endif
 }
 
 QString SignEncryptFilesResult::details() const

@@ -135,9 +135,7 @@ void AddADSKCommand::doStart()
         return;
     }
     d->createJob();
-#if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
     d->job->startAddAdsk(d->key(), "default");
-#endif
 }
 
 void AddADSKCommand::doCancel()

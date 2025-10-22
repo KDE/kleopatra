@@ -807,9 +807,7 @@ void ImportCertificatesCommand::Private::startImport(GpgME::Protocol protocol,
     };
 
     job->setImportFilter(options.importFilter);
-#if QGPGME_IMPORT_JOB_SUPPORTS_IMPORT_OPTIONS
     job->setImportOptions(options.importOptions);
-#endif
     job->setKeyOrigin(options.keyOrigin, options.keyOriginUrl);
     const GpgME::Error err = job->startLater(data);
     if (err.code()) {
