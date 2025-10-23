@@ -557,7 +557,7 @@ void KeyListController::createActions(KActionCollection *coll)
         },
         // View menu
         {
-            "view_redisplay",
+            "reload_certificate_list",
             i18n("Redisplay"),
             QString(),
             "view-refresh",
@@ -708,7 +708,7 @@ void KeyListController::createActions(KActionCollection *coll)
     registerActionForCommand<ChecksumCreateFilesCommand>(coll->action(QStringLiteral("file_checksum_create_files")));
     registerActionForCommand<ChecksumVerifyFilesCommand>(coll->action(QStringLiteral("file_checksum_verify_files")));
 
-    registerActionForCommand<ReloadKeysCommand>(coll->action(QStringLiteral("view_redisplay")));
+    registerActionForCommand<ReloadKeysCommand>(coll->action(QStringLiteral("reload_certificate_list")));
     // coll->action( "view_stop_operations" ) <-- already dealt with in make_actions_from_data()
     registerActionForCommand<DetailsCommand>(coll->action(QStringLiteral("view_certificate_details")));
 
