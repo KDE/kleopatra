@@ -3,6 +3,8 @@
 
 #include "keyexportdraghandler.h"
 
+#include <kleopatraapplication.h>
+
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Formatting>
@@ -19,11 +21,12 @@
 #include <QApplication>
 #include <QFileInfo>
 #include <QRegularExpression>
-#include <QTemporaryFile>
+#include <QTemporaryDir>
 #include <QUrl>
 
 #include <KFileUtils>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 using namespace GpgME;
 using namespace Kleo;
@@ -36,29 +39,47 @@ static QStringList supportedMimeTypes = {
 
 class KeyExportMimeData : public QMimeData
 {
+    // cached data
+    mutable QByteArray pgpData;
+    mutable QByteArray smimeData;
+    mutable QUrl tempFileUrl;
+
 public:
     QVariant retrieveData(const QString &mimeType, QMetaType type) const override
     {
         Q_UNUSED(type);
-        QByteArray pgpData;
-        QByteArray smimeData;
 
 #if GPGME_VERSION_NUMBER >= 0x011800 // 1.24.0
-        if (!pgpFprs.isEmpty()) {
+        if (pgpData.isEmpty() && !pgpFprs.isEmpty()) {
             auto job = QGpgME::openpgp()->publicKeyExportJob(true);
             job->exec(pgpFprs, pgpData);
         }
-        if (!smimeFprs.isEmpty()) {
+        if (smimeData.isEmpty() && !smimeFprs.isEmpty()) {
             auto job = QGpgME::smime()->publicKeyExportJob(true);
             job->exec(smimeFprs, smimeData);
         }
 #endif
 
         if (mimeType == QLatin1StringView("text/uri-list")) {
-            file->open();
-            file->write(pgpData + smimeData);
-            file->close();
-            return QUrl(QStringLiteral("file://%1").arg(file->fileName()));
+            if (tempFileUrl.isEmpty()) {
+                auto tempDirWeak = KleopatraApplication::instance()->createTemporaryDirectory();
+                if (auto tempDir = tempDirWeak.lock()) {
+                    QFile file{tempDir->filePath(fileName)};
+                    if (file.open(QFile::NewOnly)) {
+                        file.write(pgpData + smimeData);
+                        file.close();
+                        qCDebug(KLEOPATRA_LOG) << "Wrote file" << file.fileName();
+                        tempFileUrl = QUrl(QStringLiteral("file://%1").arg(file.fileName()));
+                    } else {
+                        KMessageBox::error(nullptr, xi18nc("@info", "Failed to write the certificates to a temporary file."));
+                        return {};
+                    }
+                } else {
+                    KMessageBox::error(nullptr, xi18nc("@info", "Failed to write the certificates to a temporary file."));
+                    return {};
+                }
+            }
+            return tempFileUrl;
         } else if (mimeType == QLatin1StringView("application/pgp-keys")) {
             return pgpData;
         } else if (mimeType == QLatin1StringView("text/plain")) {
@@ -76,9 +97,10 @@ public:
     {
         return supportedMimeTypes;
     }
+
     QStringList pgpFprs;
     QStringList smimeFprs;
-    QTemporaryFile *file;
+    QString fileName;
 };
 
 KeyExportDragHandler::KeyExportDragHandler()
@@ -94,14 +116,6 @@ Qt::ItemFlags KeyExportDragHandler::flags(const QModelIndex &index) const
 {
     Q_UNUSED(index);
     return Qt::ItemIsDragEnabled | Qt::ItemIsSelectable | Qt::ItemIsEnabled;
-}
-
-static QString suggestFileName(const QString &fileName)
-{
-    const QFileInfo fileInfo{fileName};
-    const QString path = fileInfo.absolutePath();
-    const QString newFileName = KFileUtils::suggestName(QUrl::fromLocalFile(path), fileInfo.fileName());
-    return path + QLatin1Char{'/'} + newFileName;
 }
 
 QMimeData *KeyExportDragHandler::mimeData(const QModelIndexList &indexes) const
@@ -127,29 +141,18 @@ QMimeData *KeyExportDragHandler::mimeData(const QModelIndexList &indexes) const
         }
     }
 
-    QString name;
     if (singleRow) {
         auto key = indexes[0].data(KeyList::KeyRole).value<Key>();
         auto keyName = Formatting::prettyName(key);
         if (keyName.isEmpty()) {
             keyName = Formatting::prettyEMail(key);
         }
-        name = QStringLiteral("%1_%2_public.%3")
-                   .arg(keyName, Formatting::prettyKeyID(key.keyID()), pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
+        mimeData->fileName = QStringLiteral("%1_%2_public.%3")
+                                 .arg(keyName, Formatting::prettyKeyID(key.keyID()), pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
     } else {
-        name = i18nc("A generic filename for exported certificates", "certificates.%1", pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
+        mimeData->fileName =
+            i18nc("A generic filename for exported certificates", "certificates.%1", pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
     }
-    // The file is deliberately not destroyed when the mimedata is destroyed, to give the receiver more time to read it.
-    mimeData->file = new QTemporaryFile(qApp);
-    mimeData->file->setFileTemplate(name);
-    mimeData->file->open();
-    auto path = mimeData->file->fileName().remove(QRegularExpression(QStringLiteral("\\.[^.]+$")));
-
-    if (QFileInfo::exists(path)) {
-        path = suggestFileName(path);
-    }
-    mimeData->file->rename(path);
-
     mimeData->pgpFprs = QStringList(pgpFprs.begin(), pgpFprs.end());
     mimeData->smimeFprs = QStringList(smimeFprs.begin(), smimeFprs.end());
     return mimeData;
