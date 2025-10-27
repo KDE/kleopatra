@@ -79,6 +79,7 @@
 #include <QSettings>
 #include <QStyleOption>
 #include <QStylePainter>
+#include <QTemporaryDir>
 
 #include <KSharedConfig>
 
@@ -232,6 +233,7 @@ public:
     std::shared_ptr<Log> log;
     std::shared_ptr<FileSystemWatcher> watcher;
     std::shared_ptr<QSettings> distroSettings;
+    std::vector<std::shared_ptr<QTemporaryDir>> temporaryDirectories;
 
 public:
     void setupKeyCache()
@@ -936,6 +938,17 @@ void KleopatraApplication::setDistributionSettings(const std::shared_ptr<QSettin
 std::shared_ptr<QSettings> KleopatraApplication::distributionSettings() const
 {
     return d->distroSettings;
+}
+
+std::weak_ptr<const QTemporaryDir> KleopatraApplication::createTemporaryDirectory()
+{
+    auto tempDir = std::make_shared<QTemporaryDir>();
+    if (tempDir->isValid()) {
+        d->temporaryDirectories.push_back(tempDir);
+        return tempDir;
+    }
+    qCWarning(KLEOPATRA_LOG) << "Failed to create a temporary directory";
+    return {};
 }
 
 void KleopatraApplication::showAboutDialog()

@@ -24,6 +24,7 @@ extern QElapsedTimer startupTimer;
 
 class MainWindow;
 class QSettings;
+class QTemporaryDir;
 
 class KleopatraApplication : public QApplication
 {
@@ -84,6 +85,9 @@ public:
     /* Add optional signed settings for specialized distributions */
     void setDistributionSettings(const std::shared_ptr<QSettings> &settings);
     std::shared_ptr<QSettings> distributionSettings() const;
+
+    // Creates a temporary directory that's removed when the application exits
+    std::weak_ptr<const QTemporaryDir> createTemporaryDirectory();
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();
