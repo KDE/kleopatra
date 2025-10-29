@@ -190,7 +190,7 @@ void NewOpenPGPCertificateCommand::Private::showResult(const KeyGenerationResult
         std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
         if (ctx) {
             Error err;
-            ctx->addKeyListMode(GpgME::Validate);
+            ctx->addKeyListMode(KeyListMode::Validate | KeyListMode::Signatures | KeyListMode::SignatureNotations);
             key = ctx->key(result.fingerprint(), err, /*secret=*/true);
             if (!key.isNull()) {
                 KeyCache::mutableInstance()->insert(key);
