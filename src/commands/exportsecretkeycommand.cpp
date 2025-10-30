@@ -16,6 +16,7 @@
 
 #include <settings.h>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
 
@@ -139,8 +140,8 @@ public:
 
 private:
     std::unique_ptr<QGpgME::ExportJob> startExportJob(const Key &key);
-    void onExportJobResult(const Error &err, const QByteArray &keyData);
-    void showError(const Error &err);
+    void onExportJobResult(const Error &err, const QByteArray &keyData, const AuditLogEntry &auditLog);
+    void showError(const Error &err, const AuditLogEntry &auditLog = {});
 
 private:
     QString filename;
@@ -213,9 +214,12 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
         exportJob->setExportFlags(GpgME::Context::ExportPKCS12);
     }
 
-    connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const GpgME::Error &err, const QByteArray &keyData) {
-        onExportJobResult(err, keyData);
-    });
+    connect(exportJob.get(),
+            &QGpgME::ExportJob::result,
+            q,
+            [this](const GpgME::Error &err, const QByteArray &keyData, const QString &auditLogAsHtml, const GpgME::Error &auditLogError) {
+                onExportJobResult(err, keyData, AuditLogEntry{auditLogAsHtml, auditLogError});
+            });
     connect(exportJob.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
     const GpgME::Error err = exportJob->start({QLatin1StringView{key.primaryFingerprint()}});
@@ -228,7 +232,7 @@ std::unique_ptr<QGpgME::ExportJob> ExportSecretKeyCommand::Private::startExportJ
     return exportJob;
 }
 
-void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const QByteArray &keyData)
+void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const QByteArray &keyData, const AuditLogEntry &auditLog)
 {
     if (err.isCanceled()) {
         finished();
@@ -236,7 +240,7 @@ void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const 
     }
 
     if (err) {
-        showError(err);
+        showError(err, auditLog);
         finished();
         return;
     }
@@ -269,13 +273,13 @@ void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const 
     finished();
 }
 
-void ExportSecretKeyCommand::Private::showError(const Error &err)
+void ExportSecretKeyCommand::Private::showError(const Error &err, const AuditLogEntry &auditLog)
 {
     error(xi18nc("@info",
                  "<para>An error occurred during the backup of the secret key:</para>"
                  "<para><message>%1</message></para>",
                  Formatting::errorAsString(err)),
-          errorCaption());
+          auditLog);
 }
 
 ExportSecretKeyCommand::ExportSecretKeyCommand(QAbstractItemView *view, KeyListController *controller)
