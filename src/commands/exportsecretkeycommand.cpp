@@ -115,12 +115,6 @@ QString requestFilename(const Key &key, const QString &proposedFilename, QWidget
 
     return filename;
 }
-
-QString errorCaption()
-{
-    return i18nc("@title:window", "Secret Key Backup Error");
-}
-
 }
 
 class ExportSecretKeyCommand::Private : public Command::Private
@@ -246,21 +240,21 @@ void ExportSecretKeyCommand::Private::onExportJobResult(const Error &err, const 
     }
 
     if (keyData.isEmpty()) {
-        error(i18nc("@info", "The result of the backup is empty. Maybe you entered an empty or a wrong passphrase."), errorCaption());
+        error(i18nc("@info", "The result of the backup is empty. Maybe you entered an empty or a wrong passphrase."));
         finished();
         return;
     }
 
     QFile f{filename};
     if (!f.open(QIODevice::WriteOnly)) {
-        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename), errorCaption());
+        error(xi18nc("@info", "Cannot open file <filename>%1</filename> for writing.", filename));
         finished();
         return;
     }
 
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
-        error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename), errorCaption());
+        error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename));
         finished();
         return;
     }
