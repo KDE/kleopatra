@@ -10,7 +10,9 @@
 #include "command.h"
 #include "view/keylistcontroller.h"
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/KeyListModel>
+#include <Libkleo/MessageBox>
 
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -76,14 +78,20 @@ public:
         finished();
     }
 
-    void error(const QString &text, const QString &caption = QString(), KMessageBox::Options options = KMessageBox::Notify) const
+    void error(const QString &text, const QString &title = QString(), KMessageBox::Options options = KMessageBox::Notify) const
+    {
+        error(text, AuditLogEntry{}, title, options);
+    }
+
+    void error(const QString &text, const Kleo::AuditLogEntry &auditLog, const QString &title = {}, KMessageBox::Options options = KMessageBox::Notify) const
     {
         if (parentWId_) {
-            KMessageBox::errorWId(parentWId_, text, caption, options);
+            Kleo::MessageBox::errorWId(parentWId_, text, auditLog, title, options);
         } else {
-            KMessageBox::error(parentWidgetOrView(), text, caption, options);
+            Kleo::MessageBox::error(parentWidgetOrView(), text, auditLog, title, options);
         }
     }
+
     void success(const QString &text, const QString &caption = {}, KMessageBox::Options options = KMessageBox::Notify) const
     {
         static const QString noDontShowAgainName{};
