@@ -263,12 +263,9 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         qCDebug(KLEOPATRA_LOG) << q << __func__ << "Secret key is available -> skipping certification";
         return false;
     }
-
-    for (const auto &uid : key.userIDs()) {
-        if (uid.validity() >= GpgME::UserID::Marginal) {
-            // Already marginal so don't bug the user
-            return false;
-        }
+    if (Kleo::maximalValidityOfUserIDs(key) >= GpgME::UserID::Marginal) {
+        // key has at least marginal validity so don't bug the user
+        return false;
     }
 
     const QStringList suggestions = {
