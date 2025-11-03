@@ -38,6 +38,7 @@
 
 #include "kleopatra_debug.h"
 
+#include <Libkleo/Assuan>
 #include <Libkleo/Formatting>
 
 #include <KActionCollection>
@@ -533,6 +534,7 @@ void SmartCardsWidget::Private::changePublicKeyUrl()
     const std::string serialNumber = currentSerialNumber();
     Q_ASSERT(!serialNumber.empty());
     QString text = currentCardWidget()->card()->publicKeyUrl();
+    QByteArray encodedText;
     while (true) {
         bool ok = false;
         text = QInputDialog::getText(q,
@@ -546,9 +548,10 @@ void SmartCardsWidget::Private::changePublicKeyUrl()
         if (!ok) {
             return;
         }
+        encodedText = Assuan::escapeAttributeValue(text.toUtf8());
         // Some additional restrictions imposed by gnupg
-        if (text.size() > 254) {
-            KMessageBox::error(q, i18nc("@info", "The size of the URL may not exceed 254 characters."));
+        if (encodedText.size() > 254) {
+            KMessageBox::error(q, i18nc("@info", "The URL is too long."));
             continue;
         }
         break;
@@ -560,9 +563,20 @@ void SmartCardsWidget::Private::changePublicKeyUrl()
         return;
     }
 
-    const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + text.toUtf8();
-    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this, serialNumber, app](const GpgME::Error &err) {
-        if (err) {
+    const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL ") + encodedText;
+    ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this, serialNumber, app, text](const GpgME::Error &err) {
+        if ((err.code() == GPG_ERR_CARD) && text.isEmpty()) {
+            // some smartcards don't allow setting an empty URL; try to set the URL to a (plus-escaped) space instead (like `gpg-card url --clear` does)
+            const auto pgpCard = ReaderStatus::instance()->getCard<OpenPGPCard>(serialNumber);
+            const QByteArray command = QByteArrayLiteral("SCD SETATTR PUBKEY-URL +");
+            ReaderStatus::mutableInstance()->startSimpleTransaction(pgpCard, command, q, [this, serialNumber, app](const GpgME::Error &err) {
+                if (err) {
+                    KMessageBox::error(q, i18nc("@info", "URL change failed: %1", Formatting::errorAsString(err)));
+                } else if (!err.isCanceled()) {
+                    ReaderStatus::mutableInstance()->updateCard(serialNumber, appName(app));
+                }
+            });
+        } else if (err) {
             KMessageBox::error(q, i18nc("@info", "URL change failed: %1", Formatting::errorAsString(err)));
         } else if (!err.isCanceled()) {
             ReaderStatus::mutableInstance()->updateCard(serialNumber, appName(app));
