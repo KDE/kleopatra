@@ -40,6 +40,7 @@
 #include "commands/dumpcrlcachecommand.h"
 #include "commands/exportpaperkeycommand.h"
 #include "commands/exportsecretkeycommand.h"
+#include "commands/exportsecretteamkeycommand.h"
 #include "commands/importcertificatefromfilecommand.h"
 #include "commands/importcrlcommand.h"
 #include "commands/lookupcertificatescommand.h"
@@ -373,6 +374,15 @@ void KeyListController::createActions(KActionCollection *coll)
             QString(),
         },
         {
+            "file_export_secret_team_key",
+            i18nc("@action:inmenu", "Save Secret Team Key..."),
+            QString(),
+            "view-certificate-export-secret",
+            nullptr,
+            nullptr,
+            QString(),
+        },
+        {
             "file_export_paper_key",
             i18n("Print Secret Key..."),
             QString(),
@@ -694,6 +704,7 @@ void KeyListController::createActions(KActionCollection *coll)
     //---
     registerActionForCommand<ExportCertificateCommand>(coll->action(QStringLiteral("file_export_certificates")));
     registerActionForCommand<ExportSecretKeyCommand>(coll->action(QStringLiteral("file_export_secret_keys")));
+    registerActionForCommand<ExportSecretTeamKeyCommand>(coll->action(QStringLiteral("file_export_secret_team_key")));
     registerActionForCommand<ExportPaperKeyCommand>(coll->action(QStringLiteral("file_export_paper_key")));
     registerActionForCommand<ExportOpenPGPCertsToServerCommand>(coll->action(QStringLiteral("file_export_certificates_to_server")));
 #ifdef MAILAKONADI_ENABLED
@@ -1040,6 +1051,14 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
                 result |= Command::SuitableForCard;
             }
         }
+    }
+
+    if (std::ranges::all_of(keys, [](const auto &key) {
+            return !key.isBad() && std::ranges::any_of(key.subkeys(), [](const auto &subkey) {
+                return subkey.canEncrypt() && !subkey.isBad() && subkey.isSecret();
+            });
+        })) {
+        result |= Command::NeedSecretEncryptSubkey;
     }
 
     return result;

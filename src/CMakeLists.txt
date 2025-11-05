@@ -148,6 +148,8 @@ set(_kleopatra_SRCS
   commands/exportsecretkeycommand.h
   commands/exportsecretsubkeycommand.cpp
   commands/exportsecretsubkeycommand.h
+  commands/exportsecretteamkeycommand.cpp
+  commands/exportsecretteamkeycommand.h
   commands/generateopenpgpcardkeysandcertificatecommand.cpp
   commands/generateopenpgpcardkeysandcertificatecommand.h
   commands/genrevokecommand.cpp
