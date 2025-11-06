@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-04 00:43+0000\n"
+"POT-Creation-Date: 2025-11-06 08:06+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -2799,20 +2799,20 @@ msgid "No Directory Servers Configured"
 msgstr "未配置目录服务器"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:130
-#: src/commands/newopenpgpcertificatecommand.cpp:158
+#: src/commands/newopenpgpcertificatecommand.cpp:162
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "不能开始创建密钥对：%1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "正在创建密钥对..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:141
-#: src/commands/newopenpgpcertificatecommand.cpp:169
+#: src/commands/newopenpgpcertificatecommand.cpp:173
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -2820,7 +2820,7 @@ msgid ""
 msgstr "创建一个密钥的过程需要大量的随机数字。这可能需要几分钟的时间..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:176
-#: src/commands/newopenpgpcertificatecommand.cpp:232
+#: src/commands/newopenpgpcertificatecommand.cpp:283
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, kde-format
@@ -2842,7 +2842,17 @@ msgstr ""
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "您无权创建 S/MIME 证书签名请求。"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:205
+#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to decrypt the notepad: %1"
+msgctxt "@info"
+msgid "Failed to create signing subkey: %1"
+msgstr "无法解密记事本: %1"
+
+#: src/commands/newopenpgpcertificatecommand.cpp:244
+#: src/commands/newopenpgpcertificatecommand.cpp:258
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2851,7 +2861,7 @@ msgid ""
 msgstr ""
 "<para>一个新的 OpenPGP 证书已成功创建。</para><para>新证书的指纹： %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2861,7 +2871,7 @@ msgstr ""
 "<para>创建新的 OpenPGP 证书失败。</para><para>错误。 <message>%1</message></"
 "para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:225
+#: src/commands/newopenpgpcertificatecommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3517,7 +3527,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "颜色预览已禁用，因为高对比度模式已激活。"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:148
+#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:142
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN 属性序"
@@ -3927,7 +3937,7 @@ msgstr "(当前系统设置：%1)"
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
 #. i18n: ectx: whatsthis, entry (RefreshInterval), group (SMime Validation)
 #: src/conf/smimevalidationconfigurationwidget.ui:18
-#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:248
+#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:242
 #, kde-format
 msgid ""
 "This option enables interval checking of certificate validity. You can also "
@@ -8667,90 +8677,69 @@ msgid ""
 "signing requests."
 msgstr "如果为 false，那么 Kleopatra 将无法创建 S/MIME 证书签名请求。"
 
-#. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:114
-#, kde-format
-msgid "Allow signing with S/MIME certificates"
-msgstr "允许使用 S/MIME 证书签名"
-
-#. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
-#, kde-format
-msgid "Allows signing of text or files with S/MIME certificates."
-msgstr "允许使用 S/MIME 证书签名文本或文件。"
-
-#. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
-#, kde-format
-msgid ""
-"If false, then Kleopatra will not offer functionality for creating "
-"signatures with S/MIME certificates."
-msgstr ""
-"如果为 false，那么 Kleopatra 将无法提供使用 S/MIME 证书创建签名的功能。"
-
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:122
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "显示外观配置"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "显示加密操作配置"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:130
+#: src/kcfg/settings.kcfg:124
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "显示目录服务配置"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "显示 GnuPG 系统配置"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "显示智能卡配置"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:142
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "显示 S/MIME 验证配置"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "指定 X.509 证书的 DN 属性的显示顺序。"
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
 msgstr "使用 pgp 作为生成 OpenPGP 文件的默认扩展名"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr "设定此选项，让 kleopatra 为 OpenPGP 文件使用 pgp 作为默认扩展名。"
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "解密后自动解压压缩文件。"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -8758,13 +8747,13 @@ msgid ""
 msgstr "如果启用此选项，那么 Kleopatra 会在解密后自动解压压缩文件。"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:159
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "使用此命令创建压缩文件。"
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:160
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -8772,13 +8761,13 @@ msgid ""
 msgstr "在加密多个文件或文件夹时，Kleopatra 使用此命令创建加密的归档文件。"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:170
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "创建文本文件格式的签名或加密文件"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -8789,67 +8778,67 @@ msgstr ""
 "者通过邮件正文发送。 这会使文件大小增加三分之一。"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:175
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "在加密文件的文件夹中创建临时解密文件。"
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "设置此选项以避免使用用户临时目录。"
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "只使用对称加密。"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:181
+#: src/kcfg/settings.kcfg:175
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "选中此选项以禁用公钥加密。"
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:185
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "仅使用公钥加密。"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "设置此选项可禁用基于密码的加密。"
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:192
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Enable Groups"
 msgstr "启用分组"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "启用组密钥。"
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "启用对密钥组的使用来创建收件人列表。"
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:200
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "导入后检索签名密钥"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -8862,13 +8851,13 @@ msgstr ""
 "         这与受信任的介绍人结合使用很有用。"
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:207
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr "查询所有用户 ID 的提供商证书目录"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:210
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -8883,13 +8872,13 @@ msgstr ""
 "         如果启用此选项，那么 Kleopatra 将查询所有用户 ID 的 WKD。"
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:216
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "通知即将到期的证书"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:218
+#: src/kcfg/settings.kcfg:212
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -8899,13 +8888,13 @@ msgstr ""
 "        证书即将过期时，Kleopatra 将在某个地方显示通知。"
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:224
+#: src/kcfg/settings.kcfg:218
 #, kde-format
 msgid "URL schemes to block"
 msgstr "要阻止的 URL 方案"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:226
+#: src/kcfg/settings.kcfg:220
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -8916,13 +8905,13 @@ msgstr ""
 "         这可用于防止应用程序打开某些 URL 的外部应用程序。"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:232
+#: src/kcfg/settings.kcfg:226
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "总是在密钥服务器上搜索智能卡证书"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:233
+#: src/kcfg/settings.kcfg:227
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -8930,7 +8919,7 @@ msgid ""
 msgstr "搜索配置密钥服务器上属于智能卡密钥的证书。"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:235
+#: src/kcfg/settings.kcfg:229
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -8942,19 +8931,19 @@ msgstr ""
 "        默认行为是仅用于 LDAP 密钥服务器。"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:239
+#: src/kcfg/settings.kcfg:233
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "尝试从 PKCS#15 智能卡加载 S/MIME 证书"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:240
+#: src/kcfg/settings.kcfg:234
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "从 PKCS#15 (CardOS) 智能卡自动加载 S/MIME 证书"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:241
+#: src/kcfg/settings.kcfg:235
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -8965,37 +8954,37 @@ msgstr ""
 "gpgsm --learning。 这可能需要一段时间，并在命令运行时屏蔽智能卡。"
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
-#: src/kcfg/settings.kcfg:247
+#: src/kcfg/settings.kcfg:241
 #, kde-format
 msgid "Certificate refresh interval (in hours). Zero (0) disables."
 msgstr "证书刷新间隔(小时)。0 代表禁用。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:255
+#: src/kcfg/settings.kcfg:249
 #, kde-format
 msgid "Disable profile settings"
 msgstr "禁用配置文件设置"
 
 #. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
-#: src/kcfg/settings.kcfg:259
+#: src/kcfg/settings.kcfg:253
 #, kde-format
 msgid "Allow custom debug commands"
 msgstr "允许自定义调试命令"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
-#: src/kcfg/settings.kcfg:263
+#: src/kcfg/settings.kcfg:257
 #, kde-format
 msgid "Show results after signing and encrypting files"
 msgstr "在签名和加密文件后显示结果"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:269
+#: src/kcfg/settings.kcfg:263
 #, kde-format
 msgid "Show certificate validity"
 msgstr "显示证书有效性"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:270
+#: src/kcfg/settings.kcfg:264
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9003,13 +8992,13 @@ msgid ""
 msgstr "在工具提示中显示证书的有效性信息，例如证书是否过期或被撤销。"
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:274
+#: src/kcfg/settings.kcfg:268
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "显示证书所有者信息"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:275
+#: src/kcfg/settings.kcfg:269
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9017,13 +9006,13 @@ msgid ""
 msgstr "在工具提示中显示证书所有者信息，如用户 ID、主题和颁发者。"
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:279
+#: src/kcfg/settings.kcfg:273
 #, kde-format
 msgid "Show certificate details"
 msgstr "显示证书明细"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:280
+#: src/kcfg/settings.kcfg:274
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -12428,6 +12417,18 @@ msgid ""
 msgstr ""
 "从文件导入证书。<nl/>要从公用密钥服务器导入，请使用 <interface>在服务器上查找"
 "</interface>。"
+
+#~ msgid "Allow signing with S/MIME certificates"
+#~ msgstr "允许使用 S/MIME 证书签名"
+
+#~ msgid "Allows signing of text or files with S/MIME certificates."
+#~ msgstr "允许使用 S/MIME 证书签名文本或文件。"
+
+#~ msgid ""
+#~ "If false, then Kleopatra will not offer functionality for creating "
+#~ "signatures with S/MIME certificates."
+#~ msgstr ""
+#~ "如果为 false，那么 Kleopatra 将无法提供使用 S/MIME 证书创建签名的功能。"
 
 #~ msgctxt "@info"
 #~ msgid "The size of the URL may not exceed 254 characters."

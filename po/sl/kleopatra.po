@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-04 00:43+0000\n"
+"POT-Creation-Date: 2025-11-06 08:06+0000\n"
 "PO-Revision-Date: 2025-11-04 06:54+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -2964,20 +2964,20 @@ msgid "No Directory Servers Configured"
 msgstr "Ni nobenega nastavljenega imeniškega strežnika"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:130
-#: src/commands/newopenpgpcertificatecommand.cpp:158
+#: src/commands/newopenpgpcertificatecommand.cpp:162
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Ustvarjanja potrdila ni bilo mogoče začeti: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Ustvarjanje para ključev…"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:141
-#: src/commands/newopenpgpcertificatecommand.cpp:169
+#: src/commands/newopenpgpcertificatecommand.cpp:173
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -2987,7 +2987,7 @@ msgstr ""
 "lahko traja nekaj minut…"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:176
-#: src/commands/newopenpgpcertificatecommand.cpp:232
+#: src/commands/newopenpgpcertificatecommand.cpp:283
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, kde-format
@@ -3011,7 +3011,17 @@ msgstr ""
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Nimate dovoljenja za kreiranje zahtevkov podpisovanja potrdil S/MIME."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:205
+#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to decrypt the notepad: %1"
+msgctxt "@info"
+msgid "Failed to create signing subkey: %1"
+msgstr "Dešifriranje beležnice ni uspelo: %1"
+
+#: src/commands/newopenpgpcertificatecommand.cpp:244
+#: src/commands/newopenpgpcertificatecommand.cpp:258
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3021,7 +3031,7 @@ msgstr ""
 "<para>Novo potrdilo OpenPGP je bilo uspešno kreirano.</para><para>Prstni "
 "odtis novega potrdila: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3031,7 +3041,7 @@ msgstr ""
 "<para>Kreiranje novega potrdila OpenPGP ni uspelo.</para><para>Napaka: "
 "<message>%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:225
+#: src/commands/newopenpgpcertificatecommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3754,7 +3764,7 @@ msgstr ""
 "Predogled v barvah je onemogočen, ker je dejaven način visokega kontrasta."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:148
+#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:142
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "Vrstni red atributov DN"
@@ -4188,7 +4198,7 @@ msgstr "(Trenutne sistemske nastavitve: %1)"
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
 #. i18n: ectx: whatsthis, entry (RefreshInterval), group (SMime Validation)
 #: src/conf/smimevalidationconfigurationwidget.ui:18
-#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:248
+#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:242
 #, kde-format
 msgid ""
 "This option enables interval checking of certificate validity. You can also "
@@ -9192,78 +9202,56 @@ msgstr ""
 "Če je false, potem Kleopatra ne bo nudila zahtevkov za podpisovanje potrdil "
 "S/MIME."
 
-#. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:114
-#, kde-format
-msgid "Allow signing with S/MIME certificates"
-msgstr "Dovoli podpisovanje s potrdili S/MIME"
-
-#. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
-#, kde-format
-msgid "Allows signing of text or files with S/MIME certificates."
-msgstr "Dovoli podpisovanje besedil ali datotek s potrdili S/MIME."
-
-#. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
-#, kde-format
-msgid ""
-"If false, then Kleopatra will not offer functionality for creating "
-"signatures with S/MIME certificates."
-msgstr ""
-"Če je false, potem Kleopatra ne bo nudila funkcionalnosti za kreiranje "
-"podpisov s potrdili S/MIME."
-
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:122
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "Prikaži konfiguracijo videza"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Prikaži konfiguracijo šifrirnih operacij"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:130
+#: src/kcfg/settings.kcfg:124
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "Prikaži konfiguracijo imeniških storitev"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "Prikaži konfiguracijo sistema GnuPG"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "Prikaži konfiguracijo pametnih kartic"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:142
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "Prikaži konfiguracijo validacije S/MIME"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "Določa vrstni red prikaza atributov DN potrdil X.509."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
 msgstr "Uporabi pgp kot privzeto pripono za ustvarjene datoteke OpenPGP"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
@@ -9272,13 +9260,13 @@ msgstr ""
 "uporabila pripono pgp."
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "Samodejni izvleci arhive po dešifriranju."
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -9288,13 +9276,13 @@ msgstr ""
 "po dešifriranju."
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:159
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "Uporabi ta ukaz za ustvaritev arhivov datotek."
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:160
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -9304,13 +9292,13 @@ msgstr ""
 "tem ukazom."
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:170
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Ustvari podpisane ali šifrirane datoteke kot besedilne datoteke."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -9322,68 +9310,68 @@ msgstr ""
 "v telesu sporočila. To poveča velikost datoteke za tretjino."
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:175
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Ustvari začasne dešifrirane datoteke v mapi šifriranih datotek."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 "Nastavite to možnost, da se izognete uporabi začasnega imenika uporabnikov."
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "Uporabljaj samo simetrično šifriranje."
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:181
+#: src/kcfg/settings.kcfg:175
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "Nastavite to možnost, da onemogočite šifriranje z javnim ključem."
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:185
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "Uporabljaj samo šifriranje z javnim ključem."
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "Nastavite to možnost, da onemogočite šifriranje z geslom."
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:192
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Enable Groups"
 msgstr "Omogoči grupe"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "Omogoči rabo grup ključev."
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "Omogoči rabo grup ključev za tvorbo seznamov prejemnikov."
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:200
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "Po uvozu pridobi ključe podpisnikov"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -9397,13 +9385,13 @@ msgstr ""
 "         uporabno v kombinaciji z zaupanja vrednimi uvajalci."
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:207
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr "Poiščite imenike potrdil ponudnikov za vse določilnike uporabnikov"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:210
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -9420,13 +9408,13 @@ msgstr ""
 "vse določilnike uporabnikov."
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:216
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Opozori na bližajočo zapadlost potrdila"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:218
+#: src/kcfg/settings.kcfg:212
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -9436,13 +9424,13 @@ msgstr ""
 "        uporablja potrdila, da se bližajo zapadlosti."
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:224
+#: src/kcfg/settings.kcfg:218
 #, kde-format
 msgid "URL schemes to block"
 msgstr "Sheme URL za blokiranje"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:226
+#: src/kcfg/settings.kcfg:220
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -9454,13 +9442,13 @@ msgstr ""
 "je."
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:232
+#: src/kcfg/settings.kcfg:226
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Vedno išči potrdila iz pametne kartice na strežniku ključev"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:233
+#: src/kcfg/settings.kcfg:227
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -9470,7 +9458,7 @@ msgstr ""
 "strežniku ključev."
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:235
+#: src/kcfg/settings.kcfg:229
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -9484,19 +9472,19 @@ msgstr ""
 "strežnike LDAP."
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:239
+#: src/kcfg/settings.kcfg:233
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "Poskusi naložiti potrdila S/MIME iz pametnih kartic PKCS#15"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:240
+#: src/kcfg/settings.kcfg:234
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "Samodejno naloži potrdila S/MIME iz pametnih kartic PKCS#15 (CardOS)"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:241
+#: src/kcfg/settings.kcfg:235
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -9508,7 +9496,7 @@ msgstr ""
 "blokira pametno kartico, dokler se izvaja ukaz."
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
-#: src/kcfg/settings.kcfg:247
+#: src/kcfg/settings.kcfg:241
 #, kde-format
 msgid "Certificate refresh interval (in hours). Zero (0) disables."
 msgstr ""
@@ -9516,31 +9504,31 @@ msgstr ""
 "osveževanje."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:255
+#: src/kcfg/settings.kcfg:249
 #, kde-format
 msgid "Disable profile settings"
 msgstr "Onemogoči nastavitve profila"
 
 #. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
-#: src/kcfg/settings.kcfg:259
+#: src/kcfg/settings.kcfg:253
 #, kde-format
 msgid "Allow custom debug commands"
 msgstr "Dovoli ukaze za pomoč odkrivanja napak po meri"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
-#: src/kcfg/settings.kcfg:263
+#: src/kcfg/settings.kcfg:257
 #, kde-format
 msgid "Show results after signing and encrypting files"
 msgstr "Prikaži rezultate po podpisovanju in šifriranju datotek"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:269
+#: src/kcfg/settings.kcfg:263
 #, kde-format
 msgid "Show certificate validity"
 msgstr "Pokaži veljavnost potrdila"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:270
+#: src/kcfg/settings.kcfg:264
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9550,13 +9538,13 @@ msgstr ""
 "o preteku in preklicu."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:274
+#: src/kcfg/settings.kcfg:268
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "Pokaži podatke o lastniku potrdila"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:275
+#: src/kcfg/settings.kcfg:269
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9566,13 +9554,13 @@ msgstr ""
 "uporabnikovo določilo, zadeva in izdajatelji."
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:279
+#: src/kcfg/settings.kcfg:273
 #, kde-format
 msgid "Show certificate details"
 msgstr "Pokaži podrobnosti potrdila"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:280
+#: src/kcfg/settings.kcfg:274
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -13072,6 +13060,19 @@ msgid ""
 msgstr ""
 "Uvozi potrdilo iz datoteke.<nl/>Za uvoz iz javnega strežnika ključev namesto "
 "tega uporabite <interface>\"Iskanje na strežniku\"</interface>."
+
+#~ msgid "Allow signing with S/MIME certificates"
+#~ msgstr "Dovoli podpisovanje s potrdili S/MIME"
+
+#~ msgid "Allows signing of text or files with S/MIME certificates."
+#~ msgstr "Dovoli podpisovanje besedil ali datotek s potrdili S/MIME."
+
+#~ msgid ""
+#~ "If false, then Kleopatra will not offer functionality for creating "
+#~ "signatures with S/MIME certificates."
+#~ msgstr ""
+#~ "Če je false, potem Kleopatra ne bo nudila funkcionalnosti za kreiranje "
+#~ "podpisov s potrdili S/MIME."
 
 #~ msgctxt "@info"
 #~ msgid "The size of the URL may not exceed 254 characters."

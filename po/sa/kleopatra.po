@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-04 00:43+0000\n"
+"POT-Creation-Date: 2025-11-06 08:06+0000\n"
 "PO-Revision-Date: 2024-12-25 19:45+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -2887,20 +2887,20 @@ msgid "No Directory Servers Configured"
 msgstr "कोऽपि निर्देशिकासर्वरः विन्यस्तः नास्ति"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:130
-#: src/commands/newopenpgpcertificatecommand.cpp:158
+#: src/commands/newopenpgpcertificatecommand.cpp:162
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "कीलयुग्मनिर्माणं आरभुं न शक्तम्: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:168
+#: src/commands/newopenpgpcertificatecommand.cpp:172
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "कीलयुग्मस्य निर्माणम्..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:141
-#: src/commands/newopenpgpcertificatecommand.cpp:169
+#: src/commands/newopenpgpcertificatecommand.cpp:173
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -2910,7 +2910,7 @@ msgstr ""
 "निमेषाणि आवश्यकानि भवितुम् अर्हन्ति..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:176
-#: src/commands/newopenpgpcertificatecommand.cpp:232
+#: src/commands/newopenpgpcertificatecommand.cpp:283
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, kde-format
@@ -2938,7 +2938,17 @@ msgstr ""
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "भवता S/MIME प्रमाणपत्रहस्ताक्षरानुरोधं निर्मातुं अनुमतिः नास्ति ।"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:205
+#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:251
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Failed to decrypt the notepad: %1"
+msgctxt "@info"
+msgid "Failed to create signing subkey: %1"
+msgstr "नोटपैड् विगुप्तीकरणे असफलम्: %1"
+
+#: src/commands/newopenpgpcertificatecommand.cpp:244
+#: src/commands/newopenpgpcertificatecommand.cpp:258
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2948,7 +2958,7 @@ msgstr ""
 "<para>नवीन OpenPGP प्रमाणपत्रं सफलतया निर्मितम् ।</para><para>नवीनप्रमाणपत्रस्य "
 "अङ्गुलिचिह्नम् : %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:219
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2958,7 +2968,7 @@ msgstr ""
 "<para>नवीन OpenPGP प्रमाणपत्रस्य निर्माणं विफलम् ।</para><para>त्रुटिः : <message>"
 "%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:225
+#: src/commands/newopenpgpcertificatecommand.cpp:276
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3644,7 +3654,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr "उच्च-विपरीत-विधिः सक्रियः अस्ति इति कारणतः वर्णानाम् पूर्वावलोकनं अक्षमम् अस्ति ।"
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:148
+#: src/conf/appearanceconfigwidget.cpp:507 src/kcfg/settings.kcfg:142
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr "DN-विशेषण आदेश"
@@ -4066,7 +4076,7 @@ msgstr "(वर्तमानं प्रणालीसेटिंग्: %1
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
 #. i18n: ectx: whatsthis, entry (RefreshInterval), group (SMime Validation)
 #: src/conf/smimevalidationconfigurationwidget.ui:18
-#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:248
+#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:242
 #, kde-format
 msgid ""
 "This option enables interval checking of certificate validity. You can also "
@@ -8999,78 +9009,56 @@ msgstr ""
 "यदि मिथ्या अस्ति, तर्हि क्लिओपात्रा S/MIME प्रमाणपत्रहस्ताक्षरानुरोधस्य निर्माणं न "
 "प्रदास्यति ।"
 
-#. i18n: ectx: label, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:114
-#, kde-format
-msgid "Allow signing with S/MIME certificates"
-msgstr "S/MIME प्रमाणपत्रैः सह हस्ताक्षरं कर्तुं अनुमतिं ददातु"
-
-#. i18n: ectx: tooltip, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:115
-#, kde-format
-msgid "Allows signing of text or files with S/MIME certificates."
-msgstr "S/MIME प्रमाणपत्रैः सह पाठस्य अथवा सञ्चिकानां हस्ताक्षरस्य अनुमतिं ददाति ।"
-
-#. i18n: ectx: whatsthis, entry (cmsSigningAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:116
-#, kde-format
-msgid ""
-"If false, then Kleopatra will not offer functionality for creating "
-"signatures with S/MIME certificates."
-msgstr ""
-"यदि मिथ्या अस्ति, तर्हि Kleopatra S/MIME प्रमाणपत्रैः सह हस्ताक्षरं निर्मातुं कार्यक्षमतां "
-"न प्रदास्यति ।"
-
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:122
+#: src/kcfg/settings.kcfg:116
 #, kde-format
 msgid "Show appearance configuration"
 msgstr "रूपविन्यासं दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:126
+#: src/kcfg/settings.kcfg:120
 #, kde-format
 msgid "Show crypto operations configuration"
 msgstr "क्रिप्टो ऑपरेशन्स् विन्यासं दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:130
+#: src/kcfg/settings.kcfg:124
 #, kde-format
 msgid "Show directory services configuration"
 msgstr "निर्देशिकासेवाविन्यासं दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:134
+#: src/kcfg/settings.kcfg:128
 #, kde-format
 msgid "Show GnuPG system configuration"
 msgstr "GnuPG प्रणालीविन्यासः दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:138
+#: src/kcfg/settings.kcfg:132
 #, kde-format
 msgid "Show smart cards configuration"
 msgstr "स्मार्टकार्डविन्यासं दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:142
+#: src/kcfg/settings.kcfg:136
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr "S/MIME प्रमाणीकरणविन्यासं दर्शयतु"
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:149
+#: src/kcfg/settings.kcfg:143
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr "X.509 प्रमाणपत्राणां DN विशेषतानां प्रदर्शनक्रमं निर्दिशति ।"
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:155
+#: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
 msgstr "उत्पन्न OpenPGP सञ्चिकानां पूर्वनिर्धारितविस्ताररूपेण pgp इत्यस्य उपयोगं कुर्वन्तु"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
@@ -9078,13 +9066,13 @@ msgstr ""
 "OpenPGP सञ्चिकानां कृते kleopatra पूर्वनिर्धारितं pgp सञ्चिकाविस्तारं कर्तुं एतत् सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:160
+#: src/kcfg/settings.kcfg:154
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr "विगुप्तीकरणानन्तरं स्वयमेव अभिलेखान् निष्कासयन्तु।"
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:161
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -9094,13 +9082,13 @@ msgstr ""
 "निष्कासयति ।"
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:165
+#: src/kcfg/settings.kcfg:159
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr "सञ्चिकासंग्रहनिर्माणार्थं एतस्य आदेशस्य उपयोगं कुर्वन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:166
+#: src/kcfg/settings.kcfg:160
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -9109,13 +9097,13 @@ msgstr ""
 "बहुसञ्चिकाः अथवा पुटं गोपनं कुर्वन् क्लिओपात्रा एतेन आदेशेन एन्क्रिप्टेड् आर्काइव् निर्माति ।"
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:170
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "हस्ताक्षरितानि अथवा गुप्तसञ्चिकाः पाठसञ्चिकारूपेण रचयन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:171
+#: src/kcfg/settings.kcfg:165
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -9127,67 +9115,67 @@ msgstr ""
 "आकारः एकतृतीयभागः वर्धते ।"
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:175
+#: src/kcfg/settings.kcfg:169
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "एन्क्रिप्टेड् सञ्चिकायाः पुटे अस्थायी विगुप्तसञ्चिकाः रचयन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:170
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr "उपयोक्तृणां अस्थायीनिर्देशिकायाः उपयोगं परिहरितुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:180
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr "केवलं सममितगुप्तीकरणस्य उपयोगं कुर्वन्तु।"
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:181
+#: src/kcfg/settings.kcfg:175
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr "सार्वजनिककुंजीगुप्तीकरणं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:185
+#: src/kcfg/settings.kcfg:179
 #, kde-format
 msgid "Use public key encryption only."
 msgstr "केवलं सार्वजनिककुंजीगोपनस्य उपयोगं कुर्वन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:180
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr "गुप्तशब्द-आधारित-गोपनं निष्क्रियं कर्तुं एतत् विकल्पं सेट् कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:192
+#: src/kcfg/settings.kcfg:186
 #, kde-format
 msgid "Enable Groups"
 msgstr "समूहान् सक्षमं कुर्वन्तु"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:193
+#: src/kcfg/settings.kcfg:187
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr "कीलसमूहानां उपयोगं सक्षमं कुर्वन्तु ।"
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:194
+#: src/kcfg/settings.kcfg:188
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr "प्राप्तकर्तानां सूचीं निर्मातुं कीलसमूहानां उपयोगं सक्षमं कुर्वन्तु ।"
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:200
+#: src/kcfg/settings.kcfg:194
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr "आयातस्य अनन्तरं हस्ताक्षरकर्तृकुंजीः पुनः प्राप्तुम्"
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:203
+#: src/kcfg/settings.kcfg:197
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -9201,13 +9189,13 @@ msgstr ""
 "         विश्वसनीयप्रवर्तकैः सह संयोजनेन उपयोगी।"
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:207
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr "सर्वेषां उपयोक्तृ-ID-सम्बद्धानां प्रदातृणां प्रमाणपत्रनिर्देशिकाः प्रश्नं कुर्वन्तु"
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:210
+#: src/kcfg/settings.kcfg:204
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -9224,13 +9212,13 @@ msgstr ""
 "कृते WKD-इत्येतत् पृच्छति ।"
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:216
+#: src/kcfg/settings.kcfg:210
 #, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "आगामिप्रमाणपत्रस्य अवधिसमाप्तेः विषये सूचयन्तु"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:218
+#: src/kcfg/settings.kcfg:212
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -9240,13 +9228,13 @@ msgstr ""
 "        प्रमाणपत्राणि ये शीघ्रमेव समाप्तुं प्रवृत्ताः सन्ति।"
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:224
+#: src/kcfg/settings.kcfg:218
 #, kde-format
 msgid "URL schemes to block"
 msgstr "अवरुद्ध्य URL योजनाः"
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:226
+#: src/kcfg/settings.kcfg:220
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -9258,13 +9246,13 @@ msgstr ""
 "निवारयितुं शक्यते ।"
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:232
+#: src/kcfg/settings.kcfg:226
 #, kde-format
 msgid "Always search smartcard certificates on keyserver"
 msgstr "सदैव keyserver इत्यत्र smartcard प्रमाणपत्राणि अन्वेष्टुम्"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:233
+#: src/kcfg/settings.kcfg:227
 #, kde-format
 msgid ""
 "Searches for the certificates belonging the smartcard keys on the configured "
@@ -9272,7 +9260,7 @@ msgid ""
 msgstr "विन्यस्तकीसर्वरस्य स्मार्टकार्डकुञ्जीनां प्रमाणपत्राणि अन्वेषयति ।"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:235
+#: src/kcfg/settings.kcfg:229
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -9285,19 +9273,19 @@ msgstr ""
 "एतत् कर्तुं भवति ।"
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:239
+#: src/kcfg/settings.kcfg:233
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr "PKCS#15 स्मार्टकार्ड् तः S/MIME प्रमाणपत्राणि लोड् कर्तुं प्रयतध्वम्"
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:240
+#: src/kcfg/settings.kcfg:234
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr "PKCS#15 (CardOS) स्मार्टकार्ड् तः S/MIME प्रमाणपत्राणि स्वयमेव लोड् कुर्वन्तु"
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:241
+#: src/kcfg/settings.kcfg:235
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -9309,38 +9297,38 @@ msgstr ""
 "प्रचलने स्मार्टकार्ड् अवरुद्धं भवति ।"
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
-#: src/kcfg/settings.kcfg:247
+#: src/kcfg/settings.kcfg:241
 #, kde-format
 msgid "Certificate refresh interval (in hours). Zero (0) disables."
 msgstr "प्रमाणपत्रस्य ताजगीकरणान्तरं (घण्टेषु)। शून्यं (0) अक्षमं करोति।"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:255
+#: src/kcfg/settings.kcfg:249
 #, kde-format
 msgid "Disable profile settings"
 msgstr "प्रोफाइल सेटिंग्स् निष्क्रियं कुर्वन्तु"
 
 #. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
-#: src/kcfg/settings.kcfg:259
+#: src/kcfg/settings.kcfg:253
 #, kde-format
 msgid "Allow custom debug commands"
 msgstr "कस्टम् डिबग् आदेशान् अनुमन्यताम्"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
-#: src/kcfg/settings.kcfg:263
+#: src/kcfg/settings.kcfg:257
 #, fuzzy, kde-format
 #| msgid "Show results after encryption"
 msgid "Show results after signing and encrypting files"
 msgstr "एन्क्रिप्शनस्य अनन्तरं परिणामान् दर्शयतु"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:269
+#: src/kcfg/settings.kcfg:263
 #, kde-format
 msgid "Show certificate validity"
 msgstr "प्रमाणपत्रस्य वैधतां दर्शयतु"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:270
+#: src/kcfg/settings.kcfg:264
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9350,13 +9338,13 @@ msgstr ""
 "निरस्तः वा ।"
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:274
+#: src/kcfg/settings.kcfg:268
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "प्रमाणपत्रस्वामिनः सूचनां दर्शयतु"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:275
+#: src/kcfg/settings.kcfg:269
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9366,13 +9354,13 @@ msgstr ""
 "च ।"
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:279
+#: src/kcfg/settings.kcfg:273
 #, kde-format
 msgid "Show certificate details"
 msgstr "प्रमाणपत्रस्य विवरणं दर्शयतु"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:280
+#: src/kcfg/settings.kcfg:274
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -12856,6 +12844,19 @@ msgid ""
 msgstr ""
 "सञ्चिकातः प्रमाणपत्रं आयातयन्तु।<nl/>सार्वजनिककीसर्वरतः आयातयितुं तस्य स्थाने "
 "<interface>Lookup on Server</interface> इत्यस्य उपयोगं कुर्वन्तु ।"
+
+#~ msgid "Allow signing with S/MIME certificates"
+#~ msgstr "S/MIME प्रमाणपत्रैः सह हस्ताक्षरं कर्तुं अनुमतिं ददातु"
+
+#~ msgid "Allows signing of text or files with S/MIME certificates."
+#~ msgstr "S/MIME प्रमाणपत्रैः सह पाठस्य अथवा सञ्चिकानां हस्ताक्षरस्य अनुमतिं ददाति ।"
+
+#~ msgid ""
+#~ "If false, then Kleopatra will not offer functionality for creating "
+#~ "signatures with S/MIME certificates."
+#~ msgstr ""
+#~ "यदि मिथ्या अस्ति, तर्हि Kleopatra S/MIME प्रमाणपत्रैः सह हस्ताक्षरं निर्मातुं "
+#~ "कार्यक्षमतां न प्रदास्यति ।"
 
 #~ msgctxt "@info"
 #~ msgid "The size of the URL may not exceed 254 characters."
