@@ -32,12 +32,15 @@
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
 #include <QGpgME/QuickJob>
+#include <qgpgme/qgpgme_version.h>
 
 #include <QProgressDialog>
 #include <QSettings>
 
 #include <gpgme++/context.h>
 #include <gpgme++/keygenerationresult.h>
+
+#include <gpgme.h>
 
 #include <kleopatra_debug.h>
 
@@ -210,10 +213,17 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
 
     if (teamKey) {
         auto quickJob = std::unique_ptr<QGpgME::QuickJob>(QGpgME::openpgp()->quickJob());
-        auto flags = Context::CreationFlags::CreateSign;
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
+        auto flags = GpgME::Context::CreationFlags::CreateSign;
         if (!protectKeyWithPassword) {
             flags |= GpgME::Context::CreationFlags::CreateNoPassword;
         }
+#else
+        auto flags = GPGME_CREATE_SIGN;
+        if (!protectKeyWithPassword) {
+            flags |= GPGME_CREATE_NOPASSWD;
+        }
+#endif
         connect(quickJob.get(), &QGpgME::QuickJob::result, q, [this, result](const auto &err) {
             if (err) {
                 error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
@@ -246,12 +256,16 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
                            Formatting::prettyID(key.primaryFingerprint())));
             finished();
         });
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
         auto err = quickJob->startAddSubkey(key, QByteArray::fromStdString(key.subkey(0).algoName()), {}, flags);
         if (err) {
             error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
             finished();
             return;
         }
+#else
+        quickJob->startAddSubkey(key, QByteArray::fromStdString(key.subkey(0).algoName()).data(), {}, flags);
+#endif
         quickJob.release();
     } else {
         success(xi18nc("@info",
