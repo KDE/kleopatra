@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-06 08:06+0000\n"
+"POT-Creation-Date: 2025-11-11 00:43+0000\n"
 "PO-Revision-Date: 2025-11-06 16:00+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -1607,6 +1607,7 @@ msgstr "Експорт груп сертифікатів…"
 #: src/commands/exportgroupscommand.cpp:271
 #: src/commands/exportsecretkeycommand.cpp:250
 #: src/commands/exportsecretsubkeycommand.cpp:218
+#: src/commands/exportsecretteamkeycommand.cpp:281
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1835,6 +1836,7 @@ msgstr "Друк закритого ключа"
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
 #: src/commands/exportsecretsubkeycommand.cpp:75
+#: src/commands/exportsecretteamkeycommand.cpp:75
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Files"
@@ -1871,6 +1873,7 @@ msgstr ""
 "помилковий пароль."
 
 #: src/commands/exportsecretkeycommand.cpp:257
+#: src/commands/exportsecretteamkeycommand.cpp:288
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
@@ -1939,6 +1942,95 @@ msgstr[0] "Успішно експортовано %1 підключ."
 msgstr[1] "Успішно експортовано %1 підключі."
 msgstr[2] "Успішно експортовано %1 підключів."
 msgstr[3] "Успішно експортовано один підключ."
+
+#: src/commands/exportsecretteamkeycommand.cpp:72
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Backup Secret Key"
+msgctxt "@title:window"
+msgid "Save Secret Team Key"
+msgstr "Створити резервну копію закритого ключа"
+
+#: src/commands/exportsecretteamkeycommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@title:dialog"
+msgid "Save Secret Team Key"
+msgstr "Створити резервну копію закритого ключа"
+
+#: src/commands/exportsecretteamkeycommand.cpp:147
+#, kde-format
+msgctxt "@info"
+msgid ""
+"After importing the team key, team members will be able to decrypt data with "
+"it."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:150
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Please choose whether members should also be allowed to sign data with the "
+"team key.\n"
+"Alternatively, they can use their personal key for signing."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:160
+#, kde-format
+msgctxt "@option:check"
+msgid "Allow team members to sign with the team key"
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:166
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Team members will not be able to change the name, email address, or "
+"expiration date of the team key."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:255
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid "Backing up secret key..."
+msgctxt "@info:status"
+msgid "Saving secret team key..."
+msgstr "Створюємо резервну копію закритого ключа…"
+
+#: src/commands/exportsecretteamkeycommand.cpp:274
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The result of the backup is empty. Maybe you entered an empty or a wrong "
+#| "passphrase."
+msgctxt "@info"
+msgid "The result is empty. Maybe you entered an empty or a wrong passphrase."
+msgstr ""
+"Результат резервного копіювання є порожнім. Можливо, ви ввели порожній або "
+"помилковий пароль."
+
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "Yes, Save As <filename>%1</filename>"
+msgctxt "@info"
+msgid "The secret team key was saved to <filename>%1</filename>"
+msgstr "Так, зберегти як <filename>%1</filename>"
+
+#: src/commands/exportsecretteamkeycommand.cpp:301
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during the saving of the secret team key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Під час резервного копіювання закритого ключа сталася помилка:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:195
 #, kde-format
@@ -9671,43 +9763,43 @@ msgstr "&Файл"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:28 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:126
 #, kde-format
 msgid "&Certificates"
 msgstr "&Сертифікати"
 
 #. i18n: ectx: Menu (_tools)
-#: src/kleopatra.rc:53
+#: src/kleopatra.rc:54
 #, kde-format
 msgid "&Tools"
 msgstr "&Інструменти"
 
 #. i18n: ectx: Menu (_view)
-#: src/kleopatra.rc:73
+#: src/kleopatra.rc:74
 #, kde-format
 msgid "&View"
 msgstr "&Перегляд"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:84
+#: src/kleopatra.rc:85
 #, kde-format
 msgid "&Settings"
 msgstr "П&араметри"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Help"
 msgstr "&Довідка"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:95
+#: src/kleopatra.rc:96
 #, kde-format
 msgid "&More Documentation"
 msgstr "Д&одаткова документація"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:109 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Головна панель"
@@ -11899,48 +11991,48 @@ msgstr "Читаємо сертифікати зі смарт-картки…"
 msgid "Loading certificate cache..."
 msgstr "Завантаження кешу сертифікатів…"
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Створити пару ключів OpenPGP…"
 
-#: src/view/keylistcontroller.cpp:329
+#: src/view/keylistcontroller.cpp:330
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Створити сертифікат OpenPGP"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export..."
 msgstr "Експортувати…"
 
-#: src/view/keylistcontroller.cpp:338
+#: src/view/keylistcontroller.cpp:339
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr "Експортувати позначений сертифікат (відкритий ключ) до файла"
 
-#: src/view/keylistcontroller.cpp:346
+#: src/view/keylistcontroller.cpp:347
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Оприлюднити на сервері…"
 
-#: src/view/keylistcontroller.cpp:348
+#: src/view/keylistcontroller.cpp:349
 #, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Оприлюднити позначений сертифікат (відкритий ключ) у внутрішньому каталозі"
 
-#: src/view/keylistcontroller.cpp:349
+#: src/view/keylistcontroller.cpp:350
 #, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Оприлюднити позначений сертифікат (відкритий ключ) на %1"
 
-#: src/view/keylistcontroller.cpp:358
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Оприлюднити на сервері надавача послуг ел. пошти…"
 
-#: src/view/keylistcontroller.cpp:359
+#: src/view/keylistcontroller.cpp:360
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11949,206 +12041,213 @@ msgstr ""
 "Оприлюднити позначений сертифікат (відкритий ключ) у каталозі вебключів "
 "надавача послуг електронної пошти, якщо такий існує"
 
-#: src/view/keylistcontroller.cpp:368
+#: src/view/keylistcontroller.cpp:369
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Створити резервну копію закритих ключів…"
 
-#: src/view/keylistcontroller.cpp:377
+#: src/view/keylistcontroller.cpp:378
+#, fuzzy, kde-format
+#| msgid "Backup Secret Keys..."
+msgctxt "@action:inmenu"
+msgid "Save Secret Team Key..."
+msgstr "Створити резервну копію закритих ключів…"
+
+#: src/view/keylistcontroller.cpp:387
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Надрукувати закритий ключ…"
 
-#: src/view/keylistcontroller.cpp:386
+#: src/view/keylistcontroller.cpp:396
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Шукати на сервері…"
 
-#: src/view/keylistcontroller.cpp:388
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Search for certificates in internal directory"
 msgstr "Шукати сертифікати у внутрішньому каталозі"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Search for certificates on %1"
 msgstr "Шукати сертифікати у %1"
 
-#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:178
+#: src/view/keylistcontroller.cpp:407 src/view/welcomewidget.cpp:178
 #, kde-format
 msgid "Import..."
 msgstr "Імпортувати…"
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:408
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Імпортувати сертифікат з файла"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Розшифрувати/Перевірити"
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:417
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Розшифрувати і/або перевірити файли"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Підписати/зашифрувати…"
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:426
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Зашифрувати і/або підписати файли"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:434
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Підписати/зашифрувати теку…"
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Зашифрувати і/або підписати теки"
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Створити файли контрольних сум…"
 
-#: src/view/keylistcontroller.cpp:442
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Перевірити файли контрольних сум…"
 
-#: src/view/keylistcontroller.cpp:451
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Details"
 msgstr "Подробиці"
 
-#: src/view/keylistcontroller.cpp:461
+#: src/view/keylistcontroller.cpp:471
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Відкликати сертифікат…"
 
-#: src/view/keylistcontroller.cpp:462
+#: src/view/keylistcontroller.cpp:472
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Відкликати вибраний сертифікат OpenPGP"
 
-#: src/view/keylistcontroller.cpp:470
+#: src/view/keylistcontroller.cpp:480
 #, kde-format
 msgid "Delete"
 msgstr "Вилучити"
 
-#: src/view/keylistcontroller.cpp:471
+#: src/view/keylistcontroller.cpp:481
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Вилучити позначені сертифікати"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Update Certificates"
 msgstr "Оновити сертифікати"
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Оновити позначені сертифікати"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Certify..."
 msgstr "Сертифікувати…"
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "Сертифікувати чинність позначеного сертифіката"
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Відкликати сертифікацію…"
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:508
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "Відкликати сертифікацію позначено сертифіката"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Змінити кінець строку дії…"
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Змінити доступ до сертифікації…"
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:526
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr ""
 "Надати або відкликати доступ до сертифікації для позначеного сертифіката"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Поміняти пароль…"
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgid "Add User ID..."
 msgstr "Додати ідентифікатор користувача…"
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Створити групу…"
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:553
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Створити групу з позначених сертифікатів"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Скопіювати на картку"
 
-#: src/view/keylistcontroller.cpp:552
+#: src/view/keylistcontroller.cpp:562
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Скопіювати позначений сертифікат на смарт-картку"
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:571
 #, kde-format
 msgid "Redisplay"
 msgstr "Показати повторно"
 
-#: src/view/keylistcontroller.cpp:571
+#: src/view/keylistcontroller.cpp:581
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Копіювати"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Вимкнути сертифікат"
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:602
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12160,53 +12259,53 @@ msgstr ""
 "сертифіката для підписування або шифрування. Їх не буде показано у списку "
 "сертифікатів для більшості умов фільтрування."
 
-#: src/view/keylistcontroller.cpp:603
+#: src/view/keylistcontroller.cpp:613
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Створити запит щодо сертифікації S/MIME…"
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:614
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "Створити запит щодо підписування сертифіката S/MIME (CSR)"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Встановити надійність кореневого сертифіката"
 
-#: src/view/keylistcontroller.cpp:621
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Скасувати надійність кореневого сертифіката"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "Технічні відомості"
 
-#: src/view/keylistcontroller.cpp:640
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "Спорожнити кеш CRL"
 
-#: src/view/keylistcontroller.cpp:649
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "Скинути кеш CRL"
 
-#: src/view/keylistcontroller.cpp:658
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "Імпортувати CRL з файла…"
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
 msgstr "Увімкнути і показати сертифікат"
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
@@ -15072,9 +15171,6 @@ msgstr ""
 
 #~ msgid "File Operations"
 #~ msgstr "Дії над файлами"
-
-#~ msgid "Backup Secret Key"
-#~ msgstr "Створити резервну копію закритого ключа"
 
 #~ msgid "Secret Key Files"
 #~ msgstr "Файли закритих ключів"

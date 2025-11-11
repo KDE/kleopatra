@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-06 08:06+0000\n"
+"POT-Creation-Date: 2025-11-11 00:43+0000\n"
 "PO-Revision-Date: 2025-11-06 12:15+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -1614,6 +1614,7 @@ msgstr "Certificaten exporteren..."
 #: src/commands/exportgroupscommand.cpp:271
 #: src/commands/exportsecretkeycommand.cpp:250
 #: src/commands/exportsecretsubkeycommand.cpp:218
+#: src/commands/exportsecretteamkeycommand.cpp:281
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open file <filename>%1</filename> for writing."
@@ -1834,6 +1835,7 @@ msgstr "Geheime sleutel afdrukken"
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
 #: src/commands/exportsecretsubkeycommand.cpp:75
+#: src/commands/exportsecretteamkeycommand.cpp:75
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Files"
@@ -1870,6 +1872,7 @@ msgstr ""
 "of verkeerde wachtwoordzin ingevoerd."
 
 #: src/commands/exportsecretkeycommand.cpp:257
+#: src/commands/exportsecretteamkeycommand.cpp:288
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
@@ -1935,6 +1938,95 @@ msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "Export van sub-sleutel is gelukt."
 msgstr[1] "Export van %1 sub-sleutels is gelukt."
+
+#: src/commands/exportsecretteamkeycommand.cpp:72
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Backup Secret Key"
+msgctxt "@title:window"
+msgid "Save Secret Team Key"
+msgstr "Geheime reservesleutel"
+
+#: src/commands/exportsecretteamkeycommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Backup Secret Key"
+msgctxt "@title:dialog"
+msgid "Save Secret Team Key"
+msgstr "Geheime reservesleutel"
+
+#: src/commands/exportsecretteamkeycommand.cpp:147
+#, kde-format
+msgctxt "@info"
+msgid ""
+"After importing the team key, team members will be able to decrypt data with "
+"it."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:150
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Please choose whether members should also be allowed to sign data with the "
+"team key.\n"
+"Alternatively, they can use their personal key for signing."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:160
+#, kde-format
+msgctxt "@option:check"
+msgid "Allow team members to sign with the team key"
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:166
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Team members will not be able to change the name, email address, or "
+"expiration date of the team key."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:255
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid "Backing up secret key..."
+msgctxt "@info:status"
+msgid "Saving secret team key..."
+msgstr "Van geheime sleutel wordt een reservekopie gemaakt..."
+
+#: src/commands/exportsecretteamkeycommand.cpp:274
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The result of the backup is empty. Maybe you entered an empty or a wrong "
+#| "passphrase."
+msgctxt "@info"
+msgid "The result is empty. Maybe you entered an empty or a wrong passphrase."
+msgstr ""
+"Het resultaat van het reservekopie maken is leeg. Misschien hebt u een leeg "
+"of verkeerde wachtwoordzin ingevoerd."
+
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-kuit-format
+#| msgctxt "@action:button"
+#| msgid "Yes, Save As <filename>%1</filename>"
+msgctxt "@info"
+msgid "The secret team key was saved to <filename>%1</filename>"
+msgstr "Ja, opslaan als <filename>%1</filename>"
+
+#: src/commands/exportsecretteamkeycommand.cpp:301
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred during the backup of the secret key:</"
+#| "para><para><message>%1</message></para>"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during the saving of the secret team key:</"
+"para><para><message>%1</message></para>"
+msgstr ""
+"<para>Er is een fout opgetreden tijdens het maken van een reservekopie van "
+"de geheime sleutel:</para><para><message>%1</message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:195
 #, kde-format
@@ -9551,43 +9643,43 @@ msgstr "&Bestand"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:28 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:126
 #, kde-format
 msgid "&Certificates"
 msgstr "&Certificaten"
 
 #. i18n: ectx: Menu (_tools)
-#: src/kleopatra.rc:53
+#: src/kleopatra.rc:54
 #, kde-format
 msgid "&Tools"
 msgstr "H&ulpmiddelen"
 
 #. i18n: ectx: Menu (_view)
-#: src/kleopatra.rc:73
+#: src/kleopatra.rc:74
 #, kde-format
 msgid "&View"
 msgstr "Beel&d"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:84
+#: src/kleopatra.rc:85
 #, kde-format
 msgid "&Settings"
 msgstr "In&stellingen"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Help"
 msgstr "&Hulp"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:95
+#: src/kleopatra.rc:96
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Meer documentatie"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:109 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hoofdwerkbalk"
@@ -11770,50 +11862,50 @@ msgstr "Certificaten lezen uit de smartcard..."
 msgid "Loading certificate cache..."
 msgstr "Certificaatbuffer laden..."
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr "Nieuw OpenPGP-sleutelpaar..."
 
-#: src/view/keylistcontroller.cpp:329
+#: src/view/keylistcontroller.cpp:330
 #, kde-format
 msgid "Create a new OpenPGP certificate"
 msgstr "Een nieuw OpenPGP-certificaat aanmaken"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, kde-format
 msgid "Export..."
 msgstr "Exporteren..."
 
-#: src/view/keylistcontroller.cpp:338
+#: src/view/keylistcontroller.cpp:339
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) naar een bestand exporteren"
 
-#: src/view/keylistcontroller.cpp:346
+#: src/view/keylistcontroller.cpp:347
 #, kde-format
 msgid "Publish on Server..."
 msgstr "Op server publiceren..."
 
-#: src/view/keylistcontroller.cpp:348
+#: src/view/keylistcontroller.cpp:349
 #, kde-format
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) op een interne map "
 "publiceren"
 
-#: src/view/keylistcontroller.cpp:349
+#: src/view/keylistcontroller.cpp:350
 #, kde-format
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "Het geselecteerde certificaat (publieke sleutel) op %1 publiceren"
 
-#: src/view/keylistcontroller.cpp:358
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr "Publiceren bij e-mailleverancier..."
 
-#: src/view/keylistcontroller.cpp:359
+#: src/view/keylistcontroller.cpp:360
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
@@ -11822,148 +11914,155 @@ msgstr ""
 "Het geselecteerde certificaat (publieke sleutel) publiceren bij de Web Key "
 "Directory van de e-mailleverancier, indien aangeboden"
 
-#: src/view/keylistcontroller.cpp:368
+#: src/view/keylistcontroller.cpp:369
 #, kde-format
 msgid "Backup Secret Keys..."
 msgstr "Geheime reservesleutels opslaan..."
 
-#: src/view/keylistcontroller.cpp:377
+#: src/view/keylistcontroller.cpp:378
+#, fuzzy, kde-format
+#| msgid "Backup Secret Keys..."
+msgctxt "@action:inmenu"
+msgid "Save Secret Team Key..."
+msgstr "Geheime reservesleutels opslaan..."
+
+#: src/view/keylistcontroller.cpp:387
 #, kde-format
 msgid "Print Secret Key..."
 msgstr "Geheime sleutel afdrukken..."
 
-#: src/view/keylistcontroller.cpp:386
+#: src/view/keylistcontroller.cpp:396
 #, kde-format
 msgid "Lookup on Server..."
 msgstr "Op server opzoeken..."
 
-#: src/view/keylistcontroller.cpp:388
+#: src/view/keylistcontroller.cpp:398
 #, kde-format
 msgid "Search for certificates in internal directory"
 msgstr "Naar certificaten in een interne map zoeken"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:399
 #, kde-format
 msgid "Search for certificates on %1"
 msgstr "Naar certificaten op %1 zoeken"
 
-#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:178
+#: src/view/keylistcontroller.cpp:407 src/view/welcomewidget.cpp:178
 #, kde-format
 msgid "Import..."
 msgstr "Importeren..."
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:408
 #, kde-format
 msgid "Import a certificate from a file"
 msgstr "Een certificaat importeren uit een bestand"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr "Ontcijferen/verifiëren..."
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:417
 #, kde-format
 msgid "Decrypt and/or verify files"
 msgstr "Bestanden ontcijferen en/of verifiëren"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr "Ondertekenen/versleutelen..."
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:426
 #, kde-format
 msgid "Encrypt and/or sign files"
 msgstr "Bestanden versleutelen en/of ondertekenen"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:434
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr "Map ondertekenen/versleutelen..."
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr "Mappen versleutelen en/of ondertekenen"
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr "Controlesom-bestanden aanmaken..."
 
-#: src/view/keylistcontroller.cpp:442
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr "Controlesom-bestanden verifiëren..."
 
-#: src/view/keylistcontroller.cpp:451
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Details"
 msgstr "Details"
 
-#: src/view/keylistcontroller.cpp:461
+#: src/view/keylistcontroller.cpp:471
 #, kde-format
 msgid "Revoke Certificate..."
 msgstr "Certificaat herroepen..."
 
-#: src/view/keylistcontroller.cpp:462
+#: src/view/keylistcontroller.cpp:472
 #, kde-format
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "Het geselecteerde OpenPGP-certificaat herroepen"
 
-#: src/view/keylistcontroller.cpp:470
+#: src/view/keylistcontroller.cpp:480
 #, kde-format
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/view/keylistcontroller.cpp:471
+#: src/view/keylistcontroller.cpp:481
 #, kde-format
 msgid "Delete selected certificates"
 msgstr "Geselecteerde certificaten verwijderen"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:489
 #, kde-format
 msgid "Update Certificates"
 msgstr "Certificaten bijwerken"
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:490
 #, kde-format
 msgid "Update selected certificates"
 msgstr "Geselecteerde certificaten bijwerken"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Certify..."
 msgstr "Certificeer..."
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr "De geldigheid van het geselecteerde certificaat bevestigen."
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:507
 #, kde-format
 msgid "Revoke Certification..."
 msgstr "Certificaat herroepen..."
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:508
 #, kde-format
 msgid "Revoke the certification of the selected certificate"
 msgstr "De certificate van het geselecteerde certificaat herroepen."
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr "Het eind van de geldigheidsperiode wijzigen..."
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:525
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "Recht van certificeren wijzigen..."
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:526
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
@@ -11971,58 +12070,58 @@ msgstr ""
 "Het recht van certificeren van het geselecteerde certificaat toekennen of "
 "intrekken."
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change Passphrase..."
 msgstr "Wachtwoord wijzigen..."
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgid "Add User ID..."
 msgstr "Gebruiker-id toevoegen..."
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:552
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "Groep aanmaken..."
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:553
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "Een groep aanmaken van de geselecteerde certificaten."
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr "Naar card kopiëren"
 
-#: src/view/keylistcontroller.cpp:552
+#: src/view/keylistcontroller.cpp:562
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "Het geselecteerde certificaat naar een smartcard kopiëren"
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:571
 #, kde-format
 msgid "Redisplay"
 msgstr "Opnieuw laten zien"
 
-#: src/view/keylistcontroller.cpp:571
+#: src/view/keylistcontroller.cpp:581
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:599
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "Certificaat uitschakelen"
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:602
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -12034,55 +12133,55 @@ msgstr ""
 "certificaat om mee te ondertekenen of om mee te versleutelen. Ze worden niet "
 "getoond in de lijst met certificaten met de meeste filters."
 
-#: src/view/keylistcontroller.cpp:603
+#: src/view/keylistcontroller.cpp:613
 #, kde-format
 msgid "New S/MIME Certification Request..."
 msgstr "Nieuw verzoek voor S/MIME-certificatie..."
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:614
 #, kde-format
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr ""
 "Een nieuw verzoek voor ondertekening van een S/MIME certificaat aanmaken "
 "(CSR)"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, kde-format
 msgid "Trust Root Certificate"
 msgstr "Hoofdcertificaat vertrouwen"
 
-#: src/view/keylistcontroller.cpp:621
+#: src/view/keylistcontroller.cpp:631
 #, kde-format
 msgid "Distrust Root Certificate"
 msgstr "Hoofdcertificaat niet vertrouwen"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr "Technische details"
 
-#: src/view/keylistcontroller.cpp:640
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr "CRL-cache legen"
 
-#: src/view/keylistcontroller.cpp:649
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr "CRL-cache dumpen"
 
-#: src/view/keylistcontroller.cpp:658
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Import CRL From File..."
 msgstr "CRL van bestand importeren..."
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
 msgstr "Certificaat inschakelen en tonen"
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Disable and Hide Certificate"
@@ -14944,9 +15043,6 @@ msgstr ""
 
 #~ msgid "File Operations"
 #~ msgstr "Bestandsbewerkingen"
-
-#~ msgid "Backup Secret Key"
-#~ msgstr "Geheime reservesleutel"
 
 #~ msgid "Secret Key Files"
 #~ msgstr "Geheime sleutelbestanden"

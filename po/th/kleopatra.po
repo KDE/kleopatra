@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-06 08:06+0000\n"
+"POT-Creation-Date: 2025-11-11 00:43+0000\n"
 "PO-Revision-Date: 2008-07-21 16:42+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -1551,6 +1551,7 @@ msgstr "เลือกแฟ้มของใบรับรอง"
 #: src/commands/exportgroupscommand.cpp:271
 #: src/commands/exportsecretkeycommand.cpp:250
 #: src/commands/exportsecretsubkeycommand.cpp:218
+#: src/commands/exportsecretteamkeycommand.cpp:281
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file %1 for reading"
 msgctxt "@info"
@@ -1733,6 +1734,7 @@ msgstr "ส่งออกใบรับรอง"
 #: src/commands/exportsecretkeycommand.cpp:91
 #: src/commands/exportsecretkeycommand.cpp:93
 #: src/commands/exportsecretsubkeycommand.cpp:75
+#: src/commands/exportsecretteamkeycommand.cpp:75
 #, fuzzy, kde-format
 #| msgid "Select File"
 msgctxt "description of filename filter"
@@ -1771,6 +1773,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/exportsecretkeycommand.cpp:257
+#: src/commands/exportsecretteamkeycommand.cpp:288
 #, fuzzy, kde-kuit-format
 #| msgid "Could not open file %1 for reading"
 msgctxt "@info"
@@ -1835,6 +1838,81 @@ msgctxt "@info"
 msgid "The subkey was exported successfully."
 msgid_plural "%1 subkeys were exported successfully."
 msgstr[0] "ใ&บรับรอง"
+
+#: src/commands/exportsecretteamkeycommand.cpp:72
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@title:window"
+msgid "Save Secret Team Key"
+msgstr "ส่งออกใบรับรอง"
+
+#: src/commands/exportsecretteamkeycommand.cpp:143
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@title:dialog"
+msgid "Save Secret Team Key"
+msgstr "ส่งออกใบรับรอง"
+
+#: src/commands/exportsecretteamkeycommand.cpp:147
+#, kde-format
+msgctxt "@info"
+msgid ""
+"After importing the team key, team members will be able to decrypt data with "
+"it."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:150
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Please choose whether members should also be allowed to sign data with the "
+"team key.\n"
+"Alternatively, they can use their personal key for signing."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:160
+#, kde-format
+msgctxt "@option:check"
+msgid "Allow team members to sign with the team key"
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:166
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Team members will not be able to change the name, email address, or "
+"expiration date of the team key."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:255
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@info:status"
+msgid "Saving secret team key..."
+msgstr "ส่งออกใบรับรอง"
+
+#: src/commands/exportsecretteamkeycommand.cpp:274
+#, kde-format
+msgctxt "@info"
+msgid "The result is empty. Maybe you entered an empty or a wrong passphrase."
+msgstr ""
+
+#: src/commands/exportsecretteamkeycommand.cpp:293
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file %1 for reading"
+msgctxt "@info"
+msgid "The secret team key was saved to <filename>%1</filename>"
+msgstr "ไม่สามารถเปิดแฟ้ม %1 เพื่อทำการอ่านได้"
+
+#: src/commands/exportsecretteamkeycommand.cpp:301
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file %1 for reading"
+msgctxt "@info"
+msgid ""
+"<para>An error occurred during the saving of the secret team key:</"
+"para><para><message>%1</message></para>"
+msgstr "ไม่สามารถเปิดแฟ้ม %1 เพื่อทำการอ่านได้"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:195
 #, fuzzy, kde-format
@@ -9206,43 +9284,43 @@ msgstr ""
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:28 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:126
 #, kde-format
 msgid "&Certificates"
 msgstr "ใ&บรับรอง"
 
 #. i18n: ectx: Menu (_tools)
-#: src/kleopatra.rc:53
+#: src/kleopatra.rc:54
 #, kde-format
 msgid "&Tools"
 msgstr "เครื่&องมือ"
 
 #. i18n: ectx: Menu (_view)
-#: src/kleopatra.rc:73
+#: src/kleopatra.rc:74
 #, kde-format
 msgid "&View"
 msgstr "มุ&มมอง"
 
 #. i18n: ectx: Menu (settings)
-#: src/kleopatra.rc:84
+#: src/kleopatra.rc:85
 #, kde-format
 msgid "&Settings"
 msgstr "&ตั้งค่า"
 
 #. i18n: ectx: Menu (help)
-#: src/kleopatra.rc:88
+#: src/kleopatra.rc:89
 #, kde-format
 msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:95
+#: src/kleopatra.rc:96
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:109 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "แถบเครื่องมือหลัก"
@@ -11353,278 +11431,285 @@ msgstr "ส่งออกใบรับรอง"
 msgid "Loading certificate cache..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:328
+#: src/view/keylistcontroller.cpp:329
 #, kde-format
 msgid "New OpenPGP Key Pair..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:329
+#: src/view/keylistcontroller.cpp:330
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "Create a new OpenPGP certificate"
 msgstr "ใ&บรับรอง"
 
-#: src/view/keylistcontroller.cpp:337
+#: src/view/keylistcontroller.cpp:338
 #, fuzzy, kde-format
 #| msgid "Export"
 msgid "Export..."
 msgstr "ส่งออก"
 
-#: src/view/keylistcontroller.cpp:338
+#: src/view/keylistcontroller.cpp:339
 #, kde-format
 msgid "Export the selected certificate (public key) to a file"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:346
+#: src/view/keylistcontroller.cpp:347
 #, kde-format
 msgid "Publish on Server..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:348
+#: src/view/keylistcontroller.cpp:349
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Publish the selected certificate (public key) to internal directory"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:349
+#: src/view/keylistcontroller.cpp:350
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Publish the selected certificate (public key) on %1"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:358
+#: src/view/keylistcontroller.cpp:359
 #, kde-format
 msgid "Publish at Mail Provider..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:359
+#: src/view/keylistcontroller.cpp:360
 #, kde-format
 msgid ""
 "Publish the selected certificate (public key) at mail provider's Web Key "
 "Directory if offered"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:368
+#: src/view/keylistcontroller.cpp:369
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Backup Secret Keys..."
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:377
+#: src/view/keylistcontroller.cpp:378
+#, fuzzy, kde-format
+#| msgid "Export Certificates"
+msgctxt "@action:inmenu"
+msgid "Save Secret Team Key..."
+msgstr "ส่งออกใบรับรอง"
+
+#: src/view/keylistcontroller.cpp:387
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Print Secret Key..."
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:386
+#: src/view/keylistcontroller.cpp:396
 #, fuzzy, kde-format
 #| msgid "Lookup..."
 msgid "Lookup on Server..."
 msgstr "ค้นหา..."
 
-#: src/view/keylistcontroller.cpp:388
+#: src/view/keylistcontroller.cpp:398
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Search for certificates in internal directory"
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:389
+#: src/view/keylistcontroller.cpp:399
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgid "Search for certificates on %1"
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:397 src/view/welcomewidget.cpp:178
+#: src/view/keylistcontroller.cpp:407 src/view/welcomewidget.cpp:178
 #, fuzzy, kde-format
 #| msgid "Import"
 msgid "Import..."
 msgstr "นำเข้า"
 
-#: src/view/keylistcontroller.cpp:398
+#: src/view/keylistcontroller.cpp:408
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Import a certificate from a file"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:406
+#: src/view/keylistcontroller.cpp:416
 #, kde-format
 msgid "Decrypt/Verify..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:407
+#: src/view/keylistcontroller.cpp:417
 #, fuzzy, kde-format
 #| msgid "Sign and encrypt (OpenPGP only)"
 msgid "Decrypt and/or verify files"
 msgstr "เซ็นและเข้ารหัส (OpenPGP เท่านั้น)"
 
-#: src/view/keylistcontroller.cpp:415
+#: src/view/keylistcontroller.cpp:425
 #, kde-format
 msgid "Sign/Encrypt..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:416
+#: src/view/keylistcontroller.cpp:426
 #, fuzzy, kde-format
 #| msgid "Sign and encrypt (OpenPGP only)"
 msgid "Encrypt and/or sign files"
 msgstr "เซ็นและเข้ารหัส (OpenPGP เท่านั้น)"
 
-#: src/view/keylistcontroller.cpp:424
+#: src/view/keylistcontroller.cpp:434
 #, kde-format
 msgid "Sign/Encrypt Folder..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:425
+#: src/view/keylistcontroller.cpp:435
 #, kde-format
 msgid "Encrypt and/or sign folders"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:433
+#: src/view/keylistcontroller.cpp:443
 #, kde-format
 msgid "Create Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:442
+#: src/view/keylistcontroller.cpp:452
 #, kde-format
 msgid "Verify Checksum Files..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:451
+#: src/view/keylistcontroller.cpp:461
 #, kde-format
 msgid "Details"
 msgstr "รายละเอียด"
 
-#: src/view/keylistcontroller.cpp:461
+#: src/view/keylistcontroller.cpp:471
 #, fuzzy, kde-format
 #| msgid "Importing certificate..."
 msgid "Revoke Certificate..."
 msgstr "กำลังนำเข้าใบรับรอง..."
 
-#: src/view/keylistcontroller.cpp:462
+#: src/view/keylistcontroller.cpp:472
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Revoke the selected OpenPGP certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:470
+#: src/view/keylistcontroller.cpp:480
 #, kde-format
 msgid "Delete"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:471
+#: src/view/keylistcontroller.cpp:481
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Delete selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:479
+#: src/view/keylistcontroller.cpp:489
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Update Certificates"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:480
+#: src/view/keylistcontroller.cpp:490
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Update selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:488
+#: src/view/keylistcontroller.cpp:498
 #, kde-format
 msgid "Certify..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:489
+#: src/view/keylistcontroller.cpp:499
 #, kde-format
 msgid "Certify the validity of the selected certificate"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:497
+#: src/view/keylistcontroller.cpp:507
 #, fuzzy, kde-format
 #| msgid "Importing certificate..."
 msgid "Revoke Certification..."
 msgstr "กำลังนำเข้าใบรับรอง..."
 
-#: src/view/keylistcontroller.cpp:498
+#: src/view/keylistcontroller.cpp:508
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Revoke the certification of the selected certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:506
+#: src/view/keylistcontroller.cpp:516
 #, kde-format
 msgid "Change End of Validity Period..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:515
+#: src/view/keylistcontroller.cpp:525
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
 msgid "Change Certification Power..."
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:516
+#: src/view/keylistcontroller.cpp:526
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Grant or revoke the certification power of the selected certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:524
+#: src/view/keylistcontroller.cpp:534
 #, kde-format
 msgid "Change Passphrase..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:533
+#: src/view/keylistcontroller.cpp:543
 #, kde-format
 msgid "Add User ID..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:542
+#: src/view/keylistcontroller.cpp:552
 #, fuzzy, kde-format
 #| msgid "Configure"
 msgctxt "@action:inmenu"
 msgid "Create Group..."
 msgstr "ปรับแต่ง"
 
-#: src/view/keylistcontroller.cpp:543
+#: src/view/keylistcontroller.cpp:553
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Create a group from the selected certificates"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:551
+#: src/view/keylistcontroller.cpp:561
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Copy to Card"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:552
+#: src/view/keylistcontroller.cpp:562
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@info:tooltip"
 msgid "Copy the selected certificate to a smartcard"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:561
+#: src/view/keylistcontroller.cpp:571
 #, kde-format
 msgid "Redisplay"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:571
+#: src/view/keylistcontroller.cpp:581
 #, kde-format
 msgctxt "@action:button"
 msgid "Copy"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:589
+#: src/view/keylistcontroller.cpp:599
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@action:inmenu"
 msgid "Disable Certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:592
+#: src/view/keylistcontroller.cpp:602
 #, kde-format
 msgctxt "@action:tooltip"
 msgid ""
@@ -11633,58 +11718,58 @@ msgid ""
 "filters."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:603
+#: src/view/keylistcontroller.cpp:613
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "New S/MIME Certification Request..."
 msgstr "ใ&บรับรอง"
 
-#: src/view/keylistcontroller.cpp:604
+#: src/view/keylistcontroller.cpp:614
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Create a new S/MIME certificate signing request (CSR)"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:612
+#: src/view/keylistcontroller.cpp:622
 #, fuzzy, kde-format
 #| msgid "Export Certificates"
 msgid "Trust Root Certificate"
 msgstr "ส่งออกใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:621
+#: src/view/keylistcontroller.cpp:631
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgid "Distrust Root Certificate"
 msgstr "ใบรับรองปริยาย"
 
-#: src/view/keylistcontroller.cpp:631
+#: src/view/keylistcontroller.cpp:641
 #, kde-format
 msgid "Technical Details"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:640
+#: src/view/keylistcontroller.cpp:650
 #, kde-format
 msgid "Clear CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:649
+#: src/view/keylistcontroller.cpp:659
 #, kde-format
 msgid "Dump CRL Cache"
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:658
+#: src/view/keylistcontroller.cpp:668
 #, kde-format
 msgid "Import CRL From File..."
 msgstr ""
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, fuzzy, kde-format
 #| msgid "Select Certificate File"
 msgctxt "@action:inmenu"
 msgid "Enable and Show Certificate"
 msgstr "เลือกแฟ้มของใบรับรอง"
 
-#: src/view/keylistcontroller.cpp:1103
+#: src/view/keylistcontroller.cpp:1122
 #, fuzzy, kde-format
 #| msgid "Default certificate"
 msgctxt "@action:inmenu"
