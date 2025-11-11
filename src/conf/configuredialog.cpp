@@ -54,7 +54,7 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
     if (settings.showSMimeValidationConfiguration() && settings.cmsEnabled()) {
         addModule(i18n("S/MIME Validation"),
                   QStringLiteral("kleopatra/configuration.html#configuration-smime-validation"),
-                  QStringLiteral("preferences-system-network"),
+                  QStringLiteral("applications-network"),
                   new Kleo::Config::SMimeValidationConfigurationPage(this));
     }
     if (settings.showSmartCardsConfiguration()) {
