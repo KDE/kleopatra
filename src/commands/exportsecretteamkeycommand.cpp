@@ -34,6 +34,7 @@
 #include <gpgme++/context.h>
 
 #include <memory>
+#include <span>
 
 #include <kleopatra_debug.h>
 
