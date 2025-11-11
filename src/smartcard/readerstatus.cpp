@@ -736,10 +736,10 @@ struct CertInfo {
     std::string keyref;
 };
 
-static QDebug operator<<(QDebug s, const CertInfo &certInfo)
-{
-    return s << "CertInfo(" << certInfo.certType << ',' << certInfo.keyref << ')';
-}
+// static QDebug operator<<(QDebug s, const CertInfo &certInfo)
+// {
+//     return s << "CertInfo(" << certInfo.certType << ',' << certInfo.keyref << ')';
+// }
 }
 
 static CertInfo parseCertInfoLine(std::string_view line)
