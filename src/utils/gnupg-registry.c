@@ -38,7 +38,8 @@ HRESULT
 w32_shgetfolderpath(HWND a, int b, HANDLE c, DWORD d, LPSTR e)
 {
     static int initialized;
-    static HRESULT(WINAPI * func)(HWND, int, HANDLE, DWORD, LPSTR);
+    typedef HRESULT(WINAPI * SHGetFolderPathAType)(HWND, int, HANDLE, DWORD, LPSTR);
+    static SHGetFolderPathAType func;
 
     if (!initialized) {
         static const char *dllnames[] = {"shell32.dll", "shfolder.dll", NULL};
@@ -50,7 +51,10 @@ w32_shgetfolderpath(HWND a, int b, HANDLE c, DWORD d, LPSTR e)
         for (i = 0, handle = NULL; !handle && dllnames[i]; i++) {
             handle = LoadLibraryA(dllnames[i]);
             if (handle) {
-                func = (HRESULT(WINAPI *)(HWND, int, HANDLE, DWORD, LPSTR))GetProcAddress(handle, "SHGetFolderPathA");
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-function-type"
+                func = (SHGetFolderPathAType)GetProcAddress(handle, "SHGetFolderPathA");
+#pragma GCC diagnostic pop
                 if (!func) {
                     FreeLibrary(handle);
                     handle = NULL;
