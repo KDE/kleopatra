@@ -41,7 +41,10 @@ KleoPageConfigDialog::KleoPageConfigDialog(QWidget *parent)
     : KPageDialog(parent)
 {
     setModal(false);
+}
 
+void KleoPageConfigDialog::initButtons()
+{
     QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
     buttonBox->setStandardButtons(QDialogButtonBox::Help //
                                   | QDialogButtonBox::RestoreDefaults //

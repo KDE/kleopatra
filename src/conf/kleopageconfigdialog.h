@@ -44,6 +44,9 @@ protected Q_SLOTS:
     void slotCurrentPageChanged(KPageWidgetItem *current, KPageWidgetItem *previous);
     void moduleChanged(bool value);
 
+protected:
+    void initButtons();
+
 private:
     void clientChanged();
     void apply();
