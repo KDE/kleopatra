@@ -72,6 +72,8 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
                   new Kleo::Config::GnuPGSystemConfigurationPage(this));
     }
 
+    initButtons();
+
     // We store the minimum size of the dialog on hide, because otherwise
     // the KCMultiDialog starts with the size of the first kcm, not
     // the largest one. This way at least after the first showing of
