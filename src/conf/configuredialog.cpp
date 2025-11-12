@@ -28,6 +28,8 @@
 #include "conf/smartcardconfigpage.h"
 #include "conf/smimevalidationconfigurationpage.h"
 
+#include <QListView>
+
 ConfigureDialog::ConfigureDialog(QWidget *parent)
     : KleoPageConfigDialog(parent)
 {
@@ -70,6 +72,10 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
                   QStringLiteral("kleopatra/configuration.html#configuration-gnupgsystem"),
                   QStringLiteral("document-encrypt"),
                   new Kleo::Config::GnuPGSystemConfigurationPage(this));
+    }
+
+    if (auto moduleListView = findChild<QListView *>()) {
+        moduleListView->setAccessibleName(i18nc("@label", "Settings"));
     }
 
     initButtons();
