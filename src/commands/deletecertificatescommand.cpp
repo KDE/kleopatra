@@ -326,7 +326,11 @@ void DeleteCertificatesCommand::Private::startDeleteJob(GpgME::Protocol protocol
 
     connect(job.get(), &QGpgME::Job::jobProgress, q, &Command::progress);
 
-    if (const Error err = job->start(keys, true /*allowSecretKeyDeletion*/)) {
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 1)
+    if (const Error err = job->start(keys, GpgME::Context::DeletionFlags::DeleteAllowSecret | GpgME::Context::DeletionFlags::DeleteForce)) {
+#else
+    if (const Error err = job->start(keys, true /* allowSecretKeyDeletion */)) {
+#endif
         (protocol == CMS ? cmsError : pgpError) = err;
     } else {
         (protocol == CMS ? cmsJob : pgpJob) = job.release();
