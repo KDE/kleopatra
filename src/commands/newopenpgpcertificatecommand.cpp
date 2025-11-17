@@ -19,6 +19,7 @@
 
 #include <settings.h>
 
+#include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyParameters>
@@ -60,8 +61,8 @@ public:
 
     void getCertificateDetails();
     void createCertificate();
-    void handleKeyGenerationResult(const KeyGenerationResult &result);
-    void showErrorDialog(const KeyGenerationResult &result);
+    void handleKeyGenerationResult(const KeyGenerationResult &result, const AuditLogEntry &auditLog);
+    void showErrorDialog(const KeyGenerationResult &result, const AuditLogEntry &auditLog = {});
 
 private:
     KeyParameters keyParameters;
@@ -150,14 +151,17 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();
 
-    connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result) {
-        QMetaObject::invokeMethod(
+    connect(keyGenJob,
+            &QGpgME::KeyGenerationJob::result,
             q,
-            [this, result] {
-                handleKeyGenerationResult(result);
-            },
-            Qt::QueuedConnection);
-    });
+            [this](const KeyGenerationResult &result, const QByteArray &, const QString &auditLogAsHtml, const GpgME::Error &auditLogError) {
+                QMetaObject::invokeMethod(
+                    q,
+                    [this, result, auditLogAsHtml, auditLogError] {
+                        handleKeyGenerationResult(result, AuditLogEntry{auditLogAsHtml, auditLogError});
+                    },
+                    Qt::QueuedConnection);
+            });
     if (const Error err = keyGenJob->start(keyParameters.toString())) {
         error(i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
         finished();
@@ -181,7 +185,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
     progressDialog->show();
 }
 
-void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyGenerationResult &result)
+void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyGenerationResult &result, const AuditLogEntry &auditLog)
 {
     if (result.error().isCanceled()) {
         finished();
@@ -203,7 +207,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
     }
 
     if (key.isNull()) {
-        showErrorDialog(result);
+        showErrorDialog(result, auditLog);
         return;
     }
 
@@ -261,7 +265,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
     }
 }
 
-void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationResult &result)
+void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationResult &result, const AuditLogEntry &auditLog)
 {
     QString text;
     if (result.error() || !result.fingerprint()) {
@@ -277,21 +281,24 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
                       Formatting::prettyID(result.fingerprint()));
     }
 
-    auto dialog = new QDialog;
-    applyWindowID(dialog);
-    dialog->setWindowTitle(i18nc("@title:window", "Error"));
-    auto buttonBox = new QDialogButtonBox{QDialogButtonBox::Retry | QDialogButtonBox::Ok, dialog};
-    const auto buttonCode = KMessageBox::createKMessageBox(dialog, buttonBox, QMessageBox::Critical, text, {}, {}, nullptr, {});
-    if (buttonCode == QDialogButtonBox::Retry) {
-        QMetaObject::invokeMethod(
-            q,
-            [this]() {
-                getCertificateDetails();
-            },
-            Qt::QueuedConnection);
-    } else {
-        finished();
-    }
+    auto dialog = MessageBox::create(parentWidgetOrView(),
+                                     QDialogButtonBox::Retry | QDialogButtonBox::Ok,
+                                     QMessageBox::Critical,
+                                     text,
+                                     auditLog,
+                                     i18nc("@title:window", "Error"));
+    connect(dialog, &QDialog::finished, q, [this](int buttonCode) {
+        if (buttonCode == QDialogButtonBox::Retry) {
+            QMetaObject::invokeMethod(
+                q,
+                [this]() {
+                    getCertificateDetails();
+                },
+                Qt::QueuedConnection);
+        } else {
+            finished();
+        }
+    });
 }
 
 NewOpenPGPCertificateCommand::NewOpenPGPCertificateCommand()
