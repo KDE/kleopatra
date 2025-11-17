@@ -204,7 +204,6 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
 
     if (key.isNull()) {
         showErrorDialog(result);
-        finished();
         return;
     }
 
