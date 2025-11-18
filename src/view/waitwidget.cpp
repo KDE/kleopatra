@@ -14,9 +14,13 @@ WaitWidget::WaitWidget(QWidget *parent)
     : QWidget(parent)
 {
     auto vLay = new QVBoxLayout(this);
-    auto bar = new QProgressBar;
-    mLabel = new QLabel;
+
+    mLabel = new QLabel{this};
+    mLabelHelper.addLabel(mLabel);
+
+    auto bar = new QProgressBar{this};
     bar->setRange(0, 0);
+
     vLay->addStretch(1);
 
     auto subLay1 = new QVBoxLayout;
@@ -35,6 +39,9 @@ WaitWidget::WaitWidget(QWidget *parent)
     vLay->addLayout(subLay2);
 
     vLay->addStretch(1);
+
+    setFocusProxy(mLabel);
+    setFocusPolicy(mLabel->focusPolicy());
 }
 
 WaitWidget::~WaitWidget() = default;

@@ -44,6 +44,8 @@ KeyCacheOverlay::KeyCacheOverlay(QWidget *baseWidget, QWidget *parent)
     mBaseWidget->setEnabled(false);
     reposition();
 
+    waitWidget->setFocus();
+
     connect(&mTimer, &QTimer::timeout, this, [this]() {
         // To avoid an infinite show if we miss the keyListingDone signal
         // (Race potential) we use a watchdog timer, too to actively poll

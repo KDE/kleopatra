@@ -5,9 +5,9 @@
 
 #pragma once
 
-#include <QWidget>
+#include <utils/accessibility.h>
 
-class QLabel;
+#include <QWidget>
 
 namespace Kleo
 {
@@ -24,6 +24,7 @@ public:
     QString text() const;
 
 private:
+    LabelHelper mLabelHelper;
     QLabel *mLabel = nullptr;
 };
 

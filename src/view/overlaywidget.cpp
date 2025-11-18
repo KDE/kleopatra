@@ -43,6 +43,8 @@ void OverlayWidget::setOverlay(QWidget *widget)
         delete mOverlay;
     }
     mOverlay = widget;
+    setFocusProxy(mOverlay);
+    setFocusPolicy(mOverlay->focusPolicy());
     qobject_cast<QVBoxLayout *>(layout())->addWidget(mOverlay);
 }
 
