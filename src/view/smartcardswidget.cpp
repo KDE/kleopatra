@@ -375,6 +375,7 @@ void SmartCardsWidget::Private::cardAddedOrChanged(const std::string &serialNumb
         cardWidget->setCard(card.get());
         if (mCardWidgets.size() == 1) {
             mStack->setCurrentWidget(mTabWidget);
+            mTabWidget->setFocus();
         }
         const QByteArray context = getCardId(card.get());
         connect(cardWidget, &SmartCardWidget::statusMessage, q, [this, context](const QString &message) {
