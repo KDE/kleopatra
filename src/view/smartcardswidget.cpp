@@ -36,6 +36,7 @@
 #include "smartcard/pivcard.h"
 #include "smartcard/readerstatus.h"
 #include "smartcard/utils.h"
+#include <utils/accessibility.h>
 
 #include "kleopatra_debug.h"
 
@@ -76,18 +77,26 @@ public:
         auto lay = new QVBoxLayout;
         lay->addStretch(-1);
 
-        const QStringList supported{
-            i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 or later"),
-            i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk"),
-            i18nc("NetKey refers to a smartcard protocol", "NetKey v3 or later"),
-            i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)"),
-            i18nc("CardOS is a smartcard operating system", "CardOS 5 (various apps)"),
-        };
-        lay->addWidget(new QLabel(QStringLiteral("\t\t<h3>") + i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this));
+        {
+            auto label = new QLabel(QStringLiteral("\t\t<h3>") + i18n("Please insert a compatible smartcard.") + QStringLiteral("</h3>"), this);
+            lay->addWidget(label);
+            labelHelper.addLabel(label);
+        }
         lay->addSpacing(10);
-        lay->addWidget(new QLabel(QStringLiteral("\t\t") + i18n("Kleopatra currently supports the following card types:") + QStringLiteral("<ul><li>")
-                                      + supported.join(QLatin1StringView("</li><li>")) + QStringLiteral("</li></ul>"),
-                                  this));
+        {
+            const QStringList supported{
+                i18nc("OpenPGP refers to a smartcard protocol", "OpenPGP v2.0 or later"),
+                i18nc("Gnuk is a cryptographic token for GnuPG", "Gnuk"),
+                i18nc("NetKey refers to a smartcard protocol", "NetKey v3 or later"),
+                i18nc("PIV refers to a smartcard protocol", "PIV (requires GnuPG 2.3 or later)"),
+                i18nc("CardOS is a smartcard operating system", "CardOS 5 (various apps)"),
+            };
+            auto label = new QLabel(QStringLiteral("\t\t") + i18n("Kleopatra currently supports the following card types:") + QStringLiteral("<ul><li>")
+                                        + supported.join(QLatin1StringView("</li><li>")) + QStringLiteral("</li></ul>"),
+                                    this);
+            lay->addWidget(label);
+            labelHelper.addLabel(label);
+        }
         lay->addSpacing(10);
         {
             auto hbox = new QHBoxLayout;
@@ -107,6 +116,9 @@ public:
         hLay->addStretch(-1);
         lay->addStretch(-1);
     }
+
+private:
+    LabelHelper labelHelper;
 };
 
 static QByteArray getCardId(const Card *card)
