@@ -16,6 +16,7 @@
 #include "pivcardwidget.h"
 #include "smartcardactions.h"
 #include "smartcardwidget.h"
+#include "waitwidget.h"
 
 #include <commands/certificatetopivcardcommand.h>
 #include <commands/changepincommand.h>
@@ -91,10 +92,10 @@ public:
         {
             auto hbox = new QHBoxLayout;
             hbox->addStretch(1);
-            mReloadButton = new QToolButton{this};
-            mReloadButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-            mReloadButton->setDefaultAction(SmartCardActions::instance()->action(u"reload"_s));
-            hbox->addWidget(mReloadButton);
+            auto reloadButton = new QToolButton{this};
+            reloadButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+            reloadButton->setDefaultAction(SmartCardActions::instance()->action(u"reload"_s));
+            hbox->addWidget(reloadButton);
             hbox->addStretch(1);
             lay->addLayout(hbox);
         }
@@ -105,18 +106,7 @@ public:
         hLay->addLayout(lay);
         hLay->addStretch(-1);
         lay->addStretch(-1);
-
-        connect(ReaderStatus::instance(), &ReaderStatus::currentActionChanged, this, &PlaceHolderWidget::updateReloadButton);
-        updateReloadButton();
     }
-
-    void updateReloadButton()
-    {
-        mReloadButton->setEnabled(ReaderStatus::instance()->currentAction() != ReaderStatus::UpdateCards);
-    }
-
-private:
-    QToolButton *mReloadButton = nullptr;
 };
 
 static QByteArray getCardId(const Card *card)
@@ -169,6 +159,7 @@ private:
 private:
     SmartCardsWidget *const q;
     QMap<std::pair<std::string, std::string>, QPointer<SmartCardWidget>> mCardWidgets;
+    WaitWidget *mBusyWidget;
     PlaceHolderWidget *mPlaceHolderWidget;
     QStackedWidget *mStack;
     QTabWidget *mTabWidget;
@@ -183,6 +174,10 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     mStack = new QStackedWidget{q};
     vLay->addWidget(mStack);
 
+    mBusyWidget = new WaitWidget{q};
+    mBusyWidget->setText(i18nc("@info:status", "Loading smart cards..."));
+    mStack->addWidget(mBusyWidget);
+
     mPlaceHolderWidget = new PlaceHolderWidget{q};
     mStack->addWidget(mPlaceHolderWidget);
 
@@ -194,10 +189,11 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
 
     mStack->addWidget(mTabWidget);
 
-    mStack->setCurrentWidget(mPlaceHolderWidget);
+    mStack->setCurrentWidget(mBusyWidget);
 
     connect(mStack, &QStackedWidget::currentChanged, q, [this]() {
-        if (mStack->currentWidget() == mPlaceHolderWidget) {
+        if (mStack->currentWidget() == mPlaceHolderWidget //
+            || mStack->currentWidget() == mBusyWidget) {
             Q_EMIT q->cardChanged({});
         } else if (auto cardWidget = currentCardWidget()) {
             Q_EMIT q->cardChanged(getCardId(cardWidget->card()));
@@ -221,6 +217,15 @@ SmartCardsWidget::Private::Private(SmartCardsWidget *qq)
     });
     connect(ReaderStatus::instance(), &ReaderStatus::cardRemoved, q, [this](const std::string &serialNumber, const std::string &appName) {
         cardRemoved(serialNumber, appName);
+    });
+    connect(ReaderStatus::instance(), &ReaderStatus::currentActionChanged, q, [this]() {
+        if (ReaderStatus::instance()->currentAction() == ReaderStatus::UpdateCards) {
+            if (mStack->currentWidget() == mPlaceHolderWidget) {
+                mStack->setCurrentWidget(mBusyWidget);
+            }
+        } else if (mStack->currentWidget() == mBusyWidget) {
+            mStack->setCurrentWidget(mPlaceHolderWidget);
+        }
     });
 
     const auto actions = SmartCardActions::instance();
