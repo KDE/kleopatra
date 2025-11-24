@@ -16,12 +16,10 @@
             "name": "dev-mold",
             "displayName": "Build as debug + using mold linker",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_SHARED_LINKER_FLAGS": "-fuse-ld=mold"
             },
             "inherits": [
-                "base"
+                "dev"
             ]
         },
         {
@@ -49,27 +47,19 @@
         {
             "name": "dev-clang",
             "displayName": "dev-clang",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            },
             "environment": {
                 "CXX": "clang++",
                 "CCACHE_DISABLE": "ON"
             },
             "inherits": [
-                "base"
+                "dev"
             ]
         },
         {
             "name": "unity",
             "displayName": "Build with CMake unity support.",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "USE_UNITY_CMAKE_SUPPORT": "ON"
-            },
             "inherits": [
-                "base"
+                "dev"
             ]
         },
         {
@@ -123,8 +113,6 @@
             "name": "ftime-trace",
             "displayName": "ftime-trace",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "USE_DEVELOPER_MODE": "ON",
                 "CMAKE_C_FLAGS_INIT": "-ftime-trace",
                 "CMAKE_CXX_FLAGS_INIT": "-ftime-trace"
             },
@@ -134,7 +122,7 @@
                 "CCACHE_DISABLE": "ON"
             },
             "inherits": [
-                "base"
+                "dev"
             ]
         }
     ],
