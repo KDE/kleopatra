@@ -24,7 +24,6 @@ namespace Gui
 class VerifyChecksumsDialog : public QDialog
 {
     Q_OBJECT
-    Q_ENUMS(Status)
 public:
     explicit VerifyChecksumsDialog(QWidget *parent = nullptr);
     ~VerifyChecksumsDialog() override;
@@ -36,6 +35,7 @@ public:
         Error,
         NumStatii,
     };
+    Q_ENUM(Status)
 
 public Q_SLOTS:
     void setBaseDirectories(const QStringList &bases);
