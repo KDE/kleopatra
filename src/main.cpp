@@ -114,13 +114,6 @@ int main(int argc, char **argv)
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
 
 #ifdef Q_OS_WIN
-    if (qEnvironmentVariableIsEmpty("GNUPGHOME")) {
-        if (qputenv("GNUPGHOME", Kleo::gnupgHomeDirectory().toUtf8())) {
-            qCDebug(KLEOPATRA_LOG) << "Set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
-        } else {
-            qCWarning(KLEOPATRA_LOG) << "Failed to set GNUPGHOME to" << Kleo::gnupgHomeDirectory();
-        }
-    }
     // The config files need to be migrated before the application is created. Otherwise, at least
     // the staterc might already have been created at the new location.
     Migration::migrateApplicationConfigFiles();
