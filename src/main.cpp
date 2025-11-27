@@ -106,6 +106,13 @@ int main(int argc, char **argv)
     // Initialize GpgME
     const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
     STARTUP_TIMING << "GPGME Initialized";
+
+    // Set the application name before any standard paths are resolved
+    QCoreApplication::setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
+    // Set OrganizationDomain early as this is used to generate the service
+    // name that will be registered on the bus.
+    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+
 #ifdef Q_OS_WIN
     if (qEnvironmentVariableIsEmpty("GNUPGHOME")) {
         if (qputenv("GNUPGHOME", Kleo::gnupgHomeDirectory().toUtf8())) {
@@ -126,10 +133,6 @@ int main(int argc, char **argv)
     STARTUP_TIMING << "Icon theme initialized";
 
     KleopatraApplication app(argc, argv);
-    // Set OrganizationDomain early as this is used to generate the service
-    // name that will be registered on the bus.
-    app.setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
-    app.setOrganizationDomain(QStringLiteral("kde.org"));
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kleopatra"));
 
     STARTUP_TIMING << "Application created";
