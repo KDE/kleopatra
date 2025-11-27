@@ -4,13 +4,13 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 namespace Migration
 {
 #ifdef Q_OS_WIN
-/// Copies the application config files appnamerc and appnamestaterc from the old location to GNUPGHOME/kleopatra.
-void migrateApplicationConfigFiles(const QString &applicationName);
+/// Copies the application config files appnamerc and appnamestaterc from the old location to the (customized) standard locations.
+void migrateApplicationConfigFiles();
 #endif
 
 void migrate();
