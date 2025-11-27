@@ -125,6 +125,15 @@ int main(int argc, char **argv)
     STARTUP_TIMING << "GPGME Initialized";
 #else
     OutputDebugString(L"GPGME Initialized");
+#endif
+
+    // Set the application name before any standard paths are resolved
+    QCoreApplication::setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
+    // Set OrganizationDomain early as this is used to generate the service
+    // name that will be registered on the bus.
+    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+
+#ifdef Q_OS_WIN
     if (qEnvironmentVariableIsEmpty("GNUPGHOME")) {
         if (qputenv("GNUPGHOME", Kleo::gnupgHomeDirectory().toUtf8())) {
             win_outputDebugString_helper(u"Set GNUPGHOME to "_s + Kleo::gnupgHomeDirectory());
@@ -149,10 +158,6 @@ int main(int argc, char **argv)
 #endif
 
     KleopatraApplication app(argc, argv);
-    // Set OrganizationDomain early as this is used to generate the service
-    // name that will be registered on the bus.
-    app.setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
-    app.setOrganizationDomain(QStringLiteral("kde.org"));
     KLocalizedString::setApplicationDomain("kleopatra");
 
     STARTUP_TIMING << "Application created";
