@@ -160,8 +160,6 @@ class EditGroupDialog::Private
         QDialogButtonBox *buttonBox = nullptr;
         QComboBox *combo = nullptr;
     } ui;
-    AbstractKeyListModel *availableKeysModel = nullptr;
-    AbstractKeyListModel *groupKeysModel = nullptr;
     KeyGroup keyGroup;
     std::vector<GpgME::Key> oldKeys;
     FiltersProxyModel *filtersProxyModel = nullptr;
@@ -237,8 +235,7 @@ public:
             availableKeysLayout->addLayout(hbox);
         }
 
-        availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
-        availableKeysModel->setKeys(KeyCache::instance()->keys());
+        auto availableKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         auto proxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Disable, q);
         proxyModel->setSourceModel(availableKeysModel);
         ui.availableKeysList = new KeyTreeView({}, nullptr, proxyModel, q, {});
@@ -246,6 +243,7 @@ public:
         ui.availableKeysList->view()->setRootIsDecorated(false);
         ui.availableKeysList->setFlatModel(availableKeysModel);
         ui.availableKeysList->setHierarchicalView(false);
+        ui.availableKeysList->setKeys(KeyCache::instance()->keys());
         if (!Settings{}.cmsEnabled()) {
             ui.availableKeysList->setKeyFilter(createOpenPGPOnlyKeyFilter());
         }
@@ -297,8 +295,7 @@ public:
             groupKeysLayout->addLayout(hbox);
         }
 
-        groupKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
-
+        auto groupKeysModel = AbstractKeyListModel::createFlatKeyListModel(q);
         auto warnNonEncryptionProxyModel = new WarnNonEncryptionKeysProxyModel(WarnNonEncryptionKeysProxyModel::Warn, q);
         ui.groupKeysList = new KeyTreeView({}, nullptr, warnNonEncryptionProxyModel, q, {});
         ui.groupKeysList->view()->setAccessibleName(i18n("group keys"));
@@ -433,10 +430,8 @@ void EditGroupDialog::Private::addKeysToGroup()
         return !Kleo::canBeUsedForEncryption(key);
     });
 
-    groupKeysModel->addKeys(selectedKeys);
-    for (const Key &key : selectedKeys) {
-        availableKeysModel->removeKey(key);
-    }
+    ui.groupKeysList->addKeysUnselected(selectedKeys);
+    ui.availableKeysList->removeKeys(selectedKeys);
 
     ui.groupKeysList->selectKeys(selectedGroupKeys);
 }
@@ -446,10 +441,8 @@ void EditGroupDialog::Private::removeKeysFromGroup()
     const auto selectedOtherKeys = ui.availableKeysList->selectedKeys();
 
     const std::vector<Key> selectedKeys = ui.groupKeysList->selectedKeys();
-    for (const Key &key : selectedKeys) {
-        groupKeysModel->removeKey(key);
-    }
-    availableKeysModel->addKeys(selectedKeys);
+    ui.groupKeysList->removeKeys(selectedKeys);
+    ui.availableKeysList->addKeysUnselected(selectedKeys);
 
     ui.availableKeysList->selectKeys(selectedOtherKeys);
 }
@@ -470,8 +463,8 @@ void EditGroupDialog::Private::updateFromKeyCache()
     std::vector<Key> otherKeys;
     otherKeys.reserve(otherKeys.size());
     std::partition_copy(allKeys.begin(), allKeys.end(), std::back_inserter(groupKeys), std::back_inserter(otherKeys), wasGroupKey);
-    groupKeysModel->setKeys(groupKeys);
-    availableKeysModel->setKeys(otherKeys);
+    ui.groupKeysList->setKeys(groupKeys);
+    ui.availableKeysList->setKeys(otherKeys);
 
     ui.groupKeysList->selectKeys(selectedGroupKeys);
     ui.availableKeysList->selectKeys(selectedOtherKeys);
@@ -510,15 +503,8 @@ void EditGroupDialog::showEvent(QShowEvent *event)
 
 KeyGroup EditGroupDialog::keyGroup() const
 {
-    std::vector<Key> keys;
-    keys.reserve(d->groupKeysModel->rowCount());
-    for (int row = 0; row < d->groupKeysModel->rowCount(); ++row) {
-        const QModelIndex index = d->groupKeysModel->index(row, 0);
-        keys.push_back(d->groupKeysModel->key(index));
-    }
-    d->keyGroup.setKeys(keys);
-
     d->keyGroup.setName(d->ui.groupNameEdit->text().trimmed());
+    d->keyGroup.setKeys(d->ui.groupKeysList->keys());
     return d->keyGroup;
 }
 
@@ -528,7 +514,7 @@ void EditGroupDialog::setKeyGroup(const KeyGroup &keyGroup)
 
     const auto &keys = keyGroup.keys();
     d->oldKeys = std::vector<GpgME::Key>(keys.begin(), keys.end());
-    d->groupKeysModel->setKeys(d->oldKeys);
+    d->ui.groupKeysList->setKeys(d->oldKeys);
 
     // update the keys in the "available keys" list
     const auto isGroupKey = [keys](const Key &key) {
@@ -538,7 +524,7 @@ void EditGroupDialog::setKeyGroup(const KeyGroup &keyGroup)
     };
     auto otherKeys = KeyCache::instance()->keys();
     Kleo::erase_if(otherKeys, isGroupKey);
-    d->availableKeysModel->setKeys(otherKeys);
+    d->ui.availableKeysList->setKeys(otherKeys);
 
     d->ui.groupNameEdit->setText(keyGroup.name());
 }
