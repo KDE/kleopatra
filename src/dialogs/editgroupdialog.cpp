@@ -158,7 +158,6 @@ class EditGroupDialog::Private
         QComboBox *combo = nullptr;
     } ui;
     KeyGroup keyGroup;
-    std::vector<GpgME::Key> oldKeys;
     FiltersProxyModel *filtersProxyModel = nullptr;
 
 public:
@@ -450,8 +449,9 @@ void EditGroupDialog::Private::updateFromKeyCache()
     const auto selectedGroupKeys = ui.groupKeysList->selectedKeys();
     const auto selectedOtherKeys = ui.availableKeysList->selectedKeys();
 
-    const auto wasGroupKey = [this](const Key &key) {
-        return std::ranges::any_of(oldKeys, [key](const auto &k) {
+    const auto oldGroupKeys = ui.groupKeysList->keys();
+    const auto wasGroupKey = [&oldGroupKeys](const Key &key) {
+        return std::ranges::any_of(oldGroupKeys, [key](const auto &k) {
             return _detail::ByFingerprint<std::equal_to>()(k, key);
         });
     };
@@ -511,8 +511,7 @@ void EditGroupDialog::setKeyGroup(const KeyGroup &keyGroup)
     d->keyGroup = keyGroup;
 
     const auto &keys = keyGroup.keys();
-    d->oldKeys = std::vector<GpgME::Key>(keys.begin(), keys.end());
-    d->ui.groupKeysList->setKeys(d->oldKeys);
+    d->ui.groupKeysList->setKeys(std::vector<GpgME::Key>(keys.begin(), keys.end()));
 
     // update the keys in the "available keys" list
     const auto isGroupKey = [keys](const Key &key) {
