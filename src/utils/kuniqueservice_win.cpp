@@ -20,6 +20,26 @@
 
 #define MY_DATA_TYPE 12
 
+static QString generateServiceName()
+{
+    const QString applicationName = QCoreApplication::applicationName();
+    const QString domain = QCoreApplication::organizationDomain();
+    const QStringList parts = domain.split(QLatin1Char('.'), Qt::SkipEmptyParts);
+
+    QString reversedDomain;
+    reversedDomain.reserve(domain.size() + 1 + applicationName.size());
+    if (parts.isEmpty()) {
+        reversedDomain = QStringLiteral("local.");
+    } else {
+        for (const QString &part : parts) {
+            reversedDomain.prepend(QLatin1Char('.'));
+            reversedDomain.prepend(part);
+        }
+    }
+
+    return reversedDomain + applicationName;
+}
+
 class KUniqueService::KUniqueServicePrivate
 {
     Q_DECLARE_PUBLIC(KUniqueService)
@@ -32,7 +52,7 @@ private:
 
     const QString getWindowName() const
     {
-        return QCoreApplication::applicationName() + QStringLiteral("Responder");
+        return generateServiceName() + QStringLiteral("Responder");
     }
 
     HWND getForeignResponder() const
