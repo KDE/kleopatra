@@ -12,7 +12,7 @@
 
 #include <KDBusService>
 
-class KUniqueService::KUniqueServicePrivate
+class KUniqueServicePrivate
 {
     Q_DISABLE_COPY(KUniqueServicePrivate)
 
@@ -34,15 +34,11 @@ private:
 
 KUniqueService::KUniqueService(QObject *parent)
     : QObject(parent)
-    , d_ptr(new KUniqueServicePrivate(this))
+    , d_ptr(std::make_unique<KUniqueServicePrivate>(this))
 {
 }
 
-KUniqueService::~KUniqueService()
-{
-    qCDebug(KLEOPATRA_LOG) << __func__;
-    delete d_ptr;
-}
+KUniqueService::~KUniqueService() = default;
 
 void KUniqueService::setExitValue(int code)
 {
