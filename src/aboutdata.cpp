@@ -123,7 +123,7 @@ static void loadCustomAboutData(KAboutData *about)
 }
 
 AboutData::AboutData()
-    : KAboutData(QStringLiteral(KLEOPATRA_APPLICATION_NAME),
+    : KAboutData(QStringLiteral("kleopatra"),
                  i18n("Kleopatra"),
                  QLatin1String(kleopatra_version),
                  i18n("Certificate manager and cryptography app"),
@@ -136,6 +136,8 @@ AboutData::AboutData()
 {
     using ::authors;
     using ::credits;
+
+    setOrganizationDomain(KLEOPATRA_ORGANIZATION_DOMAIN);
 
     for (const auto &author : authors) {
         addAuthor(author.name.toString(), author.description.toString());
