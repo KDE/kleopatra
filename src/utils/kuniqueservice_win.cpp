@@ -42,7 +42,7 @@ static QString generateServiceName()
     return reversedDomain + applicationName;
 }
 
-class KUniqueService::KUniqueServicePrivate
+class KUniqueServicePrivate
 {
     Q_DECLARE_PUBLIC(KUniqueService)
     Q_DISABLE_COPY(KUniqueServicePrivate)
@@ -52,6 +52,7 @@ private:
     HWND mResponder;
     HANDLE mResponderProc;
 
+public:
     const QString getWindowName() const
     {
         return generateServiceName() + QStringLiteral("Responder");
@@ -205,14 +206,13 @@ private:
 
 KUniqueService::KUniqueService(QObject *parent)
     : QObject(parent)
-    , d_ptr(KUniqueServicePrivate::instance(this))
+    , d_ptr(std::make_unique<KUniqueServicePrivate>(this))
 {
 }
 
 KUniqueService::~KUniqueService()
 {
     qCDebug(KLEOPATRA_LOG) << __func__;
-    delete d_ptr;
 }
 
 void KUniqueService::setExitValue(int code)

@@ -1,4 +1,3 @@
-#pragma once
 /*
     kuniqueservice.h
 
@@ -8,9 +7,16 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
+
+#pragma once
+
 #include <QObject>
 #include <QString>
 #include <QStringList>
+
+#include <memory>
+
+class KUniqueServicePrivate;
 
 /**
  * This class can be used to create a unique service and redirect calls
@@ -38,10 +44,7 @@ class KUniqueService : public QObject
 {
     Q_OBJECT
 public:
-    /**
-     * Default constructor
-     */
-    KUniqueService(QObject *parent = nullptr);
+    explicit KUniqueService(QObject *parent = nullptr);
     ~KUniqueService() override;
 
 public Q_SLOTS:
@@ -60,7 +63,7 @@ private:
     {
         Q_EMIT activateRequested(arguments, workingDirectory);
     }
-    class KUniqueServicePrivate;
+
     Q_DECLARE_PRIVATE(KUniqueService)
-    KUniqueServicePrivate *d_ptr;
+    const std::unique_ptr<KUniqueServicePrivate> d_ptr;
 };
