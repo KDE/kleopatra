@@ -78,15 +78,14 @@ static QString getOldGenericConfigLocation()
 {
     // Gpg4win 4.[34] used %APPDATA%/kleopatra as GenericConfigLocation;
     // VSD 3.[123] and GPD 4.3 used %LOCALAPPDATA% as GenericConfigLocation;
-    // if application name is not "kleopatra" then we assume VSD/GPD
-    return QCoreApplication::applicationName() == "kleopatra"_L1 //
-        ? qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1 //
-        : qEnvironmentVariable("LOCALAPPDATA") + u'/';
+    // if organization domain starts with "gnupg." then we assume VSD/GPD
+    return QCoreApplication::organizationDomain().startsWith("gnupg."_L1) //
+        ? qEnvironmentVariable("LOCALAPPDATA") + u'/' //
+        : qEnvironmentVariable("APPDATA") + "/kleopatra/"_L1;
 }
 
 void Migration::migrateApplicationConfigFiles()
 {
-    const QString applicationName = QCoreApplication::applicationName();
     const QString oldConfigLocation = getOldGenericConfigLocation();
     const QString newConfigLocation = QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation);
     // all Gpg4win-based versions used %APPDATA%/kleopatra as AppDataLocation (for the *staterc file)
@@ -94,13 +93,13 @@ void Migration::migrateApplicationConfigFiles()
     const QString newStateLocation = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation);
 
     // Migrate the main config file to QStandardPaths::GenericConfigLocation
-    migrateFile(u"kleopatrarc"_s, applicationName + "rc"_L1, oldConfigLocation, newConfigLocation);
+    migrateFile(u"kleopatrarc"_s, "kleopatrarc"_L1, oldConfigLocation, newConfigLocation);
     // Migrate the state config file to QStandardPaths::GenericStateLocation;
-    migrateFile(u"kleopatrastaterc"_s, applicationName + "staterc"_L1, oldStateLocation, newStateLocation);
+    migrateFile(u"kleopatrastaterc"_s, "kleopatrastaterc"_L1, oldStateLocation, newStateLocation);
     // Migrate some more config files
     migrateFile(u"klanguageoverridesrc"_s, oldConfigLocation, newConfigLocation);
     migrateFile(u"libkleopatrarc"_s, oldConfigLocation, newConfigLocation);
-    migrateFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s, "kxmlgui5/"_L1 + applicationName + "/kleopatra.rc"_L1, oldConfigLocation, newConfigLocation);
+    migrateFile(u"kxmlgui5/kleopatra/kleopatra.rc"_s, "kxmlgui5/kleopatra/kleopatra.rc"_L1, oldConfigLocation, newConfigLocation);
 }
 #else
 static QString getOldGenericConfigLocation()

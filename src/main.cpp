@@ -108,10 +108,10 @@ int main(int argc, char **argv)
     STARTUP_TIMING << "GPGME Initialized";
 
     // Set the application name before any standard paths are resolved
-    QCoreApplication::setApplicationName(QStringLiteral(KLEOPATRA_APPLICATION_NAME));
+    QCoreApplication::setApplicationName(QStringLiteral("kleopatra"));
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.
-    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral(KLEOPATRA_ORGANIZATION_DOMAIN));
 
 #ifdef Q_OS_WIN
     // The config files need to be migrated before the application is created. Otherwise, at least
