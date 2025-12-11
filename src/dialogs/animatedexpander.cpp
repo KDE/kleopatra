@@ -25,6 +25,8 @@ public:
     QFrame headerLine;
     QParallelAnimationGroup toggleAnimation;
     QWidget contentArea;
+
+    int collapsedHeight = -1;
 };
 
 void AnimatedExpander::setContentLayout(QLayout *contentLayout)
@@ -86,9 +88,11 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
     d->mainLayout.setContentsMargins(0, 0, 0, 0);
     int row = 0;
     d->mainLayout.addWidget(&d->toggleButton, row, 0, 1, 1, Qt::AlignLeft);
-    d->mainLayout.addWidget(&d->headerLine, row++, 2, 1, 1);
+    d->mainLayout.addWidget(&d->headerLine, row, 2, 1, 1);
+    row++;
     d->mainLayout.addWidget(&d->contentArea, row, 0, 1, 3);
     setLayout(&d->mainLayout);
+    d->collapsedHeight = sizeHint().height();
     connect(&d->toggleButton, &QToolButton::toggled, this, [this](const bool checked) {
         if (checked) {
             Q_EMIT startExpanding();
@@ -98,13 +102,12 @@ AnimatedExpander::AnimatedExpander(const QString &title, const QString &accessib
         // use instant animation if widget isn't visible (e.g. before widget is shown)
         const int duration = isVisible() ? animationDuration : 0;
         // update the size of the content area
-        const auto collapsedHeight = sizeHint().height() - d->contentArea.maximumHeight();
         const auto contentHeight = d->contentArea.layout()->sizeHint().height();
         for (int i = 0; i < d->toggleAnimation.animationCount() - 1; ++i) {
             auto expanderAnimation = static_cast<QPropertyAnimation *>(d->toggleAnimation.animationAt(i));
             expanderAnimation->setDuration(duration);
-            expanderAnimation->setStartValue(collapsedHeight);
-            expanderAnimation->setEndValue(collapsedHeight + contentHeight);
+            expanderAnimation->setStartValue(d->collapsedHeight);
+            expanderAnimation->setEndValue(d->collapsedHeight + contentHeight);
         }
         auto contentAnimation = static_cast<QPropertyAnimation *>(d->toggleAnimation.animationAt(d->toggleAnimation.animationCount() - 1));
         contentAnimation->setDuration(duration);
