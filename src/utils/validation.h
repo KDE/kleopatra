@@ -11,10 +11,11 @@
 
 #pragma once
 
+#include <QValidator>
+
 #include <memory>
 
 class QString;
-class QValidator;
 
 namespace Kleo
 {
@@ -25,6 +26,12 @@ enum Flags {
     Optional,
     Required,
 };
+
+/**
+ * Creates a validator with restrictions imposed by the regular expression \p regExp.
+ * If \p flags is \c Optional then empty values are also accepted.
+ */
+std::shared_ptr<QValidator> regularExpressionValidator(const QString &regExp, Flags flags = Required);
 
 std::shared_ptr<QValidator> email(Flags flags = Required);
 /**
@@ -52,5 +59,33 @@ std::shared_ptr<QValidator> pgpName(const QString &additionalRegExp, Flags flags
  */
 std::shared_ptr<QValidator> simpleName(const QString &additionalRegExp, Flags flags = Required);
 
+template<class Validator>
+class TrimmingValidator : public Validator
+{
+public:
+    using Validator::Validator;
+
+    QValidator::State validate(QString &str, int &pos) const override
+    {
+        auto trimmed = str.trimmed();
+        auto posCopy = pos;
+        return Validator::validate(trimmed, posCopy);
+    }
+};
+
+template<class Validator>
+class EmptyIsAcceptableValidator : public Validator
+{
+public:
+    using Validator::Validator;
+
+    QValidator::State validate(QString &str, int &pos) const override
+    {
+        if (str.isEmpty()) {
+            return QValidator::Acceptable;
+        }
+        return Validator::validate(str, pos);
+    }
+};
 }
 }
