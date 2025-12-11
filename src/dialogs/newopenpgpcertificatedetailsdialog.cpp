@@ -264,7 +264,9 @@ public:
         });
         updateTechnicalParameters(); // set key parameters to default values for OpenPGP
         connect(ui.expander, &AnimatedExpander::startExpanding, q, [this]() {
-            q->resize(std::max(q->sizeHint().width(), ui.expander->contentWidth()) + 20, q->sizeHint().height() + ui.expander->contentHeight() + 20);
+            const auto sh = q->sizeHint();
+            const auto margins = q->layout()->contentsMargins();
+            q->resize(std::max(sh.width(), ui.expander->contentWidth() + margins.left() + margins.right()), sh.height() + ui.expander->contentHeight());
         });
     }
 
@@ -390,7 +392,9 @@ NewOpenPGPCertificateDetailsDialog::NewOpenPGPCertificateDetailsDialog(QWidget *
     : QDialog{parent, f}
     , d(new Private{this})
 {
-    resize(std::max(sizeHint().width(), d->ui.expander->contentWidth()) + 20, sizeHint().height() + 20);
+    const auto sh = sizeHint();
+    const auto margins = layout()->contentsMargins();
+    resize(std::max(sh.width(), d->ui.expander->contentWidth() + margins.left() + margins.right()), sh.height());
 }
 
 NewOpenPGPCertificateDetailsDialog::~NewOpenPGPCertificateDetailsDialog() = default;
