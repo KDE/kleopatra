@@ -33,6 +33,8 @@ void AnimatedExpander::setContentLayout(QLayout *contentLayout)
 {
     delete d->contentArea.layout();
     d->contentArea.setLayout(contentLayout);
+    // keep top/bottom margins for spacing between header and content
+    contentLayout->setContentsMargins(0, contentLayout->contentsMargins().top(), 0, contentLayout->contentsMargins().bottom());
 }
 
 bool AnimatedExpander::isExpanded() const
