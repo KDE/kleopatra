@@ -9,11 +9,10 @@
 
 #pragma once
 
-#include <QFrame>
-#include <QGridLayout>
-#include <QParallelAnimationGroup>
-#include <QToolButton>
 #include <QWidget>
+
+class QLayout;
+class QString;
 
 // based on code from StackOverflow
 class AnimatedExpander : public QWidget
@@ -21,6 +20,7 @@ class AnimatedExpander : public QWidget
     Q_OBJECT
 public:
     explicit AnimatedExpander(const QString &title, const QString &accessibleTitle = {}, QWidget *parent = nullptr);
+    ~AnimatedExpander() override;
 
     void setContentLayout(QLayout *contentLayout);
 
@@ -34,11 +34,6 @@ Q_SIGNALS:
     void startExpanding();
 
 private:
-    static const int animationDuration = 300;
-
-    QGridLayout mainLayout;
-    QToolButton toggleButton;
-    QFrame headerLine;
-    QParallelAnimationGroup toggleAnimation;
-    QWidget contentArea;
+    class Private;
+    const std::unique_ptr<Private> d;
 };
