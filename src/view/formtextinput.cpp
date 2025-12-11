@@ -25,12 +25,12 @@ namespace
 {
 auto defaultValueRequiredErrorMessage()
 {
-    return i18n("Error: Enter a value.");
+    return i18nc("@info Used as error message for a required text input", "Enter a value.");
 }
 
 auto defaultInvalidEntryErrorMessage()
 {
-    return i18n("Error: Enter a value in the correct format.");
+    return i18nc("@info Used as generic error message for a text input", "Enter a value in the correct format.");
 }
 }
 
