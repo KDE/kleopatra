@@ -260,9 +260,29 @@ void FormTextInputBase::setLabelText(const QString &text, const QString &accessi
     d->setLabelText(text, accessibleName);
 }
 
+QString FormTextInputBase::labelText() const
+{
+    return d->mLabelText;
+}
+
+QString FormTextInputBase::accessibleName() const
+{
+    return d->mAccessibleName;
+}
+
 void FormTextInputBase::setHint(const QString &text, const QString &accessibleDescription)
 {
     d->setHint(text, accessibleDescription);
+}
+
+QString FormTextInputBase::hint() const
+{
+    return d->mHintLabel ? d->mHintLabel->text() : QString{};
+}
+
+QString FormTextInputBase::accessibleDescription() const
+{
+    return d->mHintLabel ? d->mHintLabel->accessibleName() : QString{};
 }
 
 void FormTextInputBase::setIsRequired(bool required)

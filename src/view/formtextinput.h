@@ -62,11 +62,33 @@ public:
     void setLabelText(const QString &text, const QString &accessibleName = {});
 
     /**
+     * Returns the text that was set with setLabelText.
+     */
+    QString labelText() const;
+
+    /**
+     * Returns the accessible name that was set with setLabelText (or the text
+     * if no accessible name was set).
+     */
+    QString accessibleName() const;
+
+    /**
      * Sets \p text as hint text for this input field and \p accessibleDescription
      * as alternative text for assistive tools. If \p accessibleDescription is
      * empty, then \p text is used instead.  Both texts must be plain text.
      */
     void setHint(const QString &text, const QString &accessibleDescription = {});
+
+    /**
+     * Returns the hint that was set with setHint.
+     */
+    QString hint() const;
+
+    /**
+     * Returns the accessible description that was set with setHint (or the hint
+     * if no accessible description was set).
+     */
+    QString accessibleDescription() const;
 
     /**
      * Marks this input field as required.
