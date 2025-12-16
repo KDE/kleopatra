@@ -63,10 +63,18 @@ void CryptoOperationsConfigWidget::setupGui()
     mAutoExtractArchivesCB = new QCheckBox(i18nc("@option:check", "Automatically extract file archives after decryption"));
     mTmpDirCB = new QCheckBox(i18nc("@option:check", "Create temporary decrypted files in the folder of the encrypted file."));
     mTmpDirCB->setToolTip(i18nc("@info", "Set this option to avoid using the users temporary directory."));
+
+    auto encryptionBox = new QGroupBox(i18nc("@title", "Encryption Settings"));
+    auto encryptionLayout = new QVBoxLayout(encryptionBox);
     mSymmetricOnlyCB = new QCheckBox(i18nc("@option:check", "Use symmetric encryption only."));
     mSymmetricOnlyCB->setToolTip(i18nc("@info", "Set this option to disable public key encryption."));
     mPublicKeyOnlyCB = new QCheckBox(i18nc("@option:check", "Use public-key encryption only."));
     mPublicKeyOnlyCB->setToolTip(i18nc("@info", "Set this option to disable password-based encryption."));
+    mRememberCB = new QCheckBox(i18nc("@option:check", "Remember settings from last sign / encrypt operation"));
+
+    encryptionLayout->addWidget(mSymmetricOnlyCB);
+    encryptionLayout->addWidget(mPublicKeyOnlyCB);
+    encryptionLayout->addWidget(mRememberCB);
 
     connect(mSymmetricOnlyCB, &QCheckBox::toggled, this, [this]() {
         if (mSymmetricOnlyCB->isChecked()) {
@@ -85,8 +93,7 @@ void CryptoOperationsConfigWidget::setupGui()
     baseLay->addWidget(mAutoExtractArchivesCB);
     baseLay->addWidget(mASCIIArmorCB);
     baseLay->addWidget(mTmpDirCB);
-    baseLay->addWidget(mSymmetricOnlyCB);
-    baseLay->addWidget(mPublicKeyOnlyCB);
+    baseLay->addWidget(encryptionBox);
 
     auto comboLay = new QGridLayout;
 
@@ -149,6 +156,8 @@ void CryptoOperationsConfigWidget::load(const Kleo::Settings &settings, const Kl
     mPublicKeyOnlyCB->setEnabled(!settings.isPublicKeyEncryptionOnlyImmutable());
     mTreatP7mEmailCB->setChecked(classifyConfig.p7mWithoutExtensionAreEmail());
     mTreatP7mEmailCB->setEnabled(!classifyConfig.isP7mWithoutExtensionAreEmailImmutable());
+    mRememberCB->setChecked(settings.restoreSignEncryptValues());
+    mRememberCB->setEnabled(!settings.isRestoreSignEncryptValuesImmutable());
 
     const auto defaultChecksumDefinitionId = settings.checksumDefinitionId();
     {
@@ -207,6 +216,7 @@ void CryptoOperationsConfigWidget::save()
     settings.setDontUseTmpDir(mTmpDirCB->isChecked());
     settings.setSymmetricEncryptionOnly(mSymmetricOnlyCB->isChecked());
     settings.setPublicKeyEncryptionOnly(mPublicKeyOnlyCB->isChecked());
+    settings.setRestoreSignEncryptValues(mRememberCB->isChecked());
 
     const int idx = mChecksumDefinitionCB.widget()->currentIndex();
     if (idx >= 0) {

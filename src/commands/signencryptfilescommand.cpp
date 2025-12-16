@@ -76,8 +76,8 @@ SignEncryptFilesCommand::Private::Private(SignEncryptFilesCommand *qq, KeyListCo
     , shared_qq(qq, [](SignEncryptFilesCommand *) {})
     , controller()
 {
-    controller.setOperationMode(SignEncryptFilesController::SignSelected //
-                                | SignEncryptFilesController::EncryptSelected //
+    controller.setOperationMode(SignEncryptFilesController::SignAllowed //
+                                | SignEncryptFilesController::EncryptAllowed //
                                 | SignEncryptFilesController::ArchiveAllowed);
 }
 

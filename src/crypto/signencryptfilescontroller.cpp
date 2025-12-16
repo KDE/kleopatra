@@ -193,13 +193,16 @@ void SignEncryptFilesController::Private::updateWizardMode()
     const unsigned int signOp = (operation & SignMask);
     const unsigned int encrOp = (operation & EncryptMask);
     const unsigned int archOp = (operation & ArchiveMask);
+    const auto signOrEncryptExplicitelyRequested = signOp == SignSelected || encrOp == EncryptSelected;
 
     if (signOp == SignDisallowed) {
         wizard->setSigningUserMutable(false);
         wizard->setSigningPreset(false);
     } else {
         wizard->setSigningUserMutable(true);
-        wizard->setSigningPreset(signOp == SignSelected);
+        if (signOrEncryptExplicitelyRequested) {
+            wizard->setSigningPreset(signOp == SignSelected);
+        }
     }
 
     if (encrOp == EncryptDisallowed) {
@@ -207,7 +210,9 @@ void SignEncryptFilesController::Private::updateWizardMode()
         wizard->setEncryptionUserMutable(false);
     } else {
         wizard->setEncryptionUserMutable(true);
-        wizard->setEncryptionPreset(encrOp == EncryptSelected);
+        if (signOrEncryptExplicitelyRequested) {
+            wizard->setEncryptionPreset(encrOp == EncryptSelected);
+        }
     }
 
     wizard->setArchiveForced(archOp == ArchiveForced);

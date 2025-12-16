@@ -52,6 +52,7 @@
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -155,6 +156,7 @@ public:
     QRadioButton *mPGPRB = nullptr;
     QRadioButton *mCMSRB = nullptr;
     QLabel *mSymmetricLabel = nullptr;
+    KSharedConfig::Ptr mStateConfig = KSharedConfig::openStateConfig();
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
@@ -210,7 +212,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     {
         d->mSigChk = new QCheckBox{i18n("Sign &as:"), this};
         d->mSigChk->setEnabled(haveSecretKeys);
-        d->mSigChk->setChecked(haveSecretKeys);
+        d->mSigChk->setChecked(
+            haveSecretKeys && (!Settings().restoreSignEncryptValues() || d->mStateConfig->group(u"SignEncryptWidget"_s).readEntry(u"SignAsChecked"_s, true)));
         auto checkFont = d->mSigChk->font();
         checkFont.setWeight(QFont::DemiBold);
         d->mSigChk->setFont(checkFont);
@@ -236,6 +239,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             d->mSigSelect->setEnabled(checked);
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
+            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"SignAsChecked"_s, checked);
+            d->mStateConfig->sync();
         });
         connect(d->mSigSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
@@ -250,7 +255,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         // Own key
         d->mEncSelfChk = new QCheckBox{i18n("Encrypt for me:"), this};
         d->mEncSelfChk->setEnabled(haveSecretKeys && !symmetricOnly);
-        d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        d->mEncSelfChk->setChecked(
+            haveSecretKeys && !symmetricOnly
+            && (!Settings().restoreSignEncryptValues() || d->mStateConfig->group(u"SignEncryptWidget"_s).readEntry(u"EncryptForMeChecked"_s, true)));
         auto checkFont = d->mEncSelfChk->font();
         checkFont.setWeight(QFont::DemiBold);
         d->mEncSelfChk->setFont(checkFont);
@@ -273,6 +280,8 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         });
         connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSelfSelect->setEnabled(checked);
+            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForMeChecked"_s, checked);
+            d->mStateConfig->sync();
         });
 
         lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
@@ -280,7 +289,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         // Checkbox for other keys
         d->mEncOtherChk = new QCheckBox(i18nc("@label", "Encrypt for others:"), this);
         d->mEncOtherChk->setEnabled(havePublicKeys && !symmetricOnly);
-        d->mEncOtherChk->setChecked(d->mEncOtherChk->isEnabled());
+        d->mEncOtherChk->setChecked(
+            d->mEncOtherChk->isEnabled()
+            && (!Settings().restoreSignEncryptValues() || d->mStateConfig->group(u"SignEncryptWidget"_s).readEntry(u"EncryptForOthersChecked"_s, true)));
         d->mEncOtherChk->setFont(checkFont);
         lay->addWidget(d->mEncOtherChk);
 
@@ -298,7 +309,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
                                         "Additionally to the keys of the recipients you can encrypt your data with a password. "
                                         "Anyone who has the password can read the data without any secret key. "
                                         "Using a password is <b>less secure</b> then public key cryptography. Even if you pick a very strong password."));
-        d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
+        d->mSymmetric->setChecked(
+            ((symmetricOnly || !havePublicKeys) && !publicKeyOnly)
+            || (Settings().restoreSignEncryptValues() && d->mStateConfig->group(u"SignEncryptWidget"_s).readEntry(u"EncryptSymmetricChecked"_s, true)));
         d->mSymmetric->setEnabled(!publicKeyOnly);
         lay->addWidget(d->mSymmetric);
 
@@ -322,9 +335,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             for (const auto &widget : d->mRecpWidgets) {
                 widget.edit->setEnabled(enabled);
             }
+            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForOthersChecked"_s, enabled);
+            d->mStateConfig->sync();
             updateOp();
         });
-        connect(d->mSymmetric, &QCheckBox::toggled, this, &SignEncryptWidget::updateOp);
+        connect(d->mSymmetric, &QCheckBox::toggled, this, [this](bool checked) {
+            updateOp();
+            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptSymmetricChecked"_s, checked);
+            d->mStateConfig->sync();
+        });
 
         if (d->mIsExclusive) {
             connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
@@ -373,7 +392,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     });
 
     if (!pgpOnly && Settings{}.cmsEnabled() && sigEncExclusive) {
-        KConfigGroup config(KSharedConfig::openStateConfig(), QStringLiteral("SignEncryptWidget"));
+        KConfigGroup config(d->mStateConfig, QStringLiteral("SignEncryptWidget"));
         if (config.readEntry("wasCMS", false)) {
             d->mCMSRB->setChecked(true);
             setProtocol(GpgME::CMS);
@@ -868,9 +887,11 @@ void SignEncryptWidget::setEncryptionChecked(bool checked)
         const bool symmetricOnly = Settings().symmetricEncryptionOnly();
         const bool publicKeyOnly = Settings().publicKeyEncryptionOnly();
         d->mEncSelfChk->setChecked(haveSecretKeys && !symmetricOnly);
+        d->mEncOtherChk->setChecked(!symmetricOnly && havePublicKeys);
         d->mSymmetric->setChecked((symmetricOnly || !havePublicKeys) && !publicKeyOnly);
     } else {
         d->mEncSelfChk->setChecked(false);
+        d->mEncOtherChk->setChecked(false);
         d->mSymmetric->setChecked(false);
     }
 }
