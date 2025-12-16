@@ -33,7 +33,6 @@
 #include "utils/userinfo.h"
 
 #include <Libkleo/ApplicationPaletteWatcher>
-#include <Libkleo/GnuPG>
 
 #include "dialogs/debugdialog.h"
 #include "dialogs/padwindow.h"
