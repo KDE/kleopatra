@@ -121,6 +121,8 @@ public:
         if (!responder) {
             // We are the responder
             createResponder();
+            // initialize the static pointer to this instance
+            (void)KUniqueServicePrivate::instance(this, true);
             return;
         }
         // We are the client
@@ -167,14 +169,14 @@ public:
         qCDebug(KLEOPATRA_LOG) << "Send message returned.";
     }
 
-    static KUniqueServicePrivate *instance(KUniqueService *q)
+    [[nodiscard]] static KUniqueServicePrivate *instance(KUniqueServicePrivate *singleton, bool update = false)
     {
         static KUniqueServicePrivate *self;
-        if (self) {
-            return self;
+        if (update) {
+            self = singleton;
+        } else if (!self) {
+            qFatal("KUniqueServicePrivate::instance unexpectedly called before self was set or after self was cleared");
         }
-
-        self = new KUniqueServicePrivate(q);
         return self;
     }
 
@@ -192,6 +194,8 @@ public:
 
     ~KUniqueServicePrivate()
     {
+        // clear the static pointer to this instance
+        (void)KUniqueServicePrivate::instance(nullptr, true);
         if (mResponder) {
             DestroyWindow(mResponder);
         }
