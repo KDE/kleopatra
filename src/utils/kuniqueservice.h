@@ -12,6 +12,8 @@
 #include <QString>
 #include <QStringList>
 
+#include <memory>
+
 class KUniqueServicePrivate;
 
 /**
