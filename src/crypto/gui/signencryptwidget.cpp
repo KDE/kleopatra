@@ -301,7 +301,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSymmetric->setEnabled(!publicKeyOnly);
         lay->addWidget(d->mSymmetric);
 
-        lay->addWidget(new QLabel(i18nc("@info", "Anyone you share the password with can read the data.")));
+        auto symmetricLabel = new QLabel(i18nc("@info", "Anyone you share the password with can read the data."));
+        symmetricLabel->setEnabled(!publicKeyOnly);
+        lay->addWidget(symmetricLabel);
 
         lay->addStretch();
 
