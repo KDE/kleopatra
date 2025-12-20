@@ -132,7 +132,7 @@ void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error,
         return;
     }
 
-    KMime::Message *msg = new KMime::Message;
+    auto msg = std::make_shared<KMime::Message>();
 
     msg->setContent(KMime::CRLFtoLF(returnedData));
     msg->parse();
@@ -141,7 +141,7 @@ void ExportOpenPGPCertToProviderCommand::wksJobResult(const GpgME::Error &error,
     job->transportAttribute().setTransportId(transport->id());
     job->addressAttribute().setFrom(msg->from()->asUnicodeString());
     job->addressAttribute().setTo(msg->to()->displayNames());
-    job->setMessage(KMime::Message::Ptr{msg});
+    job->setMessage(msg);
     connect(job, &Akonadi::MessageQueueJob::result, this, [this](const KJob *mailJob) {
         if (mailJob->error()) {
             KMessageBox::error(d->parentWidgetOrView(),
