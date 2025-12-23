@@ -454,7 +454,14 @@ class CreateCSRDialog::Private
                 advancedLayout->addLayout(hbox);
             }
 
+#if defined(__cpp_lib_span) && __cpp_lib_span >= 202002L
             for (const AttributeInfo &attr : std::span{attributes}.subspan(2)) {
+#else
+            for (const AttributeInfo &attr : attributes) {
+                if ((attr.name == "CN"_L1) || (attr.name == "EMAIL"_L1)) {
+                    continue;
+                }
+#endif
                 auto inputField = FormInputField::create(dialog);
                 inputField->setLabelText(attr.label);
                 inputField->setIsRequired(attr.required);
