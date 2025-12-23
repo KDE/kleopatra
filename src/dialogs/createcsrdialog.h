@@ -53,6 +53,6 @@ private:
     const std::unique_ptr<Private> d;
 };
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(CreateCSRDialog::Fields);
+Q_DECLARE_OPERATORS_FOR_FLAGS(CreateCSRDialog::Fields)
 
 } // namespace Kleo
