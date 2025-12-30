@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-12-19 00:44+0000\n"
-"PO-Revision-Date: 2025-10-15 21:10+0300\n"
+"PO-Revision-Date: 2025-11-13 13:56+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1911,19 +1911,16 @@ msgstr[1] "%1 aliavaimen vienti onnistui."
 
 #: src/commands/exportsecretteamkeycommand.cpp:73
 #: src/commands/exportsecretteamkeycommand.cpp:294
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Secret Team Key"
-msgstr "Varmuuskopioi salainen avain"
+msgstr "Tallenna työryhmän salainen avain"
 
 #: src/commands/exportsecretteamkeycommand.cpp:144
-#, fuzzy, kde-format
-#| msgid "Backup Secret Key"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Save Secret Team Key"
-msgstr "Varmuuskopioi salainen avain"
+msgstr "Tallenna työryhmän salainen avain"
 
 #: src/commands/exportsecretteamkeycommand.cpp:148
 #, kde-format
@@ -1932,6 +1929,8 @@ msgid ""
 "After importing the team key, team members will be able to decrypt data with "
 "it."
 msgstr ""
+"Työryhmän avaimen tuonnin jälkeen työryhmän jäsenet voivat käyttää sitä "
+"salauksen purkamiseen."
 
 #: src/commands/exportsecretteamkeycommand.cpp:151
 #, kde-format
@@ -1941,12 +1940,15 @@ msgid ""
 "team key.\n"
 "Alternatively, they can use their personal key for signing."
 msgstr ""
+"Valitse, tulisiko jäsenten sallia allekirjoittaa tietoja työryhmän "
+"avaimella.\n"
+"Vaihtoehtoisesti he voivat käyttää allekirjoittamiseen omia avaimiaan."
 
 #: src/commands/exportsecretteamkeycommand.cpp:161
 #, kde-format
 msgctxt "@option:check"
 msgid "Allow team members to sign with the team key"
-msgstr ""
+msgstr "Salli työryhmän jäsenten allekirjoittaa ryhmän avaimella"
 
 #: src/commands/exportsecretteamkeycommand.cpp:167
 #, kde-format
@@ -1955,45 +1957,36 @@ msgid ""
 "Team members will not be able to change the name, email address, or "
 "expiration date of the team key."
 msgstr ""
+"Työryhmän jäsenet eivät voi muuttaa avaimen nimeä, sähköpostiosoitetta tai "
+"vanhenemisaikaa."
 
 #: src/commands/exportsecretteamkeycommand.cpp:256
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "Backing up secret key..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Saving secret team key..."
-msgstr "Varmuuskopioidaan salaista avainta…"
+msgstr "Tallennetaan työryhmän salaista avainta…"
 
 #: src/commands/exportsecretteamkeycommand.cpp:275
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The result of the backup is empty. Maybe you entered an empty or a wrong "
-#| "passphrase."
+#, kde-format
 msgctxt "@info"
 msgid "The result is empty. Maybe you entered an empty or a wrong passphrase."
-msgstr "Varmuuskopion tulos on tyhjä. Salasana oli ehkä tyhjä tai väärin."
+msgstr "Tulos on tyhjä. Salasana oli ehkä tyhjä tai väärin."
 
 #: src/commands/exportsecretteamkeycommand.cpp:294
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "Yes, Save As <filename>%1</filename>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The secret team key was saved to <filename>%1</filename>"
-msgstr "Kyllä, tallenna nimellä <filename>%1</filename>"
+msgstr ""
+"Työryhmän salainen avain tallennettiin tiedostoon <filename>%1</filename>"
 
 #: src/commands/exportsecretteamkeycommand.cpp:302
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during the saving of the secret team key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Salaista avainta varmuuskopioitaessa sattui virhe:</"
+"<para>Työryhmän salaista avainta tallennettaessa tapahtui virhe:</"
 "para><para><message>%1</message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:195
@@ -3057,12 +3050,10 @@ msgstr "Sinulla ei ole oikeutta luoda S/MIME-varmenteen allekirjoituspyyntöjä.
 
 #: src/commands/newopenpgpcertificatecommand.cpp:222
 #: src/commands/newopenpgpcertificatecommand.cpp:254
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid "Failed to decrypt the notepad: %1"
+#, kde-format
 msgctxt "@info"
 msgid "Failed to create signing subkey: %1"
-msgstr "Muistikirjan salauksen purkaminen epäonnistui: %1"
+msgstr "Allekirjoittavan aliavaimen luominen epäonnistui: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:247
 #: src/commands/newopenpgpcertificatecommand.cpp:261
@@ -9932,7 +9923,7 @@ msgstr "Aseta näkyvät sarakkeet"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Configure table sort order"
-msgstr ""
+msgstr "Aseta taulukon lajittelujärjestys"
 
 #: src/mainwindow.cpp:689
 #, kde-format
@@ -10069,13 +10060,13 @@ msgstr "symmetric_encryption_gnupgvsd_en.pdf"
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Ascending"
-msgstr ""
+msgstr "Nouseva"
 
 #: src/mainwindow.cpp:973
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Descending"
-msgstr ""
+msgstr "Laskeva"
 
 #: src/selftest/compliancecheck.cpp:33
 #, kde-format
@@ -11383,12 +11374,10 @@ msgid "No input device"
 msgstr "Syöttölaitetta ei ole"
 
 #: src/utils/keyexportdraghandler.cpp:74 src/utils/keyexportdraghandler.cpp:78
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing the certificate to the card failed: %1"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to write the certificates to a temporary file."
-msgstr "Varmenteen kirjoittaminen kortille epäonnistui:%1"
+msgstr "Varmenteiden kirjoittaminen väliaikaistiedostoon epäonnistui."
 
 #: src/utils/keyexportdraghandler.cpp:154
 #, kde-format
@@ -11774,11 +11763,10 @@ msgid "Backup Secret Keys..."
 msgstr "Varmuuskopioi salaiset avaimet…"
 
 #: src/view/keylistcontroller.cpp:378
-#, fuzzy, kde-format
-#| msgid "Backup Secret Keys..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Save Secret Team Key..."
-msgstr "Varmuuskopioi salaiset avaimet…"
+msgstr "Tallenna työryhmän salainen avain…"
 
 #: src/view/keylistcontroller.cpp:387
 #, kde-format
@@ -12638,7 +12626,7 @@ msgstr "Uuden julkisen avaimen osoite:"
 #, kde-format
 msgctxt "@info"
 msgid "The URL is too long."
-msgstr ""
+msgstr "Verkko-osoite on liian pitkä."
 
 #: src/view/smartcardswidget.cpp:592 src/view/smartcardswidget.cpp:598
 #, kde-format
