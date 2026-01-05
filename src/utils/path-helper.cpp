@@ -100,6 +100,11 @@ QString Kleo::stripSuffix(const QString &fileName)
     return fi.dir().filePath(fi.completeBaseName());
 }
 
+QString Kleo::sanitizedFileName(QString &&fileName)
+{
+    return std::move(fileName.replace(u' ', u'_').replace(u'/', u'_').replace(u'\\', u'_').replace(u':', u'_'));
+}
+
 bool Kleo::isWritable(const QFileInfo &fi)
 {
 #ifdef Q_OS_WIN
