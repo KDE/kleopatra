@@ -191,9 +191,9 @@ public:
         mMissingOwnerTrustInfo = new KMessageWidget{q};
         mSetOwnerTrustAction = new QAction{q};
         mSetOwnerTrustAction->setText(i18nc("@action:button", "Yes, I am the only user"));
-        mSetOwnerTrustAction->setToolTip(i18nc("@info:tooltip",
-                                               "Click to set the trust level of the selected certification key to ultimate trust. "
-                                               "This is what you usually want to do for your own keys."));
+        mSetOwnerTrustAction->setToolTip(xi18nc("@info:tooltip",
+                                                "Click to set the trust level of the selected certification key to ultimate trust. "
+                                                "This is what you usually want to do for your own keys."));
         connect(mSetOwnerTrustAction, &QAction::triggered, q, [this]() {
             setOwnerTrust();
         });
