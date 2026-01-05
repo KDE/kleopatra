@@ -188,7 +188,7 @@ public:
 
         mMissingOwnerTrustInfo = new KMessageWidget{q};
         mSetOwnerTrustAction = new QAction{q};
-        mSetOwnerTrustAction->setText(i18nc("@action:button", "Set Owner Trust"));
+        mSetOwnerTrustAction->setText(i18nc("@action:button", "Yes, I am the only user"));
         mSetOwnerTrustAction->setToolTip(i18nc("@info:tooltip",
                                                "Click to set the trust level of the selected certification key to ultimate trust. "
                                                "This is what you usually want to do for your own keys."));
@@ -784,7 +784,7 @@ public:
         if (secretKey.ownerTrust() != GpgME::Key::Ultimate) {
             mMissingOwnerTrustInfo->setMessageType(KMessageWidget::Information);
             mMissingOwnerTrustInfo->setIcon(QIcon::fromTheme(QStringLiteral("question")));
-            mMissingOwnerTrustInfo->setText(i18n("Is this your own key?"));
+            mMissingOwnerTrustInfo->setText(i18nc("@info", "Are you the only user of this secret key?"));
             mSetOwnerTrustAction->setEnabled(true);
             mMissingOwnerTrustInfo->animatedShow();
         } else {
