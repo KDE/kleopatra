@@ -23,10 +23,10 @@ ecm_add_test(
 )
 
 ecm_add_test(
-    stripsuffixtest.cpp
+    pathhelpertest.cpp
     ${CMAKE_SOURCE_DIR}/src/utils/path-helper.cpp
     ${logging_category_srcs}
-    TEST_NAME stripsuffixtest
+    TEST_NAME pathhelpertest
     LINK_LIBRARIES KF${KF_MAJOR_VERSION}::I18n KPim${KF_MAJOR_VERSION}::Libkleo Qt::Test
 )
 

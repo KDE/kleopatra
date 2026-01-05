@@ -7,11 +7,12 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include "utils/path-helper.h"
+#include <utils/path-helper.h>
+
 #include <QDebug>
 #include <QTest>
 
-class StripSuffixTest : public QObject
+class PathHelperTest : public QObject
 {
     Q_OBJECT
 
@@ -20,7 +21,7 @@ private Q_SLOTS:
     void testStripSuffix();
 };
 
-void StripSuffixTest::testStripSuffix_data()
+void PathHelperTest::testStripSuffix_data()
 {
     QTest::addColumn<QString>("fileName");
     QTest::addColumn<QString>("baseName");
@@ -45,7 +46,7 @@ void StripSuffixTest::testStripSuffix_data()
         << QString::fromLatin1("some/test.tar.gz");
 }
 
-void StripSuffixTest::testStripSuffix()
+void PathHelperTest::testStripSuffix()
 {
     QFETCH(QString, fileName);
     QFETCH(QString, baseName);
@@ -53,5 +54,5 @@ void StripSuffixTest::testStripSuffix()
     QCOMPARE(Kleo::stripSuffix(fileName), baseName);
 }
 
-QTEST_MAIN(StripSuffixTest)
-#include "stripsuffixtest.moc"
+QTEST_MAIN(PathHelperTest)
+#include "pathhelpertest.moc"
