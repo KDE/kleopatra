@@ -16,6 +16,7 @@
 #include <settings.h>
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/Classify>
 #include <Libkleo/Formatting>
@@ -51,10 +52,7 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
     if (subkeys.size() == 1) {
         const auto subkey = subkeys.front();
         const auto key = subkey.parent();
-        auto name = Formatting::prettyName(key);
-        if (name.isEmpty()) {
-            name = Formatting::prettyEMail(key);
-        }
+        const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
         const auto shortKeyID = Formatting::prettyKeyID(key.shortKeyID());
         const auto shortSubkeyID = Formatting::prettyKeyID(QByteArray{subkey.keyID()}.right(8).constData());
         const auto usage = Formatting::usageString(subkey).replace(QLatin1String{", "}, QLatin1String{"_"});
@@ -63,7 +61,6 @@ QString proposeFilename(const std::vector<Subkey> &subkeys)
     } else {
         filename = i18nc("Generic filename for exported subkeys", "subkeys");
     }
-    filename.replace(u'/', u'_');
 
     return ApplicationState::lastUsedExportDirectory() + u'/' + filename + u'.' + openPGPCertificateFileExtension();
 }

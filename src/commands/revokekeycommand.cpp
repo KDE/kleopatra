@@ -15,6 +15,7 @@
 #include "dialogs/revokekeydialog.h"
 #include "kleopatra_debug.h"
 #include "revokekeycommand.h"
+#include <utils/path-helper.h>
 
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
@@ -280,11 +281,7 @@ void RevokeKeyCommand::Private::exportFinished(const Error &error, const QByteAr
         return;
     }
 
-    auto name = Formatting::prettyName(key);
-    if (name.isEmpty()) {
-        name = Formatting::prettyEMail(key);
-    }
-
+    const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
     auto filename = QStringLiteral("%1_%2_public_revoked.asc").arg(name, Formatting::prettyKeyID(key.shortKeyID()));
     const auto dir = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     if (QFileInfo::exists(QStringLiteral("%1/%2").arg(dir, filename))) {
