@@ -25,6 +25,12 @@ QStringList makeRelativeTo(const QString &dir, const QStringList &files);
 QString stripSuffix(const QString &fileName);
 
 /**
+ * Replaces space characters and invalid characters ('/', '\\', ':') in \p fileName
+ * with underscores and returns a reference to this string.
+ */
+QString sanitizedFileName(QString &&fileName);
+
+/**
  * Checks if the file/directory referenced by \p fi is writable.
  *
  * On Windows, a temporary file is created to check if a directory is writable.
