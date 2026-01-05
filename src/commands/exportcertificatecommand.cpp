@@ -15,6 +15,7 @@
 
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Classify>
@@ -232,16 +233,11 @@ bool ExportCertificateCommand::Private::requestFileNames(GpgME::Protocol protoco
     if (keys().size() == 1) {
         const bool usePGPFileExt = Settings().usePGPFileExt();
         const auto key = keys().front();
-        auto name = Formatting::prettyName(key);
-        if (name.isEmpty()) {
-            name = Formatting::prettyEMail(key);
-        }
+        const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
         const auto asciiArmoredCertificateClass = (protocol == OpenPGP ? Class::OpenPGP : Class::CMS) | Class::Ascii | Class::Certificate;
         /* Not translated so it's better to use in tutorials etc. */
-        proposedFileName += QStringLiteral("%1_%2_public.%3")
-                                .arg(name)
-                                .arg(Formatting::prettyKeyID(key.keyID()))
-                                .arg(outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt));
+        proposedFileName +=
+            QStringLiteral("%1_%2_public.%3").arg(name, Formatting::prettyKeyID(key.keyID()), outputFileExtension(asciiArmoredCertificateClass, usePGPFileExt));
     }
     if (protocol == GpgME::CMS) {
         if (!fileNames[GpgME::OpenPGP].isEmpty()) {

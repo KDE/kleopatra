@@ -15,6 +15,7 @@
 #include "smartcard/readerstatus.h"
 #include "smartcard/utils.h"
 #include "utils/applicationstate.h"
+#include <utils/path-helper.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -189,12 +190,7 @@ void CertificateToCardCommand::Private::start()
         auto command = new ExportSecretKeyCommand(key());
         command->setInteractive(false);
 
-        auto name = Formatting::prettyName(key());
-        name.remove(QRegularExpression(QStringLiteral("[:/\\\\")));
-        if (name.isEmpty()) {
-            name = Formatting::prettyEMail(key());
-        }
-
+        const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key()));
         auto filename = QStringLiteral("%1_%2_secret.asc").arg(name, Formatting::prettyKeyID(key().keyID()));
         const auto dir = QDir{QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)};
         if (dir.exists(filename)) {

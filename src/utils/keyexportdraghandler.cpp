@@ -5,6 +5,8 @@
 
 #include <kleopatraapplication.h>
 
+#include <utils/path-helper.h>
+
 #include "kleopatra_debug.h"
 
 #include <Libkleo/Formatting>
@@ -143,10 +145,7 @@ QMimeData *KeyExportDragHandler::mimeData(const QModelIndexList &indexes) const
 
     if (singleRow) {
         auto key = indexes[0].data(KeyList::KeyRole).value<Key>();
-        auto keyName = Formatting::prettyName(key);
-        if (keyName.isEmpty()) {
-            keyName = Formatting::prettyEMail(key);
-        }
+        const QString keyName = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
         mimeData->fileName = QStringLiteral("%1_%2_public.%3")
                                  .arg(keyName, Formatting::prettyKeyID(key.keyID()), pgpFprs.isEmpty() ? QStringLiteral("pem") : QStringLiteral("asc"));
     } else {

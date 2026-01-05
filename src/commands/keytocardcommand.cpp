@@ -23,6 +23,7 @@
 #include "smartcard/utils.h"
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -536,21 +537,15 @@ QString gnupgPrivateKeyBackupExtension()
 
 QString proposeFilename(const Subkey &subkey)
 {
-    QString filename;
-
     const auto key = subkey.parent();
-    auto name = Formatting::prettyName(key);
-    if (name.isEmpty()) {
-        name = Formatting::prettyEMail(key);
-    }
+    const auto name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
     const auto keyID = Formatting::prettyKeyID(key.keyID());
     const auto subkeyID = Formatting::prettyKeyID(subkey.keyID());
     const auto usage = Formatting::usageString(subkey).replace(QLatin1StringView{", "}, QLatin1StringView{"_"});
     /* Not translated so it's better to use in tutorials etc. */
-    filename = ((keyID == subkeyID) //
-                    ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, keyID, usage)
-                    : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, keyID, subkeyID, usage));
-    filename.replace(u'/', u'_');
+    const QString filename = ((keyID == subkeyID) //
+                                  ? QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3"}.arg(name, keyID, usage)
+                                  : QStringView{u"%1_%2_SECRET_KEY_BACKUP_%3_%4"}.arg(name, keyID, subkeyID, usage));
 
     return QDir{ApplicationState::lastUsedExportDirectory()}.filePath(filename + gnupgPrivateKeyBackupExtension());
 }

@@ -10,6 +10,7 @@
 
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
+#include <utils/path-helper.h>
 
 #include <settings.h>
 
@@ -53,16 +54,10 @@ QString openPGPCertificateFileExtension()
 
 QString proposeFilename(const Key &key)
 {
-    QString filename;
-
-    auto name = Formatting::prettyName(key);
-    if (name.isEmpty()) {
-        name = Formatting::prettyEMail(key);
-    }
+    const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
     const auto keyID = Formatting::prettyKeyID(key.keyID());
     /* Not translated so it's better to use in tutorials etc. */
-    filename = QStringView{u"%1_%2_SECRET_TEAM_KEY"}.arg(name, keyID);
-    filename.replace(u'/', u'_');
+    const QString filename = QStringView{u"%1_%2_SECRET_TEAM_KEY"}.arg(name, keyID);
 
     return ApplicationState::lastUsedExportDirectory() + u'/' + filename + u'.' + openPGPCertificateFileExtension();
 }
