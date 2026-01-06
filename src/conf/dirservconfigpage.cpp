@@ -181,11 +181,18 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
             mOpenPGPKeyserverEdit.label()->setText(i18n("OpenPGP keyserver:"));
             if (engineIsVersion(2, 4, 4) //
                 || (engineIsVersion(2, 2, 42) && !engineIsVersion(2, 3, 0))) {
-                mOpenPGPKeyserverEdit.widget()->setToolTip( //
-                    xi18nc("@info:tooltip",
-                           "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
-                           "when uploading OpenPGP certificates. If you do not enter an address then an internal "
-                           "default will be used. To disable the use of an OpenPGP keyserver enter the special value <emphasis>none</emphasis>."));
+                if (mDefaultKeyserver == "none"_L1) {
+                    mOpenPGPKeyserverEdit.widget()->setToolTip( //
+                        xi18nc("@info:tooltip",
+                               "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
+                               "when uploading OpenPGP certificates."));
+                } else {
+                    mOpenPGPKeyserverEdit.widget()->setToolTip( //
+                        xi18nc("@info:tooltip",
+                               "Enter the address of the keyserver to use when searching for OpenPGP certificates and "
+                               "when uploading OpenPGP certificates. If you do not enter an address then an internal "
+                               "default will be used."));
+                }
             }
             l->addWidget(mOpenPGPKeyserverEdit.label());
             l->addWidget(mOpenPGPKeyserverEdit.widget());
@@ -442,14 +449,18 @@ void DirectoryServicesConfigurationPage::Private::save()
     }
 
     if (mOpenPGPServiceEntry) {
-        const auto keyserver = mOpenPGPKeyserverEdit.widget()->text().trimmed();
-        if (keyserver.isEmpty()) {
-            mOpenPGPServiceEntry->resetToDefault();
-        } else if (keyserver == QLatin1StringView{"none"}) {
-            mOpenPGPServiceEntry->setStringValue(keyserver);
+        if (!mUseKeyServerCheckBox->isChecked()) {
+            mOpenPGPServiceEntry->setStringValue(u"none"_s);
         } else {
-            const auto keyserverValue = keyserver.contains(QLatin1Char{':'}) ? keyserver : (QLatin1StringView{"hkps://"} + keyserver);
-            mOpenPGPServiceEntry->setStringValue(keyserverValue);
+            const auto keyserver = mOpenPGPKeyserverEdit.widget()->text().trimmed();
+            if (keyserver.isEmpty()) {
+                mOpenPGPServiceEntry->resetToDefault();
+            } else if (keyserver == QLatin1StringView{"none"}) {
+                mOpenPGPServiceEntry->setStringValue(keyserver);
+            } else {
+                const auto keyserverValue = keyserver.contains(QLatin1Char{':'}) ? keyserver : (QLatin1StringView{"hkps://"} + keyserver);
+                mOpenPGPServiceEntry->setStringValue(keyserverValue);
+            }
         }
         mRetrieveKeysEntry->setBoolValue(mRetrieveKeysCheckBox->isChecked());
     }
