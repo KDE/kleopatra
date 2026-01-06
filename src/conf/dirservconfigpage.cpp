@@ -105,6 +105,8 @@ private:
     QCheckBox *mUseKeyServerCheckBox = nullptr;
     QCheckBox *mRetrieveKeysCheckBox = nullptr;
 
+    QString mRememberedKeyserver;
+    QString mDefaultKeyserver;
     QGpgME::CryptoConfigEntry *mOpenPGPServiceEntry = nullptr;
     QGpgME::CryptoConfigEntry *mTimeoutConfigEntry = nullptr;
     QGpgME::CryptoConfigEntry *mMaxItemsConfigEntry = nullptr;
@@ -113,10 +115,46 @@ private:
     QGpgME::CryptoConfig *mConfig = nullptr;
 };
 
+static QString canonicalizedKeyserver(const QString &keyserver)
+{
+    if (keyserver.endsWith("://none"_L1)) {
+        // map hkps://none, etc., to "none"; see https://dev.gnupg.org/T6708
+        return u"none"_s;
+    }
+    return keyserver;
+}
+
+static QString displayKeyserver(const QString &keyserver)
+{
+    return (keyserver == "none"_L1) ? QString{} : keyserver;
+}
+
+static QString effectiveKeyserver(const QString &keyserver, const QString &defaultKeyserver)
+{
+    if (keyserver == "none"_L1) {
+        return {};
+    }
+    if (keyserver.isEmpty()) {
+        return (defaultKeyserver == "none"_L1) ? QString{} : defaultKeyserver;
+    }
+    return keyserver;
+}
+
 DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurationPage *qq)
     : q{qq}
 {
     mConfig = QGpgME::cryptoConfig();
+
+    const auto *const keyserverEntry =
+        configEntry(s_pgpservice_componentName, s_pgpservice_entryName, CryptoConfigEntry::ArgType_String, SingleValue, DoNotShowError);
+    if (keyserverEntry && !keyserverEntry->defaultValue().isNull()) {
+        mDefaultKeyserver = canonicalizedKeyserver(keyserverEntry->defaultValue().toString());
+    } else if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
+        mDefaultKeyserver = u"hkp://keys.gnupg.net"_s;
+    } else {
+        mDefaultKeyserver = u"hkps://hkps.pool.sks-keyservers.net"_s;
+    }
+
     auto glay = new QGridLayout(q);
 
     // OpenPGP keyserver
@@ -156,12 +194,14 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
         connect(mUseKeyServerCheckBox, &QCheckBox::toggled, mOpenPGPKeyserverEdit.widget(), &QLineEdit::setEnabled);
         connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this]() {
             if (!mUseKeyServerCheckBox->isChecked()) {
-                mOpenPGPKeyserverEdit.widget()->setText(QStringLiteral("none"));
-                Q_EMIT q->changed();
-            } else if (mOpenPGPKeyserverEdit.widget()->text() == QLatin1StringView("none")) {
-                mOpenPGPKeyserverEdit.widget()->setText({});
-                Q_EMIT q->changed();
+                mRememberedKeyserver = mOpenPGPKeyserverEdit.widget()->text();
+                mOpenPGPKeyserverEdit.widget()->clear();
+                mOpenPGPKeyserverEdit.widget()->setPlaceholderText({});
+            } else {
+                mOpenPGPKeyserverEdit.widget()->setText(mRememberedKeyserver);
+                mOpenPGPKeyserverEdit.widget()->setPlaceholderText(displayKeyserver(mDefaultKeyserver));
             }
+            Q_EMIT q->changed();
         });
 
         {
@@ -293,20 +333,14 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
         } else {
             qCDebug(KLEOPATRA_LOG) << "Using config entry" << s_pgpservice_componentName << "/" << s_pgpservice_entryName;
         }
-
-        mOpenPGPKeyserverEdit.widget()->setText(mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet() ? mOpenPGPServiceEntry->stringValue() : QString());
-        mUseKeyServerCheckBox->setChecked(mOpenPGPKeyserverEdit.widget()->text() != QStringLiteral("none"));
+        const QString keyserver =
+            (mOpenPGPServiceEntry && mOpenPGPServiceEntry->isSet()) ? canonicalizedKeyserver(mOpenPGPServiceEntry->stringValue()) : QString();
+        const QString effectiveServer = effectiveKeyserver(keyserver, mDefaultKeyserver);
+        mUseKeyServerCheckBox->setChecked(!effectiveServer.isEmpty());
         mUseKeyServerCheckBox->setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly());
+        mOpenPGPKeyserverEdit.widget()->setText(displayKeyserver(keyserver));
         mOpenPGPKeyserverEdit.setEnabled(mOpenPGPServiceEntry && !mOpenPGPServiceEntry->isReadOnly() && mUseKeyServerCheckBox->isChecked());
-        if (newEntry && !newEntry->defaultValue().isNull()) {
-            mOpenPGPKeyserverEdit.widget()->setPlaceholderText(newEntry->defaultValue().toString());
-        } else {
-            if (GpgME::engineInfo(GpgME::GpgEngine).engineVersion() < "2.1.16") {
-                mOpenPGPKeyserverEdit.widget()->setPlaceholderText(QStringLiteral("hkp://keys.gnupg.net"));
-            } else {
-                mOpenPGPKeyserverEdit.widget()->setPlaceholderText(QStringLiteral("hkps://hkps.pool.sks-keyservers.net"));
-            }
-        }
+        mOpenPGPKeyserverEdit.widget()->setPlaceholderText(mUseKeyServerCheckBox->isChecked() ? displayKeyserver(mDefaultKeyserver) : QString());
     }
 
     // read LDAP timeout
