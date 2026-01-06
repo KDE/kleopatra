@@ -10,6 +10,7 @@
 #include "exportopenpgpcertstoservercommand.h"
 
 #include "command_p.h"
+#include <settings.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Formatting>
@@ -46,6 +47,15 @@ ExportOpenPGPCertsToServerCommand::ExportOpenPGPCertsToServerCommand(const std::
 }
 
 ExportOpenPGPCertsToServerCommand::~ExportOpenPGPCertsToServerCommand() = default;
+
+Command::Restrictions ExportOpenPGPCertsToServerCommand::restrictions()
+{
+    if (Settings{}.allowPublicKeyUpload()) {
+        return MustBeOpenPGP;
+    } else {
+        return MustBeOpenPGP | NeedSecretKey;
+    }
+}
 
 static bool confirmExport(const std::vector<Key> &pgpKeys, QWidget *parentWidget)
 {

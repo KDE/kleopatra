@@ -25,10 +25,7 @@ public:
 
     ~ExportOpenPGPCertsToServerCommand() override;
 
-    static Restrictions restrictions()
-    {
-        return MustBeOpenPGP;
-    }
+    static Restrictions restrictions();
 
 private:
     bool preStartHook(QWidget *) const override;
