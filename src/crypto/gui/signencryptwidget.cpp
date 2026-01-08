@@ -154,6 +154,7 @@ public:
     std::unique_ptr<ExpiryChecker> mExpiryChecker;
     QRadioButton *mPGPRB = nullptr;
     QRadioButton *mCMSRB = nullptr;
+    QLabel *mSymmetricLabel = nullptr;
 };
 
 SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
@@ -301,9 +302,9 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         d->mSymmetric->setEnabled(!publicKeyOnly);
         lay->addWidget(d->mSymmetric);
 
-        auto symmetricLabel = new QLabel(i18nc("@info", "Anyone you share the password with can read the data."));
-        symmetricLabel->setEnabled(!publicKeyOnly);
-        lay->addWidget(symmetricLabel);
+        d->mSymmetricLabel = new QLabel(i18nc("@info", "Anyone you share the password with can read the data."));
+        d->mSymmetricLabel->setEnabled(!publicKeyOnly);
+        lay->addWidget(d->mSymmetricLabel);
 
         lay->addStretch();
 
@@ -903,7 +904,8 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
     }
 
     if (mIsExclusive) {
-        mSymmetric->setDisabled(mCurrentProto == GpgME::CMS);
+        mSymmetric->setDisabled(mCurrentProto == GpgME::CMS || Settings{}.publicKeyEncryptionOnly());
+        mSymmetricLabel->setDisabled(mCurrentProto == GpgME::CMS || Settings{}.publicKeyEncryptionOnly());
         if (mSymmetric->isChecked() && mCurrentProto == GpgME::CMS) {
             mSymmetric->setChecked(false);
         }
