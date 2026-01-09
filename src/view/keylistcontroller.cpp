@@ -376,7 +376,7 @@ void KeyListController::createActions(KActionCollection *coll)
         {
             "file_export_secret_team_key",
             i18nc("@action:inmenu", "Save Secret Team Key..."),
-            QString(),
+            i18nc("@info:tooltip", "Save the selected secret team key to share it with other team members"),
             "view-certificate-export-secret",
             nullptr,
             nullptr,
