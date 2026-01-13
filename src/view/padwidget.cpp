@@ -18,6 +18,7 @@
 #include <Libkleo/KeyCache>
 #include <Libkleo/KleoException>
 #include <Libkleo/SystemInfo>
+#include <Libkleo/Verification>
 
 #include "crypto/gui/resultitemwidget.h"
 #include "crypto/gui/signencryptwidget.h"
@@ -368,6 +369,7 @@ public:
                     break;
                 default:;
                 }
+                setText(QString::fromUtf8(mOutputData));
                 break;
             }
             case DecryptVerify: {
@@ -376,12 +378,20 @@ public:
                 if (wasDecrypted && wasVerified) {
                     mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Decrypted and verified text"));
                     mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of decryption and signature verification."));
+                    setText(QString::fromUtf8(mOutputData));
                 } else if (wasDecrypted) {
                     mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Decrypted text"));
                     mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the decryption."));
+                    setText(QString::fromUtf8(mOutputData));
                 } else if (wasVerified) {
-                    mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Verified text"));
-                    mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the signature verification."));
+                    const bool atLeastOneSignatureIsGood = std::ranges::any_of(decryptVerifyResult->verificationResult().signatures(), &Kleo::signatureIsGood);
+                    if (atLeastOneSignatureIsGood) {
+                        mEdit->setAccessibleName(i18nc("@label:textbox for assistive tools", "Verified text"));
+                        mEdit->setAccessibleDescription(i18nc("@info for assistive tools", "This is the result of the signature verification."));
+                        setText(QString::fromUtf8(mOutputData));
+                    } else {
+                        setText({});
+                    }
                 }
                 break;
             }
@@ -389,7 +399,6 @@ public:
                 qCDebug(KLEOPATRA_LOG) << __func__ << "Unexpected last operation:" << mLastOperation;
             };
 
-            setText(QString::fromUtf8(mOutputData));
             mOutputData.clear();
             mRevertBtn->setVisible(true);
         }
