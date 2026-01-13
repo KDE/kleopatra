@@ -112,6 +112,8 @@ int main(int argc, char **argv)
     // Set OrganizationDomain early as this is used to generate the service
     // name that will be registered on the bus.
     QCoreApplication::setOrganizationDomain(QStringLiteral(KLEOPATRA_ORGANIZATION_DOMAIN));
+    // Set OrganizationName early as this is used to find config entries in the Windows registry.
+    QCoreApplication::setOrganizationName(QStringLiteral(KLEOPATRA_ORGANIZATION_NAME));
 
 #ifdef Q_OS_WIN
     // The config files need to be migrated before the application is created. Otherwise, at least
