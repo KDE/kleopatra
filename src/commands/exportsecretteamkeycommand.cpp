@@ -21,6 +21,7 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <QGpgME/Debug>
 #include <QGpgME/ExportJob>
 #include <QGpgME/Protocol>
 
@@ -33,6 +34,9 @@
 #include <QVBoxLayout>
 
 #include <gpgme++/context.h>
+
+#include <gpgme.h>
+#include <qgpgme/qgpgme_version.h>
 
 #include <memory>
 #include <span>
@@ -98,13 +102,19 @@ public:
     void cancel();
 
 private:
-    std::unique_ptr<QGpgME::ExportJob> startExportJob(const Key &key, bool sign);
+    enum class OutputFormat {
+        Binary,
+        Armor
+    };
+
+    std::unique_ptr<QGpgME::ExportJob> startExportJob(const QStringList &fingerprints, OutputFormat format);
     void onExportJobResult(const Error &err, const QByteArray &keyData, const AuditLogEntry &auditLog);
     void showError(const Error &err, const AuditLogEntry &auditLog = {});
-    void prepareExport(bool sign);
+    void prepareExport(bool exportSecretSigningSubkey);
 
 private:
     QString filename;
+    QByteArray publicSigningKeyData;
     QPointer<QGpgME::ExportJob> job;
 };
 
@@ -191,51 +201,9 @@ void ExportSecretTeamKeyCommand::Private::cancel()
     job.clear();
 }
 
-std::unique_ptr<QGpgME::ExportJob> ExportSecretTeamKeyCommand::Private::startExportJob(const Key &key, bool sign)
+std::unique_ptr<QGpgME::ExportJob> ExportSecretTeamKeyCommand::Private::startExportJob(const QStringList &fingerprints, OutputFormat format)
 {
-    const auto armor = filename.endsWith(".asc"_L1, Qt::CaseInsensitive);
-
-    QStringList fingerprints;
-
-    auto subkeys = key.subkeys();
-    std::sort(subkeys.begin(), subkeys.end(), [](const auto left, const auto right) {
-        return left.creationTime() > right.creationTime();
-    });
-    auto haveEncrypt = false;
-    auto haveSign = false;
-
-    for (const auto &subkey : subkeys) {
-        if (subkey.canCertify()) {
-            continue;
-        }
-        if (subkey.canSign() && !sign) {
-            continue;
-        }
-        if (!subkey.isSecret()) {
-            continue;
-        }
-        if (subkey.isBad()) {
-            continue;
-        }
-        if (subkey.canSign()) {
-            if (haveSign) {
-                continue;
-            } else {
-                haveSign = true;
-            }
-        }
-
-        if (subkey.canEncrypt()) {
-            if (haveEncrypt) {
-                continue;
-            } else {
-                haveEncrypt = true;
-            }
-        }
-        fingerprints.append(QString::fromLatin1(subkey.fingerprint()) + u"!"_s);
-    }
-
-    std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretSubkeyExportJob(armor)};
+    std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->secretSubkeyExportJob(format == OutputFormat::Armor)};
     Q_ASSERT(exportJob);
 
     connect(exportJob.get(), &QGpgME::ExportJob::result, q, [this](const auto &err, const auto &keyData, const auto auditLogAsHtml, const auto &auditLogError) {
@@ -279,6 +247,14 @@ void ExportSecretTeamKeyCommand::Private::onExportJobResult(const Error &err, co
         return;
     }
 
+    if (!publicSigningKeyData.isEmpty()) {
+        const auto bytesWritten = f.write(publicSigningKeyData);
+        if (bytesWritten != publicSigningKeyData.size()) {
+            error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename));
+            finished();
+            return;
+        }
+    }
     const auto bytesWritten = f.write(keyData);
     if (bytesWritten != keyData.size()) {
         error(xi18nc("@info", "Writing key to file <filename>%1</filename> failed.", filename));
@@ -322,7 +298,7 @@ void ExportSecretTeamKeyCommand::doCancel()
     d->cancel();
 }
 
-void ExportSecretTeamKeyCommand::Private::prepareExport(bool sign)
+void ExportSecretTeamKeyCommand::Private::prepareExport(bool exportSecretSigningSubkey)
 {
     const Key key = this->key();
 
@@ -332,7 +308,60 @@ void ExportSecretTeamKeyCommand::Private::prepareExport(bool sign)
         return;
     }
 
-    auto exportJob = startExportJob(key, sign);
+    const OutputFormat format = filename.endsWith(".asc"_L1, Qt::CaseInsensitive) ? OutputFormat::Armor : OutputFormat::Binary;
+
+    auto subkeys = key.subkeys();
+    std::sort(subkeys.begin(), subkeys.end(), [](const auto left, const auto right) {
+        return left.creationTime() > right.creationTime();
+    });
+    QString encryptKeyFpr;
+    QString signKeyFpr;
+    for (const auto &subkey : subkeys) {
+        if (subkey.canCertify()) {
+            // skip the primary key
+            continue;
+        }
+        if (!subkey.isSecret()) {
+            continue;
+        }
+        if (subkey.isBad()) {
+            continue;
+        }
+        if (subkey.canSign()) {
+            if (signKeyFpr.isEmpty()) {
+                signKeyFpr = QString::fromLatin1(subkey.fingerprint());
+            }
+            continue;
+        }
+        if (subkey.canEncrypt()) {
+            if (encryptKeyFpr.isEmpty()) {
+                encryptKeyFpr = QString::fromLatin1(subkey.fingerprint());
+            }
+        }
+    }
+    QStringList fingerprints;
+    fingerprints.append(encryptKeyFpr + u'!');
+    if (exportSecretSigningSubkey && !signKeyFpr.isEmpty()) {
+        fingerprints.append(signKeyFpr + u'!');
+    }
+
+    if (!exportSecretSigningSubkey && !signKeyFpr.isEmpty()) {
+        // export the public signing subkey to share it together with the secret encryption subkey with the team members
+        std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->publicKeyExportJob(format == OutputFormat::Armor)};
+#if GPGME_VERSION_NUMBER >= QT_VERSION_CHECK(2, 0, 2) && QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 1)
+        // export only the signing subkey (if gpgme is new enough); otherwise, the complete public team key is exported
+        exportJob->setExportFilter("drop-subkey=fpr <> "_L1 + signKeyFpr);
+#endif
+        // we use a blocking export because this should be fast
+        Error err = exportJob->exec({QString::fromLatin1(key.primaryFingerprint())}, publicSigningKeyData);
+        if (err) {
+            qCWarning(KLEOPATRA_LOG) << "ExportSecretTeamKeyCommand: Failed to export the public signing key:" << err;
+            publicSigningKeyData.clear(); // clear the export result just in case there's some garbage
+            // a failed public key export shouldn't fail the command
+        }
+    }
+
+    auto exportJob = startExportJob(fingerprints, format);
     if (!exportJob) {
         finished();
         return;
