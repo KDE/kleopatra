@@ -48,25 +48,24 @@ using namespace Kleo::Commands;
 using namespace GpgME;
 using namespace Qt::Literals::StringLiterals;
 
-namespace
-{
-
-QString openPGPCertificateFileExtension()
+static QString openPGPCertificateFileExtension()
 {
     return outputFileExtension(Class::OpenPGP | Class::Ascii | Class::Certificate, Settings().usePGPFileExt());
 }
 
-QString proposeFilename(const Key &key)
+static QString proposeFilename(const Key &key, bool exportSecretSigningSubkey)
 {
     const QString name = Kleo::sanitizedFileName(Formatting::prettyNameOrEMail(key));
     const auto keyID = Formatting::prettyKeyID(key.keyID());
     /* Not translated so it's better to use in tutorials etc. */
-    const QString filename = QStringView{u"%1_%2_SECRET_TEAM_KEY"}.arg(name, keyID);
+    const QString filename = (exportSecretSigningSubkey //
+                                  ? QStringView{u"%1_%2_SECRET_TEAM_KEY_ENCRYPT_SIGN"}.arg(name, keyID)
+                                  : QStringView{u"%1_%2_SECRET_TEAM_KEY_ENCRYPT"}.arg(name, keyID));
 
     return ApplicationState::lastUsedExportDirectory() + u'/' + filename + u'.' + openPGPCertificateFileExtension();
 }
 
-QString requestFilename(const QString &proposedFilename, QWidget *parent)
+static QString requestFilename(const QString &proposedFilename, QWidget *parent)
 {
     auto filename = FileDialog::getSaveFileNameEx(parent,
                                                   i18nc("@title:window", "Save Secret Team Key"),
@@ -83,7 +82,6 @@ QString requestFilename(const QString &proposedFilename, QWidget *parent)
     }
 
     return filename;
-}
 }
 
 class ExportSecretTeamKeyCommand::Private : public Command::Private
@@ -302,7 +300,7 @@ void ExportSecretTeamKeyCommand::Private::prepareExport(bool exportSecretSigning
 {
     const Key key = this->key();
 
-    filename = requestFilename(proposeFilename(key), parentWidgetOrView());
+    filename = requestFilename(proposeFilename(key, exportSecretSigningSubkey), parentWidgetOrView());
     if (filename.isEmpty()) {
         canceled();
         return;
