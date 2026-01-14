@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-10 00:44+0000\n"
+"POT-Creation-Date: 2026-01-14 00:45+0000\n"
 "PO-Revision-Date: 2026-01-10 12:35+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -2248,8 +2248,8 @@ msgid "Clipboard"
 msgstr "Klembord"
 
 #: src/commands/importcertificatefromdatacommand.cpp:75
-#: src/view/padwidget.cpp:392 src/view/padwidget.cpp:393
-#: src/view/padwidget.cpp:476 src/view/padwidget.cpp:477
+#: src/view/padwidget.cpp:401 src/view/padwidget.cpp:402
+#: src/view/padwidget.cpp:485 src/view/padwidget.cpp:486
 #, kde-format
 msgid "Notepad"
 msgstr "Tekstgebied"
@@ -3944,26 +3944,33 @@ msgstr ""
 "Stel deze optie in om te vermijden de tijdelijke map van gebruikers te "
 "gebruiken."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:66
+#: src/conf/cryptooperationsconfigwidget.cpp:67
+#, fuzzy, kde-format
+#| msgid "Encryption Options"
+msgctxt "@title"
+msgid "Encryption Settings"
+msgstr "Versleutelingsopties"
+
+#: src/conf/cryptooperationsconfigwidget.cpp:69
 #, kde-format
 msgctxt "@option:check"
 msgid "Use symmetric encryption only."
 msgstr "Alleen symmetrische versleuteling gebruiken."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:67
+#: src/conf/cryptooperationsconfigwidget.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
 msgstr ""
 "Stel deze optie in om versleuteling met publieke sleutels uit te schakelen."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:68
+#: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
 msgctxt "@option:check"
 msgid "Use public-key encryption only."
 msgstr "Alleen versleuteling met publieke sleutel gebruiken."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:69
+#: src/conf/cryptooperationsconfigwidget.cpp:72
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
@@ -3971,14 +3978,22 @@ msgstr ""
 "Stel deze optie in om versleuteling met op wachtwoord gebaseerd uit te "
 "schakelen."
 
-#: src/conf/cryptooperationsconfigwidget.cpp:94
+#: src/conf/cryptooperationsconfigwidget.cpp:73
+#, fuzzy, kde-format
+#| msgctxt "@info for assistive tools"
+#| msgid "This is the result of the sign and encrypt operation."
+msgctxt "@option:check"
+msgid "Remember settings from last sign / encrypt operation"
+msgstr "Dit is het resultaat van het ondertekenen en versleutelen."
+
+#: src/conf/cryptooperationsconfigwidget.cpp:101
 #, kde-format
 msgid "Checksum program to use when creating checksum files:"
 msgstr ""
 "Te gebruiken programma voor controlesommen bij het maken van bestanden met "
 "controlesom"
 
-#: src/conf/cryptooperationsconfigwidget.cpp:99
+#: src/conf/cryptooperationsconfigwidget.cpp:106
 #, kde-format
 msgid "Archive command to use when archiving files:"
 msgstr "Archiveringscommando te gebruiken voor het archiveren van bestanden:"
@@ -5151,7 +5166,7 @@ msgstr "Call to EncryptEMailController::protocolAsString() is ambiguous."
 #: src/crypto/encryptemailcontroller.cpp:131
 #: src/crypto/newsignencryptemailcontroller.cpp:237
 #: src/crypto/signemailcontroller.cpp:148
-#: src/crypto/signencryptfilescontroller.cpp:354
+#: src/crypto/signencryptfilescontroller.cpp:359
 #, kde-format
 msgid "User cancel"
 msgstr "Gebruiker annuleren"
@@ -5862,47 +5877,47 @@ msgctxt "@action:button"
 msgid "Next"
 msgstr "Volgende"
 
-#: src/crypto/gui/signencryptwidget.cpp:177
+#: src/crypto/gui/signencryptwidget.cpp:179
 #, kde-format
 msgctxt "@label"
 msgid "Protocol:"
 msgstr "Protocol:"
 
-#: src/crypto/gui/signencryptwidget.cpp:187
+#: src/crypto/gui/signencryptwidget.cpp:189
 #, kde-format
 msgctxt "@option:radio"
 msgid "OpenPGP"
 msgstr "OpenPGP"
 
-#: src/crypto/gui/signencryptwidget.cpp:188
+#: src/crypto/gui/signencryptwidget.cpp:190
 #, kde-format
 msgctxt "@option:radio"
 msgid "S/MIME"
 msgstr "S/MIME"
 
-#: src/crypto/gui/signencryptwidget.cpp:211
+#: src/crypto/gui/signencryptwidget.cpp:213
 #, kde-format
 msgid "Sign &as:"
 msgstr "Ondertekenen &als:"
 
-#: src/crypto/gui/signencryptwidget.cpp:251
+#: src/crypto/gui/signencryptwidget.cpp:256
 #, kde-format
 msgid "Encrypt for me:"
 msgstr "Voor mij versleutelen:"
 
-#: src/crypto/gui/signencryptwidget.cpp:281
+#: src/crypto/gui/signencryptwidget.cpp:290
 #, kde-format
 msgctxt "@label"
 msgid "Encrypt for others:"
 msgstr "Voor anderen versleutelen:"
 
-#: src/crypto/gui/signencryptwidget.cpp:295
+#: src/crypto/gui/signencryptwidget.cpp:306
 #, kde-format
 msgctxt "@option:check"
 msgid "Encrypt with password:"
 msgstr "Met wachtwoord versleutelen:"
 
-#: src/crypto/gui/signencryptwidget.cpp:298
+#: src/crypto/gui/signencryptwidget.cpp:309
 #, kde-format
 msgctxt "Tooltip information for symmetric encryption"
 msgid ""
@@ -5917,54 +5932,54 @@ msgstr ""
 "veilig</b> dan versleuteling met een publieke sleutel. Zelfs als u een zeer "
 "sterk wachtwoord gebruikt."
 
-#: src/crypto/gui/signencryptwidget.cpp:305
+#: src/crypto/gui/signencryptwidget.cpp:318
 #, kde-format
 msgctxt "@info"
 msgid "Anyone you share the password with can read the data."
 msgstr "Iedereen waarmee u het wachtwoord deelt kan de gegevens lezen."
 
-#: src/crypto/gui/signencryptwidget.cpp:429
+#: src/crypto/gui/signencryptwidget.cpp:448
 #, kde-format
 msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "sleutel van ontvanger"
 
-#: src/crypto/gui/signencryptwidget.cpp:504
+#: src/crypto/gui/signencryptwidget.cpp:523
 #, kde-format
 msgid "Usable for Signing"
 msgstr "Bruikbaar voor ondertekenen"
 
-#: src/crypto/gui/signencryptwidget.cpp:505
+#: src/crypto/gui/signencryptwidget.cpp:524
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr "Certificaten die gebruikt kunnen worden voor ondertekenen"
 
-#: src/crypto/gui/signencryptwidget.cpp:508
-#: src/crypto/gui/signencryptwidget.cpp:542 src/dialogs/editgroupdialog.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:527
+#: src/crypto/gui/signencryptwidget.cpp:561 src/dialogs/editgroupdialog.cpp:216
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "Bruikbaar voor versleuteling"
 
-#: src/crypto/gui/signencryptwidget.cpp:509
-#: src/crypto/gui/signencryptwidget.cpp:543 src/dialogs/editgroupdialog.cpp:217
+#: src/crypto/gui/signencryptwidget.cpp:528
+#: src/crypto/gui/signencryptwidget.cpp:562 src/dialogs/editgroupdialog.cpp:217
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr "Certificaten die gebruikt kunnen worden voor versleuteling"
 
-#: src/crypto/gui/signencryptwidget.cpp:730
-#: src/crypto/gui/signencryptwidget.cpp:1023
+#: src/crypto/gui/signencryptwidget.cpp:749
+#: src/crypto/gui/signencryptwidget.cpp:1044
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Dit certificaat is verlopen."
 
-#: src/crypto/gui/signencryptwidget.cpp:733
+#: src/crypto/gui/signencryptwidget.cpp:752
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Dit certificaat verloopt vandaag."
 
-#: src/crypto/gui/signencryptwidget.cpp:735
+#: src/crypto/gui/signencryptwidget.cpp:754
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5972,19 +5987,19 @@ msgid_plural "This certificate expires in %1 days."
 msgstr[0] "Dit certificaat verloopt morgen."
 msgstr[1] "Dit certificaat verloopt over %1 dagen."
 
-#: src/crypto/gui/signencryptwidget.cpp:740
+#: src/crypto/gui/signencryptwidget.cpp:759
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for encryption."
 msgstr "Dit certificaat kan niet gebruikt worden voor versleuteling."
 
-#: src/crypto/gui/signencryptwidget.cpp:742
+#: src/crypto/gui/signencryptwidget.cpp:761
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Dit certificaat kan niet gebruikt worden voor ondertekening."
 
-#: src/crypto/gui/signencryptwidget.cpp:969
+#: src/crypto/gui/signencryptwidget.cpp:990
 #, kde-kuit-format
 msgctxt ""
 "@info translate 'Encrypt for others' the same way as for the other string in "
@@ -5996,18 +6011,18 @@ msgstr ""
 "Kies minstens één ontvanger of maak selectie <interface>Versleutelen voor "
 "anderen</interface> ongedaan."
 
-#: src/crypto/gui/signencryptwidget.cpp:984
+#: src/crypto/gui/signencryptwidget.cpp:1005
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Kon geen sleutel vinden voor de volgende ontvangers:"
 
-#: src/crypto/gui/signencryptwidget.cpp:986
+#: src/crypto/gui/signencryptwidget.cpp:1007
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Vinden van sommige sleutels is mislukt"
 
-#: src/crypto/gui/signencryptwidget.cpp:1026
+#: src/crypto/gui/signencryptwidget.cpp:1047
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -6214,13 +6229,13 @@ msgstr "Archief en bestanden met ondertekening/versleuteling"
 msgid "Sign/Encrypt Files"
 msgstr "Bestanden ondertekenen/versleutelen"
 
-#: src/crypto/signencryptfilescontroller.cpp:264
+#: src/crypto/signencryptfilescontroller.cpp:269
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archief"
 
-#: src/crypto/signencryptfilescontroller.cpp:697
+#: src/crypto/signencryptfilescontroller.cpp:702
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
@@ -6229,7 +6244,7 @@ msgstr ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 
-#: src/crypto/signencryptfilescontroller.cpp:699
+#: src/crypto/signencryptfilescontroller.cpp:704
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -9611,14 +9626,22 @@ msgstr "Aangepaste debug-commando's toestaan"
 msgid "Show results after signing and encrypting files"
 msgstr "Resultaten tonen na ondertekening en versleuteling van bestanden"
 
+#. i18n: ectx: label, entry (RestoreSignEncryptValues), group (General)
+#: src/kcfg/settings.kcfg:268
+#, fuzzy, kde-format
+#| msgctxt "@info for assistive tools"
+#| msgid "This is the result of the sign and encrypt operation."
+msgid "Use last-used values for the sign/encrypt configuration"
+msgstr "Dit is het resultaat van het ondertekenen en versleutelen."
+
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:270
+#: src/kcfg/settings.kcfg:274
 #, kde-format
 msgid "Show certificate validity"
 msgstr "Certificaatgeldigheid tonen"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:271
+#: src/kcfg/settings.kcfg:275
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9628,13 +9651,13 @@ msgstr ""
 "het certificaat verlopen of ingetrokken is."
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:275
+#: src/kcfg/settings.kcfg:279
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "Eigenaarinformatie van certificaat tonen"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:276
+#: src/kcfg/settings.kcfg:280
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9644,13 +9667,13 @@ msgstr ""
 "gebruiker-ID, onderwerp en uitgever."
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:280
+#: src/kcfg/settings.kcfg:284
 #, kde-format
 msgid "Show certificate details"
 msgstr "Certificaatdetails tonen"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:281
+#: src/kcfg/settings.kcfg:285
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -9899,7 +9922,7 @@ msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Verboden"
 
-#: src/main.cpp:162
+#: src/main.cpp:164
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9915,13 +9938,13 @@ msgstr ""
 "zal niet werken in deze opzet.</para><para>Vraag aan uw systeembeheerder om "
 "hulp bij het oplossen van dit issue.</para>"
 
-#: src/main.cpp:166
+#: src/main.cpp:168
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME te oud"
 
-#: src/main.cpp:188
+#: src/main.cpp:190
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9937,24 +9960,24 @@ msgstr ""
 "normale gebruiker en kopieer de mal <filename>AppData\\Roaming\\gnupg</"
 "filename> met de juiste rechten.</para>"
 
-#: src/main.cpp:192
+#: src/main.cpp:194
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Are you sure that you want to continue?</para>"
 msgstr "<para>Wilt u doorgaan?</para>"
 
-#: src/main.cpp:193
+#: src/main.cpp:195
 #, kde-format
 msgctxt "@title"
 msgid "Running as Administrator"
 msgstr "Draait als systeembeheerder"
 
-#: src/main.cpp:259
+#: src/main.cpp:261
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Fout bij GPG UI-server"
 
-#: src/main.cpp:263
+#: src/main.cpp:265
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9973,7 +9996,7 @@ msgstr ""
 "contact op met uw beheerder voor ondersteuning.<br/>U kunt proberen met het "
 "gebruik van Kleopatra door te gaan maar er kunnen andere problemen zijn.</qt>"
 
-#: src/main.cpp:294
+#: src/main.cpp:296
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Ongeldige argumenten: %1"
@@ -12228,32 +12251,32 @@ msgstr "Hiërarchische lijst met certificaten"
 msgid "List of certificates"
 msgstr "Lijst met certificaten"
 
-#: src/view/padwidget.cpp:91
+#: src/view/padwidget.cpp:92
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Tekstgebied voor ondertekenen / versleutelen"
 
-#: src/view/padwidget.cpp:92
+#: src/view/padwidget.cpp:93
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Tekstgebied voor ontcijferen / verifiëren"
 
-#: src/view/padwidget.cpp:93
+#: src/view/padwidget.cpp:94
 #, kde-format
 msgid "Import Notepad"
 msgstr "Notepad importeren"
 
-#: src/view/padwidget.cpp:94
+#: src/view/padwidget.cpp:95
 #, kde-format
 msgid "Revert"
 msgstr "Terugdraaien"
 
-#: src/view/padwidget.cpp:109
+#: src/view/padwidget.cpp:110
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Ondertekenen en versleutelen is niet mogelijk."
 
-#: src/view/padwidget.cpp:111
+#: src/view/padwidget.cpp:112
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12268,19 +12291,19 @@ msgstr ""
 "<application>GnuPG</application> gebruikt door <application>Kleopatra</"
 "application> niet %1 is.</para>"
 
-#: src/view/padwidget.cpp:169
+#: src/view/padwidget.cpp:170
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Een bericht invoeren om te versleutelen of te ontcijferen..."
 
-#: src/view/padwidget.cpp:211
+#: src/view/padwidget.cpp:212
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Text to process"
 msgstr "Te verwerken tekst"
 
-#: src/view/padwidget.cpp:213
+#: src/view/padwidget.cpp:214
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid ""
@@ -12292,85 +12315,85 @@ msgstr ""
 "versleutelde of ondertekende tekst die u wilt ontcijferen of verifiëren. U "
 "kunt ook certificaten invoeren in tekstvorm om ze te importeren."
 
-#: src/view/padwidget.cpp:347
+#: src/view/padwidget.cpp:348
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed text"
 msgstr "Ondertekende tekst"
 
-#: src/view/padwidget.cpp:348
+#: src/view/padwidget.cpp:349
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign operation."
 msgstr "Dit is het resultaat van het ondertekenen."
 
-#: src/view/padwidget.cpp:351
+#: src/view/padwidget.cpp:352
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Encrypted text"
 msgstr "Versleutelde tekst"
 
-#: src/view/padwidget.cpp:352
+#: src/view/padwidget.cpp:353
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the encryption."
 msgstr "Dit is het resultaat van de versleuteling."
 
-#: src/view/padwidget.cpp:355
+#: src/view/padwidget.cpp:356
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed and encrypted text"
 msgstr "Ondertekende en versleutelde tekst"
 
-#: src/view/padwidget.cpp:356
+#: src/view/padwidget.cpp:357
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign and encrypt operation."
 msgstr "Dit is het resultaat van het ondertekenen en versleutelen."
 
-#: src/view/padwidget.cpp:366
+#: src/view/padwidget.cpp:368
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted and verified text"
 msgstr "Ontcijferde en geverifieerde tekst"
 
-#: src/view/padwidget.cpp:367
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of decryption and signature verification."
 msgstr "Dit is het resultaat van ontcijferen en verificatie van ondertekening."
 
-#: src/view/padwidget.cpp:369
+#: src/view/padwidget.cpp:372
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted text"
 msgstr "Ontcijferde tekst"
 
-#: src/view/padwidget.cpp:370
+#: src/view/padwidget.cpp:373
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the decryption."
 msgstr "Dit is het resultaat van de ontcijfering."
 
-#: src/view/padwidget.cpp:372
+#: src/view/padwidget.cpp:378
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Verified text"
 msgstr "Geverifieerde tekst"
 
-#: src/view/padwidget.cpp:373
+#: src/view/padwidget.cpp:379
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the signature verification."
 msgstr "Dit is het resultaat van de verificatie van de ondertekening."
 
-#: src/view/padwidget.cpp:391
+#: src/view/padwidget.cpp:400
 #, kde-format
 msgctxt "@info:progress"
 msgid "Decrypting and/or verifying..."
 msgstr "Ontcijferen en/of verifiëren..."
 
-#: src/view/padwidget.cpp:456
+#: src/view/padwidget.cpp:465
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12385,42 +12408,42 @@ msgstr ""
 "application> gebruikt door <application>Kleopatra</application> niet %1 is.</"
 "para>"
 
-#: src/view/padwidget.cpp:466
+#: src/view/padwidget.cpp:475
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Notepad wordt ondertekend..."
 
-#: src/view/padwidget.cpp:469
+#: src/view/padwidget.cpp:478
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Notepad wordt versleuteld..."
 
-#: src/view/padwidget.cpp:472
+#: src/view/padwidget.cpp:481
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Notepad wordt ondertekenend en versleuteld..."
 
-#: src/view/padwidget.cpp:519
+#: src/view/padwidget.cpp:528
 #, kde-format
 msgid "Importing..."
 msgstr "Importeren..."
 
-#: src/view/padwidget.cpp:559
+#: src/view/padwidget.cpp:568
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Notepad ondertekenen"
 
-#: src/view/padwidget.cpp:562
+#: src/view/padwidget.cpp:571
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Notepad versleutelen"
 
-#: src/view/padwidget.cpp:566
+#: src/view/padwidget.cpp:575
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
