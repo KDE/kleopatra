@@ -206,6 +206,8 @@ public:
         Ambiguous, //< entered text matches multiple certificates or groups
         Revoked, //< the selected cert is revoked
         Expired, //< the selected cert is expired
+        Disabled, //< the selected cert is disabled
+        Unusable, //< the selected cert is unusable/filtered out for some other reason
     };
     enum class CursorPositioning {
         MoveToEnd,
@@ -599,8 +601,10 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
                     mStatus = Status::Revoked;
                 } else if (!mUserId.isNull() && mUserId.parent().isExpired()) {
                     mStatus = Status::Expired;
+                } else if (!mUserId.isNull() && mUserId.parent().isDisabled()) {
+                    mStatus = Status::Disabled;
                 } else {
-                    mStatus = Status::None;
+                    mStatus = Status::Unusable;
                 }
             } else {
                 mStatus = Status::None;
@@ -660,6 +664,10 @@ QString CertificateLineEdit::Private::errorMessage() const
         return i18n("This certificate is expired");
     case Status::Revoked:
         return i18n("This certificate is revoked");
+    case Status::Disabled:
+        return i18n("This certificate is disabled");
+    case Status::Unusable:
+        return i18n("This certificate is unusable");
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
@@ -692,6 +700,8 @@ QIcon CertificateLineEdit::Private::statusIcon() const
         }
     case Status::Expired:
     case Status::Revoked:
+    case Status::Disabled:
+    case Status::Unusable:
         return Formatting::errorIcon();
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
@@ -721,6 +731,8 @@ QString CertificateLineEdit::Private::statusToolTip() const
     case Status::Ambiguous:
     case Status::Expired:
     case Status::Revoked:
+    case Status::Disabled:
+    case Status::Unusable:
         return errorMessage();
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
