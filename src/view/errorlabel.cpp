@@ -19,10 +19,13 @@ using namespace Kleo;
 ErrorLabel::ErrorLabel(QWidget *parent)
     : QLabel{parent}
 {
-    const auto colors = KColorScheme(QPalette::Active, KColorScheme::View);
     QPalette palette;
-    palette.setBrush(QPalette::Window, colors.background(KColorScheme::NegativeBackground));
-    palette.setBrush(QPalette::WindowText, colors.foreground(KColorScheme::NegativeText));
+    for (int i = 0; i < QPalette::NColorGroups; ++i) {
+        const auto cg = static_cast<QPalette::ColorGroup>(i);
+        const auto colors = KColorScheme(cg, KColorScheme::View);
+        palette.setBrush(cg, QPalette::Window, colors.background(KColorScheme::NegativeBackground));
+        palette.setBrush(cg, QPalette::WindowText, colors.foreground(KColorScheme::NegativeText));
+    }
     setPalette(palette);
 }
 
