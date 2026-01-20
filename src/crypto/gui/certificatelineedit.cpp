@@ -199,6 +199,7 @@ class CertificateLineEdit::Private
 
 public:
     enum class Status {
+        Undefined, //< intermediate value used in updateKey
         Empty, //< text is empty
         Success, //< a certificate or group is set
         None, //< entered text does not match any certificates or groups
@@ -541,6 +542,7 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
     auto newKey = Key();
     auto newGroup = KeyGroup();
     auto newUserId = UserID();
+    mStatus = Status::Undefined;
     if (mailText.isEmpty()) {
         mStatus = Status::Empty;
     } else {
@@ -590,10 +592,16 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
                 mStatus = Status::None;
             }
         } else {
-            if (!mUserId.isNull() && (mUserId.isRevoked() || mUserId.parent().isRevoked())) {
-                mStatus = Status::Revoked;
-            } else if (!mUserId.isNull() && mUserId.parent().isExpired()) {
-                mStatus = Status::Expired;
+            // keep current (filtered out) user ID if it still matches
+            if (!mUserId.isNull() && Formatting::summaryLine(mUserId).contains(mFilterModel->filterRegularExpression())) {
+                newUserId = mUserId;
+                if ((mUserId.isRevoked() || mUserId.parent().isRevoked())) {
+                    mStatus = Status::Revoked;
+                } else if (!mUserId.isNull() && mUserId.parent().isExpired()) {
+                    mStatus = Status::Expired;
+                } else {
+                    mStatus = Status::None;
+                }
             } else {
                 mStatus = Status::None;
             }
@@ -604,21 +612,25 @@ void CertificateLineEdit::Private::updateKey(CursorPositioning positioning)
     mUserId = newUserId;
 
     using namespace Kleo::Formatting;
+    if (mStatus == Status::Undefined) {
+        if (!mKey.isNull() || !mGroup.isNull() || !mUserId.isNull()) {
+            mStatus = Status::Success;
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "CertificateLineEdit::Private::updateKey - unexpected status for user input" << mailText;
+            mStatus = Status::None;
+        }
+    }
     if (!mKey.isNull()) {
-        /* FIXME: This needs to be solved by a multiple UID supporting model */
-        mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mKey, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mKey), positioning);
         }
     } else if (!mGroup.isNull()) {
-        mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mGroup, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mGroup), positioning);
         }
     } else if (!mUserId.isNull()) {
-        mStatus = Status::Success;
         ui.lineEdit.setToolTip(Formatting::toolTip(mUserId, Validity | Issuer | Subject | Fingerprint | ExpiryDates | UserIDs));
         if (!mEditingInProgress) {
             setTextWithBlockedSignals(Formatting::summaryLine(mUserId), positioning);
