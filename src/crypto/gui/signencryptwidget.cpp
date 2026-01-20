@@ -1042,10 +1042,10 @@ void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWid
         messageWidget->setVisible(false);
     } else if (userID.parent().isExpired()) {
         messageWidget->setText(i18nc("@info", "This certificate is expired."));
-        messageWidget->setVisible(true);
+        messageWidget->setVisible(flags != ExpiryChecker::EncryptionKey);
     } else if (userID.isRevoked() || userID.parent().isRevoked()) {
         messageWidget->setText(i18nc("@info", "This certificate is revoked."));
-        messageWidget->setVisible(true);
+        messageWidget->setVisible(flags != ExpiryChecker::EncryptionKey);
     } else if (Settings{}.showExpiryNotifications()) {
         const auto result = expiryChecker()->checkKey(userID.parent(), flags);
         const auto message = expiryMessage(result);
