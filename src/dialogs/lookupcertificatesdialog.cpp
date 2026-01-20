@@ -17,7 +17,9 @@
 
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
+#include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyList>
+#include <Libkleo/SystemInfo>
 #include <Libkleo/TreeWidget>
 
 #include <KConfigGroup>
@@ -42,13 +44,33 @@
 
 #include <gpgme++/key.h>
 
+#include <utils/qt6compat.h>
+
 using namespace Kleo;
 using namespace Kleo::Dialogs;
 using namespace GpgME;
+using namespace Qt::Literals;
 
 Q_DECLARE_METATYPE(KeyWithOrigin)
 
 static const int KeyWithOriginRole = 0x201;
+
+namespace
+{
+namespace Columns
+{
+static const int Name = 0;
+static const int Email = 1;
+static const int Fingerprint = 2;
+static const int ValidFrom = 3;
+static const int ValidUntil = 4;
+static const int Status = 5;
+static const int Protocol = 6;
+static const int KeyID = 7;
+static const int Origin = 8;
+static const int NumberOfColumns = 9;
+};
+}
 
 class LookupCertificatesDialog::Private
 {
@@ -56,17 +78,6 @@ class LookupCertificatesDialog::Private
     LookupCertificatesDialog *const q;
 
 public:
-    enum Columns {
-        Name,
-        Email,
-        Fingerprint,
-        ValidFrom,
-        ValidUntil,
-        Protocol,
-        KeyID,
-        Origin,
-    };
-
     explicit Private(LookupCertificatesDialog *qq);
     ~Private();
 
@@ -118,7 +129,7 @@ private:
 
         std::vector<KeyWithOrigin> keys;
         for (const auto &index : sm->selectedRows()) {
-            const auto key = ui.resultTV->itemFromIndex(index)->data(Private::Name, KeyWithOriginRole).value<KeyWithOrigin>();
+            const auto key = ui.resultTV->itemFromIndex(index)->data(Columns::Name, KeyWithOriginRole).value<KeyWithOrigin>();
             Q_ASSERT(!key.key.isNull());
             keys.push_back(key);
         }
@@ -243,6 +254,7 @@ private:
                 i18nc("@title:column", "Fingerprint"),
                 i18nc("@title:column", "Valid From"),
                 i18nc("@title:column", "Valid Until"),
+                i18nc("@title:column", "Status"),
                 i18nc("@title:column", "Protocol"),
                 i18nc("@title:column", "Key ID"),
                 i18nc("@title:column", "Origin"),
@@ -312,7 +324,7 @@ void LookupCertificatesDialog::Private::readConfig()
 {
     KConfigGroup configGroup(KSharedConfig::openStateConfig(), "LookupCertificatesDialog");
     if (!ui.resultTV->restoreColumnLayout(QStringLiteral("LookupCertificatesDialog"))) {
-        ui.resultTV->setColumnHidden(Private::KeyID, true);
+        ui.resultTV->setColumnHidden(Columns::KeyID, true);
         initial = true;
         ui.resultTV->resizeToContentsLimited();
     }
@@ -398,40 +410,108 @@ LookupCertificatesDialog::QueryMode LookupCertificatesDialog::queryMode() const
     return d->queryMode;
 }
 
+namespace
+{
+enum class Status {
+    Unknown,
+    Expired,
+    Revoked,
+};
+}
+
+static Status guessStatus(const Key &key)
+{
+    if (key.isRevoked()) {
+        return Status::Revoked;
+    }
+    const qint64 expirationTime = (key.subkey(0).expirationTime() < 0) ? quint32(key.subkey(0).expirationTime()) : key.subkey(0).expirationTime();
+    if ((expirationTime != 0) && (expirationTime <= QDateTime::currentSecsSinceEpoch())) {
+        return Status::Expired;
+    }
+    return Status::Unknown;
+}
+
+static QString statusText(Status status)
+{
+    switch (status) {
+    case Status::Unknown:
+        return i18nc("@info status of certificate", "unknown");
+    case Status::Expired:
+        return i18nc("@info status of certificate", "expired");
+    case Status::Revoked:
+        return i18nc("@info status of certificate", "revoked");
+    }
+    return {};
+}
+
+static void setColorsAndFont(QTreeWidgetItem *item, const QColor &foreground, const QColor &background, const QFont &font)
+{
+    if (!SystemInfo::isHighContrastModeActive()) {
+        if (foreground.isValid()) {
+            for (int column = 0; column < Columns::NumberOfColumns; ++column) {
+                item->setForeground(column, foreground);
+            }
+        }
+        if (background.isValid()) {
+            for (int column = 0; column < Columns::NumberOfColumns; ++column) {
+                item->setBackground(column, background);
+            }
+        }
+    }
+    for (int column = 0; column < Columns::NumberOfColumns; ++column) {
+        item->setFont(column, font);
+    }
+}
+
 void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> &certs)
 {
+    const auto expiredKeyFilter = KeyFilterManager::instance()->keyFilterByID(u"expired"_s);
+    const auto revokedKeyFilter = KeyFilterManager::instance()->keyFilterByID(u"revoked"_s);
+
     d->ui.resultTV->setFocus();
     d->ui.resultTV->clear();
 
     for (const auto &[cert, origin] : certs) {
+        const Status status = guessStatus(cert);
         auto item = new QTreeWidgetItem;
-        item->setData(Private::Name, Qt::DisplayRole, Formatting::prettyName(cert));
-        item->setData(Private::Email, Qt::DisplayRole, Formatting::prettyEMail(cert));
-        item->setData(Private::Fingerprint, Qt::DisplayRole, Formatting::prettyID(cert.primaryFingerprint()));
-        item->setData(Private::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.primaryFingerprint()));
-        item->setData(Private::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(cert.primaryFingerprint()));
-        item->setData(Private::ValidFrom, Qt::DisplayRole, Formatting::creationDateString(cert));
-        item->setData(Private::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(cert));
-        item->setData(Private::ValidUntil, Qt::DisplayRole, Formatting::expirationDateString(cert));
-        item->setData(Private::ValidUntil, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(cert));
-        item->setData(Private::KeyID, Qt::DisplayRole, Formatting::prettyID(cert.keyID()));
-        item->setData(Private::KeyID, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.keyID()));
-        item->setData(Private::KeyID, Kleo::ClipboardRole, QString::fromLatin1(cert.keyID()));
+        item->setData(Columns::Name, Qt::DisplayRole, Formatting::prettyName(cert));
+        item->setData(Columns::Email, Qt::DisplayRole, Formatting::prettyEMail(cert));
+        item->setData(Columns::Fingerprint, Qt::DisplayRole, Formatting::prettyID(cert.primaryFingerprint()));
+        item->setData(Columns::Fingerprint, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.primaryFingerprint()));
+        item->setData(Columns::Fingerprint, Kleo::ClipboardRole, QString::fromLatin1(cert.primaryFingerprint()));
+        item->setData(Columns::ValidFrom, Qt::DisplayRole, Formatting::creationDateString(cert));
+        item->setData(Columns::ValidFrom, Qt::AccessibleTextRole, Formatting::accessibleCreationDate(cert));
+        item->setData(Columns::ValidUntil, Qt::DisplayRole, Formatting::expirationDateString(cert));
+        item->setData(Columns::ValidUntil, Qt::AccessibleTextRole, Formatting::accessibleExpirationDate(cert));
+        item->setData(Columns::Status, Qt::DisplayRole, statusText(status));
+        item->setData(Columns::KeyID, Qt::DisplayRole, Formatting::prettyID(cert.keyID()));
+        item->setData(Columns::KeyID, Qt::AccessibleTextRole, Formatting::accessibleHexID(cert.keyID()));
+        item->setData(Columns::KeyID, Kleo::ClipboardRole, QString::fromLatin1(cert.keyID()));
 
         if (cert.protocol() == Protocol::CMS) {
-            item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
+            item->setData(Columns::Origin, Qt::DisplayRole, i18n("LDAP"));
         } else if (origin == GpgME::Key::OriginKS) {
             if (keyserver().startsWith(QStringLiteral("ldap:")) || keyserver().startsWith(QStringLiteral("ldaps:"))) {
-                item->setData(Private::Origin, Qt::DisplayRole, i18n("LDAP"));
+                item->setData(Columns::Origin, Qt::DisplayRole, i18n("LDAP"));
             } else {
-                item->setData(Private::Origin, Qt::DisplayRole, i18n("Keyserver"));
+                item->setData(Columns::Origin, Qt::DisplayRole, i18n("Keyserver"));
             }
         } else {
-            item->setData(Private::Origin, Qt::DisplayRole, Formatting::origin(origin));
+            item->setData(Columns::Origin, Qt::DisplayRole, Formatting::origin(origin));
         }
 
-        item->setData(Private::Protocol, Qt::DisplayRole, Formatting::displayName(cert.protocol()));
-        item->setData(Private::Name, KeyWithOriginRole, QVariant::fromValue(KeyWithOrigin{cert, origin}));
+        item->setData(Columns::Protocol, Qt::DisplayRole, Formatting::displayName(cert.protocol()));
+        item->setData(Columns::Name, KeyWithOriginRole, QVariant::fromValue(KeyWithOrigin{cert, origin}));
+
+        switch (status) {
+        case Status::Unknown:
+            break;
+        case Status::Expired:
+            setColorsAndFont(item, expiredKeyFilter->fgColor(), expiredKeyFilter->bgColor(), expiredKeyFilter->fontDescription().font(QFont{}));
+            break;
+        case Status::Revoked:
+            setColorsAndFont(item, revokedKeyFilter->fgColor(), revokedKeyFilter->bgColor(), revokedKeyFilter->fontDescription().font(QFont{}));
+        }
 
         d->ui.resultTV->addTopLevelItem(item);
     }
