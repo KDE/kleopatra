@@ -230,6 +230,8 @@ public:
 
     void setAccessibleName(const QString &s);
 
+    void setErrorMessageForUnusableKeys(const QString &message);
+
 private:
     void updateKey(CursorPositioning positioning);
     void editChanged();
@@ -268,6 +270,7 @@ public:
 
 private:
     QString mAccessibleName;
+    QString mErrorMessageForUnusableKeys;
     UserIDProxyModel *const mUserIdProxyModel;
     KeyListSortFilterProxyModel *const mFilterModel;
     CompletionProxyModel *const mCompleterFilterModel;
@@ -667,7 +670,7 @@ QString CertificateLineEdit::Private::errorMessage() const
     case Status::Disabled:
         return i18n("This certificate is disabled");
     case Status::Unusable:
-        return i18n("This certificate is unusable");
+        return mErrorMessageForUnusableKeys.isEmpty() ? i18n("This certificate is unusable") : mErrorMessageForUnusableKeys;
     default:
         qDebug(KLEOPATRA_LOG) << __func__ << "Invalid status:" << static_cast<int>(mStatus);
         Q_ASSERT(!"Invalid status");
@@ -780,6 +783,12 @@ void CertificateLineEdit::Private::setAccessibleName(const QString &s)
 {
     mAccessibleName = s;
     updateAccessibleNameAndDescription();
+}
+
+void CertificateLineEdit::Private::setErrorMessageForUnusableKeys(const QString &message)
+{
+    mErrorMessageForUnusableKeys = message;
+    updateErrorLabel();
 }
 
 void CertificateLineEdit::Private::updateAccessibleNameAndDescription()
@@ -925,6 +934,11 @@ void CertificateLineEdit::setKeyFilter(const std::shared_ptr<KeyFilter> &filter)
 void CertificateLineEdit::setAccessibleNameOfLineEdit(const QString &name)
 {
     d->setAccessibleName(name);
+}
+
+void CertificateLineEdit::setErrorMessageForUnusableKeys(const QString &message)
+{
+    d->setErrorMessageForUnusableKeys(message);
 }
 
 #include "certificatelineedit.moc"

@@ -93,6 +93,13 @@ public:
 
     void setAccessibleNameOfLineEdit(const QString &name);
 
+    /*!
+     * Sets the error message that is shown for keys that are filtered out and for which
+     * no specific reason like expired, revoked or disabled can be determined. By default,
+     * the message "This certificate is unusable" is used.
+     */
+    void setErrorMessageForUnusableKeys(const QString &message);
+
 Q_SIGNALS:
     /** Emitted when the selected key changed. */
     void keyChanged();

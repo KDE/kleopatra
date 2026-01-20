@@ -446,6 +446,7 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
 
     const RecipientWidgets recipient{new CertificateLineEdit{mModel, KeyUsage::Encrypt, new EncryptCertificateFilter{mCurrentProto}, q}, new KMessageWidget{q}};
     recipient.edit->setAccessibleNameOfLineEdit(i18nc("text for screen readers", "recipient key"));
+    recipient.edit->setErrorMessageForUnusableKeys(i18nc("@info", "This certificate cannot be used for encryption."));
     recipient.edit->setEnabled(!KeyCache::instance()->keys().empty() && !Settings().symmetricEncryptionOnly());
     recipient.expiryMessage->setVisible(false);
 
@@ -1048,9 +1049,14 @@ void SignEncryptWidget::Private::updateExpiryMessages(KMessageWidget *messageWid
         messageWidget->setVisible(flags != ExpiryChecker::EncryptionKey);
     } else if (Settings{}.showExpiryNotifications()) {
         const auto result = expiryChecker()->checkKey(userID.parent(), flags);
-        const auto message = expiryMessage(result);
-        messageWidget->setText(message);
-        messageWidget->setVisible(!message.isEmpty());
+        if ((flags == ExpiryChecker::EncryptionKey) && (result.expiration.status == ExpiryChecker::NoSuitableSubkey)) {
+            // the certificate lineedit already shows an error message
+            messageWidget->setVisible(false);
+        } else {
+            const auto message = expiryMessage(result);
+            messageWidget->setText(message);
+            messageWidget->setVisible(!message.isEmpty());
+        }
     } else {
         messageWidget->setVisible(false);
     }
