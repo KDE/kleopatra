@@ -575,13 +575,22 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
         });
         OverwritePolicy overwritePolicy{m_dialog, fileCount > 1 ? OverwritePolicy::MultipleFiles : OverwritePolicy::Options{}};
         for (const QFileInfo &fi : filesAndFoldersToMove) {
-            const auto inpath = fi.absoluteFilePath();
-
             if (fi.isDir()) {
-                // A directory. Assume that the input was an archive
-                // and avoid directory merges by trying to find a non
-                // existing directory.
-                auto candidate = fi.fileName();
+                // A directory. Assume that the input was an archive.
+                QString sourcePath = fi.absoluteFilePath();
+                if (filesAndFoldersToMove.size() == 1) {
+                    // check if the archive contained a single folder (look for any entries including hidden files and broken symlinks)
+                    const QFileInfoList topLevelArchiveEntries =
+                        QDir{sourcePath}.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
+                    if ((topLevelArchiveEntries.size() == 1) && topLevelArchiveEntries.front().isDir()) {
+                        // optimization for a single archive containing a single folder:
+                        // move the originally archived folder instead of the temporary folder the archive was extracted to to the output folder
+                        sourcePath = topLevelArchiveEntries.front().absoluteFilePath();
+                    }
+                }
+
+                // Avoid directory merges by trying to find a non existing directory.
+                QString candidate = QFileInfo{sourcePath}.fileName();
                 if (candidate.startsWith(QLatin1Char('-'))) {
                     // Bug in GpgTar Extracts stdout passed archives to a dir named -
                     candidate = QFileInfo(m_passedFiles.first()).baseName();
@@ -600,7 +609,7 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
 
                 const auto destPath = ofi.absoluteFilePath();
 #ifndef Q_OS_WIN
-                auto job = KIO::moveAs(QUrl::fromLocalFile(inpath), QUrl::fromLocalFile(destPath));
+                auto job = KIO::moveAs(QUrl::fromLocalFile(sourcePath), QUrl::fromLocalFile(destPath));
                 qCDebug(KLEOPATRA_LOG) << "Moving" << job->srcUrls().front().toLocalFile() << "to" << job->destUrl().toLocalFile();
                 if (!job->exec()) {
                     if (job->error() == KIO::ERR_USER_CANCELED) {
@@ -610,20 +619,21 @@ void AutoDecryptVerifyFilesController::Private::onDialogFinished(int result)
                                 xi18nc("@info",
                                        "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>"
                                        "<para><message>%3</message></para>",
-                                       inpath,
+                                       sourcePath,
                                        destPath,
                                        job->errorString()));
                 }
 #else
                 // On Windows, KIO::move does not work for folders when crossing partition boundaries
-                if (!moveDir(inpath, destPath)) {
+                if (!moveDir(sourcePath, destPath)) {
                     reportError(makeGnuPGError(GPG_ERR_GENERAL),
-                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>", inpath, destPath));
+                                xi18nc("@info", "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</para>", sourcePath, destPath));
                 }
 #endif
                 continue;
             }
 
+            const auto inpath = fi.absoluteFilePath();
             const auto embeddedFileName = getEmbeddedFileName(inpath);
             QString outFileName = fi.fileName();
             if (!embeddedFileName.isEmpty() && embeddedFileName != fi.fileName()) {
