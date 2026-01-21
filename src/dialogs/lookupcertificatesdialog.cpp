@@ -15,6 +15,7 @@
 
 #include <kleopatra_debug.h>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 #include <Libkleo/KeyFilterManager>
@@ -465,8 +466,10 @@ static void setColorsAndFont(QTreeWidgetItem *item, const QColor &foreground, co
 
 void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> &certs)
 {
-    const auto expiredKeyFilter = KeyFilterManager::instance()->keyFilterByID(u"expired"_s);
-    const auto revokedKeyFilter = KeyFilterManager::instance()->keyFilterByID(u"revoked"_s);
+    const auto expiredKeyFilter = DeVSCompliance::isCompliant() ? KeyFilterManager::instance()->keyFilterByID(u"not-de-vs-expired-filter"_s)
+                                                                : KeyFilterManager::instance()->keyFilterByID(u"expired"_s);
+    const auto revokedKeyFilter = DeVSCompliance::isCompliant() ? KeyFilterManager::instance()->keyFilterByID(u"not-de-vs-revoked-filter"_s)
+                                                                : KeyFilterManager::instance()->keyFilterByID(u"revoked"_s);
 
     d->ui.resultTV->setFocus();
     d->ui.resultTV->clear();
