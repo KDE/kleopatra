@@ -10,6 +10,8 @@
 
 #include <QDialog>
 
+class QStackedLayout;
+
 namespace Kleo
 {
 class Input;
@@ -33,6 +35,7 @@ private:
     void updateButtons();
 
     ApplicationPaletteWatcher mAppPaletteWatcher;
+    QStackedLayout *mStackedLayout = nullptr;
     SignEncryptPage *mSignEncryptPage = nullptr;
     QPushButton *mOkButton = nullptr;
     QPushButton *mComplianceLabelButton = nullptr;

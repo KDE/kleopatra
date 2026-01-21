@@ -105,14 +105,14 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
     title->setText(i18nc("@title", "Sign/Encrypt Clipboard"));
     layout->addWidget(title);
 
-    auto stackedLayout = new QStackedLayout;
+    mStackedLayout = new QStackedLayout;
 
     mSignEncryptPage = new SignEncryptPage(mode, this);
 
-    stackedLayout->addWidget(mSignEncryptPage);
+    mStackedLayout->addWidget(mSignEncryptPage);
 
     auto resultPage = new Kleo::Crypto::Gui::ResultPage;
-    stackedLayout->addWidget(resultPage);
+    mStackedLayout->addWidget(resultPage);
 
     resultPage->setKeepOpenWhenDone(mode == SignEncryptClipboardCommand::Mode::Sign ? Settings{}.showResultsAfterSigningClipboard()
                                                                                     : Settings{}.showResultsAfterEncryptingClipboard());
@@ -132,7 +132,7 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
         settings.save();
     });
 
-    layout->addLayout(stackedLayout);
+    layout->addLayout(mStackedLayout);
 
     auto buttons = new QDialogButtonBox;
 
@@ -157,8 +157,8 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
     connect(mSignEncryptPage->signEncryptWidget(), &SignEncryptWidget::operationChanged, this, &SignEncryptClipboardDialog::updateButtons);
     connect(&mAppPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, this, &SignEncryptClipboardDialog::updateButtons);
 
-    connect(mOkButton, &QPushButton::clicked, this, [this, stackedLayout, resultPage, title]() {
-        if (stackedLayout->currentIndex() == 0) {
+    connect(mOkButton, &QPushButton::clicked, this, [this, resultPage, title]() {
+        if (mStackedLayout->currentIndex() == 0) {
             if (!mSignEncryptPage->signEncryptWidget()->validate()) {
                 return;
             }
@@ -180,9 +180,8 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
             m_task->setEncryptSymmetric(mSignEncryptPage->signEncryptWidget()->encryptSymmetric());
             m_task->setAsciiArmor(true);
 
-            stackedLayout->setCurrentIndex(1);
+            mStackedLayout->setCurrentIndex(1);
             mOkButton->setText(i18nc("@action:button", "Finish"));
-
             std::shared_ptr<TaskCollection> coll(new TaskCollection);
             coll->setTasks({m_task});
             resultPage->setTaskCollection(coll);
@@ -214,10 +213,15 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
             },
             Qt::SingleShotConnection);
     }
+
+    updateButtons();
 }
 
 void SignEncryptClipboardDialog::updateButtons()
 {
+    if (mStackedLayout->currentIndex() == 1) {
+        return;
+    }
     QString label;
     switch (mSignEncryptPage->signEncryptWidget()->currentOp()) {
     case SignEncryptWidget::Sign:
