@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-15 00:43+0000\n"
+"POT-Creation-Date: 2026-01-21 00:46+0000\n"
 "PO-Revision-Date: 2026-01-14 04:47+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -5220,50 +5220,62 @@ msgstr "Шифрування зазнало невдачі: %1"
 msgid "Encryption succeeded."
 msgstr "Успішне шифрування."
 
-#: src/crypto/gui/certificatelineedit.cpp:291
+#: src/crypto/gui/certificatelineedit.cpp:297
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "Будь ласка, введіть ім'я або адресу електронної пошти…"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:314
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "Показати список сертифікатів"
 
-#: src/crypto/gui/certificatelineedit.cpp:309
+#: src/crypto/gui/certificatelineedit.cpp:315
 #, kde-format
 msgid "Show certificate list"
 msgstr "Показати список сертифікатів"
 
-#: src/crypto/gui/certificatelineedit.cpp:328
+#: src/crypto/gui/certificatelineedit.cpp:334
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "Показати подробиці"
 
-#: src/crypto/gui/certificatelineedit.cpp:644
+#: src/crypto/gui/certificatelineedit.cpp:663
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "Відповідних сертифікатів або груп не виявлено"
 
-#: src/crypto/gui/certificatelineedit.cpp:646
+#: src/crypto/gui/certificatelineedit.cpp:665
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "Знайдено декілька відповідних сертифікатів або груп"
 
-#: src/crypto/gui/certificatelineedit.cpp:648
+#: src/crypto/gui/certificatelineedit.cpp:667
 #, kde-format
 msgid "This certificate is expired"
 msgstr "Строк дії цього сертифіката вичерпано"
 
-#: src/crypto/gui/certificatelineedit.cpp:650
+#: src/crypto/gui/certificatelineedit.cpp:669
 #, kde-format
 msgid "This certificate is revoked"
 msgstr "Цей сертифікат відкликано"
 
-#: src/crypto/gui/certificatelineedit.cpp:730 src/dialogs/expirydialog.cpp:217
+#: src/crypto/gui/certificatelineedit.cpp:671
+#, fuzzy, kde-format
+#| msgid "This certificate is expired"
+msgid "This certificate is disabled"
+msgstr "Строк дії цього сертифіката вичерпано"
+
+#: src/crypto/gui/certificatelineedit.cpp:673
+#, fuzzy, kde-format
+#| msgid "This certificate is expired"
+msgid "This certificate is unusable"
+msgstr "Строк дії цього сертифіката вичерпано"
+
+#: src/crypto/gui/certificatelineedit.cpp:757 src/dialogs/expirydialog.cpp:217
 #: src/view/smartcardwidget.cpp:370
 #, kde-format
 msgctxt "@info"
@@ -5972,42 +5984,49 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "ключ отримувача"
 
-#: src/crypto/gui/signencryptwidget.cpp:523
+#: src/crypto/gui/signencryptwidget.cpp:449
+#: src/crypto/gui/signencryptwidget.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "Цим сертифікатом не можна скористатися для шифрування."
+
+#: src/crypto/gui/signencryptwidget.cpp:524
 #, kde-format
 msgid "Usable for Signing"
 msgstr "Придатний для підписування"
 
-#: src/crypto/gui/signencryptwidget.cpp:524
+#: src/crypto/gui/signencryptwidget.cpp:525
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr "Сертифікати, якими можна скористатися для підписування"
 
-#: src/crypto/gui/signencryptwidget.cpp:527
-#: src/crypto/gui/signencryptwidget.cpp:561 src/dialogs/editgroupdialog.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:528
+#: src/crypto/gui/signencryptwidget.cpp:562 src/dialogs/editgroupdialog.cpp:216
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "Придатний для шифрування"
 
-#: src/crypto/gui/signencryptwidget.cpp:528
-#: src/crypto/gui/signencryptwidget.cpp:562 src/dialogs/editgroupdialog.cpp:217
+#: src/crypto/gui/signencryptwidget.cpp:529
+#: src/crypto/gui/signencryptwidget.cpp:563 src/dialogs/editgroupdialog.cpp:217
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr "Сертифікати, якими можна скористатися для шифрування"
 
-#: src/crypto/gui/signencryptwidget.cpp:749
-#: src/crypto/gui/signencryptwidget.cpp:1044
+#: src/crypto/gui/signencryptwidget.cpp:750
+#: src/crypto/gui/signencryptwidget.cpp:1045
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "Строк дії цього сертифіката збіг."
 
-#: src/crypto/gui/signencryptwidget.cpp:752
+#: src/crypto/gui/signencryptwidget.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "Строк дії цього сертифіката завершується сьогодні."
 
-#: src/crypto/gui/signencryptwidget.cpp:754
+#: src/crypto/gui/signencryptwidget.cpp:755
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -6017,19 +6036,13 @@ msgstr[1] "Строк дії цього сертифіката завершує�
 msgstr[2] "Строк дії цього сертифіката завершується за %1 днів."
 msgstr[3] "Строк дії цього сертифіката завершується завтра."
 
-#: src/crypto/gui/signencryptwidget.cpp:759
-#, kde-format
-msgctxt "@info"
-msgid "This certificate cannot be used for encryption."
-msgstr "Цим сертифікатом не можна скористатися для шифрування."
-
-#: src/crypto/gui/signencryptwidget.cpp:761
+#: src/crypto/gui/signencryptwidget.cpp:762
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "Цим сертифікатом не можна скористатися для підписування."
 
-#: src/crypto/gui/signencryptwidget.cpp:990
+#: src/crypto/gui/signencryptwidget.cpp:991
 #, kde-kuit-format
 msgctxt ""
 "@info translate 'Encrypt for others' the same way as for the other string in "
@@ -6041,18 +6054,18 @@ msgstr ""
 "Будь ласка, виберіть принаймні одного отримувача або зніміть позначку з "
 "пункту <interface>Зашифрувати для інших</interface>."
 
-#: src/crypto/gui/signencryptwidget.cpp:1005
+#: src/crypto/gui/signencryptwidget.cpp:1006
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "Не вдалося знайти ключ для таких отримувачів:"
 
-#: src/crypto/gui/signencryptwidget.cpp:1007
+#: src/crypto/gui/signencryptwidget.cpp:1008
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "Не вдалося знайти деякі ключі"
 
-#: src/crypto/gui/signencryptwidget.cpp:1047
+#: src/crypto/gui/signencryptwidget.cpp:1048
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7423,7 +7436,7 @@ msgstr ""
 "явним чином ідентифікують лише відбитки.</i>"
 
 #: src/dialogs/certifywidget.cpp:466
-#: src/dialogs/lookupcertificatesdialog.cpp:239
+#: src/dialogs/lookupcertificatesdialog.cpp:248
 #: src/dialogs/revokerswidget.cpp:72 src/dialogs/subkeyswidget.cpp:163
 #: src/view/cardkeysview.cpp:430
 #, kde-format
@@ -8095,119 +8108,148 @@ msgctxt "@title:dialog as in 'list of certificates that were imported'"
 msgid "Imported Certificates"
 msgstr "Імпортовані сертифікати"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:171
+#: src/dialogs/lookupcertificatesdialog.cpp:180
 #, kde-format
 msgid "Find:"
 msgstr "Знайти:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:178
+#: src/dialogs/lookupcertificatesdialog.cpp:187
 #, kde-format
 msgid "Search"
 msgstr "Пошук"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:187
+#: src/dialogs/lookupcertificatesdialog.cpp:196
 #, kde-format
 msgctxt "@label"
 msgid "Results"
 msgstr "Результати"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:196
+#: src/dialogs/lookupcertificatesdialog.cpp:205
 #, kde-format
 msgid "Select All"
 msgstr "Вибрати всі"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:201
+#: src/dialogs/lookupcertificatesdialog.cpp:210
 #, kde-format
 msgid "Deselect All"
 msgstr "Скасувати вибір"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:208
+#: src/dialogs/lookupcertificatesdialog.cpp:217
 #, kde-format
 msgid "Details..."
 msgstr "Подробиці…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:213
+#: src/dialogs/lookupcertificatesdialog.cpp:222
 #, kde-format
 msgid "Save As..."
 msgstr "Зберегти як…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:237
+#: src/dialogs/lookupcertificatesdialog.cpp:246
 #: src/dialogs/revokerswidget.cpp:73
 #, kde-format
 msgctxt "@title:column"
 msgid "Name"
 msgstr "Ім'я"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:238
+#: src/dialogs/lookupcertificatesdialog.cpp:247
 #: src/dialogs/revokerswidget.cpp:74
 #, kde-format
 msgctxt "@title:column"
 msgid "Email"
 msgstr "Ел. пошта"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:240
+#: src/dialogs/lookupcertificatesdialog.cpp:249
 #: src/dialogs/subkeyswidget.cpp:165
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "Чинний з"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:241
+#: src/dialogs/lookupcertificatesdialog.cpp:250
 #: src/dialogs/subkeyswidget.cpp:166
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "Чинний до"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:242 src/view/cardkeysview.cpp:429
+#: src/dialogs/lookupcertificatesdialog.cpp:251
+#: src/dialogs/subkeyswidget.cpp:164
+#, kde-format
+msgctxt "@title:column"
+msgid "Status"
+msgstr "Стан"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:252 src/view/cardkeysview.cpp:429
 #, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
 msgstr "Протокол"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:243
+#: src/dialogs/lookupcertificatesdialog.cpp:253
 #: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
 msgstr "Ід. ключа"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:244
+#: src/dialogs/lookupcertificatesdialog.cpp:254
 #, kde-format
 msgctxt "@title:column"
 msgid "Origin"
 msgstr "Походження"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:265
+#: src/dialogs/lookupcertificatesdialog.cpp:275
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "Пошук на сервері"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:272
+#: src/dialogs/lookupcertificatesdialog.cpp:282
 #, kde-format
 msgid "Import"
 msgstr "Імпортувати"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:336
+#: src/dialogs/lookupcertificatesdialog.cpp:346
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "Введіть критерій відповідності для пошуку сертифікатів."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:338
+#: src/dialogs/lookupcertificatesdialog.cpp:348
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr "Введіть адресу електронної пошти для пошуку відповідних сертифікатів."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:418
-#: src/dialogs/lookupcertificatesdialog.cpp:421
+#: src/dialogs/lookupcertificatesdialog.cpp:432
+#, fuzzy, kde-format
+#| msgctxt "unknown storage location"
+#| msgid "unknown"
+msgctxt "@info status of certificate"
+msgid "unknown"
+msgstr "невідомий"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:434
+#, fuzzy, kde-format
+#| msgid "Expires:"
+msgctxt "@info status of certificate"
+msgid "expired"
+msgstr "Дійсний до:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:436
+#, fuzzy, kde-format
+#| msgid "Newly revoked:"
+msgctxt "@info status of certificate"
+msgid "revoked"
+msgstr "Недавно відкликано:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:486
+#: src/dialogs/lookupcertificatesdialog.cpp:489
 #, kde-format
 msgid "LDAP"
 msgstr "LDAP"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:423
+#: src/dialogs/lookupcertificatesdialog.cpp:491
 #, kde-format
 msgid "Keyserver"
 msgstr "Сервер ключів"
@@ -8558,12 +8600,6 @@ msgstr "Керування картками пам’яті"
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "Підключі"
-
-#: src/dialogs/subkeyswidget.cpp:164
-#, kde-format
-msgctxt "@title:column"
-msgid "Status"
-msgstr "Стан"
 
 #: src/dialogs/subkeyswidget.cpp:167 src/view/cardkeysview.cpp:432
 #, kde-format
@@ -15728,9 +15764,6 @@ msgstr ""
 
 #~ msgid "Expiry Date Change Succeeded"
 #~ msgstr "Успішна зміна дати строку дії"
-
-#~ msgid "Expires:"
-#~ msgstr "Дійсний до:"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid "Change the expiration date"

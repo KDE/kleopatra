@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-15 00:43+0000\n"
+"POT-Creation-Date: 2026-01-21 00:46+0000\n"
 "PO-Revision-Date: 2026-01-15 08:55+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -5032,50 +5032,62 @@ msgstr "ההצפנה נכשלה: %1"
 msgid "Encryption succeeded."
 msgstr "ההצפנה הצליחה."
 
-#: src/crypto/gui/certificatelineedit.cpp:291
+#: src/crypto/gui/certificatelineedit.cpp:297
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Please enter a name or email address..."
 msgstr "נא למלא שם או כתובת דוא״ל…"
 
-#: src/crypto/gui/certificatelineedit.cpp:308
+#: src/crypto/gui/certificatelineedit.cpp:314
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show certificate list"
 msgstr "הצגת רשימת אישורים"
 
-#: src/crypto/gui/certificatelineedit.cpp:309
+#: src/crypto/gui/certificatelineedit.cpp:315
 #, kde-format
 msgid "Show certificate list"
 msgstr "הצגת רשימת אישורים"
 
-#: src/crypto/gui/certificatelineedit.cpp:328
+#: src/crypto/gui/certificatelineedit.cpp:334
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show Details"
 msgstr "הצגת פרטים"
 
-#: src/crypto/gui/certificatelineedit.cpp:644
+#: src/crypto/gui/certificatelineedit.cpp:663
 #, kde-format
 msgid "No matching certificates or groups found"
 msgstr "לא נמצאו אישורים או קבוצות תואמים"
 
-#: src/crypto/gui/certificatelineedit.cpp:646
+#: src/crypto/gui/certificatelineedit.cpp:665
 #, kde-format
 msgid "Multiple matching certificates or groups found"
 msgstr "נמצאו כמה קבוצות אישורים תואמות"
 
-#: src/crypto/gui/certificatelineedit.cpp:648
+#: src/crypto/gui/certificatelineedit.cpp:667
 #, kde-format
 msgid "This certificate is expired"
 msgstr "תוקף האישור הזה כבר פג"
 
-#: src/crypto/gui/certificatelineedit.cpp:650
+#: src/crypto/gui/certificatelineedit.cpp:669
 #, kde-format
 msgid "This certificate is revoked"
 msgstr "האישור הזה כבר נשלל"
 
-#: src/crypto/gui/certificatelineedit.cpp:730 src/dialogs/expirydialog.cpp:217
+#: src/crypto/gui/certificatelineedit.cpp:671
+#, fuzzy, kde-format
+#| msgid "This certificate is expired"
+msgid "This certificate is disabled"
+msgstr "תוקף האישור הזה כבר פג"
+
+#: src/crypto/gui/certificatelineedit.cpp:673
+#, fuzzy, kde-format
+#| msgid "This certificate is expired"
+msgid "This certificate is unusable"
+msgstr "תוקף האישור הזה כבר פג"
+
+#: src/crypto/gui/certificatelineedit.cpp:757 src/dialogs/expirydialog.cpp:217
 #: src/view/smartcardwidget.cpp:370
 #, kde-format
 msgctxt "@info"
@@ -5770,42 +5782,49 @@ msgctxt "text for screen readers"
 msgid "recipient key"
 msgstr "מפתח נמען"
 
-#: src/crypto/gui/signencryptwidget.cpp:523
+#: src/crypto/gui/signencryptwidget.cpp:449
+#: src/crypto/gui/signencryptwidget.cpp:760
+#, kde-format
+msgctxt "@info"
+msgid "This certificate cannot be used for encryption."
+msgstr "אי אפשר להשתמש באישור הזה להצפנה."
+
+#: src/crypto/gui/signencryptwidget.cpp:524
 #, kde-format
 msgid "Usable for Signing"
 msgstr "שמיש לחתימה"
 
-#: src/crypto/gui/signencryptwidget.cpp:524
+#: src/crypto/gui/signencryptwidget.cpp:525
 #, kde-format
 msgid "Certificates that can be used for signing"
 msgstr "אישורים שאפשר להשתמש בהם לחתימה"
 
-#: src/crypto/gui/signencryptwidget.cpp:527
-#: src/crypto/gui/signencryptwidget.cpp:561 src/dialogs/editgroupdialog.cpp:216
+#: src/crypto/gui/signencryptwidget.cpp:528
+#: src/crypto/gui/signencryptwidget.cpp:562 src/dialogs/editgroupdialog.cpp:216
 #, kde-format
 msgid "Usable for Encryption"
 msgstr "שמיש להצפנה"
 
-#: src/crypto/gui/signencryptwidget.cpp:528
-#: src/crypto/gui/signencryptwidget.cpp:562 src/dialogs/editgroupdialog.cpp:217
+#: src/crypto/gui/signencryptwidget.cpp:529
+#: src/crypto/gui/signencryptwidget.cpp:563 src/dialogs/editgroupdialog.cpp:217
 #, kde-format
 msgid "Certificates that can be used for encryption"
 msgstr "אישורים שאפשר להשתמש בהם להצפנה"
 
-#: src/crypto/gui/signencryptwidget.cpp:749
-#: src/crypto/gui/signencryptwidget.cpp:1044
+#: src/crypto/gui/signencryptwidget.cpp:750
+#: src/crypto/gui/signencryptwidget.cpp:1045
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is expired."
 msgstr "האישור הזה כבר פג."
 
-#: src/crypto/gui/signencryptwidget.cpp:752
+#: src/crypto/gui/signencryptwidget.cpp:753
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires today."
 msgstr "האישור הזה יפוג היום."
 
-#: src/crypto/gui/signencryptwidget.cpp:754
+#: src/crypto/gui/signencryptwidget.cpp:755
 #, kde-format
 msgctxt "@info"
 msgid "This certificate expires tomorrow."
@@ -5815,19 +5834,13 @@ msgstr[1] "תוקף האישור הזה יפוג מחרתיים."
 msgstr[2] "תוקף האישור הזה יפוג בעוד %1 יום."
 msgstr[3] "תוקף האישור הזה יפוג בעוד %1 ימים."
 
-#: src/crypto/gui/signencryptwidget.cpp:759
-#, kde-format
-msgctxt "@info"
-msgid "This certificate cannot be used for encryption."
-msgstr "אי אפשר להשתמש באישור הזה להצפנה."
-
-#: src/crypto/gui/signencryptwidget.cpp:761
+#: src/crypto/gui/signencryptwidget.cpp:762
 #, kde-format
 msgctxt "@info"
 msgid "This certificate cannot be used for signing."
 msgstr "אי אפשר להשתמש באישור הזה לחתימה."
 
-#: src/crypto/gui/signencryptwidget.cpp:990
+#: src/crypto/gui/signencryptwidget.cpp:991
 #, kde-kuit-format
 msgctxt ""
 "@info translate 'Encrypt for others' the same way as for the other string in "
@@ -5839,18 +5852,18 @@ msgstr ""
 "נא לבחור לפחות נמען אחד או לבטל את הסימון שליד <interface>הצפנהלאחרים</"
 "interface>."
 
-#: src/crypto/gui/signencryptwidget.cpp:1005
+#: src/crypto/gui/signencryptwidget.cpp:1006
 #, kde-format
 msgid "Could not find a key for the following recipients:"
 msgstr "לא ניתן למצוא מפתח לנמענים הבאים:"
 
-#: src/crypto/gui/signencryptwidget.cpp:1007
+#: src/crypto/gui/signencryptwidget.cpp:1008
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to find some keys"
 msgstr "איתור חלק מהמפתחות נכשל"
 
-#: src/crypto/gui/signencryptwidget.cpp:1047
+#: src/crypto/gui/signencryptwidget.cpp:1048
 #, kde-format
 msgctxt "@info"
 msgid "This certificate is revoked."
@@ -7203,7 +7216,7 @@ msgstr ""
 "ואת בעליו בבירור.</i>"
 
 #: src/dialogs/certifywidget.cpp:466
-#: src/dialogs/lookupcertificatesdialog.cpp:239
+#: src/dialogs/lookupcertificatesdialog.cpp:248
 #: src/dialogs/revokerswidget.cpp:72 src/dialogs/subkeyswidget.cpp:163
 #: src/view/cardkeysview.cpp:430
 #, kde-format
@@ -7837,119 +7850,149 @@ msgctxt "@title:dialog as in 'list of certificates that were imported'"
 msgid "Imported Certificates"
 msgstr "אישורים שיובאו"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:171
+#: src/dialogs/lookupcertificatesdialog.cpp:180
 #, kde-format
 msgid "Find:"
 msgstr "איתור:"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:178
+#: src/dialogs/lookupcertificatesdialog.cpp:187
 #, kde-format
 msgid "Search"
 msgstr "חיפוש"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:187
+#: src/dialogs/lookupcertificatesdialog.cpp:196
 #, kde-format
 msgctxt "@label"
 msgid "Results"
 msgstr "תוצאות"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:196
+#: src/dialogs/lookupcertificatesdialog.cpp:205
 #, kde-format
 msgid "Select All"
 msgstr "בחירה בהכול"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:201
+#: src/dialogs/lookupcertificatesdialog.cpp:210
 #, kde-format
 msgid "Deselect All"
 msgstr "ביטול בחירה"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:208
+#: src/dialogs/lookupcertificatesdialog.cpp:217
 #, kde-format
 msgid "Details..."
 msgstr "פרטים…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:213
+#: src/dialogs/lookupcertificatesdialog.cpp:222
 #, kde-format
 msgid "Save As..."
 msgstr "שמירה בשם…"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:237
+#: src/dialogs/lookupcertificatesdialog.cpp:246
 #: src/dialogs/revokerswidget.cpp:73
 #, kde-format
 msgctxt "@title:column"
 msgid "Name"
 msgstr "שם"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:238
+#: src/dialogs/lookupcertificatesdialog.cpp:247
 #: src/dialogs/revokerswidget.cpp:74
 #, kde-format
 msgctxt "@title:column"
 msgid "Email"
 msgstr "דוא״ל"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:240
+#: src/dialogs/lookupcertificatesdialog.cpp:249
 #: src/dialogs/subkeyswidget.cpp:165
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid From"
 msgstr "תקף מ־"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:241
+#: src/dialogs/lookupcertificatesdialog.cpp:250
 #: src/dialogs/subkeyswidget.cpp:166
 #, kde-format
 msgctxt "@title:column"
 msgid "Valid Until"
 msgstr "תקף עד"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:242 src/view/cardkeysview.cpp:429
+#: src/dialogs/lookupcertificatesdialog.cpp:251
+#: src/dialogs/subkeyswidget.cpp:164
+#, kde-format
+msgctxt "@title:column"
+msgid "Status"
+msgstr "מצב"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:252 src/view/cardkeysview.cpp:429
 #, kde-format
 msgctxt "@title:column"
 msgid "Protocol"
 msgstr "פרוטוקול"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:243
+#: src/dialogs/lookupcertificatesdialog.cpp:253
 #: src/dialogs/subkeyswidget.cpp:162
 #, kde-format
 msgctxt "@title:column"
 msgid "Key ID"
 msgstr "מזהה מפתח"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:244
+#: src/dialogs/lookupcertificatesdialog.cpp:254
 #, kde-format
 msgctxt "@title:column"
 msgid "Origin"
 msgstr "מקור"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:265
+#: src/dialogs/lookupcertificatesdialog.cpp:275
 #, kde-format
 msgctxt "@title:window"
 msgid "Lookup on Server"
 msgstr "איתור בשרת"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:272
+#: src/dialogs/lookupcertificatesdialog.cpp:282
 #, kde-format
 msgid "Import"
 msgstr "ייבוא"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:336
+#: src/dialogs/lookupcertificatesdialog.cpp:346
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter a search term to search for matching certificates."
 msgstr "נא למלא ביטוי לחיפוש אחר אישורים תואמים."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:338
+#: src/dialogs/lookupcertificatesdialog.cpp:348
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Enter an email address to search for matching certificates."
 msgstr "נא למלא כתובת דוא״ל לחיפוש אחר אישורים תואמים."
 
-#: src/dialogs/lookupcertificatesdialog.cpp:418
-#: src/dialogs/lookupcertificatesdialog.cpp:421
+#: src/dialogs/lookupcertificatesdialog.cpp:432
+#, fuzzy, kde-format
+#| msgctxt "unknown storage location"
+#| msgid "unknown"
+msgctxt "@info status of certificate"
+msgid "unknown"
+msgstr "לא ידוע"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:434
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Key is Expired"
+msgctxt "@info status of certificate"
+msgid "expired"
+msgstr "תוקף המפתח פג"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:436
+#, fuzzy, kde-format
+#| msgid "Newly revoked:"
+msgctxt "@info status of certificate"
+msgid "revoked"
+msgstr "שלילות חדשות:"
+
+#: src/dialogs/lookupcertificatesdialog.cpp:486
+#: src/dialogs/lookupcertificatesdialog.cpp:489
 #, kde-format
 msgid "LDAP"
 msgstr "LDAP"
 
-#: src/dialogs/lookupcertificatesdialog.cpp:423
+#: src/dialogs/lookupcertificatesdialog.cpp:491
 #, kde-format
 msgid "Keyserver"
 msgstr "שרת מפתחות"
@@ -8294,12 +8337,6 @@ msgstr "ניהול כרטיסים חכמים"
 msgctxt "@label"
 msgid "Subkeys"
 msgstr "תת־מפתחות"
-
-#: src/dialogs/subkeyswidget.cpp:164
-#, kde-format
-msgctxt "@title:column"
-msgid "Status"
-msgstr "מצב"
 
 #: src/dialogs/subkeyswidget.cpp:167 src/view/cardkeysview.cpp:432
 #, kde-format
