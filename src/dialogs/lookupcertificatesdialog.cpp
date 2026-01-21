@@ -458,12 +458,19 @@ static void setColorsAndFont(QTreeWidgetItem *item, const QColor &foreground, co
     }
 }
 
+static auto loadKeyFilter(const QString &filterId)
+{
+    const auto keyFilter = KeyFilterManager::instance()->keyFilterByID(filterId);
+    if (!keyFilter) {
+        qCWarning(KLEOPATRA_LOG) << "LookupCertificatesDialog - failed to load key filter with ID" << filterId;
+    }
+    return keyFilter;
+}
+
 void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> &certs)
 {
-    const auto expiredKeyFilter = DeVSCompliance::isCompliant() ? KeyFilterManager::instance()->keyFilterByID(u"not-de-vs-expired-filter"_s)
-                                                                : KeyFilterManager::instance()->keyFilterByID(u"expired"_s);
-    const auto revokedKeyFilter = DeVSCompliance::isCompliant() ? KeyFilterManager::instance()->keyFilterByID(u"not-de-vs-revoked-filter"_s)
-                                                                : KeyFilterManager::instance()->keyFilterByID(u"revoked"_s);
+    const auto expiredKeyFilter = loadKeyFilter(DeVSCompliance::isCompliant() ? u"not-de-vs-expired-filter"_s : u"expired"_s);
+    const auto revokedKeyFilter = loadKeyFilter(DeVSCompliance::isCompliant() ? u"not-de-vs-revoked-filter"_s : u"revoked"_s);
 
     d->ui.resultTV->setFocus();
     d->ui.resultTV->clear();
@@ -504,10 +511,14 @@ void LookupCertificatesDialog::setCertificates(const std::vector<KeyWithOrigin> 
         case Status::Unknown:
             break;
         case Status::Expired:
-            setColorsAndFont(item, expiredKeyFilter->fgColor(), expiredKeyFilter->bgColor(), expiredKeyFilter->fontDescription().font(QFont{}));
+            if (expiredKeyFilter) {
+                setColorsAndFont(item, expiredKeyFilter->fgColor(), expiredKeyFilter->bgColor(), expiredKeyFilter->fontDescription().font(QFont{}));
+            }
             break;
         case Status::Revoked:
-            setColorsAndFont(item, revokedKeyFilter->fgColor(), revokedKeyFilter->bgColor(), revokedKeyFilter->fontDescription().font(QFont{}));
+            if (revokedKeyFilter) {
+                setColorsAndFont(item, revokedKeyFilter->fgColor(), revokedKeyFilter->bgColor(), revokedKeyFilter->fontDescription().font(QFont{}));
+            }
         }
 
         d->ui.resultTV->addTopLevelItem(item);
