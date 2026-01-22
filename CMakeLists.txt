@@ -149,9 +149,7 @@ set_package_properties(LibAssuan PROPERTIES
 )
 find_package(LibGpgError ${GPG_ERROR_REQUIRED_VERSION} REQUIRED)
 
-set(kleopatra_release FALSE)
-
-if(NOT kleopatra_release)
+if(EXISTS ${CMAKE_SOURCE_DIR}/.git)
     find_package(Git)
     if(GIT_FOUND)
         execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse
