@@ -642,12 +642,6 @@ void CardKeysView::insertTreeWidgetItem(int slotIndex, const KeyPairInfo &keyInf
     updateTreeWidgetItem(item, keyInfo, subkey);
     mTreeWidget->insertTopLevelItem(index, item);
     auto actionsButton = addActionsButton(item, mCard->appType());
-    if (index == 0) {
-        forceSetTabOrder(mTreeWidget, actionsButton);
-    } else {
-        auto prevActionsButton = mTreeWidget->itemWidget(mTreeWidget->topLevelItem(index - 1), Actions);
-        forceSetTabOrder(prevActionsButton, actionsButton);
-    }
     actionsButton->installEventFilter(this);
 }
 
@@ -655,6 +649,7 @@ QToolButton *CardKeysView::addActionsButton(CardKeysWidgetItem *item, SmartCard:
 {
     const auto actions = actionsForCardSlot(appType);
     auto button = new QToolButton;
+    button->setFocusPolicy(Qt::ClickFocus);
     if (actions.size() == 1) {
         button->setDefaultAction(updateAction(SmartCardActions::createProxyAction(actions.front(), button), item, mCard.get()));
         // ensure that current item is set to the right item before the action is triggered;
