@@ -5,29 +5,25 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 set(RELEASE_SERVICE_VERSION_MAJOR "24")
 set(RELEASE_SERVICE_VERSION_MINOR "05")
 set(RELEASE_SERVICE_VERSION_MICRO "00")
+set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 
-# The RELEASE_SERVICE_VERSION is used by Gpg4win to add the Gpg4win version
-if (NOT RELEASE_SERVICE_VERSION)
-    set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
-endif()
-if(RELEASE_SERVICE_VERSION_MICRO LESS 10)
-    set(KDE_APPLICATIONS_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}0${RELEASE_SERVICE_VERSION_MICRO}")
-else()
-    set(KDE_APPLICATIONS_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}${RELEASE_SERVICE_VERSION_MICRO}")
-endif()
-
-set(KLEOPATRA_VERSION_MAJOR "3")
-set(KLEOPATRA_VERSION_MINOR "3")
-set(KLEOPATRA_VERSION_MICRO "2")
-
-set(kleopatra_version "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_MICRO}")
 # KLEOPATRA_VERSION_STRING is used for the About data; Gpg4win sets it to a custom value
 if (NOT KLEOPATRA_VERSION_STRING)
-    set(KLEOPATRA_VERSION_STRING "${kleopatra_version}")
+    set(KLEOPATRA_VERSION_STRING "${RELEASE_SERVICE_VERSION}")
 endif()
+if (KLEOPATRA_VERSION_STRING MATCHES "([0-9]+\\.[0-9]+\\.[0-9]+)")
+    set(kleopatra_version "${CMAKE_MATCH_1}")
+else()
+    message(WARNING "KLEOPATRA_VERSION_STRING doesn't contain a valid version number; using RELEASE_SERVICE_VERSION as version number")
+    set(kleopatra_version "${RELEASE_SERVICE_VERSION}")
+endif()
+# drop leading 0s from values to avoid bogus octal values in C/C++ e.g. with 08 or 09
+string(REGEX REPLACE "^0*([0-9]+)\\.[0-9]+\\.[0-9]+.*" "\\1" kleopatra_version_major "${kleopatra_version}")
+string(REGEX REPLACE "^[0-9]+\\.0*([0-9]+)\\.[0-9]+.*" "\\1" kleopatra_version_minor "${kleopatra_version}")
+string(REGEX REPLACE "^[0-9]+\\.[0-9]+\\.0*([0-9]+).*" "\\1" kleopatra_version_micro "${kleopatra_version}")
 # The following is for Windows
-set(kleopatra_version_win "${KLEOPATRA_VERSION_MAJOR}.${KLEOPATRA_VERSION_MINOR}.${KLEOPATRA_VERSION_MICRO}")
-set(kleopatra_fileversion_win "${KLEOPATRA_VERSION_MAJOR},${KLEOPATRA_VERSION_MINOR},${KLEOPATRA_VERSION_MICRO},0")
+set(kleopatra_version_win "${kleopatra_version_major}.${kleopatra_version_minor}.${kleopatra_version_micro}")
+set(kleopatra_fileversion_win "${kleopatra_version_major},${kleopatra_version_minor},${kleopatra_version_micro},0")
 if (NOT KLEOPATRA_DISTRIBUTION_TEXT)
     # This is only used on Windows for the file attributes of Kleopatra
     set(KLEOPATRA_DISTRIBUTION_TEXT "KDE")
