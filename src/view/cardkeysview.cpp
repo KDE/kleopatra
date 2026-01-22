@@ -493,8 +493,18 @@ Key CardKeysView::currentCertificate() const
 
 bool CardKeysView::eventFilter(QObject *obj, QEvent *event)
 {
+    if ((event->type() == QEvent::FocusIn) //
+        && (obj == mTreeWidget->itemWidget(mTreeWidget->currentItem(), Actions))) {
+        // workaround for making it possible to leave the CardKeysView with Shift+Tab:
+        // temporarily remove the tree widget from the tab chain; otherwise, on Shift+Tab the focus
+        // is moved to the tree widget which immediately gives it back to the current item delegate
+        mTreeWidget->setFocusPolicy(static_cast<Qt::FocusPolicy>(mTreeWidget->focusPolicy() & ~Qt::TabFocus));
+    }
     if ((event->type() == QEvent::FocusOut) //
         && (obj == mTreeWidget->itemWidget(mTreeWidget->currentItem(), Actions))) {
+        // workaround for making it possible to leave the CardKeysView with Shift+Tab:
+        // re-add the tree widget to the tab chain
+        mTreeWidget->setFocusPolicy(static_cast<Qt::FocusPolicy>(mTreeWidget->focusPolicy() | Qt::TabFocus));
         // workaround for missing update when last actions button loses focus
         mTreeWidget->viewport()->update();
     }
