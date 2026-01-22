@@ -177,9 +177,7 @@ set_package_properties(LibGpgError PROPERTIES
   TYPE REQUIRED
 )
 
-set(kleopatra_release FALSE)
-
-if(NOT kleopatra_release)
+if(EXISTS ${CMAKE_SOURCE_DIR}/.git)
     find_package(Git)
     if(GIT_FOUND)
         execute_process(COMMAND ${GIT_EXECUTABLE} rev-parse
