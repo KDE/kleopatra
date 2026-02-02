@@ -15,6 +15,7 @@
 #include "kleopatra_debug.h"
 #include "kleopatraapplication.h"
 #include "mainwindow.h"
+#include <settings.h>
 
 #include <Libkleo/DocAction>
 
@@ -35,16 +36,21 @@
 #include <KSharedConfig>
 #include <KXmlGuiWindow>
 
-static const QString templ = QStringLiteral(
+static const QString standardTemplate = QStringLiteral(
     "<h3>%1</h3>" // Welcome
     "<p>%2<p/>" // Intro
-    "<p>%7</p>" // (optional) VSD Text
-    "<p>%8</p>" // (optional) Password explanation
-    "<p>%3</p>" // Explanation
-    "<ul><li>%4</li><li>%5</li></ul>" //
-    "<p>%6</p>" // More info
-    "<br />"
-    "");
+    "<p>%3</p>" // (optional) VSD Text
+    "<p>%4</p>" // (optional) Password-based encryption explanation
+    "<p>%5</p>" // Public-key-based encryption explanation
+    "<ul><li>%6</li><li>%7</li></ul>" // secret key usage, public key usage
+    "<p>%8</p>" // More info
+    "<br />");
+
+static const QString customTemplate = QStringLiteral(
+    "<h3>%1</h3>" // Welcome
+    "<p>%2<p/>" // Intro
+    "<div>%3</div>" // custom text
+    "<br />");
 
 using namespace Kleo;
 
@@ -126,36 +132,44 @@ public:
         const QString welcome = i18nc("%1 is version", "Welcome to Kleopatra %1", KAboutData::applicationData().version());
         const QString introduction = i18n("Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org\">GnuPG</a>.");
 
-        QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own secret key.");
+        QString labelText;
 
-        const QString privateKeyExplanation = i18n("The secret key is needed to decrypt or sign.");
-        const QString publicKeyExplanation = i18n("The public key can be used by others to verify your identity or encrypt to you.");
+        const auto settings = Settings{};
+        const QString customWelcomeText = settings.welcomeText();
+        if (!customWelcomeText.isEmpty() && settings.isWelcomeTextImmutable()) {
+            labelText = customTemplate.arg(welcome, introduction, customWelcomeText);
+        } else {
+            QString keyExplanation = i18n("For most actions you need either a public key (certificate) or your own secret key.");
 
-        const QString wikiUrl = i18nc("More info about public key cryptography, please link to your local version of Wikipedia",
-                                      "https://en.wikipedia.org/wiki/Public-key_cryptography");
-        QString learnMore = i18nc("%1 is a link to a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
+            const QString privateKeyExplanation = i18n("The secret key is needed to decrypt or sign.");
+            const QString publicKeyExplanation = i18n("The public key can be used by others to verify your identity or encrypt to you.");
 
-        QString vsdText;
-        QString symExplanation;
+            const QString wikiUrl = i18nc("More info about public key cryptography, please link to your local version of Wikipedia",
+                                          "https://en.wikipedia.org/wiki/Public-key_cryptography");
+            QString learnMore = i18nc("%1 is a link to a wiki article", "You can learn more about this on <a href=\"%1\">Wikipedia</a>.", wikiUrl);
 
-        if (MainWindow::createSymmetricGuideAction(nullptr)->isEnabled()) {
-            vsdText =
-                i18nc("@info",
-                      "With Kleopatra you can encrypt using different methods. Please follow the regulations for classified information of your organization.");
-            symExplanation = i18nc("@info", "For password based encryption see this <a href=\"action:help_doc_symenc\">guide</a>.");
-            keyExplanation = i18nc("@info", "For public key encryption you generally have to create your own key pair.");
-            learnMore =
-                i18nc("@info", "You can find step-by-step instructions for public key encryption in this <a href=\"action:help_doc_quickguide\">guide</a>.");
+            QString vsdText;
+            QString symExplanation;
+
+            if (MainWindow::createSymmetricGuideAction(nullptr)->isEnabled()) {
+                vsdText = i18nc(
+                    "@info",
+                    "With Kleopatra you can encrypt using different methods. Please follow the regulations for classified information of your organization.");
+                symExplanation = i18nc("@info", "For password based encryption see this <a href=\"action:help_doc_symenc\">guide</a>.");
+                keyExplanation = i18nc("@info", "For public key encryption you generally have to create your own key pair.");
+                learnMore = i18nc("@info",
+                                  "You can find step-by-step instructions for public key encryption in this <a href=\"action:help_doc_quickguide\">guide</a>.");
+            }
+
+            labelText = standardTemplate.arg(welcome)
+                            .arg(introduction)
+                            .arg(vsdText)
+                            .arg(symExplanation)
+                            .arg(keyExplanation)
+                            .arg(privateKeyExplanation)
+                            .arg(publicKeyExplanation)
+                            .arg(learnMore);
         }
-
-        const auto labelText = templ.arg(welcome)
-                                   .arg(introduction)
-                                   .arg(keyExplanation)
-                                   .arg(privateKeyExplanation)
-                                   .arg(publicKeyExplanation)
-                                   .arg(learnMore)
-                                   .arg(vsdText)
-                                   .arg(symExplanation);
         mLabel = new HtmlLabel{labelText, q};
         mLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
