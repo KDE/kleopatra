@@ -701,10 +701,11 @@ void AppearanceConfigWidget::load()
     for (const QString &group : groups) {
         const KConfigGroup configGroup{config, group};
         const bool isCmsSpecificKeyFilter = !configGroup.readEntry("is-openpgp-key", true);
+        if (!Kleo::Settings{}.cmsEnabled() && isCmsSpecificKeyFilter) {
+            // skip CMS-specific filters if CMS is disabled
+            continue;
+        }
         auto item = new QListWidgetItem{d->categoriesLV};
-        // hide CMS-specific filters if CMS is disabled; we hide those filters
-        // instead of skipping them, so that they are not removed on save
-        item->setHidden(isCmsSpecificKeyFilter && !Kleo::Settings{}.cmsEnabled());
         apply_config(configGroup, item);
     }
 
@@ -741,26 +742,11 @@ void AppearanceConfigWidget::save()
     if (!config) {
         return;
     }
-    // We know (assume) that the groups in the config object haven't changed,
-    // so we just iterate over them and over the listviewitems, and map one-to-one.
-    QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
-    std::ranges::stable_sort(groups, greaterThanBySpecificity);
-#if 0
-    if (groups.isEmpty()) {
-        // If we created the default categories ourselves just now, then we need to make up their list
-        Q3ListViewItemIterator lvit(categoriesLV);
-        for (; lvit.current(); ++lvit) {
-            groups << lvit.current()->text(0);
-        }
-    }
-#endif
-    for (int i = 0, end = std::min<int>(groups.size(), d->categoriesLV->count()); i != end; ++i) {
+    for (int i = 0; i != d->categoriesLV->count(); ++i) {
         const QListWidgetItem *const item = d->categoriesLV->item(i);
-        Q_ASSERT(item);
-        KConfigGroup group(config, groups[i]);
-        save_to_config(item, group);
+        auto configGroup = item->data(ConfigGroupRole).value<KConfigGroup>();
+        save_to_config(item, configGroup);
     }
-
     config->sync();
     KeyFilterManager::instance()->reload();
 }
