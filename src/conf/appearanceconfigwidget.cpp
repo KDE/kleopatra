@@ -44,6 +44,8 @@
 
 #include <algorithm>
 
+#include <kleopatra_debug.h>
+
 using namespace Kleo;
 using namespace Kleo::Config;
 
@@ -660,19 +662,6 @@ void AppearanceConfigWidget::defaults()
     Q_EMIT changed();
 }
 
-bool greaterThanBySpecificity(const QString &lhs, const QString &rhs)
-{
-    const auto lFilter = KeyFilterManager::instance()->keyFilterByID(lhs);
-    const auto rFilter = KeyFilterManager::instance()->keyFilterByID(rhs);
-    if (!lFilter) {
-        return false;
-    }
-    if (!rFilter) {
-        return true;
-    }
-    return lFilter->specificity() > rFilter->specificity();
-}
-
 void AppearanceConfigWidget::load()
 {
     const Settings settings;
@@ -697,10 +686,23 @@ void AppearanceConfigWidget::load()
     if (!config) {
         return;
     }
-    QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
-    std::ranges::stable_sort(groups, greaterThanBySpecificity);
-    for (const QString &group : groups) {
-        const KConfigGroup configGroup{config, group};
+    const QStringList groups = config->groupList().filter(QRegularExpression(QStringLiteral("^Key Filter #\\d+$")));
+    // build list of (specificity, config group) pairs to sort the key filters by specificity
+    std::vector<std::pair<unsigned int, KConfigGroup>> keyFilterConfigGroups;
+    keyFilterConfigGroups.reserve(groups.size());
+    std::ranges::transform(groups, std::back_inserter(keyFilterConfigGroups), [&config](const auto &groupName) {
+        const KConfigGroup configGroup{config, groupName};
+        const QString keyFilterId = configGroup.readEntry("id", groupName);
+        const auto keyFilter = KeyFilterManager::instance()->keyFilterByID(keyFilterId);
+        if (!keyFilter) {
+            qCDebug(KLEOPATRA_LOG) << "AppearanceConfigWidget::load - Failed to get key filter with ID" << keyFilterId;
+        }
+        return std::make_pair(keyFilter ? keyFilter->specificity() : 0, configGroup);
+    });
+    std::ranges::stable_sort(keyFilterConfigGroups, [](const auto &lhs, const auto &rhs) {
+        return lhs.first > rhs.first;
+    });
+    for (const auto &[_, configGroup] : keyFilterConfigGroups) {
         const bool isCmsSpecificKeyFilter = !configGroup.readEntry("is-openpgp-key", true);
         if (!Kleo::Settings{}.cmsEnabled() && isCmsSpecificKeyFilter) {
             // skip CMS-specific filters if CMS is disabled
