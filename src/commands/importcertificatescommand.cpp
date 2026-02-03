@@ -505,32 +505,45 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
                 continue;
             }
 
-            const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
-            // ki18n(" ") as initializer because initializing with empty string leads to
-            // (I18N_EMPTY_MESSAGE)
-            const KLocalizedString uids = std::accumulate(toTrustOwnerUserIDs.cbegin(),
-                                                          toTrustOwnerUserIDs.cend(),
-                                                          KLocalizedString{ki18n(" ")},
-                                                          [](KLocalizedString temp, const auto &uid) {
-                                                              return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
-                                                          });
-
-            const QString str = xi18nc("@info",
-                                       "<para>You have imported a certificate with fingerprint</para>"
-                                       "<para><numid>%1</numid></para>"
-                                       "<para>"
-                                       "and user IDs"
-                                       "<list>%2</list>"
-                                       "</para>"
-                                       "<para>Is this your own certificate?</para>",
-                                       Formatting::prettyID(fpr),
-                                       uids);
+            QString message;
+            if (toTrustOwner.numUserIDs() == 1) {
+                message = xi18nc("@info",
+                                 "<para>You have imported a certificate with a secret key.</para>"
+                                 "<para>"
+                                 "Fingerprint: %1<nl/>"
+                                 "User ID: %2"
+                                 "</para>"
+                                 "<para>Are you the only user of this secret key?</para>",
+                                 Formatting::prettyID(fpr),
+                                 Formatting::prettyNameAndEMail(toTrustOwner));
+            } else {
+                const auto toTrustOwnerUserIDs{toTrustOwner.userIDs()};
+                // ki18n(" ") as initializer because initializing with empty string leads to
+                // (I18N_EMPTY_MESSAGE)
+                const KLocalizedString uids =
+                    std::accumulate(toTrustOwnerUserIDs.cbegin(),
+                                    toTrustOwnerUserIDs.cend(),
+                                    KLocalizedString{ki18n(" ")},
+                                    [](KLocalizedString temp, const auto &uid) {
+                                        return kxi18nc("@info", "%1<item>%2</item>").subs(temp).subs(Formatting::prettyNameAndEMail(uid));
+                                    });
+                message = xi18nc("@info",
+                                 "<para>You have imported a certificate with a secret key.</para>"
+                                 "<para>Fingerprint: %1</para>"
+                                 "<para>"
+                                 "User IDs:"
+                                 "<list>%2</list>"
+                                 "</para>"
+                                 "<para>Are you the only user of this secret key?</para>",
+                                 Formatting::prettyID(fpr),
+                                 uids);
+            }
 
             int k = KMessageBox::questionTwoActionsCancel(dialog,
-                                                          str,
+                                                          message,
                                                           i18nc("@title:window", "Mark Own Certificate"),
-                                                          KGuiItem{i18nc("@action:button", "Yes, It's Mine")},
-                                                          KGuiItem{i18nc("@action:button", "No, It's Not Mine")});
+                                                          KGuiItem{i18nc("@action:button", "Yes, I am the only user")},
+                                                          KGuiItem{i18nc("@action:button", "No, others also use this key")});
             askedAboutFingerprints.insert(fpr);
 
             if (k == KMessageBox::ButtonCode::PrimaryAction) {
