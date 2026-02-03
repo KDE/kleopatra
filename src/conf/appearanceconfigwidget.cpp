@@ -12,6 +12,7 @@
 
 #include <settings.h>
 
+#include <Libkleo/Compliance>
 #include <Libkleo/DNAttributeOrderConfigWidget>
 #include <Libkleo/DnAttributes>
 #include <Libkleo/ExpiryCheckerConfig>
@@ -703,6 +704,10 @@ void AppearanceConfigWidget::load()
         const bool isCmsSpecificKeyFilter = !configGroup.readEntry("is-openpgp-key", true);
         if (!Kleo::Settings{}.cmsEnabled() && isCmsSpecificKeyFilter) {
             // skip CMS-specific filters if CMS is disabled
+            continue;
+        }
+        if (!DeVSCompliance::isCompliant() && configGroup.hasKey("is-de-vs")) {
+            // skip de-vs filters in other compliance modes
             continue;
         }
         auto item = new QListWidgetItem{d->categoriesLV};
