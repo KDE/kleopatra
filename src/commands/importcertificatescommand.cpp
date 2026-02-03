@@ -20,6 +20,7 @@
 #include "kleopatra_debug.h"
 #include <settings.h>
 #include <utils/memory-helpers.h>
+#include <utils/qt-cxx20-compat.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
@@ -34,6 +35,7 @@
 #include <Libkleo/Stl_Util>
 
 #include <QGpgME/ChangeOwnerTrustJob>
+#include <QGpgME/Debug>
 #include <QGpgME/ImportFromKeyserverJob>
 #include <QGpgME/ImportJob>
 #include <QGpgME/Protocol>
@@ -393,8 +395,8 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         // key is expired or revoked
         return false;
     }
-    if (key.hasSecret()) {
-        qCDebug(KLEOPATRA_LOG) << q << __func__ << "Secret key is available -> skipping certification";
+    if (key.subkey(0).isSecret()) {
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << "Secret primary key is available -> skipping certification";
         return false;
     }
 
@@ -434,6 +436,27 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
 
 namespace
 {
+static bool isImportOfASingleKey(const GpgME::ImportResult &result)
+{
+    if (result.numImported() != 1) {
+        return false;
+    }
+    const auto imports = result.imports();
+    if (imports.empty()) {
+        qCWarning(KLEOPATRA_LOG) << __func__ << "Unexpected import result with imported == 1 but without any imports:" << QGpgME::toLogString(result);
+        return false;
+    }
+    if (imports.size() == 1) {
+        return true;
+    }
+    // if the import result has more than one import then we have to check whether all imports reference the same key;
+    // this occurs when importing a single key with public primary key and secret subkeys (e.g. a shared team key)
+    const char *referenceFingerprint = imports.front().fingerprint();
+    return std::ranges::all_of(std::span{imports}.subspan(1), [referenceFingerprint](const auto &import) {
+        return qstrcmp(import.fingerprint(), referenceFingerprint) == 0;
+    });
+}
+
 /**
  * Returns the Import of an OpenPGP key, if a single certificate was imported and this was an OpenPGP key.
  * Otherwise, returns a null Import.
@@ -442,19 +465,22 @@ auto getSingleOpenPGPImport(const std::vector<ImportResultData> &res)
 {
     static const Import nullImport;
     if (!isImportFromSingleSource(res)) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "returns null because import is from multiple sources";
         return nullImport;
     }
     const auto numImported = std::accumulate(res.cbegin(), res.cend(), 0, [](auto s, const auto &r) {
         return s + r.result.numImported();
     });
     if (numImported > 1) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "returns null because more than one key was imported:" << numImported;
         return nullImport;
     }
-    if ((res.size() >= 1) && (res[0].protocol == GpgME::OpenPGP) && (res[0].result.numImported() == 1) && (res[0].result.imports().size() == 1)) {
+    if ((res.size() >= 1) && (res[0].protocol == GpgME::OpenPGP) && isImportOfASingleKey(res[0].result)) {
         return res[0].result.imports()[0];
-    } else if ((res.size() == 2) && (res[1].protocol == GpgME::OpenPGP) && (res[1].result.numImported() == 1) && (res[1].result.imports().size() == 1)) {
+    } else if ((res.size() == 2) && (res[1].protocol == GpgME::OpenPGP) && isImportOfASingleKey(res[1].result)) {
         return res[1].result.imports()[0];
     }
+    qCDebug(KLEOPATRA_LOG) << __func__ << "returns null because no import result is import of a single OpenPGP key";
     return nullImport;
 }
 
@@ -820,11 +846,12 @@ static ImportedGroup storeGroup(const KeyGroup &group, const QString &id, QWidge
     if (std::ranges::any_of(group.keys(), [](const auto &key) {
             return !Kleo::keyHasEncrypt(key);
         })) {
-        KMessageBox::information(parent,
-                                 xi18nc("@info",
-                                        "<para>The imported group</para><para><emphasis>%1</emphasis></para><para>contains certificates that cannot be used for encryption. "
-                                        "This may lead to unexpected results.</para>",
-                                        group.name()));
+        KMessageBox::information(
+            parent,
+            xi18nc("@info",
+                   "<para>The imported group</para><para><emphasis>%1</emphasis></para><para>contains certificates that cannot be used for encryption. "
+                   "This may lead to unexpected results.</para>",
+                   group.name()));
     }
     const auto status = KeyCache::instance()->group(group.id()).isNull() ? ImportedGroup::Status::New : ImportedGroup::Status::Updated;
     if (status == ImportedGroup::Status::New) {
