@@ -11,6 +11,8 @@
 
 #include "settings.h"
 
+#include <Libkleo/GnuPG>
+
 #include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
@@ -234,8 +236,17 @@ void DebugDialog::Private::runCommand()
         outputEdit->setText(process->errorString());
     });
     outputEdit->clear();
+    QString program = parts.front();
+    if (!QFileInfo{program}.isAbsolute() && !program.contains(u'/') && !program.contains(u'\\')) {
+        // the program is given neither with an absolute path nor with a relative path; try to find it next to the GnuPG programs or next to kleopatra
+        if (const QString executablePath = QStandardPaths::findExecutable(program, {Kleo::gnupgInstallPath(), QCoreApplication::applicationDirPath()});
+            !executablePath.isEmpty()) {
+            program = executablePath;
+        }
+    }
     process->setStandardInputFile(QProcess::nullDevice());
-    process->start(parts[0], parts.mid(1));
+    qCDebug(KLEOPATRA_LOG) << "Starting program" << program << "...";
+    process->start(program, parts.mid(1));
 }
 
 DebugDialog::~DebugDialog() = default;
