@@ -48,15 +48,30 @@ namespace
 static KColorScheme::BackgroundRole colorForVisualCode(Task::Result::VisualCode code)
 {
     switch (code) {
-    case Task::Result::AllGood:
+    case Task::Result::VisualCode::AllGood:
         return KColorScheme::PositiveBackground;
-    case Task::Result::Warning:
+    case Task::Result::VisualCode::Neutral:
+    case Task::Result::VisualCode::Warning:
         return KColorScheme::NormalBackground;
-    case Task::Result::Danger:
+    case Task::Result::VisualCode::Danger:
         return KColorScheme::NegativeBackground;
-    default:
-        return KColorScheme::NormalBackground;
     }
+    return KColorScheme::NormalBackground;
+}
+
+static QIcon iconForVisualCode(Task::Result::VisualCode code)
+{
+    switch (code) {
+    case Task::Result::VisualCode::AllGood:
+        return Formatting::successIcon();
+    case Task::Result::VisualCode::Neutral:
+        return Formatting::infoIcon();
+    case Task::Result::VisualCode::Warning:
+        return Formatting::warningIcon();
+    case Task::Result::VisualCode::Danger:
+        return Formatting::errorIcon();
+    }
+    return {};
 }
 
 struct ResultItemData {
@@ -226,15 +241,7 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         auto row = new QHBoxLayout(frame);
 
         auto iconLabel = new QLabel;
-        QIcon icon;
-        if (detail.code == Task::Result::AllGood) {
-            icon = Formatting::successIcon();
-        } else if (detail.code == Task::Result::Warning) {
-            icon = Formatting::warningIcon();
-        } else {
-            icon = Formatting::errorIcon();
-        }
-        iconLabel->setPixmap(icon.pixmap(32, 32));
+        iconLabel->setPixmap(iconForVisualCode(detail.code).pixmap(32, 32));
         row->addWidget(iconLabel, 0);
 
         auto detailsLabel = new HtmlLabel;

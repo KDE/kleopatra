@@ -104,8 +104,9 @@ public:
 
     bool hasError() const;
 
-    enum VisualCode {
+    enum class VisualCode {
         AllGood,
+        Neutral,
         Warning,
         Danger,
     };

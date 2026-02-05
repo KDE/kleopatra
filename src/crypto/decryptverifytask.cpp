@@ -20,12 +20,13 @@
 #include <Libkleo/Classify>
 #include <Libkleo/Compliance>
 #include <Libkleo/Formatting>
+#include <Libkleo/GnuPG>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KleoException>
 #include <Libkleo/Predicates>
 #include <Libkleo/Stl_Util>
+#include <Libkleo/Verification>
 
-#include <Libkleo/GnuPG>
 #include <utils/detail_p.h>
 #include <utils/input.h>
 #include <utils/kleo_assert.h>
@@ -577,10 +578,15 @@ static Task::Result::VisualCode codeForSignature(const Signature &signature)
     if (signature.summary() & Signature::Red) {
         return Task::Result::VisualCode::Danger;
     }
-    if ((signature.summary() & Signature::Valid) || (signature.summary() & Signature::Green)) {
-        return Task::Result::AllGood;
+    if (signature.summary() & Signature::Valid) {
+        // Valid means "All good!", i.e. signature good, signing key validity >= full, and neither signing key nor signature are expired
+        return Task::Result::VisualCode::AllGood;
     }
-    return Task::Result::Warning;
+    if (signature.summary() & Signature::Green) {
+        // Green means "Mostly okay!": signature good, signing key validity >= full, but signing key or signature itself might be expired
+        return Task::Result::VisualCode::Neutral;
+    }
+    return Task::Result::VisualCode::Warning;
 }
 
 QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
