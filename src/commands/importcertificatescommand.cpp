@@ -71,6 +71,7 @@
 using namespace GpgME;
 using namespace Kleo;
 using namespace QGpgME;
+using namespace Qt::Literals;
 
 static void disconnectConnection(const QMetaObject::Connection &connection)
 {
@@ -269,19 +270,31 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
         return false;
     }
 
-    const QStringList suggestions = {
-        i18n("A phone call to the person."),
-        i18n("Using a business card."),
-        i18n("Confirming it on a trusted website."),
-    };
-
+    QString title;
+    QString message;
+    if (key.subkey(0).isGroupOwned()) {
+        message = "<p>"_L1 + i18nc("@info", "You have imported a shared secret key.") + "</p>"_L1 //
+            + "<p>"_L1 + i18nc("@info", "In order to use this shared secret key you should certify it. ") //
+            + i18nc("@info", "Certification means that you check the fingerprint against a trusted source.") + "</p>"_L1 //
+            + "<p>"_L1 + i18n("Do you wish to start this process now?") + "</p>"_L1;
+        title = i18nc("@title", "Certify shared secret key?");
+    } else {
+        const QStringList suggestions = {
+            i18n("A phone call to the person."),
+            i18n("Using a business card."),
+            i18n("Confirming it on a trusted website."),
+        };
+        message = "<p>"_L1 + i18nc("@info", "You have imported a new certificate (public key).") + "</p>"_L1 //
+            + i18n("In order to mark the certificate as valid it needs to be certified.") + "<br>"_L1 //
+            + i18n("Certifying means that you check the Fingerprint.") + "<br>"_L1 //
+            + i18n("Some suggestions to do this are:") //
+            + "<ul>"_L1 + suggestions.join("</ul><ul>"_L1) + "</ul>"_L1 //
+            + i18n("Do you wish to start this process now?");
+        title = i18nc("@title", "Certify new certificate?");
+    }
     auto sel = KMessageBox::questionTwoActions(parentWidgetOrView(),
-                                               i18n("In order to mark the certificate as valid it needs to be certified.") + QStringLiteral("<br>")
-                                                   + i18n("Certifying means that you check the Fingerprint.") + QStringLiteral("<br>")
-                                                   + i18n("Some suggestions to do this are:")
-                                                   + QStringLiteral("<li><ul>%1").arg(suggestions.join(QStringLiteral("</ul><ul>")))
-                                                   + QStringLiteral("</ul></li>") + i18n("Do you wish to start this process now?"),
-                                               i18nc("@title", "You have imported a new certificate (public key)"),
+                                               message,
+                                               title,
                                                KGuiItem(i18nc("@action:button", "Certify")),
                                                KStandardGuiItem::cancel(),
                                                QStringLiteral("CertifyQuestion"));
