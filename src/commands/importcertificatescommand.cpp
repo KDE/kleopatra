@@ -411,7 +411,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
 
     QString title;
     QString message;
-    if (key.subkey(0).isGroupOwned()) {
+    if (key.subkey(0).isGroupOwned() && key.hasSecret()) {
         message = "<p>"_L1 + i18nc("@info", "You have imported a shared secret key.") + "</p>"_L1 //
             + "<p>"_L1 + i18nc("@info", "In order to use this shared secret key you should certify it. ") //
             + i18nc("@info", "Certification means that you check the fingerprint against a trusted source.") + "</p>"_L1 //
