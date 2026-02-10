@@ -121,7 +121,7 @@ std::string OpenPGPCard::getAlgorithmName(const std::string &algorithm, const st
 
 void OpenPGPCard::setSupportedAlgorithms(const std::vector<std::string> &algorithms)
 {
-    const auto &availableAlgos = Kleo::availableAlgorithms();
+    const auto &availableAlgos = Kleo::availableAlgorithms(GpgME::OpenPGP);
     const auto &ignoredAlgos = Kleo::ignoredAlgorithms();
     mAlgorithms.clear();
     Kleo::copy_if(algorithms, std::back_inserter(mAlgorithms), [&availableAlgos](const auto &algo) {

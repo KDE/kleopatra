@@ -135,14 +135,11 @@ static std::vector<AttributeInfo> readAttributeOrder(const KConfigGroup &config)
 
 static QStringList initCompliantAlgorithms()
 {
-    QStringList compliantAlgorithms;
-    for (const auto &algo : DeVSCompliance::compliantAlgorithms()) {
-        // currently only RSA is supported for S/MIME certificates
-        if (algo.starts_with("rsa")) {
-            compliantAlgorithms.push_back(QString::fromStdString(algo));
-        }
-    }
-    return compliantAlgorithms;
+    const auto &compliantAlgorithms = DeVSCompliance::compliantAlgorithms(GpgME::CMS);
+    QStringList result;
+    result.reserve(compliantAlgorithms.size());
+    std::ranges::transform(compliantAlgorithms, std::back_inserter(result), &QString::fromStdString);
+    return result;
 }
 
 namespace

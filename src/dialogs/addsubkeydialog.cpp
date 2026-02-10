@@ -265,7 +265,7 @@ void AddSubkeyDialog::loadAlgorithms()
     if (!DeVSCompliance::isActive()) {
         d->ui.keyAlgoCB->addItem(i18nc("Default Algorithm", "Default"), QLatin1StringView("default"));
     }
-    for (const auto &algorithm : DeVSCompliance::isActive() ? DeVSCompliance::compliantAlgorithms() : availableAlgorithms()) {
+    for (const auto &algorithm : DeVSCompliance::compliantAlgorithms(GpgME::OpenPGP)) {
         d->ui.keyAlgoCB->addItem(Formatting::prettyAlgorithmName(algorithm), QString::fromStdString(algorithm));
     }
     d->ui.keyAlgoCB->setCurrentIndex(0);
