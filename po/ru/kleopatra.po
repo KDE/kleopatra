@@ -15,15 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-06 00:45+0000\n"
-"PO-Revision-Date: 2026-01-28 22:22+0200\n"
-"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
+"POT-Creation-Date: 2026-02-11 00:46+0000\n"
+"PO-Revision-Date: 2026-02-10 20:09+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.12.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -1968,12 +1968,15 @@ msgid ""
 "team key.\n"
 "Alternatively, they can use their personal key for signing."
 msgstr ""
+"Укажите, следует ли также разрешать участникам подписывать данные ключом "
+"командны.\n"
+"В качестве альтернативы они могут использовать для подписи свой личный ключ."
 
 #: src/commands/exportsecretteamkeycommand.cpp:164
 #, kde-format
 msgctxt "@option:check"
 msgid "Allow team members to sign with the team key"
-msgstr ""
+msgstr "Разрешить участникам команды подписывать ключом командны"
 
 #: src/commands/exportsecretteamkeycommand.cpp:170
 #, kde-format
@@ -1982,47 +1985,37 @@ msgid ""
 "Team members will not be able to change the name, email address, or "
 "expiration date of the team key."
 msgstr ""
+"Участники команды не смогут изменять имя, адрес электронной почты или срок "
+"действия ключа команды."
 
 #: src/commands/exportsecretteamkeycommand.cpp:217
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "Backing up secret key..."
+#, kde-format
 msgctxt "@info:status"
 msgid "Saving secret team key..."
-msgstr "Резервное копирование закрытого ключа…"
+msgstr "Сохранение закрытого ключа команды…"
 
 #: src/commands/exportsecretteamkeycommand.cpp:236
-#, fuzzy, kde-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The result of the backup is empty. Maybe you entered an empty or a wrong "
-#| "passphrase."
+#, kde-format
 msgctxt "@info"
 msgid "The result is empty. Maybe you entered an empty or a wrong passphrase."
 msgstr ""
-"Результат резервного копирования пуст. Возможно, был введён пустой или "
-"неверный пароль."
+"Результат выполнения операции пуст. Возможно, был введён пустой или неверный "
+"пароль."
 
 #: src/commands/exportsecretteamkeycommand.cpp:263
-#, fuzzy, kde-kuit-format
-#| msgctxt "@action:button"
-#| msgid "Yes, Save As <filename>%1</filename>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The secret team key was saved to <filename>%1</filename>"
-msgstr "Да, сохранить как <filename>%1</filename>"
+msgstr "Закрытый ключ команды сохранён в файл <filename>%1</filename>"
 
 #: src/commands/exportsecretteamkeycommand.cpp:271
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred during the backup of the secret key:</"
-#| "para><para><message>%1</message></para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>An error occurred during the saving of the secret team key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>При резервном копировании закрытого ключа произошла ошибка:</"
+"<para>При сохранении закрытого ключа команды произошла ошибка:</"
 "para><para><message>%1</message></para>"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:195
@@ -2543,21 +2536,16 @@ msgstr ""
 "p></qt>"
 
 #: src/commands/importcertificatescommand.cpp:536
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
 "para><para>Fingerprint: %1<nl/>User ID: %2</para><para>Are you the only user "
 "of this secret key?</para>"
 msgstr ""
-"<para>Завершён импорт сертификата, имеющего отпечаток</para><para><numid>%1</"
-"numid></para><para>и идентификаторы пользователя <list>%2</list></"
-"para><para>Является ли этот сертификат вашим собственным?</para>"
+"<para>Был импортирован сертификат с закрытым ключом.</para><para>Отпечаток: "
+"%1<nl/>Идентификатор пользователя: %2</para><para>Являетесь ли вы "
+"единственным владельцем этого закрытого ключа?</para>"
 
 #: src/commands/importcertificatescommand.cpp:553
 #, kde-kuit-format
@@ -2566,34 +2554,30 @@ msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:556
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
 "para><para>Fingerprint: %1</para><para>User IDs:<list>%2</list></"
 "para><para>Are you the only user of this secret key?</para>"
 msgstr ""
-"<para>Завершён импорт сертификата, имеющего отпечаток</para><para><numid>%1</"
-"numid></para><para>и идентификаторы пользователя <list>%2</list></"
-"para><para>Является ли этот сертификат вашим собственным?</para>"
+"<para>Импортирован сертификат с закрытым ключом.</para><para>Отпечаток: %1</"
+"para><para>Идентификаторы пользователей:<list>%2</list></"
+"para><para>Являетесь ли вы единственным владельцем этого закрытого ключа?</"
+"para>"
 
 #: src/commands/importcertificatescommand.cpp:570
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
-msgstr ""
+msgstr "Да, я единственный владелец"
 
 #: src/commands/importcertificatescommand.cpp:571
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
-msgstr ""
+msgstr "Нет, ключ также используют другие"
 
 #: src/commands/importcertificatescommand.cpp:730
 #, kde-kuit-format
@@ -3910,11 +3894,10 @@ msgid "GnuPG System"
 msgstr "Система GnuPG"
 
 #: src/conf/configuredialog.cpp:76
-#, fuzzy, kde-format
-#| msgid "&Settings"
+#, kde-format
 msgctxt "@label"
 msgid "Settings"
-msgstr "&Настройка"
+msgstr "Параметры"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:56
 #, kde-format
@@ -3973,8 +3956,7 @@ msgstr ""
 "каталога временных файлов."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
-#, fuzzy, kde-format
-#| msgid "Encryption Options"
+#, kde-format
 msgctxt "@title"
 msgid "Encryption Settings"
 msgstr "Параметры шифрования"
@@ -4004,12 +3986,10 @@ msgid "Set this option to disable password-based encryption."
 msgstr "Используйте этот параметр для отключения шифрования на основе пароля."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+#, kde-format
 msgctxt "@option:check"
 msgid "Remember settings from last sign / encrypt operation"
-msgstr "Название подписанного и зашифрованного OpenPGP файла"
+msgstr "Использовать параметры последней операции подписания или шифрования"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:101
 #, kde-format
@@ -4052,15 +4032,11 @@ msgid ""
 "Enter the address of the keyserver to use when searching for OpenPGP "
 "certificates and when uploading OpenPGP certificates."
 msgstr ""
+"Введите адрес сервера ключей для использования при поиске и загрузке "
+"сертификатов OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:192
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Enter the address of the keyserver to use when searching for OpenPGP "
-#| "certificates and when uploading OpenPGP certificates. If you do not enter "
-#| "an address then an internal default will be used. To disable the use of "
-#| "an OpenPGP keyserver enter the special value <emphasis>none</emphasis>."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Enter the address of the keyserver to use when searching for OpenPGP "
@@ -4069,9 +4045,7 @@ msgid ""
 msgstr ""
 "Введите адрес сервера ключей, который следует использовать при поиске "
 "сертификатов OpenPGP, а также при их отправке. Если оставить поле пустым, "
-"будет использоваться внутреннее значение по умолчанию. Чтобы отключить "
-"использование сервера ключей OpenPGP, введите специальное значение "
-"<emphasis>none</emphasis>."
+"будет использоваться внутреннее значение по умолчанию."
 
 #: src/conf/dirservconfigpage.cpp:215
 #, kde-format
@@ -5278,16 +5252,14 @@ msgid "This certificate is revoked"
 msgstr "Сертификат был отозван"
 
 #: src/crypto/gui/certificatelineedit.cpp:671
-#, fuzzy, kde-format
-#| msgid "This certificate is expired"
+#, kde-format
 msgid "This certificate is disabled"
-msgstr "Срок действия этого сертификата истёк"
+msgstr "Сертификат отключён"
 
 #: src/crypto/gui/certificatelineedit.cpp:673
-#, fuzzy, kde-format
-#| msgid "This certificate is expired"
+#, kde-format
 msgid "This certificate is unusable"
-msgstr "Срок действия этого сертификата истёк"
+msgstr "Сертификат непригоден к использованию"
 
 #: src/crypto/gui/certificatelineedit.cpp:757 src/dialogs/expirydialog.cpp:217
 #: src/view/smartcardwidget.cpp:370
@@ -6742,13 +6714,13 @@ msgctxt "@title:group"
 msgid "Certificate Usage"
 msgstr "Использование сертификата"
 
-#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:449
+#: src/dialogs/addsubkeydialog.cpp:105 src/dialogs/createcsrdialog.cpp:446
 #, kde-format
 msgctxt "@option:check"
 msgid "Signing"
 msgstr "Создание подписи"
 
-#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:452
+#: src/dialogs/addsubkeydialog.cpp:108 src/dialogs/createcsrdialog.cpp:449
 #, kde-format
 msgctxt "@option:check"
 msgid "Encryption"
@@ -6803,7 +6775,7 @@ msgstr ""
 "Введите имя и/или адрес электронной почты, которые будут использованы для "
 "идентификатора пользователя."
 
-#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:600
+#: src/dialogs/adduseriddialog.cpp:131 src/dialogs/createcsrdialog.cpp:597
 #, kde-format
 msgid "Enter a name or an email address."
 msgstr "Введите имя или адрес электронной почты."
@@ -7459,12 +7431,10 @@ msgid "Expired or revoked certificates cannot be certified."
 msgstr "Просроченные или отозванные сертификаты не могут быть заверены"
 
 #: src/dialogs/certifywidget.cpp:796
-#, fuzzy, kde-format
-#| msgctxt "@option:radio"
-#| msgid "I already have a backup of the secret key."
+#, kde-format
 msgctxt "@info"
 msgid "Are you the only user of this secret key?"
-msgstr "Резервная копия закрытого ключа уже имеется"
+msgstr "Вы единственный владелец этого закрытого ключа?"
 
 #: src/dialogs/certifywidget.cpp:811
 #, kde-format
@@ -7538,91 +7508,91 @@ msgstr ""
 "карта: <emphasis>%2</emphasis></para><para>Для продолжения выберите один из "
 "следующих вариантов:</para>"
 
-#: src/dialogs/createcsrdialog.cpp:390
+#: src/dialogs/createcsrdialog.cpp:387
 #, kde-format
 msgid "Enter a name and an email address to use for the certificate."
 msgstr ""
 "Введите имя и адрес электронной почты, которые будут использованы для "
 "сертификата."
 
-#: src/dialogs/createcsrdialog.cpp:391
+#: src/dialogs/createcsrdialog.cpp:388
 #, kde-format
 msgid "Enter a name and/or an email address to use for the certificate."
 msgstr ""
 "Введите имя и/или адрес электронной почты, которые будут использованы для "
 "сертификата."
 
-#: src/dialogs/createcsrdialog.cpp:422
+#: src/dialogs/createcsrdialog.cpp:419
 #, kde-format
 msgid "Advanced options"
 msgstr "Дополнительные параметры"
 
-#: src/dialogs/createcsrdialog.cpp:429
+#: src/dialogs/createcsrdialog.cpp:426
 #, kde-format
 msgctxt "The algorithm and strength of encryption key"
 msgid "Key material"
 msgstr "Материал ключа"
 
-#: src/dialogs/createcsrdialog.cpp:444
+#: src/dialogs/createcsrdialog.cpp:441
 #, kde-format
 msgctxt "@label"
 msgid "Certificate usage"
 msgstr "Использование сертификата"
 
-#: src/dialogs/createcsrdialog.cpp:478
+#: src/dialogs/createcsrdialog.cpp:475
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Additional email addresses"
 msgstr "Дополнительные адреса эл. почты"
 
-#: src/dialogs/createcsrdialog.cpp:480
+#: src/dialogs/createcsrdialog.cpp:477
 #, kde-format
 msgid "Enter email addresses in the correct format, like name@example.com."
 msgstr ""
 "Введите адреса электронной почты в корректном формате. Например: "
 "name@example.com."
 
-#: src/dialogs/createcsrdialog.cpp:488
+#: src/dialogs/createcsrdialog.cpp:485
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Domain names"
 msgstr "Имена сайтов"
 
-#: src/dialogs/createcsrdialog.cpp:490
+#: src/dialogs/createcsrdialog.cpp:487
 #, kde-format
 msgid "Enter domain names in the correct format, like www.example.com."
 msgstr "Введите имена сайтов в корректном формате. Например: www.example.com."
 
-#: src/dialogs/createcsrdialog.cpp:498
+#: src/dialogs/createcsrdialog.cpp:495
 #, kde-format
 msgctxt "@label:textbox"
 msgid "URIs"
 msgstr "URI-адреса"
 
-#: src/dialogs/createcsrdialog.cpp:500
+#: src/dialogs/createcsrdialog.cpp:497
 #, kde-format
 msgid "Enter URIs in the correct format."
 msgstr "Введите URI-адреса в корректном формате."
 
-#: src/dialogs/createcsrdialog.cpp:627
+#: src/dialogs/createcsrdialog.cpp:624
 #, kde-format
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in %1: %2"
 msgstr "Ошибка в %1: %2"
 
-#: src/dialogs/createcsrdialog.cpp:629
+#: src/dialogs/createcsrdialog.cpp:626
 #, kde-format
 msgctxt "@info"
 msgid "Correct the following errors:"
 msgstr "Исправьте следующие ошибки:"
 
-#: src/dialogs/createcsrdialog.cpp:634
+#: src/dialogs/createcsrdialog.cpp:631
 #, kde-kuit-format
 msgctxt "@info Error in Label of input field: Message"
 msgid "Error in <interface>%1</interface>: <message>%2</message>"
 msgstr "Ошибка <interface>%1</interface>: <message>%2</message>"
 
-#: src/dialogs/createcsrdialog.cpp:646
+#: src/dialogs/createcsrdialog.cpp:643
 #, kde-format
 msgctxt "title:window"
 msgid "Create S/MIME Certificate Signing Request"
@@ -9471,7 +9441,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:149
 #, kde-format
 msgid "Allow upload of public keys to keyservers"
-msgstr ""
+msgstr "Разрешить отправку открытых ключей на серверы ключей"
 
 #. i18n: ectx: whatsthis, entry (AllowPublicKeyUpload), group (Export)
 #: src/kcfg/settings.kcfg:150
@@ -9480,6 +9450,8 @@ msgid ""
 "If this option is disabled then Kleopatra only allows the upload of OpenPGP "
 "keys for which the user has the secret key."
 msgstr ""
+"Если эта функция отключена, то Kleopatra разрешает отправку только тех "
+"ключей OpenPGP, для которых у пользователя есть закрытый ключ."
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
 #: src/kcfg/settings.kcfg:156
@@ -9769,11 +9741,10 @@ msgstr "Показать результаты после создания под
 
 #. i18n: ectx: label, entry (RestoreSignEncryptValues), group (General)
 #: src/kcfg/settings.kcfg:268
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "This is the filename of the OpenPGP-signed and encrypted file."
+#, kde-format
 msgid "Use last-used values for the sign/encrypt configuration"
-msgstr "Название подписанного и зашифрованного OpenPGP файла"
+msgstr ""
+"Использовать последние использованные параметры подписания или шифрования"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
 #: src/kcfg/settings.kcfg:274
@@ -9827,7 +9798,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:291
 #, kde-format
 msgid "Custom Welcome text"
-msgstr ""
+msgstr "Собственный текст приветствия"
 
 #. i18n: ectx: whatsthis, entry (WelcomeText), group (Welcome)
 #: src/kcfg/settings.kcfg:292
@@ -9835,6 +9806,8 @@ msgstr ""
 msgid ""
 "This text is shown on the Welcome page replacing most of the standard text."
 msgstr ""
+"Этот текст показывается на странице приветствия, заменяя большую часть "
+"стандартного текста."
 
 #. i18n: ectx: Menu (file)
 #: src/kleopatra.rc:5 src/kwatchgnupg/kwatchgnupgui.rc:4
@@ -12120,17 +12093,18 @@ msgid "Backup Secret Keys..."
 msgstr "Резервное копирование закрытых ключей…"
 
 #: src/view/keylistcontroller.cpp:378
-#, fuzzy, kde-format
-#| msgid "Backup Secret Keys..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Save Secret Team Key..."
-msgstr "Резервное копирование закрытых ключей…"
+msgstr "Сохранить закрытый ключ команды…"
 
 #: src/view/keylistcontroller.cpp:379
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save the selected secret team key to share it with other team members"
 msgstr ""
+"Сохранить выбранный закрытый ключ команды, чтобы поделиться им с другими "
+"участниками"
 
 #: src/view/keylistcontroller.cpp:387
 #, kde-format
