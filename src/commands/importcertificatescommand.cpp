@@ -529,6 +529,10 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
                 qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping key with ultimate ownertrust";
                 continue;
             }
+            if (toTrustOwner.subkey(0).isGroupOwned() && !toTrustOwner.subkey(0).isSecret()) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping secret team key without secret primary key";
+                continue;
+            }
 
             QString message;
             if (toTrustOwner.numUserIDs() == 1) {
