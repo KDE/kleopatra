@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-11 00:46+0000\n"
-"PO-Revision-Date: 2026-02-05 11:08+0400\n"
+"POT-Creation-Date: 2026-02-12 00:44+0000\n"
+"PO-Revision-Date: 2026-02-11 20:50+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -608,7 +608,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "أشهادة '%1' هي شهادتك؟"
 
 #: src/commands/changeownertrustcommand.cpp:102
-#: src/commands/importcertificatescommand.cpp:569
+#: src/commands/importcertificatescommand.cpp:573
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1661,7 +1661,7 @@ msgstr ""
 "التفاصيل.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:173
-#: src/commands/importcertificatescommand.cpp:551
+#: src/commands/importcertificatescommand.cpp:555
 #, kde-format
 msgid " "
 msgstr " "
@@ -2218,8 +2218,8 @@ msgstr[4] "استيراد الشهادات من %1 ملفًّا…"
 msgstr[5] "استيراد الشهادات من %1 ملف…"
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
-#: src/commands/importcertificatescommand.cpp:830
-#: src/commands/importcertificatescommand.cpp:881
+#: src/commands/importcertificatescommand.cpp:834
+#: src/commands/importcertificatescommand.cpp:885
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "فشل استيراد الشّهادة"
@@ -2486,60 +2486,49 @@ msgid ""
 msgstr ""
 "<qt><p>وقع خطأ أثناء محاولة استيراد الشّهادة %1:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:536
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#: src/commands/importcertificatescommand.cpp:540
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
 "para><para>Fingerprint: %1<nl/>User ID: %2</para><para>Are you the only user "
 "of this secret key?</para>"
 msgstr ""
-"<para>لقد استوردت شهادة ببصمة</para><para><numid>%1</numid></"
-"para><para>ومعرّفات مستخدمين<list>%2</list></para><para>هل هذه شهادتك الخاصّة؟"
-"</para>"
+"<para>لقد استوردت شهادة بمفتاح سري.</para><para>البصمة: %1<nl/>معرف "
+"المستخدم: %2</para><para>هل أنت المستخدم الوحيد لهذا المفتاح السري؟</para>"
 
-#: src/commands/importcertificatescommand.cpp:553
+#: src/commands/importcertificatescommand.cpp:557
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:556
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#: src/commands/importcertificatescommand.cpp:560
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
 "para><para>Fingerprint: %1</para><para>User IDs:<list>%2</list></"
 "para><para>Are you the only user of this secret key?</para>"
 msgstr ""
-"<para>لقد استوردت شهادة ببصمة</para><para><numid>%1</numid></"
-"para><para>ومعرّفات مستخدمين<list>%2</list></para><para>هل هذه شهادتك الخاصّة؟"
-"</para>"
+"<para>لقد استوردت شهادة بمفتاح سري.</para><para>البصمة: %1</"
+"para><para>معرفات المستخدمين:<list>%2</list></para><para>هل أنت المستخدم "
+"الوحيد لهذا المفتاح السري؟</para>"
 
-#: src/commands/importcertificatescommand.cpp:570
+#: src/commands/importcertificatescommand.cpp:574
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
 msgstr "نعم، أن المستخدم الوحيد"
 
-#: src/commands/importcertificatescommand.cpp:571
+#: src/commands/importcertificatescommand.cpp:575
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
-msgstr ""
+msgstr "لا، هناك آخرون يستخدمون هذا المفتاح أيضًا"
 
-#: src/commands/importcertificatescommand.cpp:730
+#: src/commands/importcertificatescommand.cpp:734
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2551,7 +2540,7 @@ msgstr ""
 "para><para>تحتوي على شهادات لا يمكن استعمالها في التعمية. قد يقود هذا إلى "
 "نتائج غير متوقّعة.</para>"
 
-#: src/commands/importcertificatescommand.cpp:794
+#: src/commands/importcertificatescommand.cpp:798
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
@@ -2562,8 +2551,8 @@ msgstr[3] "جلب %1 مفاتيح توقيع… (قد يستغرق هذا بعض
 msgstr[4] "جلب %1 مفتاح توقيع… (قد يستغرق هذا بعض الوقت)"
 msgstr[5] "جلب %1 مفتاح توقيع… (قد يستغرق هذا بعض الوقت)"
 
-#: src/commands/importcertificatescommand.cpp:829
-#: src/commands/importcertificatescommand.cpp:880
+#: src/commands/importcertificatescommand.cpp:833
+#: src/commands/importcertificatescommand.cpp:884
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
