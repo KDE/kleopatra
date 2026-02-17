@@ -55,7 +55,4 @@ private:
     Q_PRIVATE_SLOT(d, void slotContextMenuRequested(QAbstractItemView *, QPoint))
     Q_PRIVATE_SLOT(d, void slotFocusQuickSearch())
     Q_PRIVATE_SLOT(d, void showPadView())
-
-    void connectColumnVisibility();
-    void setupColumnVisibility();
 };

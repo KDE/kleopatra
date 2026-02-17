@@ -364,6 +364,17 @@ private:
         }
     }
 
+    void updateColumnMenus()
+    {
+        auto treeView = dynamic_cast<TreeView *>(ui.searchTab->tabWidget()->currentView());
+        if (!treeView) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "treeView is NULL";
+            return;
+        }
+        ui.columnsVisibilityMenuAction->setMenu(treeView->columnVisibilityMenu());
+        ui.columnsSortingMenuAction->setMenu(treeView->columnSortingMenu());
+    }
+
 private:
     ApplicationPaletteWatcher appPaletteWatcher;
     Kleo::KeyListController controller;
@@ -372,13 +383,9 @@ private:
         CertificateView *searchTab = nullptr;
         WelcomeWidget *welcomeWidget = nullptr;
         QStackedWidget *stackWidget = nullptr;
-        KActionMenu *columnsMenu = nullptr;
-        KActionMenu *columnsSortMenu = nullptr;
-        QList<QAction *> actions;
-        QActionGroup *sortColumnActions = nullptr;
-        QActionGroup *sortOrderActions = nullptr;
+        KActionMenu *columnsVisibilityMenuAction = nullptr;
+        KActionMenu *columnsSortingMenuAction = nullptr;
 
-        TreeView *previousTreeView = nullptr;
         explicit UI(MainWindow *q);
     } ui;
     QAction *focusToClickSearchAction = nullptr;
@@ -664,21 +671,25 @@ void MainWindow::Private::setupActions()
     clipboadMenu->clipboardMenu()->setPopupMode(QToolButton::InstantPopup);
     coll->addAction(QStringLiteral("clipboard_menu"), clipboadMenu->clipboardMenu());
 
-    ui.columnsMenu = new KActionMenu(i18nc("@action:inmenu", "Configure visible columns"), q);
-    ui.columnsMenu->setPopupMode(QToolButton::InstantPopup);
-    ui.columnsMenu->setIcon(QIcon::fromTheme(u"show_table_column"_s));
-    coll->addAction(QStringLiteral("columns_menu"), ui.columnsMenu);
-    ui.sortColumnActions = new QActionGroup(q);
-    ui.sortOrderActions = new QActionGroup(q);
+    ui.columnsVisibilityMenuAction = new KActionMenu(i18nc("@action:inmenu", "Configure columns"), q);
+    ui.columnsVisibilityMenuAction->setPopupMode(QToolButton::InstantPopup);
+    ui.columnsVisibilityMenuAction->setIcon(QIcon::fromTheme(u"show_table_column"_s));
+    coll->addAction(QStringLiteral("columns_menu"), ui.columnsVisibilityMenuAction);
 
-    ui.columnsSortMenu = new KActionMenu(i18nc("@action:inmenu", "Configure table sort order"), q);
-    coll->addAction(QStringLiteral("columns_sort_menu"), ui.columnsSortMenu);
+    ui.columnsSortingMenuAction = new KActionMenu(i18nc("@action:inmenu", "Configure sorting"), q);
+    coll->addAction(QStringLiteral("columns_sort_menu"), ui.columnsSortingMenuAction);
 
-    connect(ui.searchTab->tabWidget(),
-            &TabWidget::viewAdded,
-            q,
-            &MainWindow::setupColumnVisibility,
-            (Qt::ConnectionType)(Qt::SingleShotConnection | Qt::QueuedConnection));
+    connect(
+        ui.searchTab->tabWidget(),
+        &TabWidget::viewAdded,
+        q,
+        [this]() {
+            connect(ui.searchTab->tabWidget(), &TabWidget::currentViewChanged, q, [this]() {
+                updateColumnMenus();
+            });
+            updateColumnMenus();
+        },
+        (Qt::ConnectionType)(Qt::SingleShotConnection | Qt::QueuedConnection));
 
     /* Add additional help actions for documentation */
     const auto compendium = new DocAction(QIcon{u":/gpg4win/gpg4win-compact"_s},
@@ -929,96 +940,6 @@ std::unique_ptr<DocAction> MainWindow::createSymmetricGuideAction(QObject *paren
         QStringLiteral("../share/doc/gnupg-vsd"),
         QUrl(),
         parent);
-}
-
-void MainWindow::setupColumnVisibility()
-{
-    const auto model = d->ui.searchTab->tabWidget()->currentView()->model();
-
-    for (auto i = 0; i < model->columnCount(); ++i) {
-        auto action = new QAction(this);
-        action->setText(model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        action->setCheckable(true);
-        d->ui.columnsMenu->addAction(action);
-        d->ui.actions += action;
-
-        auto sortOrderAction = new QAction(this);
-        sortOrderAction->setText(model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        sortOrderAction->setCheckable(true);
-        d->ui.columnsSortMenu->addAction(sortOrderAction);
-        d->ui.sortColumnActions->addAction(sortOrderAction);
-        connect(sortOrderAction, &QAction::triggered, this, [i, this](auto checked) {
-            if (checked) {
-                auto treeView = dynamic_cast<TreeView *>(d->ui.searchTab->tabWidget()->currentView());
-                treeView->header()->setSortIndicator(i, treeView->header()->sortIndicatorOrder());
-            }
-        });
-    }
-
-    d->ui.columnsSortMenu->addSeparator();
-    auto ascendingAction = new QAction(i18nc("@action:inmenu", "Ascending"));
-    ascendingAction->setCheckable(true);
-    d->ui.sortOrderActions->addAction(ascendingAction);
-    d->ui.columnsSortMenu->addAction(ascendingAction);
-    connect(ascendingAction, &QAction::triggered, this, [this](auto checked) {
-        if (checked) {
-            auto treeView = dynamic_cast<TreeView *>(d->ui.searchTab->tabWidget()->currentView());
-            treeView->header()->setSortIndicator(treeView->header()->sortIndicatorSection(), Qt::AscendingOrder);
-        }
-    });
-    auto descendingAction = new QAction(i18nc("@action:inmenu", "Descending"));
-    descendingAction->setCheckable(true);
-    d->ui.columnsSortMenu->addAction(descendingAction);
-    d->ui.sortOrderActions->addAction(descendingAction);
-    connect(descendingAction, &QAction::triggered, this, [this](auto checked) {
-        if (checked) {
-            auto treeView = dynamic_cast<TreeView *>(d->ui.searchTab->tabWidget()->currentView());
-            treeView->header()->setSortIndicator(treeView->header()->sortIndicatorSection(), Qt::DescendingOrder);
-        }
-    });
-
-    connect(d->ui.searchTab->tabWidget(), &TabWidget::currentViewChanged, this, &MainWindow::connectColumnVisibility);
-    connectColumnVisibility();
-}
-
-void MainWindow::connectColumnVisibility()
-{
-    if (d->ui.previousTreeView) {
-        disconnect(d->ui.previousTreeView, &TreeView::columnEnabled, this, nullptr);
-        disconnect(d->ui.previousTreeView, &TreeView::columnDisabled, this, nullptr);
-        disconnect(d->ui.previousTreeView->header(), &QHeaderView::sectionClicked, this, nullptr);
-    }
-
-    auto treeView = dynamic_cast<TreeView *>(d->ui.searchTab->tabWidget()->currentView());
-    const auto model = treeView->model();
-
-    for (auto i = 0; i < model->columnCount(); ++i) {
-        disconnect(d->ui.actions[i], &QAction::triggered, this, nullptr);
-        d->ui.actions[i]->setChecked(!treeView->isColumnHidden(i));
-        connect(d->ui.actions[i], &QAction::triggered, this, [this, i, treeView]() {
-            treeView->setColumnHidden(i, !d->ui.actions[i]->isChecked());
-            d->ui.sortColumnActions->actions()[i]->setVisible(d->ui.actions[i]->isChecked());
-        });
-        d->ui.sortColumnActions->actions()[i]->setVisible(!treeView->isColumnHidden(i));
-    }
-    connect(treeView, &TreeView::columnDisabled, this, [this](const auto index) {
-        d->ui.actions[index]->setChecked(false);
-        d->ui.sortColumnActions->actions()[index]->setVisible(false);
-    });
-    connect(treeView, &TreeView::columnEnabled, this, [this](const auto index) {
-        d->ui.actions[index]->setChecked(true);
-        d->ui.sortColumnActions->actions()[index]->setVisible(true);
-    });
-
-    connect(treeView->header(), &QHeaderView::sectionClicked, this, [this, treeView](auto index) {
-        d->ui.sortColumnActions->actions()[index]->setChecked(true);
-        d->ui.sortOrderActions->actions()[treeView->header()->sortIndicatorOrder()]->setChecked(true);
-    });
-
-    d->ui.sortColumnActions->actions()[treeView->header()->sortIndicatorSection()]->setChecked(true);
-    d->ui.sortOrderActions->actions()[treeView->header()->sortIndicatorOrder()]->setChecked(true);
-
-    d->ui.previousTreeView = treeView;
 }
 
 #include "mainwindow.moc"
