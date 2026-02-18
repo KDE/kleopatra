@@ -38,7 +38,10 @@
 
 #include "kleopatra_debug.h"
 
+#include <utils/qt6compat.h>
+
 using namespace Kleo;
+using namespace Qt::Literals;
 
 Q_DECLARE_METATYPE(GpgME::UserID)
 
@@ -306,6 +309,10 @@ public:
         } else if (!signature.isNull()) {
             addActionsForSignature(menu);
         }
+        menu->addSeparator();
+        auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+        columnVisibilityAction->setMenu(certificationsTV->columnVisibilityMenu());
+        menu->addAction(columnVisibilityAction);
         connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
         menu->popup(certificationsTV->viewport()->mapToGlobal(p));
     }
