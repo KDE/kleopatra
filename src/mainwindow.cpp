@@ -677,6 +677,8 @@ void MainWindow::Private::setupActions()
     coll->addAction(QStringLiteral("columns_menu"), ui.columnsVisibilityMenuAction);
 
     ui.columnsSortingMenuAction = new KActionMenu(i18nc("@action:inmenu", "Configure sorting"), q);
+    ui.columnsSortingMenuAction->setPopupMode(QToolButton::InstantPopup);
+    ui.columnsSortingMenuAction->setIcon(QIcon::fromTheme(u"view-sort"_s));
     coll->addAction(QStringLiteral("columns_sort_menu"), ui.columnsSortingMenuAction);
 
     connect(
