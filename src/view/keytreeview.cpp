@@ -47,10 +47,13 @@
 #include <KStandardAction>
 #include <qnamespace.h>
 
+#include <utils/qt6compat.h>
+
 static int tagsColumn;
 
 using namespace Kleo;
 using namespace GpgME;
+using namespace Qt::StringLiterals;
 
 Q_DECLARE_METATYPE(GpgME::Key)
 
@@ -250,6 +253,13 @@ void KeyTreeView::init()
                     QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
                 },
                 this));
+            menu->addSeparator();
+            auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+            columnVisibilityAction->setMenu(m_view->columnVisibilityMenu());
+            menu->addAction(columnVisibilityAction);
+            auto columnSortingAction = new QAction(QIcon::fromTheme(u"view-sort"_s), i18nc("@action:inmenu", "Configure sorting"), menu);
+            columnSortingAction->setMenu(m_view->columnSortingMenu());
+            menu->addAction(columnSortingAction);
             menu->popup(m_view->viewport()->mapToGlobal(pos));
         });
     }
