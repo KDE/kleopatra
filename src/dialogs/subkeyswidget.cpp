@@ -56,6 +56,7 @@ Q_DECLARE_METATYPE(GpgME::Subkey)
 
 using namespace Kleo;
 using namespace Kleo::Commands;
+using namespace Qt::StringLiterals;
 
 static QPushButton *addActionButton(QLayout *buttonBox, QAction *action, bool bindVisibility = true)
 {
@@ -316,6 +317,11 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         });
         action->setEnabled(secretSubkeyStoredInKeyRing);
     }
+
+    menu->addSeparator();
+    auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+    columnVisibilityAction->setMenu(ui.subkeysTree->columnVisibilityMenu());
+    menu->addAction(columnVisibilityAction);
 
     menu->popup(ui.subkeysTree->viewport()->mapToGlobal(p));
 }

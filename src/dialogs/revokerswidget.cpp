@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 using namespace Kleo;
+using namespace Qt::StringLiterals;
 
 class RevokersWidget::Private
 {
@@ -86,6 +87,10 @@ public:
                         QGuiApplication::clipboard()->setText(revokersTree->currentIndex().data(Kleo::ClipboardRole).toString());
                     },
                     widget));
+                menu->addSeparator();
+                auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+                columnVisibilityAction->setMenu(revokersTree->columnVisibilityMenu());
+                menu->addAction(columnVisibilityAction);
                 menu->popup(widget->mapToGlobal(pos));
             });
         }
