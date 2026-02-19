@@ -451,6 +451,10 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
         for (auto action : actionsForCardSlot(mCard->appType())) {
             menu->addAction(updateAction(SmartCardActions::createProxyAction(action, menu), item, mCard.get()));
         }
+        menu->addSeparator();
+        auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+        columnVisibilityAction->setMenu(mTreeWidget->columnVisibilityMenu());
+        menu->addAction(columnVisibilityAction);
         menu->popup(mTreeWidget->viewport()->mapToGlobal(pos));
     });
     if (auto action = SmartCardActions::instance()->action(u"card_slot_show_certificate_details"_s)) {

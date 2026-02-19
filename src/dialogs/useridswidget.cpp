@@ -43,7 +43,10 @@
 
 #include "kleopatra_debug.h"
 
+#include <utils/qt6compat.h>
+
 using namespace Kleo;
+using namespace Qt::StringLiterals;
 
 Q_DECLARE_METATYPE(GpgME::UserID)
 
@@ -529,6 +532,10 @@ void UserIdsWidget::Private::userIDTableContextMenuRequested(const QPoint &p)
             });
         action->setEnabled(!singleUserID.isNull() && canCreateCertifications(key) && canRevokeUserID(singleUserID));
     }
+    menu->addSeparator();
+    auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+    columnVisibilityAction->setMenu(userIDTable->columnVisibilityMenu());
+    menu->addAction(columnVisibilityAction);
     connect(menu, &QMenu::aboutToHide, menu, &QObject::deleteLater);
     menu->popup(userIDTable->viewport()->mapToGlobal(p));
 }

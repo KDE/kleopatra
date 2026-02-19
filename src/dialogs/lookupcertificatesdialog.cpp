@@ -273,6 +273,10 @@ private:
                         dialog->d->copySelectedValue();
                     },
                     dialog));
+                menu->addSeparator();
+                auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
+                columnVisibilityAction->setMenu(resultTV->columnVisibilityMenu());
+                menu->addAction(columnVisibilityAction);
                 menu->popup(resultTV->mapToGlobal(pos));
             });
         }
