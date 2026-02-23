@@ -59,16 +59,16 @@ static QString usageText(KeyUsage usage)
 
 void Kleo::saveCSR(const QByteArray &request, const KeyParameters &keyParameters, QWidget *parent)
 {
-    const QString proposedFilename =
-        u"request_%1_%2_%3.p10"_s.arg(usageText(keyParameters.keyUsage()), keyParameters.emails().front(), QDate::currentDate().toString(Qt::ISODate));
+    const bool saveAsPEM = request.startsWith("-----BEGIN CERTIFICATE REQUEST-----");
+    const QString proposedFilename = u"request_%1_%2_%3.%4"_s.arg(usageText(keyParameters.keyUsage()),
+                                                                  keyParameters.emails().front(),
+                                                                  QDate::currentDate().toString(Qt::ISODate),
+                                                                  saveAsPEM ? u"pem"_s : u"p10"_s);
 
     SaveToFileResult result;
     while (result.filename.isEmpty()) {
-        const QString filePath = FileDialog::getSaveFileNameEx(parent,
-                                                               i18nc("@title", "Save Request"),
-                                                               QStringLiteral("save_csr"),
-                                                               proposedFilename,
-                                                               i18n("PKCS#10 Requests (*.p10)"));
+        const QString filters = saveAsPEM ? (i18n("PEM Certificate Requests") + QLatin1String(" (*.pem)")) : i18n("PKCS#10 Requests (*.p10)");
+        const QString filePath = FileDialog::getSaveFileNameEx(parent, i18nc("@title", "Save Request"), QStringLiteral("save_csr"), proposedFilename, filters);
         if (filePath.isEmpty()) {
             // user canceled the dialog
             return;
