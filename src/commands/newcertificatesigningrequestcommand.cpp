@@ -115,7 +115,7 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
         finished();
         return;
     }
-    QGpgME::Job::context(keyGenJob)->setArmor(true);
+    QGpgME::Job::context(keyGenJob)->setArmor(Settings{}.saveCSRAsPEM());
 
     auto settings = KleopatraApplication::instance()->distributionSettings();
     if (settings) {
