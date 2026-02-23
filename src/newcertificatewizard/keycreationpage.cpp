@@ -19,6 +19,8 @@
 
 #include "utils/keyparameters.h"
 
+#include <settings.h>
+
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyCache>
 #include <Libkleo/KeyUsage>
@@ -81,6 +83,7 @@ void KeyCreationPage::startJob()
     if (!j) {
         return;
     }
+    QGpgME::Job::context(j)->setArmor(Settings{}.saveCSRAsPEM());
     connect(j, &QGpgME::KeyGenerationJob::result, this, &KeyCreationPage::slotResult);
     if (const Error err = j->start(createGnupgKeyParms()))
         setField(QStringLiteral("error"), i18n("Could not start key pair creation: %1", Formatting::errorAsString(err)));
