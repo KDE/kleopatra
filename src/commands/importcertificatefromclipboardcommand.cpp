@@ -92,43 +92,22 @@ ImportCertificateFromClipboardCommand::~ImportCertificateFromClipboardCommand()
 
 void ImportCertificateFromClipboardCommand::doStart()
 {
-    // Don't remove this dialog, it's required to query the clipboard on wayland
-    auto dialog = new KMessageDialog(KMessageDialog::Information, i18nc("@info", "Importing certificate from clipboard…"), nullptr);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    auto onClipboardAvailable = [this, dialog]() {
-        dialog->close();
-        d->input = qApp->clipboard()->text().toUtf8();
-        d->setWaitForMoreJobs(true);
-        const unsigned int classification = classifyContent(d->input);
-        if (d->input.isEmpty()) {
-            d->error(i18nc("@info", "The clipboard is empty. Nothing imported."));
-        } else if (!mayBeAnyCertStoreType(classification)) {
-            d->error(i18nc("@info", "Clipboard contents do not look like a certificate. Nothing imported."));
-        } else {
-            const GpgME::Protocol protocol = findProtocol(classification);
-            if (protocol == GpgME::UnknownProtocol) {
-                d->error(i18nc("@info", "Could not determine certificate type of clipboard contents. Nothing imported."));
-            } else {
-                d->startImport(protocol, d->input, i18n("Clipboard"));
-            }
-        }
-        d->setWaitForMoreJobs(false);
-    };
-
-    if (qApp->platformName() != "wayland"_L1) {
-        onClipboardAvailable();
+    d->input = qApp->clipboard()->text().toUtf8();
+    d->setWaitForMoreJobs(true);
+    const unsigned int classification = classifyContent(d->input);
+    if (d->input.isEmpty()) {
+        d->error(i18nc("@info", "The clipboard is empty. Nothing imported."));
+    } else if (!mayBeAnyCertStoreType(classification)) {
+        d->error(i18nc("@info", "Clipboard contents do not look like a certificate. Nothing imported."));
     } else {
-        dialog->show();
-        // On wayland, the clipboard is not available immediately, but QClipboard::dataChanged is always triggered once we can access it.
-        connect(
-            qApp->clipboard(),
-            &QClipboard::dataChanged,
-            this,
-            [onClipboardAvailable]() {
-                onClipboardAvailable();
-            },
-            Qt::SingleShotConnection);
+        const GpgME::Protocol protocol = findProtocol(classification);
+        if (protocol == GpgME::UnknownProtocol) {
+            d->error(i18nc("@info", "Could not determine certificate type of clipboard contents. Nothing imported."));
+        } else {
+            d->startImport(protocol, d->input, i18n("Clipboard"));
+        }
     }
+    d->setWaitForMoreJobs(false);
 }
 
 #undef d

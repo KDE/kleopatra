@@ -191,27 +191,12 @@ SignEncryptClipboardDialog::SignEncryptClipboardDialog(Kleo::Commands::SignEncry
         }
     });
 
-    auto onClipboardAvailable = [this]() {
-        const auto mimeData = qApp->clipboard()->mimeData();
-        if (!mimeData->hasFormat("text/plain"_L1)) {
-            KMessageBox::information(this, i18nc("@info", "The clipboard does not contain text."));
-            QMetaObject::invokeMethod(this, &QDialog::reject, Qt::QueuedConnection);
-        } else {
-            m_input = Input::createFromClipboard();
-        }
-    };
-
-    if (qApp->platformName() != "wayland"_L1) {
-        onClipboardAvailable();
+    const auto mimeData = qApp->clipboard()->mimeData();
+    if (!mimeData->hasFormat("text/plain"_L1)) {
+        KMessageBox::information(this, i18nc("@info", "The clipboard does not contain text."));
+        QMetaObject::invokeMethod(this, &QDialog::reject, Qt::QueuedConnection);
     } else {
-        connect(
-            qApp->clipboard(),
-            &QClipboard::dataChanged,
-            this,
-            [onClipboardAvailable]() {
-                onClipboardAvailable();
-            },
-            Qt::SingleShotConnection);
+        m_input = Input::createFromClipboard();
     }
 
     updateButtons();
