@@ -24,6 +24,8 @@
 #include <utils/csrutils.h>
 #include <utils/keyparameters.h>
 
+#include <settings.h>
+
 #include <Libkleo/Formatting>
 #include <Libkleo/KeyUsage>
 
@@ -163,8 +165,7 @@ void CreateCSRForCardKeyCommand::Private::slotDialogAccepted()
         finished();
         return;
     }
-
-    Job::context(job)->setArmor(true);
+    Job::context(job)->setArmor(Settings{}.saveCSRAsPEM());
 
     connect(job, &KeyGenerationJob::result, q, [this](const GpgME::KeyGenerationResult &result, const QByteArray &pubKeyData) {
         slotResult(result, pubKeyData);
