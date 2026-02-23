@@ -203,14 +203,18 @@ Key ResultPage::key() const
 
 void ResultPage::slotSaveRequestToFile()
 {
-    QString fileName = FileDialog::getSaveFileName(this, i18nc("@title", "Save Request"), QStringLiteral("imp"), i18n("PKCS#10 Requests (*.p10)"));
+    const QString tempFileName = QUrl(url()).toLocalFile();
+    const bool saveAsPEM = tempFileName.endsWith(QLatin1String(".pem"));
+    const QString filters = saveAsPEM ? (i18n("S/MIME Certificates") + QLatin1String(" (*.pem)")) : i18n("PKCS#10 Requests (*.p10)");
+    QString fileName = FileDialog::getSaveFileName(this, i18nc("@title", "Save Request"), QStringLiteral("imp"), filters);
     if (fileName.isEmpty()) {
         return;
     }
-    if (!fileName.endsWith(QLatin1String(".p10"), Qt::CaseInsensitive)) {
-        fileName += QLatin1String(".p10");
+    const QString suffix = saveAsPEM ? QStringLiteral(".pem") : QStringLiteral(".p10");
+    if (!fileName.endsWith(suffix, Qt::CaseInsensitive)) {
+        fileName += suffix;
     }
-    QFile src(QUrl(url()).toLocalFile());
+    QFile src(tempFileName);
     if (!src.copy(fileName))
         KMessageBox::error(this,
                            xi18nc("@info",

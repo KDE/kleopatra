@@ -143,7 +143,9 @@ void KeyCreationPage::slotResult(const GpgME::KeyGenerationResult &result, const
         setField(QStringLiteral("url"), QString());
         setField(QStringLiteral("result"), QString());
     } else {
-        QFile file(tmpDir().absoluteFilePath(QStringLiteral("request.p10")));
+        const bool saveAsPEM = request.startsWith("-----BEGIN CERTIFICATE REQUEST-----");
+        const QString filename = saveAsPEM ? QStringLiteral("request.pem") : QStringLiteral("request.p10");
+        QFile file(tmpDir().absoluteFilePath(filename));
 
         if (!file.open(QIODevice::WriteOnly)) {
             setField(QStringLiteral("error"), i18n("Could not write output file %1: %2", file.fileName(), file.errorString()));

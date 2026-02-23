@@ -243,14 +243,17 @@ SaveToFileResult saveRequestToFile(const QString &filename, const QByteArray &re
 
 QUrl CreateCSRForCardKeyCommand::Private::saveRequest(const QByteArray &request)
 {
-    const QString proposedFilename = QLatin1String("request_%1.p10").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")));
+    const bool saveAsPEM = request.startsWith("-----BEGIN CERTIFICATE REQUEST-----");
+    const QString suffix = saveAsPEM ? QStringLiteral("pem") : QStringLiteral("p10");
+    const QString proposedFilename = QLatin1String("request_%1.%2").arg(QDateTime::currentDateTime().toString(QStringLiteral("yyyy-MM-dd_HHmmss")), suffix);
 
     while (true) {
+        const QString filters = saveAsPEM ? (i18n("S/MIME Certificates") + QLatin1String(" (*.pem)")) : i18n("PKCS#10 Requests (*.p10)");
         const QString filePath = FileDialog::getSaveFileNameEx(parentWidgetOrView(),
                                                                i18nc("@title", "Save Request"),
                                                                QStringLiteral("save_csr"),
                                                                proposedFilename,
-                                                               i18n("PKCS#10 Requests (*.p10)"));
+                                                               filters);
         if (filePath.isEmpty()) {
             // user canceled the dialog
             return QUrl();
