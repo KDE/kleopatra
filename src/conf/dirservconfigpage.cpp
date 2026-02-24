@@ -16,6 +16,7 @@
 
 #include <settings.h>
 
+#include <Libkleo/Algorithm>
 #include <Libkleo/Compat>
 #include <Libkleo/DirectoryServicesWidget>
 #include <Libkleo/GnuPG>
@@ -291,8 +292,14 @@ static auto readKeyserverConfigs(const CryptoConfigEntry *configEntry)
     std::vector<KeyserverConfig> servers;
     if (configEntry) {
         const auto urls = configEntry->urlValueList();
+        std::vector<KeyserverConfig> tempServers;
+        tempServers.reserve(urls.size());
+        std::ranges::transform(urls, std::back_inserter(tempServers), &KeyserverConfig::fromUrl);
         servers.reserve(urls.size());
-        std::transform(std::begin(urls), std::end(urls), std::back_inserter(servers), &KeyserverConfig::fromUrl);
+        // ignore duplicate server entries (workaround for T7828)
+        std::ranges::copy_if(tempServers, std::back_inserter(servers), [&serversRef = std::as_const(servers)](const auto &server) {
+            return !Kleo::contains(serversRef, server);
+        });
     }
     return servers;
 }
@@ -312,7 +319,10 @@ void DirectoryServicesConfigurationPage::Private::load(const Kleo::Settings &set
         if (entry) {
             const auto additionalServers = readKeyserverConfigs(legacyEntry);
             auto servers = readKeyserverConfigs(newEntry);
-            std::copy(std::begin(additionalServers), std::end(additionalServers), std::back_inserter(servers));
+            // ignore duplicate server entries (workaround for T7828)
+            std::ranges::copy_if(additionalServers, std::back_inserter(servers), [&serversRef = std::as_const(servers)](const auto &server) {
+                return !Kleo::contains(serversRef, server);
+            });
             mDirectoryServices->setKeyservers(servers);
             mDirectoryServices->setReadOnly(entry->isReadOnly());
         } else {
