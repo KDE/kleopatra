@@ -296,6 +296,11 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
         actionLayout->addLayout(buttonLayout);
     }
 
+    d->m_showButton = new QPushButton;
+    d->m_showButton->setVisible(false);
+    connect(d->m_showButton, &QAbstractButton::clicked, this, &ResultItemWidget::showButtonClicked);
+    actionLayout->addWidget(d->m_showButton);
+
     auto detailsLabel = new HtmlLabel;
     detailsLabel->setWordWrap(true);
     detailsLabel->setHtml(d->m_result->details());
@@ -305,11 +310,6 @@ ResultItemWidget::ResultItemWidget(const std::shared_ptr<const Task::Result> &re
         d->slotLinkActivated(link);
     });
     vlay->addWidget(detailsLabel);
-
-    d->m_showButton = new QPushButton;
-    d->m_showButton->setVisible(false);
-    connect(d->m_showButton, &QAbstractButton::clicked, this, &ResultItemWidget::showButtonClicked);
-    actionLayout->addWidget(d->m_showButton);
 
     layout->setStretch(0, 1);
     actionLayout->addStretch(-1);
