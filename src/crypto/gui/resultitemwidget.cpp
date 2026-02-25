@@ -24,7 +24,6 @@
 #include <Libkleo/Formatting>
 #include <Libkleo/SystemInfo>
 
-#include <gpgme++/decryptionresult.h>
 #include <gpgme++/key.h>
 
 #include "kleopatra_debug.h"
@@ -92,8 +91,6 @@ public:
     void updateShowDetailsLabel();
     void updateStyleSheets();
 
-    void addIgnoreMDCButton(QBoxLayout *lay);
-
     void oneImportFinished();
 
     ApplicationPaletteWatcher m_appPaletteWatcher;
@@ -115,38 +112,6 @@ void ResultItemWidget::Private::oneImportFinished()
         m_result->parentTask()->start();
     }
     q->setVisible(false);
-}
-
-void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
-{
-    if (!m_result || !lay) {
-        return;
-    }
-
-    const auto dvResult = dynamic_cast<const DecryptVerifyResult *>(m_result.get());
-    if (!dvResult) {
-        return;
-    }
-    const auto decResult = dvResult->decryptionResult();
-
-    if (decResult.isNull() || !decResult.error() || !decResult.isLegacyCipherNoMDC()) {
-        return;
-    }
-
-    auto btn = new QPushButton(i18nc("@action:button", "Force decryption"));
-    btn->setFixedSize(btn->sizeHint());
-
-    connect(btn, &QPushButton::clicked, q, [this]() {
-        if (m_result->parentTask()) {
-            const auto dvTask = dynamic_cast<DecryptVerifyTask *>(m_result->parentTask().data());
-            dvTask->setIgnoreMDCError(true);
-            dvTask->start();
-            q->setVisible(false);
-        } else {
-            qCWarning(KLEOPATRA_LOG) << "Failed to get parent task";
-        }
-    });
-    lay->addWidget(btn);
 }
 
 void ResultItemWidget::Private::updateShowDetailsLabel()
@@ -227,8 +192,6 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
 
     auto actionLayout = new QVBoxLayout;
     layout->addLayout(actionLayout);
-
-    addIgnoreMDCButton(actionLayout);
 
     {
         // put "Show audit log" button and Close button next to each other

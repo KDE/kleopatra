@@ -318,8 +318,10 @@ public:
                         "likely that the file is legitimate.  This is because back "
                         "then integrity protection was not widely used.")
                 + QStringLiteral("<br/><br/>")
-                + i18nc("The user is offered to force decrypt a non integrity protected message. With the strong advice to re-encrypt it.",
-                        "If you are confident that the file was not manipulated you should re-encrypt it after you have forced the decryption.")
+                + i18nc("@info",
+                        "If you are confident that the file was not manipulated then you can decrypt "
+                        "it with gpg on the command line using the option <tt>--ignore-mdc-error</tt>. "
+                        "After decryption you should re-encrypt the file with your current key.")
                 + QStringLiteral("<br/><br/>");
         }
 
@@ -715,7 +717,6 @@ public:
     std::shared_ptr<Output> m_output;
     const QGpgME::Protocol *m_backend = nullptr;
     Protocol m_protocol = UnknownProtocol;
-    bool m_ignoreMDCError = false;
     bool m_extractArchive = false;
     QString m_inputFilePath;
     QString m_outputFilePath;
@@ -847,11 +848,6 @@ static void ensureIOOpen(QIODevice *input, QIODevice *output)
     }
 }
 
-void DecryptVerifyTask::setIgnoreMDCError(bool value)
-{
-    d->m_ignoreMDCError = value;
-}
-
 void DecryptVerifyTask::setExtractArchive(bool extract)
 {
     d->m_extractArchive = extract;
@@ -887,22 +883,6 @@ void DecryptVerifyTask::doStart()
     }
 }
 
-static void setIgnoreMDCErrorFlag(QGpgME::Job *job, bool ignoreMDCError)
-{
-    if (ignoreMDCError) {
-        qCDebug(KLEOPATRA_LOG) << "Modifying job to ignore MDC errors.";
-        auto ctx = QGpgME::Job::context(job);
-        if (!ctx) {
-            qCWarning(KLEOPATRA_LOG) << "Failed to get context for job";
-        } else {
-            const auto err = ctx->setFlag("ignore-mdc-error", "1");
-            if (err) {
-                qCWarning(KLEOPATRA_LOG) << "Failed to set ignore mdc errors" << Formatting::errorAsString(err);
-            }
-        }
-    }
-}
-
 void DecryptVerifyTask::Private::startDecryptVerifyJob()
 {
     if (!m_outputFilePath.isEmpty() && QFile::exists(m_outputFilePath)) {
@@ -920,7 +900,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyJob()
     try {
         std::unique_ptr<QGpgME::DecryptVerifyJob> job{m_backend->decryptVerifyJob()};
         kleo_assert(job);
-        setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
         QObject::connect(job.get(),
                          &QGpgME::DecryptVerifyJob::result,
                          q,
@@ -952,7 +931,6 @@ void DecryptVerifyTask::Private::startDecryptVerifyArchiveJob()
 {
     std::unique_ptr<QGpgME::DecryptVerifyArchiveJob> job{m_backend->decryptVerifyArchiveJob()};
     kleo_assert(job);
-    setIgnoreMDCErrorFlag(job.get(), m_ignoreMDCError);
     connect(job.get(),
             &QGpgME::DecryptVerifyArchiveJob::result,
             q,

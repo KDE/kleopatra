@@ -209,7 +209,6 @@ public:
 
     GpgME::Protocol protocol() const override;
 
-    void setIgnoreMDCError(bool value);
     void setExtractArchive(bool extract);
     void setInputFile(const QString &path);
     // for files
