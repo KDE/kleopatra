@@ -38,7 +38,6 @@ public:
     void setShowButton(const QString &text, bool show);
 
 Q_SIGNALS:
-    void linkActivated(const QString &link);
     void closeButtonClicked();
     void showButtonClicked();
 

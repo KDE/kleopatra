@@ -67,7 +67,6 @@ NewResultPage::Private::Private(NewResultPage *qq)
     m_progressBar = new QProgressBar;
     layout->addWidget(m_progressBar);
     m_resultList = new ResultListWidget;
-    connect(m_resultList, &ResultListWidget::linkActivated, q, &NewResultPage::linkActivated);
     layout->addWidget(m_resultList, 1);
 
     connect(&m_hideProgressTimer, &QTimer::timeout, m_progressBar, &QProgressBar::hide);

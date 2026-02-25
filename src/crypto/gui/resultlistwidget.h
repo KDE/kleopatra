@@ -41,7 +41,6 @@ public:
     unsigned int numberOfCompletedTasks() const;
 
 Q_SIGNALS:
-    void linkActivated(const QString &link);
     void showButtonClicked(const std::shared_ptr<const Task::Result> &result);
     void completeChanged();
 

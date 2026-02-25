@@ -39,9 +39,6 @@ public:
 
     bool isComplete() const override;
 
-Q_SIGNALS:
-    void linkActivated(const QString &link);
-
 private:
     class Private;
     const std::unique_ptr<Private> d;

@@ -109,7 +109,6 @@ void ResultListWidget::Private::result(const std::shared_ptr<const Task::Result>
         return !t->isEmpty();
     }));
     auto wid = new ResultItemWidget(result);
-    q->connect(wid, &ResultItemWidget::linkActivated, q, &ResultListWidget::linkActivated);
     q->connect(wid, &ResultItemWidget::closeButtonClicked, q, &ResultListWidget::close);
 
     const auto viewableContentType = result->viewableContentType();
