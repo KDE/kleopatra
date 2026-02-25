@@ -234,7 +234,6 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         AuditLogViewer::showAuditLog(q->parentWidget(), m_result->auditLog());
     });
     actionLayout->addWidget(m_auditLogButton);
-    m_mainStylesheetWidgets.push_back(m_auditLogButton);
 
     for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
