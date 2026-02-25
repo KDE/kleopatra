@@ -264,28 +264,20 @@ public:
             }
         }
 
-        if (error) {
+        if (error.isCanceled()) {
+            // do nothing
+        } else if (error.code() == GPG_ERR_NO_SECKEY) {
             label += u' ' + Formatting::errorAsString(error) + u'.';
-            if (error.code() == GPG_ERR_NO_SECKEY) {
-                label += "<br />"_L1
-                    + i18nc("@info",
-                            "The data was not encrypted for any "
-                            "secret key in your certificate list.");
-            }
+            label += "<br />"_L1 + i18nc("@info", "The data was not encrypted for any secret key in your certificate list.");
         } else if (m_decryptionResult.isLegacyCipherNoMDC()) {
             label += u' ' + i18n("No integrity protection (MDC).");
         } else if (!m_errorString.isEmpty()) {
-            if (error.code()) {
-                label += u' ' + Formatting::errorAsString(error) + ": "_L1;
-            }
-            label += m_errorString.toHtmlEscaped();
+            label += u' ' + m_errorString.toHtmlEscaped();
+        } else if (error) {
+            label += u' ' + Formatting::errorAsString(error) + u'.';
         }
 
-        if (error) {
-            return label;
-        }
-
-        if (DeVSCompliance::isCompliant()) {
+        if (!error && DeVSCompliance::isCompliant()) {
             label += "<br />"_L1
                 + ((m_decryptionResult.isDeVs()
                         ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
@@ -294,6 +286,20 @@ public:
                         : i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                 "The decryption <b>is not</b> %1.",
                                 DeVSCompliance::name(true))));
+        }
+
+        if (m_decryptionResult.isLegacyCipherNoMDC()) {
+            label += "<br />"_L1
+                + i18nc("Integrity protection was missing because an old cipher was used.",
+                        "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
+                        "likely that the file is legitimate.  This is because back "
+                        "then integrity protection was not widely used.")
+                + QStringLiteral("<br/>")
+                + i18nc("@info",
+                        "If you are confident that the file was not manipulated then you can decrypt "
+                        "it with gpg on the command line using the option <tt>--ignore-mdc-error</tt>. "
+                        "After decryption you should re-encrypt the file with your current key.")
+                + QStringLiteral("<br/>");
         }
 
         if (m_decryptionResult.fileName()) {
@@ -307,22 +313,8 @@ public:
             }
         }
 
-        if (!verify) {
+        if (!m_decryptionResult.error() && !verify) {
             label += "<br/>"_L1 + i18n("<b>Note:</b> You cannot be sure who encrypted this message as it is not signed.");
-        }
-
-        if (m_decryptionResult.isLegacyCipherNoMDC()) {
-            label += "<br />"_L1
-                + i18nc("Integrity protection was missing because an old cipher was used.",
-                        "<b>Hint:</b> If this file was encrypted before the year 2003 it is "
-                        "likely that the file is legitimate.  This is because back "
-                        "then integrity protection was not widely used.")
-                + QStringLiteral("<br/><br/>")
-                + i18nc("@info",
-                        "If you are confident that the file was not manipulated then you can decrypt "
-                        "it with gpg on the command line using the option <tt>--ignore-mdc-error</tt>. "
-                        "After decryption you should re-encrypt the file with your current key.")
-                + QStringLiteral("<br/><br/>");
         }
 
         if (decrypt) {
