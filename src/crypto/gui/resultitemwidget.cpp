@@ -41,6 +41,7 @@
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace Kleo::Crypto::Gui;
+using namespace Qt::StringLiterals;
 
 namespace
 {
@@ -229,11 +230,25 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
 
     addIgnoreMDCButton(actionLayout);
 
-    m_auditLogButton = new QPushButton;
-    connect(m_auditLogButton, &QPushButton::clicked, q, [this]() {
-        AuditLogViewer::showAuditLog(q->parentWidget(), m_result->auditLog());
-    });
-    actionLayout->addWidget(m_auditLogButton);
+    {
+        // put "Show audit log" button and Close button next to each other
+        auto buttonLayout = new QHBoxLayout;
+
+        m_auditLogButton = new QPushButton;
+        connect(m_auditLogButton, &QPushButton::clicked, q, [this]() {
+            AuditLogViewer::showAuditLog(q->parentWidget(), m_result->auditLog());
+        });
+        buttonLayout->addWidget(m_auditLogButton);
+
+        m_closeButton = new QPushButton{QIcon::fromTheme(u"window-close"_s), QString{}};
+        m_closeButton->setAccessibleName(i18nc("@action:button", "Close"));
+        m_closeButton->setToolTip(i18nc("@info:tooltip", "Close message"));
+        m_closeButton->setVisible(false);
+        connect(m_closeButton, &QAbstractButton::clicked, q, &ResultItemWidget::closeButtonClicked);
+        buttonLayout->addWidget(m_closeButton);
+
+        actionLayout->addLayout(buttonLayout);
+    }
 
     for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
@@ -261,14 +276,6 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
     m_showButton->setVisible(false);
     connect(m_showButton, &QAbstractButton::clicked, q, &ResultItemWidget::showButtonClicked);
     actionLayout->addWidget(m_showButton);
-
-    m_closeButton = new QPushButton;
-    KGuiItem::assign(m_closeButton, KStandardGuiItem::close());
-    m_closeButton->setToolTip(i18nc("@info:tooltip", "Close message"));
-    m_closeButton->setFixedSize(m_closeButton->sizeHint());
-    connect(m_closeButton, &QAbstractButton::clicked, q, &ResultItemWidget::closeButtonClicked);
-    actionLayout->addWidget(m_closeButton);
-    m_closeButton->setVisible(false);
 
     layout->setStretch(0, 1);
     actionLayout->addStretch(-1);
