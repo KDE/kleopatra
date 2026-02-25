@@ -250,6 +250,11 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         actionLayout->addLayout(buttonLayout);
     }
 
+    m_showButton = new QPushButton;
+    m_showButton->setVisible(false);
+    connect(m_showButton, &QAbstractButton::clicked, q, &ResultItemWidget::showButtonClicked);
+    actionLayout->addWidget(m_showButton);
+
     for (const auto &detail : m_result.get()->detailsList()) {
         auto frame = new QFrame;
         auto row = new QHBoxLayout(frame);
@@ -271,11 +276,6 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         row->addWidget(detailsLabel, 1);
         vlay->addWidget(frame);
     }
-
-    m_showButton = new QPushButton;
-    m_showButton->setVisible(false);
-    connect(m_showButton, &QAbstractButton::clicked, q, &ResultItemWidget::showButtonClicked);
-    actionLayout->addWidget(m_showButton);
 
     layout->setStretch(0, 1);
     actionLayout->addStretch(-1);
