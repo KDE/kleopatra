@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-25 00:48+0000\n"
+"POT-Creation-Date: 2026-02-26 00:45+0000\n"
 "PO-Revision-Date: 2026-02-19 10:30+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -1044,7 +1044,7 @@ msgstr "falló «gpgconf --reload gpg-agent»: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
-#: src/commands/decryptverifyclipboardcommand.cpp:164
+#: src/commands/decryptverifyclipboardcommand.cpp:158
 #: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
@@ -1194,13 +1194,7 @@ msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr ""
 "Se ha generado correctamente una clave OpenPGP con las claves de la tarjeta."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Decrypting/Verifying clipboard…"
-msgstr "Descifrando/verificando el portapapeles…"
-
-#: src/commands/decryptverifyclipboardcommand.cpp:151
+#: src/commands/decryptverifyclipboardcommand.cpp:145
 #, kde-format
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "Parece que el portapapeles no contiene texto firmado o cifrado."
@@ -2216,19 +2210,13 @@ msgstr "Iniciando %1…"
 msgid "Process finished"
 msgstr "Proceso finalizado"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:96
-#, kde-format
-msgctxt "@info"
-msgid "Importing certificate from clipboard…"
-msgstr "Importando certificado del portapapeles…"
-
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:99
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
 msgstr "El portapapeles está vacío. No se ha importado nada."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:106
+#: src/commands/importcertificatefromclipboardcommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
@@ -2236,7 +2224,7 @@ msgstr ""
 "Parece que el contenido del portapapeles no es un certificado. No se ha "
 "importado nada."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:105
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2245,7 +2233,7 @@ msgstr ""
 "No se ha podido determinar el tipo de certificado del contenido del "
 "portapapeles. No se ha importado nada."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#: src/commands/importcertificatefromclipboardcommand.cpp:107
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
 #, kde-format
 msgid "Clipboard"
@@ -4958,7 +4946,7 @@ msgstr ""
 "Se ha descifrado correctamente <filename>%1</filename> como <filename>%2</"
 "filename>."
 
-#: src/crypto/decryptverifytask.cpp:272
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
@@ -4966,12 +4954,12 @@ msgstr ""
 "Los datos no se han cifrado para ninguna clave secreta de su lista de "
 "certificados."
 
-#: src/crypto/decryptverifytask.cpp:276
+#: src/crypto/decryptverifytask.cpp:273
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Sin protección de identidad (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:284
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4979,7 +4967,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "El descrifrado es %1."
 
-#: src/crypto/decryptverifytask.cpp:295
+#: src/crypto/decryptverifytask.cpp:287
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4987,21 +4975,7 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "El descifrado <b>no es</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:305
-#, kde-format
-msgid "Embedded file name: '%1'"
-msgstr "Nombre de archivo incrustado:  '%1'"
-
-#: src/crypto/decryptverifytask.cpp:311
-#, kde-format
-msgid ""
-"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
-"signed."
-msgstr ""
-"<b>Nota:</b> No puede estar seguro de quién ha cifrado este mensaje, ya que "
-"no está firmado."
-
-#: src/crypto/decryptverifytask.cpp:317
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5013,79 +4987,90 @@ msgstr ""
 "sea ilegítimo. Esto es debido a que la protección de integridad no se usaba "
 "ampliamente."
 
-#: src/crypto/decryptverifytask.cpp:322
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
-msgctxt ""
-"The user is offered to force decrypt a non integrity protected message. With "
-"the strong advice to re-encrypt it."
+msgctxt "@info"
 msgid ""
-"If you are confident that the file was not manipulated you should re-encrypt "
-"it after you have forced the decryption."
+"If you are confident that the file was not manipulated then you can decrypt "
+"it with gpg on the command line using the option <tt>--ignore-mdc-error</"
+"tt>. After decryption you should re-encrypt the file with your current key."
 msgstr ""
-"Si confía en que el archivo no ha sido manipulado, debería volver a cifrarlo "
-"antes de forzar el descifrado."
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:311
+#, kde-format
+msgid "Embedded file name: '%1'"
+msgstr "Nombre de archivo incrustado:  '%1'"
+
+#: src/crypto/decryptverifytask.cpp:317
+#, kde-format
+msgid ""
+"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
+"signed."
+msgstr ""
+"<b>Nota:</b> No puede estar seguro de quién ha cifrado este mensaje, ya que "
+"no está firmado."
+
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "El descifrado del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:541
+#: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "La verificación del bloc de notas ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "El bloc de notas se ha descifrado y verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "El bloc de notas se ha descifrado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:551
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "El bloc de notas se ha verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "El descifrado del portapapeles ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:559
+#: src/crypto/decryptverifytask.cpp:553
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "La verificación del portapapeles ha fallado: %1"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:557
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "El portapapeles se ha descifrado y verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:560
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "El portapapeles se ha descifrado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:569
+#: src/crypto/decryptverifytask.cpp:563
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "El portapapeles se ha verificado con éxito"
 
-#: src/crypto/decryptverifytask.cpp:606
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5095,25 +5080,25 @@ msgstr ""
 "Advertencia: La dirección de correo del remitente no está guardada en el <a "
 "href=\"key:%1\">certificado</a> usado para firmar. Guardado:<ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:746 src/crypto/decryptverifytask.cpp:945
-#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
-#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1335
-#: src/crypto/decryptverifytask.cpp:1410 src/crypto/decryptverifytask.cpp:1536
+#: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:916
+#: src/crypto/decryptverifytask.cpp:993 src/crypto/decryptverifytask.cpp:1094
+#: src/crypto/decryptverifytask.cpp:1146 src/crypto/decryptverifytask.cpp:1305
+#: src/crypto/decryptverifytask.cpp:1380 src/crypto/decryptverifytask.cpp:1506
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Se detectó excepción: %1"
 
-#: src/crypto/decryptverifytask.cpp:749 src/crypto/decryptverifytask.cpp:947
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1337
-#: src/crypto/decryptverifytask.cpp:1412 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:742 src/crypto/decryptverifytask.cpp:918
+#: src/crypto/decryptverifytask.cpp:996 src/crypto/decryptverifytask.cpp:1096
+#: src/crypto/decryptverifytask.cpp:1149 src/crypto/decryptverifytask.cpp:1307
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1508
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Se detectó excepción desconocida"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:796
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5122,12 +5107,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado ni firma?"
 
-#: src/crypto/decryptverifytask.cpp:811
+#: src/crypto/decryptverifytask.cpp:804
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Descifrando %1…"
 
-#: src/crypto/decryptverifytask.cpp:1079
+#: src/crypto/decryptverifytask.cpp:1049
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5136,12 +5121,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es cifrado después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1087
+#: src/crypto/decryptverifytask.cpp:1057
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Descifrando: %1…"
 
-#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1474
+#: src/crypto/decryptverifytask.cpp:1203 src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5150,12 +5135,12 @@ msgstr ""
 "No se ha podido determinar si esto es una firma/cifrado S/MIME u OpenPGP - "
 "¿quizás no es una firma después de todo?"
 
-#: src/crypto/decryptverifytask.cpp:1241
+#: src/crypto/decryptverifytask.cpp:1211
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Verificando %1…"
 
-#: src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1462
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5163,7 +5148,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Verificando <filename>%1</filename> con <filename>%2</filename>…"
 
-#: src/crypto/decryptverifytask.cpp:1496
+#: src/crypto/decryptverifytask.cpp:1466
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Verificando firma %1…"
@@ -5307,29 +5292,29 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "Cifrar texto"
 
-#: src/crypto/gui/newresultpage.cpp:96
+#: src/crypto/gui/newresultpage.cpp:95
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Todas las operaciones terminadas."
 
-#: src/crypto/gui/newresultpage.cpp:98
+#: src/crypto/gui/newresultpage.cpp:97
 #, kde-format
 msgid "All operations completed."
 msgstr "Todas las operaciones terminadas."
 
-#: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultpage.cpp:99
+#: src/crypto/gui/newresultpage.cpp:118 src/crypto/gui/resultpage.cpp:99
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operación %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:101
+#: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:129 src/crypto/gui/resultpage.cpp:109
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>Resultados</b>"
@@ -5406,28 +5391,29 @@ msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
-msgctxt "@action:button"
-msgid "Force decryption"
-msgstr "Forzar descifrado"
-
-#: src/crypto/gui/resultitemwidget.cpp:169
-#, kde-format
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
-#: src/crypto/gui/resultitemwidget.cpp:170
+#: src/crypto/gui/resultitemwidget.cpp:136
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Mostrar registro de auditoría"
 
-#: src/crypto/gui/resultitemwidget.cpp:268
+#: src/crypto/gui/resultitemwidget.cpp:207
+#, fuzzy, kde-format
+#| msgid "Close Tab"
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Cerrar pestaña"
+
+#: src/crypto/gui/resultitemwidget.cpp:208
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close message"
 msgstr "Cerrar el mensaje"
 
-#: src/crypto/gui/resultlistwidget.cpp:118
+#: src/crypto/gui/resultlistwidget.cpp:117
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
@@ -5883,7 +5869,7 @@ msgid "&Sign / Encrypt"
 msgstr "&Firmar o cifrar"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:605
-#: src/dialogs/signencryptclipboarddialog.cpp:250
+#: src/dialogs/signencryptclipboarddialog.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -8431,25 +8417,25 @@ msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Firmar o cifrar el portapapeles"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:197
+#: src/dialogs/signencryptclipboarddialog.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
 msgstr "El portapapeles no contiene texto."
 
-#: src/dialogs/signencryptclipboarddialog.cpp:228
+#: src/dialogs/signencryptclipboarddialog.cpp:213
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Firmar"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:231
+#: src/dialogs/signencryptclipboarddialog.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Cifrar"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:234
+#: src/dialogs/signencryptclipboarddialog.cpp:219
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
@@ -13274,3 +13260,25 @@ msgid ""
 msgstr ""
 "Importar certificado de un archivo.<nl/>Para importar de un servidor de "
 "claves público use <interface>Buscar en servidor</interface> en su lugar."
+
+#~ msgctxt "@info"
+#~ msgid "Decrypting/Verifying clipboard…"
+#~ msgstr "Descifrando/verificando el portapapeles…"
+
+#~ msgctxt "@info"
+#~ msgid "Importing certificate from clipboard…"
+#~ msgstr "Importando certificado del portapapeles…"
+
+#~ msgctxt ""
+#~ "The user is offered to force decrypt a non integrity protected message. "
+#~ "With the strong advice to re-encrypt it."
+#~ msgid ""
+#~ "If you are confident that the file was not manipulated you should re-"
+#~ "encrypt it after you have forced the decryption."
+#~ msgstr ""
+#~ "Si confía en que el archivo no ha sido manipulado, debería volver a "
+#~ "cifrarlo antes de forzar el descifrado."
+
+#~ msgctxt "@action:button"
+#~ msgid "Force decryption"
+#~ msgstr "Forzar descifrado"

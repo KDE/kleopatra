@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-25 00:48+0000\n"
-"PO-Revision-Date: 2026-02-19 03:56+0100\n"
+"POT-Creation-Date: 2026-02-26 00:45+0000\n"
+"PO-Revision-Date: 2026-02-25 07:19+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1025,7 +1025,7 @@ msgstr "\"gpgconf --reload gpg-agent\" -ის შეცდომა: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
-#: src/commands/decryptverifyclipboardcommand.cpp:164
+#: src/commands/decryptverifyclipboardcommand.cpp:158
 #: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
@@ -1174,13 +1174,7 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "ბარათის გასაღებებიდან OpenPGP-ის გენერაცია წარმატებით დასრულდა."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Decrypting/Verifying clipboard…"
-msgstr "ბუფერის გაშიფვრა/გადამოწმება…"
-
-#: src/commands/decryptverifyclipboardcommand.cpp:151
+#: src/commands/decryptverifyclipboardcommand.cpp:145
 #, kde-format
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "როგორც ჩანს, ბუფერი ხელმოწერას ან დაშიფრულ ტექსტს არ შეიცავს."
@@ -2172,25 +2166,19 @@ msgstr "%1-ის გაშვება..."
 msgid "Process finished"
 msgstr "პროცესი დასრულდა"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:96
-#, kde-format
-msgctxt "@info"
-msgid "Importing certificate from clipboard…"
-msgstr "სერტიფიკატის შემოტანა ბუფერიდან…"
-
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:99
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
 msgstr "ბუფერი ცარიელია: შემოტანა არ მომხდარა."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:106
+#: src/commands/importcertificatefromclipboardcommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr "ბუფერის შემცველობა სერტიფიკატს არ წააგავს. არაფერი შემოტანილა."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:105
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2199,7 +2187,7 @@ msgstr ""
 "ბუფერის შემცველობის სერტიფიკატის ტიპის დადგენა შეუძლებელია. არაფერი "
 "შემოტანილა."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#: src/commands/importcertificatefromclipboardcommand.cpp:107
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
 #, kde-format
 msgid "Clipboard"
@@ -4875,7 +4863,7 @@ msgstr ""
 "გაშიფვრა წარმატებულია ფაილისთვის <filename>%1</filename> როგორც <filename>"
 "%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:272
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
@@ -4883,12 +4871,12 @@ msgstr ""
 "მონაცემები არაა დაშიფრული არც ერთი საიდუმლო გასაღებით თქვენი სერტიფიკატების "
 "სიიდან."
 
-#: src/crypto/decryptverifytask.cpp:276
+#: src/crypto/decryptverifytask.cpp:273
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "მთლიანობის შემოწმების (MDC) გარეშე."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:284
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4896,7 +4884,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "გაშიფვრა %1-ა."
 
-#: src/crypto/decryptverifytask.cpp:295
+#: src/crypto/decryptverifytask.cpp:287
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4904,21 +4892,7 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "გაშიფვრა %1 <b>არაა</b>."
 
-#: src/crypto/decryptverifytask.cpp:305
-#, kde-format
-msgid "Embedded file name: '%1'"
-msgstr "ჩაშენებული ფაილის სახელი: '%1'"
-
-#: src/crypto/decryptverifytask.cpp:311
-#, kde-format
-msgid ""
-"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
-"signed."
-msgstr ""
-"<b>შენშვნა:</b> თქვენ ვერ იქნებით დარწმუნებული ვინ დაშიფრა ეს შეტყობინება, "
-"რადგან ის ხელმოწერილი არაა."
-
-#: src/crypto/decryptverifytask.cpp:317
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4930,79 +4904,90 @@ msgstr ""
 "ნამდვილი იყოს.  იმიტომ, რომ წარსულში მთლიანობის დაცვა ფართოდ არ "
 "გამოიყენებოდა."
 
-#: src/crypto/decryptverifytask.cpp:322
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
-msgctxt ""
-"The user is offered to force decrypt a non integrity protected message. With "
-"the strong advice to re-encrypt it."
+msgctxt "@info"
 msgid ""
-"If you are confident that the file was not manipulated you should re-encrypt "
-"it after you have forced the decryption."
+"If you are confident that the file was not manipulated then you can decrypt "
+"it with gpg on the command line using the option <tt>--ignore-mdc-error</"
+"tt>. After decryption you should re-encrypt the file with your current key."
 msgstr ""
-"თუ დარწმუნებული ბრძანდებით, რომ ფაილი არ შეცვლილა, ჯერ ჩართეთ ნაძალადევი "
-"დაშიფვრა, შემდეგ კი თავიდან დაშიფრეთ ის."
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:311
+#, kde-format
+msgid "Embedded file name: '%1'"
+msgstr "ჩაშენებული ფაილის სახელი: '%1'"
+
+#: src/crypto/decryptverifytask.cpp:317
+#, kde-format
+msgid ""
+"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
+"signed."
+msgstr ""
+"<b>შენშვნა:</b> თქვენ ვერ იქნებით დარწმუნებული ვინ დაშიფრა ეს შეტყობინება, "
+"რადგან ის ხელმოწერილი არაა."
+
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "ჩავარდა გაშიფვრა ბლოკნოტისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:541
+#: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "ჩავარდა გადამოწმება ბლოკნოტისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "ბლოკნოტის გაშიფვრა და გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "ბლოკნოტის გაშიფვრა წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:551
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "ბლოკნოტის გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "ჩავარდა გაშიფვრა ბუფერისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:559
+#: src/crypto/decryptverifytask.cpp:553
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "ჩავარდა გადამოწმება ბუფერისთვის: %1"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:557
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "ბუფერის გაშიფვრა და გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:560
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "ბუფერის გაშიფვრა წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:569
+#: src/crypto/decryptverifytask.cpp:563
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "ბუფერის გადამოწმება წარმატებულია"
 
-#: src/crypto/decryptverifytask.cpp:606
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5013,25 +4998,25 @@ msgstr ""
 "href=\"key:%1\">სერტიფიკატში</a> დამახსოვრებული არაა. დამახსოვრებულია:<ul>"
 "%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:746 src/crypto/decryptverifytask.cpp:945
-#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
-#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1335
-#: src/crypto/decryptverifytask.cpp:1410 src/crypto/decryptverifytask.cpp:1536
+#: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:916
+#: src/crypto/decryptverifytask.cpp:993 src/crypto/decryptverifytask.cpp:1094
+#: src/crypto/decryptverifytask.cpp:1146 src/crypto/decryptverifytask.cpp:1305
+#: src/crypto/decryptverifytask.cpp:1380 src/crypto/decryptverifytask.cpp:1506
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "ჩაჭერილია გამონაკლისი: %1"
 
-#: src/crypto/decryptverifytask.cpp:749 src/crypto/decryptverifytask.cpp:947
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1337
-#: src/crypto/decryptverifytask.cpp:1412 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:742 src/crypto/decryptverifytask.cpp:918
+#: src/crypto/decryptverifytask.cpp:996 src/crypto/decryptverifytask.cpp:1096
+#: src/crypto/decryptverifytask.cpp:1149 src/crypto/decryptverifytask.cpp:1307
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1508
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "ჩაჭერილია უცნობი გამონაკლისი"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:796
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5040,12 +5025,12 @@ msgstr ""
 "ვერ გავარკვიე, ეს S/MIME ხელმოწერა/დაშიფრული ტექსტია, თუ OpenPGP - თუ ის არც "
 "ხელმოწერაა და არც შიფრი?"
 
-#: src/crypto/decryptverifytask.cpp:811
+#: src/crypto/decryptverifytask.cpp:804
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "გაშიფვრა: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1079
+#: src/crypto/decryptverifytask.cpp:1049
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5053,12 +5038,12 @@ msgid ""
 msgstr ""
 "ვერ დავადგინე, ეს S/MIME-თია დაშიფრული, თუ OpenPGP-ით. თუ საერთოდ შიფრი არაა?"
 
-#: src/crypto/decryptverifytask.cpp:1087
+#: src/crypto/decryptverifytask.cpp:1057
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "გაშიფვრა: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1474
+#: src/crypto/decryptverifytask.cpp:1203 src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5066,12 +5051,12 @@ msgid ""
 msgstr ""
 "ვერ დავადგინე, ეს S/MIME ხელმოწერაა, თუ OpenPGP. თუ საერთოდ ხელმოწერა არაა?"
 
-#: src/crypto/decryptverifytask.cpp:1241
+#: src/crypto/decryptverifytask.cpp:1211
 #, kde-format
 msgid "Verifying %1..."
 msgstr "%1-ის გადამოწმება..."
 
-#: src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1462
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5079,7 +5064,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "გადამოწმება: <filename>%1</filename> <filename>%2</filename>-სთან...."
 
-#: src/crypto/decryptverifytask.cpp:1496
+#: src/crypto/decryptverifytask.cpp:1466
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "ხელმოწერის გადამოწმება: %1..."
@@ -5223,29 +5208,29 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "ტექსტის დაშიფრვა"
 
-#: src/crypto/gui/newresultpage.cpp:96
+#: src/crypto/gui/newresultpage.cpp:95
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: ყველა ოპერაცის დასრულდა."
 
-#: src/crypto/gui/newresultpage.cpp:98
+#: src/crypto/gui/newresultpage.cpp:97
 #, kde-format
 msgid "All operations completed."
 msgstr "ყველა ოპერაცია დასრულდა."
 
-#: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultpage.cpp:99
+#: src/crypto/gui/newresultpage.cpp:118 src/crypto/gui/resultpage.cpp:99
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "ოპერაცია %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:101
+#: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:129 src/crypto/gui/resultpage.cpp:109
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b>შედეგები</b>"
@@ -5320,28 +5305,29 @@ msgstr "<qt><p>GnuPG-ის პარამეტრებში წინას
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
-msgctxt "@action:button"
-msgid "Force decryption"
-msgstr "ძალით გაშიფვრა"
-
-#: src/crypto/gui/resultitemwidget.cpp:169
-#, kde-format
 msgid "Diagnostics"
 msgstr "დიაგნოსტიკა"
 
-#: src/crypto/gui/resultitemwidget.cpp:170
+#: src/crypto/gui/resultitemwidget.cpp:136
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "აუდიტის ჟურნალის ჩვენება"
 
-#: src/crypto/gui/resultitemwidget.cpp:268
+#: src/crypto/gui/resultitemwidget.cpp:207
+#, fuzzy, kde-format
+#| msgid "Close Tab"
+msgctxt "@action:button"
+msgid "Close"
+msgstr "ჩანართის დახურვა"
+
+#: src/crypto/gui/resultitemwidget.cpp:208
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close message"
 msgstr "შეტყობინების დახურვა"
 
-#: src/crypto/gui/resultlistwidget.cpp:118
+#: src/crypto/gui/resultlistwidget.cpp:117
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
@@ -5797,7 +5783,7 @@ msgid "&Sign / Encrypt"
 msgstr "ხელმო&წერა / დაშიფვრა"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:605
-#: src/dialogs/signencryptclipboarddialog.cpp:250
+#: src/dialogs/signencryptclipboarddialog.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -8316,25 +8302,25 @@ msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "ბუფერის ხელმოწერა/დაშიფვრა"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:197
+#: src/dialogs/signencryptclipboarddialog.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
 msgstr "ბუფერი ტექსტს არ შეიცავს."
 
-#: src/dialogs/signencryptclipboarddialog.cpp:228
+#: src/dialogs/signencryptclipboarddialog.cpp:213
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "ხელმოწერა"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:231
+#: src/dialogs/signencryptclipboarddialog.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "დაშიფრვა"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:234
+#: src/dialogs/signencryptclipboarddialog.cpp:219
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
@@ -9199,7 +9185,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:114
 #, kde-format
 msgid "Save generated CSR as PEM"
-msgstr ""
+msgstr "შექმნილი CSR-ის შენახვა PEM ფორმატში"
 
 #. i18n: ectx: whatsthis, entry, group (CMS)
 #: src/kcfg/settings.kcfg:115
@@ -9208,6 +9194,9 @@ msgid ""
 "If true then the generated S/MIME certificate signing request will be saved "
 "using PEM format. Otherwise, it is saved in binary format (PKCS#10)."
 msgstr ""
+"თუ ჭეშმარიტია, მაშინ გენერირებული /SMIME სერტიფიკატის ხელმოწერის მოთხოვნა "
+"PEM ფორმატში იქნება შენახული. სხვა შემთხვევაში, შენახვა ბინარულ (PKCS#10) "
+"ფორმატში მოხდება."
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
 #: src/kcfg/settings.kcfg:121
@@ -11334,11 +11323,9 @@ msgid "Decrypt/Verify..."
 msgstr "გაშიფვრა/გადამოწმება...."
 
 #: src/utils/csrutils.cpp:67
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "OpenPGP Certificate Refresh"
+#, kde-format
 msgid "PEM Certificate Requests"
-msgstr "OpenPGP სერტიფიკატის განახლება"
+msgstr "PEM სერტიფიკატის მოთხოვნები"
 
 #: src/utils/csrutils.cpp:67
 #, kde-format
@@ -13112,6 +13099,28 @@ msgid ""
 msgstr ""
 "სერტიფიკატის შემოტანა ფაილიდან.<nl/>საჯარო გასაღებების სერვერიდან "
 "შემოსატანად <interface>სერვერზე მოძებნა</interface> გამოიყენეთ."
+
+#~ msgctxt "@info"
+#~ msgid "Decrypting/Verifying clipboard…"
+#~ msgstr "ბუფერის გაშიფვრა/გადამოწმება…"
+
+#~ msgctxt "@info"
+#~ msgid "Importing certificate from clipboard…"
+#~ msgstr "სერტიფიკატის შემოტანა ბუფერიდან…"
+
+#~ msgctxt ""
+#~ "The user is offered to force decrypt a non integrity protected message. "
+#~ "With the strong advice to re-encrypt it."
+#~ msgid ""
+#~ "If you are confident that the file was not manipulated you should re-"
+#~ "encrypt it after you have forced the decryption."
+#~ msgstr ""
+#~ "თუ დარწმუნებული ბრძანდებით, რომ ფაილი არ შეცვლილა, ჯერ ჩართეთ ნაძალადევი "
+#~ "დაშიფვრა, შემდეგ კი თავიდან დაშიფრეთ ის."
+
+#~ msgctxt "@action:button"
+#~ msgid "Force decryption"
+#~ msgstr "ძალით გაშიფვრა"
 
 #~ msgctxt "@action:inmenu"
 #~ msgid "Configure table sort order"

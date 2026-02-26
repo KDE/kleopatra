@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-25 00:48+0000\n"
+"POT-Creation-Date: 2026-02-26 00:45+0000\n"
 "PO-Revision-Date: 2025-11-20 10:37+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -1035,7 +1035,7 @@ msgstr "\"gpgconf --reload gpg-agent  „не успя: %1"
 
 #: src/commands/checksumcreatefilescommand.cpp:149
 #: src/commands/checksumverifyfilescommand.cpp:148
-#: src/commands/decryptverifyclipboardcommand.cpp:164
+#: src/commands/decryptverifyclipboardcommand.cpp:158
 #: src/commands/decryptverifyfilescommand.cpp:196
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
@@ -1183,13 +1183,7 @@ msgctxt "@info"
 msgid "Successfully generated an OpenPGP key from the card keys."
 msgstr "Успешно генериран ключ OpenPGP от клавишите за карти."
 
-#: src/commands/decryptverifyclipboardcommand.cpp:134
-#, kde-format
-msgctxt "@info"
-msgid "Decrypting/Verifying clipboard…"
-msgstr "Дешифриране/Проверка на клипборда…"
-
-#: src/commands/decryptverifyclipboardcommand.cpp:151
+#: src/commands/decryptverifyclipboardcommand.cpp:145
 #, kde-format
 msgid "The clipboard does not appear to contain signed or encrypted text."
 msgstr "Изглежда, че клипбордът не съдържа подписан или шифрован текст."
@@ -2193,26 +2187,20 @@ msgstr "Стартиране на %1..."
 msgid "Process finished"
 msgstr "Процесът завърши"
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:96
-#, kde-format
-msgctxt "@info"
-msgid "Importing certificate from clipboard…"
-msgstr "Импортиране сертификат от клипборда…"
-
-#: src/commands/importcertificatefromclipboardcommand.cpp:104
+#: src/commands/importcertificatefromclipboardcommand.cpp:99
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
 msgstr "Клипбордът е празен. Нищо не се импортира."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:106
+#: src/commands/importcertificatefromclipboardcommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
 msgstr ""
 "Съдържанието на клипборда не изглежда като сертификат. Нищо не се импортира."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:110
+#: src/commands/importcertificatefromclipboardcommand.cpp:105
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2221,7 +2209,7 @@ msgstr ""
 "Не можа да се определи вида на сертификата в съдържанието на клипборда. Нищо "
 "не се импортира."
 
-#: src/commands/importcertificatefromclipboardcommand.cpp:112
+#: src/commands/importcertificatefromclipboardcommand.cpp:107
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
 #, kde-format
 msgid "Clipboard"
@@ -4946,7 +4934,7 @@ msgid ""
 msgstr ""
 "Успешно дешифриран <filename>%1</filename> като <filename>%2</filename>."
 
-#: src/crypto/decryptverifytask.cpp:272
+#: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
@@ -4954,12 +4942,12 @@ msgstr ""
 "Данните не са криптирани с никой от секретните ключове във вашия списък със "
 "сертификати."
 
-#: src/crypto/decryptverifytask.cpp:276
+#: src/crypto/decryptverifytask.cpp:273
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "Без защита на целостта (MDC)."
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:284
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4967,7 +4955,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "Разшифроването е %1."
 
-#: src/crypto/decryptverifytask.cpp:295
+#: src/crypto/decryptverifytask.cpp:287
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4975,21 +4963,7 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "Разшифроването <b>не е</b> %1."
 
-#: src/crypto/decryptverifytask.cpp:305
-#, kde-format
-msgid "Embedded file name: '%1'"
-msgstr "Име на вграден файл: ' %1'"
-
-#: src/crypto/decryptverifytask.cpp:311
-#, kde-format
-msgid ""
-"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
-"signed."
-msgstr ""
-"<b> Забележка: </b> Не можете да сте сигурни кой е шифровал това съобщение, "
-"тъй като не е подписано."
-
-#: src/crypto/decryptverifytask.cpp:317
+#: src/crypto/decryptverifytask.cpp:294
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -5001,79 +4975,90 @@ msgstr ""
 "легитимен. Това е така, защото тогава защитата на целостта не беше широко "
 "използвана.."
 
-#: src/crypto/decryptverifytask.cpp:322
+#: src/crypto/decryptverifytask.cpp:299
 #, kde-format
-msgctxt ""
-"The user is offered to force decrypt a non integrity protected message. With "
-"the strong advice to re-encrypt it."
+msgctxt "@info"
 msgid ""
-"If you are confident that the file was not manipulated you should re-encrypt "
-"it after you have forced the decryption."
+"If you are confident that the file was not manipulated then you can decrypt "
+"it with gpg on the command line using the option <tt>--ignore-mdc-error</"
+"tt>. After decryption you should re-encrypt the file with your current key."
 msgstr ""
-"Ако сте уверени, че файлът не е манипулиран, трябва да шифровате отново след "
-"принудително дешифриране."
 
-#: src/crypto/decryptverifytask.cpp:538
+#: src/crypto/decryptverifytask.cpp:311
+#, kde-format
+msgid "Embedded file name: '%1'"
+msgstr "Име на вграден файл: ' %1'"
+
+#: src/crypto/decryptverifytask.cpp:317
+#, kde-format
+msgid ""
+"<b>Note:</b> You cannot be sure who encrypted this message as it is not "
+"signed."
+msgstr ""
+"<b> Забележка: </b> Не можете да сте сигурни кой е шифровал това съобщение, "
+"тъй като не е подписано."
+
+#: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "Неуспешно дешифриране на бележника: %1"
 
-#: src/crypto/decryptverifytask.cpp:541
+#: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "Неуспешна проверка на бележника: %1"
 
-#: src/crypto/decryptverifytask.cpp:545
+#: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
 msgstr "Успешно дешифриран и проверен бележник"
 
-#: src/crypto/decryptverifytask.cpp:548
+#: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
 msgstr "Успешно дешифриран бележник"
 
-#: src/crypto/decryptverifytask.cpp:551
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
 msgstr "Успешно проверен бележник"
 
-#: src/crypto/decryptverifytask.cpp:556
+#: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "Неуспешно дешифриране на клипборда: %1"
 
-#: src/crypto/decryptverifytask.cpp:559
+#: src/crypto/decryptverifytask.cpp:553
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "Неуспешна проверка на клипборда: %1"
 
-#: src/crypto/decryptverifytask.cpp:563
+#: src/crypto/decryptverifytask.cpp:557
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
 msgstr "Клипбордът е успешно дешифриран и проверен"
 
-#: src/crypto/decryptverifytask.cpp:566
+#: src/crypto/decryptverifytask.cpp:560
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
 msgstr "Клипбордът е успешно дешифриран"
 
-#: src/crypto/decryptverifytask.cpp:569
+#: src/crypto/decryptverifytask.cpp:563
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
 msgstr "Клипбордът е успешно проверен"
 
-#: src/crypto/decryptverifytask.cpp:606
+#: src/crypto/decryptverifytask.cpp:600
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5083,25 +5068,25 @@ msgstr ""
 "Предупреждение: Пощенският адрес на изпращача не се съхранява в <a href="
 "\"key:%1\">сертификата</a>, използван за подписване. Съхранено:<ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:746 src/crypto/decryptverifytask.cpp:945
-#: src/crypto/decryptverifytask.cpp:1023 src/crypto/decryptverifytask.cpp:1124
-#: src/crypto/decryptverifytask.cpp:1176 src/crypto/decryptverifytask.cpp:1335
-#: src/crypto/decryptverifytask.cpp:1410 src/crypto/decryptverifytask.cpp:1536
+#: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:916
+#: src/crypto/decryptverifytask.cpp:993 src/crypto/decryptverifytask.cpp:1094
+#: src/crypto/decryptverifytask.cpp:1146 src/crypto/decryptverifytask.cpp:1305
+#: src/crypto/decryptverifytask.cpp:1380 src/crypto/decryptverifytask.cpp:1506
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "Уловено изключение: %1"
 
-#: src/crypto/decryptverifytask.cpp:749 src/crypto/decryptverifytask.cpp:947
-#: src/crypto/decryptverifytask.cpp:1026 src/crypto/decryptverifytask.cpp:1126
-#: src/crypto/decryptverifytask.cpp:1179 src/crypto/decryptverifytask.cpp:1337
-#: src/crypto/decryptverifytask.cpp:1412 src/crypto/decryptverifytask.cpp:1538
+#: src/crypto/decryptverifytask.cpp:742 src/crypto/decryptverifytask.cpp:918
+#: src/crypto/decryptverifytask.cpp:996 src/crypto/decryptverifytask.cpp:1096
+#: src/crypto/decryptverifytask.cpp:1149 src/crypto/decryptverifytask.cpp:1307
+#: src/crypto/decryptverifytask.cpp:1382 src/crypto/decryptverifytask.cpp:1508
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "Уловено неизвестно изключение"
 
-#: src/crypto/decryptverifytask.cpp:803
+#: src/crypto/decryptverifytask.cpp:796
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5110,12 +5095,12 @@ msgstr ""
 "Не може да се определи дали това е S/MIME или OpenPGP подпис /ciphertext - "
 "може би не е нито шифъртекст, нито подпис?"
 
-#: src/crypto/decryptverifytask.cpp:811
+#: src/crypto/decryptverifytask.cpp:804
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "Дешифриране: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1079
+#: src/crypto/decryptverifytask.cpp:1049
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5124,12 +5109,12 @@ msgstr ""
 "Не можа да се определи дали това е криптирано с S/MIME или OpenPGP - може би "
 "изобщо не е шифротекст?"
 
-#: src/crypto/decryptverifytask.cpp:1087
+#: src/crypto/decryptverifytask.cpp:1057
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "Дешифриране: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1233 src/crypto/decryptverifytask.cpp:1474
+#: src/crypto/decryptverifytask.cpp:1203 src/crypto/decryptverifytask.cpp:1444
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5138,12 +5123,12 @@ msgstr ""
 "Не може да се определи дали това е S/MIME или OpenPGP подпис -може би изобщо "
 "не е подпис?"
 
-#: src/crypto/decryptverifytask.cpp:1241
+#: src/crypto/decryptverifytask.cpp:1211
 #, kde-format
 msgid "Verifying %1..."
 msgstr "Проверка: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1492
+#: src/crypto/decryptverifytask.cpp:1462
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5151,7 +5136,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "Проверка: <filename> %1 </filename> с <filename> %2 </filename>..."
 
-#: src/crypto/decryptverifytask.cpp:1496
+#: src/crypto/decryptverifytask.cpp:1466
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "Проверка на подписа: %1..."
@@ -5298,29 +5283,29 @@ msgctxt "@title:window"
 msgid "Encrypt Text"
 msgstr "Шифроване на текст"
 
-#: src/crypto/gui/newresultpage.cpp:96
+#: src/crypto/gui/newresultpage.cpp:95
 #, kde-format
 msgid "%1: All operations completed."
 msgstr "%1: Всички операции са завършени."
 
-#: src/crypto/gui/newresultpage.cpp:98
+#: src/crypto/gui/newresultpage.cpp:97
 #, kde-format
 msgid "All operations completed."
 msgstr "Всички операции са завършени."
 
-#: src/crypto/gui/newresultpage.cpp:119 src/crypto/gui/resultpage.cpp:99
+#: src/crypto/gui/newresultpage.cpp:118 src/crypto/gui/resultpage.cpp:99
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Операция %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:121 src/crypto/gui/resultpage.cpp:101
+#: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultpage.cpp:101
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:129 src/crypto/gui/resultpage.cpp:109
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:109
 #, kde-format
 msgid "<b>Results</b>"
 msgstr "<b> Резултати </b>"
@@ -5397,28 +5382,29 @@ msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
-msgctxt "@action:button"
-msgid "Force decryption"
-msgstr "Принудително дешифриране"
-
-#: src/crypto/gui/resultitemwidget.cpp:169
-#, kde-format
 msgid "Diagnostics"
 msgstr "Диагностика"
 
-#: src/crypto/gui/resultitemwidget.cpp:170
+#: src/crypto/gui/resultitemwidget.cpp:136
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Показване на дневника на одита"
 
-#: src/crypto/gui/resultitemwidget.cpp:268
+#: src/crypto/gui/resultitemwidget.cpp:207
+#, fuzzy, kde-format
+#| msgid "Close Tab"
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Затваряне на раздел"
+
+#: src/crypto/gui/resultitemwidget.cpp:208
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close message"
 msgstr "Затваряне на съобщението"
 
-#: src/crypto/gui/resultlistwidget.cpp:118
+#: src/crypto/gui/resultlistwidget.cpp:117
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Email"
@@ -5876,7 +5862,7 @@ msgid "&Sign / Encrypt"
 msgstr "&Подписване / Криптиране"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:605
-#: src/dialogs/signencryptclipboarddialog.cpp:250
+#: src/dialogs/signencryptclipboarddialog.cpp:235
 #, kde-format
 msgctxt "@action:button"
 msgid "Next"
@@ -8420,25 +8406,25 @@ msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Подписване/шифроване на клипборда"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:197
+#: src/dialogs/signencryptclipboarddialog.cpp:196
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard does not contain text."
 msgstr "Клипбордът не съдържа текст."
 
-#: src/dialogs/signencryptclipboarddialog.cpp:228
+#: src/dialogs/signencryptclipboarddialog.cpp:213
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign"
 msgstr "Подписване"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:231
+#: src/dialogs/signencryptclipboarddialog.cpp:216
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt"
 msgstr "Шифроване"
 
-#: src/dialogs/signencryptclipboarddialog.cpp:234
+#: src/dialogs/signencryptclipboarddialog.cpp:219
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt"
@@ -13256,6 +13242,28 @@ msgstr ""
 "Импортиране на сертификат от файл.<nl/>За да импортирате от публичен сървър "
 "на ключове, вместо това използвайте <interface>Търсене на сървър </"
 "interface>."
+
+#~ msgctxt "@info"
+#~ msgid "Decrypting/Verifying clipboard…"
+#~ msgstr "Дешифриране/Проверка на клипборда…"
+
+#~ msgctxt "@info"
+#~ msgid "Importing certificate from clipboard…"
+#~ msgstr "Импортиране сертификат от клипборда…"
+
+#~ msgctxt ""
+#~ "The user is offered to force decrypt a non integrity protected message. "
+#~ "With the strong advice to re-encrypt it."
+#~ msgid ""
+#~ "If you are confident that the file was not manipulated you should re-"
+#~ "encrypt it after you have forced the decryption."
+#~ msgstr ""
+#~ "Ако сте уверени, че файлът не е манипулиран, трябва да шифровате отново "
+#~ "след принудително дешифриране."
+
+#~ msgctxt "@action:button"
+#~ msgid "Force decryption"
+#~ msgstr "Принудително дешифриране"
 
 #~ msgctxt "@action:inmenu"
 #~ msgid "Configure table sort order"
