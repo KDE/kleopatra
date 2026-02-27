@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-26 00:45+0000\n"
+"POT-Creation-Date: 2026-02-27 00:45+0000\n"
 "PO-Revision-Date: 2025-09-25 02:45+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -609,7 +609,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "'%1' 是您自己的憑證嗎？"
 
 #: src/commands/changeownertrustcommand.cpp:102
-#: src/commands/importcertificatescommand.cpp:573
+#: src/commands/importcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1616,7 +1616,7 @@ msgstr ""
 "束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:173
-#: src/commands/importcertificatescommand.cpp:555
+#: src/commands/importcertificatescommand.cpp:568
 #, kde-format
 msgid " "
 msgstr " "
@@ -2130,7 +2130,7 @@ msgid "Notepad"
 msgstr "筆記本"
 
 #: src/commands/importcertificatefromfilecommand.cpp:124
-#: src/commands/importcertificatescommand.cpp:108
+#: src/commands/importcertificatescommand.cpp:109
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -2143,8 +2143,8 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "正在從 %1 個檔案中匯入憑證..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
-#: src/commands/importcertificatescommand.cpp:834
-#: src/commands/importcertificatescommand.cpp:885
+#: src/commands/importcertificatescommand.cpp:847
+#: src/commands/importcertificatescommand.cpp:898
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "匯入憑證失敗"
@@ -2155,7 +2155,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "無法開啟檔案 %1 以讀取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:154
-#: src/commands/importcertificatescommand.cpp:157 src/view/keytreeview.cpp:230
+#: src/commands/importcertificatescommand.cpp:158 src/view/keytreeview.cpp:230
 #, kde-format
 msgid "Certificates"
 msgstr "憑證"
@@ -2192,220 +2192,260 @@ msgstr "抱歉！沒有找到要從這個卡片欄位匯入的憑證。"
 msgid "Card Certificate"
 msgstr "卡片憑證"
 
-#: src/commands/importcertificatescommand.cpp:109
+#: src/commands/importcertificatescommand.cpp:110
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "正在匯入憑證...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:142
+#: src/commands/importcertificatescommand.cpp:143
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:143
+#: src/commands/importcertificatescommand.cpp:144
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:144
+#: src/commands/importcertificatescommand.cpp:145
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:158
-#: src/commands/importcertificatescommand.cpp:198
+#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:199
 #, kde-format
 msgid "Total number processed:"
 msgstr "已處理總數："
 
-#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:160
 #, kde-format
 msgid "Imported:"
 msgstr "已匯入："
 
-#: src/commands/importcertificatescommand.cpp:161
+#: src/commands/importcertificatescommand.cpp:162
 #, kde-format
 msgid "New signatures:"
 msgstr "新的簽章："
 
-#: src/commands/importcertificatescommand.cpp:163
+#: src/commands/importcertificatescommand.cpp:164
 #, kde-format
 msgid "New user IDs:"
 msgstr "新的使用者 ID："
 
-#: src/commands/importcertificatescommand.cpp:165
+#: src/commands/importcertificatescommand.cpp:166
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "沒有使用者 ID 的憑證："
 
-#: src/commands/importcertificatescommand.cpp:167
+#: src/commands/importcertificatescommand.cpp:168
 #, kde-format
 msgid "New subkeys:"
 msgstr "新的子金鑰："
 
-#: src/commands/importcertificatescommand.cpp:169
+#: src/commands/importcertificatescommand.cpp:170
 #, kde-format
 msgid "Newly revoked:"
 msgstr "新撤銷的："
 
-#: src/commands/importcertificatescommand.cpp:171
+#: src/commands/importcertificatescommand.cpp:172
 #, kde-format
 msgid "Not imported:"
 msgstr "未匯入："
 
-#: src/commands/importcertificatescommand.cpp:173
+#: src/commands/importcertificatescommand.cpp:174
 #, kde-format
 msgid "Unchanged:"
 msgstr "未改變的："
 
-#: src/commands/importcertificatescommand.cpp:175
+#: src/commands/importcertificatescommand.cpp:176
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "已處理的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:177
+#: src/commands/importcertificatescommand.cpp:178
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "已匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:181
+#: src/commands/importcertificatescommand.cpp:182
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "<em>未</em>匯入的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:183
+#: src/commands/importcertificatescommand.cpp:184
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "未變更的秘鑰："
 
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "由於已棄用而略過的 PGP-2 金鑰："
 
-#: src/commands/importcertificatescommand.cpp:197
+#: src/commands/importcertificatescommand.cpp:198
 #, kde-format
 msgid "Certificate Groups"
 msgstr "憑證群組"
 
-#: src/commands/importcertificatescommand.cpp:199
+#: src/commands/importcertificatescommand.cpp:200
 #, kde-format
 msgid "New groups:"
 msgstr "新群組："
 
-#: src/commands/importcertificatescommand.cpp:200
+#: src/commands/importcertificatescommand.cpp:201
 #, kde-format
 msgid "Updated groups:"
 msgstr "已更新群組："
 
-#: src/commands/importcertificatescommand.cpp:215
+#: src/commands/importcertificatescommand.cpp:216
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr "沒有匯入（不應該發生此情形，請回報此錯誤。）"
 
-#: src/commands/importcertificatescommand.cpp:217
+#: src/commands/importcertificatescommand.cpp:218
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "匯入 %1 個詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:218
+#: src/commands/importcertificatescommand.cpp:219
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "匯入的詳細結果："
 
-#: src/commands/importcertificatescommand.cpp:273
-#, kde-format
-msgid "A phone call to the person."
-msgstr "打電話給那個人。"
+#: src/commands/importcertificatescommand.cpp:276
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a shared secret key."
+msgstr "您已匯入了新的憑證（公鑰）"
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:277
 #, kde-format
-msgid "Using a business card."
-msgstr "利用名片。"
+msgctxt "@info"
+msgid "In order to use this shared secret key you should certify it. "
+msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:275
-#, kde-format
-msgid "Confirming it on a trusted website."
-msgstr "在一個信任的網站上進行確認。"
-
-#: src/commands/importcertificatescommand.cpp:279
-#, kde-format
-msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr "要標記憑證為有效，它必須是被保證的。"
-
-#: src/commands/importcertificatescommand.cpp:280
-#, kde-format
-msgid "Certifying means that you check the Fingerprint."
+#: src/commands/importcertificatescommand.cpp:278
+#, fuzzy, kde-format
+#| msgid "Certifying means that you check the Fingerprint."
+msgctxt "@info"
+msgid ""
+"Certification means that you check the fingerprint against a trusted source."
 msgstr "保證代表您檢查過指紋。"
 
-#: src/commands/importcertificatescommand.cpp:281
-#, kde-format
-msgid "Some suggestions to do this are:"
-msgstr "以下是一些這麼做的建議："
-
-#: src/commands/importcertificatescommand.cpp:283
+#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "您要現在開始這個流程嗎？"
 
+#: src/commands/importcertificatescommand.cpp:280
+#, fuzzy, kde-format
+#| msgid "Selected secret key:"
+msgctxt "@title"
+msgid "Certify shared secret key?"
+msgstr "選取秘密金鑰："
+
+#: src/commands/importcertificatescommand.cpp:283
+#, kde-format
+msgid "A phone call to the person."
+msgstr "打電話給那個人。"
+
 #: src/commands/importcertificatescommand.cpp:284
 #, kde-format
-msgctxt "@title"
-msgid "You have imported a new certificate (public key)"
-msgstr "您已匯入了新的憑證（公鑰）"
+msgid "Using a business card."
+msgstr "利用名片。"
 
 #: src/commands/importcertificatescommand.cpp:285
+#, kde-format
+msgid "Confirming it on a trusted website."
+msgstr "在一個信任的網站上進行確認。"
+
+#: src/commands/importcertificatescommand.cpp:287
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a new certificate (public key)."
+msgstr "您已匯入了新的憑證（公鑰）"
+
+#: src/commands/importcertificatescommand.cpp:288
+#, kde-format
+msgid "In order to mark the certificate as valid it needs to be certified."
+msgstr "要標記憑證為有效，它必須是被保證的。"
+
+#: src/commands/importcertificatescommand.cpp:289
+#, kde-format
+msgid "Certifying means that you check the Fingerprint."
+msgstr "保證代表您檢查過指紋。"
+
+#: src/commands/importcertificatescommand.cpp:290
+#, kde-format
+msgid "Some suggestions to do this are:"
+msgstr "以下是一些這麼做的建議："
+
+#: src/commands/importcertificatescommand.cpp:293
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Certify Certificates"
+msgctxt "@title"
+msgid "Certify new certificate?"
+msgstr "保證憑證"
+
+#: src/commands/importcertificatescommand.cpp:298
 #: src/conf/groupsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "保證"
 
-#: src/commands/importcertificatescommand.cpp:362
+#: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1（利用 %2 匯入）"
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:379
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "稽核紀錄是空的。"
 
-#: src/commands/importcertificatescommand.cpp:368
+#: src/commands/importcertificatescommand.cpp:381
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "匯入已取消。"
 
-#: src/commands/importcertificatescommand.cpp:395
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgctxt "@action:button"
 msgid "List Imported Certificates"
 msgstr "列出已匯入憑證"
 
-#: src/commands/importcertificatescommand.cpp:396
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Audit Log"
 msgstr "顯示稽核紀錄"
 
-#: src/commands/importcertificatescommand.cpp:419
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
 "%1</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證時發生錯誤：</p> <p><b>%1</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:437
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
 "%2</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證 %1 時發生錯誤：</p> <p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:540
+#: src/commands/importcertificatescommand.cpp:553
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2421,13 +2461,13 @@ msgstr ""
 "<para>您已匯入憑證，它的指紋是：</para><para><numid>%1</numid></para><para>它"
 "的使用者 ID 是：<list>%2</list></para><para>這是您自己的憑證嗎？</para>"
 
-#: src/commands/importcertificatescommand.cpp:557
+#: src/commands/importcertificatescommand.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:560
+#: src/commands/importcertificatescommand.cpp:573
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2443,20 +2483,20 @@ msgstr ""
 "<para>您已匯入憑證，它的指紋是：</para><para><numid>%1</numid></para><para>它"
 "的使用者 ID 是：<list>%2</list></para><para>這是您自己的憑證嗎？</para>"
 
-#: src/commands/importcertificatescommand.cpp:574
+#: src/commands/importcertificatescommand.cpp:587
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:575
+#: src/commands/importcertificatescommand.cpp:588
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:734
+#: src/commands/importcertificatescommand.cpp:747
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2470,14 +2510,14 @@ msgid ""
 msgstr ""
 "<para>您確定要撤銷這個使用者 ID 嗎？<nl/><emphasis>%1</emphasis></para>"
 
-#: src/commands/importcertificatescommand.cpp:798
+#: src/commands/importcertificatescommand.cpp:811
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "正在取得 %1 個簽署者金鑰...（這可能會花上一段時間）"
 
-#: src/commands/importcertificatescommand.cpp:833
-#: src/commands/importcertificatescommand.cpp:884
+#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:897
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -15533,9 +15573,6 @@ msgstr ""
 
 #~ msgid "Check level:"
 #~ msgstr "檢查等級："
-
-#~ msgid "Selected secret key:"
-#~ msgstr "選取秘密金鑰："
 
 #~ msgid "No statement made"
 #~ msgstr "沒有產生敘述"

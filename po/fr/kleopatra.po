@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-26 00:45+0000\n"
+"POT-Creation-Date: 2026-02-27 00:45+0000\n"
 "PO-Revision-Date: 2026-02-20 16:14+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: \n"
@@ -650,7 +650,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "%1 est-il votre certificat personnel ?"
 
 #: src/commands/changeownertrustcommand.cpp:102
-#: src/commands/importcertificatescommand.cpp:573
+#: src/commands/importcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1736,7 +1736,7 @@ msgstr ""
 "para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:173
-#: src/commands/importcertificatescommand.cpp:555
+#: src/commands/importcertificatescommand.cpp:568
 #, kde-format
 msgid " "
 msgstr " "
@@ -2293,7 +2293,7 @@ msgid "Notepad"
 msgstr "Bloc-notes"
 
 #: src/commands/importcertificatefromfilecommand.cpp:124
-#: src/commands/importcertificatescommand.cpp:108
+#: src/commands/importcertificatescommand.cpp:109
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -2307,8 +2307,8 @@ msgstr[0] "Importation d'un certificat depuis un fichier..."
 msgstr[1] "Importation des certificats depuis %1 fichiers..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
-#: src/commands/importcertificatescommand.cpp:834
-#: src/commands/importcertificatescommand.cpp:885
+#: src/commands/importcertificatescommand.cpp:847
+#: src/commands/importcertificatescommand.cpp:898
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Échec de l'importation du certificat"
@@ -2319,7 +2319,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Impossible d'ouvrir le fichier %1 en lecture : %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:154
-#: src/commands/importcertificatescommand.cpp:157 src/view/keytreeview.cpp:230
+#: src/commands/importcertificatescommand.cpp:158 src/view/keytreeview.cpp:230
 #, kde-format
 msgid "Certificates"
 msgstr "Certificats"
@@ -2357,207 +2357,247 @@ msgstr "Désolé ! Aucun certificat à importer n'a été trouvé sur la carte.
 msgid "Card Certificate"
 msgstr "Certificats sur carte"
 
-#: src/commands/importcertificatescommand.cpp:109
+#: src/commands/importcertificatescommand.cpp:110
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Importation de certificats... (Cela peut prendre un peu de temps)"
 
-#: src/commands/importcertificatescommand.cpp:142
+#: src/commands/importcertificatescommand.cpp:143
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:143
+#: src/commands/importcertificatescommand.cpp:144
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:144
+#: src/commands/importcertificatescommand.cpp:145
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:158
-#: src/commands/importcertificatescommand.cpp:198
+#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:199
 #, kde-format
 msgid "Total number processed:"
 msgstr "Nombre total traité :"
 
-#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:160
 #, kde-format
 msgid "Imported:"
 msgstr "Importé :"
 
-#: src/commands/importcertificatescommand.cpp:161
+#: src/commands/importcertificatescommand.cpp:162
 #, kde-format
 msgid "New signatures:"
 msgstr "Nouvelles signatures :"
 
-#: src/commands/importcertificatescommand.cpp:163
+#: src/commands/importcertificatescommand.cpp:164
 #, kde-format
 msgid "New user IDs:"
 msgstr "Nouveaux ID utilisateur :"
 
-#: src/commands/importcertificatescommand.cpp:165
+#: src/commands/importcertificatescommand.cpp:166
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Certificats sans identifiants utilisateur :"
 
-#: src/commands/importcertificatescommand.cpp:167
+#: src/commands/importcertificatescommand.cpp:168
 #, kde-format
 msgid "New subkeys:"
 msgstr "Nouvelles sous-clés :"
 
-#: src/commands/importcertificatescommand.cpp:169
+#: src/commands/importcertificatescommand.cpp:170
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Récemment révoquées :"
 
-#: src/commands/importcertificatescommand.cpp:171
+#: src/commands/importcertificatescommand.cpp:172
 #, kde-format
 msgid "Not imported:"
 msgstr "Non importées :"
 
-#: src/commands/importcertificatescommand.cpp:173
+#: src/commands/importcertificatescommand.cpp:174
 #, kde-format
 msgid "Unchanged:"
 msgstr "Inchangées :"
 
-#: src/commands/importcertificatescommand.cpp:175
+#: src/commands/importcertificatescommand.cpp:176
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Certificats secrets traités :"
 
-#: src/commands/importcertificatescommand.cpp:177
+#: src/commands/importcertificatescommand.cpp:178
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Certificats secrets importés :"
 
-#: src/commands/importcertificatescommand.cpp:181
+#: src/commands/importcertificatescommand.cpp:182
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Certificats secrets <em>non</em> importés :"
 
-#: src/commands/importcertificatescommand.cpp:183
+#: src/commands/importcertificatescommand.cpp:184
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Certificats secrets inchangés :"
 
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Clés PGP-2 déconseillées ignorées :"
 
-#: src/commands/importcertificatescommand.cpp:197
+#: src/commands/importcertificatescommand.cpp:198
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Groupes de certificats"
 
-#: src/commands/importcertificatescommand.cpp:199
+#: src/commands/importcertificatescommand.cpp:200
 #, kde-format
 msgid "New groups:"
 msgstr "Nouveaux groupes :"
 
-#: src/commands/importcertificatescommand.cpp:200
+#: src/commands/importcertificatescommand.cpp:201
 #, kde-format
 msgid "Updated groups:"
 msgstr "Groupes mis à jour :"
 
-#: src/commands/importcertificatescommand.cpp:215
+#: src/commands/importcertificatescommand.cpp:216
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Aucune importation (ceci ne devrait pas arriver, veuillez signaler ce bogue)."
 
-#: src/commands/importcertificatescommand.cpp:217
+#: src/commands/importcertificatescommand.cpp:218
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Détails des résultats d'importation de %1 :"
 
-#: src/commands/importcertificatescommand.cpp:218
+#: src/commands/importcertificatescommand.cpp:219
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Détails des résultats d'importation :"
 
-#: src/commands/importcertificatescommand.cpp:273
-#, kde-format
-msgid "A phone call to the person."
-msgstr "Un appel téléphonique à la personne."
+#: src/commands/importcertificatescommand.cpp:276
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a shared secret key."
+msgstr "Vous avez importé un nouveau certificat (clé publique)"
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:277
 #, kde-format
-msgid "Using a business card."
-msgstr "En utilisant une carte de visite."
+msgctxt "@info"
+msgid "In order to use this shared secret key you should certify it. "
+msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:275
-#, kde-format
-msgid "Confirming it on a trusted website."
-msgstr "En le confirmant sur une site web de confiance."
-
-#: src/commands/importcertificatescommand.cpp:279
-#, kde-format
-msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr "Afin de marquer le certificat comme valable, il doit être certifié."
-
-#: src/commands/importcertificatescommand.cpp:280
-#, kde-format
-msgid "Certifying means that you check the Fingerprint."
+#: src/commands/importcertificatescommand.cpp:278
+#, fuzzy, kde-format
+#| msgid "Certifying means that you check the Fingerprint."
+msgctxt "@info"
+msgid ""
+"Certification means that you check the fingerprint against a trusted source."
 msgstr "Certifier signifie que vous vérifiez l'empreinte."
 
-#: src/commands/importcertificatescommand.cpp:281
-#, kde-format
-msgid "Some suggestions to do this are:"
-msgstr "Quelques suggestions pour cela :"
-
-#: src/commands/importcertificatescommand.cpp:283
+#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:292
 #, kde-format
 msgid "Do you wish to start this process now?"
 msgstr "Voulez-vous démarrer le processus maintenant ?"
 
+#: src/commands/importcertificatescommand.cpp:280
+#, fuzzy, kde-format
+#| msgid "Selected secret key:"
+msgctxt "@title"
+msgid "Certify shared secret key?"
+msgstr "Clé privée sélectionnée :"
+
+#: src/commands/importcertificatescommand.cpp:283
+#, kde-format
+msgid "A phone call to the person."
+msgstr "Un appel téléphonique à la personne."
+
 #: src/commands/importcertificatescommand.cpp:284
 #, kde-format
-msgctxt "@title"
-msgid "You have imported a new certificate (public key)"
-msgstr "Vous avez importé un nouveau certificat (clé publique)"
+msgid "Using a business card."
+msgstr "En utilisant une carte de visite."
 
 #: src/commands/importcertificatescommand.cpp:285
+#, kde-format
+msgid "Confirming it on a trusted website."
+msgstr "En le confirmant sur une site web de confiance."
+
+#: src/commands/importcertificatescommand.cpp:287
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a new certificate (public key)."
+msgstr "Vous avez importé un nouveau certificat (clé publique)"
+
+#: src/commands/importcertificatescommand.cpp:288
+#, kde-format
+msgid "In order to mark the certificate as valid it needs to be certified."
+msgstr "Afin de marquer le certificat comme valable, il doit être certifié."
+
+#: src/commands/importcertificatescommand.cpp:289
+#, kde-format
+msgid "Certifying means that you check the Fingerprint."
+msgstr "Certifier signifie que vous vérifiez l'empreinte."
+
+#: src/commands/importcertificatescommand.cpp:290
+#, kde-format
+msgid "Some suggestions to do this are:"
+msgstr "Quelques suggestions pour cela :"
+
+#: src/commands/importcertificatescommand.cpp:293
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Certify Certificates"
+msgctxt "@title"
+msgid "Certify new certificate?"
+msgstr "Certifier des certificats"
+
+#: src/commands/importcertificatescommand.cpp:298
 #: src/conf/groupsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Certifier"
 
-#: src/commands/importcertificatescommand.cpp:362
+#: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (Importé avec %2)"
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:379
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Le journal d'audit est vide."
 
-#: src/commands/importcertificatescommand.cpp:368
+#: src/commands/importcertificatescommand.cpp:381
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "L'opération d'importation a été annulée."
 
-#: src/commands/importcertificatescommand.cpp:395
+#: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgctxt "@action:button"
 msgid "List Imported Certificates"
 msgstr "Lister les certificats importés"
 
-#: src/commands/importcertificatescommand.cpp:396
+#: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Audit Log"
 msgstr "Afficher le journal d'audit"
 
-#: src/commands/importcertificatescommand.cpp:419
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2567,7 +2607,7 @@ msgstr ""
 "certificat :</p><p><b>%1</b></p></qt>"
 
 # unreviewed-context
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:437
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2576,7 +2616,7 @@ msgstr ""
 "<qt><p>Une erreur s'est produite lors de la tentative d'importation du "
 "certificat %1 :</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:540
+#: src/commands/importcertificatescommand.cpp:553
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2588,13 +2628,13 @@ msgstr ""
 "<para>Empreinte numérique : %1<nl/>Identifiant utilisateur : %2</"
 "para><para>Êtes-vous bien l'unique utilisateur de cette clé secrète ?</para>"
 
-#: src/commands/importcertificatescommand.cpp:557
+#: src/commands/importcertificatescommand.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:560
+#: src/commands/importcertificatescommand.cpp:573
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2607,20 +2647,20 @@ msgstr ""
 "<list>%2</list></para><para>Êtes-vous l'unique utilisateur de cette clé "
 "secrète ?</para>"
 
-#: src/commands/importcertificatescommand.cpp:574
+#: src/commands/importcertificatescommand.cpp:587
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
 msgstr "Oui, je suis la seule personne utilisatrice"
 
-#: src/commands/importcertificatescommand.cpp:575
+#: src/commands/importcertificatescommand.cpp:588
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
 msgstr "Non. D'autres personnes utilisent aussi cette clé."
 
-#: src/commands/importcertificatescommand.cpp:734
+#: src/commands/importcertificatescommand.cpp:747
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2632,15 +2672,15 @@ msgstr ""
 "para><para>contient des certificats ne pouvant être utilisés pour le "
 "chiffrement. Cela peut entraîner des résultats inattendus.</para>"
 
-#: src/commands/importcertificatescommand.cpp:798
+#: src/commands/importcertificatescommand.cpp:811
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Recherche d'une clé de signataire... (Cela peut prendre du temps)"
 msgstr[1] "Recherche de %1 clés de signataire... (Cela peut prendre du temps)"
 
-#: src/commands/importcertificatescommand.cpp:833
-#: src/commands/importcertificatescommand.cpp:884
+#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:897
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -16591,9 +16631,6 @@ msgstr ""
 
 #~ msgid "Check level:"
 #~ msgstr "Niveau de vérification :"
-
-#~ msgid "Selected secret key:"
-#~ msgstr "Clé privée sélectionnée :"
 
 #~ msgid "No statement made"
 #~ msgstr "Aucune déclaration effectuée"

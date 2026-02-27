@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-26 00:45+0000\n"
+"POT-Creation-Date: 2026-02-27 00:45+0000\n"
 "PO-Revision-Date: 2024-09-19 22:12+0300\n"
 "Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -675,7 +675,7 @@ msgid "Is '%1' your own certificate?"
 msgstr "Είναι το '%1' δικό σας πιστοποιητικό;"
 
 #: src/commands/changeownertrustcommand.cpp:102
-#: src/commands/importcertificatescommand.cpp:573
+#: src/commands/importcertificatescommand.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Mark Own Certificate"
@@ -1767,7 +1767,7 @@ msgstr ""
 "ελέγξτε την έξοδο του <icode>%1</icode> για λεπτομέρειες.</para>"
 
 #: src/commands/exportopenpgpcertstoservercommand.cpp:173
-#: src/commands/importcertificatescommand.cpp:555
+#: src/commands/importcertificatescommand.cpp:568
 #, kde-format
 msgid " "
 msgstr " "
@@ -2338,7 +2338,7 @@ msgid "Notepad"
 msgstr "Σημειωματάριο"
 
 #: src/commands/importcertificatefromfilecommand.cpp:124
-#: src/commands/importcertificatescommand.cpp:108
+#: src/commands/importcertificatescommand.cpp:109
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
@@ -2352,8 +2352,8 @@ msgstr[0] "Εισαγωγή πιστοποιητικών από 1 αρχείο..
 msgstr[1] "Εισαγωγή πιστοποιητικών από %1 αρχεία..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
-#: src/commands/importcertificatescommand.cpp:834
-#: src/commands/importcertificatescommand.cpp:885
+#: src/commands/importcertificatescommand.cpp:847
+#: src/commands/importcertificatescommand.cpp:898
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Αποτυχία εισαγωγής του πιστοποιητικού"
@@ -2364,7 +2364,7 @@ msgid "Could not open file %1 for reading: %2"
 msgstr "Αδυναμία ανοίγματος του αρχείου %1 για ανάγνωση: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp:154
-#: src/commands/importcertificatescommand.cpp:157 src/view/keytreeview.cpp:230
+#: src/commands/importcertificatescommand.cpp:158 src/view/keytreeview.cpp:230
 #, kde-format
 msgid "Certificates"
 msgstr "Πιστοποιητικά"
@@ -2403,197 +2403,236 @@ msgstr ""
 msgid "Card Certificate"
 msgstr "Πιστοποιητικό κάρτας"
 
-#: src/commands/importcertificatescommand.cpp:109
+#: src/commands/importcertificatescommand.cpp:110
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
 msgstr "Εισαγωγή πιστοποιητικών... (μπορεί να αργήσει λίγο)"
 
-#: src/commands/importcertificatescommand.cpp:142
+#: src/commands/importcertificatescommand.cpp:143
 #, kde-format
 msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:143
+#: src/commands/importcertificatescommand.cpp:144
 #, kde-format
 msgid "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 msgstr "<tr><td align=\"right\"><b>%1</b></td><td>%2</td></tr>"
 
-#: src/commands/importcertificatescommand.cpp:144
+#: src/commands/importcertificatescommand.cpp:145
 #, kde-format
 msgid "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 msgstr "<tr><th colspan=\"2\" align=\"center\">%1</th></tr>"
 
-#: src/commands/importcertificatescommand.cpp:158
-#: src/commands/importcertificatescommand.cpp:198
+#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:199
 #, kde-format
 msgid "Total number processed:"
 msgstr "Συνολικός αριθμός επεξεργασμένων:"
 
-#: src/commands/importcertificatescommand.cpp:159
+#: src/commands/importcertificatescommand.cpp:160
 #, kde-format
 msgid "Imported:"
 msgstr "Εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:161
+#: src/commands/importcertificatescommand.cpp:162
 #, kde-format
 msgid "New signatures:"
 msgstr "Νέες υπογραφές:"
 
-#: src/commands/importcertificatescommand.cpp:163
+#: src/commands/importcertificatescommand.cpp:164
 #, kde-format
 msgid "New user IDs:"
 msgstr "Νέα ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:165
+#: src/commands/importcertificatescommand.cpp:166
 #, kde-format
 msgid "Certificates without user IDs:"
 msgstr "Πιστοποιητικά χωρίς ID χρηστών:"
 
-#: src/commands/importcertificatescommand.cpp:167
+#: src/commands/importcertificatescommand.cpp:168
 #, kde-format
 msgid "New subkeys:"
 msgstr "Νέα υποκλειδιά:"
 
-#: src/commands/importcertificatescommand.cpp:169
+#: src/commands/importcertificatescommand.cpp:170
 #, kde-format
 msgid "Newly revoked:"
 msgstr "Πρόσφατα ανακληθέντα:"
 
-#: src/commands/importcertificatescommand.cpp:171
+#: src/commands/importcertificatescommand.cpp:172
 #, kde-format
 msgid "Not imported:"
 msgstr "Μη εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:173
+#: src/commands/importcertificatescommand.cpp:174
 #, kde-format
 msgid "Unchanged:"
 msgstr "Μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:175
+#: src/commands/importcertificatescommand.cpp:176
 #, kde-format
 msgid "Secret keys processed:"
 msgstr "Μυστικά κλειδιά που επεξεργάστηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:177
+#: src/commands/importcertificatescommand.cpp:178
 #, kde-format
 msgid "Secret keys imported:"
 msgstr "Μυστικά κλειδιά που εισήχθησαν:"
 
-#: src/commands/importcertificatescommand.cpp:181
+#: src/commands/importcertificatescommand.cpp:182
 #, kde-format
 msgid "Secret keys <em>not</em> imported:"
 msgstr "Μυστικά κλειδιά <em>μη</em> εισηγμένα:"
 
-#: src/commands/importcertificatescommand.cpp:183
+#: src/commands/importcertificatescommand.cpp:184
 #, kde-format
 msgid "Secret keys unchanged:"
 msgstr "Μυστικά κλειδιά μη τροποποιημένα:"
 
-#: src/commands/importcertificatescommand.cpp:185
+#: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
 msgstr "Παλαιωμένα PGP-2 κλειδιά παραβλέφθηκαν:"
 
-#: src/commands/importcertificatescommand.cpp:197
+#: src/commands/importcertificatescommand.cpp:198
 #, kde-format
 msgid "Certificate Groups"
 msgstr "Ομάδες πιστοποιητικών"
 
-#: src/commands/importcertificatescommand.cpp:199
+#: src/commands/importcertificatescommand.cpp:200
 #, kde-format
 msgid "New groups:"
 msgstr "Νέες ομάδες:"
 
-#: src/commands/importcertificatescommand.cpp:200
+#: src/commands/importcertificatescommand.cpp:201
 #, kde-format
 msgid "Updated groups:"
 msgstr "Ενημέρωση ομάδων:"
 
-#: src/commands/importcertificatescommand.cpp:215
+#: src/commands/importcertificatescommand.cpp:216
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
 msgstr ""
 "Χωρίς εισαγωγές (δεν θα έπρεπε να συμβαίνει αυτό, στείλτε μια αναφορά "
 "σφάλματος."
 
-#: src/commands/importcertificatescommand.cpp:217
+#: src/commands/importcertificatescommand.cpp:218
 #, kde-format
 msgid "Detailed results of importing %1:"
 msgstr "Αναλυτικά αποτελέσματα εισαγωγής του %1:"
 
-#: src/commands/importcertificatescommand.cpp:218
+#: src/commands/importcertificatescommand.cpp:219
 #, kde-format
 msgid "Detailed results of import:"
 msgstr "Αναλυτικά αποτελέσματα εισαγωγής:"
 
-#: src/commands/importcertificatescommand.cpp:273
+#: src/commands/importcertificatescommand.cpp:276
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a shared secret key."
+msgstr "Έχετε εισαγάγει ένα νέο πιστοποιητικό (δημόσιο κλειδί)"
+
+#: src/commands/importcertificatescommand.cpp:277
+#, kde-format
+msgctxt "@info"
+msgid "In order to use this shared secret key you should certify it. "
+msgstr ""
+
+#: src/commands/importcertificatescommand.cpp:278
+#, fuzzy, kde-format
+#| msgid "Certifying means that you check the Fingerprint."
+msgctxt "@info"
+msgid ""
+"Certification means that you check the fingerprint against a trusted source."
+msgstr "Πιστοποίηση σημαίνει ότι ελέγχετε το αποτύπωμα."
+
+#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:292
+#, kde-format
+msgid "Do you wish to start this process now?"
+msgstr "Θέλετε να ξεκινήσετε αυτήν τη διαδικασία τώρα;"
+
+#: src/commands/importcertificatescommand.cpp:280
+#, fuzzy, kde-format
+#| msgid "Selected secret key:"
+msgctxt "@title"
+msgid "Certify shared secret key?"
+msgstr "Επιλεγμένο μυστικό κλειδί:"
+
+#: src/commands/importcertificatescommand.cpp:283
 #, kde-format
 msgid "A phone call to the person."
 msgstr "Τηλεφωνική κλήση στο πρόσωπο."
 
-#: src/commands/importcertificatescommand.cpp:274
+#: src/commands/importcertificatescommand.cpp:284
 #, kde-format
 msgid "Using a business card."
 msgstr "Χρήση επαγγελματικής κάρτας."
 
-#: src/commands/importcertificatescommand.cpp:275
+#: src/commands/importcertificatescommand.cpp:285
 #, kde-format
 msgid "Confirming it on a trusted website."
 msgstr "Επιβεβαίωση σε έμπιστο ιστότοπο."
 
-#: src/commands/importcertificatescommand.cpp:279
+#: src/commands/importcertificatescommand.cpp:287
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "You have imported a new certificate (public key)"
+msgctxt "@info"
+msgid "You have imported a new certificate (public key)."
+msgstr "Έχετε εισαγάγει ένα νέο πιστοποιητικό (δημόσιο κλειδί)"
+
+#: src/commands/importcertificatescommand.cpp:288
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
 msgstr ""
 "Για να σημειωθεί το πιστοποιητικό ως έγκυρο χρειάζεται να πιστοποιηθεί."
 
-#: src/commands/importcertificatescommand.cpp:280
+#: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
 msgstr "Πιστοποίηση σημαίνει ότι ελέγχετε το αποτύπωμα."
 
-#: src/commands/importcertificatescommand.cpp:281
+#: src/commands/importcertificatescommand.cpp:290
 #, kde-format
 msgid "Some suggestions to do this are:"
 msgstr "Ορισμένες προτάσεις για να το κάνετε αυτό είναι:"
 
-#: src/commands/importcertificatescommand.cpp:283
-#, kde-format
-msgid "Do you wish to start this process now?"
-msgstr "Θέλετε να ξεκινήσετε αυτήν τη διαδικασία τώρα;"
-
-#: src/commands/importcertificatescommand.cpp:284
-#, kde-format
+#: src/commands/importcertificatescommand.cpp:293
+#, fuzzy, kde-format
+#| msgid "Certify Certificate..."
 msgctxt "@title"
-msgid "You have imported a new certificate (public key)"
-msgstr "Έχετε εισαγάγει ένα νέο πιστοποιητικό (δημόσιο κλειδί)"
+msgid "Certify new certificate?"
+msgstr "Πιστοποίηση πιστοποιητικού..."
 
-#: src/commands/importcertificatescommand.cpp:285
+#: src/commands/importcertificatescommand.cpp:298
 #: src/conf/groupsconfigwidget.cpp:188
 #, kde-format
 msgctxt "@action:button"
 msgid "Certify"
 msgstr "Πιστοποίηση"
 
-#: src/commands/importcertificatescommand.cpp:362
+#: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
 msgstr "%1 (έγινε εισαγωγή με το %2)"
 
-#: src/commands/importcertificatescommand.cpp:366
+#: src/commands/importcertificatescommand.cpp:379
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
 msgstr "Το αρχείο καταγραφής ελέγχου είναι κενό."
 
-#: src/commands/importcertificatescommand.cpp:368
+#: src/commands/importcertificatescommand.cpp:381
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
 msgstr "Η εισαγωγή ακυρώθηκε."
 
-#: src/commands/importcertificatescommand.cpp:395
+#: src/commands/importcertificatescommand.cpp:408
 #, fuzzy, kde-format
 #| msgctxt "@title:tab"
 #| msgid "Imported Certificates"
@@ -2601,7 +2640,7 @@ msgctxt "@action:button"
 msgid "List Imported Certificates"
 msgstr "Εισηγμένα πιστοποιητικά"
 
-#: src/commands/importcertificatescommand.cpp:396
+#: src/commands/importcertificatescommand.cpp:409
 #, fuzzy, kde-format
 #| msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 #| msgid "Show Audit Log"
@@ -2609,7 +2648,7 @@ msgctxt "@action:button"
 msgid "Show Audit Log"
 msgstr "Εμφάνιση καταγραφής επαλήθευσης"
 
-#: src/commands/importcertificatescommand.cpp:419
+#: src/commands/importcertificatescommand.cpp:432
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
@@ -2618,7 +2657,7 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής πιστοποιητικού:</"
 "p><p><b>%1 </b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:424
+#: src/commands/importcertificatescommand.cpp:437
 #, kde-format
 msgid ""
 "<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
@@ -2627,7 +2666,7 @@ msgstr ""
 "<qt><p>Παρουσιάστηκε σφάλμα κατά την προσπάθεια εισαγωγής του πιστοποιητικού "
 "%1:</p><p><b>%2</b></p></qt>"
 
-#: src/commands/importcertificatescommand.cpp:540
+#: src/commands/importcertificatescommand.cpp:553
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2644,13 +2683,13 @@ msgstr ""
 "para><para><numid>%1</numid></para><para>και αναγνωριστικά χρήστη<list>%2</"
 "list></para><para>Είναι δικό σας το πιστοποιητικό;</para>"
 
-#: src/commands/importcertificatescommand.cpp:557
+#: src/commands/importcertificatescommand.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
 msgstr "%1<item>%2</item>"
 
-#: src/commands/importcertificatescommand.cpp:560
+#: src/commands/importcertificatescommand.cpp:573
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2667,20 +2706,20 @@ msgstr ""
 "para><para><numid>%1</numid></para><para>και αναγνωριστικά χρήστη<list>%2</"
 "list></para><para>Είναι δικό σας το πιστοποιητικό;</para>"
 
-#: src/commands/importcertificatescommand.cpp:574
+#: src/commands/importcertificatescommand.cpp:587
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:575
+#: src/commands/importcertificatescommand.cpp:588
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
 msgstr ""
 
-#: src/commands/importcertificatescommand.cpp:734
+#: src/commands/importcertificatescommand.cpp:747
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -2695,15 +2734,15 @@ msgstr ""
 "<para>Θέλετε πραγματικά να ανακαλέσετε το αναγνωριστικό χρήστη<nl/><emphasis>"
 "%1</emphasis>;</para>"
 
-#: src/commands/importcertificatescommand.cpp:798
+#: src/commands/importcertificatescommand.cpp:811
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
 msgstr[0] "Λήψη 1 κλειδί υπογράφοντος... (μπορεί να αργήσει λίγο)"
 msgstr[1] "Λήψη %1 κλειδιά υπογράφοντος... (μπορεί να αργήσει λίγο)"
 
-#: src/commands/importcertificatescommand.cpp:833
-#: src/commands/importcertificatescommand.cpp:884
+#: src/commands/importcertificatescommand.cpp:846
+#: src/commands/importcertificatescommand.cpp:897
 #, kde-format
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
@@ -16839,12 +16878,6 @@ msgstr ""
 #~ msgctxt "@info"
 #~ msgid "Code successfully changed."
 #~ msgstr "Το ID χρήστη προστέθηκε επιτυχώς."
-
-#, fuzzy
-#~| msgid "Selected secret key:"
-#~ msgctxt "@title"
-#~ msgid "Print secret key"
-#~ msgstr "Επιλεγμένο μυστικό κλειδί:"
 
 #, fuzzy
 #~| msgid ""
