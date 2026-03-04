@@ -56,7 +56,6 @@
 #include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QListWidget>
 #include <QLocale>
 #include <QMenu>
 #include <QPushButton>
@@ -140,7 +139,7 @@ private:
         std::unique_ptr<InfoField> statusField;
         std::unique_ptr<InfoField> usageField;
 
-        QListWidget *smimeAddressList = nullptr;
+        TreeWidget *smimeAddressList = nullptr;
 
         QTabWidget *tabWidget = nullptr;
         SubKeysWidget *subKeysWidget = nullptr;
@@ -259,12 +258,20 @@ private:
             userIDs = new UserIdsWidget(parent);
 
             tabWidget->addTab(userIDs, i18nc("@title:tab", "User IDs"));
-            smimeAddressList = new QListWidget{parent};
+            smimeAddressList = new TreeWidget{parent};
             // Breeze draws no frame for scroll areas that are the only widget in a layout...unless we force it
             smimeAddressList->setProperty("_breeze_force_frame", true);
+            smimeAddressList->setHeaderHidden(true);
             smimeAddressList->setAccessibleName(i18n("Related addresses"));
             smimeAddressList->setEditTriggers(QAbstractItemView::NoEditTriggers);
             smimeAddressList->setSelectionMode(QAbstractItemView::SingleSelection);
+            smimeAddressList->setContextMenuPolicy(Qt::CustomContextMenu);
+            connect(smimeAddressList, &QWidget::customContextMenuRequested, smimeAddressList, [this](const auto &pos) {
+                auto menu = new QMenu;
+                menu->setAttribute(Qt::WA_DeleteOnClose, true);
+                menu->addAction(smimeAddressList->copyCellContentsAction());
+                menu->popup(smimeAddressList->viewport()->mapToGlobal(pos));
+            });
             tabWidget->addTab(smimeAddressList, i18nc("@title:tab", "Related Addresses"));
 
             subKeysWidget = new SubKeysWidget(parent);
@@ -402,7 +409,7 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
         const QGpgME::DN dn(ownerId.id());
         const QString dnEmail = dn[QStringLiteral("EMAIL")];
         if (!dnEmail.isEmpty()) {
-            ui.smimeAddressList->addItem(dnEmail);
+            new QTreeWidgetItem{ui.smimeAddressList, {dnEmail}};
         }
     }
 
@@ -435,12 +442,12 @@ void CertificateDetailsWidget::Private::setUpSMIMEAdressList()
             }
             // avoid duplicate entries in the list
             if (ui.smimeAddressList->findItems(itemText, Qt::MatchExactly).empty()) {
-                ui.smimeAddressList->addItem(itemText);
+                new QTreeWidgetItem{ui.smimeAddressList, {itemText}};
             }
         }
     }
 
-    if (ui.smimeAddressList->count() == 0) {
+    if (ui.smimeAddressList->topLevelItemCount() == 0) {
         ui.tabWidget->setTabVisible(1, false);
     }
 }
