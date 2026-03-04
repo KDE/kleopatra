@@ -579,7 +579,7 @@ void KeyListController::createActions(KActionCollection *coll)
         {
             "cell_copy",
             i18nc("@action:button", "Copy"),
-            QString(),
+            i18nc("@info:tooltip", "Copy cell contents to clipboard"),
             "edit-copy",
             this,
             [this](bool) {
