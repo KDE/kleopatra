@@ -16,11 +16,7 @@
 #include <gpgme.h>
 
 #include <KLocalizedString>
-#include <KStandardActions>
 
-#include <QClipboard>
-#include <QGuiApplication>
-#include <QKeyEvent>
 #include <QMenu>
 #include <QVBoxLayout>
 
@@ -81,12 +77,7 @@ public:
             connect(revokersTree, &QTreeWidget::customContextMenuRequested, widget, [widget, this](const auto &pos) {
                 auto menu = new QMenu;
                 menu->setAttribute(Qt::WA_DeleteOnClose, true);
-                menu->addAction(KStandardActions::copy(
-                    widget,
-                    [this]() {
-                        QGuiApplication::clipboard()->setText(revokersTree->currentIndex().data(Kleo::ClipboardRole).toString());
-                    },
-                    widget));
+                menu->addAction(revokersTree->copyCellContentsAction());
                 menu->addSeparator();
                 auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
                 columnVisibilityAction->setMenu(revokersTree->columnVisibilityMenu());

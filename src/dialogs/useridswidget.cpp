@@ -529,6 +529,8 @@ void UserIdsWidget::Private::userIDTableContextMenuRequested(const QPoint &p)
         action->setEnabled(!singleUserID.isNull() && canCreateCertifications(key) && canRevokeUserID(singleUserID));
     }
     menu->addSeparator();
+    menu->addAction(userIDTable->copyCellContentsAction());
+    menu->addSeparator();
     auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
     columnVisibilityAction->setMenu(userIDTable->columnVisibilityMenu());
     menu->addAction(columnVisibilityAction);

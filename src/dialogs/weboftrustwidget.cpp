@@ -315,6 +315,8 @@ public:
             addActionsForSignature(menu);
         }
         menu->addSeparator();
+        menu->addAction(certificationsTV->copyCellContentsAction());
+        menu->addSeparator();
         auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
         columnVisibilityAction->setMenu(certificationsTV->columnVisibilityMenu());
         menu->addAction(columnVisibilityAction);

@@ -319,6 +319,8 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
     }
 
     menu->addSeparator();
+    menu->addAction(ui.subkeysTree->copyCellContentsAction());
+    menu->addSeparator();
     auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
     columnVisibilityAction->setMenu(ui.subkeysTree->columnVisibilityMenu());
     menu->addAction(columnVisibilityAction);

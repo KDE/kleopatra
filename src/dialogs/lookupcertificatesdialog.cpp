@@ -25,12 +25,9 @@
 #include <KLocalizedString>
 #include <KSeparator>
 #include <KSharedConfig>
-#include <KStandardActions>
 
-#include <QClipboard>
 #include <QDialogButtonBox>
 #include <QGridLayout>
-#include <QGuiApplication>
 #include <QHeaderView>
 #include <QLabel>
 #include <QLineEdit>
@@ -134,15 +131,6 @@ private:
     int numSelectedCertificates() const
     {
         return ui.resultTV->selectedItems().size();
-    }
-
-    void copySelectedValue()
-    {
-        auto clipboardData = ui.resultTV->currentIndex().data(Kleo::ClipboardRole).toString();
-        if (clipboardData.isEmpty()) {
-            clipboardData = ui.resultTV->currentIndex().data().toString();
-        }
-        QGuiApplication::clipboard()->setText(clipboardData);
     }
 
     QValidator *queryValidator();
@@ -261,12 +249,7 @@ private:
             connect(resultTV, &QTreeView::customContextMenuRequested, dialog, [this, dialog](const auto &pos) {
                 auto menu = new QMenu;
                 menu->setAttribute(Qt::WA_DeleteOnClose, true);
-                menu->addAction(KStandardActions::copy(
-                    dialog,
-                    [dialog]() {
-                        dialog->d->copySelectedValue();
-                    },
-                    dialog));
+                menu->addAction(resultTV->copyCellContentsAction());
                 menu->addSeparator();
                 auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
                 columnVisibilityAction->setMenu(resultTV->columnVisibilityMenu());

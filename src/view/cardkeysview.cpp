@@ -452,6 +452,8 @@ CardKeysView::CardKeysView(QWidget *parent, Options options)
             menu->addAction(updateAction(SmartCardActions::createProxyAction(action, menu), item, mCard.get()));
         }
         menu->addSeparator();
+        menu->addAction(mTreeWidget->copyCellContentsAction());
+        menu->addSeparator();
         auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
         columnVisibilityAction->setMenu(mTreeWidget->columnVisibilityMenu());
         menu->addAction(columnVisibilityAction);

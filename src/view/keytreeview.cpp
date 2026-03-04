@@ -237,12 +237,7 @@ void KeyTreeView::init()
         connect(m_view, &KeyTreeView::customContextMenuRequested, this, [this](const auto &pos) {
             auto menu = new QMenu;
             menu->setAttribute(Qt::WA_DeleteOnClose, true);
-            menu->addAction(KStandardActions::copy(
-                this,
-                [this]() {
-                    QGuiApplication::clipboard()->setText(m_view->currentIndex().data(Kleo::ClipboardRole).toString());
-                },
-                this));
+            menu->addAction(m_view->copyCellContentsAction());
             menu->addSeparator();
             auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
             columnVisibilityAction->setMenu(m_view->columnVisibilityMenu());
