@@ -296,7 +296,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
                                                message,
                                                title,
                                                KGuiItem(i18nc("@action:button", "Certify")),
-                                               KStandardGuiItem::cancel(),
+                                               KGuiItem(i18nc("@action:button", "Do Not Certify Now")),
                                                QStringLiteral("CertifyQuestion"));
     if (sel == KMessageBox::ButtonCode::PrimaryAction) {
         QEventLoop loop;

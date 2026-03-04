@@ -802,12 +802,14 @@ bool MainWindow::queryClose()
     qCDebug(KLEOPATRA_LOG) << __func__;
     if (d->controller.hasRunningCommands()) {
         if (d->controller.shutdownWarningRequired()) {
-            const int ret = KMessageBox::warningContinueCancel(this,
+            const int ret = KMessageBox::warningTwoActions(this,
                                                                i18n("There are still some background operations ongoing. "
                                                                     "These will be terminated when closing the window. "
                                                                     "Proceed?"),
-                                                               i18n("Ongoing Background Tasks"));
-            if (ret != KMessageBox::Continue) {
+                                                               i18n("Ongoing Background Tasks"),
+                                                               KGuiItem(i18nc("@action:button", "Quit Now")),
+                                                               KGuiItem(i18nc("@action:button", "Do Not Quit")));
+            if (ret != KMessageBox::PrimaryAction) {
                 return false;
             }
         }
