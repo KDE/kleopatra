@@ -183,7 +183,9 @@ void ExportSecretTeamKeyCommand::Private::start()
     auto cancelButton = buttonBox->addButton(QDialogButtonBox::Cancel);
     connect(cancelButton, &QPushButton::clicked, q, [dialog, this]() {
         dialog->reject();
-        q->cancel();
+    });
+    connect(dialog, &QDialog::rejected, q, [this]() {
+        canceled();
     });
 
     layout->addWidget(buttonBox);
