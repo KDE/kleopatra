@@ -67,6 +67,9 @@ public:
 
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1,
+
+        // explicitly defined after _AllRestrictions_Helper
+        ComplexApplicability = 0x80000000, //< isApplicable() needs to be checked additionally if all Restrictions are fulfilled
         // clang-format on
     };
 
@@ -75,6 +78,19 @@ public:
     static Restrictions restrictions()
     {
         return NoRestriction;
+    }
+
+    /**
+     * Returns true if the command is applicable for the given list of keys.
+     *
+     * Can be implemented by commands for which restrictions() isn't sufficient.
+     * This function is only called if the command's restrictions are fulfilled
+     * and if they include the ComplexApplicability flag.
+     */
+    static bool isApplicable(const std::vector<GpgME::Key> &keys)
+    {
+        Q_UNUSED(keys)
+        return true;
     }
 
     /** Classify the files and return the most appropriate commands.

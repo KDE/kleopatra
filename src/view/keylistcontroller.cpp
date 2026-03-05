@@ -145,12 +145,13 @@ private:
     int toolTipOptions() const;
 
 private:
-    static Command::Restrictions calculateRestrictionsMask(const QItemSelectionModel *sm);
+    static Command::Restrictions calculateRestrictionsMask(const std::vector<Key> &keys);
 
 private:
     struct action_item {
         QPointer<QAction> action;
         Command::Restrictions restrictions;
+        bool (*isApplicable)(const std::vector<Key> &); // not nullptr if complex applicability check is necessary
         Command *(*createCommand)(QAbstractItemView *, KeyListController *);
     };
     std::vector<action_item> actions;
@@ -768,14 +769,17 @@ void KeyListController::createActions(KActionCollection *coll)
     });
 }
 
-void KeyListController::registerAction(QAction *action, Command::Restrictions restrictions, Command *(*create)(QAbstractItemView *, KeyListController *))
+void KeyListController::registerAction(QAction *action,
+                                       Command::Restrictions restrictions,
+                                       bool (*isApplicable)(const std::vector<GpgME::Key> &),
+                                       Command *(*create)(QAbstractItemView *, KeyListController *))
 {
     if (!action) {
         return;
     }
     Q_ASSERT(!action->isCheckable()); // can be added later, for now, disallow
 
-    const Private::action_item ai = {action, restrictions, create};
+    const Private::action_item ai = {action, restrictions, isApplicable, create};
     connect(action, &QAction::triggered, this, [this, action]() {
         d->slotActionTriggered(action);
     });
@@ -892,12 +896,30 @@ void KeyListController::Private::slotCommandFinished()
     }
 }
 
+static std::vector<Key> selectedKeys(const QItemSelectionModel *sm)
+{
+    std::vector<Key> keys;
+
+    if (!sm) {
+        return keys;
+    }
+    if (const KeyListModelInterface *const m = dynamic_cast<const KeyListModelInterface *>(sm->model())) {
+        keys = m->keys(sm->selectedRows());
+    }
+
+    return keys;
+}
+
 void KeyListController::enableDisableActions(const QItemSelectionModel *sm) const
 {
-    const Command::Restrictions restrictionsMask = d->calculateRestrictionsMask(sm);
+    const std::vector<Key> keys = selectedKeys(sm);
+    const Command::Restrictions restrictionsMask = d->calculateRestrictionsMask(keys);
     for (const Private::action_item &ai : std::as_const(d->actions))
         if (ai.action) {
             ai.action->setEnabled(ai.restrictions == (ai.restrictions & restrictionsMask));
+            if (ai.isApplicable && ai.action->isEnabled()) {
+                ai.action->setEnabled(ai.isApplicable(keys));
+            }
         }
 }
 
@@ -941,18 +963,8 @@ static bool secretSubkeyDataAvailable(const Subkey &subkey)
     return subkey.isSecret() && !subkey.isCardKey();
 }
 
-Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const QItemSelectionModel *sm)
+Command::Restrictions KeyListController::Private::calculateRestrictionsMask(const std::vector<Key> &keys)
 {
-    if (!sm) {
-        return Command::NoRestriction;
-    }
-
-    const KeyListModelInterface *const m = dynamic_cast<const KeyListModelInterface *>(sm->model());
-    if (!m) {
-        return Command::NoRestriction;
-    }
-
-    const std::vector<Key> keys = m->keys(sm->selectedRows());
     if (keys.empty()) {
         return Command::NoRestriction;
     }

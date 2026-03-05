@@ -56,7 +56,9 @@ public:
     template<typename T_Command>
     void registerActionForCommand(QAction *action)
     {
-        this->registerAction(action, T_Command::restrictions(), &KeyListController::template create<T_Command>);
+        const Command::Restrictions restrictions = T_Command::restrictions();
+        auto isApplicable = restrictions.testFlag(Command::ComplexApplicability) ? &T_Command::isApplicable : nullptr;
+        this->registerAction(action, restrictions & Command::AllRestrictions, isApplicable, &KeyListController::template create<T_Command>);
     }
 
     void enableDisableActions(const QItemSelectionModel *sm) const;
@@ -65,7 +67,10 @@ public:
     bool shutdownWarningRequired() const;
 
 private:
-    void registerAction(QAction *action, Command::Restrictions restrictions, Command *(*create)(QAbstractItemView *, KeyListController *));
+    void registerAction(QAction *action,
+                        Command::Restrictions restrictions,
+                        bool (*isApplicable)(const std::vector<GpgME::Key> &),
+                        Command *(*create)(QAbstractItemView *, KeyListController *));
 
     template<typename T_Command>
     static Command *create(QAbstractItemView *v, KeyListController *c)
