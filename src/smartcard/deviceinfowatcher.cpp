@@ -80,6 +80,7 @@ void DeviceInfoWatcher::Worker::start()
         QMetaObject::invokeMethod(this, "start", Qt::QueuedConnection);
     } else {
         qCWarning(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::start: Starting Assuan transaction for" << command << "failed:" << err;
+        mContext.reset();
     }
 }
 
@@ -88,6 +89,7 @@ void DeviceInfoWatcher::Worker::poll()
     const bool finished = mContext->poll();
     if (finished) {
         qCDebug(KLEOPATRA_LOG) << "DeviceInfoWatcher::Worker::poll: context finished with" << mContext->lastError();
+        mContext.reset();
         QThread::msleep(1000);
         QMetaObject::invokeMethod(this, "start", Qt::QueuedConnection);
     } else {
