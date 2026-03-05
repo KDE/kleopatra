@@ -288,6 +288,22 @@ ExportSecretTeamKeyCommand::ExportSecretTeamKeyCommand(const GpgME::Key &key)
 
 ExportSecretTeamKeyCommand::~ExportSecretTeamKeyCommand() = default;
 
+// static
+bool ExportSecretTeamKeyCommand::isApplicable(const std::vector<GpgME::Key> &keys)
+{
+    // qCDebug(KLEOPATRA_LOG) << "ExportSecretTeamKeyCommand::isApplicable";
+    // ensure that we only have one key even if the OnlyOneKey restriction should guarantee this
+    if (keys.size() != 1) {
+        return false;
+    }
+    // require a secret encryption subkey which is not the primary subkey and which is stored on disk
+    const Key &key = keys.front();
+    const auto subkeys = key.subkeys();
+    return !key.isBad() && std::ranges::any_of(std::span{subkeys}.subspan(1), [](const auto &subkey) {
+        return subkey.canEncrypt() && !subkey.isBad() && subkey.isSecret() && !subkey.isCardKey();
+    });
+}
+
 void ExportSecretTeamKeyCommand::doStart()
 {
     d->start();

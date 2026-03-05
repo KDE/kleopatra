@@ -1065,14 +1065,6 @@ Command::Restrictions KeyListController::Private::calculateRestrictionsMask(cons
         }
     }
 
-    if (std::ranges::all_of(keys, [](const auto &key) {
-            return !key.isBad() && std::ranges::any_of(key.subkeys(), [](const auto &subkey) {
-                return subkey.canEncrypt() && !subkey.isBad() && subkey.isSecret();
-            });
-        })) {
-        result |= Command::NeedSecretEncryptSubkey;
-    }
-
     return result;
 }
 

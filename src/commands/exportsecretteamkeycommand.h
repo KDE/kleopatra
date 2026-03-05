@@ -21,8 +21,10 @@ public:
 
     /* reimp */ static Restrictions restrictions()
     {
-        return OnlyOneKey | NeedSecretKey /* We only want the owner to export the key */ | MustBeOpenPGP | NeedSecretEncryptSubkey;
+        return OnlyOneKey | NeedSecretKey /* We only want the owner to export the key */ | MustBeOpenPGP | ComplexApplicability;
     }
+
+    static bool isApplicable(const std::vector<GpgME::Key> &keys);
 
 private:
     void doStart() override;

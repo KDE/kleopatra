@@ -63,8 +63,6 @@ public:
         MustBeOpenPGP       = 0x2000,
         MustBeCMS           = 0x4000,
 
-        NeedSecretEncryptSubkey = 0x8000,
-
         _AllRestrictions_Helper,
         AllRestrictions = 2 * (_AllRestrictions_Helper - 1) - 1,
 
