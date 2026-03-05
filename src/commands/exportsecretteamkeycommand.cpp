@@ -156,14 +156,13 @@ void ExportSecretTeamKeyCommand::Private::start()
 
     const auto subkeys = key().subkeys();
     auto hasSecretSigningSubkey = std::ranges::any_of(std::span{subkeys}.subspan(1), [](const auto &subkey) {
-        return subkey.canSign() && !subkey.isBad() && subkey.isSecret();
+        return subkey.canSign() && !subkey.isBad() && subkey.isSecret() && !subkey.isCardKey();
     });
     signLabel->setVisible(hasSecretSigningSubkey);
     layout->addWidget(signLabel);
 
     auto signCheckbox = new QCheckBox(i18nc("@option:check", "Allow team members to sign with the team key"));
     signCheckbox->setVisible(hasSecretSigningSubkey);
-
     signCheckbox->setEnabled(hasSecretSigningSubkey);
     layout->addWidget(signCheckbox);
 
