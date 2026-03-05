@@ -534,13 +534,16 @@ void SignEncryptWidget::ownCertificateSelectionRequested(CertificateSelectionDia
     dialog.setKeyFilter(keyFilter);
 
     if (dialog.exec()) {
-        auto userId = dialog.selectedUserIDs()[0];
-        auto index = combo->findUserId(userId);
-        if (index == -1) {
-            combo->appendCustomItem(Formatting::errorIcon(), Formatting::summaryLine(userId), QVariant::fromValue(userId));
-            index = combo->combo()->count() - 1;
+        const std::vector<UserID> userIds = dialog.selectedUserIDs();
+        if (!userIds.empty()) {
+            auto userId = userIds.front();
+            auto index = combo->findUserId(userId);
+            if (index == -1) {
+                combo->appendCustomItem(Formatting::errorIcon(), Formatting::summaryLine(userId), QVariant::fromValue(userId));
+                index = combo->combo()->count() - 1;
+            }
+            combo->combo()->setCurrentIndex(index);
         }
-        combo->combo()->setCurrentIndex(index);
     }
 
     recipientsChanged();
