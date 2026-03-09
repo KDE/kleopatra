@@ -1,151 +1,148 @@
-<!DOCTYPE gui >
+<!DOCTYPE gui>
 <gui name="kleopatra" version="530">
-    <MenuBar>
-        <Menu name="file">
-            <text>&amp;File</text>
-            <Action name="file_new_certificate"/>
-            <Action name="file_new_certificate_signing_request"/>
-            <Separator/>
-            <Action name="file_lookup_certificates"/>
-            <Action name="file_import_certificates"/>
-            <Separator/>
-            <Action name="file_export_certificates"/>
-            <Action name="file_export_secret_keys"/>
-            <Action name="file_export_secret_team_key"/>
-            <Action name="file_export_paper_key"/>
-            <Action name="file_export_certificates_to_server"/>
-            <Action name="file_export_certificate_to_provider"/>
-            <Separator/>
-            <Action name="file_decrypt_verify_files"/>
-            <Action name="file_sign_encrypt_files"/>
-            <Action name="file_sign_encrypt_folder"/>
-            <Separator/>
-            <Action name="file_checksum_create_files"/>
-            <Action name="file_checksum_verify_files"/>
-            <Separator/>
-            <Action name="quit" />
-        </Menu>
-        <Menu name="certMenu">
-            <text>&amp;Certificates</text>
-            <Action name="view_certificate_details"/>
-            <Separator/>
-            <Action name="certificates_refresh"/>
-            <Separator/>
-            <Action name="certificates_change_owner_trust"/>
-            <Action name="certificates_disable"/>
-            <Action name="certificates_trust_root"/>
-            <Action name="certificates_distrust_root"/>
-            <Separator/>
-            <Action name="certificates_certify_certificate"/>
-            <Action name="certificates_revoke_certification"/>
-            <Separator/>
-            <Action name="certificates_change_expiry"/>
-            <Action name="certificates_change_passphrase"/>
-            <Action name="certificates_add_userid"/>
-            <Separator/>
-            <Action name="certificates_revoke"/>
-            <Action name="certificates_delete"/>
-            <Separator/>
-            <Action name="certificates_create_group"/>
-            <Separator/>
-            <Action name="certificate_to_card"/>
-        </Menu>
-        <Menu name="_tools">
-            <text>&amp;Tools</text>
-            <Action name="settings_self_test"/>
-            <Action name="tools_start_kwatchgnupg"/>
-            <Action name="tools_debug_view"/>
-            <Separator/>
-            <Action name="pad_view"/>
-            <Action name="manage_smartcard"/>
-            <Separator/>
-            <Action name="configure_groups"/>
-            <Separator/>
-            <Action name="clipboard_menu"/>
-            <Separator/>
-            <Action name="crl_import_crl"/>
-            <Separator/>
-            <Action name="crl_clear_crl_cache"/>
-            <Action name="crl_dump_crl_cache"/>
-            <Separator/>
-            <Action name="tools_restart_backend"/>
-        </Menu>
-        <Menu name="_view">
-            <text>&amp;View</text>
-            <Action name="reload_certificate_list"/>
-            <Separator/>
-            <Action name="window_view_hierarchical"/>
-            <Separator/>
-            <Action name="window_expand_all"/>
-            <Action name="window_collapse_all"/>
-            <Separator/>
-            <Action name="columns_menu"/>
-            <Action name="columns_sort_menu"/>
-        </Menu>
-        <Menu name="settings">
-            <text>&amp;Settings</text>
-            <Action name="colorscheme_menu" group="show_merge"/>
-        </Menu>
-        <Menu name="help">
-            <text>&amp;Help</text>
-            <Action name="help_doc_quickguide"/>
-            <Action name="help_doc_symenc"/>
-            <Action name="help_doc_groups"/>
-            <Action name="help_doc_gpgol"/>
-            <Action name="help_doc_compendium"/>
-            <Menu name="help_more">
-                <text>&amp;More Documentation</text>
-                <Action name="help_doc_cert_management"/>
-                <Action name="help_doc_smartcard"/>
-                <Action name="help_doc_gnupg"/>
-            </Menu>
-            <Separator/>
-            <Action name="help_doc_approval_manual"/>
-            <Action name="help_doc_vsa"/>
-            <Separator/>
-            <Action name="help_check_updates"/>
-        </Menu>
-    </MenuBar>
-
-    <ToolBar fullWidth="false" name="mainToolBar" iconText="TextUnderIcon">
-        <text>Main Toolbar</text>
-        <Action name="file_sign_encrypt_files"/>
-        <Action name="file_decrypt_verify_files"/>
-        <Separator/>
-        <Action name="file_import_certificates"/>
-        <Action name="file_export_certificates"/>
-        <Action name="certificates_certify_certificate"/>
-        <Action name="file_lookup_certificates"/>
-        <Separator/>
-        <Action name="pad_view"/>
-        <Action name="manage_smartcard"/>
-        <Separator/>
-        <Action name="configure_groups_toolbar"/>
-    </ToolBar>
-
-    <Menu name="listview_popup">
-        <text>&amp;Certificates</text>
-        <Action name="view_certificate_details"/>
-        <Separator/>
-        <Action name="certificates_refresh"/>
-        <Separator/>
-        <Action name="certificates_certify_certificate"/>
-        <Action name="certificates_revoke_certification"/>
-        <Action name="certificates_change_owner_trust"/>
-        <Action name="certificates_disable"/>
-        <Separator/>
-        <Action name="certificates_change_expiry"/>
-        <Action name="certificates_change_passphrase"/>
-        <Action name="certificates_add_userid"/>
-        <Separator/>
-        <Action name="certificates_revoke"/>
-        <Separator/>
-        <Action name="certificates_create_group"/>
-        <Separator/>
-        <Action name="file_export_certificates"/>
-        <Action name="file_export_certificates_to_server"/>
-        <Separator/>
-        <Action name="cell_copy"/>
-    </Menu>
-
+ <MenuBar>
+  <Menu name="file">
+   <text>&amp;File</text>
+   <Action name="file_new_certificate"/>
+   <Action name="file_new_certificate_signing_request"/>
+   <Separator/>
+   <Action name="file_lookup_certificates"/>
+   <Action name="file_import_certificates"/>
+   <Separator/>
+   <Action name="file_export_certificates"/>
+   <Action name="file_export_secret_keys"/>
+   <Action name="file_export_secret_team_key"/>
+   <Action name="file_export_paper_key"/>
+   <Action name="file_export_certificates_to_server"/>
+   <Action name="file_export_certificate_to_provider"/>
+   <Separator/>
+   <Action name="file_decrypt_verify_files"/>
+   <Action name="file_sign_encrypt_files"/>
+   <Action name="file_sign_encrypt_folder"/>
+   <Separator/>
+   <Action name="file_checksum_create_files"/>
+   <Action name="file_checksum_verify_files"/>
+   <Separator/>
+   <Action name="quit"/>
+  </Menu>
+  <Menu name="certMenu">
+   <text>&amp;Certificates</text>
+   <Action name="view_certificate_details"/>
+   <Separator/>
+   <Action name="certificates_refresh"/>
+   <Separator/>
+   <Action name="certificates_change_owner_trust"/>
+   <Action name="certificates_disable"/>
+   <Action name="certificates_trust_root"/>
+   <Action name="certificates_distrust_root"/>
+   <Separator/>
+   <Action name="certificates_certify_certificate"/>
+   <Action name="certificates_revoke_certification"/>
+   <Separator/>
+   <Action name="certificates_change_expiry"/>
+   <Action name="certificates_change_passphrase"/>
+   <Action name="certificates_add_userid"/>
+   <Separator/>
+   <Action name="certificates_revoke"/>
+   <Action name="certificates_delete"/>
+   <Separator/>
+   <Action name="certificates_create_group"/>
+   <Separator/>
+   <Action name="certificate_to_card"/>
+  </Menu>
+  <Menu name="_tools">
+   <text>&amp;Tools</text>
+   <Action name="settings_self_test"/>
+   <Action name="tools_start_kwatchgnupg"/>
+   <Action name="tools_debug_view"/>
+   <Separator/>
+   <Action name="pad_view"/>
+   <Action name="manage_smartcard"/>
+   <Separator/>
+   <Action name="configure_groups"/>
+   <Separator/>
+   <Action name="clipboard_menu"/>
+   <Separator/>
+   <Action name="crl_import_crl"/>
+   <Separator/>
+   <Action name="crl_clear_crl_cache"/>
+   <Action name="crl_dump_crl_cache"/>
+   <Separator/>
+   <Action name="tools_restart_backend"/>
+  </Menu>
+  <Menu name="_view">
+   <text>&amp;View</text>
+   <Action name="reload_certificate_list"/>
+   <Separator/>
+   <Action name="window_view_hierarchical"/>
+   <Separator/>
+   <Action name="window_expand_all"/>
+   <Action name="window_collapse_all"/>
+   <Separator/>
+   <Action name="columns_menu"/>
+   <Action name="columns_sort_menu"/>
+  </Menu>
+  <Menu name="settings">
+   <text>&amp;Settings</text>
+   <Action group="show_merge" name="colorscheme_menu"/>
+  </Menu>
+  <Menu name="help">
+   <text>&amp;Help</text>
+   <Action name="help_doc_quickguide"/>
+   <Action name="help_doc_symenc"/>
+   <Action name="help_doc_groups"/>
+   <Action name="help_doc_gpgol"/>
+   <Action name="help_doc_compendium"/>
+   <Menu name="help_more">
+    <text>&amp;More Documentation</text>
+    <Action name="help_doc_cert_management"/>
+    <Action name="help_doc_smartcard"/>
+    <Action name="help_doc_gnupg"/>
+   </Menu>
+   <Separator/>
+   <Action name="help_doc_approval_manual"/>
+   <Action name="help_doc_vsa"/>
+   <Separator/>
+   <Action name="help_check_updates"/>
+  </Menu>
+ </MenuBar>
+ <ToolBar fullWidth="false" iconText="TextUnderIcon" name="mainToolBar">
+  <text>Main Toolbar</text>
+  <Action name="file_sign_encrypt_files"/>
+  <Action name="file_decrypt_verify_files"/>
+  <Separator/>
+  <Action name="file_import_certificates"/>
+  <Action name="file_export_certificates"/>
+  <Action name="certificates_certify_certificate"/>
+  <Action name="file_lookup_certificates"/>
+  <Separator/>
+  <Action name="pad_view"/>
+  <Action name="manage_smartcard"/>
+  <Separator/>
+  <Action name="configure_groups_toolbar"/>
+ </ToolBar>
+ <Menu name="listview_popup">
+  <text>&amp;Certificates</text>
+  <Action name="view_certificate_details"/>
+  <Separator/>
+  <Action name="certificates_refresh"/>
+  <Separator/>
+  <Action name="certificates_certify_certificate"/>
+  <Action name="certificates_revoke_certification"/>
+  <Action name="certificates_change_owner_trust"/>
+  <Action name="certificates_disable"/>
+  <Separator/>
+  <Action name="certificates_change_expiry"/>
+  <Action name="certificates_change_passphrase"/>
+  <Action name="certificates_add_userid"/>
+  <Separator/>
+  <Action name="certificates_revoke"/>
+  <Separator/>
+  <Action name="certificates_create_group"/>
+  <Separator/>
+  <Action name="file_export_certificates"/>
+  <Action name="file_export_certificates_to_server"/>
+  <Separator/>
+  <Action name="cell_copy"/>
+ </Menu>
 </gui>
