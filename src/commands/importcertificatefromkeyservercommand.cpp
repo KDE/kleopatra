@@ -26,7 +26,7 @@ class ImportCertificateFromKeyserverCommand::Private : public ImportCertificates
     }
 
 public:
-    explicit Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds, const QString &id);
+    explicit Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds);
     ~Private() override;
 
 private:
@@ -34,7 +34,6 @@ private:
 
 private:
     QStringList mKeyIds;
-    QString mId;
 };
 
 ImportCertificateFromKeyserverCommand::Private *ImportCertificateFromKeyserverCommand::d_func()
@@ -49,10 +48,9 @@ const ImportCertificateFromKeyserverCommand::Private *ImportCertificateFromKeyse
 #define q q_func()
 #define d d_func()
 
-ImportCertificateFromKeyserverCommand::Private::Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds, const QString &id)
+ImportCertificateFromKeyserverCommand::Private::Private(ImportCertificateFromKeyserverCommand *qq, const QStringList &keyIds)
     : ImportCertificatesCommand::Private{qq, nullptr}
     , mKeyIds{keyIds}
-    , mId{id}
 {
 }
 
@@ -67,13 +65,13 @@ void ImportCertificateFromKeyserverCommand::Private::start()
     // start one import per key id to allow canceling the key retrieval without
     // losing already retrieved keys
     for (const auto &keyId : mKeyIds) {
-        startImport(GpgME::OpenPGP, {keyId}, mId);
+        startImport(GpgME::OpenPGP, {keyId}, ImportType::Server);
     }
     setWaitForMoreJobs(false);
 }
 
-ImportCertificateFromKeyserverCommand::ImportCertificateFromKeyserverCommand(const QStringList &keyIds, const QString &id)
-    : ImportCertificatesCommand{new Private{this, keyIds, id}}
+ImportCertificateFromKeyserverCommand::ImportCertificateFromKeyserverCommand(const QStringList &keyIds)
+    : ImportCertificatesCommand{new Private{this, keyIds}}
 {
 }
 

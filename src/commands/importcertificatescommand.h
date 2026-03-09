@@ -12,6 +12,16 @@
 namespace Kleo
 {
 
+enum class ImportType {
+    Unknown,
+    File,
+    Clipboard,
+    Notepad,
+    SmartCard,
+    WKD,
+    Server,
+};
+
 class ImportCertificatesCommand : public Command
 {
     Q_OBJECT

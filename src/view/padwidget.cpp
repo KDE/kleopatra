@@ -526,7 +526,7 @@ public:
     {
         doCryptoCommon();
         startProgress(i18n("Importing..."));
-        auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto);
+        auto cmd = new Kleo::ImportCertificateFromDataCommand(mInputData, mImportProto, ImportType::Notepad);
         connect(cmd, &Kleo::ImportCertificatesCommand::finished, q, [this]() {
             updateButtons();
             restoreFocusWidget();

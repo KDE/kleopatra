@@ -27,13 +27,13 @@ class ImportCertificateFromDataCommand::Private : public ImportCertificatesComma
     }
 
 public:
-    explicit Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, const QString &id);
+    explicit Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, ImportType type);
     ~Private() override;
 
 private:
     QByteArray mData;
     GpgME::Protocol mProto;
-    QString mId;
+    ImportType mImportType;
 };
 
 ImportCertificateFromDataCommand::Private *ImportCertificateFromDataCommand::d_func()
@@ -45,11 +45,11 @@ const ImportCertificateFromDataCommand::Private *ImportCertificateFromDataComman
     return static_cast<const Private *>(d.get());
 }
 
-ImportCertificateFromDataCommand::Private::Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, const QString &id)
+ImportCertificateFromDataCommand::Private::Private(ImportCertificateFromDataCommand *qq, const QByteArray &data, GpgME::Protocol proto, ImportType type)
     : ImportCertificatesCommand::Private(qq, nullptr)
     , mData(data)
     , mProto(proto)
-    , mId(id)
+    , mImportType(type)
 {
 }
 
@@ -60,8 +60,8 @@ ImportCertificateFromDataCommand::Private::~Private()
 #define d d_func()
 #define q q_func()
 
-ImportCertificateFromDataCommand::ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, const QString &id)
-    : ImportCertificatesCommand(new Private(this, data, proto, id))
+ImportCertificateFromDataCommand::ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, ImportType type)
+    : ImportCertificatesCommand(new Private(this, data, proto, type))
 {
 }
 
@@ -72,7 +72,7 @@ ImportCertificateFromDataCommand::~ImportCertificateFromDataCommand()
 void ImportCertificateFromDataCommand::doStart()
 {
     d->setWaitForMoreJobs(true);
-    d->startImport(d->mProto, d->mData, d->mId.isEmpty() ? i18n("Notepad") : d->mId);
+    d->startImport(d->mProto, d->mData, d->mImportType);
     d->setWaitForMoreJobs(false);
 }
 

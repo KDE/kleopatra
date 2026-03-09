@@ -17,7 +17,7 @@ class ImportCertificateFromKeyserverCommand : public ImportCertificatesCommand
 {
     Q_OBJECT
 public:
-    explicit ImportCertificateFromKeyserverCommand(const QStringList &keyIds, const QString &id = {});
+    explicit ImportCertificateFromKeyserverCommand(const QStringList &keyIds);
     ~ImportCertificateFromKeyserverCommand() override;
 
 private:
