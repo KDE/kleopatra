@@ -104,7 +104,7 @@ void ImportCertificateFromClipboardCommand::doStart()
         if (protocol == GpgME::UnknownProtocol) {
             d->error(i18nc("@info", "Could not determine certificate type of clipboard contents. Nothing imported."));
         } else {
-            d->startImport(protocol, d->input, i18n("Clipboard"));
+            d->startImport(protocol, d->input, ImportType::Clipboard);
         }
     }
     d->setWaitForMoreJobs(false);

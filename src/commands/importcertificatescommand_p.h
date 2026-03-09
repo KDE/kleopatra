@@ -42,16 +42,10 @@ class KeyCacheAutoRefreshSuspension;
 class QByteArray;
 class QProgressDialog;
 
-enum class ImportType {
-    Unknown,
-    Local,
-    External,
-};
-
 struct ImportJobData {
     QString id;
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
-    ImportType type = ImportType::Unknown;
+    Kleo::ImportType type = Kleo::ImportType::Unknown;
     QGpgME::Job *job = nullptr;
     std::vector<QMetaObject::Connection> connections;
 };
@@ -61,7 +55,7 @@ bool operator==(const ImportJobData &lhs, const ImportJobData &rhs);
 struct ImportResultData {
     QString id;
     GpgME::Protocol protocol = GpgME::UnknownProtocol;
-    ImportType type = ImportType::Unknown;
+    Kleo::ImportType type = Kleo::ImportType::Unknown;
     GpgME::ImportResult result;
     Kleo::AuditLogEntry auditLog;
 };
@@ -99,9 +93,9 @@ public:
     void setProgressWindowTitle(const QString &title);
     void setProgressLabelText(const QString &text);
 
-    void startImport(GpgME::Protocol proto, const QByteArray &data, const QString &id = QString(), const ImportOptions &options = {});
-    void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, const QString &id = QString());
-    void startImport(GpgME::Protocol proto, const QStringList &keyIds, const QString &id = {});
+    void startImport(GpgME::Protocol proto, const QByteArray &data, ImportType importType, const QString &id = QString(), const ImportOptions &options = {});
+    void startImport(GpgME::Protocol proto, const std::vector<GpgME::Key> &keys, ImportType importType);
+    void startImport(GpgME::Protocol proto, const QStringList &keyIds, ImportType importType);
     void onImportResult(const GpgME::ImportResult &, QGpgME::Job *job = nullptr);
     void addImportResult(const ImportResultData &result, const ImportJobData &job = ImportJobData{});
 

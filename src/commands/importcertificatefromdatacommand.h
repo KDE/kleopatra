@@ -18,7 +18,7 @@ class ImportCertificateFromDataCommand : public ImportCertificatesCommand
 {
     Q_OBJECT
 public:
-    explicit ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, const QString &id = QString());
+    explicit ImportCertificateFromDataCommand(const QByteArray &data, GpgME::Protocol proto, ImportType type);
     ~ImportCertificateFromDataCommand() override;
 
 private:

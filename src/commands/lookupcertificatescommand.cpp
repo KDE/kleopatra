@@ -561,13 +561,13 @@ void LookupCertificatesCommand::Private::slotImportRequested(const std::vector<K
         const QStringList importOptions = onlyPubKeysSupported ? QStringList{QStringLiteral("only-pubkeys")} : QStringList{};
         // set an import filter, so that only user IDs matching the email address used for the WKD lookup are imported
         const QString importFilter = QLatin1StringView{"keep-uid=mbox = "} + searchTextToEmailAddress(keyListing.pattern);
-        startImport(OpenPGP, keyListing.wkdKeyData, keyListing.wkdSource, {importFilter, importOptions, Key::OriginWKD, keyListing.wkdSource});
+        startImport(OpenPGP, keyListing.wkdKeyData, ImportType::WKD, keyListing.wkdSource, {importFilter, importOptions, Key::OriginWKD, keyListing.wkdSource});
     }
     if (!pgp.empty()) {
-        startImport(OpenPGP, pgp, i18nc(R"(@title %1:"OpenPGP" or "S/MIME")", "%1 Certificate Server", Formatting::displayName(OpenPGP)));
+        startImport(OpenPGP, pgp, ImportType::Server);
     }
     if (!cms.empty()) {
-        startImport(CMS, cms, i18nc(R"(@title %1:"OpenPGP" or "S/MIME")", "%1 Certificate Server", Formatting::displayName(CMS)));
+        startImport(CMS, cms, ImportType::Server);
     }
     setWaitForMoreJobs(false);
 }

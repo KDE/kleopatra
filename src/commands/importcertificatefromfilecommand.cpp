@@ -130,7 +130,7 @@ void ImportCertificateFromFileCommand::doStart()
         QFile in(fn);
         if (!in.open(QIODevice::ReadOnly)) {
             d->error(i18n("Could not open file %1 for reading: %2", in.fileName(), in.errorString()), i18n("Certificate Import Failed"));
-            d->addImportResult({fn, GpgME::UnknownProtocol, ImportType::Local, ImportResult{}, AuditLogEntry{}});
+            d->addImportResult({fn, GpgME::UnknownProtocol, ImportType::File, ImportResult{}, AuditLogEntry{}});
             continue;
         }
         auto data = in.readAll();
@@ -142,8 +142,8 @@ void ImportCertificateFromFileCommand::doStart()
             qCDebug(KLEOPATRA_LOG) << this << __func__ << "Decoding" << codec.name() << "encoded data";
             data = QString(codec.decode(data)).toUtf8();
         }
-        d->startImport(GpgME::OpenPGP, data, fn);
-        d->startImport(GpgME::CMS, data, fn);
+        d->startImport(GpgME::OpenPGP, data, ImportType::File, fn);
+        d->startImport(GpgME::CMS, data, ImportType::File, fn);
         d->importGroupsFromFile(fn);
     }
     d->setWaitForMoreJobs(false);

@@ -88,7 +88,7 @@ void ImportCertificateFromPIVCardCommand::Private::start()
         return;
     }
 
-    auto cmd = new ImportCertificateFromDataCommand(QByteArray::fromStdString(certificateData), GpgME::CMS, i18n("Card Certificate"));
+    auto cmd = new ImportCertificateFromDataCommand(QByteArray::fromStdString(certificateData), GpgME::CMS, ImportType::SmartCard);
     connect(cmd, &ImportCertificateFromDataCommand::finished, q, [this]() {
         importFinished();
     });
