@@ -1145,11 +1145,13 @@ public:
         } else {
             qCDebug(KLEOPATRA_LOG) << "ReaderStatus::Private: Using deprecated FileSystemWatcher";
 
-            watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
-            watcher.addPath(Kleo::gnupgHomeDirectory());
-            watcher.setDelay(100);
+            if (qEnvironmentVariableIntValue("KLEO_NO_FILE_WATCHER") == 0) {
+                watcher.whitelistFiles(QStringList(QStringLiteral("reader_*.status")));
+                watcher.addPath(Kleo::gnupgHomeDirectory());
+                watcher.setDelay(100);
 
-            connect(&watcher, &FileSystemWatcher::triggered, this, &::ReaderStatusThread::ping);
+                connect(&watcher, &FileSystemWatcher::triggered, this, &::ReaderStatusThread::ping);
+            }
         }
     }
     ~Private() override
