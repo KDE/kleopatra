@@ -3,7 +3,7 @@
 
 include(ECMAddTests)
 
-find_package(Qt6Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+find_package(Qt6Test ${QT_REQUIRED_VERSION} CONFIG QUIET)
 
 if(NOT TARGET Qt::Test)
     message(STATUS "Qt6Test not found, autotests will not be built.")
