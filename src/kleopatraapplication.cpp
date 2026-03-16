@@ -240,12 +240,13 @@ public:
     {
         keyCache = KeyCache::mutableInstance();
         keyCache->setRefreshInterval(Settings{}.refreshInterval());
-        watcher.reset(new FileSystemWatcher);
-
-        watcher->whitelistFiles(gnupgFileWhitelist());
-        watcher->addPaths(gnupgFolderWhitelist());
-        watcher->setDelay(1000);
-        keyCache->addFileSystemWatcher(watcher);
+        if (qEnvironmentVariableIntValue("KLEO_NO_FILE_WATCHER") == 0) {
+            watcher.reset(new FileSystemWatcher);
+            watcher->whitelistFiles(gnupgFileWhitelist());
+            watcher->addPaths(gnupgFolderWhitelist());
+            watcher->setDelay(1000);
+            keyCache->addFileSystemWatcher(watcher);
+        }
         keyCache->setGroupConfig(groupConfig);
         keyCache->setGroupsEnabled(Settings().groupsEnabled());
         // always enable remarks (aka tags); in particular, this triggers a
