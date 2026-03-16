@@ -367,7 +367,9 @@ void KleopatraApplication::init()
      * the agent will fail. The requested start via the
      * connection is additionally done in case the gpg-agent
      * is killed while Kleopatra is running. */
-    startGpgAgent();
+    if (qEnvironmentVariableIntValue("KLEO_NO_GPG_AGENT_START") == 0) {
+        startGpgAgent();
+    }
     d->readerStatus.reset(new SmartCard::ReaderStatus);
     connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested, this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
