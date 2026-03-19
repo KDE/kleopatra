@@ -778,6 +778,22 @@ void MainWindow::Private::setupActions()
                       coll);
     coll->addAction(QStringLiteral("help_doc_quickguide"), quickguide);
 
+    coll->addAction(u"help_doc_user_manual"_s,
+                    new DocAction(QIcon::fromTheme(u"help-contextual"_s),
+                                  i18nc("@action:inmenu", "User Manual"),
+                                  i18nc("Only available in German and English. Leave to English for other languages.", "user-manual-en.pdf"),
+                                  u"../share/doc/gnupg-vsd"_s,
+                                  QUrl(),
+                                  coll));
+
+    coll->addAction(u"help_doc_administrator_manual"_s,
+                    new DocAction(QIcon::fromTheme(u"help-contextual"_s),
+                                  i18nc("@action:inmenu", "Administrator Manual"),
+                                  i18nc("Only available in German and English. Leave to English for other languages.", "admin-manual-en.pdf"),
+                                  u"../share/doc/gnupg-vsd"_s,
+                                  QUrl(),
+                                  coll));
+
     coll->addAction(QStringLiteral("help_doc_symenc"), createSymmetricGuideAction(coll).release());
 
     const auto groups = new DocAction(QIcon::fromTheme(QStringLiteral("help-contextual")),
