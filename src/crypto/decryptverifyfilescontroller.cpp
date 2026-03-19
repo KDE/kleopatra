@@ -580,8 +580,9 @@ void DecryptVerifyFilesController::Private::onDialogFinished(int result)
                     // check if the archive contained a single folder (look for any entries including hidden files and broken symlinks)
                     const QFileInfoList topLevelArchiveEntries =
                         QDir{sourcePath}.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
-                    if ((topLevelArchiveEntries.size() == 1) && topLevelArchiveEntries.front().isDir()) {
-                        // optimization for a single archive containing a single folder:
+                    if ((topLevelArchiveEntries.size() == 1) && topLevelArchiveEntries.front().isDir()
+                        && (topLevelArchiveEntries.front().fileName() == fi.fileName())) {
+                        // optimization for a single archive containing a single folder that's named like the archive:
                         // move the originally archived folder instead of the temporary folder the archive was extracted to to the output folder
                         sourcePath = topLevelArchiveEntries.front().absoluteFilePath();
                     }
