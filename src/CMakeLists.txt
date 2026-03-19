@@ -602,7 +602,6 @@ target_link_libraries(kleopatra_bin
   KF6::XmlGui
   Qt::Network
   Qt::PrintSupport # Printing secret keys
-  ${_kleopatra_extra_libs}
   ${_kleopatra_mail_libs}
   ${_kleopatra_uiserver_extra_libs}
   ${_kleopatra_dbusaddons_libs}
