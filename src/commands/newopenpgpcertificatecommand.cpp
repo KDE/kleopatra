@@ -281,12 +281,12 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
                       Formatting::prettyID(result.fingerprint()));
     }
 
-    auto dialog = MessageBox::create(parentWidgetOrView(),
-                                     QDialogButtonBox::Retry | QDialogButtonBox::Ok,
-                                     QMessageBox::Critical,
-                                     text,
-                                     auditLog,
-                                     i18nc("@title:window", "Error"));
+    auto dialog = MessageBox::createAndShow(parentWidgetOrView(),
+                                            QDialogButtonBox::Retry | QDialogButtonBox::Ok,
+                                            QMessageBox::Critical,
+                                            text,
+                                            auditLog,
+                                            i18nc("@title:window", "Error"));
     connect(dialog, &QDialog::finished, q, [this](int buttonCode) {
         if (buttonCode == QDialogButtonBox::Retry) {
             QMetaObject::invokeMethod(
