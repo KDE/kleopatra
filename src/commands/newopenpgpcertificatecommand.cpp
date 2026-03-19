@@ -13,6 +13,7 @@
 
 #include "command_p.h"
 
+#include "exportsecretteamkeycommand.h"
 #include "kleopatraapplication.h"
 #include "utils/emptypassphraseprovider.h"
 #include "utils/userinfo.h"
@@ -63,6 +64,7 @@ public:
     void createCertificate();
     void handleKeyGenerationResult(const KeyGenerationResult &result, const AuditLogEntry &auditLog);
     void showErrorDialog(const KeyGenerationResult &result, const AuditLogEntry &auditLog = {});
+    void handleSigningSubkeyGenerationResult(const GpgME::Error &err, const AuditLogEntry &auditLog);
 
 private:
     KeyParameters keyParameters;
@@ -73,6 +75,7 @@ private:
     QPointer<QGpgME::Job> job;
     QPointer<QProgressDialog> progressDialog;
     std::shared_ptr<KeyCacheAutoRefreshSuspension> keyCacheAutoRefreshSuspension;
+    Key generatedKey;
 };
 
 NewOpenPGPCertificateCommand::Private *NewOpenPGPCertificateCommand::d_func()
@@ -193,20 +196,19 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
     }
 
     // Ensure that we have the key in the cache
-    Key key;
     if (!result.error().code() && result.fingerprint()) {
         std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
         if (ctx) {
             Error err;
             ctx->addKeyListMode(KeyListMode::Validate | KeyListMode::Signatures | KeyListMode::SignatureNotations);
-            key = ctx->key(result.fingerprint(), err, /*secret=*/true);
-            if (!key.isNull()) {
-                KeyCache::mutableInstance()->insert(key);
+            generatedKey = ctx->key(result.fingerprint(), err, /*secret=*/true);
+            if (!generatedKey.isNull()) {
+                KeyCache::mutableInstance()->insert(generatedKey);
             }
         }
     }
 
-    if (key.isNull()) {
+    if (generatedKey.isNull()) {
         showErrorDialog(result, auditLog);
         return;
     }
@@ -217,39 +219,18 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
         if (!protectKeyWithPassword) {
             flags |= GpgME::Context::CreationFlags::CreateNoPassword;
         }
-        connect(quickJob.get(), &QGpgME::QuickJob::result, q, [this, result](const auto &err) {
-            if (err) {
-                error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
-                finished();
-                return;
-            }
-
-            if (err.isCanceled()) {
-                finished();
-                return;
-            }
-
-            // Ensure that we have the key in the cache
-            Key key;
-            if (!result.error().code() && result.fingerprint()) {
-                std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
-                if (ctx) {
-                    Error err;
-                    ctx->addKeyListMode(KeyListMode::Validate | KeyListMode::Signatures | KeyListMode::SignatureNotations);
-                    key = ctx->key(result.fingerprint(), err, /*secret=*/true);
-                    if (!key.isNull()) {
-                        KeyCache::mutableInstance()->insert(key);
-                    }
-                }
-            }
-
-            success(xi18nc("@info",
-                           "<para>A new OpenPGP certificate was created successfully.</para>"
-                           "<para>Fingerprint of the new certificate: %1</para>",
-                           Formatting::prettyID(key.primaryFingerprint())));
-            finished();
-        });
-        auto err = quickJob->startAddSubkey(key, QByteArray::fromStdString(key.subkey(0).algoName()), {}, flags);
+        connect(quickJob.get(),
+                &QGpgME::QuickJob::result,
+                q,
+                [this](const GpgME::Error &err, const QString &auditLogAsHtml, const GpgME::Error &auditLogError) {
+                    QMetaObject::invokeMethod(
+                        q,
+                        [this, err, auditLogAsHtml, auditLogError] {
+                            handleSigningSubkeyGenerationResult(err, AuditLogEntry{auditLogAsHtml, auditLogError});
+                        },
+                        Qt::QueuedConnection);
+                });
+        auto err = quickJob->startAddSubkey(generatedKey, QByteArray::fromStdString(generatedKey.subkey(0).algoName()), {}, flags);
         if (err) {
             error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)));
             finished();
@@ -260,7 +241,7 @@ void NewOpenPGPCertificateCommand::Private::handleKeyGenerationResult(const KeyG
         success(xi18nc("@info",
                        "<para>A new OpenPGP certificate was created successfully.</para>"
                        "<para>Fingerprint of the new certificate: %1</para>",
-                       Formatting::prettyID(key.primaryFingerprint())));
+                       Formatting::prettyID(generatedKey.primaryFingerprint())));
         finished();
     }
 }
@@ -299,6 +280,49 @@ void NewOpenPGPCertificateCommand::Private::showErrorDialog(const KeyGenerationR
             finished();
         }
     });
+}
+
+void NewOpenPGPCertificateCommand::Private::handleSigningSubkeyGenerationResult(const GpgME::Error &err, const AuditLogEntry &auditLog)
+{
+    if (err) {
+        error(i18nc("@info", "Failed to create signing subkey: %1", Formatting::errorAsString(err)), auditLog);
+        finished();
+        return;
+    }
+
+    if (err.isCanceled()) {
+        finished();
+        return;
+    }
+
+    // Ensure that we have the key in the cache
+    std::unique_ptr<Context> ctx{Context::createForProtocol(OpenPGP)};
+    if (ctx) {
+        Error err;
+        ctx->addKeyListMode(KeyListMode::Validate | KeyListMode::Signatures | KeyListMode::SignatureNotations);
+        Key updatedKey = ctx->key(generatedKey.primaryFingerprint(), err, /*secret=*/true);
+        if (!updatedKey.isNull()) {
+            KeyCache::mutableInstance()->insert(updatedKey);
+            generatedKey = updatedKey;
+        }
+    }
+
+    const QString text = xi18nc("@info",
+                                "<para>A new OpenPGP certificate was created successfully.</para>"
+                                "<para>Fingerprint of the new certificate: %1</para>",
+                                Formatting::prettyID(generatedKey.primaryFingerprint()));
+    QDialog *messageBox = MessageBox::create(parentWidgetOrView(),
+                                             QDialogButtonBox::Ok,
+                                             QMessageBox::Information,
+                                             text,
+                                             KGuiItem{i18nc("@action:button", "Save Secret Team Key")},
+                                             i18nc("@title:window", "Success"));
+    const int result = messageBox->exec();
+    if (result == QDialogButtonBox::ActionRole) {
+        auto command = new Commands::ExportSecretTeamKeyCommand(generatedKey);
+        command->start();
+    }
+    finished();
 }
 
 NewOpenPGPCertificateCommand::NewOpenPGPCertificateCommand()
