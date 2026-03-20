@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-13 00:44+0000\n"
+"POT-Creation-Date: 2026-03-20 00:44+0000\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -1186,7 +1186,8 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL-кешот се исчисти успешно"
 
 #: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:492
-#: src/commands/keytocardcommand.cpp:520 src/utils/csrutils.cpp:89
+#: src/commands/keytocardcommand.cpp:520
+#: src/commands/newopenpgpcertificatecommand.cpp:319 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -3242,14 +3243,14 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:129
-#: src/commands/newopenpgpcertificatecommand.cpp:166
+#: src/commands/newopenpgpcertificatecommand.cpp:169
 #, fuzzy, kde-format
 #| msgid "Could not start certificate generation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Не можам да го започнам создавањето на сертификатите: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:139
-#: src/commands/newopenpgpcertificatecommand.cpp:176
+#: src/commands/newopenpgpcertificatecommand.cpp:179
 #, fuzzy, kde-format
 #| msgid "Fetching keys..."
 msgctxt "@title"
@@ -3257,7 +3258,7 @@ msgid "Creating Key Pair..."
 msgstr "Земам клучеви..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:177
+#: src/commands/newopenpgpcertificatecommand.cpp:180
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3265,7 +3266,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:171
-#: src/commands/newopenpgpcertificatecommand.cpp:289
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, fuzzy, kde-format
@@ -3288,22 +3289,22 @@ msgstr ""
 "b></p></qt>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:214
-#: src/kleopatraapplication.cpp:580
+#: src/kleopatraapplication.cpp:583
 #, fuzzy, kde-format
 #| msgid "Delete Certificates"
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Избриши ги сертификатите"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:222
-#: src/commands/newopenpgpcertificatecommand.cpp:254
+#: src/commands/newopenpgpcertificatecommand.cpp:235
+#: src/commands/newopenpgpcertificatecommand.cpp:288
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
 msgid "Failed to create signing subkey: %1"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:247
-#: src/commands/newopenpgpcertificatecommand.cpp:261
+#: src/commands/newopenpgpcertificatecommand.cpp:242
+#: src/commands/newopenpgpcertificatecommand.cpp:311
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3311,7 +3312,7 @@ msgid ""
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
 
-#: src/commands/newopenpgpcertificatecommand.cpp:273
+#: src/commands/newopenpgpcertificatecommand.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -3324,7 +3325,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:279
+#: src/commands/newopenpgpcertificatecommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3332,6 +3333,13 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+
+#: src/commands/newopenpgpcertificatecommand.cpp:318
+#, fuzzy, kde-format
+#| msgid "Export Secret Key..."
+msgctxt "@action:button"
+msgid "Save Secret Team Key"
+msgstr "Извези таен клуч..."
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -4952,7 +4960,7 @@ msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:618
+#: src/crypto/decryptverifyfilescontroller.cpp:619
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -4965,7 +4973,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:628
+#: src/crypto/decryptverifyfilescontroller.cpp:629
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -4978,7 +4986,7 @@ msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:641
+#: src/crypto/decryptverifyfilescontroller.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
@@ -4986,34 +4994,34 @@ msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:642
+#: src/crypto/decryptverifyfilescontroller.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/decryptverifyfilescontroller.cpp:643
+#: src/crypto/decryptverifyfilescontroller.cpp:644
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:644
+#: src/crypto/decryptverifyfilescontroller.cpp:645
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:667
+#: src/crypto/decryptverifyfilescontroller.cpp:668
 #, fuzzy, kde-kuit-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:688
+#: src/crypto/decryptverifyfilescontroller.cpp:689
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
@@ -10064,7 +10072,7 @@ msgstr "Неуспешно."
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:29 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:127
 #, kde-format
 msgid "&Certificates"
 msgstr "&Сертификати"
@@ -10094,13 +10102,13 @@ msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:97
+#: src/kleopatra.rc:99
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:112 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, fuzzy, kde-format
 #| msgid "Search Toolbar"
 msgid "Main Toolbar"
@@ -10246,14 +10254,14 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:461
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/kleopatraapplication.cpp:481
+#: src/kleopatraapplication.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10261,43 +10269,43 @@ msgid ""
 "application> is not already running."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:518
+#: src/kleopatraapplication.cpp:521
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:563
+#: src/kleopatraapplication.cpp:566
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:624
+#: src/kleopatraapplication.cpp:627
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:631
+#: src/kleopatraapplication.cpp:634
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:645
+#: src/kleopatraapplication.cpp:648
 #, fuzzy, kde-format
 #| msgid "Could not generate certificate: %1"
 msgid "Cannot read \"%1\""
 msgstr "Не можам да создадам сертификат: %1"
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
@@ -10522,25 +10530,52 @@ msgctxt ""
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
+#: src/mainwindow.cpp:722
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgctxt "@action:inmenu"
+msgid "User Manual"
+msgstr "Откажано."
+
 #: src/mainwindow.cpp:723
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "user-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:730
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Administrator Manual"
+msgstr ""
+
+#: src/mainwindow.cpp:731
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "admin-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:739
 #, fuzzy, kde-format
 #| msgid "Certificate Usage"
 msgid "Certificate &Groups"
 msgstr "Употреба на сертификат"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:740
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:749
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr ""
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:750
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10548,43 +10583,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:760
 #, fuzzy, kde-format
 #| msgid "&Certificates"
 msgid "&Certification Management"
 msgstr "&Сертификати"
 
-#: src/mainwindow.cpp:745
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:769
 #, fuzzy, kde-format
 #| msgid "Select CRL File"
 msgid "&Smartcard Setup"
 msgstr "Одбери CRL-датотека"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:770
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:788
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10592,12 +10627,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:780
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:797
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10605,37 +10640,37 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:806
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:825
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
 
-#: src/mainwindow.cpp:810
+#: src/mainwindow.cpp:826
 #, kde-format
 msgctxt "@action:button"
 msgid "Quit Now"
 msgstr ""
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:827
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Quit"
 msgstr ""
 
-#: src/mainwindow.cpp:942
+#: src/mainwindow.cpp:958
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "&Password-based Encryption"
 msgstr "Само &за криптографирање"
 
-#: src/mainwindow.cpp:943
+#: src/mainwindow.cpp:959
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."

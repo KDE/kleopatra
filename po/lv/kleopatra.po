@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-13 00:44+0000\n"
+"POT-Creation-Date: 2026-03-20 00:44+0000\n"
 "PO-Revision-Date: 2025-08-21 12:33+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1087,7 +1087,8 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL kešatmiņa ir notīrīta."
 
 #: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:492
-#: src/commands/keytocardcommand.cpp:520 src/utils/csrutils.cpp:89
+#: src/commands/keytocardcommand.cpp:520
+#: src/commands/newopenpgpcertificatecommand.cpp:319 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -3093,20 +3094,20 @@ msgid "No Directory Servers Configured"
 msgstr "Nav konfigurēts neviens direktoriju serveris"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:129
-#: src/commands/newopenpgpcertificatecommand.cpp:166
+#: src/commands/newopenpgpcertificatecommand.cpp:169
 #, kde-format
 msgid "Could not start key pair creation: %1"
 msgstr "Neizdevās palaist atslēgu pāra izveidi: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:139
-#: src/commands/newopenpgpcertificatecommand.cpp:176
+#: src/commands/newopenpgpcertificatecommand.cpp:179
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
 msgstr "Izveido atslēgu pāri..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:177
+#: src/commands/newopenpgpcertificatecommand.cpp:180
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3116,7 +3117,7 @@ msgstr ""
 "ģenerēšana var prasīt vairākas minūtes..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:171
-#: src/commands/newopenpgpcertificatecommand.cpp:289
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, kde-format
@@ -3139,14 +3140,14 @@ msgstr ""
 "message></para>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:214
-#: src/kleopatraapplication.cpp:580
+#: src/kleopatraapplication.cpp:583
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr ""
 "Jums nav tiesību izveidot S/MIME sertifikāta parakstīšanas pieprasījumus."
 
-#: src/commands/newopenpgpcertificatecommand.cpp:222
-#: src/commands/newopenpgpcertificatecommand.cpp:254
+#: src/commands/newopenpgpcertificatecommand.cpp:235
+#: src/commands/newopenpgpcertificatecommand.cpp:288
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid "Failed to decrypt the notepad: %1"
@@ -3154,8 +3155,8 @@ msgctxt "@info"
 msgid "Failed to create signing subkey: %1"
 msgstr "Neizdevās atšifrēt piezīmju blociņu: %1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:247
-#: src/commands/newopenpgpcertificatecommand.cpp:261
+#: src/commands/newopenpgpcertificatecommand.cpp:242
+#: src/commands/newopenpgpcertificatecommand.cpp:311
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3165,7 +3166,7 @@ msgstr ""
 "<para>Izveidots jauns „OpenPGP“ sertifikāts.</para><para>Jaunā sertifikāta "
 "digitālais nospiedums: %1</para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:273
+#: src/commands/newopenpgpcertificatecommand.cpp:254
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3175,7 +3176,7 @@ msgstr ""
 "<para>Jaunā „OpenPGP“ sertifikāta izveide neizdevās.</para><para>Kļūda: "
 "<message>%1</message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:279
+#: src/commands/newopenpgpcertificatecommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3186,6 +3187,14 @@ msgstr ""
 "<para>Ir veiksmīgi izveidots jauns „OpenPGP“ sertifikāts, bet tas nav "
 "atrasts atslēgu saišķī.</para><para>Jaunā sertifikāta digitālais nospiedums:"
 "<nl/>%1</para>"
+
+#: src/commands/newopenpgpcertificatecommand.cpp:318
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Backup Secret Key"
+msgctxt "@action:button"
+msgid "Save Secret Team Key"
+msgstr "Izveidot slepenās atslēgas rezerves kopiju"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -4812,7 +4821,7 @@ msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "Atlasiet datni ko verificēt ar parakstu „<filename>%1</filename>“"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:618
+#: src/crypto/decryptverifyfilescontroller.cpp:619
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4822,7 +4831,7 @@ msgstr ""
 "<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
 "filename>“.</para><para><message>%3</message></para>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:628
+#: src/crypto/decryptverifyfilescontroller.cpp:629
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4832,7 +4841,7 @@ msgstr ""
 "<para>Neizdevās pārvietot „<filename>%1</filename>“ uz „<filename>%2</"
 "filename>“.</para>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:641
+#: src/crypto/decryptverifyfilescontroller.cpp:642
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -4840,31 +4849,31 @@ msgid ""
 msgstr ""
 "Vai datni saglabāt ar datnes oriģinālo nosaukumu — „<filename>%1</filename>“?"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:642
+#: src/crypto/decryptverifyfilescontroller.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr "Vai izmantot oriģinālo datnes nosaukumu?"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:643
+#: src/crypto/decryptverifyfilescontroller.cpp:644
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "Nē, saglabāt kā „<filename>%1</filename>“"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:644
+#: src/crypto/decryptverifyfilescontroller.cpp:645
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "Jā, saglabāt kā „<filename>%1</filename>“"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:667
+#: src/crypto/decryptverifyfilescontroller.cpp:668
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "Neizdevās dzēst „<filename>%1</filename>“."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:688
+#: src/crypto/decryptverifyfilescontroller.cpp:689
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
@@ -9788,7 +9797,7 @@ msgstr "&Datne"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:29 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:127
 #, kde-format
 msgid "&Certificates"
 msgstr "S&ertifikāti"
@@ -9818,13 +9827,13 @@ msgid "&Help"
 msgstr "&Palīdzība"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:97
+#: src/kleopatra.rc:99
 #, kde-format
 msgid "&More Documentation"
 msgstr "&Vairāk dokumentācijas"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:112 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Galvenā rīkjosla"
@@ -9961,13 +9970,13 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr "Virkne vai digitālais nospiedums vaicājumiem un meklēšanai"
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:461
 #, kde-format
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Komanda izpilde neizdevās"
 
-#: src/kleopatraapplication.cpp:481
+#: src/kleopatraapplication.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9977,42 +9986,42 @@ msgstr ""
 "Tehnisku iemeslu dēļ šo opciju varat lietot tikai tad, ja <application>%1</"
 "application> programma nav palaista."
 
-#: src/kleopatraapplication.cpp:518
+#: src/kleopatraapplication.cpp:521
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr "Neviennozīmīgs protokols: „--openpgp and --cms“"
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "No search string specified for --search"
 msgstr "Nav norādīta meklējamā virkne parametram „--search“"
 
-#: src/kleopatraapplication.cpp:563
+#: src/kleopatraapplication.cpp:566
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr "Nav norādīts „--query“ digitālā nospieduma parametrs"
 
-#: src/kleopatraapplication.cpp:624
+#: src/kleopatraapplication.cpp:627
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr "Neviennozīmīgas komandas „%1“ un „%2“"
 
-#: src/kleopatraapplication.cpp:631
+#: src/kleopatraapplication.cpp:634
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Komandai „%1“ nav norādītas datnes"
 
-#: src/kleopatraapplication.cpp:645
+#: src/kleopatraapplication.cpp:648
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Nevar nolasīt „%1“"
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr "Ārēju saišu atvēršana ir administratīvi liegta."
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
@@ -10251,24 +10260,51 @@ msgctxt ""
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr "encrypt_and_sign_gnupgvsd_en.pdf"
 
+#: src/mainwindow.cpp:722
+#, fuzzy, kde-format
+#| msgid "User cancel"
+msgctxt "@action:inmenu"
+msgid "User Manual"
+msgstr "Lietotāja atcelts"
+
 #: src/mainwindow.cpp:723
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "user-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:730
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Administrator Manual"
+msgstr ""
+
+#: src/mainwindow.cpp:731
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "admin-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:739
 #, kde-format
 msgid "Certificate &Groups"
 msgstr "Sertifikātu &grupas"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:740
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr "groupfeature_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:749
 #, kde-format
 msgid "&Mail Encryption in Outlook"
 msgstr "Pasta šifrēšana „&Outlook“ programmā"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:750
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10276,41 +10312,41 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr "gpgol_outlook_addin_en.pdf"
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:760
 #, kde-format
 msgid "&Certification Management"
 msgstr "&Sertifikācijas pārvaldība"
 
-#: src/mainwindow.cpp:745
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr "certification_management_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:769
 #, kde-format
 msgid "&Smartcard Setup"
 msgstr "&Viedkaršu sagatavošanas darbam"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:770
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr "smartcard_setup_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr "„GnuPG“ komand&rinda"
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr "Rokasgrāmata „VS-NfD“ apstiprinājumam"
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:788
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10318,12 +10354,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr "handbuch_zulassung_gnupgvsd_en.pdf"
 
-#: src/mainwindow.cpp:780
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr "Drošības darba procedūras „VS-NfD“ apstiprinājumam"
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:797
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10331,7 +10367,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr "BSI-VSA-10867_ENG_secops.pdf"
 
-#: src/mainwindow.cpp:806
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10340,31 +10376,31 @@ msgstr ""
 "Fonā joprojām notiek darbības. Aizverot logu, tās tiks pārtrauktas. Vai "
 "turpināt?"
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:825
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Tiek veikti fona uzdevumi"
 
-#: src/mainwindow.cpp:810
+#: src/mainwindow.cpp:826
 #, fuzzy, kde-format
 #| msgid "Quit"
 msgctxt "@action:button"
 msgid "Quit Now"
 msgstr "Iziet"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:827
 #, fuzzy, kde-format
 #| msgid "Do Not Try"
 msgctxt "@action:button"
 msgid "Do Not Quit"
 msgstr "Nemēģināt"
 
-#: src/mainwindow.cpp:942
+#: src/mainwindow.cpp:958
 #, kde-format
 msgid "&Password-based Encryption"
 msgstr "Šifrēšana ar &paroli"
 
-#: src/mainwindow.cpp:943
+#: src/mainwindow.cpp:959
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."

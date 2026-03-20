@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-13 00:44+0000\n"
+"POT-Creation-Date: 2026-03-20 00:44+0000\n"
 "PO-Revision-Date: 2009-02-27 21:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -1179,7 +1179,8 @@ msgid "CRL cache cleared successfully."
 msgstr "सीआरएल कैस ल सफलतापूर्वक साफ करिस."
 
 #: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:492
-#: src/commands/keytocardcommand.cpp:520 src/utils/csrutils.cpp:89
+#: src/commands/keytocardcommand.cpp:520
+#: src/commands/newopenpgpcertificatecommand.cpp:319 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -3143,14 +3144,14 @@ msgid "No Directory Servers Configured"
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:129
-#: src/commands/newopenpgpcertificatecommand.cpp:166
+#: src/commands/newopenpgpcertificatecommand.cpp:169
 #, fuzzy, kde-format
 #| msgid "Could not start certificate creation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "प्रमानपत्र बनाना चालू नइ कर सकिस: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:139
-#: src/commands/newopenpgpcertificatecommand.cpp:176
+#: src/commands/newopenpgpcertificatecommand.cpp:179
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -3159,7 +3160,7 @@ msgid "Creating Key Pair..."
 msgstr "कुंजी बनात हे ..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:177
+#: src/commands/newopenpgpcertificatecommand.cpp:180
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3167,7 +3168,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:171
-#: src/commands/newopenpgpcertificatecommand.cpp:289
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, fuzzy, kde-format
@@ -3190,14 +3191,14 @@ msgstr ""
 "गिस</qt>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:214
-#: src/kleopatraapplication.cpp:580
+#: src/kleopatraapplication.cpp:583
 #, fuzzy, kde-format
 #| msgid "&Generate Key Pair && Certificate Request"
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "कुंजी युगल अउ प्रमानपत्र निवेदन बनाव (&G)"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:222
-#: src/commands/newopenpgpcertificatecommand.cpp:254
+#: src/commands/newopenpgpcertificatecommand.cpp:235
+#: src/commands/newopenpgpcertificatecommand.cpp:288
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -3208,8 +3209,8 @@ msgstr ""
 "जीपीजीएसएम चलाय मं फेल:\n"
 "%1"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:247
-#: src/commands/newopenpgpcertificatecommand.cpp:261
+#: src/commands/newopenpgpcertificatecommand.cpp:242
+#: src/commands/newopenpgpcertificatecommand.cpp:311
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3217,7 +3218,7 @@ msgid ""
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
 
-#: src/commands/newopenpgpcertificatecommand.cpp:273
+#: src/commands/newopenpgpcertificatecommand.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -3230,7 +3231,7 @@ msgstr ""
 "<qt><p>प्रमानपत्र:</p><p><b>%1</b></p> निर्यात करे के कोसिसों के समय एक गलती हो "
 "गिस</qt>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:279
+#: src/commands/newopenpgpcertificatecommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3238,6 +3239,13 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+
+#: src/commands/newopenpgpcertificatecommand.cpp:318
+#, fuzzy, kde-format
+#| msgid "Export Secret Key"
+msgctxt "@action:button"
+msgid "Save Secret Team Key"
+msgstr "गोपनीय कुंजी निर्यात करव"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -4847,7 +4855,7 @@ msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr "फाइल ल मिटा के लिखे बर \"%1\" ल मिटा नइ सकिस."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:618
+#: src/crypto/decryptverifyfilescontroller.cpp:619
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -4860,7 +4868,7 @@ msgstr ""
 "<qt><p>प्रमानपत्र:</p><p><b>%1</b></p> निर्यात करे के कोसिसों के समय एक गलती हो "
 "गिस</qt>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:628
+#: src/crypto/decryptverifyfilescontroller.cpp:629
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -4873,7 +4881,7 @@ msgstr ""
 "<qt><p>प्रमानपत्र:</p><p><b>%1</b></p> निर्यात करे के कोसिसों के समय एक गलती हो "
 "गिस</qt>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:641
+#: src/crypto/decryptverifyfilescontroller.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgid "Could not remove file \"%1\" for overwriting."
 msgctxt "@info"
@@ -4881,34 +4889,34 @@ msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
 msgstr "फाइल ल मिटा के लिखे बर \"%1\" ल मिटा नइ सकिस."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:642
+#: src/crypto/decryptverifyfilescontroller.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/decryptverifyfilescontroller.cpp:643
+#: src/crypto/decryptverifyfilescontroller.cpp:644
 #, fuzzy, kde-kuit-format
 #| msgid "Could not remove file \"%1\" for overwriting."
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr "फाइल ल मिटा के लिखे बर \"%1\" ल मिटा नइ सकिस."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:644
+#: src/crypto/decryptverifyfilescontroller.cpp:645
 #, fuzzy, kde-kuit-format
 #| msgid "Could not remove file \"%1\" for overwriting."
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr "फाइल ल मिटा के लिखे बर \"%1\" ल मिटा नइ सकिस."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:667
+#: src/crypto/decryptverifyfilescontroller.cpp:668
 #, fuzzy, kde-kuit-format
 #| msgid "Could not remove file \"%1\" for overwriting."
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr "फाइल ल मिटा के लिखे बर \"%1\" ल मिटा नइ सकिस."
 
-#: src/crypto/decryptverifyfilescontroller.cpp:688
+#: src/crypto/decryptverifyfilescontroller.cpp:689
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
@@ -9991,7 +9999,7 @@ msgstr "फाइल (&F)"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:29 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:127
 #, kde-format
 msgid "&Certificates"
 msgstr "प्रमानपत्र (&C)"
@@ -10021,13 +10029,13 @@ msgid "&Help"
 msgstr ""
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:97
+#: src/kleopatra.rc:99
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:112 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "मुख्य औजार पट्टी"
@@ -10172,7 +10180,7 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:461
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to execute gpgsm:\n"
@@ -10183,7 +10191,7 @@ msgstr ""
 "जीपीजीएसएम चलाय मं फेल:\n"
 "%1"
 
-#: src/kleopatraapplication.cpp:481
+#: src/kleopatraapplication.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10191,42 +10199,42 @@ msgid ""
 "application> is not already running."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:518
+#: src/kleopatraapplication.cpp:521
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:563
+#: src/kleopatraapplication.cpp:566
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:624
+#: src/kleopatraapplication.cpp:627
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:631
+#: src/kleopatraapplication.cpp:634
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:645
+#: src/kleopatraapplication.cpp:648
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
@@ -10446,26 +10454,53 @@ msgctxt ""
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
+#: src/mainwindow.cpp:722
+#, fuzzy, kde-format
+#| msgid "User canceled"
+msgctxt "@action:inmenu"
+msgid "User Manual"
+msgstr "कमइया खारिज"
+
 #: src/mainwindow.cpp:723
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "user-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:730
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Administrator Manual"
+msgstr ""
+
+#: src/mainwindow.cpp:731
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "admin-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:739
 #, fuzzy, kde-format
 #| msgid "Certificate Import Failed"
 msgid "Certificate &Groups"
 msgstr "प्रमानपत्र आयात फेल"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:740
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:749
 #, fuzzy, kde-format
 #| msgid "Encryption Options"
 msgid "&Mail Encryption in Outlook"
 msgstr "एनक्रिप्सन विकल्प"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:750
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10473,43 +10508,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:760
 #, fuzzy, kde-format
 #| msgid "Certification"
 msgid "&Certification Management"
 msgstr "प्रमानपत्र"
 
-#: src/mainwindow.cpp:745
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:769
 #, fuzzy, kde-format
 #| msgid "Select All"
 msgid "&Smartcard Setup"
 msgstr "सब्बो चुनव"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:770
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:788
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10517,12 +10552,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:780
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:797
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10530,39 +10565,39 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:806
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
 "when closing the window. Proceed?"
 msgstr ""
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:825
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr ""
 
-#: src/mainwindow.cpp:810
+#: src/mainwindow.cpp:826
 #, fuzzy, kde-format
 #| msgid "Quit"
 msgctxt "@action:button"
 msgid "Quit Now"
 msgstr "बाहिर जाव"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:827
 #, fuzzy, kde-format
 #| msgid "Do Not Try"
 msgctxt "@action:button"
 msgid "Do Not Quit"
 msgstr "कोसिस नइ करव"
 
-#: src/mainwindow.cpp:942
+#: src/mainwindow.cpp:958
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "&Password-based Encryption"
 msgstr "सिरिफ एनक्रिप्टिंग बर (&e)"
 
-#: src/mainwindow.cpp:943
+#: src/mainwindow.cpp:959
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."

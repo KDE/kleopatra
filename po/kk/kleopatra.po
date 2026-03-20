@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-13 00:44+0000\n"
+"POT-Creation-Date: 2026-03-20 00:44+0000\n"
 "PO-Revision-Date: 2013-09-16 04:11+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -1205,7 +1205,8 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL кэші сәтті тазаланды."
 
 #: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:492
-#: src/commands/keytocardcommand.cpp:520 src/utils/csrutils.cpp:89
+#: src/commands/keytocardcommand.cpp:520
+#: src/commands/newopenpgpcertificatecommand.cpp:319 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Success"
@@ -3293,14 +3294,14 @@ msgid "No Directory Servers Configured"
 msgstr "Бапталған каталог сервері жоқ"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:129
-#: src/commands/newopenpgpcertificatecommand.cpp:166
+#: src/commands/newopenpgpcertificatecommand.cpp:169
 #, fuzzy, kde-format
 #| msgid "Could not start certificate creation: %1"
 msgid "Could not start key pair creation: %1"
 msgstr "Куәлікті жасауының бастауы болмады: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:139
-#: src/commands/newopenpgpcertificatecommand.cpp:176
+#: src/commands/newopenpgpcertificatecommand.cpp:179
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Creating Key..."
@@ -3309,7 +3310,7 @@ msgid "Creating Key Pair..."
 msgstr "Кілтті жасау..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
-#: src/commands/newopenpgpcertificatecommand.cpp:177
+#: src/commands/newopenpgpcertificatecommand.cpp:180
 #, kde-format
 msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
@@ -3317,7 +3318,7 @@ msgid ""
 msgstr ""
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:171
-#: src/commands/newopenpgpcertificatecommand.cpp:289
+#: src/commands/newopenpgpcertificatecommand.cpp:270
 #: src/crypto/newsignencryptemailcontroller.cpp:378
 #: src/crypto/newsignencryptemailcontroller.cpp:380
 #, kde-format
@@ -3340,22 +3341,22 @@ msgstr ""
 "message></para>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:214
-#: src/kleopatraapplication.cpp:580
+#: src/kleopatraapplication.cpp:583
 #, fuzzy, kde-format
 #| msgid "Create a personal X.509 key pair and certification request "
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Дербес X.509 қос кілтіңізді жасау және куәландыруын сұрау "
 
-#: src/commands/newopenpgpcertificatecommand.cpp:222
-#: src/commands/newopenpgpcertificatecommand.cpp:254
+#: src/commands/newopenpgpcertificatecommand.cpp:235
+#: src/commands/newopenpgpcertificatecommand.cpp:288
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@info"
 msgid "Failed to create signing subkey: %1"
 msgstr "%1 орындау жаңылысы: %2"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:247
-#: src/commands/newopenpgpcertificatecommand.cpp:261
+#: src/commands/newopenpgpcertificatecommand.cpp:242
+#: src/commands/newopenpgpcertificatecommand.cpp:311
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3363,7 +3364,7 @@ msgid ""
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
 
-#: src/commands/newopenpgpcertificatecommand.cpp:273
+#: src/commands/newopenpgpcertificatecommand.cpp:254
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -3377,7 +3378,7 @@ msgstr ""
 "<para>Куәліктерді жүктеп алу кезінде қате пайда болды: <message>%1</"
 "message></para>"
 
-#: src/commands/newopenpgpcertificatecommand.cpp:279
+#: src/commands/newopenpgpcertificatecommand.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3385,6 +3386,13 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+
+#: src/commands/newopenpgpcertificatecommand.cpp:318
+#, fuzzy, kde-format
+#| msgid "Export Secret Key..."
+msgctxt "@action:button"
+msgid "Save Secret Team Key"
+msgstr "Құпия кілтін экспорттау..."
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
@@ -5072,7 +5080,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:618
+#: src/crypto/decryptverifyfilescontroller.cpp:619
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5086,7 +5094,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:628
+#: src/crypto/decryptverifyfilescontroller.cpp:629
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5100,7 +5108,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:641
+#: src/crypto/decryptverifyfilescontroller.cpp:642
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5113,13 +5121,13 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:642
+#: src/crypto/decryptverifyfilescontroller.cpp:643
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
 msgstr ""
 
-#: src/crypto/decryptverifyfilescontroller.cpp:643
+#: src/crypto/decryptverifyfilescontroller.cpp:644
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5131,7 +5139,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:644
+#: src/crypto/decryptverifyfilescontroller.cpp:645
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5143,7 +5151,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:667
+#: src/crypto/decryptverifyfilescontroller.cpp:668
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -5155,7 +5163,7 @@ msgstr ""
 "<filename>%1</filename> уақытша файлын <filename>%2</filename> файлына "
 "көшірмелеу болмайды: <message>%3</message>"
 
-#: src/crypto/decryptverifyfilescontroller.cpp:688
+#: src/crypto/decryptverifyfilescontroller.cpp:689
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
@@ -10371,7 +10379,7 @@ msgstr "&Файл"
 
 #. i18n: ectx: Menu (certMenu)
 #. i18n: ectx: Menu (listview_popup)
-#: src/kleopatra.rc:29 src/kleopatra.rc:125
+#: src/kleopatra.rc:29 src/kleopatra.rc:127
 #, kde-format
 msgid "&Certificates"
 msgstr "&Куәліктер"
@@ -10401,13 +10409,13 @@ msgid "&Help"
 msgstr "&Анықтама"
 
 #. i18n: ectx: Menu (help_more)
-#: src/kleopatra.rc:97
+#: src/kleopatra.rc:99
 #, kde-format
 msgid "&More Documentation"
 msgstr ""
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: src/kleopatra.rc:110 src/kwatchgnupg/kwatchgnupgui.rc:13
+#: src/kleopatra.rc:112 src/kwatchgnupg/kwatchgnupgui.rc:13
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Негізгі құралдар"
@@ -10560,14 +10568,14 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:458
+#: src/kleopatraapplication.cpp:461
 #, fuzzy, kde-format
 #| msgid "Failed to execute %1: %2"
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "%1 орындау жаңылысы: %2"
 
-#: src/kleopatraapplication.cpp:481
+#: src/kleopatraapplication.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10575,43 +10583,43 @@ msgid ""
 "application> is not already running."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:518
+#: src/kleopatraapplication.cpp:521
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:552
+#: src/kleopatraapplication.cpp:555
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:563
+#: src/kleopatraapplication.cpp:566
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:624
+#: src/kleopatraapplication.cpp:627
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:631
+#: src/kleopatraapplication.cpp:634
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:645
+#: src/kleopatraapplication.cpp:648
 #, fuzzy, kde-format
 #| msgid "Cannot send \"%1\" status"
 msgid "Cannot read \"%1\""
 msgstr "\"%1\" күй-жайы жіберілмейді"
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:924
+#: src/kleopatraapplication.cpp:927
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
@@ -10844,26 +10852,53 @@ msgctxt ""
 msgid "encrypt_and_sign_gnupgvsd_en.pdf"
 msgstr ""
 
+#: src/mainwindow.cpp:722
+#, fuzzy, kde-format
+#| msgid "User cancel"
+msgctxt "@action:inmenu"
+msgid "User Manual"
+msgstr "Пайдаланушы доғарған"
+
 #: src/mainwindow.cpp:723
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "user-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:730
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Administrator Manual"
+msgstr ""
+
+#: src/mainwindow.cpp:731
+#, kde-format
+msgctxt ""
+"Only available in German and English. Leave to English for other languages."
+msgid "admin-manual-en.pdf"
+msgstr ""
+
+#: src/mainwindow.cpp:739
 #, fuzzy, kde-format
 #| msgid "Certificate Dump"
 msgid "Certificate &Groups"
 msgstr "Куәліктің дамп-хаттамасы"
 
-#: src/mainwindow.cpp:724
+#: src/mainwindow.cpp:740
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "groupfeature_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:733
+#: src/mainwindow.cpp:749
 #, fuzzy, kde-format
 #| msgid "Encryption Options"
 msgid "&Mail Encryption in Outlook"
 msgstr "Шифрлау параметрлері"
 
-#: src/mainwindow.cpp:734
+#: src/mainwindow.cpp:750
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages. "
@@ -10871,43 +10906,43 @@ msgctxt ""
 msgid "gpgol_outlook_addin_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:744
+#: src/mainwindow.cpp:760
 #, fuzzy, kde-format
 #| msgid "Certification canceled."
 msgid "&Certification Management"
 msgstr "Куәландыру доғарылған."
 
-#: src/mainwindow.cpp:745
+#: src/mainwindow.cpp:761
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "certification_management_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:753
+#: src/mainwindow.cpp:769
 #, fuzzy, kde-format
 #| msgid "SmartCard"
 msgid "&Smartcard Setup"
 msgstr "Смарт-карта"
 
-#: src/mainwindow.cpp:754
+#: src/mainwindow.cpp:770
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "smartcard_setup_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:761
+#: src/mainwindow.cpp:777
 #, kde-format
 msgid "GnuPG Command&line"
 msgstr ""
 
-#: src/mainwindow.cpp:771
+#: src/mainwindow.cpp:787
 #, kde-format
 msgid "Manual for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:772
+#: src/mainwindow.cpp:788
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10915,12 +10950,12 @@ msgctxt ""
 msgid "handbuch_zulassung_gnupgvsd_en.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:780
+#: src/mainwindow.cpp:796
 #, kde-format
 msgid "SecOps for VS-NfD Approval"
 msgstr ""
 
-#: src/mainwindow.cpp:781
+#: src/mainwindow.cpp:797
 #, kde-format
 msgctxt ""
 "Only available in German and English. Keep the English file name for other "
@@ -10928,7 +10963,7 @@ msgctxt ""
 msgid "BSI-VSA-10867_ENG_secops.pdf"
 msgstr ""
 
-#: src/mainwindow.cpp:806
+#: src/mainwindow.cpp:822
 #, kde-format
 msgid ""
 "There are still some background operations ongoing. These will be terminated "
@@ -10937,32 +10972,32 @@ msgstr ""
 "Кейбір амалдар әлі орындалып жатыр. Терезені жапсаңыз, олар үзіледі. Үзіле "
 "берсін бе?"
 
-#: src/mainwindow.cpp:809
+#: src/mainwindow.cpp:825
 #, kde-format
 msgid "Ongoing Background Tasks"
 msgstr "Әлі бітпеген тапсырмалар бар"
 
-#: src/mainwindow.cpp:810
+#: src/mainwindow.cpp:826
 #, fuzzy, kde-format
 #| msgid "Quit"
 msgctxt "@action:button"
 msgid "Quit Now"
 msgstr "Шығу"
 
-#: src/mainwindow.cpp:811
+#: src/mainwindow.cpp:827
 #, fuzzy, kde-format
 #| msgid "Do Not Try"
 msgctxt "@action:button"
 msgid "Do Not Quit"
 msgstr "Керегі жоқ"
 
-#: src/mainwindow.cpp:942
+#: src/mainwindow.cpp:958
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
 msgid "&Password-based Encryption"
 msgstr "Тек &шифрлау үшін"
 
-#: src/mainwindow.cpp:943
+#: src/mainwindow.cpp:959
 #, kde-format
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
