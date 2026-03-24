@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: BSD-3-Clause
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.29)
 
 set(RELEASE_SERVICE_VERSION_MAJOR "26")
 set(RELEASE_SERVICE_VERSION_MINOR "07")
