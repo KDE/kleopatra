@@ -9,32 +9,31 @@
 
 #include "kwatchgnupgmainwin.h"
 
-#include "kwatchgnupg.h"
 #include "kwatchgnupgconfig.h"
 
-#include <QGpgME/CryptoConfig>
-#include <QGpgME/Protocol>
-
-#include <QTextEdit>
+#include <gpgme++/global.h>
 
 #include <KActionCollection>
-#include <KConfig>
 #include <KConfigGroup>
 #include <KEditToolBar>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KProcess>
+#include <KSharedConfig>
 #include <KShortcutsDialog>
 #include <KStandardAction>
+
 #include <QAction>
 #include <QApplication>
-#include <QIcon>
-
-#include <KSharedConfig>
 #include <QDateTime>
 #include <QEventLoop>
+#include <QFile>
 #include <QFileDialog>
+#include <QIcon>
+#include <QTextEdit>
 #include <QTextStream>
+
+using namespace Qt::StringLiterals;
 
 KWatchGnuPGMainWindow::KWatchGnuPGMainWindow(QWidget *parent)
     : KXmlGuiWindow(parent, Qt::Window)
@@ -106,60 +105,27 @@ void KWatchGnuPGMainWindow::startWatcher()
         mCentralWidget->append(i18n("[%1] Log stopped", QDateTime::currentDateTime().toString(Qt::ISODate)));
         mCentralWidget->ensureCursorVisible();
     }
-    mWatcher->clearProgram();
-
-    {
-        const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
-        *mWatcher << config.readEntry("Executable", WATCHGNUPGBINARY);
-        *mWatcher << QStringLiteral("--force");
-        *mWatcher << config.readEntry("Socket", WATCHGNUPGSOCKET);
+    const QString watchgnupgPath = QFile::decodeName(GpgME::dirInfo("bindir")) + u"/watchgnupg"_s;
+    if (!QFile::exists(watchgnupgPath)) {
+        KMessageBox::error(this, i18n("The watchgnupg logging program could not be found.\nPlease make sure that watchgnupg is installed."));
+        mCentralWidget->append(i18n("[%1] Failed to start %2", QDateTime::currentDateTime().toString(Qt::ISODate), watchgnupgPath));
+        mCentralWidget->ensureCursorVisible();
+        return;
     }
-
+    mWatcher->setProgram(watchgnupgPath);
     mWatcher->setOutputChannelMode(KProcess::OnlyStdoutChannel);
     mWatcher->start();
     const bool ok = mWatcher->waitForStarted();
     if (!ok) {
-        KMessageBox::error(this,
-                           i18n("The watchgnupg logging process could not be started.\nPlease install watchgnupg somewhere in your $PATH.\nThis log window is "
-                                "unable to display any useful information."));
+        KMessageBox::error(this, i18n("The watchgnupg logging process could not be started.\nPlease make sure that watchgnupg is installed properly."));
+        mCentralWidget->append(i18n("[%1] Failed to start %2", QDateTime::currentDateTime().toString(Qt::ISODate), watchgnupgPath));
+        mCentralWidget->ensureCursorVisible();
+        return;
     } else {
         mCentralWidget->append(i18n("[%1] Log started", QDateTime::currentDateTime().toString(Qt::ISODate)));
         mCentralWidget->ensureCursorVisible();
     }
     connect(mWatcher, &QProcess::finished, this, &KWatchGnuPGMainWindow::slotWatcherExited);
-}
-
-void KWatchGnuPGMainWindow::setGnuPGConfig()
-{
-    QStringList logclients;
-    // Get config object
-    QGpgME::CryptoConfig *const cconfig = QGpgME::cryptoConfig();
-    if (!cconfig) {
-        return;
-    }
-    KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("WatchGnuPG"));
-    const QStringList comps = cconfig->componentList();
-    for (QStringList::const_iterator it = comps.constBegin(); it != comps.constEnd(); ++it) {
-        const QGpgME::CryptoConfigComponent *const comp = cconfig->component(*it);
-        Q_ASSERT(comp);
-        {
-            QGpgME::CryptoConfigEntry *const entry = cconfig->entry(comp->name(), QStringLiteral("log-file"));
-            if (entry) {
-                entry->setStringValue(QLatin1StringView("socket://") + config.readEntry("Socket", WATCHGNUPGSOCKET));
-                logclients << QStringLiteral("%1 (%2)").arg(*it, comp->description());
-            }
-        }
-        {
-            QGpgME::CryptoConfigEntry *const entry = cconfig->entry(comp->name(), QStringLiteral("debug-level"));
-            if (entry) {
-                entry->setStringValue(config.readEntry("LogLevel", "basic"));
-            }
-        }
-    }
-    cconfig->sync(true);
-    if (logclients.isEmpty()) {
-        KMessageBox::error(nullptr, i18n("There are no components available that support logging."));
-    }
 }
 
 void KWatchGnuPGMainWindow::slotWatcherExited(int, QProcess::ExitStatus)
@@ -225,7 +191,6 @@ void KWatchGnuPGMainWindow::slotReadConfig()
     const KConfigGroup config(KSharedConfig::openConfig(), QStringLiteral("LogWindow"));
     const int maxLogLen = config.readEntry("MaxLogLen", 10000);
     mCentralWidget->document()->setMaximumBlockCount(maxLogLen < 1 ? -1 : maxLogLen);
-    setGnuPGConfig();
     startWatcher();
 }
 
