@@ -298,7 +298,9 @@ public:
     void gnupgLogViewer()
     {
         // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
-        if (!QProcess::startDetached(QStringLiteral("kwatchgnupg"), QStringList()))
+        const QString kwatchgnupgPath = QStandardPaths::findExecutable(u"kwatchgnupg"_s);
+        qCDebug(KLEOPATRA_LOG) << "Starting" << kwatchgnupgPath;
+        if (!QProcess::startDetached(kwatchgnupgPath))
             KMessageBox::error(q,
                                i18n("Could not start the GnuPG Log Viewer (kwatchgnupg). "
                                     "Please check your installation."),
@@ -528,9 +530,8 @@ void MainWindow::Private::setupActions()
     KActionCollection *const coll = q->actionCollection();
 
     const std::vector<action_data> action_data = {
-    // see keylistcontroller.cpp for more actions
-    // Tools menu
-#ifndef Q_OS_WIN
+        // see keylistcontroller.cpp for more actions
+        // Tools menu
         {
             "tools_start_kwatchgnupg",
             i18n("GnuPG Log Viewer"),
@@ -542,7 +543,6 @@ void MainWindow::Private::setupActions()
             },
             QString(),
         },
-#endif
         {
             "tools_debug_view",
             i18n("GnuPG Command Line"),
@@ -641,6 +641,12 @@ void MainWindow::Private::setupActions()
         }};
 
     make_actions_from_data(action_data, coll);
+
+    if (QStandardPaths::findExecutable(u"kwatchgnupg"_s).isEmpty()) {
+        if (auto action = coll->action(u"tools_start_kwatchgnupg"_s)) {
+            delete action;
+        }
+    }
 
     if (!Settings().groupsEnabled()) {
         if (auto action = coll->action(QStringLiteral("configure_groups"))) {
