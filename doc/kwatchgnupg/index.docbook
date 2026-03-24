@@ -167,49 +167,10 @@ should save them to a file (see above) before clearing.
 To configure &kwatchgnupg;, select
 <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure
 &kwatchgnupg;</guimenuitem></menuchoice>, or the corresponding toolbar
-icon. &kwatchgnupg;'s configure dialog is divided into two parts, each
-of which will be described below.
+icon.
 </para>
 
 <sect1 id="configure.dialog"><title>Settings Dialog</title>
-
-<sect2 id="configure.watchgnupg"><title>&watchgnupg; Settings</title>
-
-<para>
-&watchgnupg; is the process that actually monitors the logging socket
-for activity and formats the lines as seen in the &kwatchgnupg; text
-view. Settings in this group are passed down to the backend using
-the &gpgconf; mechanism.
-</para>
-
-<para>
-<guilabel>Executable</guilabel> contains the path to the &watchgnupg;
-application. If &watchgnupg; is in your <varname>$PATH</varname>, you
-can keep the default <userinput>watchgnupg</userinput>. If
-&watchgnupg; is not in your <varname>$PATH</varname>, or if you have
-more than one version installed, enter the absolute filename of the
-watchgnupg executable here.
-</para>
-
-<para>
-<guilabel>Socket</guilabel> contains the socket that &watchgnupg;
-should listen on. A change here is distributed to all &gnupg; backend
-modules using &gpgconf;, so you don't need to change this setting if
-your &gnupg; config files have another <varname>log-file</varname>
-set.
-</para>
-
-<para>
-<guilabel>Default log level</guilabel> determines the amount of
-logging information returned by the backend modules. See the
-&watchgnupg; documentation for what level includes which
-information. A change here is distributed to all &gnupg; backend
-modules using &gpgconf;, so you don't need to change this setting if
-your &gnupg; config files have another <varname>log-level</varname>
-set.
-</para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"><title>Log Window Settings</title>
 
@@ -231,6 +192,17 @@ history manually.
 </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"><title>&gnupg; Logging Settings</title>
+
+<para>
+Use the settings dialog of &kleopatra; for configuring logging of the
+components of the &gnupg; System. For each component for which you want
+to see logging choose a debugging level and enter <filename>socket://</filename>
+as file the logs should be written to.
+</para>
 
 </sect1>
 
