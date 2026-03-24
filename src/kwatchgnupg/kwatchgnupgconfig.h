@@ -10,13 +10,8 @@
 #include <QDialog>
 
 class QCheckBox;
-class QComboBox;
 class QDialogButtonBox;
 class QSpinBox;
-namespace Kleo
-{
-class FileNameRequester;
-}
 
 class KWatchGnuPGConfig : public QDialog
 {
@@ -37,10 +32,6 @@ private Q_SLOTS:
     void slotSetHistorySizeUnlimited();
 
 private:
-    Kleo::FileNameRequester *mExeED;
-    Kleo::FileNameRequester *mSocketED;
-    QComboBox *mLogLevelCB;
-    QSpinBox *mLoglenSB;
-    QCheckBox *mWordWrapCB;
-    QDialogButtonBox *mButtonBox;
+    QSpinBox *mLoglenSB = nullptr;
+    QDialogButtonBox *mButtonBox = nullptr;
 };

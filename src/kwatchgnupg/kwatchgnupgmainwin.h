@@ -37,7 +37,6 @@ private Q_SLOTS:
 private:
     void createActions();
     void startWatcher();
-    void setGnuPGConfig();
 
     KProcess *mWatcher;
 
