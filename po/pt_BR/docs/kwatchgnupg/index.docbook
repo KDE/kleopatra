@@ -221,45 +221,11 @@
 ><guimenuitem
 >Configurar o &kwatchgnupg;</guimenuitem
 ></menuchoice
-> ou o ícone da barra de ferramentas correspondente. O diálogo de configuração do &kwatchgnupg; está dividido em duas partes, sendo cada uma destas descrita abaixo. </para>
+> ou o ícone da barra de ferramentas correspondente. </para>
 
 <sect1 id="configure.dialog"
 ><title
 >Janela de configurações</title>
-
-<sect2 id="configure.watchgnupg"
-><title
->Configurações do &watchgnupg;</title>
-
-<para
->O &watchgnupg; é o processo que, de fato, monitora o soquete de registro à procura de atividade e formata as linhas tal como aparecem na janela de texto do &kwatchgnupg;. As configurações deste grupo são passada à infraestrutura, usando o mecanismo do &gpgconf;. </para>
-
-<para
->O <guilabel
->Executável</guilabel
-> contém a localização do aplicativo &watchgnupg;. Se o &watchgnupg; estiver no seu <varname
->$PATH</varname
->, você poderá manter o <userinput
->watchgnupg</userinput
-> padrão. Se o &watchgnupg; não estiver no seu <varname
->$PATH</varname
->, ou se você tiver mais de uma versão instalada, insira o nome completo do arquivo do executável do watchgnupg aqui. </para>
-
-<para
->O <guilabel
->Soquete</guilabel
-> contém a referência ao soquete que o &watchgnupg; deverá vigiar. Qualquer alteração aqui é distribuída para todos os módulos da infraestrutura do &gnupg;, usando o &gpgconf;, para que não precise de alterar esta opção, se os seus arquivos de configuração do &gnupg; tiverem outro <varname
->log-file</varname
-> (arquivo de registro) definido. </para>
-
-<para
->O <guilabel
->Nível de depuração padrão</guilabel
-> determina a quantidade de informação de registro que é devolvida pelos módulos da infraestrutura. Veja a documentação do &watchgnupg; para saber qual nível inclui determinadas informações. Qualquer alteração aqui é distribuída para todos os módulos da infraestrutura do &gnupg;, usando o &gpgconf;, para que não precise de alterar esta opção, se os seus arquivos de configuração do &gnupg; tiverem outro <varname
->log-file</varname
-> (arquivo de registro) definido. </para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"
 ><title
@@ -274,6 +240,17 @@
 >. Lembre-se, contudo, que o consumo de memória do &kwatchgnupg; irá crescer com o número de linhas que mostra atualmente. Se você usar um tamanho de histórico ilimitado, certifique-se então que só execute o &kwatchgnupg; para operações curtas, ou então vá limpando o histórico manualmente. </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>Configurações de registro do &gnupg;</title>
+
+<para
+>Use a caixa de diálogo de configurações do &kleopatra; para configurar o registro de logs dos componentes do sistema &gnupg;. Para cada componente para o qual você deseja visualizar os logs, escolha um nível de depuração e insira <filename
+>socket://</filename
+> como o arquivo no qual os logs devem ser gravados. </para>
 
 </sect1>
 

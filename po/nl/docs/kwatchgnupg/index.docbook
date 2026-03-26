@@ -195,45 +195,11 @@
 ><guimenuitem
 >&kwatchgnupg; instellen</guimenuitem
 ></menuchoice
-> of klikt u op het bijbehorende werkbalkpictogram. Het dialoogvenster van &kwatchgnupg; is onderverdeeld in twee delen, deze worden hieronder apart beschreven. </para>
+> of klikt u op het bijbehorende werkbalkpictogram. </para>
 
 <sect1 id="configure.dialog"
 ><title
 >Instellingendialoog</title>
-
-<sect2 id="configure.watchgnupg"
-><title
->Instellingen voor &watchgnupg;</title>
-
-<para
->&watchgnupg; is eigenlijk het programma dat de activiteiten vastlegt en vervolgens de regels uitvoert zoals u ze ziet in de tekstweergave van &kwatchgnupg;. De instellingen die u in dit gedeelte maakt worden uiteindelijk doorgegeven aan de backend die het &gpgconf;-mechanisme gebruikt. </para>
-
-<para
->Het veld <guilabel
->Uitvoerbaar bestand</guilabel
-> bevat het pad naar de toepassing &watchgnupg;. Wanneer &watchgnupg; zich in uw <varname
->$PATH</varname
-> bevindt kunt u de standaardwaarde <userinput
->watchgnupg</userinput
-> zo houden. Wanneer het zich niet in uw <varname
->$PATH</varname
-> bevindt of wanneer u meerdere versies geïnstalleerd hebt dient u hier het absolute pad van het uitvoerbare bestand op te geven. </para>
-
-<para
-><guilabel
->Socket</guilabel
-> bevat de socket die door &watchgnupg; gecontroleerd zal worden. Wanneer u hier iets verandert zal dat doorgegeven worden aan alle backend-modules van &gnupg; die &gpgconf; gebruiken. Het is daarom niet nodig om deze waarde te veranderen wanneer de configuratiebestanden van &gnupg; een ander <varname
->logbestand</varname
-> bevatten. </para>
-
-<para
->Met <guilabel
->Standaard logniveau</guilabel
-> kunt u de hoeveelheid informatie bepalen die door de backend-modules teruggegeven wordt. Raadpleeg de documentatie van &watchgnupg; wanneer u na wilt gaan welk niveau welke informatie doorgeeft. Wanneer u dit verandert zullen de instellingen doorgegeven worden aan alle backend-modules van &gnupg; die &gpgconf; gebruiken. Het is daarom niet nodig om deze waarde te veranderen wanneer uw configuratiebestanden van &gnupg; een ander <varname
->logniveau</varname
-> bevatten. </para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"
 ><title
@@ -248,6 +214,17 @@
 >. Houd er wel rekening mee dat het geheugenverbruik van &kwatchgnupg; zal toenemen naarmate er meer regels getoond zullen worden. Wanneer u een onbeperkte grootte instelt, zorg er dan voor dat u &kwatchgnupg; alleen voor korte operaties uitvoert of dat u de geschiedenis regelmatig wist. </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>Instellingen voor loggen van &gnupg;</title>
+
+<para
+>Gebruik het instellingendialoogvenster van &kleopatra; om de logboekregistratie van de componenten van het &gnupg; systeem te configureren. Kies voor elke component waarvan u de logboekregistratie wilt bekijken een debugniveau en voer <filename
+>socket://</filename
+> in als het bestand waarnaar de logboeken moeten worden geschreven. </para>
 
 </sect1>
 

@@ -193,45 +193,11 @@
 ><guimenuitem
 >Configura &kwatchgnupg;</guimenuitem
 ></menuchoice
->, o la icona corresponent de la barra d'eines. El diàleg de configuració de &kwatchgnupg; està dividit en dues parts, cadascuna de les quals es descriu a sota. </para>
+>, o la icona corresponent de la barra d'eines. </para>
 
 <sect1 id="configure.dialog"
 ><title
 >Diàleg d'arranjament</title>
-
-<sect2 id="configure.watchgnupg"
-><title
->Preferències del &watchgnupg;</title>
-
-<para
->&watchgnupg; és el procés que realment controla el sòcol de registre per a l'activitat i dona format a les línies que podeu veure en la vista de text de &kwatchgnupg;. Les opcions d'aquest grup es passen al dorsal usant el mecanisme &gpgconf;. </para>
-
-<para
-><guilabel
->Executable</guilabel
-> conté el camí cap a l'aplicació &watchgnupg;. Si &watchgnupg; està en la vostra <varname
->$PATH</varname
->, podeu mantenir el valor per omissió <userinput
->watchgnupg</userinput
->. Si &watchgnupg; no està en la vostra <varname
->$PATH</varname
-> o si teniu més d'una versió instal·lada, introduïu aquí el nom de fitxer absolut cap a l'executable watchgnupg. </para>
-
-<para
-><guilabel
->Sòcol</guilabel
-> conté el sòcol en el qual ha d'escoltar &watchgnupg;. Un canvi aquí es distribueix a tots els mòduls del dorsal &gnupg; usant &gpgconf;, de manera que no haureu de canviar aquesta opció si els fitxers de configuració de &gnupg; tenen establert un altre <varname
->log-file</varname
->. </para>
-
-<para
-><guilabel
->Nivell de registre per omissió</guilabel
-> determina la quantitat d'informació de registre que retornen els mòduls de la dorsal. per a saber quina informació inclou cada nivell aneu a la documentació de &watchgnupg;. Un canvi aquí es distribueix a tots els mòduls del dorsal &gnupg; usant &gpgconf;, de manera que no haureu de canviar aquesta opció si els fitxers de configuració de &gnupg; tenen definit un altre <varname
->log-level</varname
->. </para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"
 ><title
@@ -246,6 +212,17 @@
 >. De tota manera tingueu present que el consum de memòria creixerà amb el nombre de línies que es mostrin en aquest moment. Si useu una mida de l'historial sense límit, assegureu-vos de fer funcionar &kwatchgnupg; tan sols per a operacions curtes, o bé netegeu regularment l'historial de manera manual. </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>Configuració d'enregistrament del &gnupg;</title>
+
+<para
+>Feu servir el diàleg de configuració del &kleopatra; per a configurar l'enregistrament dels components del sistema &gnupg;. Per a cada component per al qual vulgueu veure l'enregistrament trieu un nivell de depuració i introduïu <filename
+>socket://</filename
+> com a fitxer en el que s'han d'escriure els registres. </para>
 
 </sect1>
 
