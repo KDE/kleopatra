@@ -466,9 +466,16 @@ static bool isImportOfASingleKey(const GpgME::ImportResult &result)
     // if the import result has more than one import then we have to check whether all imports reference the same key;
     // this occurs when importing a single key with public primary key and secret subkeys (e.g. a shared team key)
     const char *referenceFingerprint = imports.front().fingerprint();
+#if defined(__cpp_lib_span) && __cpp_lib_span >= 202002L
     return std::ranges::all_of(std::span{imports}.subspan(1), [referenceFingerprint](const auto &import) {
         return qstrcmp(import.fingerprint(), referenceFingerprint) == 0;
     });
+#else
+    // compare with all imports even if comparing with the first one is trivially true
+    return std::ranges::all_of(imports, [referenceFingerprint](const auto &import) {
+        return qstrcmp(import.fingerprint(), referenceFingerprint) == 0;
+    });
+#endif
 }
 
 /**
