@@ -56,6 +56,7 @@ public:
     void setEncryptSymmetric(bool symmetric);
     void setClearsign(bool clearsign);
     void setCreateArchive(bool archive);
+    void setAlwaysTrust(bool alwaysTrust);
 
     void setOverwritePolicy(const std::shared_ptr<OverwritePolicy> &policy);
     GpgME::Protocol protocol() const override;
