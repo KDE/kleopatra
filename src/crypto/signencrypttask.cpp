@@ -341,6 +341,7 @@ private:
     bool symmetric : 1;
     bool clearsign : 1;
     bool archive : 1;
+    bool alwaysTrust = false;
 
     QPointer<QGpgME::Job> job;
     QString labelText;
@@ -473,6 +474,12 @@ void SignEncryptTask::setCreateArchive(bool archive)
     d->archive = archive;
 }
 
+void SignEncryptTask::setAlwaysTrust(bool alwaysTrust)
+{
+    kleo_assert(!d->job);
+    d->alwaysTrust = alwaysTrust;
+}
+
 Protocol SignEncryptTask::protocol() const
 {
     if (d->sign && !d->signers.empty()) {
@@ -598,7 +605,7 @@ void SignEncryptTask::Private::startSignEncryptJob(GpgME::Protocol proto)
 
     if (encrypt || symmetric) {
         Context::EncryptionFlags flags{Context::None};
-        if (proto == GpgME::OpenPGP) {
+        if ((proto == GpgME::OpenPGP) || alwaysTrust) {
             flags = static_cast<Context::EncryptionFlags>(flags | Context::AlwaysTrust);
         }
         if (symmetric) {
