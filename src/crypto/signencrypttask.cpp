@@ -104,13 +104,15 @@ public:
                            const EncryptionResult &er,
                            const LabelAndError &input,
                            const LabelAndError &output,
-                           const AuditLogEntry &auditLog)
+                           const AuditLogEntry &auditLog,
+                           Task *parentTask)
         : Task::Result()
         , m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
         , m_auditLog(auditLog)
+        , m_parentTask(parentTask)
     {
         qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
@@ -121,6 +123,7 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     AuditLogEntry auditLog() const override;
+    QPointer<Task> parentTask() const override;
 
 private:
     const SigningResult m_sresult;
@@ -128,6 +131,7 @@ private:
     const LabelAndError m_input;
     const LabelAndError m_output;
     const AuditLogEntry m_auditLog;
+    QPointer<Task> m_parentTask;
 };
 
 QString formatResultLine(const QStringList &inputs,
@@ -936,7 +940,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 
     const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}, inputFileNames};
     const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}, {}};
-    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, auditLog));
+    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, auditLog, q));
     result->setDataSource(dataSource);
     q->emitResult(result);
 }
@@ -1024,6 +1028,11 @@ QString SignEncryptFilesResult::errorString() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
+}
+
+QPointer<Task> SignEncryptFilesResult::parentTask() const
+{
+    return m_parentTask;
 }
 
 void SignEncryptTask::setDataSource(Task::DataSource dataSource)
