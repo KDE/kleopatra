@@ -108,7 +108,10 @@ void KWatchGnuPGMainWindow::startWatcher()
     const QString watchgnupgPath = QFile::decodeName(GpgME::dirInfo("bindir")) + u"/watchgnupg"_s;
     if (!QFile::exists(watchgnupgPath)) {
         KMessageBox::error(this, i18n("The watchgnupg logging program could not be found.\nPlease make sure that watchgnupg is installed."));
-        mCentralWidget->append(i18n("[%1] Failed to start %2", QDateTime::currentDateTime().toString(Qt::ISODate), watchgnupgPath));
+        mCentralWidget->append(i18nc("[<timestamp>] Failed to start <path_of_watchgnupg>",
+                                     "[%1] Failed to start %2",
+                                     QDateTime::currentDateTime().toString(Qt::ISODate),
+                                     watchgnupgPath));
         mCentralWidget->ensureCursorVisible();
         return;
     }
@@ -118,7 +121,10 @@ void KWatchGnuPGMainWindow::startWatcher()
     const bool ok = mWatcher->waitForStarted();
     if (!ok) {
         KMessageBox::error(this, i18n("The watchgnupg logging process could not be started.\nPlease make sure that watchgnupg is installed properly."));
-        mCentralWidget->append(i18n("[%1] Failed to start %2", QDateTime::currentDateTime().toString(Qt::ISODate), watchgnupgPath));
+        mCentralWidget->append(i18nc("[<timestamp>] Failed to start <path_of_watchgnupg>",
+                                     "[%1] Failed to start %2",
+                                     QDateTime::currentDateTime().toString(Qt::ISODate),
+                                     watchgnupgPath));
         mCentralWidget->ensureCursorVisible();
         return;
     } else {
