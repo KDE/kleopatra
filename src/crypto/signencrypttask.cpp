@@ -143,7 +143,8 @@ public:
                            const LabelAndError &input,
                            const LabelAndError &output,
                            bool outputCreated,
-                           const AuditLogEntry &auditLog)
+                           const AuditLogEntry &auditLog,
+                           Task *parentTask)
         : Task::Result()
         , m_sresult(sr)
         , m_eresult(er)
@@ -151,6 +152,7 @@ public:
         , m_output{output}
         , m_outputCreated(outputCreated)
         , m_auditLog(auditLog)
+        , m_parentTask(parentTask)
     {
         qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
@@ -162,6 +164,7 @@ public:
     QString errorString() const override;
     VisualCode code() const override;
     AuditLogEntry auditLog() const override;
+    QPointer<Task> parentTask() const override;
 
 private:
     const SigningResult m_sresult;
@@ -170,6 +173,7 @@ private:
     const LabelAndError m_output;
     const bool m_outputCreated;
     const AuditLogEntry m_auditLog;
+    QPointer<Task> m_parentTask;
 };
 
 static QString makeSigningOverview(const Error &err)
@@ -907,7 +911,8 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
 
     const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
     const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
-    q->emitResult(std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog)));
+    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog, q));
+    q->emitResult(result);
 }
 
 QString SignEncryptFilesResult::overview() const
@@ -960,6 +965,11 @@ Task::Result::VisualCode SignEncryptFilesResult::code() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
+}
+
+QPointer<Task> SignEncryptFilesResult::parentTask() const
+{
+    return m_parentTask;
 }
 
 #include "moc_signencrypttask.cpp"
