@@ -23,7 +23,6 @@
 #ifdef Q_OS_WIN
 #include "conf/kmessageboxdontaskagainstorage.h"
 #endif
-#include "utils/kuniqueservice.h"
 #include "utils/userinfo.h"
 #include <Libkleo/GnuPG>
 #include <utils/accessibility.h>
@@ -57,7 +56,10 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
+#include <KDSingleApplication>
+
 #include <QAccessible>
+#include <QDir>
 #include <QElapsedTimer>
 #include <QEventLoop>
 #include <QMessageBox>
@@ -75,6 +77,26 @@
 using namespace Qt::StringLiterals;
 
 QElapsedTimer startupTimer;
+
+static QString generateServiceName()
+{
+    const QString applicationName = QCoreApplication::applicationName();
+    const QString domain = QCoreApplication::organizationDomain();
+    const QStringList parts = domain.split(QLatin1Char('.'), Qt::SkipEmptyParts);
+
+    QString reversedDomain;
+    reversedDomain.reserve(domain.size() + 1 + applicationName.size());
+    if (parts.isEmpty()) {
+        reversedDomain = QStringLiteral("local.");
+    } else {
+        for (const QString &part : parts) {
+            reversedDomain.prepend(QLatin1Char('.'));
+            reversedDomain.prepend(part);
+        }
+    }
+
+    return reversedDomain + applicationName;
+}
 
 static bool selfCheck()
 {
@@ -141,12 +163,36 @@ int main(int argc, char **argv)
     /* Create the unique service ASAP to prevent double starts if
      * the application is started twice very quickly. */
     if (!app.isStandalone()) {
-        auto service = new KUniqueService(&app);
-        QObject::connect(service, &KUniqueService::activateRequested, &app, &KleopatraApplication::slotActivateRequested);
-        QObject::connect(&app, &KleopatraApplication::setExitValue, service, [service](int i) {
-            service->setExitValue(i);
-        });
-        STARTUP_TIMING << "Unique service created";
+        auto singleApp = new KDSingleApplication{generateServiceName(), &app};
+        STARTUP_TIMING << "KDSingleApplication created";
+        if (singleApp->isPrimaryInstance()) {
+            STARTUP_TIMING << "KDSingleApplication - setting up primary instance";
+            QObject::connect(singleApp, &KDSingleApplication::messageReceived, &app, [&app](const QByteArray &message) {
+                QDataStream ds(message);
+                QString workDir;
+                ds >> workDir;
+                QStringList args;
+                ds >> args;
+                qCDebug(KLEOPATRA_LOG) << "KDSingleApplication - requests activate with workdir" << workDir << "and args" << args;
+                // we must queue the invocation of slotActivateRequested because it might show a message box which would cause a crash in KDSingleApplication
+                QMetaObject::invokeMethod(
+                    &app,
+                    [&app, args, workDir]() {
+                        app.slotActivateRequested(args, workDir);
+                    },
+                    Qt::QueuedConnection);
+            });
+        } else {
+            STARTUP_TIMING << "KDSingleApplication - sending message to primary instance";
+            QByteArray message;
+            QDataStream ds(&message, QIODevice::WriteOnly);
+            ds << QDir::currentPath() << QCoreApplication::arguments();
+            if (!singleApp->sendMessage(message)) {
+                qCWarning(KLEOPATRA_LOG) << "KDSingleApplication - sending message to primary instance failed";
+                return 1;
+            }
+            return 0;
+        }
     }
 
     QAccessible::installFactory(Kleo::accessibleWidgetFactory);
@@ -157,7 +203,7 @@ int main(int argc, char **argv)
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
 
     if (gpgmeInitError) {
-        // Show a failed initialization of GpgME after creating QApplication and KUniqueService,
+        // Show a failed initialization of GpgME after creating QApplication and KDSingleApplication,
         // and after setting the application domain for the localization.
         KMessageBox::error(nullptr,
                            xi18nc("@info",
@@ -198,7 +244,7 @@ int main(int argc, char **argv)
         }
         qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
     }
-    // Delay init after KUniqueservice call as this might already
+    // Delay init after KDSingleApplication call as this might already
     // have terminated us and so we can avoid overhead (e.g. keycache
     // setup / systray icon).
     Migration::migrate();

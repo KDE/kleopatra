@@ -444,13 +444,8 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments, c
     KAboutData::applicationData().setupCommandLine(&parser);
     kleopatra_options(&parser);
     QString err;
-    if (!arguments.isEmpty() && !parser.parse(arguments)) {
+    if (!parser.parse(arguments)) {
         err = parser.errorText();
-    } else if (arguments.isEmpty()) {
-        // KDBusServices omits the application name if no other
-        // arguments are provided. In that case the parser prints
-        // a warning.
-        parser.parse(QStringList() << QCoreApplication::applicationFilePath());
     }
 
     if (err.isEmpty()) {
@@ -459,10 +454,8 @@ void KleopatraApplication::slotActivateRequested(const QStringList &arguments, c
 
     if (!err.isEmpty()) {
         KMessageBox::error(nullptr, err.toHtmlEscaped(), i18nc("@title:window", "Failed to execute command"));
-        Q_EMIT setExitValue(1);
         return;
     }
-    Q_EMIT setExitValue(0);
 }
 
 QString KleopatraApplication::newInstance(const QCommandLineParser &parser, const QString &workingDirectory)

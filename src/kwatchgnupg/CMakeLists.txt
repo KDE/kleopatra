@@ -7,13 +7,9 @@ find_package(KF6Notifications ${KF_MIN_VERSION} CONFIG REQUIRED)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version-kwatchgnupg.h.in ${CMAKE_CURRENT_BINARY_DIR}/version-kwatchgnupg.h)
 
 set(kwatchgnupg_SRCS
-  ../utils/kuniqueservice.cpp
-  ../kleopatra_debug.cpp
   kwatchgnupgmainwin.cpp
   kwatchgnupgconfig.cpp
   aboutdata.cpp
-  ../utils/kuniqueservice.h
-  ../kleopatra_debug.h
   kwatchgnupgmainwin.h
   kwatchgnupgconfig.h
   aboutdata.h
@@ -42,7 +38,6 @@ endif()
 
 
 target_link_libraries(kwatchgnupg
-  ${_kleopatra_dbusaddons_libs}
   KF6::XmlGui
   KF6::Notifications
   KF6::I18n
@@ -50,6 +45,7 @@ target_link_libraries(kwatchgnupg
   KF6::CoreAddons
   KF6::Crash
   KF6::WindowSystem
+  KDAB::kdsingleapplication
 )
 
 install(TARGETS kwatchgnupg ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

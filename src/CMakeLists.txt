@@ -435,8 +435,6 @@ set(_kleopatra_SRCS
   utils/kdpipeiodevice.h
   utils/keyexportdraghandler.cpp
   utils/keyexportdraghandler.h
-  utils/kuniqueservice.cpp
-  utils/kuniqueservice.h
   utils/log.cpp
   utils/log.h
   utils/memory-helpers.h
@@ -600,11 +598,12 @@ target_link_libraries(kleopatra_bin
   KF6::KIOWidgets
   KF6::WindowSystem
   KF6::XmlGui
+  KDAB::kdsingleapplication
   Qt::Network
   Qt::PrintSupport # Printing secret keys
   ${_kleopatra_mail_libs}
   ${_kleopatra_uiserver_extra_libs}
-  ${_kleopatra_dbusaddons_libs}
+  ${_kleopatra_dbus_libs}
   ${_kleopatra_platform_libs}
 )
 

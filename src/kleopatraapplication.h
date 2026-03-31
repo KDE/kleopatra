@@ -32,7 +32,7 @@ class KleopatraApplication : public QApplication
 public:
     /** Create a new Application object. You have to
      * make sure to call init afterwards to get a valid object.
-     * This is to delay initialisation after the UniqueService
+     * This is to delay initialisation after the KDSingleApplication
      * call is done and our init / call might be forwarded to
      * another instance. */
     KleopatraApplication(int &argc, char *argv[]);
@@ -110,10 +110,6 @@ public Q_SLOTS:
     void handleFiles(const QStringList &files, WId parentId = 0);
 
 Q_SIGNALS:
-    /* Emitted from slotActivateRequested to enable setting the
-     * correct exitValue */
-    void setExitValue(int value);
-
     void configurationChanged();
     void distributionSettingsChanged();
 
