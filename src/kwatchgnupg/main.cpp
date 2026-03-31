@@ -9,12 +9,14 @@
 
 #include "aboutdata.h"
 #include "kwatchgnupgmainwin.h"
-#include "utils/kuniqueservice.h"
 
 #include "kwatchgnupg_debug.h"
 #include <KCrash>
 #include <KLocalizedString>
 #include <KWindowSystem>
+
+#include <KDSingleApplication>
+
 #include <QApplication>
 #include <QCommandLineParser>
 
@@ -35,17 +37,25 @@ int main(int argc, char **argv)
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    KUniqueService service;
+    KDSingleApplication singleApp{&app};
+    if (!singleApp.isPrimaryInstance()) {
+        if (!singleApp.sendMessage("raise_window")) {
+            qCWarning(KWATCHGNUPG_LOG) << "sending message to primary instance failed";
+            return 1;
+        }
+        return 0;
+    }
 
     auto mMainWin = new KWatchGnuPGMainWindow();
     mMainWin->show();
 
-    QObject::connect(&service, &KUniqueService::activateRequested, mMainWin, [mMainWin] {
-        if (mMainWin->isVisible()) {
+    QObject::connect(&singleApp, &KDSingleApplication::messageReceived, &app, [mMainWin](const QByteArray &message) {
+        if (message == "raise_window") {
+            mMainWin->show();
+            mMainWin->activateWindow();
+            mMainWin->raise();
             KWindowSystem::updateStartupId(mMainWin->windowHandle());
             KWindowSystem::activateWindow(mMainWin->windowHandle());
-        } else {
-            mMainWin->show();
         }
     });
 

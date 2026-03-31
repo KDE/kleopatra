@@ -15,14 +15,6 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 ecm_qt_declare_logging_category(logging_category_srcs HEADER kleopatra_debug.h IDENTIFIER KLEOPATRA_LOG CATEGORY_NAME org.kde.pim.kleopatra)
 
 ecm_add_test(
-    kuniqueservicetest.cpp
-    ${CMAKE_SOURCE_DIR}/src/utils/kuniqueservice.cpp
-    ${logging_category_srcs}
-    TEST_NAME kuniqueservicetest
-    LINK_LIBRARIES ${_kleopatra_dbusaddons_libs} Qt::Test KF6::WidgetsAddons KF6::I18n
-)
-
-ecm_add_test(
     statusmessagetest.cpp
     ${CMAKE_SOURCE_DIR}/src/utils/statusmessage.cpp
     ${logging_category_srcs}

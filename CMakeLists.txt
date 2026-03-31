@@ -121,8 +121,8 @@ if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
 endif()
 option(USE_DBUS "Build components using DBus (used for interprocess communication, external open in same instance and various presentation related bits)" ${USE_DBUS_DEFAULT})
 if(USE_DBUS)
-  find_package(KF6DBusAddons ${KF6_WANT_VERSION} CONFIG REQUIRED)
-  set(_kleopatra_dbusaddons_libs KF6::DBusAddons)
+  find_package(Qt6DBus ${QT_REQUIRED_VERSION} CONFIG REQUIRED)
+  set(_kleopatra_dbus_libs Qt::DBus)
   set(HAVE_QDBUS 1)
 endif()
 
@@ -141,6 +141,8 @@ find_package(KPim6MimeTreeParserWidgets ${MIMETREEPARSER_VERSION} CONFIG REQUIRE
 set(CMAKE_MODULE_PATH ${LIBKLEO_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 find_package(Qt6 ${QT_REQUIRED_VERSION} CONFIG REQUIRED Widgets Test Network PrintSupport)
+
+find_package(KDSingleApplication-qt6 CONFIG REQUIRED)
 
 find_package(LibAssuan ${LIBASSUAN_REQUIRED_VERSION} REQUIRED)
 set_package_properties(LibAssuan PROPERTIES

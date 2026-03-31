@@ -44,5 +44,5 @@ target_link_libraries(kcm_kleopatra_static
   KF6::IconThemes
   KF6::IconWidgets
   KF6::WidgetsAddons
-  ${_kleopatra_dbusaddons_libs}
+  ${_kleopatra_dbus_libs}
 )
