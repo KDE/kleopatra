@@ -154,6 +154,31 @@ int main(int argc, char **argv)
 
     STARTUP_TIMING << "Application created";
 
+    if (Kleo::userIsElevated()) {
+        /* This is a safeguard against bugreports that something fails because
+         * of permission problems on windows.  Some users still have the Windows
+         * Vista behavior of running things as Administrator.  This can break
+         * GnuPG in horrible ways for example if a stale lockfile is left that
+         * can't be removed without another elevation.
+         *
+         * Note: This is not the same as running as root on Linux. Elevated means
+         * that you are temporarily running with the "normal" user environment but
+         * with elevated permissions.
+         * */
+        if (KMessageBox::warningContinueCancel(nullptr,
+                                               xi18nc("@info",
+                                                      "<para><application>Kleopatra</application> cannot be run as adminstrator without "
+                                                      "breaking file permissions in the GnuPG data folder.</para>"
+                                                      "<para>To manage keys for other users please manage them as a normal user and "
+                                                      "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>")
+                                                   + xi18nc("@info", "<para>Are you sure that you want to continue?</para>"),
+                                               i18nc("@title", "Running as Administrator"))
+            != KMessageBox::Continue) {
+            return EXIT_FAILURE;
+        }
+        qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
+    }
+
     // Early parsing of command line to handle --standalone option
     QCommandLineParser parser;
     kleopatra_options(&parser);
@@ -220,30 +245,6 @@ int main(int argc, char **argv)
 
     KCrash::initialize();
 
-    if (Kleo::userIsElevated()) {
-        /* This is a safeguard against bugreports that something fails because
-         * of permission problems on windows.  Some users still have the Windows
-         * Vista behavior of running things as Administrator.  This can break
-         * GnuPG in horrible ways for example if a stale lockfile is left that
-         * can't be removed without another elevation.
-         *
-         * Note: This is not the same as running as root on Linux. Elevated means
-         * that you are temporarily running with the "normal" user environment but
-         * with elevated permissions.
-         * */
-        if (KMessageBox::warningContinueCancel(nullptr,
-                                               xi18nc("@info",
-                                                      "<para><application>Kleopatra</application> cannot be run as adminstrator without "
-                                                      "breaking file permissions in the GnuPG data folder.</para>"
-                                                      "<para>To manage keys for other users please manage them as a normal user and "
-                                                      "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>")
-                                                   + xi18nc("@info", "<para>Are you sure that you want to continue?</para>"),
-                                               i18nc("@title", "Running as Administrator"))
-            != KMessageBox::Continue) {
-            return EXIT_FAILURE;
-        }
-        qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
-    }
     // Delay init after KDSingleApplication call as this might already
     // have terminated us and so we can avoid overhead (e.g. keycache
     // setup / systray icon).
