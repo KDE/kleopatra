@@ -15,6 +15,7 @@
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/GnuPG>
 
+#include <gpgme++/encryptionresult.h>
 #include <gpgme++/exception.h>
 
 #include <gpg-error.h>
@@ -229,6 +230,11 @@ Task::DataSource Task::Result::dataSource() const
 void Task::Result::setDataSource(Task::DataSource dataSource)
 {
     d->dataSource = dataSource;
+}
+
+GpgME::EncryptionResult Task::Result::encryptionResult() const
+{
+    return {};
 }
 
 #include "moc_task_p.cpp"

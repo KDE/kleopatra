@@ -123,6 +123,7 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     AuditLogEntry auditLog() const override;
+    GpgME::EncryptionResult encryptionResult() const override;
     QPointer<Task> parentTask() const override;
 
 private:
@@ -1035,6 +1036,11 @@ QString SignEncryptFilesResult::errorString() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
+}
+
+GpgME::EncryptionResult SignEncryptFilesResult::encryptionResult() const
+{
+    return m_eresult;
 }
 
 QPointer<Task> SignEncryptFilesResult::parentTask() const

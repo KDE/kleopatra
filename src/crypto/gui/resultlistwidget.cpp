@@ -140,6 +140,15 @@ unsigned int ResultListWidget::numberOfCompletedTasks() const
 
 void ResultListWidget::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
 {
+    d->m_collections.clear();
+    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(d->m_scrollArea->widget()->layout());
+    for (int i = scrollAreaLayout->count() - 1; i >= 0; --i) {
+        if (qobject_cast<ResultItemWidget *>(scrollAreaLayout->itemAt(i)->widget())) {
+            auto item = scrollAreaLayout->takeAt(i);
+            delete item->widget();
+            delete item;
+        }
+    }
     addTaskCollection(coll);
 }
 

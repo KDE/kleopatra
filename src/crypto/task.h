@@ -16,6 +16,11 @@
 
 #include <memory>
 
+namespace GpgME
+{
+class EncryptionResult;
+}
+
 namespace Kleo
 {
 class AuditLogEntry;
@@ -127,6 +132,7 @@ public:
     virtual GpgME::Error error() const = 0;
     virtual QString errorString() const = 0;
     virtual AuditLogEntry auditLog() const = 0;
+    virtual GpgME::EncryptionResult encryptionResult() const;
     virtual QPointer<Task> parentTask() const
     {
         return QPointer<Task>();

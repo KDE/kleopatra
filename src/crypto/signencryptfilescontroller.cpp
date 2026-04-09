@@ -26,21 +26,30 @@
 #include "utils/path-helper.h"
 
 #include <Libkleo/Classify>
+#include <Libkleo/Compliance>
 #include <Libkleo/KleoException>
 
 #include "kleopatra_debug.h"
+
+#include <KGuiItem>
 #include <KLocalizedString>
+#include <KMessageBox>
 
 #include <QGpgME/SignEncryptArchiveJob>
 
+#include <QDialogButtonBox>
 #include <QDir>
 #include <QFileInfo>
 #include <QPointer>
 #include <QTimer>
 
+#include <gpgme++/encryptionresult.h>
+#include <gpgme++/error.h>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
+using namespace Qt::StringLiterals;
 
 class SignEncryptFilesController::Private
 {
@@ -74,11 +83,13 @@ private:
 
 private:
     std::vector<std::shared_ptr<SignEncryptTask>> runnable, completed;
+    std::vector<std::shared_ptr<const Task::Result>> results;
     std::shared_ptr<SignEncryptTask> cms, openpgp;
     QPointer<SignEncryptFilesDialog> wizard;
     QStringList files;
     unsigned int operation;
     Protocol protocol;
+    bool alwaysTrust = false;
 };
 
 SignEncryptFilesController::Private::Private(SignEncryptFilesController *qq)
@@ -611,6 +622,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
     try {
         kleo_assert(wizard);
         kleo_assert(!files.empty());
+        kleo_assert(completed.empty());
+        kleo_assert(results.empty());
 
         const bool archive = ((wizard->outputNames().value(SignEncryptFilesDialog::Directory).isNull() && files.size() > 1) //
                               || ((operation & ArchiveMask) == ArchiveForced));
@@ -678,6 +691,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         runnable.swap(tasks);
 
         for (const auto &task : std::as_const(runnable)) {
+            task->setAlwaysTrust(alwaysTrust);
             q->connectTask(task);
         }
 
@@ -687,6 +701,9 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         std::copy(runnable.begin(), runnable.end(), std::back_inserter(tmp));
         coll->setTasks(tmp);
         wizard->setTaskCollection(coll);
+
+        completed.reserve(runnable.size());
+        results.reserve(runnable.size());
 
         QTimer::singleShot(0, q, SLOT(schedule()));
 
@@ -699,6 +716,36 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
     } catch (...) {
         reportError(gpg_error(GPG_ERR_UNEXPECTED), i18n("Caught unknown exception in SignEncryptFilesController::Private::slotWizardOperationPrepared"));
     }
+}
+
+static bool retryEncryptionWithLowerSecurity(QWidget *parent)
+{
+    auto dialog = new QDialog{parent};
+    dialog->setWindowTitle(i18nc("@title:window", "Retry with Lower Security?"));
+
+    QString msg = u"<p>"_s + i18nc("@info", "Failed to encrypt the notepad because at least one certificate could not be validated.") + u"</p>"_s;
+    msg += u"<p>"_s + i18nc("@info", "You can retry the operation with fewer validity checks on the certificates.") + u"</p>"_s;
+
+    const QString retryButtonText = i18nc("@action:button Encrypt Notepad (not compliant)",
+                                          "%1 (%2)",
+                                          /*mCryptBtn->text()*/ u"Sign / Encrypt"_s,
+                                          DeVSCompliance::isActive() ? DeVSCompliance::name(false) : i18nc("@action:button", "with Lower Security"));
+    auto buttonBox = new QDialogButtonBox{dialog};
+    buttonBox->setStandardButtons(QDialogButtonBox::Retry | QDialogButtonBox::Cancel);
+    auto retryButton = buttonBox->button(QDialogButtonBox::Retry);
+    KGuiItem::assign(retryButton, KGuiItem{retryButtonText, QIcon::fromTheme(u"security-medium"_s), u""_s});
+    KGuiItem::assign(buttonBox->button(QDialogButtonBox::Cancel), KStandardGuiItem::cancel());
+
+    if (DeVSCompliance::isActive()) {
+        msg += u"<p>"_s + i18nc("@info", "WARNING: Compliance of the result: %1", DeVSCompliance::name(false)) + u"</p>"_s;
+        DeVSCompliance::decorate(retryButton, false);
+    }
+
+    // in compliance mode make it harder to retry with lower security
+    const KMessageBox::Options options = DeVSCompliance::isActive() ? KMessageBox::Notify | KMessageBox::Dangerous : KMessageBox::Notify;
+    const int answer = KMessageBox::createKMessageBox(dialog, buttonBox, QMessageBox::Question, msg, QStringList{}, QString{}, nullptr, options);
+
+    return answer == QDialogButtonBox::Retry;
 }
 
 void SignEncryptFilesController::Private::schedule()
@@ -717,7 +764,22 @@ void SignEncryptFilesController::Private::schedule()
 
     if (!cms && !openpgp) {
         kleo_assert(runnable.empty());
+        kleo_assert(completed.size() == results.size());
+        if (!alwaysTrust && std::ranges::all_of(results, [](const auto &result) {
+                return result->error().isError() && (result->encryptionResult().numInvalidRecipients() > 0)
+                    && (result->parentTask()->protocol() == GpgME::Protocol::CMS);
+            })) {
+            if (retryEncryptionWithLowerSecurity(wizard)) {
+                alwaysTrust = true;
+                completed.clear();
+                results.clear();
+                slotWizardOperationPrepared();
+                return;
+            }
+        }
+
         q->emitDoneOrError();
+        // TODO: Re-run with lower security
     }
 }
 
@@ -737,8 +799,8 @@ std::shared_ptr<SignEncryptTask> SignEncryptFilesController::Private::takeRunnab
 
 void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    Q_UNUSED(result)
-    Q_ASSERT(task);
+    Q_ASSERT((task == d->cms.get()) || (task == d->openpgp.get()));
+    Q_ASSERT(task == result->parentTask());
 
     // We could just delete the tasks here, but we can't use
     // Qt::QueuedConnection here (we need sender()) and other slots
@@ -752,6 +814,7 @@ void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_
         d->completed.push_back(d->openpgp);
         d->openpgp.reset();
     }
+    d->results.push_back(result);
 
     QTimer::singleShot(0, this, SLOT(schedule()));
 }
