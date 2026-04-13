@@ -63,6 +63,7 @@
 #include <QElapsedTimer>
 #include <QEventLoop>
 #include <QMessageBox>
+#include <QSettings>
 #include <QThreadPool>
 #include <QTime>
 #include <QTimer>
@@ -154,6 +155,7 @@ int main(int argc, char **argv)
 
     STARTUP_TIMING << "Application created";
 
+#ifdef Q_OS_WIN
     if (Kleo::userIsElevated()) {
         /* This is a safeguard against bugreports that something fails because
          * of permission problems on windows.  Some users still have the Windows
@@ -165,19 +167,42 @@ int main(int argc, char **argv)
          * that you are temporarily running with the "normal" user environment but
          * with elevated permissions.
          * */
-        if (KMessageBox::warningContinueCancel(nullptr,
-                                               xi18nc("@info",
-                                                      "<para><application>Kleopatra</application> cannot be run as adminstrator without "
-                                                      "breaking file permissions in the GnuPG data folder.</para>"
-                                                      "<para>To manage keys for other users please manage them as a normal user and "
-                                                      "copy the <filename>AppData\\Roaming\\gnupg</filename> directory with proper permissions.</para>")
-                                                   + xi18nc("@info", "<para>Are you sure that you want to continue?</para>"),
-                                               i18nc("@title", "Running as Administrator"))
-            != KMessageBox::Continue) {
+        const QString hkcuSoftware = u"HKEY_CURRENT_USER\\Software"_s;
+        const QSettings settings{hkcuSoftware, QSettings::NativeFormat};
+        const QString registryKey = QCoreApplication::organizationName() + u'/' + QCoreApplication::applicationName() + "/AllowRunningAsAdmin"_L1;
+        const QString registryValue = settings.value(registryKey, QString{}).toString();
+        const QString iKnowTheRisks = u"I_KNOW_THE_RISKS"_s;
+        const bool allowRunningAsAdmin = registryValue == iKnowTheRisks;
+        if (allowRunningAsAdmin) {
+            if (KMessageBox::warningContinueCancel(nullptr,
+                                                   xi18nc("@info",
+                                                          "<para><application>Kleopatra</application> cannot be run as administrator without "
+                                                          "breaking file permissions in the GnuPG data folder.</para>"
+                                                          "<para>To manage keys for other users please manage them as a normal user and "
+                                                          "copy the <filename>%APPDATA%\\gnupg*</filename> directory with proper permissions.</para>")
+                                                       + xi18nc("@info", "<para>Are you sure that you want to continue at your own risk?</para>"),
+                                                   i18nc("@title", "Running as Administrator"),
+                                                   KStandardGuiItem::cont(),
+                                                   KStandardGuiItem::cancel(),
+                                                   {},
+                                                   KMessageBox::Notify | KMessageBox::Dangerous)
+                != KMessageBox::Continue) {
+                return EXIT_FAILURE;
+            }
+        } else {
+            KMessageBox::error(nullptr,
+                               xi18nc("@info",
+                                      "<para><application>Kleopatra</application> should not be run as administrator.</para>"
+                                      "<para>If you still want to run the application as administrator at your own risk then set the registry value "
+                                      "<filename>%1</filename> to <icode>%2</icode>.</para>",
+                                      hkcuSoftware + u'\\' + QString{registryKey}.replace(u'/', u'\\'),
+                                      iKnowTheRisks),
+                               i18nc("@title", "Running as Administrator"));
             return EXIT_FAILURE;
         }
         qCWarning(KLEOPATRA_LOG) << "User is running with administrative permissions.";
     }
+#endif
 
     // Early parsing of command line to handle --standalone option
     QCommandLineParser parser;
