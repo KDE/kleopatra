@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-08 00:47+0000\n"
+"POT-Creation-Date: 2026-04-15 00:47+0000\n"
 "PO-Revision-Date: 2026-02-04 00:16+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -9694,7 +9694,53 @@ msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "금지됨"
 
-#: src/main.cpp:210
+#: src/main.cpp:179
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para><application>Kleopatra</application> cannot be run as adminstrator "
+#| "without breaking file permissions in the GnuPG data folder.</"
+#| "para><para>To manage keys for other users please manage them as a normal "
+#| "user and copy the <filename>AppData\\Roaming\\gnupg</filename> directory "
+#| "with proper permissions.</para>"
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> cannot be run as administrator "
+"without breaking file permissions in the GnuPG data folder.</para><para>To "
+"manage keys for other users please manage them as a normal user and copy the "
+"<filename>%APPDATA%\\gnupg*</filename> directory with proper permissions.</"
+"para>"
+msgstr ""
+"<para><application>Kleopatra</application>는 GnuPG 데이터 폴더의 파일 권한을 "
+"변경하지 않는 한 관리자 권한으로 실행할 수 없습니다.</para><para>다른 사용자"
+"의 키를 관리하려면 일반 사용자로 실행한 다음 올바른 권한으로 "
+"<filename>AppData\\Roaming\\gnupg</filename> 디렉터리에 복사하십시오.</para>"
+
+#: src/main.cpp:183
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>Are you sure that you want to continue?</para>"
+msgctxt "@info"
+msgid "<para>Are you sure that you want to continue at your own risk?</para>"
+msgstr "<para>계속 진행하시겠습니까?</para>"
+
+#: src/main.cpp:184 src/main.cpp:200
+#, kde-format
+msgctxt "@title"
+msgid "Running as Administrator"
+msgstr "관리자 권한으로 실행"
+
+#: src/main.cpp:195
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> should not be run as "
+"administrator.</para><para>If you still want to run the application as "
+"administrator at your own risk then set the registry value <filename>%1</"
+"filename> to <icode>%2</icode>.</para>"
+msgstr ""
+
+#: src/main.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -9709,45 +9755,18 @@ msgstr ""
 "para><para><application>Kleopatra</application>는 이 설정을 지원하지 않습니"
 "다.</para><para>이 문제를 해결하려면 시스템 관리자에게 연락하십시오.</para>"
 
-#: src/main.cpp:214
+#: src/main.cpp:264
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME가 너무 오래됨"
 
-#: src/main.cpp:236
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> cannot be run as adminstrator "
-"without breaking file permissions in the GnuPG data folder.</para><para>To "
-"manage keys for other users please manage them as a normal user and copy the "
-"<filename>AppData\\Roaming\\gnupg</filename> directory with proper "
-"permissions.</para>"
-msgstr ""
-"<para><application>Kleopatra</application>는 GnuPG 데이터 폴더의 파일 권한을 "
-"변경하지 않는 한 관리자 권한으로 실행할 수 없습니다.</para><para>다른 사용자"
-"의 키를 관리하려면 일반 사용자로 실행한 다음 올바른 권한으로 "
-"<filename>AppData\\Roaming\\gnupg</filename> 디렉터리에 복사하십시오.</para>"
-
-#: src/main.cpp:240
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<para>Are you sure that you want to continue?</para>"
-msgstr "<para>계속 진행하시겠습니까?</para>"
-
-#: src/main.cpp:241
-#, kde-format
-msgctxt "@title"
-msgid "Running as Administrator"
-msgstr "관리자 권한으로 실행"
-
-#: src/main.cpp:307
+#: src/main.cpp:333
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "GPG UI 서버 오류"
 
-#: src/main.cpp:311
+#: src/main.cpp:337
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -9765,7 +9784,7 @@ msgstr ""
 "설치하거나 시스템 관리자에게 연락하십시오.<br/>Kleopatra를 계속 사용할 수 있"
 "으나 다른 문제가 발생할 수도 있습니다.</qt>"
 
-#: src/main.cpp:342
+#: src/main.cpp:368
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "잘못된 인자: %1"

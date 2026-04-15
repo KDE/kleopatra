@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1734097 $
+# Version: $Revision: 1734397 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-08 00:47+0000\n"
+"POT-Creation-Date: 2026-04-15 00:47+0000\n"
 "PO-Revision-Date: 2026-04-11 09:10+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -10008,7 +10008,54 @@ msgctxt "@title:window"
 msgid "Prohibited"
 msgstr "Zabronione"
 
-#: src/main.cpp:210
+#: src/main.cpp:179
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para><application>Kleopatra</application> cannot be run as adminstrator "
+#| "without breaking file permissions in the GnuPG data folder.</"
+#| "para><para>To manage keys for other users please manage them as a normal "
+#| "user and copy the <filename>AppData\\Roaming\\gnupg</filename> directory "
+#| "with proper permissions.</para>"
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> cannot be run as administrator "
+"without breaking file permissions in the GnuPG data folder.</para><para>To "
+"manage keys for other users please manage them as a normal user and copy the "
+"<filename>%APPDATA%\\gnupg*</filename> directory with proper permissions.</"
+"para>"
+msgstr ""
+"<para><application>Kleopatry</application> nie można uruchomić jako "
+"administrator bez mieszania w uprawnieniach do plików w katalogu danych "
+"GnuPG.</para><para>Aby zarządzać kluczami innych użytkowników, zrób to jako "
+"zwyczajny użytkownik i skopiuj dane do katalogu<filename>AppData\\Roaming"
+"\\gnupg</filename> z właściwymi uprawnieniami.</para>"
+
+#: src/main.cpp:183
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>Are you sure that you want to continue?</para>"
+msgctxt "@info"
+msgid "<para>Are you sure that you want to continue at your own risk?</para>"
+msgstr "<para>Czy na pewno przejść dalej?</para>"
+
+#: src/main.cpp:184 src/main.cpp:200
+#, kde-format
+msgctxt "@title"
+msgid "Running as Administrator"
+msgstr "Uruchomione jako administrator"
+
+#: src/main.cpp:195
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para><application>Kleopatra</application> should not be run as "
+"administrator.</para><para>If you still want to run the application as "
+"administrator at your own risk then set the registry value <filename>%1</"
+"filename> to <icode>%2</icode>.</para>"
+msgstr ""
+
+#: src/main.cpp:260
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10024,46 +10071,18 @@ msgstr ""
 "działać w takiej sytuacji.</para><para>Poproś administratora o pomoc w "
 "rozwiązaniu tego problemu.</para>"
 
-#: src/main.cpp:214
+#: src/main.cpp:264
 #, kde-format
 msgctxt "@title"
 msgid "GpgME Too Old"
 msgstr "GpgME zbyt stare"
 
-#: src/main.cpp:236
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"<para><application>Kleopatra</application> cannot be run as adminstrator "
-"without breaking file permissions in the GnuPG data folder.</para><para>To "
-"manage keys for other users please manage them as a normal user and copy the "
-"<filename>AppData\\Roaming\\gnupg</filename> directory with proper "
-"permissions.</para>"
-msgstr ""
-"<para><application>Kleopatry</application> nie można uruchomić jako "
-"administrator bez mieszania w uprawnieniach do plików w katalogu danych "
-"GnuPG.</para><para>Aby zarządzać kluczami innych użytkowników, zrób to jako "
-"zwyczajny użytkownik i skopiuj dane do katalogu<filename>AppData\\Roaming"
-"\\gnupg</filename> z właściwymi uprawnieniami.</para>"
-
-#: src/main.cpp:240
-#, kde-kuit-format
-msgctxt "@info"
-msgid "<para>Are you sure that you want to continue?</para>"
-msgstr "<para>Czy na pewno przejść dalej?</para>"
-
-#: src/main.cpp:241
-#, kde-format
-msgctxt "@title"
-msgid "Running as Administrator"
-msgstr "Uruchomione jako administrator"
-
-#: src/main.cpp:307
+#: src/main.cpp:333
 #, kde-format
 msgid "GPG UI Server Error"
 msgstr "Błąd serwera interfejsu użytkownika GPG"
 
-#: src/main.cpp:311
+#: src/main.cpp:337
 #, kde-format
 msgctxt ""
 "This error message is only shown on Windows when the socket to communicate "
@@ -10082,7 +10101,7 @@ msgstr ""
 "celu uzyskania pomocy.<br/> Możesz kontynuować korzystanie z Kleopatry, ale "
 "mogą wystąpić inne błędy.</qt>"
 
-#: src/main.cpp:342
+#: src/main.cpp:368
 #, kde-format
 msgid "Invalid arguments: %1"
 msgstr "Nieprawidłowe argumenty: \"%1\""
