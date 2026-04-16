@@ -31,8 +31,8 @@ namespace
 class ErrorResult : public Task::Result
 {
 public:
-    ErrorResult(const GpgME::Error &error, const QString &details)
-        : Task::Result()
+    ErrorResult(const GpgME::Error &error, const QString &details, Task *parentTask)
+        : Task::Result(parentTask)
         , m_error(error)
         , m_details(details)
     {
@@ -186,20 +186,22 @@ void Task::emitResult(const std::shared_ptr<const Task::Result> &r)
 
 std::shared_ptr<Task::Result> Task::makeErrorResult(const GpgME::Error &error, const QString &details)
 {
-    return std::shared_ptr<Task::Result>(new ErrorResult(error, details));
+    return std::shared_ptr<Task::Result>(new ErrorResult(error, details, this));
 }
 
 class Task::Result::Private
 {
 public:
-    Private()
+    Private(Task *parentTask_)
+        : parentTask(parentTask_)
     {
     }
     Task::DataSource dataSource = Files;
+    QPointer<Task> parentTask;
 };
 
-Task::Result::Result()
-    : d(new Private())
+Task::Result::Result(Task *parentTask)
+    : d(new Private(parentTask))
 {
 }
 Task::Result::~Result()
@@ -209,6 +211,11 @@ Task::Result::~Result()
 bool Task::Result::hasError() const
 {
     return error().code() != 0;
+}
+
+Task *Task::Result::parentTask() const
+{
+    return d->parentTask;
 }
 
 Task::Result::ContentType Task::Result::viewableContentType() const

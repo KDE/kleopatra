@@ -60,8 +60,9 @@ public:
                 const QString &errStr,
                 const LabelAndError &input,
                 const QString &output,
-                const AuditLogEntry &auditLog)
-        : Task::Result()
+                const AuditLogEntry &auditLog,
+                Task *parentTask)
+        : Task::Result(parentTask)
         , m_sign(sign)
         , m_encrypt(encrypt)
         , m_error(err)
@@ -106,13 +107,12 @@ public:
                            const LabelAndError &output,
                            const AuditLogEntry &auditLog,
                            Task *parentTask)
-        : Task::Result()
+        : Task::Result(parentTask)
         , m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
         , m_auditLog(auditLog)
-        , m_parentTask(parentTask)
     {
         qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
@@ -123,7 +123,6 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     AuditLogEntry auditLog() const override;
-    QPointer<Task> parentTask() const override;
 
 private:
     const SigningResult m_sresult;
@@ -131,7 +130,6 @@ private:
     const LabelAndError m_input;
     const LabelAndError m_output;
     const AuditLogEntry m_auditLog;
-    QPointer<Task> m_parentTask;
 };
 
 QString formatResultLine(const QStringList &inputs,
@@ -413,7 +411,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
 std::shared_ptr<const Task::Result>
 SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog, const QStringList &fileNames)
 {
-    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, {inputLabel(), errStr, fileNames}, outputLabel(), auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, {inputLabel(), errStr, fileNames}, outputLabel(), auditLog, q));
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
@@ -1035,11 +1033,6 @@ QString SignEncryptFilesResult::errorString() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
-}
-
-QPointer<Task> SignEncryptFilesResult::parentTask() const
-{
-    return m_parentTask;
 }
 
 void SignEncryptTask::setDataSource(Task::DataSource dataSource)
