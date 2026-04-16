@@ -401,18 +401,18 @@ public:
         auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
-        AbstractDecryptVerifyTask *task;
+        std::unique_ptr<AbstractDecryptVerifyTask> task;
         auto classification = input->classification();
         if (classification & Class::OpaqueSignature || classification & Class::ClearsignedMessage) {
-            auto verifyTask = new VerifyOpaqueTask();
+            task = std::make_unique<VerifyOpaqueTask>();
+            auto verifyTask = static_cast<VerifyOpaqueTask *>(task.get());
             verifyTask->setInput(input);
             verifyTask->setOutput(output);
-            task = verifyTask;
         } else {
-            auto decTask = new DecryptVerifyTask();
+            task = std::make_unique<DecryptVerifyTask>();
+            auto decTask = static_cast<DecryptVerifyTask *>(task.get());
             decTask->setInput(input);
             decTask->setOutput(output);
-            task = decTask;
         }
         try {
             task->autodetectProtocolFromInput();
@@ -425,13 +425,14 @@ public:
         }
         task->setDataSource(Task::Notepad);
 
-        connect(task, &Task::result, q, [this, task](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
+        connect(task.get(), &Task::result, q, [this](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
             qCDebug(KLEOPATRA_LOG) << "Decrypt / Verify done. Err:" << result->error().code();
-            task->deleteLater();
             cryptDone(result);
+            result->parentTask()->deleteLater();
         });
         mLastOperation = DecryptVerify;
         task->start();
+        task.release(); // NOLINT(bugprone-unused-return-value); task will be deleted when it's done
     }
 
     void removeLastResultItem()
@@ -485,7 +486,7 @@ public:
         auto input = Input::createFromByteArray(&mInputData, i18n("Notepad"));
         auto output = Output::createFromByteArray(&mOutputData, i18n("Notepad"));
 
-        auto task = new SignEncryptTask();
+        auto task = std::make_unique<SignEncryptTask>();
         task->setInput(input);
         task->setOutput(output);
         task->setDataSource(Task::Notepad);
@@ -513,13 +514,14 @@ public:
             task->setClearsign(true);
         }
 
-        connect(task, &Task::result, q, [this, task](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
+        connect(task.get(), &Task::result, q, [this](const std::shared_ptr<const Kleo::Crypto::Task::Result> &result) {
             qCDebug(KLEOPATRA_LOG) << "Encrypt / Sign done. Err:" << result->error().code();
-            task->deleteLater();
             cryptDone(result);
+            result->parentTask()->deleteLater();
         });
         mLastOperation = SignEncrypt;
         task->start();
+        task.release(); // NOLINT(bugprone-unused-return-value); task will be deleted when it's done
     }
 
     void doImport()
