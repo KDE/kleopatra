@@ -251,10 +251,6 @@ public:
     QString fileName() const;
 
 private:
-    DecryptVerifyResult();
-    DecryptVerifyResult(const DecryptVerifyResult &);
-    DecryptVerifyResult &operator=(const DecryptVerifyResult &other);
-
     DecryptVerifyResult(DecryptVerifyOperation op,
                         const GpgME::VerificationResult &vr,
                         const GpgME::DecryptionResult &dr,
