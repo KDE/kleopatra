@@ -18,7 +18,9 @@ class QString;
 
 namespace GpgME
 {
+class EncryptionResult;
 class Key;
+class SigningResult;
 }
 
 namespace Kleo
@@ -32,6 +34,10 @@ namespace Kleo
 {
 namespace Crypto
 {
+namespace _detail
+{
+struct LabelAndError;
+}
 
 class SignEncryptTask : public Task
 {
@@ -79,5 +85,31 @@ private:
     Q_PRIVATE_SLOT(d, void slotResult(const GpgME::EncryptionResult &))
 };
 
+class SignEncryptTaskResult : public Task::Result
+{
+    friend class ::Kleo::Crypto::SignEncryptTask;
+
+private:
+    SignEncryptTaskResult(const GpgME::SigningResult &sr,
+                          const GpgME::EncryptionResult &er,
+                          const _detail::LabelAndError &input,
+                          const _detail::LabelAndError &output,
+                          const AuditLogEntry &auditLog,
+                          Task *parentTask);
+
+public:
+    QString overview() const override;
+    QString details() const override;
+    GpgME::Error error() const override;
+    QString errorString() const override;
+    AuditLogEntry auditLog() const override;
+
+    GpgME::SigningResult signingResult() const;
+    GpgME::EncryptionResult encryptionResult() const;
+
+private:
+    class Private;
+    const std::unique_ptr<Private> d;
+};
 }
 }
