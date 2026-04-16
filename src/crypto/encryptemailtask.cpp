@@ -40,8 +40,8 @@ class EncryptEMailResult : public Task::Result
     const AuditLogEntry m_auditLog;
 
 public:
-    EncryptEMailResult(const EncryptionResult &r, const AuditLogEntry &auditLog)
-        : Task::Result()
+    EncryptEMailResult(const EncryptionResult &r, const AuditLogEntry &auditLog, Task *parentTask)
+        : Task::Result(parentTask)
         , m_result(r)
         , m_auditLog(auditLog)
     {
@@ -196,7 +196,7 @@ void EncryptEMailTask::Private::slotResult(const EncryptionResult &result)
     } else {
         output->finalize();
     }
-    q->emitResult(std::shared_ptr<Result>(new EncryptEMailResult(result, AuditLogEntry::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new EncryptEMailResult(result, AuditLogEntry::fromJob(job), q)));
 }
 
 QString EncryptEMailResult::overview() const

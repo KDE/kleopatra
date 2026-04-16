@@ -94,8 +94,10 @@ class Task::Result
 public:
     class Content;
 
-    Result();
+    Result(Task *parentTask);
     virtual ~Result();
+
+    Task *parentTask() const;
 
     const QString &nonce() const
     {
@@ -127,10 +129,6 @@ public:
     virtual GpgME::Error error() const = 0;
     virtual QString errorString() const = 0;
     virtual AuditLogEntry auditLog() const = 0;
-    virtual QPointer<Task> parentTask() const
-    {
-        return QPointer<Task>();
-    }
     virtual ContentType viewableContentType() const;
     virtual QList<Task::Result::ResultListItem> detailsList() const
     {

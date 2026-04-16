@@ -179,7 +179,6 @@ public:
             const QString &input,
             const QString &output,
             const AuditLogEntry &auditLog,
-            Task *parentTask,
             const Mailbox &informativeSender,
             Task::DataSource dataSource,
             DecryptVerifyResult *qq)
@@ -193,7 +192,6 @@ public:
         , m_inputLabel(input)
         , m_outputLabel(output)
         , m_auditLog(auditLog)
-        , m_parentTask(QPointer<Task>(parentTask))
         , m_informativeSender(informativeSender)
     {
         q->setDataSource(dataSource);
@@ -303,7 +301,7 @@ public:
         }
 
         if (m_decryptionResult.fileName()) {
-            const auto decVerifyTask = qobject_cast<AbstractDecryptVerifyTask *>(m_parentTask.data());
+            const auto decVerifyTask = qobject_cast<AbstractDecryptVerifyTask *>(q->parentTask());
             if (decVerifyTask) {
                 const auto embedFileName = QString::fromUtf8(m_decryptionResult.fileName()).toHtmlEscaped();
 
@@ -333,7 +331,6 @@ public:
     QString m_inputLabel;
     QString m_outputLabel;
     const AuditLogEntry m_auditLog;
-    QPointer<Task> m_parentTask;
     const Mailbox m_informativeSender;
 };
 
@@ -485,8 +482,8 @@ DecryptVerifyResult::DecryptVerifyResult(const VerificationResult &vr,
                                          Task *parentTask,
                                          const Mailbox &informativeSender,
                                          Task::DataSource dataSource)
-    : Task::Result()
-    , d(new Private(vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, dataSource, this))
+    : Task::Result(parentTask)
+    , d(new Private(vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, informativeSender, dataSource, this))
 {
 }
 
@@ -622,11 +619,6 @@ QString DecryptVerifyResult::errorString() const
 AuditLogEntry DecryptVerifyResult::auditLog() const
 {
     return d->m_auditLog;
-}
-
-QPointer<Task> DecryptVerifyResult::parentTask() const
-{
-    return d->m_parentTask;
 }
 
 GpgME::VerificationResult DecryptVerifyResult::verificationResult() const

@@ -239,7 +239,6 @@ public:
     GpgME::Error error() const override;
     QString errorString() const override;
     AuditLogEntry auditLog() const override;
-    QPointer<Task> parentTask() const override;
     Task::Result::ContentType viewableContentType() const override;
     QList<Task::Result::ResultListItem> detailsList() const override;
 
