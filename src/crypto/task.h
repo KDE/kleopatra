@@ -90,8 +90,10 @@ class Task::Result
 public:
     class Content;
 
-    Result();
+    Result(Task *parentTask);
     virtual ~Result();
+
+    Task *parentTask() const;
 
     const QString &nonce() const
     {
@@ -121,10 +123,6 @@ public:
     virtual QString errorString() const = 0;
     virtual VisualCode code() const = 0;
     virtual AuditLogEntry auditLog() const = 0;
-    virtual QPointer<Task> parentTask() const
-    {
-        return QPointer<Task>();
-    }
     virtual ContentType viewableContentType() const;
 
 protected:

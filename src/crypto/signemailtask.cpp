@@ -46,8 +46,8 @@ class SignEMailResult : public Task::Result
     const AuditLogEntry m_auditLog;
 
 public:
-    explicit SignEMailResult(const SigningResult &r, const AuditLogEntry &auditLog)
-        : Task::Result()
+    explicit SignEMailResult(const SigningResult &r, const AuditLogEntry &auditLog, Task *parentTask)
+        : Task::Result(parentTask)
         , m_result(r)
         , m_auditLog(auditLog)
     {
@@ -246,7 +246,7 @@ void SignEMailTask::Private::slotResult(const SigningResult &result)
         output->finalize();
         micAlg = collect_micalgs(result, q->protocol());
     }
-    q->emitResult(std::shared_ptr<Result>(new SignEMailResult(result, AuditLogEntry::fromJob(job))));
+    q->emitResult(std::shared_ptr<Result>(new SignEMailResult(result, AuditLogEntry::fromJob(job), q)));
 }
 
 QString SignEMailTask::micAlg() const

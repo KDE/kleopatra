@@ -60,8 +60,15 @@ QString formatInputOutputLabel(const QString &input, const QString &output, bool
 class ErrorResult : public Task::Result
 {
 public:
-    ErrorResult(bool sign, bool encrypt, const Error &err, const QString &errStr, const QString &input, const QString &output, const AuditLogEntry &auditLog)
-        : Task::Result()
+    ErrorResult(bool sign,
+                bool encrypt,
+                const Error &err,
+                const QString &errStr,
+                const QString &input,
+                const QString &output,
+                const AuditLogEntry &auditLog,
+                Task *parentTask)
+        : Task::Result(parentTask)
         , m_sign(sign)
         , m_encrypt(encrypt)
         , m_error(err)
@@ -112,8 +119,13 @@ struct LabelAndError {
 class SignEncryptFilesResult : public Task::Result
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr, const LabelAndError &input, const LabelAndError &output, bool outputCreated, const AuditLogEntry &auditLog)
-        : Task::Result()
+    SignEncryptFilesResult(const SigningResult &sr,
+                           const LabelAndError &input,
+                           const LabelAndError &output,
+                           bool outputCreated,
+                           const AuditLogEntry &auditLog,
+                           Task *parentTask)
+        : Task::Result(parentTask)
         , m_sresult(sr)
         , m_input{input}
         , m_output{output}
@@ -127,8 +139,9 @@ public:
                            const LabelAndError &input,
                            const LabelAndError &output,
                            bool outputCreated,
-                           const AuditLogEntry &auditLog)
-        : Task::Result()
+                           const AuditLogEntry &auditLog,
+                           Task *parentTask)
+        : Task::Result(parentTask)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
@@ -145,14 +158,13 @@ public:
                            bool outputCreated,
                            const AuditLogEntry &auditLog,
                            Task *parentTask)
-        : Task::Result()
+        : Task::Result(parentTask)
         , m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
         , m_outputCreated(outputCreated)
         , m_auditLog(auditLog)
-        , m_parentTask(parentTask)
     {
         qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
@@ -164,7 +176,6 @@ public:
     QString errorString() const override;
     VisualCode code() const override;
     AuditLogEntry auditLog() const override;
-    QPointer<Task> parentTask() const override;
 
 private:
     const SigningResult m_sresult;
@@ -173,7 +184,6 @@ private:
     const LabelAndError m_output;
     const bool m_outputCreated;
     const AuditLogEntry m_auditLog;
-    QPointer<Task> m_parentTask;
 };
 
 static QString makeSigningOverview(const Error &err)
@@ -362,7 +372,7 @@ SignEncryptTask::Private::Private(SignEncryptTask *qq)
 
 std::shared_ptr<const Task::Result> SignEncryptTask::Private::makeErrorResult(const Error &err, const QString &errStr, const AuditLogEntry &auditLog)
 {
-    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, inputLabel(), outputLabel(), auditLog));
+    return std::shared_ptr<const ErrorResult>(new ErrorResult(sign, encrypt, err, errStr, inputLabel(), outputLabel(), auditLog, q));
 }
 
 SignEncryptTask::SignEncryptTask(QObject *p)
@@ -972,11 +982,6 @@ Task::Result::VisualCode SignEncryptFilesResult::code() const
 AuditLogEntry SignEncryptFilesResult::auditLog() const
 {
     return m_auditLog;
-}
-
-QPointer<Task> SignEncryptFilesResult::parentTask() const
-{
-    return m_parentTask;
 }
 
 #include "moc_signencrypttask.cpp"

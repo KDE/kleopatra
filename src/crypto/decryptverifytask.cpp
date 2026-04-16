@@ -703,7 +703,6 @@ public:
             const QString &input,
             const QString &output,
             const AuditLogEntry &auditLog,
-            Task *parentTask,
             const Mailbox &informativeSender,
             DecryptVerifyResult *qq)
         : q(qq)
@@ -717,7 +716,6 @@ public:
         , m_inputLabel(input)
         , m_outputLabel(output)
         , m_auditLog(auditLog)
-        , m_parentTask(QPointer<Task>(parentTask))
         , m_informativeSender(informativeSender)
     {
     }
@@ -751,7 +749,6 @@ public:
     QString m_inputLabel;
     QString m_outputLabel;
     const AuditLogEntry m_auditLog;
-    QPointer<Task> m_parentTask;
     const Mailbox m_informativeSender;
 };
 
@@ -908,8 +905,8 @@ DecryptVerifyResult::DecryptVerifyResult(DecryptVerifyOperation type,
                                          const AuditLogEntry &auditLog,
                                          Task *parentTask,
                                          const Mailbox &informativeSender)
-    : Task::Result()
-    , d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, parentTask, informativeSender, this))
+    : Task::Result(parentTask)
+    , d(new Private(type, vr, dr, stuff, fileName, error, errString, inputLabel, outputLabel, auditLog, informativeSender, this))
 {
 }
 
@@ -962,7 +959,7 @@ QString DecryptVerifyResult::details() const
                                              KeyCache::instance()->findRecipients(d->m_decryptionResult),
                                              errorString(),
                                              false,
-                                             d->m_parentTask);
+                                             parentTask());
     }
     if (d->isVerifyOnly()) {
         return formatVerificationResultDetails(d->m_verificationResult, d->makeSenderInfo(), errorString());
@@ -972,7 +969,7 @@ QString DecryptVerifyResult::details() const
                                             KeyCache::instance()->findRecipients(d->m_decryptionResult),
                                             d->makeSenderInfo(),
                                             errorString(),
-                                            d->m_parentTask);
+                                            parentTask());
 }
 
 GpgME::Error DecryptVerifyResult::error() const
@@ -988,11 +985,6 @@ QString DecryptVerifyResult::errorString() const
 AuditLogEntry DecryptVerifyResult::auditLog() const
 {
     return d->m_auditLog;
-}
-
-QPointer<Task> DecryptVerifyResult::parentTask() const
-{
-    return d->m_parentTask;
 }
 
 Task::Result::VisualCode DecryptVerifyResult::code() const

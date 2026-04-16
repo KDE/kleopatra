@@ -126,7 +126,7 @@ void ResultItemWidget::Private::addIgnoreMDCButton(QBoxLayout *lay)
 
     connect(btn, &QPushButton::clicked, q, [this]() {
         if (m_result->parentTask()) {
-            const auto dvTask = dynamic_cast<DecryptVerifyTask *>(m_result->parentTask().data());
+            const auto dvTask = dynamic_cast<DecryptVerifyTask *>(m_result->parentTask());
             dvTask->setIgnoreMDCError(true);
             dvTask->start();
             q->setVisible(false);
