@@ -1311,7 +1311,7 @@ void VerifyOpaqueTask::Private::startDecryptVerifyArchiveJob()
     // make sure that we don't use an existing output directory
     const auto outputDirectory = ensureUniqueDirectory(m_outputDirectory);
     if (outputDirectory.isEmpty()) {
-        q->emitResult(q->fromDecryptVerifyResult(Error::fromCode(GPG_ERR_GENERAL), {}, {}));
+        q->emitResult(q->fromVerifyOpaqueResult(Error::fromCode(GPG_ERR_GENERAL), {}, {}));
         return;
     }
     m_outputFilePath = outputDirectory;
