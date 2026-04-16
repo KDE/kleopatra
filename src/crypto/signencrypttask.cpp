@@ -42,14 +42,14 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
 
-namespace
-{
-
-struct LabelAndError {
+struct _detail::LabelAndError {
     QString label;
     QString errorString;
     QStringList fileNames;
 };
+
+namespace
+{
 
 class ErrorResult : public Task::Result
 {
@@ -58,7 +58,7 @@ public:
                 bool encrypt,
                 const Error &err,
                 const QString &errStr,
-                const LabelAndError &input,
+                const _detail::LabelAndError &input,
                 const QString &output,
                 const AuditLogEntry &auditLog,
                 Task *parentTask)
@@ -93,22 +93,22 @@ private:
     const bool m_encrypt;
     const Error m_error;
     const QString m_errString;
-    const LabelAndError m_input;
+    const _detail::LabelAndError m_input;
     const QString m_outputLabel;
     const AuditLogEntry m_auditLog;
 };
 
-class SignEncryptFilesResult : public Task::Result
+}
+
+class SignEncryptTaskResult::Private
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr,
-                           const EncryptionResult &er,
-                           const LabelAndError &input,
-                           const LabelAndError &output,
-                           const AuditLogEntry &auditLog,
-                           Task *parentTask)
-        : Task::Result(parentTask)
-        , m_sresult(sr)
+    Private(const SigningResult &sr,
+            const EncryptionResult &er,
+            const _detail::LabelAndError &input,
+            const _detail::LabelAndError &output,
+            const AuditLogEntry &auditLog)
+        : m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
@@ -118,27 +118,20 @@ public:
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
     }
 
-    QString overview() const override;
-    QString details() const override;
-    GpgME::Error error() const override;
-    QString errorString() const override;
-    AuditLogEntry auditLog() const override;
-
-private:
     const SigningResult m_sresult;
     const EncryptionResult m_eresult;
-    const LabelAndError m_input;
-    const LabelAndError m_output;
+    const _detail::LabelAndError m_input;
+    const _detail::LabelAndError m_output;
     const AuditLogEntry m_auditLog;
 };
 
-QString formatResultLine(const QStringList &inputs,
-                         const QString &output,
-                         bool sign,
-                         bool encrypt,
-                         bool signingFailed,
-                         bool encryptionFailed,
-                         const GpgME::Error &error)
+static QString formatResultLine(const QStringList &inputs,
+                                const QString &output,
+                                bool sign,
+                                bool encrypt,
+                                bool signingFailed,
+                                bool encryptionFailed,
+                                const GpgME::Error &error)
 {
     Q_ASSERT(inputs.size() > 0);
     Q_ASSERT(sign || encrypt);
@@ -324,8 +317,6 @@ static QString makeResultDetails(const EncryptionResult &result, const QString &
         return Formatting::errorAsString(err).toHtmlEscaped();
     }
     return {};
-}
-
 }
 
 QString ErrorResult::overview() const
@@ -943,26 +934,37 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         }
     }
 
-    const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}, inputFileNames};
-    const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}, {}};
-    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, auditLog, q));
+    const _detail::LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}, inputFileNames};
+    const _detail::LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}, {}};
+    auto result = std::shared_ptr<Result>(new SignEncryptTaskResult(sresult, eresult, inputInfo, outputInfo, auditLog, q));
     result->setDataSource(dataSource);
     q->emitResult(result);
 }
 
-QString SignEncryptFilesResult::overview() const
+SignEncryptTaskResult::SignEncryptTaskResult(const GpgME::SigningResult &sr,
+                                             const GpgME::EncryptionResult &er,
+                                             const _detail::LabelAndError &input,
+                                             const _detail::LabelAndError &output,
+                                             const AuditLogEntry &auditLog,
+                                             Task *parentTask)
+    : Task::Result{parentTask}
+    , d{std::make_unique<Private>(sr, er, input, output, auditLog)}
+{
+}
+
+QString SignEncryptTaskResult::overview() const
 {
     if (dataSource() == Task::Notepad) {
-        if (!m_sresult.isNull() && m_sresult.error()) {
-            return i18nc("@info", "Failed to sign the notepad: %1", Formatting::errorAsString(m_sresult.error()));
+        if (!d->m_sresult.isNull() && d->m_sresult.error()) {
+            return i18nc("@info", "Failed to sign the notepad: %1", Formatting::errorAsString(d->m_sresult.error()));
         }
-        if (!m_eresult.isNull() && m_eresult.error()) {
-            return i18nc("@info", "Failed to encrypt the notepad: %1", Formatting::errorAsString(m_eresult.error()));
+        if (!d->m_eresult.isNull() && d->m_eresult.error()) {
+            return i18nc("@info", "Failed to encrypt the notepad: %1", Formatting::errorAsString(d->m_eresult.error()));
         }
 
-        if (!m_sresult.isNull() && !m_eresult.isNull()) {
+        if (!d->m_sresult.isNull() && !d->m_eresult.isNull()) {
             return i18nc("@info", "Successfully encrypted and signed the notepad");
-        } else if (!m_eresult.isNull()) {
+        } else if (!d->m_eresult.isNull()) {
             return i18nc("@info", "Successfully encrypted the notepad");
         } else {
             return i18nc("@info", "Successfully signed the notepad");
@@ -971,16 +973,16 @@ QString SignEncryptFilesResult::overview() const
     }
 
     if (dataSource() == Task::Clipboard) {
-        if (!m_sresult.isNull() && m_sresult.error()) {
-            return i18nc("@info", "Failed to sign the clipboard: %1", Formatting::errorAsString(m_sresult.error()));
+        if (!d->m_sresult.isNull() && d->m_sresult.error()) {
+            return i18nc("@info", "Failed to sign the clipboard: %1", Formatting::errorAsString(d->m_sresult.error()));
         }
-        if (!m_eresult.isNull() && m_eresult.error()) {
-            return i18nc("@info", "Failed to encrypt the clipboard: %1", Formatting::errorAsString(m_eresult.error()));
+        if (!d->m_eresult.isNull() && d->m_eresult.error()) {
+            return i18nc("@info", "Failed to encrypt the clipboard: %1", Formatting::errorAsString(d->m_eresult.error()));
         }
 
-        if (!m_sresult.isNull() && !m_eresult.isNull()) {
+        if (!d->m_sresult.isNull() && !d->m_eresult.isNull()) {
             return i18nc("@info", "Successfully encrypted and signed the clipboard");
-        } else if (!m_eresult.isNull()) {
+        } else if (!d->m_eresult.isNull()) {
             return i18nc("@info", "Successfully encrypted the clipboard");
         } else {
             return i18nc("@info", "Successfully signed the clipboard");
@@ -988,51 +990,61 @@ QString SignEncryptFilesResult::overview() const
         return {};
     }
 
-    return formatResultLine(m_input.fileNames,
-                            m_output.label,
-                            !m_sresult.isNull(),
-                            !m_eresult.isNull(),
-                            m_sresult.error().isError(),
-                            m_eresult.error().isError(),
-                            m_sresult.error().isError() ? m_sresult.error() : m_eresult.error());
+    return formatResultLine(d->m_input.fileNames,
+                            d->m_output.label,
+                            !d->m_sresult.isNull(),
+                            !d->m_eresult.isNull(),
+                            d->m_sresult.error().isError(),
+                            d->m_eresult.error().isError(),
+                            d->m_sresult.error().isError() ? d->m_sresult.error() : d->m_eresult.error());
 }
 
-QString SignEncryptFilesResult::details() const
+QString SignEncryptTaskResult::details() const
 {
     return errorString();
 }
 
-GpgME::Error SignEncryptFilesResult::error() const
+GpgME::Error SignEncryptTaskResult::error() const
 {
-    if (m_sresult.error().code()) {
-        return m_sresult.error();
+    if (d->m_sresult.error().code()) {
+        return d->m_sresult.error();
     }
-    if (m_eresult.error().code()) {
-        return m_eresult.error();
+    if (d->m_eresult.error().code()) {
+        return d->m_eresult.error();
     }
     return {};
 }
 
-QString SignEncryptFilesResult::errorString() const
+QString SignEncryptTaskResult::errorString() const
 {
-    const bool sign = !m_sresult.isNull();
-    const bool encrypt = !m_eresult.isNull();
+    const bool sign = !d->m_sresult.isNull();
+    const bool encrypt = !d->m_eresult.isNull();
 
     kleo_assert(sign || encrypt);
 
     if (sign && encrypt) {
-        return m_sresult.error().code() ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString)
-            : m_eresult.error().code()  ? makeResultDetails(m_eresult, m_input.errorString, m_output.errorString)
-                                        : QString();
+        return d->m_sresult.error().code() ? makeResultDetails(d->m_sresult, d->m_input.errorString, d->m_output.errorString)
+            : d->m_eresult.error().code()  ? makeResultDetails(d->m_eresult, d->m_input.errorString, d->m_output.errorString)
+                                           : QString();
     }
 
-    return sign ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) //
-                : makeResultDetails(m_eresult, m_input.errorString, m_output.errorString);
+    return sign ? makeResultDetails(d->m_sresult, d->m_input.errorString, d->m_output.errorString) //
+                : makeResultDetails(d->m_eresult, d->m_input.errorString, d->m_output.errorString);
 }
 
-AuditLogEntry SignEncryptFilesResult::auditLog() const
+AuditLogEntry SignEncryptTaskResult::auditLog() const
 {
-    return m_auditLog;
+    return d->m_auditLog;
+}
+
+GpgME::SigningResult SignEncryptTaskResult::signingResult() const
+{
+    return d->m_sresult;
+}
+
+GpgME::EncryptionResult SignEncryptTaskResult::encryptionResult() const
+{
+    return d->m_eresult;
 }
 
 void SignEncryptTask::setDataSource(Task::DataSource dataSource)
