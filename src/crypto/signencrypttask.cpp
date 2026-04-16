@@ -46,6 +46,11 @@ using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
 
+struct _detail::LabelAndError {
+    QString label;
+    QString errorString;
+};
+
 namespace
 {
 
@@ -107,59 +112,18 @@ private:
     const QString m_outputLabel;
     const AuditLogEntry m_auditLog;
 };
-
-namespace
-{
-struct LabelAndError {
-    QString label;
-    QString errorString;
-};
 }
 
-class SignEncryptFilesResult : public Task::Result
+class SignEncryptTaskResult::Private
 {
 public:
-    SignEncryptFilesResult(const SigningResult &sr,
-                           const LabelAndError &input,
-                           const LabelAndError &output,
-                           bool outputCreated,
-                           const AuditLogEntry &auditLog,
-                           Task *parentTask)
-        : Task::Result(parentTask)
-        , m_sresult(sr)
-        , m_input{input}
-        , m_output{output}
-        , m_outputCreated(outputCreated)
-        , m_auditLog(auditLog)
-    {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
-        Q_ASSERT(!m_sresult.isNull());
-    }
-    SignEncryptFilesResult(const EncryptionResult &er,
-                           const LabelAndError &input,
-                           const LabelAndError &output,
-                           bool outputCreated,
-                           const AuditLogEntry &auditLog,
-                           Task *parentTask)
-        : Task::Result(parentTask)
-        , m_eresult(er)
-        , m_input{input}
-        , m_output{output}
-        , m_outputCreated(outputCreated)
-        , m_auditLog(auditLog)
-    {
-        qCDebug(KLEOPATRA_LOG) << "\ninputError :" << m_input.errorString << "\noutputError:" << m_output.errorString;
-        Q_ASSERT(!m_eresult.isNull());
-    }
-    SignEncryptFilesResult(const SigningResult &sr,
-                           const EncryptionResult &er,
-                           const LabelAndError &input,
-                           const LabelAndError &output,
-                           bool outputCreated,
-                           const AuditLogEntry &auditLog,
-                           Task *parentTask)
-        : Task::Result(parentTask)
-        , m_sresult(sr)
+    Private(const SigningResult &sr,
+            const EncryptionResult &er,
+            const _detail::LabelAndError &input,
+            const _detail::LabelAndError &output,
+            bool outputCreated,
+            const AuditLogEntry &auditLog)
+        : m_sresult(sr)
         , m_eresult(er)
         , m_input{input}
         , m_output{output}
@@ -170,18 +134,10 @@ public:
         Q_ASSERT(!m_sresult.isNull() || !m_eresult.isNull());
     }
 
-    QString overview() const override;
-    QString details() const override;
-    GpgME::Error error() const override;
-    QString errorString() const override;
-    VisualCode code() const override;
-    AuditLogEntry auditLog() const override;
-
-private:
     const SigningResult m_sresult;
     const EncryptionResult m_eresult;
-    const LabelAndError m_input;
-    const LabelAndError m_output;
+    const _detail::LabelAndError m_input;
+    const _detail::LabelAndError m_output;
     const bool m_outputCreated;
     const AuditLogEntry m_auditLog;
 };
@@ -280,8 +236,6 @@ static QString makeResultDetails(const EncryptionResult &result, const QString &
         return Formatting::errorAsString(err).toHtmlEscaped();
     }
     return i18n(" Encryption succeeded.");
-}
-
 }
 
 QString ErrorResult::overview() const
@@ -926,62 +880,84 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         }
     }
 
-    const LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
-    const LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
-    auto result = std::shared_ptr<Result>(new SignEncryptFilesResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog, q));
+    const _detail::LabelAndError inputInfo{inputLabel(), input ? input->errorString() : QString{}};
+    const _detail::LabelAndError outputInfo{outputLabel(), output ? output->errorString() : QString{}};
+    auto result = std::shared_ptr<Result>(new SignEncryptTaskResult(sresult, eresult, inputInfo, outputInfo, outputCreated, auditLog, q));
     q->emitResult(result);
 }
 
-QString SignEncryptFilesResult::overview() const
+SignEncryptTaskResult::SignEncryptTaskResult(const GpgME::SigningResult &sr,
+                                             const GpgME::EncryptionResult &er,
+                                             const _detail::LabelAndError &input,
+                                             const _detail::LabelAndError &output,
+                                             bool outputCreated,
+                                             const AuditLogEntry &auditLog,
+                                             Task *parentTask)
+    : Task::Result{parentTask}
+    , d{std::make_unique<Private>(sr, er, input, output, outputCreated, auditLog)}
 {
-    const QString files = formatInputOutputLabel(m_input.label, m_output.label, !m_outputCreated);
-    return files + QLatin1String(": ") + makeOverview(makeResultOverview(m_sresult, m_eresult));
 }
 
-QString SignEncryptFilesResult::details() const
+QString SignEncryptTaskResult::overview() const
+{
+    const QString files = formatInputOutputLabel(d->m_input.label, d->m_output.label, !d->m_outputCreated);
+    return files + QLatin1String(": ") + makeOverview(makeResultOverview(d->m_sresult, d->m_eresult));
+}
+
+QString SignEncryptTaskResult::details() const
 {
     return errorString();
 }
 
-GpgME::Error SignEncryptFilesResult::error() const
+GpgME::Error SignEncryptTaskResult::error() const
 {
-    if (m_sresult.error().code()) {
-        return m_sresult.error();
+    if (d->m_sresult.error().code()) {
+        return d->m_sresult.error();
     }
-    if (m_eresult.error().code()) {
-        return m_eresult.error();
+    if (d->m_eresult.error().code()) {
+        return d->m_eresult.error();
     }
     return {};
 }
 
-QString SignEncryptFilesResult::errorString() const
+QString SignEncryptTaskResult::errorString() const
 {
-    const bool sign = !m_sresult.isNull();
-    const bool encrypt = !m_eresult.isNull();
+    const bool sign = !d->m_sresult.isNull();
+    const bool encrypt = !d->m_eresult.isNull();
 
     kleo_assert(sign || encrypt);
 
     if (sign && encrypt) {
-        return m_sresult.error().code() ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString)
-            : m_eresult.error().code()  ? makeResultDetails(m_eresult, m_input.errorString, m_output.errorString)
-                                        : QString();
+        return d->m_sresult.error().code() ? makeResultDetails(d->m_sresult, d->m_input.errorString, d->m_output.errorString)
+            : d->m_eresult.error().code()  ? makeResultDetails(d->m_eresult, d->m_input.errorString, d->m_output.errorString)
+                                           : QString();
     }
 
-    return sign ? makeResultDetails(m_sresult, m_input.errorString, m_output.errorString) //
-                : makeResultDetails(m_eresult, m_input.errorString, m_output.errorString);
+    return sign ? makeResultDetails(d->m_sresult, d->m_input.errorString, d->m_output.errorString) //
+                : makeResultDetails(d->m_eresult, d->m_input.errorString, d->m_output.errorString);
 }
 
-Task::Result::VisualCode SignEncryptFilesResult::code() const
+Task::Result::VisualCode SignEncryptTaskResult::code() const
 {
-    if (m_sresult.error().isCanceled() || m_eresult.error().isCanceled()) {
+    if (d->m_sresult.error().isCanceled() || d->m_eresult.error().isCanceled()) {
         return Warning;
     }
-    return (m_sresult.error().code() || m_eresult.error().code()) ? NeutralError : NeutralSuccess;
+    return (d->m_sresult.error().code() || d->m_eresult.error().code()) ? NeutralError : NeutralSuccess;
 }
 
-AuditLogEntry SignEncryptFilesResult::auditLog() const
+AuditLogEntry SignEncryptTaskResult::auditLog() const
 {
-    return m_auditLog;
+    return d->m_auditLog;
+}
+
+GpgME::SigningResult SignEncryptTaskResult::signingResult() const
+{
+    return d->m_sresult;
+}
+
+GpgME::EncryptionResult SignEncryptTaskResult::encryptionResult() const
+{
+    return d->m_eresult;
 }
 
 #include "moc_signencrypttask.cpp"
