@@ -73,7 +73,7 @@ const ChecksumCreateFilesCommand::Private *ChecksumCreateFilesCommand::d_func() 
 ChecksumCreateFilesCommand::Private::Private(ChecksumCreateFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
     , files()
-    , shared_qq(qq, [](ChecksumCreateFilesCommand *) {})
+    , shared_qq(qq, [](ChecksumCreateFilesCommand *) { })
     , controller()
 {
     controller.setAllowAddition(true);

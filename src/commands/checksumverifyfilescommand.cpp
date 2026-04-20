@@ -73,7 +73,7 @@ const ChecksumVerifyFilesCommand::Private *ChecksumVerifyFilesCommand::d_func() 
 ChecksumVerifyFilesCommand::Private::Private(ChecksumVerifyFilesCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
     , files()
-    , shared_qq(qq, [](ChecksumVerifyFilesCommand *) {})
+    , shared_qq(qq, [](ChecksumVerifyFilesCommand *) { })
     , controller()
 {
 }

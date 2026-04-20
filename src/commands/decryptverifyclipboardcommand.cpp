@@ -79,7 +79,7 @@ const DecryptVerifyClipboardCommand::Private *DecryptVerifyClipboardCommand::d_f
 
 DecryptVerifyClipboardCommand::Private::Private(DecryptVerifyClipboardCommand *qq, KeyListController *c)
     : Command::Private(qq, c)
-    , shared_qq(qq, [](DecryptVerifyClipboardCommand *) {})
+    , shared_qq(qq, [](DecryptVerifyClipboardCommand *) { })
     , input()
     , controller({}, Task::DataSource::Clipboard)
 {
@@ -143,7 +143,7 @@ void DecryptVerifyClipboardCommand::doStart()
         } else {
             d->information(
                 i18n("The clipboard does not appear to "
-                        "contain signed or encrypted text."));
+                     "contain signed or encrypted text."));
             d->finished();
             return;
         }
