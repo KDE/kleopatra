@@ -19,6 +19,8 @@
 
 #include <memory>
 
+class QStackedLayout;
+
 namespace GpgME
 {
 class Key;
@@ -76,6 +78,8 @@ public:
     std::vector<GpgME::Key> resolvedSigners() const;
     bool encryptSymmetric() const;
 
+    QString buttonLabel() const;
+
 protected:
     void readConfig();
     void writeConfig();
@@ -87,6 +91,7 @@ private:
     void updateButtons();
 
     ApplicationPaletteWatcher mAppPaletteWatcher;
+    QStackedLayout *mStackedLayout = nullptr;
     SigEncPage *mSigEncPage = nullptr;
     SignEncryptResultPage *mResultPage = nullptr;
     QPushButton *mOkButton = nullptr;
