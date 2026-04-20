@@ -533,10 +533,10 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     title->setText(i18nc("@title:dialog", "Sign / Encrypt Files"));
     layout->addWidget(title);
 
-    auto stackedLayout = new QStackedLayout;
-    stackedLayout->addWidget(mSigEncPage);
-    stackedLayout->addWidget(mResultPage);
-    layout->addLayout(stackedLayout);
+    mStackedLayout = new QStackedLayout;
+    mStackedLayout->addWidget(mSigEncPage);
+    mStackedLayout->addWidget(mResultPage);
+    layout->addLayout(mStackedLayout);
 
     auto buttons = new QDialogButtonBox;
 
@@ -550,18 +550,19 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
         mComplianceLabelButton->setFocusPolicy(Qt::NoFocus);
     }
 
-    mOkButton = buttons->addButton(i18nc("@action:button", "Continue"), QDialogButtonBox::ActionRole);
-    auto cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
+    mOkButton = buttons->addButton(i18nc("@action:button", "&Sign / Encrypt"), QDialogButtonBox::ActionRole);
+    QPointer<QPushButton> cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
     connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
     connect(mOkButton, &QPushButton::clicked, this, [this]() {
         mSigEncPage->done();
     });
-    connect(mSigEncPage, &SigEncPage::finished, this, [this, title, stackedLayout]() {
-        if (stackedLayout->currentIndex() == 0) {
-            stackedLayout->setCurrentIndex(1);
+    connect(mSigEncPage, &SigEncPage::finished, this, [this, title, cancelButton]() {
+        if (mStackedLayout->currentIndex() == 0) {
+            mStackedLayout->setCurrentIndex(1);
             Q_EMIT operationPrepared();
             title->setText(i18nc("@title:dialog", "Results"));
-            mOkButton->setText(i18nc("@action:button", "Finish"));
+            updateButtons();
+            delete cancelButton;
         } else {
             accept();
         }
@@ -573,38 +574,32 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     layout->addWidget(buttons);
 }
 
-void SignEncryptFilesDialog::updateButtons()
+QString SignEncryptFilesDialog::buttonLabel() const
 {
-    QString label;
     switch (mSigEncPage->currentOp()) {
     case SignEncryptWidget::Sign:
-        label = i18nc("@action:button", "&Sign");
-        break;
+        return i18nc("@action:button", "&Sign");
     case SignEncryptWidget::Encrypt:
-        label = i18nc("@action:button", "&Encrypt");
-        break;
+        return i18nc("@action:button", "&Encrypt");
     case SignEncryptWidget::SignAndEncrypt:
-        label = i18nc("@action:button", "&Sign / Encrypt");
-        break;
-    default:;
+    default:
+        return i18nc("@action:button", "&Sign / Encrypt");
     }
-    if (!label.isEmpty()) {
-        mOkButton->setText(label);
-        if (DeVSCompliance::isActive()) {
-            const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
-            DeVSCompliance::decorate(mOkButton, de_vs);
+}
 
-            mOkButton->setToolTip(DeVSCompliance::name(de_vs));
-            if (mComplianceLabelButton) {
-                mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
-                // set the style-sheet again to update the colors on palette changes
-                mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
-            }
+void SignEncryptFilesDialog::updateButtons()
+{
+    mOkButton->setText((mStackedLayout->currentIndex() == 0) ? buttonLabel() : i18nc("@action:button", "Finish"));
+    if (DeVSCompliance::isActive()) {
+        const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
+        DeVSCompliance::decorate(mOkButton, de_vs);
+
+        mOkButton->setToolTip(DeVSCompliance::name(de_vs));
+        if (mComplianceLabelButton) {
+            mComplianceLabelButton->setText(DeVSCompliance::name(de_vs));
+            // set the style-sheet again to update the colors on palette changes
+            mComplianceLabelButton->setStyleSheet(QStringLiteral("border: none"));
         }
-    } else {
-        mOkButton->setText(i18nc("@action:button", "Next"));
-        mOkButton->setIcon(QIcon());
-        mOkButton->setStyleSheet(QString());
     }
     mOkButton->setEnabled(mSigEncPage->validatePage());
 }
