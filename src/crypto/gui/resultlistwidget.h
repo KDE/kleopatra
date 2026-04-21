@@ -34,6 +34,7 @@ public:
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
     void addTaskCollection(const std::shared_ptr<TaskCollection> &coll);
+    void clearTaskCollections();
 
     bool isComplete() const;
 

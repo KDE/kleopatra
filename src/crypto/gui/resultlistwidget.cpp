@@ -156,6 +156,23 @@ void ResultListWidget::addTaskCollection(const std::shared_ptr<TaskCollection> &
     connect(coll.get(), SIGNAL(done()), this, SLOT(allTasksDone()));
 }
 
+void ResultListWidget::clearTaskCollections()
+{
+    for (const auto &coll : d->m_collections) {
+        disconnect(coll.get(), nullptr, this, nullptr);
+    }
+    d->m_collections.clear();
+    auto scrollAreaLayout = qobject_cast<QBoxLayout *>(d->m_scrollArea->widget()->layout());
+    for (int i = scrollAreaLayout->count() - 1; i >= 0; --i) {
+        if (qobject_cast<ResultItemWidget *>(scrollAreaLayout->itemAt(i)->widget())) {
+            auto item = scrollAreaLayout->takeAt(i);
+            delete item->widget();
+            delete item;
+        }
+    }
+    d->m_lastErrorItemIndex = 0;
+}
+
 void ResultListWidget::Private::started(const std::shared_ptr<Task> &task)
 {
     Q_ASSERT(task);

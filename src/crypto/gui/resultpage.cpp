@@ -35,6 +35,7 @@ public:
     void progress(int progress, int total);
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &result);
+    void clearProgressLabels();
     void allDone();
     QLabel *labelForTag(const QString &tag);
 
@@ -72,16 +73,21 @@ void ResultPage::Private::progress(int progress, int total)
     m_progressBar->setValue(progress);
 }
 
+void ResultPage::Private::clearProgressLabels()
+{
+    const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
+    for (const QString &i : progressLabelByTagKeys) {
+        m_progressLabelByTag.value(i)->clear();
+    }
+}
+
 void ResultPage::Private::allDone()
 {
     Q_ASSERT(m_tasks);
     q->setAutoAdvance(m_autoCloseCB->isChecked() && !m_tasks->errorOccurred());
     m_progressBar->setVisible(false);
     m_tasks.reset();
-    const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
-    for (const QString &i : progressLabelByTagKeys) {
-        m_progressLabelByTag.value(i)->clear();
-    }
+    clearProgressLabels();
     Q_EMIT q->completeChanged();
 }
 
@@ -147,6 +153,16 @@ void ResultPage::setTaskCollection(const std::shared_ptr<TaskCollection> &coll)
         Q_UNUSED(i)
     }
     Q_EMIT completeChanged();
+}
+
+void ResultPage::clearTaskCollection()
+{
+    if (d->m_tasks) {
+        disconnect(d->m_tasks.get(), nullptr, this, nullptr);
+    }
+    d->clearProgressLabels();
+    d->m_resultList->clearTaskCollections();
+    d->m_tasks.reset();
 }
 
 QLabel *ResultPage::Private::labelForTag(const QString &tag)

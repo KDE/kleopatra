@@ -72,6 +72,7 @@ public:
     QMap<int, QString> outputNames() const;
 
     void setTaskCollection(const std::shared_ptr<Kleo::Crypto::TaskCollection> &coll);
+    void clearResults();
 
     // Outputs
     std::vector<GpgME::Key> resolvedRecipients() const;
