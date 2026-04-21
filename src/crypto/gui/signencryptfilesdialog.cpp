@@ -666,6 +666,11 @@ void SignEncryptFilesDialog::setTaskCollection(const std::shared_ptr<Kleo::Crypt
     mResultPage->setTaskCollection(coll);
 }
 
+void SignEncryptFilesDialog::clearResults()
+{
+    mResultPage->clearTaskCollection();
+}
+
 void SignEncryptFilesDialog::setOutputNames(const QMap<int, QString> &map) const
 {
     mSigEncPage->setOutputNames(map);
