@@ -20,6 +20,7 @@
 #include <settings.h>
 
 #include <KAdjustingScrollArea>
+#include <KColorScheme>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -591,8 +592,15 @@ void SignEncryptFilesDialog::updateButtons()
 {
     mOkButton->setText((mStackedLayout->currentIndex() == 0) ? buttonLabel() : i18nc("@action:button", "Finish"));
     if (DeVSCompliance::isActive()) {
-        const bool de_vs = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
+        const bool unforcedCompliance = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
+        const bool de_vs = unforcedCompliance & !mForceNotCompliant;
         DeVSCompliance::decorate(mOkButton, de_vs);
+        if (unforcedCompliance & mForceNotCompliant) {
+            // looks compliant but we force not-compliant -> use a normal background for the button
+            auto buttonPalette = mOkButton->palette();
+            KColorScheme::adjustBackground(buttonPalette, KColorScheme::NormalBackground, mOkButton->backgroundRole(), KColorScheme::Button);
+            mOkButton->setPalette(buttonPalette);
+        }
 
         mOkButton->setToolTip(DeVSCompliance::name(de_vs));
         if (mComplianceLabelButton) {
@@ -684,6 +692,12 @@ QMap<int, QString> SignEncryptFilesDialog::outputNames() const
 bool SignEncryptFilesDialog::encryptSymmetric() const
 {
     return mSigEncPage->encryptSymmetric();
+}
+
+void SignEncryptFilesDialog::forceResultAsNotCompliant(bool notCompliant)
+{
+    mForceNotCompliant = notCompliant;
+    updateButtons();
 }
 
 void SignEncryptFilesDialog::readConfig()

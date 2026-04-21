@@ -81,6 +81,11 @@ public:
 
     QString buttonLabel() const;
 
+    // flags the result of the operation as not compliant even if everything looks compliant;
+    // this is done when the S/MIME encryption is performed without thorough validation of the
+    // certificate chains (i.e. with the "always-trust" option)
+    void forceResultAsNotCompliant(bool notCompliant);
+
 protected:
     void readConfig();
     void writeConfig();
@@ -99,6 +104,7 @@ private:
     QPushButton *mComplianceLabelButton = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
+    bool mForceNotCompliant = false;
 };
 
 }
