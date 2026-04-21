@@ -33,6 +33,7 @@ public:
     ~ResultPage() override;
 
     void setTaskCollection(const std::shared_ptr<TaskCollection> &coll);
+    void clearTaskCollection();
 
     bool isComplete() const override;
 

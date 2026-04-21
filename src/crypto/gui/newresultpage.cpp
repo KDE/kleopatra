@@ -43,6 +43,7 @@ public:
     void progress(int progress, int total);
     void result(const std::shared_ptr<const Task::Result> &result);
     void started(const std::shared_ptr<Task> &result);
+    void clearProgressLabels();
     void allDone();
     QLabel *labelForTag(const QString &tag);
 
@@ -83,6 +84,14 @@ void NewResultPage::Private::progress(int progress, int total)
     m_progressBar->setValue(progress);
 }
 
+void NewResultPage::Private::clearProgressLabels()
+{
+    const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
+    for (const QString &i : progressLabelByTagKeys) {
+        m_progressLabelByTag.value(i)->clear();
+    }
+}
+
 void NewResultPage::Private::allDone()
 {
     Q_ASSERT(!m_collections.empty());
@@ -92,14 +101,7 @@ void NewResultPage::Private::allDone()
     m_progressBar->setRange(0, 100);
     m_progressBar->setValue(100);
     m_collections.clear();
-    const auto progressLabelByTagKeys{m_progressLabelByTag.keys()};
-    for (const QString &i : progressLabelByTagKeys) {
-        if (!i.isEmpty()) {
-            m_progressLabelByTag.value(i)->setText(i18n("%1: All operations completed.", i));
-        } else {
-            m_progressLabelByTag.value(i)->setText(i18n("All operations completed."));
-        }
-    }
+    clearProgressLabels();
     if (QAbstractButton *cancel = q->wizard()->button(QWizard::CancelButton)) {
         cancel->setEnabled(false);
     }
@@ -168,6 +170,16 @@ void NewResultPage::addTaskCollection(const std::shared_ptr<TaskCollection> &col
         (void)l;
     }
     Q_EMIT completeChanged();
+}
+
+void NewResultPage::clearTaskCollections()
+{
+    for (const auto &coll : d->m_collections) {
+        disconnect(coll.get(), nullptr, this, nullptr);
+    }
+    d->clearProgressLabels();
+    d->m_resultList->clearTaskCollections();
+    d->m_collections.clear();
 }
 
 QLabel *NewResultPage::Private::labelForTag(const QString &tag)

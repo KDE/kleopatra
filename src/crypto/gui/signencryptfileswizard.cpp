@@ -643,6 +643,11 @@ void SignEncryptFilesWizard::setTaskCollection(const std::shared_ptr<Kleo::Crypt
     mResultPage->setTaskCollection(coll);
 }
 
+void SignEncryptFilesWizard::clearResults()
+{
+    mResultPage->clearTaskCollections();
+}
+
 void SignEncryptFilesWizard::setOutputNames(const QMap<int, QString> &map) const
 {
     mSigEncPage->setOutputNames(map);
