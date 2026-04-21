@@ -449,14 +449,21 @@ public:
         };
     }
 
-private Q_SLOTS:
+public Q_SLOTS:
     void updateCommitButton()
     {
         mParent->setButtonText(QWizard::CommitButton, (mParent->currentPage() == this) ? buttonLabel() : i18nc("@action:button", "Finish"));
         if (KleopatraApplication::showComplianceStatus()) {
             auto btn = qobject_cast<QPushButton *>(mParent->button(QWizard::CommitButton));
-            const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
+            const bool unforcedCompliance = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
+            const bool de_vs = unforcedCompliance & !mParent->forceResultAsNotCompliant();
             DeVSCompliance::decorate(btn, de_vs);
+            if (unforcedCompliance & mParent->forceResultAsNotCompliant()) {
+                // looks compliant but we force not-compliant -> use a normal background for the button
+                auto buttonPalette = btn->palette();
+                KColorScheme::adjustBackground(buttonPalette, KColorScheme::NormalBackground, btn->backgroundRole(), KColorScheme::Button);
+                btn->setPalette(buttonPalette);
+            }
             mParent->setLabelText(DeVSCompliance::name(de_vs));
         }
         Q_EMIT completeChanged();
@@ -666,6 +673,12 @@ bool SignEncryptFilesWizard::encryptSymmetric() const
 QString SignEncryptFilesWizard::buttonLabel() const
 {
     return mSigEncPage->buttonLabel();
+}
+
+void SignEncryptFilesWizard::setForceResultAsNotCompliant(bool notCompliant)
+{
+    mForceNotCompliant = notCompliant;
+    mSigEncPage->updateCommitButton();
 }
 
 void SignEncryptFilesWizard::readConfig()

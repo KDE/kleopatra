@@ -82,6 +82,15 @@ public:
 
     void setLabelText(const QString &label);
 
+    // flags the result of the operation as not compliant even if everything looks compliant;
+    // this is done when the S/MIME encryption is performed without thorough validation of the
+    // certificate chains (i.e. with the "always-trust" option)
+    void setForceResultAsNotCompliant(bool notCompliant);
+    inline bool forceResultAsNotCompliant() const
+    {
+        return mForceNotCompliant;
+    }
+
 protected:
     void readConfig();
     void writeConfig();
@@ -97,6 +106,7 @@ private:
     ResultPage *mResultPage = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
+    bool mForceNotCompliant = false;
 };
 
 }
