@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Polish
 # translation of kleopatra.po to
-# Version: $Revision: 1734566 $
+# Version: $Revision: 1734990 $
 # Copyright (C) 2002,2003, 2004, 2005, 2008, 2009 Free Software Foundation, Inc.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005.
 # Mikolaj Machowski <mikmach@wp.pl>, 2004.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 00:45+0000\n"
+"POT-Creation-Date: 2026-04-21 00:47+0000\n"
 "PO-Revision-Date: 2026-04-11 09:10+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -4685,14 +4685,14 @@ msgid "Create Checksum Progress"
 msgstr "Postęp tworzenia sumy sprawdzającej"
 
 #: src/crypto/createchecksumscontroller.cpp:485
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:753
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Błąd podczas uruchamiania %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:487
 #: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:357
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:755
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Nie udało się wykonanie %1: %2"
@@ -5295,6 +5295,48 @@ msgstr "(najpierw wybierz pomiędzy OpenPGP i S/MIME)"
 #, kde-format
 msgid "..."
 msgstr "…"
+
+#: src/crypto/gui/cryptouihelpers.cpp:27
+#, kde-format
+msgctxt "@title:window"
+msgid "Retry with Lower Security?"
+msgstr ""
+
+#: src/crypto/gui/cryptouihelpers.cpp:29
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Encryption failed because at least one certificate could not be validated."
+msgstr ""
+
+#: src/crypto/gui/cryptouihelpers.cpp:30
+#, fuzzy, kde-format
+#| msgctxt "@info:tooltip"
+#| msgid "Update the CRLs and do a full validation check of the certificate."
+msgctxt "@info"
+msgid ""
+"You can retry the operation with fewer validity checks on the certificates."
+msgstr "Uaktualnij listy CRL i wykonaj pełne sprawdzenie certyfikatu."
+
+#: src/crypto/gui/cryptouihelpers.cpp:33
+#, fuzzy, kde-format
+#| msgctxt "A user ID (an error description)"
+#| msgid "%1 (%2)"
+msgctxt "@action:button Sign / Encrypt (not Compliant)"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: src/crypto/gui/cryptouihelpers.cpp:35
+#, kde-format
+msgctxt "@action:button"
+msgid "with Lower Security"
+msgstr ""
+
+#: src/crypto/gui/cryptouihelpers.cpp:43
+#, kde-format
+msgctxt "@info"
+msgid "WARNING: Compliance of the result: %1"
+msgstr ""
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:52
 #, kde-format
@@ -11506,7 +11548,7 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Przechwycono nieznany wyjątek w grupie %1"
 
-#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:779
 #, kde-format
 msgid "Clipboard"
 msgstr "Schowek"
@@ -11640,12 +11682,12 @@ msgstr "Nie można otworzyć pliku \"%1\" do odczytu"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Plik \"%1\" jest już otwarty, ale nie do odczytu"
 
-#: src/utils/input.cpp:306 src/utils/output.cpp:734
+#: src/utils/input.cpp:306 src/utils/output.cpp:733
 #, kde-format
 msgid "Command not specified"
 msgstr "Nie określono polecenia"
 
-#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:739
+#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:738
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Nie można uruchomić procesu %1: %2"
@@ -11755,22 +11797,22 @@ msgstr "Nie można usunąć pliku <filename>%1</filename> do jego zastąpienia."
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Nie można zmienić nazwy pliku \"%1\" na \"%2\""
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Nie można zapisać do schowka"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:781
 #, kde-format
 msgid "Find buffer"
 msgstr "Pamięć podręczna znajdowania"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:783
 #, kde-format
 msgid "Selection"
 msgstr "Zaznaczenie"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:796
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Nie można znaleźć schowka"
@@ -12353,32 +12395,32 @@ msgstr "Hierarchiczny wykaz certyfikatów"
 msgid "List of certificates"
 msgstr "Wykaz certyfikatów"
 
-#: src/view/padwidget.cpp:94
+#: src/view/padwidget.cpp:95
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Podpisz / zaszyfruj notatnik"
 
-#: src/view/padwidget.cpp:95
+#: src/view/padwidget.cpp:96
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Odszyfruj / sprawdź notatnik"
 
-#: src/view/padwidget.cpp:96
+#: src/view/padwidget.cpp:97
 #, kde-format
 msgid "Import Notepad"
 msgstr "Zaimportuj notatnik"
 
-#: src/view/padwidget.cpp:97
+#: src/view/padwidget.cpp:98
 #, kde-format
 msgid "Revert"
 msgstr "Wycofaj"
 
-#: src/view/padwidget.cpp:112
+#: src/view/padwidget.cpp:113
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Podpisywanie i szyfrowanie jest niemożliwe."
 
-#: src/view/padwidget.cpp:114
+#: src/view/padwidget.cpp:115
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12392,19 +12434,19 @@ msgstr ""
 "podpisywania, czy szyfrowania, bo <application>GnuPG</application>, którego "
 "używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/view/padwidget.cpp:172
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Wpisz wiadomość do zaszyfrowania lub odszyfrowania…"
 
-#: src/view/padwidget.cpp:214
+#: src/view/padwidget.cpp:215
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Text to process"
 msgstr "Tekst do przetworzenia"
 
-#: src/view/padwidget.cpp:216
+#: src/view/padwidget.cpp:217
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid ""
@@ -12416,134 +12458,91 @@ msgstr ""
 "zaszyfrowany lub podpisany, który chcesz odszyfrować lub sprawdzić. Możesz "
 "także wpisać certyfikaty w postaci tekstowej, aby je zaimportować."
 
-#: src/view/padwidget.cpp:317
-#, kde-format
-msgctxt "@title:window"
-msgid "Retry with Lower Security?"
-msgstr ""
-
-#: src/view/padwidget.cpp:319
-#, kde-format
-msgctxt "@info"
-msgid ""
-"Failed to encrypt the notepad because at least one certificate could not be "
-"validated."
-msgstr ""
-
-#: src/view/padwidget.cpp:320
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Update the CRLs and do a full validation check of the certificate."
-msgctxt "@info"
-msgid ""
-"You can retry the operation with fewer validity checks on the certificates."
-msgstr "Uaktualnij listy CRL i wykonaj pełne sprawdzenie certyfikatu."
-
-#: src/view/padwidget.cpp:323
-#, fuzzy, kde-format
-#| msgctxt "A user ID (an error description)"
-#| msgid "%1 (%2)"
-msgctxt "@action:button Encrypt Notepad (not compliant)"
-msgid "%1 (%2)"
-msgstr "%1 (%2)"
-
-#: src/view/padwidget.cpp:325
-#, kde-format
-msgctxt "@action:button"
-msgid "with Lower Security"
-msgstr ""
-
-#: src/view/padwidget.cpp:333
-#, kde-format
-msgctxt "@info"
-msgid "WARNING: Compliance of the result: %1"
-msgstr ""
-
-#: src/view/padwidget.cpp:389
+#: src/view/padwidget.cpp:360
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed text"
 msgstr "Podpisany tekst"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:361
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign operation."
 msgstr "Oto wynik podpisu."
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:364
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Encrypted text"
 msgstr "Zaszyfrowany tekst"
 
-#: src/view/padwidget.cpp:394
+#: src/view/padwidget.cpp:365
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the encryption."
 msgstr "Oto wynik szyfrowania."
 
-#: src/view/padwidget.cpp:397
+#: src/view/padwidget.cpp:368
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed and encrypted text"
 msgstr "Tekst podpisany i zaszyfrowany"
 
-#: src/view/padwidget.cpp:398
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign and encrypt operation."
 msgstr "Oto wynik podpisu i szyfrowania."
 
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:380
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted and verified text"
 msgstr "Odszyfrowany i sprawdzony tekst"
 
-#: src/view/padwidget.cpp:410
+#: src/view/padwidget.cpp:381
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of decryption and signature verification."
 msgstr "Oto wynik odszyfrowania i sprawdzenia podpisu."
 
-#: src/view/padwidget.cpp:413
+#: src/view/padwidget.cpp:384
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted text"
 msgstr "Odszyfrowany tekst"
 
-#: src/view/padwidget.cpp:414
+#: src/view/padwidget.cpp:385
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the decryption."
 msgstr "Oto wynik odszyfrowania."
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:390
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Verified text"
 msgstr "Sprawdzony tekst"
 
-#: src/view/padwidget.cpp:420
+#: src/view/padwidget.cpp:391
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the signature verification."
 msgstr "Oto wynik sprawdzenia podpisu."
 
-#: src/view/padwidget.cpp:441
+#: src/view/padwidget.cpp:412
 #, kde-format
 msgctxt "@info:progress"
 msgid "Decrypting and/or verifying..."
 msgstr "Odszyfrowywanie i/lub sprawdzanie…"
 
-#: src/view/padwidget.cpp:442 src/view/padwidget.cpp:443
-#: src/view/padwidget.cpp:527 src/view/padwidget.cpp:528
+#: src/view/padwidget.cpp:413 src/view/padwidget.cpp:414
+#: src/view/padwidget.cpp:498 src/view/padwidget.cpp:499
 #, kde-format
 msgid "Notepad"
 msgstr "Notatnik"
 
-#: src/view/padwidget.cpp:507
+#: src/view/padwidget.cpp:478
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12557,42 +12556,42 @@ msgstr ""
 "podpisywania, czy szyfrowania, bo <application>GnuPG</application>, którego "
 "używa <application>Kleopatra</application> nie jest %1.</para>"
 
-#: src/view/padwidget.cpp:517
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Podpisywanie notatnika…"
 
-#: src/view/padwidget.cpp:520
+#: src/view/padwidget.cpp:491
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Szyfrowanie notatnika…"
 
-#: src/view/padwidget.cpp:523
+#: src/view/padwidget.cpp:494
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Podpisywanie i szyfrowanie notatnika…"
 
-#: src/view/padwidget.cpp:572
+#: src/view/padwidget.cpp:543
 #, kde-format
 msgid "Importing..."
 msgstr "Importowanie…"
 
-#: src/view/padwidget.cpp:612
+#: src/view/padwidget.cpp:583
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Podpisz notatnik"
 
-#: src/view/padwidget.cpp:615
+#: src/view/padwidget.cpp:586
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Zaszyfruj notatnik"
 
-#: src/view/padwidget.cpp:619
+#: src/view/padwidget.cpp:590
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -13352,6 +13351,13 @@ msgstr ""
 "Importowanie certyfikatu z pliku.<nl/> Aby zaimportować certyfikat z "
 "publicznego serwera kluczy wybierz <interface>Poszukaj na serwerze</"
 "interface>."
+
+#, fuzzy
+#~| msgctxt "A user ID (an error description)"
+#~| msgid "%1 (%2)"
+#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
 
 #~ msgctxt "@info"
 #~ msgid ""

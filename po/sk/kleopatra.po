@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 00:45+0000\n"
+"POT-Creation-Date: 2026-04-21 00:47+0000\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -4625,14 +4625,14 @@ msgid "Create Checksum Progress"
 msgstr "Vytvoriť priebeh kontrolného súčtu"
 
 #: src/crypto/createchecksumscontroller.cpp:485
-#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
+#: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:753
 #, kde-format
 msgid "Error while running %1: %2"
 msgstr "Chyba počas behu %1: %2"
 
 #: src/crypto/createchecksumscontroller.cpp:487
 #: src/crypto/verifychecksumscontroller.cpp:474 src/utils/input.cpp:357
-#: src/utils/output.cpp:756
+#: src/utils/output.cpp:755
 #, kde-format
 msgid "Failed to execute %1: %2"
 msgstr "Zlyhalo spustenie %1: %2"
@@ -5227,6 +5227,53 @@ msgstr "(Prosím, zvolte si najskôr medzi OpenPGP a S/MIME)"
 #, kde-format
 msgid "..."
 msgstr "..."
+
+#: src/crypto/gui/cryptouihelpers.cpp:27
+#, kde-format
+msgctxt "@title:window"
+msgid "Retry with Lower Security?"
+msgstr "Skúsiť znova s nižším zabezpečením?"
+
+#: src/crypto/gui/cryptouihelpers.cpp:29
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Failed to encrypt the notepad because at least one certificate could not "
+#| "be validated."
+msgctxt "@info"
+msgid ""
+"Encryption failed because at least one certificate could not be validated."
+msgstr ""
+"Šifrovanie poznámkového bloku zlyhalo, pretože aspoň jeden certifikát nebolo "
+"možné overiť."
+
+#: src/crypto/gui/cryptouihelpers.cpp:30
+#, kde-format
+msgctxt "@info"
+msgid ""
+"You can retry the operation with fewer validity checks on the certificates."
+msgstr ""
+"Operáciu môžete zopakovať s menším počtom kontrol platnosti certifikátov."
+
+#: src/crypto/gui/cryptouihelpers.cpp:33
+#, fuzzy, kde-format
+#| msgctxt "A user ID (an error description)"
+#| msgid "%1 (%2)"
+msgctxt "@action:button Sign / Encrypt (not Compliant)"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: src/crypto/gui/cryptouihelpers.cpp:35
+#, kde-format
+msgctxt "@action:button"
+msgid "with Lower Security"
+msgstr "s nižším zabezpečením"
+
+#: src/crypto/gui/cryptouihelpers.cpp:43
+#, kde-format
+msgctxt "@info"
+msgid "WARNING: Compliance of the result: %1"
+msgstr "UPOZORNENIE: Súlad výsledku: %1"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp:52
 #, kde-format
@@ -11403,7 +11450,7 @@ msgstr ""
 msgid "Caught unknown exception in group %1"
 msgstr "Zachytená neznáma výnimka v skupine %1"
 
-#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
+#: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:779
 #, kde-format
 msgid "Clipboard"
 msgstr "Schránka"
@@ -11535,12 +11582,12 @@ msgstr "Nemôžem otvoriť súbor \"%1\" na čítanie"
 msgid "File \"%1\" is already open, but not for reading"
 msgstr "Súbor \"%1\" je už otvorený, ale nie pre čítanie"
 
-#: src/utils/input.cpp:306 src/utils/output.cpp:734
+#: src/utils/input.cpp:306 src/utils/output.cpp:733
 #, kde-format
 msgid "Command not specified"
 msgstr "Nie je zadaný príkaz"
 
-#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:739
+#: src/utils/input.cpp:313 src/utils/input.cpp:317 src/utils/output.cpp:738
 #, kde-format
 msgid "Could not start %1 process: %2"
 msgstr "Nemôžem spustiť %1 proces: %2"
@@ -11650,22 +11697,22 @@ msgstr "Nie je možné otvoriť <filename>%1</filename> na čítanie."
 msgid "Could not rename file \"%1\" to \"%2\""
 msgstr "Nepodarilo sa premenovať súbor \"%1\" na \"%2\""
 
-#: src/utils/output.cpp:773
+#: src/utils/output.cpp:772
 #, kde-format
 msgid "Could not write to clipboard"
 msgstr "Nepodarilo sa zapísať do schránky"
 
-#: src/utils/output.cpp:782
+#: src/utils/output.cpp:781
 #, kde-format
 msgid "Find buffer"
 msgstr "Nájsť vyrovnávaciu pamäť"
 
-#: src/utils/output.cpp:784
+#: src/utils/output.cpp:783
 #, kde-format
 msgid "Selection"
 msgstr "Výber"
 
-#: src/utils/output.cpp:797
+#: src/utils/output.cpp:796
 #, kde-format
 msgid "Could not find clipboard"
 msgstr "Nepodarilo sa nájsť schránku"
@@ -12246,32 +12293,32 @@ msgstr "Hierarchický zoznam certifikátov"
 msgid "List of certificates"
 msgstr "Výpis certifikátov X.509"
 
-#: src/view/padwidget.cpp:94
+#: src/view/padwidget.cpp:95
 #, kde-format
 msgid "Sign / Encrypt Notepad"
 msgstr "Zápisník Podpíš / Zašifruj"
 
-#: src/view/padwidget.cpp:95
+#: src/view/padwidget.cpp:96
 #, kde-format
 msgid "Decrypt / Verify Notepad"
 msgstr "Zápisník Dešifruj / Over"
 
-#: src/view/padwidget.cpp:96
+#: src/view/padwidget.cpp:97
 #, kde-format
 msgid "Import Notepad"
 msgstr "Importovaných:"
 
-#: src/view/padwidget.cpp:97
+#: src/view/padwidget.cpp:98
 #, kde-format
 msgid "Revert"
 msgstr "Vrátiť"
 
-#: src/view/padwidget.cpp:112
+#: src/view/padwidget.cpp:113
 #, kde-format
 msgid "Signing and encryption is not possible."
 msgstr "Podpisovanie a šifrovanie úspešné."
 
-#: src/view/padwidget.cpp:114
+#: src/view/padwidget.cpp:115
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12285,19 +12332,19 @@ msgstr ""
 "encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 
-#: src/view/padwidget.cpp:172
+#: src/view/padwidget.cpp:173
 #, kde-format
 msgctxt "@info:placeholder"
 msgid "Enter a message to encrypt or decrypt..."
 msgstr "Zadajte správu na zašifrovanie alebo dešifrovanie..."
 
-#: src/view/padwidget.cpp:214
+#: src/view/padwidget.cpp:215
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Text to process"
 msgstr "Súbor(y) na spracovanie"
 
-#: src/view/padwidget.cpp:216
+#: src/view/padwidget.cpp:217
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid ""
@@ -12309,134 +12356,91 @@ msgstr ""
 "text chcete to decrypt or verify. Môžete also enter certificates in text "
 "form to import them."
 
-#: src/view/padwidget.cpp:317
-#, kde-format
-msgctxt "@title:window"
-msgid "Retry with Lower Security?"
-msgstr ""
-
-#: src/view/padwidget.cpp:319
-#, kde-format
-msgctxt "@info"
-msgid ""
-"Failed to encrypt the notepad because at least one certificate could not be "
-"validated."
-msgstr ""
-
-#: src/view/padwidget.cpp:320
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Update the CRLs and do a full validation check of the certificate."
-msgctxt "@info"
-msgid ""
-"You can retry the operation with fewer validity checks on the certificates."
-msgstr "Prosím, zadajte názov alebo e-mailovú adresu..."
-
-#: src/view/padwidget.cpp:323
-#, fuzzy, kde-format
-#| msgctxt "A user ID (an error description)"
-#| msgid "%1 (%2)"
-msgctxt "@action:button Encrypt Notepad (not compliant)"
-msgid "%1 (%2)"
-msgstr "%1 (%2)"
-
-#: src/view/padwidget.cpp:325
-#, kde-format
-msgctxt "@action:button"
-msgid "with Lower Security"
-msgstr ""
-
-#: src/view/padwidget.cpp:333
-#, kde-format
-msgctxt "@info"
-msgid "WARNING: Compliance of the result: %1"
-msgstr ""
-
-#: src/view/padwidget.cpp:389
+#: src/view/padwidget.cpp:360
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed text"
 msgstr "Podpísať súbory"
 
-#: src/view/padwidget.cpp:390
+#: src/view/padwidget.cpp:361
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign operation."
 msgstr "S/MIME podpis."
 
-#: src/view/padwidget.cpp:393
+#: src/view/padwidget.cpp:364
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Encrypted text"
 msgstr "Šifrovať"
 
-#: src/view/padwidget.cpp:394
+#: src/view/padwidget.cpp:365
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the encryption."
 msgstr "S/MIME šifrovaný súbor."
 
-#: src/view/padwidget.cpp:397
+#: src/view/padwidget.cpp:368
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Signed and encrypted text"
 msgstr "Podpísaný alebo šifrovaný súbor."
 
-#: src/view/padwidget.cpp:398
+#: src/view/padwidget.cpp:369
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the sign and encrypt operation."
 msgstr "Podpísaný alebo šifrovaný súbor."
 
-#: src/view/padwidget.cpp:409
+#: src/view/padwidget.cpp:380
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted and verified text"
 msgstr "Dešifrovať a/alebo overiť súbory"
 
-#: src/view/padwidget.cpp:410
+#: src/view/padwidget.cpp:381
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of decryption and signature verification."
 msgstr "Toto je the result of decryption and signature verification."
 
-#: src/view/padwidget.cpp:413
+#: src/view/padwidget.cpp:384
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Decrypted text"
 msgstr "Šifrovať"
 
-#: src/view/padwidget.cpp:414
+#: src/view/padwidget.cpp:385
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the decryption."
 msgstr "S/MIME šifrovaný súbor."
 
-#: src/view/padwidget.cpp:419
+#: src/view/padwidget.cpp:390
 #, kde-format
 msgctxt "@label:textbox for assistive tools"
 msgid "Verified text"
 msgstr "Verified text"
 
-#: src/view/padwidget.cpp:420
+#: src/view/padwidget.cpp:391
 #, kde-format
 msgctxt "@info for assistive tools"
 msgid "This is the result of the signature verification."
 msgstr "S/MIME podpis."
 
-#: src/view/padwidget.cpp:441
+#: src/view/padwidget.cpp:412
 #, kde-format
 msgctxt "@info:progress"
 msgid "Decrypting and/or verifying..."
 msgstr "Dešifrovať a/alebo overiť súbory"
 
-#: src/view/padwidget.cpp:442 src/view/padwidget.cpp:443
-#: src/view/padwidget.cpp:527 src/view/padwidget.cpp:528
+#: src/view/padwidget.cpp:413 src/view/padwidget.cpp:414
+#: src/view/padwidget.cpp:498 src/view/padwidget.cpp:499
 #, kde-format
 msgid "Notepad"
 msgstr "Zápisník"
 
-#: src/view/padwidget.cpp:507
+#: src/view/padwidget.cpp:478
 #, kde-kuit-format
 msgctxt ""
 "@info %1 is a placeholder for the name of a compliance mode. E.g. NATO "
@@ -12450,42 +12454,42 @@ msgstr ""
 "or encryption because the <application>GnuPG</application> system used by "
 "<application>Kleopatra</application> is not %1.</para>"
 
-#: src/view/padwidget.cpp:517
+#: src/view/padwidget.cpp:488
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing notepad..."
 msgstr "Podpisovanie zrušené."
 
-#: src/view/padwidget.cpp:520
+#: src/view/padwidget.cpp:491
 #, kde-format
 msgctxt "@info:progress"
 msgid "Encrypting notepad..."
 msgstr "Šifrovanie zrušené."
 
-#: src/view/padwidget.cpp:523
+#: src/view/padwidget.cpp:494
 #, kde-format
 msgctxt "@info:progress"
 msgid "Signing and encrypting notepad..."
 msgstr "Podpisovanie a šifrovanie úspešné."
 
-#: src/view/padwidget.cpp:572
+#: src/view/padwidget.cpp:543
 #, kde-format
 msgid "Importing..."
 msgstr "Importujem..."
 
-#: src/view/padwidget.cpp:612
+#: src/view/padwidget.cpp:583
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign Notepad"
 msgstr "Zápisník"
 
-#: src/view/padwidget.cpp:615
+#: src/view/padwidget.cpp:586
 #, kde-format
 msgctxt "@action:button"
 msgid "Encrypt Notepad"
 msgstr "Zápisník Podpíš / Zašifruj"
 
-#: src/view/padwidget.cpp:619
+#: src/view/padwidget.cpp:590
 #, kde-format
 msgctxt "@action:button"
 msgid "Sign / Encrypt Notepad"
@@ -13230,6 +13234,12 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr "Na import z verejného servera kľúčov použite \"Hľadať na serveri\"."
+
+#~| msgctxt "A user ID (an error description)"
+#~| msgid "%1 (%2)"
+#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
 
 #, fuzzy
 #~ msgctxt "@title"
