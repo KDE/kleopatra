@@ -16,6 +16,7 @@
 
 #include "signencrypttask.h"
 
+#include "crypto/gui/cryptouihelpers.h"
 #include "crypto/gui/signencryptfileswizard.h"
 #include "crypto/taskcollection.h"
 
@@ -31,6 +32,7 @@
 #include <Libkleo/KleoException>
 
 #include "kleopatra_debug.h"
+
 #include <KLocalizedString>
 
 #include <QGpgME/SignEncryptArchiveJob>
@@ -40,9 +42,15 @@
 #include <QPointer>
 #include <QTimer>
 
+#include <gpgme++/encryptionresult.h>
+#include <gpgme++/error.h>
+
+#include <utils/qt6compat.h>
+
 using namespace Kleo;
 using namespace Kleo::Crypto;
 using namespace GpgME;
+using namespace Qt::StringLiterals;
 
 class SignEncryptFilesController::Private
 {
@@ -81,6 +89,7 @@ private:
     QStringList files;
     unsigned int operation;
     Protocol protocol;
+    bool alwaysTrust = false;
 };
 
 SignEncryptFilesController::Private::Private(SignEncryptFilesController *qq)
@@ -612,6 +621,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
     try {
         kleo_assert(wizard);
         kleo_assert(!files.empty());
+        kleo_assert(completed.empty());
 
         const bool archive = ((wizard->outputNames().value(SignEncryptFilesWizard::Directory).isNull() && files.size() > 1) //
                               || ((operation & ArchiveMask) == ArchiveForced));
@@ -679,6 +689,7 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         runnable.swap(tasks);
 
         for (const auto &task : std::as_const(runnable)) {
+            task->setAlwaysTrust(alwaysTrust);
             q->connectTask(task);
         }
 
@@ -688,6 +699,8 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
         std::copy(runnable.begin(), runnable.end(), std::back_inserter(tmp));
         coll->setTasks(tmp);
         wizard->setTaskCollection(coll);
+
+        completed.reserve(runnable.size());
 
         QTimer::singleShot(0, q, SLOT(schedule()));
 
@@ -738,15 +751,30 @@ std::shared_ptr<SignEncryptTask> SignEncryptFilesController::Private::takeRunnab
 
 void SignEncryptFilesController::doTaskDone(const Task *task, const std::shared_ptr<const Task::Result> &result)
 {
-    Q_UNUSED(result)
-    Q_ASSERT(task);
-
-    // We could just delete the tasks here, but we can't use
-    // Qt::QueuedConnection here (we need sender()) and other slots
-    // might not yet have executed. Therefore, we push completed tasks
-    // into a burial container
+    Q_ASSERT((task == d->cms.get()) || (task == d->openpgp.get()));
+    Q_ASSERT(task == result->parentTask());
 
     if (task == d->cms.get()) {
+        Q_ASSERT(result->parentTask()->protocol() == GpgME::Protocol::CMS);
+
+        const auto signEncryptResult = dynamic_cast<const Kleo::Crypto::SignEncryptTaskResult *>(result.get());
+        if (signEncryptResult && (signEncryptResult->encryptionResult().numInvalidRecipients() > 0) && !d->alwaysTrust) {
+            if (Kleo::retryEncryptionWithLowerSecurity(d->wizard, d->wizard->buttonLabel())) {
+                d->alwaysTrust = true;
+                d->cms.reset();
+                if (d->openpgp) {
+                    d->openpgp->cancel();
+                    d->openpgp.reset();
+                }
+                d->runnable.clear();
+                d->completed.clear();
+                d->wizard->clearResults();
+                d->wizard->setForceResultAsNotCompliant(true);
+                d->slotWizardOperationPrepared();
+                return;
+            }
+        }
+
         d->completed.push_back(d->cms);
         d->cms.reset();
     } else if (task == d->openpgp.get()) {
