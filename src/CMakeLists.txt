@@ -588,7 +588,7 @@ endif ()
 target_link_libraries(kleopatra_bin
   Gpgmepp
   KPim6::Libkleo
-  KPim6::Mime
+  KF6::Mime
   KPim6::MimeTreeParserWidgets
   KF6::Codecs
   KF6::CoreAddons
