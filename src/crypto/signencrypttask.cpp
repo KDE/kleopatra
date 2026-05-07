@@ -363,6 +363,8 @@ private:
     void slotResult(const SigningResult &, const EncryptionResult &);
     void slotResult(const EncryptionResult &);
 
+    void removeOutputFileOnError(const GpgME::Error &error);
+
     void slotResult(const QGpgME::Job *, const SigningResult &, const EncryptionResult &);
 
 private:
@@ -893,12 +895,38 @@ void SignEncryptTask::Private::slotResult(const EncryptionResult &result)
     slotResult(qobject_cast<const QGpgME::Job *>(q->sender()), SigningResult{}, result);
 }
 
+void SignEncryptTask::Private::removeOutputFileOnError(const GpgME::Error &error)
+{
+    if (!outputFileName.isEmpty() && error.code() != GPG_ERR_EEXIST) {
+        // ensure that the output file is removed if the task was canceled or an error occurred;
+        // unless a "file exists" error occurred because this means that the file with the name
+        // of outputFileName wasn't created as result of this task
+        if (QFile::exists(outputFileName)) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "after error or cancel";
+            if (!QFile::remove(outputFileName)) {
+                qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "failed";
+            }
+        }
+    }
+}
+
 void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningResult &sresult, const EncryptionResult &eresult)
 {
     qCDebug(KLEOPATRA_LOG) << q << __func__ << "job:" << job << "signing result:" << QGpgME::toLogString(sresult)
                            << "encryption result:" << QGpgME::toLogString(eresult);
     const AuditLogEntry auditLog = AuditLogEntry::fromJob(job);
-    if (input && input->failed()) {
+    if (eresult.error() && (q->protocol() == GpgME::CMS) && (eresult.numInvalidRecipients() > 0) && !alwaysTrust) {
+        // check for failed S/MIME encryption with invalid recipients before handling input failures:
+        // when creating an encrypted S/MIME archive then the input is a (gpg)tar process whose output is piped to gpgsm;
+        // if gpgsm exits with an error then the still running (gpg)tar process is killed which (on Linux) results in a failed input,
+        // but this is just a secondary error of the failed encryption; on the other hand, if there is an input failure then
+        // encryption might fail as secondary error; therefore, we only handle an encryption error caused by invalid recipients
+        // before an input error because in this case we want to allow a retry with alwaysTrust = true
+        if (output) {
+            output->cancel();
+        }
+        removeOutputFileOnError(eresult.error());
+    } else if (input && input->failed()) {
         if (output) {
             output->cancel();
         }
@@ -908,17 +936,7 @@ void SignEncryptTask::Private::slotResult(const QGpgME::Job *job, const SigningR
         if (output) {
             output->cancel();
         }
-        if (!outputFileName.isEmpty() && eresult.error().code() != GPG_ERR_EEXIST) {
-            // ensure that the output file is removed if the task was canceled or an error occurred;
-            // unless a "file exists" error occurred because this means that the file with the name
-            // of outputFileName wasn't created as result of this task
-            if (QFile::exists(outputFileName)) {
-                qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "after error or cancel";
-                if (!QFile::remove(outputFileName)) {
-                    qCDebug(KLEOPATRA_LOG) << __func__ << "Removing output file" << outputFileName << "failed";
-                }
-            }
-        }
+        removeOutputFileOnError(eresult.error());
     } else {
         try {
             kleo_assert(!sresult.isNull() || !eresult.isNull());
