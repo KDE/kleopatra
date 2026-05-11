@@ -48,6 +48,7 @@
 
 using namespace Kleo;
 using namespace Kleo::Config;
+using namespace Qt::Literals::StringLiterals;
 
 enum {
     HasFontRole = Qt::UserRole + 0x1234, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
@@ -235,9 +236,11 @@ static void set_default_appearance(QListWidgetItem *item)
     erase_if_allowed(item, fontAllowRoles, sizeof(fontAllowRoles) / sizeof(int));
 }
 
-static void writeOrDelete(KConfigGroup &group, const char *key, const QVariant &value)
+template<typename T>
+static void writeOrDelete(KConfigGroup &group, const char *key, const T &value, const T &defaultValue)
 {
-    if (value.isValid()) {
+    if (value != defaultValue) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Saving" << group.name() << key << "as" << value;
         group.writeEntry(key, value);
     } else {
         group.revertToDefault(key);
@@ -256,14 +259,20 @@ static QVariant brush2color(const QVariant &v)
     return QVariant();
 }
 
-static void save_to_config(const QListWidgetItem *item, KConfigGroup &group)
+static void save_to_config(const QListWidgetItem *item, KConfigGroup &group, const KConfigGroup &systemGroup)
 {
     if (!item) {
         return;
     }
-    writeOrDelete(group, "foreground-color", brush2color(item->data(StoredForegroundRole)));
-    writeOrDelete(group, "background-color", brush2color(item->data(StoredBackgroundRole)));
-    writeOrDelete(group, "icon", item->data(IconNameRole));
+    writeOrDelete(group,
+                  "foreground-color",
+                  brush2color(item->data(StoredForegroundRole)).value<QColor>(),
+                  systemGroup.readEntry("foreground-color", QColor()));
+    writeOrDelete(group,
+                  "background-color",
+                  brush2color(item->data(StoredBackgroundRole)).value<QColor>(),
+                  systemGroup.readEntry("background-color", QColor()));
+    writeOrDelete(group, "icon", item->data(IconNameRole).toString(), systemGroup.readEntry("icon", QString()));
 
     group.deleteEntry("font");
     group.deleteEntry("font-strikeout");
@@ -271,19 +280,13 @@ static void save_to_config(const QListWidgetItem *item, KConfigGroup &group)
     group.deleteEntry("font-bold");
 
     if (item->data(HasFontRole).toBool()) {
-        writeOrDelete(group, "font", item->data(Qt::FontRole));
+        writeOrDelete(group, "font", item->data(Qt::FontRole).value<QFont>(), tryToFindFontFor(item));
         return;
     }
 
-    if (is_strikeout(item)) {
-        group.writeEntry("font-strikeout", true);
-    }
-    if (is_italic(item)) {
-        group.writeEntry("font-italic", true);
-    }
-    if (is_bold(item)) {
-        group.writeEntry("font-bold", true);
-    }
+    writeOrDelete(group, "font-strikeout", is_strikeout(item), systemGroup.readEntry("font-strikeout", false));
+    writeOrDelete(group, "font-italic", is_italic(item), systemGroup.readEntry("font-italic", false));
+    writeOrDelete(group, "font-bold", is_bold(item), systemGroup.readEntry("font-bold", false));
 }
 
 static void kiosk_enable(QWidget *w, const QListWidgetItem *item, int allowRole)
@@ -544,6 +547,7 @@ public:
 private:
     void enableDisableActions(QListWidgetItem *item);
     QListWidgetItem *selectedItem() const;
+    KConfigGroup getSystemGroup(const KConfigGroup &categoryGroup);
 
 private:
     void slotIconClicked();
@@ -565,6 +569,7 @@ private:
 
 private:
     Kleo::DNAttributeOrderConfigWidget *dnOrderWidget = nullptr;
+    KSharedConfigPtr systemConfig;
 };
 
 AppearanceConfigWidget::AppearanceConfigWidget(QWidget *p, Qt::WindowFlags f)
@@ -587,6 +592,15 @@ QListWidgetItem *AppearanceConfigWidget::Private::selectedItem() const
 {
     const QList<QListWidgetItem *> items = categoriesLV->selectedItems();
     return items.empty() ? nullptr : items.front();
+}
+
+KConfigGroup AppearanceConfigWidget::Private::getSystemGroup(const KConfigGroup &categoryGroup)
+{
+    if (!systemConfig) {
+        const QString defaultConfigPath = QStandardPaths::locate(QStandardPaths::GenericConfigLocation, u"libkleopatrarc"_s);
+        systemConfig = KSharedConfig::openConfig(defaultConfigPath);
+    }
+    return systemConfig->group(categoryGroup.name());
 }
 
 void AppearanceConfigWidget::Private::enableDisableActions(QListWidgetItem *item)
@@ -752,7 +766,7 @@ void AppearanceConfigWidget::save()
     for (int i = 0; i != d->categoriesLV->count(); ++i) {
         const QListWidgetItem *const item = d->categoriesLV->item(i);
         auto configGroup = item->data(ConfigGroupRole).value<KConfigGroup>();
-        save_to_config(item, configGroup);
+        save_to_config(item, configGroup, d->getSystemGroup(configGroup));
     }
     config->sync();
     KeyFilterManager::instance()->reload();
