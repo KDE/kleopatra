@@ -594,13 +594,32 @@ QListWidgetItem *AppearanceConfigWidget::Private::selectedItem() const
     return items.empty() ? nullptr : items.front();
 }
 
+static QString locateNonWritableFile(QStandardPaths::StandardLocation type, const QString &fileName)
+{
+    const QString writableLocation = QStandardPaths::writableLocation(type);
+    for (const auto &filePath : QStandardPaths::locateAll(type, fileName)) {
+        if (!filePath.startsWith(writableLocation)) {
+            return filePath;
+        }
+    }
+    return {};
+}
+
 KConfigGroup AppearanceConfigWidget::Private::getSystemGroup(const KConfigGroup &categoryGroup)
 {
     if (!systemConfig) {
-        const QString defaultConfigPath = QStandardPaths::locate(QStandardPaths::GenericConfigLocation, u"libkleopatrarc"_s);
-        systemConfig = KSharedConfig::openConfig(defaultConfigPath);
+        const QString systemConfigPath = locateNonWritableFile(QStandardPaths::GenericConfigLocation, u"libkleopatrarc"_s);
+        if (systemConfigPath.isEmpty()) {
+            qCWarning(KLEOPATRA_LOG) << "Failed to find non-writable libkleopatrarc.";
+        } else {
+            qCDebug(KLEOPATRA_LOG) << "Reading system config" << systemConfigPath;
+            systemConfig = KSharedConfig::openConfig(systemConfigPath);
+        }
     }
-    return systemConfig->group(categoryGroup.name());
+    if (systemConfig) {
+        return systemConfig->group(categoryGroup.name());
+    }
+    return {};
 }
 
 void AppearanceConfigWidget::Private::enableDisableActions(QListWidgetItem *item)
