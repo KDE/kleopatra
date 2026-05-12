@@ -23,7 +23,7 @@ extern QElapsedTimer startupTimer;
 #define STARTUP_TRACE qCDebug(KLEOPATRA_LOG) << "Startup timing:" << startupTimer.elapsed() << "ms:" << SRCNAME << __func__ << __LINE__;
 
 class MainWindow;
-class QSettings;
+class DistributionData;
 class QTemporaryDir;
 
 class KleopatraApplication : public QApplication
@@ -82,9 +82,9 @@ public:
     void openConfigDialogWithForeignParent(WId parentWId);
     void showAboutDialog();
 
-    /* Add optional signed settings for specialized distributions */
-    void setDistributionSettings(const std::shared_ptr<QSettings> &settings);
-    std::shared_ptr<QSettings> distributionSettings() const;
+    /* Add optional signed data for specialized distributions */
+    void setDistributionData(const std::shared_ptr<DistributionData> &settings);
+    std::shared_ptr<DistributionData> distributionData() const;
 
     // Creates a temporary directory that's removed when the application exits
     std::weak_ptr<const QTemporaryDir> createTemporaryDirectory();
@@ -111,7 +111,7 @@ public Q_SLOTS:
 
 Q_SIGNALS:
     void configurationChanged();
-    void distributionSettingsChanged();
+    void distributionDataChanged();
 
 private Q_SLOTS:
     // used as URL handler for URLs with schemes that shall be blocked

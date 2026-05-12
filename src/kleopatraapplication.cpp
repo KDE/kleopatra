@@ -21,6 +21,7 @@
 #include <conf/groupsconfigdialog.h>
 #include <dialogs/smartcardwindow.h>
 #include <smartcard/readerstatus.h>
+#include <utils/distributiondata.h>
 
 #include <Libkleo/GnuPG>
 #include <utils/kdpipeiodevice.h>
@@ -76,7 +77,6 @@
 #include <QGraphicsEffect>
 #endif
 #include <QPointer>
-#include <QSettings>
 #include <QStyleOption>
 #include <QStylePainter>
 #include <QTemporaryDir>
@@ -232,7 +232,7 @@ public:
     std::shared_ptr<KeyCache> keyCache;
     std::shared_ptr<Log> log;
     std::shared_ptr<FileSystemWatcher> watcher;
-    std::shared_ptr<QSettings> distroSettings;
+    std::shared_ptr<DistributionData> distributionData;
     std::vector<std::shared_ptr<QTemporaryDir>> temporaryDirectories;
 
 public:
@@ -925,15 +925,15 @@ void KleopatraApplication::startGpgAgent()
     Kleo::launchGpgAgent();
 }
 
-void KleopatraApplication::setDistributionSettings(const std::shared_ptr<QSettings> &settings)
+void KleopatraApplication::setDistributionData(const std::shared_ptr<DistributionData> &data)
 {
-    d->distroSettings = settings;
-    Q_EMIT distributionSettingsChanged();
+    d->distributionData = data;
+    Q_EMIT distributionDataChanged();
 }
 
-std::shared_ptr<QSettings> KleopatraApplication::distributionSettings() const
+std::shared_ptr<DistributionData> KleopatraApplication::distributionData() const
 {
-    return d->distroSettings;
+    return d->distributionData;
 }
 
 std::weak_ptr<const QTemporaryDir> KleopatraApplication::createTemporaryDirectory()

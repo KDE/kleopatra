@@ -415,6 +415,7 @@ set(_kleopatra_SRCS
   utils/csrutils.h
   utils/debug-helpers.cpp
   utils/debug-helpers.h
+  utils/distributiondata.h
   utils/dragqueen.cpp
   utils/dragqueen.h
   utils/email.cpp
