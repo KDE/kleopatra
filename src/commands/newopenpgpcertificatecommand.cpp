@@ -17,6 +17,7 @@
 #include "kleopatraapplication.h"
 #include "utils/emptypassphraseprovider.h"
 #include "utils/userinfo.h"
+#include <utils/distributiondata.h>
 
 #include <settings.h>
 
@@ -36,7 +37,6 @@
 #include <QGpgME/QuickJob>
 
 #include <QProgressDialog>
-#include <QSettings>
 
 #include <gpgme++/context.h>
 #include <gpgme++/keygenerationresult.h>
@@ -147,9 +147,8 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         ctx->setPinentryMode(Context::PinentryLoopback);
     }
 
-    auto settings = KleopatraApplication::instance()->distributionSettings();
-    if (settings) {
-        keyParameters.setComment(settings->value(QStringLiteral("uidcomment"), {}).toString());
+    if (const auto data = KleopatraApplication::instance()->distributionData(); data->uidComment) {
+        keyParameters.setComment(data->uidComment.value());
     }
 
     keyCacheAutoRefreshSuspension = KeyCache::mutableInstance()->suspendAutoRefresh();

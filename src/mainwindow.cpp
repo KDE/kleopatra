@@ -27,6 +27,7 @@
 #include "utils/action_data.h"
 #include "utils/clipboardmenu.h"
 #include "utils/detail_p.h"
+#include "utils/distributiondata.h"
 #include "utils/filedialog.h"
 #include "utils/gui-helper.h"
 #include "utils/keyexportdraghandler.h"
@@ -245,37 +246,39 @@ public:
 
     void updateStatusBar()
     {
-        auto statusBar = std::make_unique<QStatusBar>();
-        auto settings = KleopatraApplication::instance()->distributionSettings();
-        bool showStatusbar = false;
-        if (settings) {
-            const QString statusline = settings->value(QStringLiteral("statusline"), {}).toString();
-            if (!statusline.isEmpty()) {
-                auto customStatusLbl = new QLabel(statusline);
-                statusBar->insertWidget(0, customStatusLbl);
-                showStatusbar = true;
+        if (const auto distributionData = KleopatraApplication::instance()->distributionData()) {
+            auto statusBar = std::make_unique<QStatusBar>();
+            if (distributionData->isValid) {
+                const QString statusline = distributionData->statusLine.value_or(QString{});
+                if (!statusline.isEmpty()) {
+                    auto customStatusLbl = new QLabel(statusline);
+                    statusBar->insertWidget(0, customStatusLbl);
+                }
+                if (DeVSCompliance::isActive()) {
+                    auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
+                    {
+                        auto statusPalette = qApp->palette();
+                        KColorScheme::adjustForeground(statusPalette,
+                                                       DeVSCompliance::isCompliant() ? KColorScheme::NormalText : KColorScheme::NegativeText,
+                                                       statusLbl->foregroundRole(),
+                                                       KColorScheme::View);
+                        statusLbl->setAutoFillBackground(true);
+                        KColorScheme::adjustBackground(statusPalette,
+                                                       DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground,
+                                                       QPalette::Window,
+                                                       KColorScheme::View);
+                        statusLbl->setPalette(statusPalette);
+                    }
+                    statusBar->insertPermanentWidget(0, statusLbl.release());
+                }
+            } else {
+                statusBar->insertWidget(0, new QLabel{KAboutData::applicationData().version()});
+                auto statusLbl = std::make_unique<QLabel>(i18nc("@info:status", "Corrupt installation"));
+                statusLbl->setToolTip(xi18nc("@info:tooltip",
+                                             "The verification of the <filename>VERSION</filename> file failed. "
+                                             "There seems to be something wrong with your installation."));
+                statusBar->insertPermanentWidget(0, statusLbl.release());
             }
-        }
-        if (DeVSCompliance::isActive()) {
-            auto statusLbl = std::make_unique<QLabel>(DeVSCompliance::name());
-            {
-                auto statusPalette = qApp->palette();
-                KColorScheme::adjustForeground(statusPalette,
-                                               DeVSCompliance::isCompliant() ? KColorScheme::NormalText : KColorScheme::NegativeText,
-                                               statusLbl->foregroundRole(),
-                                               KColorScheme::View);
-                statusLbl->setAutoFillBackground(true);
-                KColorScheme::adjustBackground(statusPalette,
-                                               DeVSCompliance::isCompliant() ? KColorScheme::PositiveBackground : KColorScheme::NegativeBackground,
-                                               QPalette::Window,
-                                               KColorScheme::View);
-                statusLbl->setPalette(statusPalette);
-            }
-            statusBar->insertPermanentWidget(0, statusLbl.release());
-            showStatusbar = true;
-        }
-
-        if (showStatusbar) {
             q->setStatusBar(statusBar.release()); // QMainWindow takes ownership
         } else {
             q->setStatusBar(nullptr);
@@ -490,7 +493,7 @@ MainWindow::Private::Private(MainWindow *qq)
     connect(&appPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, q, [this]() {
         updateStatusBar();
     });
-    connect(KleopatraApplication::instance(), &KleopatraApplication::distributionSettingsChanged, q, [this]() {
+    connect(KleopatraApplication::instance(), &KleopatraApplication::distributionDataChanged, q, [this]() {
         updateStatusBar();
     });
     updateStatusBar();

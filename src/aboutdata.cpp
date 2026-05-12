@@ -12,6 +12,8 @@
 
 #include "kleopatraapplication.h"
 
+#include <utils/distributiondata.h>
+
 #include <Libkleo/GnuPG>
 
 #include <QCoreApplication>
@@ -61,21 +63,18 @@ static constexpr auto credits = std::to_array<about_data>({
     {kli18n("Werner Koch"), kli18n("GnuPG consulting")},
 });
 
-static void updateAboutDataFromSettings(KAboutData &about, const QSettings *settings)
+static void updateAboutData(KAboutData &about, const DistributionData &data)
 {
-    if (!settings) {
-        return;
-    }
-    about.setDisplayName(settings->value(QStringLiteral("displayName"), about.displayName()).toString());
-    about.setProductName(settings->value(QStringLiteral("productName"), about.productName()).toByteArray());
-    about.setComponentName(settings->value(QStringLiteral("componentName"), about.componentName()).toString());
-    about.setShortDescription(settings->value(QStringLiteral("shortDescription"), about.shortDescription()).toString());
-    about.setHomepage(settings->value(QStringLiteral("homepage"), about.homepage()).toString());
-    about.setBugAddress(settings->value(QStringLiteral("bugAddress"), about.bugAddress()).toByteArray());
-    about.setVersion(settings->value(QStringLiteral("version"), about.version()).toByteArray());
-    about.setOtherText(settings->value(QStringLiteral("otherText"), about.otherText()).toString());
-    about.setCopyrightStatement(settings->value(QStringLiteral("copyrightStatement"), about.copyrightStatement()).toString());
-    about.setDesktopFileName(settings->value(QStringLiteral("desktopFileName"), about.desktopFileName()).toString());
+    about.setDisplayName(data.displayName.value_or(about.displayName()));
+    about.setProductName(data.productName.value_or(about.productName()).toUtf8());
+    about.setComponentName(data.componentName.value_or(about.componentName()));
+    about.setShortDescription(data.shortDescription.value_or(about.shortDescription()));
+    about.setHomepage(data.homepage.value_or(about.homepage()));
+    about.setBugAddress(data.bugAddress.value_or(about.bugAddress()).toUtf8());
+    about.setVersion(data.version.value_or(about.version()).toUtf8());
+    about.setOtherText(data.otherText.value_or(about.otherText()));
+    about.setCopyrightStatement(data.copyrightStatement.value_or(about.copyrightStatement()));
+    about.setDesktopFileName(data.desktopFileName.value_or(about.desktopFileName()));
 }
 
 // Extend the about data with the used GnuPG Version since this can
@@ -99,24 +98,45 @@ static void loadBackendVersions()
     thread->start();
 }
 
+static auto toOptionalString(const QVariant &value)
+{
+    return value.isValid() ? std::make_optional(value.toString()) : std::nullopt;
+}
+
 // This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
 // can put in their own about data information.
 static void loadCustomAboutData(KAboutData &about)
 {
     const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
+    qCDebug(KLEOPATRA_LOG) << "Looking for VERSION file:" << versionFile;
     if (QFile::exists(versionFile)) {
+        auto distributionData = std::make_shared<DistributionData>();
         const QStringList searchPaths = {Kleo::gnupgInstallPath()};
         const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
-        STARTUP_TIMING << "Starting version info check";
-        const bool valid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
-        STARTUP_TIMING << "Version info checked";
-        if (valid) {
-            qCDebug(KLEOPATRA_LOG) << "Found valid VERSION file. Updating about data.";
-            auto settings = std::make_shared<QSettings>(versionFile, QSettings::IniFormat);
-            settings->beginGroup(QStringLiteral("Kleopatra"));
-            updateAboutDataFromSettings(about, settings.get());
-            KleopatraApplication::instance()->setDistributionSettings(settings);
+        STARTUP_TIMING << "Starting check of VERSION file";
+        distributionData->isValid = Kleo::gpgvVerify(versionFile, QString(), distSigKeys, searchPaths);
+        STARTUP_TIMING << "Finished check of VERSION file";
+        if (distributionData->isValid) {
+            qCDebug(KLEOPATRA_LOG) << "VERSION file is valid. Updating about data.";
+            QSettings settings(versionFile, QSettings::IniFormat);
+            settings.beginGroup(QStringLiteral("Kleopatra"));
+            distributionData->displayName = toOptionalString(settings.value(u"displayName"_s));
+            distributionData->productName = toOptionalString(settings.value(u"productName"_s));
+            distributionData->componentName = toOptionalString(settings.value(u"componentName"_s));
+            distributionData->shortDescription = toOptionalString(settings.value(u"shortDescription"_s));
+            distributionData->homepage = toOptionalString(settings.value(u"homepage"_s));
+            distributionData->bugAddress = toOptionalString(settings.value(u"bugAddress"_s));
+            distributionData->version = toOptionalString(settings.value(u"version"_s));
+            distributionData->otherText = toOptionalString(settings.value(u"otherText"_s));
+            distributionData->copyrightStatement = toOptionalString(settings.value(u"copyrightStatement"_s));
+            distributionData->desktopFileName = toOptionalString(settings.value(u"desktopFileName"_s));
+            distributionData->uidComment = toOptionalString(settings.value(u"uidcomment"_s));
+            distributionData->statusLine = toOptionalString(settings.value(u"statusline"_s));
+            updateAboutData(about, *distributionData.get());
+        } else {
+            qCWarning(KLEOPATRA_LOG) << "VERSION file is NOT valid. The installation is corrupt.";
         }
+        KleopatraApplication::instance()->setDistributionData(distributionData);
     }
     loadBackendVersions();
 }
