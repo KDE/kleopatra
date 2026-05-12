@@ -19,6 +19,7 @@
 
 #include <dialogs/createcsrdialog.h>
 #include <utils/csrutils.h>
+#include <utils/distributiondata.h>
 #include <utils/keyparameters.h>
 
 #include <settings.h>
@@ -31,7 +32,6 @@
 #include <QGpgME/Protocol>
 
 #include <QProgressDialog>
-#include <QSettings>
 
 #include <gpgme++/context.h>
 #include <gpgme++/keygenerationresult.h>
@@ -120,9 +120,8 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
     }
     QGpgME::Job::context(keyGenJob)->setArmor(Settings{}.saveCSRAsPEM());
 
-    auto settings = KleopatraApplication::instance()->distributionSettings();
-    if (settings) {
-        keyParameters.setComment(settings->value(QStringLiteral("uidcomment"), {}).toString());
+    if (const auto data = KleopatraApplication::instance()->distributionData(); data->uidComment) {
+        keyParameters.setComment(data->uidComment.value());
     }
 
     connect(keyGenJob, &QGpgME::KeyGenerationJob::result, q, [this](const KeyGenerationResult &result, const QByteArray &request, const QString &auditLog) {

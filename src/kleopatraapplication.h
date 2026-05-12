@@ -26,7 +26,7 @@ extern QElapsedTimer startupTimer;
 
 class MainWindow;
 class SysTrayIcon;
-class QSettings;
+class DistributionData;
 
 class KleopatraApplication : public QApplication
 {
@@ -83,9 +83,9 @@ public:
     void restoreMainWindow();
     void openConfigDialogWithForeignParent(WId parentWId);
 
-    /* Add optional signed settings for specialized distributions */
-    void setDistributionSettings(const std::shared_ptr<QSettings> &settings);
-    std::shared_ptr<QSettings> distributionSettings() const;
+    /* Add optional signed data for specialized distributions */
+    void setDistributionData(const std::shared_ptr<DistributionData> &settings);
+    std::shared_ptr<DistributionData> distributionData() const;
 
 public Q_SLOTS:
     void openOrRaiseMainWindow();
@@ -113,7 +113,7 @@ Q_SIGNALS:
     void setExitValue(int value);
 
     void configurationChanged();
-    void distributionSettingsChanged();
+    void distributionDataChanged();
 
 private Q_SLOTS:
     // used as URL handler for URLs with schemes that shall be blocked
