@@ -8,6 +8,8 @@
 
 #include "kleopatra_debug.h"
 
+#include <kleopatraapplication.h>
+
 #include <settings.h>
 
 #include <Libkleo/ApplicationPaletteWatcher>
@@ -593,7 +595,7 @@ public:
             mCryptBtn->setEnabled(false);
         }
 
-        if (DeVSCompliance::isActive()) {
+        if (KleopatraApplication::showComplianceStatus()) {
             const bool de_vs = DeVSCompliance::isCompliant() && mSigEncWidget->isDeVsAndValid();
             DeVSCompliance::decorate(mCryptBtn, de_vs);
             mAdditionalInfoLabel->setText(DeVSCompliance::name(de_vs));

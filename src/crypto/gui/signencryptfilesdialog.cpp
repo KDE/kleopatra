@@ -13,9 +13,11 @@
 #include "kleopatra_debug.h"
 
 #include "signencryptfilesdialog.h"
-#include "signencryptwidget.h"
 
 #include "resultpage.h"
+#include "signencryptwidget.h"
+
+#include <kleopatraapplication.h>
 
 #include <settings.h>
 
@@ -541,7 +543,7 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
 
     auto buttons = new QDialogButtonBox;
 
-    if (DeVSCompliance::isActive()) {
+    if (KleopatraApplication::showComplianceStatus()) {
         /* We use a custom button to display a label next to the
            buttons. */
         mComplianceLabelButton = buttons->addButton(QString(), QDialogButtonBox::ActionRole);
@@ -591,7 +593,7 @@ QString SignEncryptFilesDialog::buttonLabel() const
 void SignEncryptFilesDialog::updateButtons()
 {
     mOkButton->setText((mStackedLayout->currentIndex() == 0) ? buttonLabel() : i18nc("@action:button", "Finish"));
-    if (DeVSCompliance::isActive()) {
+    if (KleopatraApplication::showComplianceStatus()) {
         const bool unforcedCompliance = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
         const bool de_vs = unforcedCompliance & !mForceNotCompliant;
         DeVSCompliance::decorate(mOkButton, de_vs);
