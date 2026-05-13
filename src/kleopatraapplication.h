@@ -57,6 +57,11 @@ public:
         return qobject_cast<KleopatraApplication *>(qApp);
     }
 
+    /**
+     * Returns true if the compliance status shall be shown in different parts of the UI.
+     */
+    static bool showComplianceStatus();
+
     /** Starts a new instance or a command from the command line.
      *
      * Handles the parser options and starts the according commands.

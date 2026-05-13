@@ -12,9 +12,11 @@
 #include <config-kleopatra.h>
 
 #include "signencryptfileswizard.h"
-#include "signencryptwidget.h"
 
 #include "newresultpage.h"
+#include "signencryptwidget.h"
+
+#include <kleopatraapplication.h>
 
 #include <settings.h>
 
@@ -456,7 +458,7 @@ private Q_SLOTS:
         auto btn = qobject_cast<QPushButton *>(mParent->button(QWizard::CommitButton));
         if (!label.isEmpty()) {
             mParent->setButtonText(QWizard::CommitButton, label);
-            if (DeVSCompliance::isActive()) {
+            if (KleopatraApplication::showComplianceStatus()) {
                 const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
                 DeVSCompliance::decorate(btn, de_vs);
                 mParent->setLabelText(DeVSCompliance::name(de_vs));
@@ -549,7 +551,6 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
 {
     readConfig();
 
-    const bool de_vs = DeVSCompliance::isActive();
 #ifdef Q_OS_WIN
     // Enforce modern style to avoid vista style ugliness.
     setWizardStyle(QWizard::ModernStyle);
@@ -561,11 +562,11 @@ SignEncryptFilesWizard::SignEncryptFilesWizard(QWidget *parent, Qt::WindowFlags 
     setPage(SigEncPageId, mSigEncPage);
     setPage(ResultPageId, mResultPage);
     setOptions(QWizard::IndependentPages | //
-               (de_vs ? QWizard::HaveCustomButton1 : QWizard::WizardOption(0)) | //
+               (KleopatraApplication::showComplianceStatus() ? QWizard::HaveCustomButton1 : QWizard::WizardOption(0)) | //
                QWizard::NoBackButtonOnLastPage | //
                QWizard::NoBackButtonOnStartPage);
 
-    if (de_vs) {
+    if (KleopatraApplication::showComplianceStatus()) {
         /* We use a custom button to display a label next to the
            buttons.  */
         auto btn = button(QWizard::CustomButton1);
