@@ -31,6 +31,7 @@
 #include <gpgme++/key.h>
 
 #include <Libkleo/Classify>
+#include <Libkleo/Compliance>
 #include <Libkleo/DnAttributes>
 #include <Libkleo/FileSystemWatcher>
 #include <Libkleo/KeyCache>
@@ -934,6 +935,13 @@ void KleopatraApplication::setDistributionData(const std::shared_ptr<Distributio
 std::shared_ptr<DistributionData> KleopatraApplication::distributionData() const
 {
     return d->distributionData;
+}
+
+// static
+bool KleopatraApplication::showComplianceStatus()
+{
+    const auto app = KleopatraApplication::instance();
+    return DeVSCompliance::isActive() && app && app->distributionData() && app->distributionData()->isValid;
 }
 
 std::weak_ptr<const QTemporaryDir> KleopatraApplication::createTemporaryDirectory()
