@@ -27,6 +27,7 @@
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
+#include <qgpgme/qgpgme_version.h>
 
 #include <QProgressDialog>
 #include <QSettings>
@@ -150,7 +151,11 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
 
 void NewCertificateSigningRequestCommand::Private::showResult(const KeyGenerationResult &result, const QByteArray &request, const QString &auditLog)
 {
+#if QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 0)
     if (result.error().isError()) {
+#else
+    if (result.error().code()) {
+#endif
         showErrorDialog(result, auditLog);
         return;
     }
