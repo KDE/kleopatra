@@ -14,6 +14,7 @@
 
 struct DistributionData {
     bool isValid = false;
+    QString detailedError;
 
     std::optional<QString> displayName;
     std::optional<QString> productName;

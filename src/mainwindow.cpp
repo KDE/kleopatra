@@ -274,9 +274,7 @@ public:
             } else {
                 statusBar->insertWidget(0, new QLabel{KAboutData::applicationData().version()});
                 auto statusLbl = std::make_unique<QLabel>(i18nc("@info:status", "Corrupt installation"));
-                statusLbl->setToolTip(xi18nc("@info:tooltip",
-                                             "The verification of the <filename>VERSION</filename> file failed. "
-                                             "There seems to be something wrong with your installation."));
+                statusLbl->setToolTip(distributionData->detailedError);
                 statusBar->insertPermanentWidget(0, statusLbl.release());
             }
             q->setStatusBar(statusBar.release()); // QMainWindow takes ownership
