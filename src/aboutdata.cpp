@@ -67,6 +67,7 @@ static constexpr auto credits = std::to_array<about_data>({
     {kli18n("Thomas Moenicke"), kli18n("Artwork")},
 });
 
+#if KLEOPATRA_FEATURE_READ_VERSION_FILE
 static void updateAboutData(KAboutData &about, const DistributionData &data)
 {
     about.setDisplayName(data.displayName.value_or(about.displayName()));
@@ -80,6 +81,7 @@ static void updateAboutData(KAboutData &about, const DistributionData &data)
     about.setCopyrightStatement(data.copyrightStatement.value_or(about.copyrightStatement()));
     about.setDesktopFileName(data.desktopFileName.value_or(about.desktopFileName()));
 }
+#endif
 
 // Extend the about data with the used GnuPG Version since this can
 // make a big difference with regards to the available features.
@@ -104,19 +106,22 @@ static void loadBackendVersions()
     thread->start();
 }
 
+#if KLEOPATRA_FEATURE_READ_VERSION_FILE
 static auto toOptionalString(const QVariant &value)
 {
     return value.isValid() ? std::make_optional(value.toString()) : std::nullopt;
 }
+#endif
 
 // This code is mostly for Gpg4win and GnuPG VS-Desktop so that they
 // can put in their own about data information.
-static void loadCustomAboutData(KAboutData &about)
+static void loadCustomAboutData([[maybe_unused]] KAboutData &about)
 {
+#if KLEOPATRA_FEATURE_READ_VERSION_FILE
     const QString versionFile = QCoreApplication::applicationDirPath() + QStringLiteral(VERSION_RELPATH);
+    auto distributionData = std::make_shared<DistributionData>();
     qCDebug(KLEOPATRA_LOG) << "Looking for VERSION file:" << versionFile;
     if (QFile::exists(versionFile)) {
-        auto distributionData = std::make_shared<DistributionData>();
         const QStringList searchPaths = {Kleo::gnupgInstallPath()};
         const QString distSigKeys = Kleo::gnupgInstallPath() + QStringLiteral(GNUPG_DISTSIGKEY_RELPATH);
         STARTUP_TIMING << "Starting check of VERSION file";
@@ -141,9 +146,14 @@ static void loadCustomAboutData(KAboutData &about)
             updateAboutData(about, *distributionData.get());
         } else {
             qCWarning(KLEOPATRA_LOG) << "VERSION file is NOT valid. The installation is corrupt.";
+            distributionData->detailedError = xi18nc("@info:tooltip", "The verification of the file <filename>%1</filename> failed.", versionFile);
         }
-        KleopatraApplication::instance()->setDistributionData(distributionData);
+    } else {
+        qCWarning(KLEOPATRA_LOG) << "VERSION file is missing. The installation is corrupt.";
+        distributionData->detailedError = xi18nc("@info:tooltip", "The file <filename>%1</filename> is missing.", versionFile);
     }
+    KleopatraApplication::instance()->setDistributionData(distributionData);
+#endif
     loadBackendVersions();
 }
 

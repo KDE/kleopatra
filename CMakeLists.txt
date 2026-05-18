@@ -32,6 +32,10 @@ if (NOT KLEOPATRA_ORGANIZATION_DOMAIN)
     # This is used to allow multiple flavors of Kleopatra to run at the same time on Windows
     set(KLEOPATRA_ORGANIZATION_DOMAIN "kde.org")
 endif()
+if (KLEOPATRA_FEATURE_READ_VERSION_FILE)
+    # The VERSION file is used by some distributions of Kleopatra for customization (mostly of the about data)
+    set(KLEOPATRA_FEATURE_READ_VERSION_FILE 1)
+endif()
 
 project(kleopatra VERSION ${kleopatra_version})
 
