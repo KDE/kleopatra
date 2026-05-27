@@ -375,6 +375,10 @@ void KleopatraApplication::init()
     d->readerStatus.reset(new SmartCard::ReaderStatus);
     connect(d->readerStatus.get(), &SmartCard::ReaderStatus::startOfGpgAgentRequested, this, &KleopatraApplication::startGpgAgent);
     d->setupKeyCache();
+#ifdef Q_OS_WIN
+    // Start dirmngr in the background so that users don't have to wait many seconds for its start when it's needed
+    connect(d->keyCache.get(), &KeyCache::keyListingDone, this, &Kleo::launchDirmngr, Qt::SingleShotConnection);
+#endif
     if (!d->isStandalone) {
         d->setUpSysTrayIcon();
     }
