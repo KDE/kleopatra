@@ -5,7 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#ifdef WIN32
+#ifdef _WIN32
 #include "windowsprocessdevice.h"
 
 #include "kleopatra_debug.h"

@@ -5,7 +5,7 @@
     SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#if defined(WIN32) || defined(Q_MOC_RUN)
+#if defined(_WIN32) || defined(Q_MOC_RUN)
 #ifndef WINDOWSPROCESSDEVICE_H
 #define WINDOWSPROCESSDEVICE_H
 
