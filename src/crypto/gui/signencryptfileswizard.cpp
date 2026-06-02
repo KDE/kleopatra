@@ -221,7 +221,7 @@ public:
     void initializePage() override
     {
         setCommitPage(true);
-        updateCommitButton(mWidget->currentOp());
+        updateCommitButton();
     }
 
     void setArchiveForced(bool archive)
@@ -436,37 +436,28 @@ public:
         return mWidget->encryptSymmetric();
     }
 
-private Q_SLOTS:
-    void updateCommitButton(const SignEncryptWidget::Operations op)
+    QString buttonLabel() const
     {
-        if (mParent->currentPage() != this) {
-            return;
-        }
-        QString label;
-        switch (op) {
+        switch (mWidget->currentOp()) {
         case SignEncryptWidget::Sign:
-            label = i18nc("@action:button", "Sign");
-            break;
+            return i18nc("@action:button", "Sign");
         case SignEncryptWidget::Encrypt:
-            label = i18nc("@action:button", "Encrypt");
-            break;
+            return i18nc("@action:button", "Encrypt");
         case SignEncryptWidget::SignAndEncrypt:
-            label = i18nc("@action:button", "Sign / Encrypt");
-            break;
-        default:;
+        default:
+            return i18nc("@action:button", "Sign / Encrypt");
         };
-        auto btn = qobject_cast<QPushButton *>(mParent->button(QWizard::CommitButton));
-        if (!label.isEmpty()) {
-            mParent->setButtonText(QWizard::CommitButton, label);
-            if (KleopatraApplication::showComplianceStatus()) {
-                const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
-                DeVSCompliance::decorate(btn, de_vs);
-                mParent->setLabelText(DeVSCompliance::name(de_vs));
-            }
-        } else {
-            mParent->setButtonText(QWizard::CommitButton, i18n("Next"));
-            btn->setIcon(QIcon());
-            btn->setStyleSheet(QString());
+    }
+
+private Q_SLOTS:
+    void updateCommitButton()
+    {
+        mParent->setButtonText(QWizard::CommitButton, (mParent->currentPage() == this) ? buttonLabel() : i18nc("@action:button", "Finish"));
+        if (KleopatraApplication::showComplianceStatus()) {
+            auto btn = qobject_cast<QPushButton *>(mParent->button(QWizard::CommitButton));
+            const bool de_vs = DeVSCompliance::isCompliant() && mWidget->isDeVsAndValid();
+            DeVSCompliance::decorate(btn, de_vs);
+            mParent->setLabelText(DeVSCompliance::name(de_vs));
         }
         Q_EMIT completeChanged();
     }
@@ -665,6 +656,11 @@ QMap<int, QString> SignEncryptFilesWizard::outputNames() const
 bool SignEncryptFilesWizard::encryptSymmetric() const
 {
     return mSigEncPage->encryptSymmetric();
+}
+
+QString SignEncryptFilesWizard::buttonLabel() const
+{
+    return mSigEncPage->buttonLabel();
 }
 
 void SignEncryptFilesWizard::readConfig()
