@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-14 02:40+0000\n"
-"PO-Revision-Date: 2026-06-05 00:14+0200\n"
+"PO-Revision-Date: 2026-06-05 23:20+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1466,7 +1466,7 @@ msgstr "Chyba exportu"
 #: src/commands/exportcertificatecommand.cpp:317
 #, kde-format
 msgid "Exporting certificates..."
-msgstr "Exportuji certifikáty..."
+msgstr "Exportování certifikátů..."
 
 #: src/commands/exportcertificatecommand.cpp:329
 #, kde-format
@@ -2091,6 +2091,10 @@ msgid ""
 "declare that a key shall not anymore be used.  It is not possible\n"
 "to retract such a revocation certificate once it has been published."
 msgstr ""
+"Odvolávací certifikát je jakýsi \"nouzový vypínač\", který veřejně\n"
+"oznamuje, že daný klíč již nesmí být používán. Jakmile je odvolávací "
+"certifikát jednou zveřejněn, není možné\n"
+"jej již odvolat."
 
 #: src/commands/genrevokecommand.cpp:79
 #, kde-format
@@ -2098,6 +2102,9 @@ msgid ""
 "Use it to revoke this key in case of a compromise or loss of\n"
 "the secret key."
 msgstr ""
+"Použijte tuto funkci k zrušení platnosti tohoto klíče v případě, že dojde k "
+"jeho zneužití nebo ke ztrátě\n"
+"tajného klíče."
 
 #: src/commands/genrevokecommand.cpp:83
 #, kde-format
@@ -2106,6 +2113,10 @@ msgid ""
 "before the 5 dashes below.  Remove this colon with a text editor\n"
 "before importing and publishing this revocation certificate."
 msgstr ""
+"Aby se zabránilo náhodnému použití tohoto souboru, byla\n"
+"před níže uvedených 5 pomlček vložena dvojtečka.  Tuto dvojtečku odstraňte v "
+"textovém editoru\n"
+"před importem a zveřejněním tohoto certifikátu o zrušení."
 
 #: src/commands/genrevokecommand.cpp:93
 #, kde-format
@@ -2115,6 +2126,9 @@ msgid ""
 "import of the revocation<br>it is required to manually edit the "
 "certificate<br>before it can be imported."
 msgstr ""
+"Certifikát byl úspěšně vytvořen.<br><br>Poznámka:<br>Aby se zabránilo "
+"náhodnému importu zrušeného certifikátu<br>je nutné certifikát před importem "
+"ručně upravit<br>."
 
 #: src/commands/genrevokecommand.cpp:97
 #, kde-format
@@ -2137,7 +2151,7 @@ msgstr "Odvolávací certifikáty "
 msgctxt "@info"
 msgid ""
 "The file <filename>%1</filename> already exists. Do you wish to overwrite it?"
-msgstr ""
+msgstr "Soubor <filename>%1</filename> již existuje. Chcete jej přepsat?"
 
 #: src/commands/genrevokecommand.cpp:123
 #, kde-format
@@ -2155,7 +2169,7 @@ msgstr "Chyba při vytváření odvolávacího certifikátu"
 #, kde-format
 msgctxt "@title:window"
 msgid "Subprocess Diagnostics"
-msgstr ""
+msgstr "Diagnostika podprocesů"
 
 #: src/commands/gnupgprocesscommand.cpp:266
 #, kde-format
@@ -2176,13 +2190,13 @@ msgstr "Proces dokončen"
 #, kde-format
 msgctxt "@info"
 msgid "The clipboard is empty. Nothing imported."
-msgstr ""
+msgstr "Schránka je prázdná. Nic nebylo importováno."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:101
 #, kde-format
 msgctxt "@info"
 msgid "Clipboard contents do not look like a certificate. Nothing imported."
-msgstr ""
+msgstr "Obsah schránky nevypadá jako certifikát. Nic nebylo importováno."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:105
 #, kde-format
@@ -2190,6 +2204,8 @@ msgctxt "@info"
 msgid ""
 "Could not determine certificate type of clipboard contents. Nothing imported."
 msgstr ""
+"Nepodařilo se určit typ certifikátu v obsahu schránky. Nic nebylo "
+"importováno."
 
 #: src/commands/importcertificatefromclipboardcommand.cpp:107
 #: src/utils/clipboardmenu.cpp:41 src/utils/output.cpp:780
@@ -2209,15 +2225,15 @@ msgstr "Poznámkový blok"
 #, kde-format
 msgctxt "@title:window"
 msgid "Importing Certificates"
-msgstr ""
+msgstr "Import certifikátů"
 
 #: src/commands/importcertificatefromfilecommand.cpp:125
 #, kde-format
 msgid "Importing certificates from 1 file..."
 msgid_plural "Importing certificates from %1 files..."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Importování certifikátů z 1 souboru..."
+msgstr[1] "Importování certifikátů ze %1 souborů..."
+msgstr[2] "Importování certifikátů z %1 souborů..."
 
 #: src/commands/importcertificatefromfilecommand.cpp:132
 #: src/commands/importcertificatescommand.cpp:847
@@ -2251,30 +2267,32 @@ msgstr "Vyberte soubor s certifikátem"
 #, kde-format
 msgctxt "@title:window"
 msgid "Fetching Keys"
-msgstr "Stahuji klíče"
+msgstr "Načítání klíčů"
 
 #: src/commands/importcertificatefromkeyservercommand.cpp:64
 #, kde-format
 msgid "Fetching 1 key... (this can take a while)"
 msgid_plural "Fetching %1 keys... (this can take a while)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Načítání 1 klíče... (může to chvíli trvat)"
+msgstr[1] "Načítání %1 klíčů... (může to chvíli trvat)"
+msgstr[2] "Načítání %1 klíčů... (může to chvíli trvat)"
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:86
 #, kde-format
 msgid "Sorry! No certificate to import from this card slot was found."
 msgstr ""
+"Omlouváme se! V tomto slotu pro karty nebyl nalezen žádný certifikát k "
+"importu."
 
 #: src/commands/importcertificatefrompivcardcommand.cpp:91
 #, kde-format
 msgid "Card Certificate"
-msgstr ""
+msgstr "Certifikát karty"
 
 #: src/commands/importcertificatescommand.cpp:110
 #, kde-format
 msgid "Importing certificates... (this can take a while)"
-msgstr "Importuji certifikáty... (to může nějakou dobu trvat)"
+msgstr "Importování certifikátů... (to může nějakou dobu trvat)"
 
 #: src/commands/importcertificatescommand.cpp:143
 #, kde-format
@@ -2360,7 +2378,7 @@ msgstr "Nezměněné tajné klíče:"
 #: src/commands/importcertificatescommand.cpp:186
 #, kde-format
 msgid "Deprecated PGP-2 keys skipped:"
-msgstr ""
+msgstr "Zastaralé klíče PGP-2 byly přeskočeny:"
 
 #: src/commands/importcertificatescommand.cpp:198
 #, kde-format
@@ -2380,7 +2398,7 @@ msgstr "Aktualizované skupiny:"
 #: src/commands/importcertificatescommand.cpp:216
 #, kde-format
 msgid "No imports (should not happen, please report a bug)."
-msgstr ""
+msgstr "Žádné importy (to by se nemělo stávat, nahlaste prosím chybu)."
 
 #: src/commands/importcertificatescommand.cpp:218
 #, kde-format
@@ -2393,25 +2411,24 @@ msgid "Detailed results of import:"
 msgstr "Podrobné výsledky importu:"
 
 #: src/commands/importcertificatescommand.cpp:276
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "You have imported a new certificate (public key)"
+#, kde-format
 msgctxt "@info"
 msgid "You have imported a shared secret key."
-msgstr "Importovali jste nový certifikát (veřejný klíč)"
+msgstr "Importovali jste sdílený tajný klíč."
 
 #: src/commands/importcertificatescommand.cpp:277
 #, kde-format
 msgctxt "@info"
 msgid "In order to use this shared secret key you should certify it. "
 msgstr ""
+"Abyste mohli tento sdílený tajný klíč používat, je třeba jej certifikovat. "
 
 #: src/commands/importcertificatescommand.cpp:278
 #, kde-format
 msgctxt "@info"
 msgid ""
 "Certification means that you check the fingerprint against a trusted source."
-msgstr ""
+msgstr "Certifikace znamená, že porovnáte otisk s důvěryhodným zdrojem."
 
 #: src/commands/importcertificatescommand.cpp:279
 #: src/commands/importcertificatescommand.cpp:292
@@ -2423,7 +2440,7 @@ msgstr "Přejete si nyní začít tento proces?"
 #, kde-format
 msgctxt "@title"
 msgid "Certify shared secret key?"
-msgstr ""
+msgstr "Chcete certifikovat sdílený tajný klíč?"
 
 #: src/commands/importcertificatescommand.cpp:283
 #, kde-format
@@ -2438,25 +2455,23 @@ msgstr "Pomocí vizitky."
 #: src/commands/importcertificatescommand.cpp:285
 #, kde-format
 msgid "Confirming it on a trusted website."
-msgstr ""
+msgstr "Ověření na důvěryhodném webu."
 
 #: src/commands/importcertificatescommand.cpp:287
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "You have imported a new certificate (public key)"
+#, kde-format
 msgctxt "@info"
 msgid "You have imported a new certificate (public key)."
-msgstr "Importovali jste nový certifikát (veřejný klíč)"
+msgstr "Importovali jste nový certifikát (veřejný klíč)."
 
 #: src/commands/importcertificatescommand.cpp:288
 #, kde-format
 msgid "In order to mark the certificate as valid it needs to be certified."
-msgstr ""
+msgstr "Aby byl certifikát označen jako platný, je třeba jej certifikovat."
 
 #: src/commands/importcertificatescommand.cpp:289
 #, kde-format
 msgid "Certifying means that you check the Fingerprint."
-msgstr ""
+msgstr "Certifikace znamená, že ověříte otisk."
 
 #: src/commands/importcertificatescommand.cpp:290
 #, kde-format
@@ -2464,12 +2479,10 @@ msgid "Some suggestions to do this are:"
 msgstr "Nějaké návrhy jak toto provézt:"
 
 #: src/commands/importcertificatescommand.cpp:293
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Certifying certificates…"
+#, kde-format
 msgctxt "@title"
 msgid "Certify new certificate?"
-msgstr "Certifikace certifikátů..."
+msgstr "Certifikovat nový certifikát?"
 
 #: src/commands/importcertificatescommand.cpp:298
 #: src/conf/groupsconfigwidget.cpp:188
@@ -2482,37 +2495,37 @@ msgstr "Certifikovat"
 #, kde-format
 msgctxt "@action:button"
 msgid "Do Not Certify Now"
-msgstr ""
+msgstr "Nyní necertifikovat"
 
 #: src/commands/importcertificatescommand.cpp:375
 #, kde-format
 msgctxt "file name (imported with gpg/gpgsm)"
 msgid "%1 (imported with %2)"
-msgstr ""
+msgstr "%1 (importováno s %2)"
 
 #: src/commands/importcertificatescommand.cpp:379
 #, kde-format
 msgctxt "@info"
 msgid "Audit log is empty."
-msgstr ""
+msgstr "Protokol auditu je prázdný."
 
 #: src/commands/importcertificatescommand.cpp:381
 #, kde-format
 msgctxt "@info"
 msgid "Import was canceled."
-msgstr ""
+msgstr "Import byl zrušen."
 
 #: src/commands/importcertificatescommand.cpp:408
 #, kde-format
 msgctxt "@action:button"
 msgid "List Imported Certificates"
-msgstr ""
+msgstr "Seznam importovaných certifikátů"
 
 #: src/commands/importcertificatescommand.cpp:409
 #, kde-format
 msgctxt "@action:button"
 msgid "Show Audit Log"
-msgstr "Zobrazit záznam Auditu"
+msgstr "Zobrazit záznam auditu"
 
 #: src/commands/importcertificatescommand.cpp:432
 #, kde-format
@@ -2540,12 +2553,15 @@ msgid ""
 "para><para>Fingerprint: %1<nl/>User ID: %2</para><para>Are you the only user "
 "of this secret key?</para>"
 msgstr ""
+"<para>Načetli jste certifikát s tajným klíčem.</para><para>Otisk: %1<nl/>ID "
+"uživatele: %2</para><para>Jste jediným uživatelem tohoto tajného klíče?</"
+"para>"
 
 #: src/commands/importcertificatescommand.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid "%1<item>%2</item>"
-msgstr ""
+msgstr "%1<item>%2</item>"
 
 #: src/commands/importcertificatescommand.cpp:573
 #, kde-kuit-format
@@ -2555,19 +2571,22 @@ msgid ""
 "para><para>Fingerprint: %1</para><para>User IDs:<list>%2</list></"
 "para><para>Are you the only user of this secret key?</para>"
 msgstr ""
+"<para>Načetli jste certifikát s tajným klíčem.</para><para>Otisk: %1</"
+"para><para>ID uživatelů:<list>%2</list></para><para>Jste jediným uživatelem "
+"tohoto tajného klíče?</para>"
 
 #: src/commands/importcertificatescommand.cpp:587
 #: src/dialogs/certifywidget.cpp:193
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes, I am the only user"
-msgstr ""
+msgstr "Ano, jsem jediný uživatel"
 
 #: src/commands/importcertificatescommand.cpp:588
 #, kde-format
 msgctxt "@action:button"
 msgid "No, others also use this key"
-msgstr ""
+msgstr "Ne, tento klíč používají i ostatní"
 
 #: src/commands/importcertificatescommand.cpp:747
 #, kde-kuit-format
@@ -2577,14 +2596,17 @@ msgid ""
 "para><para>contains certificates that cannot be used for encryption. This "
 "may lead to unexpected results.</para>"
 msgstr ""
+"<para>Importovaná skupina</para><para><emphasis>%1</emphasis></"
+"para><para>obsahuje certifikáty, které nelze použít k šifrování. To může "
+"vést k neočekávaným výsledkům.</para>"
 
 #: src/commands/importcertificatescommand.cpp:811
 #, kde-format
 msgid "Fetching 1 signer key... (this can take a while)"
 msgid_plural "Fetching %1 signer keys... (this can take a while)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Načítání 1 podpisového klíče... (může to chvíli trvat)"
+msgstr[1] "Načítání %1 podpisových klíčů... (může to chvíli trvat)"
+msgstr[2] "Načítání %1 podpisových klíčů... (může to chvíli trvat)"
 
 #: src/commands/importcertificatescommand.cpp:846
 #: src/commands/importcertificatescommand.cpp:897
@@ -2592,22 +2614,22 @@ msgstr[2] ""
 msgid ""
 "The type of this certificate (%1) is not supported by this Kleopatra "
 "installation."
-msgstr ""
+msgstr "Tento typ certifikátu (%1) není v této instalaci Kleopatry podporován."
 
 #: src/commands/importcrlcommand.cpp:53
 #, kde-format
 msgid "Certificate Revocation Lists, DER encoded"
-msgstr ""
+msgstr "Seznamy odvolaných certifikátů, kódované ve formátu DER"
 
 #: src/commands/importcrlcommand.cpp:54
 #, kde-format
 msgid "Select CRL File to Import"
-msgstr ""
+msgstr "Vyberte soubor CRL k importu"
 
 #: src/commands/importcrlcommand.cpp:169
 #, kde-format
 msgid "Unable to start process dirmngr. Please check your installation."
-msgstr ""
+msgstr "Nelze spustit proces dirmngr. Zkontrolujte prosím instalaci."
 
 #: src/commands/importcrlcommand.cpp:171
 #, kde-format
@@ -2621,6 +2643,9 @@ msgid ""
 "because of an unexpected error. Please check the output of gpgsm --call-"
 "dirmngr loadcrl <filename> for details."
 msgstr ""
+"Proces GpgSM, který se pokoušel načíst soubor CRL, byl předčasně ukončen z "
+"důvodu neočekávané chyby. Podrobnosti najdete ve výstupu příkazu gpgsm --"
+"call-dirmngr loadcrl <filename>"
 
 #: src/commands/importcrlcommand.cpp:192 src/commands/importcrlcommand.cpp:197
 #, kde-format
@@ -2634,6 +2659,8 @@ msgid ""
 "was:\n"
 "%1"
 msgstr ""
+"Při pokusu o import souboru CRL došlo k chybě. Výstup programu gpgsm byl:\n"
+"%1"
 
 #: src/commands/importcrlcommand.cpp:199
 #, kde-format
@@ -2650,7 +2677,7 @@ msgstr "Import CRL dokončen"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open <filename>%1</filename> for reading."
-msgstr ""
+msgstr "Nelze otevřít soubor <filename>%1</filename> pro čtení."
 
 #: src/commands/importpaperkeycommand.cpp:132
 #, kde-format
@@ -2671,6 +2698,9 @@ msgid ""
 "application> to import your text backup.</para><para>Please make sure it is "
 "installed.</para>"
 msgstr ""
+"<para><application>Kleopatra</application> používá <application>PaperKey</"
+"application> k importu textové zálohy.</para><para>Ujistěte se prosím, že je "
+"nainstalován.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:156
 #, kde-format
@@ -2680,7 +2710,7 @@ msgstr "Vyberte výstupní soubor"
 #: src/commands/importpaperkeycommand.cpp:158
 #, kde-format
 msgid "Paper backup"
-msgstr ""
+msgstr "Záloha Paper"
 
 #: src/commands/importpaperkeycommand.cpp:191
 #, kde-format
@@ -2696,6 +2726,9 @@ msgid ""
 "because of an unexpected error.</para><para>Please check the output of "
 "<icode>%1</icode> for details.</para>"
 msgstr ""
+"<para>Proces GPG, který se pokoušel obnovit tajný klíč, byl předčasně "
+"ukončen z důvodu neočekávané chyby.</para><para>Podrobnosti najdete ve "
+"výstupu příkazu <icode>%1</icode>.</para>"
 
 #: src/commands/importpaperkeycommand.cpp:206
 #, kde-kuit-format
@@ -2717,7 +2750,7 @@ msgstr "Vybrat kartu"
 #: src/commands/keytocardcommand.cpp:159
 #, kde-format
 msgid "Please select the card the key should be written to:"
-msgstr ""
+msgstr "Vyberte prosím kartu, na kterou má být klíč zapsán:"
 
 #: src/commands/keytocardcommand.cpp:198
 #, kde-kuit-format
@@ -2725,6 +2758,7 @@ msgctxt "@info"
 msgid ""
 "Sorry! Writing keys to the card <emphasis>%1</emphasis> is not supported."
 msgstr ""
+"Omlouváme se! Zápis klíčů na kartu <emphasis>%1</emphasis> není podporován."
 
 #: src/commands/keytocardcommand.cpp:226
 #, kde-format
@@ -2747,17 +2781,17 @@ msgstr "Ověření"
 #: src/commands/keytocardcommand.cpp:240
 #, kde-format
 msgid "Select Card Slot"
-msgstr ""
+msgstr "Vyberte slot karty"
 
 #: src/commands/keytocardcommand.cpp:241
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
-msgstr ""
+msgstr "Vyberte prosím slot karty, do kterého má být klíč zapsán:"
 
 #: src/commands/keytocardcommand.cpp:271
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
-msgstr ""
+msgstr "Omlouváme se! Tento klíč nelze přenést na kartu OpenPGP."
 
 #: src/commands/keytocardcommand.cpp:289 src/commands/keytocardcommand.cpp:408
 #, kde-format
@@ -2767,11 +2801,14 @@ msgid ""
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
+"<p>Karta <em>%1</em> již obsahuje klíč v tomto slotu. Pokračováním "
+"<b>přepíšete</b> tento klíč.</p><p>Pokud neexistuje záloha, stávající klíč "
+"bude nenávratně ztracen.</p>"
 
 #: src/commands/keytocardcommand.cpp:292
 #, kde-format
 msgid "The existing key has the fingerprint:"
-msgstr ""
+msgstr "Stávající klíč má otisk:"
 
 #: src/commands/keytocardcommand.cpp:295 src/commands/keytocardcommand.cpp:414
 #: src/commands/pivgeneratecardkeycommand.cpp:138
@@ -2796,12 +2833,12 @@ msgstr "Vyberte certifikát"
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
-msgstr ""
+msgstr "Vyberte certifikát, jehož pár klíčů chcete zapsat na kartu:"
 
 #: src/commands/keytocardcommand.cpp:390
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
-msgstr ""
+msgstr "Omlouváme se! Tento klíč nelze přenést na PIV kartu."
 
 #: src/commands/keytocardcommand.cpp:395
 #, kde-format
@@ -2809,11 +2846,12 @@ msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr ""
+"Omlouváme se! Na PIV kartu lze přenést pouze šifrovací a podpisové klíče."
 
 #: src/commands/keytocardcommand.cpp:411
 #, kde-format
 msgid "The existing key has the key grip:"
-msgstr ""
+msgstr "Stávající klíč má klíčenku:"
 
 #: src/commands/keytocardcommand.cpp:489
 #, kde-kuit-format
@@ -2823,6 +2861,9 @@ msgid ""
 "the copy of the key stored on this computer. Optionally, you can first "
 "create a backup of the key.</para>"
 msgstr ""
+"<para>Klíč byl zkopírován na kartu.</para><para>Nyní můžete kopii klíče "
+"uloženou v tomto počítači smazat. Případně můžete nejprve vytvořit zálohu "
+"klíče.</para>"
 
 #: src/commands/keytocardcommand.cpp:493
 #, kde-format
@@ -2834,13 +2875,13 @@ msgstr "Vytvořit zálohu"
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
-msgstr ""
+msgstr "Odstranit kopii na disku"
 
 #: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
-msgstr ""
+msgstr "Zachovat kopii na disku"
 
 #: src/commands/keytocardcommand.cpp:517
 #, kde-kuit-format
@@ -2850,49 +2891,54 @@ msgid ""
 "<filename>%1</filename>.</para><para>Do you want to delete the copy of the "
 "key stored on this computer?</para>"
 msgstr ""
+"<para>Klíč byl zkopírován na kartu a záloha byla uložena do souboru "
+"<filename>%1</filename>.</para><para>Chcete odstranit kopii klíče uloženou v "
+"tomto počítači?</para>"
 
 #: src/commands/keytocardcommand.cpp:556
 #, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
-msgstr ""
+msgstr "Zálohovat tajný klíč"
 
 #: src/commands/keytocardcommand.cpp:559
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
-msgstr ""
+msgstr "Soubory záloh tajných klíčů"
 
 #: src/commands/keytocardcommand.cpp:614
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
 msgstr ""
+"Nelze otevřít soubor soukromého klíče <filename>%1</filename> pro čtení."
 
 #: src/commands/keytocardcommand.cpp:623
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
-msgstr ""
+msgstr "Soubor se soukromým klíčem <filename>%1</filename> je prázdný."
 
 #: src/commands/keytocardcommand.cpp:633
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
-msgstr ""
+msgstr "Nelze otevřít soubor <filename>%1</filename> pro zápis."
 
 #: src/commands/keytocardcommand.cpp:640
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
+"Zápis zálohy tajného klíče do souboru <filename>%1</filename> se nezdařil."
 
 #: src/commands/keytocardcommand.cpp:657
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
-msgstr ""
+msgstr "Opravdu chcete odstranit kopii klíče uloženou v tomto počítači?"
 
 #: src/commands/keytocardcommand.cpp:680
 #, kde-kuit-format
@@ -2901,18 +2947,20 @@ msgid ""
 "<para>Failed to delete the copy of the key stored on this computer:</"
 "para><para><message>%1</message></para>"
 msgstr ""
+"<para>Nepodařilo se odstranit kopii klíče uloženou v tomto počítači:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp:683
 #, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
-msgstr ""
+msgstr "Kopie klíče uložená v tomto počítači byla úspěšně odstraněna."
 
 #: src/commands/lookupcertificatescommand.cpp:315
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
-msgstr ""
+msgstr "Vyhledávání odpovídajících certifikátů ..."
 
 #: src/commands/lookupcertificatescommand.cpp:462
 #, kde-kuit-format
@@ -2924,6 +2972,10 @@ msgid ""
 "configure a different X.509 directory service in the configuration dialog.</"
 "para>"
 msgstr ""
+"<para>Jedna ze služeb adresářů X.509 vrátila certifikáty bez otisků. Tyto "
+"certifikáty jsou ignorovány, protože otisky jsou vyžadovány jako jedinečné "
+"identifikátory certifikátů.</para><para>V konfiguračním dialogovém okně "
+"můžete nastavit jinou službu adresářů X.509.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:469
 #, kde-kuit-format
@@ -2934,6 +2986,10 @@ msgid ""
 "identifiers for certificates.</para><para>You may want to configure a "
 "different OpenPGP keyserver in the configuration dialog.</para>"
 msgstr ""
+"<para>Server klíčů OpenPGP vrátil certifikáty bez otisků. Tyto certifikáty "
+"jsou ignorovány, protože otisky jsou nezbytné jako jedinečné identifikátory "
+"certifikátů.</para><para>V konfiguračním dialogovém okně můžete nastavit "
+"jiný server klíčů OpenPGP.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:475
 #, kde-format
@@ -2961,6 +3017,9 @@ msgid ""
 "Failed to search on certificate server. The error returned was:\n"
 "%1"
 msgstr ""
+"Vyhledávání na serveru s certifikáty se nezdařilo. Vrátila se následující "
+"chyba:\n"
+"%1"
 
 #: src/commands/lookupcertificatescommand.cpp:633
 #, kde-kuit-format
@@ -2972,6 +3031,11 @@ msgid ""
 "dialog, but if one of the configured servers is the limiting factor, you "
 "have to refine your search.</para>"
 msgstr ""
+"<para>Výsledek dotazu byl zkrácen.</para><para>Bylo překročeno místní nebo "
+"vzdálené omezení maximálního počtu vrácených výsledků.</para><para>Můžete "
+"zkusit zvýšit místní limit v konfiguračním dialogovém okně, ale pokud je "
+"limitujícím faktorem některý z nakonfigurovaných serverů, musíte vyhledávání "
+"upřesnit.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:641
 #, kde-format
@@ -2988,25 +3052,29 @@ msgid ""
 "can configure directory servers here: <interface>Settings->Configure "
 "Kleopatra</interface>.</para>"
 msgstr ""
+"<para>Nemáte nakonfigurovaný žádný adresářový server.</para><para>Abyste "
+"mohli provádět vyhledávání, musíte nakonfigurovat alespoň jeden adresářový "
+"server.</para><para>Adresářové servery můžete nakonfigurovat zde: "
+"<interface>Nastavení->Nastavení Kleopatry</interface>.</para>"
 
 #: src/commands/lookupcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
-msgstr ""
+msgstr "Není nakonfigurován žádný adresářový server"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:130
 #: src/commands/newopenpgpcertificatecommand.cpp:171
 #, kde-format
 msgid "Could not start key pair creation: %1"
-msgstr ""
+msgstr "Nelze zahájit vytváření páru klíčů: %1"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:140
 #: src/commands/newopenpgpcertificatecommand.cpp:181
 #, kde-format
 msgctxt "@title"
 msgid "Creating Key Pair..."
-msgstr ""
+msgstr "Vytváření páru klíčů..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:141
 #: src/commands/newopenpgpcertificatecommand.cpp:182
@@ -3015,6 +3083,8 @@ msgid ""
 "The process of creating a key requires large amounts of random numbers. This "
 "may require several minutes..."
 msgstr ""
+"Proces generování klíče vyžaduje velké množství náhodných čísel. Může to "
+"trvat několik minut..."
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:176
 #: src/commands/newopenpgpcertificatecommand.cpp:305
@@ -3039,14 +3109,14 @@ msgstr ""
 #: src/kleopatraapplication.cpp:580
 #, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
-msgstr ""
+msgstr "Nemáte oprávnění vytvářet žádosti o podepsání certifikátu S/MIME."
 
 #: src/commands/newopenpgpcertificatecommand.cpp:234
 #: src/commands/newopenpgpcertificatecommand.cpp:267
 #, kde-format
 msgctxt "@info"
 msgid "Failed to create signing subkey: %1"
-msgstr ""
+msgstr "Nepodařilo se vytvořit podklíč pro podepisování: %1"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:259
 #: src/commands/newopenpgpcertificatecommand.cpp:277
@@ -3056,6 +3126,8 @@ msgid ""
 "<para>A new OpenPGP certificate was created successfully.</"
 "para><para>Fingerprint of the new certificate: %1</para>"
 msgstr ""
+"<para>Nový certifikát OpenPGP byl úspěšně vytvořen.</para><para>Otisk nového "
+"certifikátu: %1</para>"
 
 #: src/commands/newopenpgpcertificatecommand.cpp:289
 #, kde-kuit-format
@@ -3075,20 +3147,22 @@ msgid ""
 "been found in the key ring.</para><para>Fingerprint of the new certificate:"
 "<nl/>%1</para>"
 msgstr ""
+"<para>Nový certifikát OpenPGP byl úspěšně vytvořen, ale nebyl nalezen v "
+"klíčence.</para><para>Otisk nového certifikátu:<nl/>%1</para>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:104
 #: src/commands/pivgeneratecardkeycommand.cpp:225
 #, kde-format
 msgctxt "@info"
 msgid "Generating key failed: %1"
-msgstr ""
+msgstr "Vygenerování klíče se nezdařilo: %1"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:106
 #: src/commands/pivgeneratecardkeycommand.cpp:227
 #, kde-format
 msgctxt "@info"
 msgid "Key successfully generated."
-msgstr ""
+msgstr "Klíč byl úspěšně vygenerován."
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:180
 #: src/commands/pivgeneratecardkeycommand.cpp:131
@@ -3099,12 +3173,15 @@ msgid ""
 "<b>overwrite</b> that key.</p><p>If there is no backup the existing key will "
 "be irrecoverably lost.</p>"
 msgstr ""
+"<p>Tato karta již obsahuje klíč v tomto slotu. Pokračováním <b>přepíšete</b> "
+"tento klíč.</p><p>Pokud neexistuje záloha, stávající klíč bude nenávratně "
+"ztracen.</p>"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:182
 #: src/commands/pivgeneratecardkeycommand.cpp:133
 #, kde-format
 msgid "The existing key has the ID:"
-msgstr ""
+msgstr "Stávající klíč má ID:"
 
 #: src/commands/openpgpgeneratecardkeycommand.cpp:187
 #, kde-format
@@ -3119,15 +3196,17 @@ msgid ""
 "You cannot generate a key on this smart card because it doesn't support any "
 "of the compliant algorithms."
 msgstr ""
+"Na této čipové kartě nelze vygenerovat klíč, protože nepodporuje žádný z "
+"povolených algoritmů."
 
 #: src/commands/refreshcertificatescommand.cpp:119
 #, kde-format
 msgctxt "@info"
 msgid "Updating certificate…"
 msgid_plural "Updating %1 certificates…"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Aktualizace certifikátu…"
+msgstr[1] "Aktualizace %1 certifikátů…"
+msgstr[2] "Aktualizace %1 certifikátů…"
 
 #: src/commands/refreshcertificatescommand.cpp:120
 #, kde-format
@@ -3140,18 +3219,18 @@ msgstr "Zrušit"
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
-msgstr ""
+msgstr "Aktualizace klíče..."
 
 #: src/commands/refreshcertificatescommand.cpp:205
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
-msgstr ""
+msgstr "Aktualizace certifikátu..."
 
 #: src/commands/refreshcertificatescommand.cpp:280
 #, kde-format
 msgid "The certificate has not changed."
-msgstr ""
+msgstr "Certifikát se nezměnil."
 
 #: src/commands/refreshcertificatescommand.cpp:284
 #, kde-format
@@ -3161,7 +3240,7 @@ msgstr "Certifikát byl odvolán."
 #: src/commands/refreshcertificatescommand.cpp:287
 #, kde-format
 msgid "The certificate has been updated."
-msgstr ""
+msgstr "Certifikát byl aktualizován."
 
 #: src/commands/refreshcertificatescommand.cpp:291
 #, kde-format
@@ -3182,9 +3261,9 @@ msgstr "Nové podpisy: %1"
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Kromě toho byl získán jeden nový klíč."
+msgstr[1] "Kromě toho byl získány %1 nové klíče."
+msgstr[2] "Kromě toho bylo získáno %1 nových klíčů."
 
 #: src/commands/refreshcertificatescommand.cpp:405
 #, kde-format
@@ -3193,6 +3272,8 @@ msgid ""
 "Result of OpenPGP certificate update from keyserver, LDAP server, or Active "
 "Directory"
 msgstr ""
+"Výsledek aktualizace certifikátu OpenPGP ze serveru klíčů, serveru LDAP nebo "
+"služby Active Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:408
 #: src/commands/refreshcertificatescommand.cpp:425
@@ -3207,6 +3288,8 @@ msgstr "<para>Aktualizace selhala:</para><para><message>%1</message></para>"
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr ""
+"<para>Aktualizace byla přeskočena, protože není nastaven žádný server klíčů "
+"OpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:412
 #: src/commands/refreshcertificatescommand.cpp:428
@@ -3233,13 +3316,13 @@ msgstr[2] ""
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
-msgstr ""
+msgstr "Výsledek aktualizace z Web Key Directory"
 
 #: src/commands/refreshcertificatescommand.cpp:440
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
-msgstr ""
+msgstr "Výsledek aktualizace S/MIME certifikátu"
 
 #: src/commands/refreshcertificatescommand.cpp:450
 #, kde-format
@@ -3270,7 +3353,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Revocation"
-msgstr ""
+msgstr "Potvrdit odvolání"
 
 #: src/commands/revokecertificationcommand.cpp:105
 #, kde-format
@@ -3359,7 +3442,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:status"
 msgid "Revoking key..."
-msgstr "Odvolávám klíč..."
+msgstr "Odvolávání klíče..."
 
 #: src/commands/revokekeycommand.cpp:241
 #, kde-kuit-format
@@ -3723,7 +3806,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure"
-msgstr "Nastavit"
+msgstr "Nastavení"
 
 #: src/conf/configuredialog.cpp:39
 #, kde-format
@@ -4909,7 +4992,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1211
 #, kde-format
 msgid "Verifying %1..."
-msgstr "Ověřuji %1..."
+msgstr "Ověřování %1..."
 
 #: src/crypto/decryptverifytask.cpp:1462
 #, kde-kuit-format
@@ -4922,7 +5005,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1466
 #, kde-format
 msgid "Verifying signature %1..."
-msgstr "Ověřuji podpis %1..."
+msgstr "Ověřování podpisu %1..."
 
 #: src/crypto/encryptemailcontroller.cpp:119
 #, kde-format
@@ -6692,7 +6775,7 @@ msgstr ", "
 #: src/dialogs/useridswidget.cpp:371
 #, kde-format
 msgid "Updating..."
-msgstr "Aktualizuji..."
+msgstr "Aktualizace..."
 
 #: src/dialogs/certificatedetailswidget.cpp:580
 #, kde-format
@@ -8035,19 +8118,19 @@ msgstr "Načítání čipových karet..."
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card %1..."
-msgstr "Aktualizuji čipovou kartu %1..."
+msgstr "Aktualizace čipové karty %1..."
 
 #: src/dialogs/smartcardwindow.cpp:104
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating smart card..."
-msgstr "Aktualizuji čipovou kartu..."
+msgstr "Aktualizace čipové karty..."
 
 #: src/dialogs/smartcardwindow.cpp:111 src/dialogs/smartcardwindow.cpp:123
 #, kde-format
 msgctxt "@info:status"
 msgid "Importing certificates from smart cards..."
-msgstr "Importuji certifikáty z čipových karet..."
+msgstr "Importování certifikátů z čipových karet..."
 
 #: src/dialogs/smartcardwindow.cpp:135
 #, kde-format
