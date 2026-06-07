@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-14 02:40+0000\n"
-"PO-Revision-Date: 2026-06-05 23:20+0200\n"
+"PO-Revision-Date: 2026-06-06 23:25+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -2645,7 +2645,7 @@ msgid ""
 msgstr ""
 "Proces GpgSM, který se pokoušel načíst soubor CRL, byl předčasně ukončen z "
 "důvodu neočekávané chyby. Podrobnosti najdete ve výstupu příkazu gpgsm --"
-"call-dirmngr loadcrl <filename>"
+"call-dirmngr loadcrl <filename>."
 
 #: src/commands/importcrlcommand.cpp:192 src/commands/importcrlcommand.cpp:197
 #, kde-format
@@ -3297,9 +3297,9 @@ msgstr ""
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<para>Certifikát nebyl nalezen.</para>"
+msgstr[1] "<para>Certifikáty nebyly nalezeny.</para>"
+msgstr[2] "<para>Certifikáty nebyly nalezeny.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:415
 #: src/commands/refreshcertificatescommand.cpp:432
@@ -3308,9 +3308,9 @@ msgstr[2] ""
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<para>Certifikát byl aktualizován.</para>"
+msgstr[1] "<para>Certifikáty byly aktualizovány.</para>"
+msgstr[2] "<para>Certifikáty byly aktualizovány.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:423
 #, kde-format
@@ -3329,9 +3329,9 @@ msgstr "Výsledek aktualizace S/MIME certifikátu"
 msgctxt "@title:window"
 msgid "Certificate Updated"
 msgid_plural "Certificates Updated"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Certifikát aktualizován"
+msgstr[1] "Certifikáty aktualizovány"
+msgstr[2] "Certifikáty aktualizovány"
 
 #: src/commands/refreshcertificatescommand.cpp:450
 #, kde-format
@@ -3346,6 +3346,8 @@ msgid ""
 "<para>You are about to revoke the certification of user ID<nl/>%1<nl/>made "
 "with the key<nl/>%2.</para>"
 msgstr ""
+"<para>Chystáte se zrušit certifikát ID uživatele<nl/>%1<nl/>vytvořený pomocí "
+"klíče<nl/>%2.</para>"
 
 #: src/commands/revokecertificationcommand.cpp:104
 #: src/commands/revokecertificationcommand.cpp:118
@@ -3363,15 +3365,15 @@ msgstr "Odvolat certifikaci"
 #: src/commands/revokecertificationcommand.cpp:110
 #, kde-format
 msgid "User ID '%1' certified with key %2"
-msgstr ""
+msgstr "ID uživatele '%1' bylo ověřeno klíčem %2"
 
 #: src/commands/revokecertificationcommand.cpp:112
 #, kde-format
 msgid "You are about to revoke the following certification:"
 msgid_plural "You are about to revoke the following %1 certifications:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Chystáte se odvolat následující certifikaci:"
+msgstr[1] "Chystáte se odvolat %1 následující certifikace:"
+msgstr[2] "Chystáte se odvolat %1 následujících certifikací:"
 
 #: src/commands/revokecertificationcommand.cpp:119
 #, kde-format
@@ -3388,8 +3390,14 @@ msgid_plural ""
 "<para>%1 certifications have been revoked successfully.</para><para>Do you "
 "want to publish the revocations?</para>"
 msgstr[0] ""
+"<para>Certifikát byl úspěšně odvolán.</para><para>Chcete odvolání zveřejnit?"
+"</para>"
 msgstr[1] ""
+"<para>%1 certifikáty byly úspěšně odvolány.</para><para>Chcete odvolání "
+"zveřejnit?</para>"
 msgstr[2] ""
+"<para>%1 certifikátů bylo úspěšně odvoláno.</para><para>Chcete odvolání "
+"zveřejnit?</para>"
 
 #: src/commands/revokecertificationcommand.cpp:232
 #, kde-format
@@ -3404,7 +3412,7 @@ msgstr[2] "Zveřejnit odvolání"
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Publication"
-msgstr ""
+msgstr "Potvrdit zveřejnění"
 
 #: src/commands/revokecertificationcommand.cpp:260
 #, kde-kuit-format
@@ -3413,30 +3421,32 @@ msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
+"<para>Odvolání certifikátu ID uživatele<nl/>%1<nl/>vytvořeného klíčem<nl/>"
+"%2<nl/>se nezdařilo:</para><para><message>%3</message></para>"
 
 #: src/commands/revokecertificationcommand.cpp:351
 #, kde-format
 msgid "You cannot revoke any certifications of this key."
-msgstr ""
+msgstr "Certifikáty tohoto klíče nelze odvolat."
 
 #: src/commands/revokecertificationcommand.cpp:354
 #, kde-format
 msgid "You cannot revoke any certifications of this user ID."
 msgid_plural "You cannot revoke any certifications of these user IDs."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Certifikáty tohoto ID uživatele nelze odvolat."
+msgstr[1] "Certifikáty těchto ID uživatelů nelze odvolat."
+msgstr[2] "Certifikáty těchto ID uživatelů nelze odvolat."
 
 #: src/commands/revokecertificationcommand.cpp:359
 #, kde-format
 msgid "You cannot revoke this certification."
-msgstr ""
+msgstr "Tuto certifikaci nelze odvolat."
 
 #: src/commands/revokekeycommand.cpp:121
 #, kde-format
 msgctxt "@info"
 msgid "This key has already been revoked."
-msgstr ""
+msgstr "Tento klíč byl již odvolán."
 
 #: src/commands/revokekeycommand.cpp:211
 #, kde-format
@@ -3451,19 +3461,20 @@ msgid ""
 "<para>An error occurred during the revocation:</para><para><message>%1</"
 "message></para>"
 msgstr ""
+"<para>Při odvolávání došlo k chybě:</para><para><message>%1</message></para>"
 
 #: src/commands/revokekeycommand.cpp:244
 #: src/commands/revokeuseridcommand.cpp:127
 #, kde-format
 msgctxt "@title:window"
 msgid "Revocation Failed"
-msgstr ""
+msgstr "Odvolávání selhalo"
 
 #: src/commands/revokekeycommand.cpp:277 src/commands/revokekeycommand.cpp:291
 #, kde-format
 msgctxt "@info"
 msgid "The certificate was revoked successfully."
-msgstr ""
+msgstr "Certifikát byl úspěšně odvolán."
 
 #: src/commands/revokekeycommand.cpp:321
 #, kde-kuit-format
@@ -3474,6 +3485,10 @@ msgid ""
 "filename>.</para><para>You should send this file to your communication "
 "partners with the instruction to import it.</para>"
 msgstr ""
+"<para>Certifikát byl úspěšně odvolán a nahrán do interního adresáře.</"
+"para><para>Odvolaný certifikát byl uložen do souboru <filename>%1</filename>."
+"</para><para>Tento soubor byste měli zaslat svým komunikačním partnerům s "
+"pokynem, aby jej importovali.</para>"
 
 #: src/commands/revokekeycommand.cpp:328
 #, kde-kuit-format
@@ -3484,6 +3499,10 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
+"<para>Certifikát byl úspěšně odvolán a nahrán do %1.</para><para>Odvolaný "
+"certifikát byl uložen do souboru <filename>%2</filename>.</para><para>Tento "
+"soubor byste měli zaslat svým komunikačním partnerům s pokynem, aby jej "
+"importovali.</para>"
 
 #: src/commands/revokekeycommand.cpp:337
 #, kde-kuit-format
@@ -3494,6 +3513,10 @@ msgid ""
 "this file to your communication partners with the instruction to import it.</"
 "para>"
 msgstr ""
+"<para>Certifikát byl úspěšně odvolán.</para><para>Odvolaný certifikát byl "
+"uložen do souboru <filename>%1</filename></para><para>Tento soubor byste "
+"měli zaslat svým komunikačním partnerům s pokynem, aby jej importovali.</"
+"para>"
 
 #: src/commands/revokeuseridcommand.cpp:123
 #, kde-kuit-format
@@ -3502,6 +3525,8 @@ msgid ""
 "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</"
 "emphasis>.</para><para><message>%2</message></para>"
 msgstr ""
+"<para>Při pokusu o zrušení ID uživatele<nl/><emphasis>%1</emphasis> došlo k "
+"chybě.</para><para><message>%2</message></para>"
 
 #: src/commands/revokeuseridcommand.cpp:132
 #, kde-kuit-format
@@ -3510,12 +3535,14 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been revoked "
 "successfully.</para>"
 msgstr ""
+"<para>ID uživatele<nl/><emphasis>%1</emphasis><nl/>bylo úspěšně zrušeno.</"
+"para>"
 
 #: src/commands/revokeuseridcommand.cpp:133
 #, kde-format
 msgctxt "@title:window"
 msgid "Revocation Succeeded"
-msgstr ""
+msgstr "Odvolání bylo úspěšné"
 
 #: src/commands/setinitialpincommand.cpp:52
 #, kde-format
@@ -3527,7 +3554,7 @@ msgstr "Nastavit počáteční pin"
 #: src/commands/setinitialpincommand.cpp:169
 #, kde-format
 msgid "Failed to find the NetKey card with the serial number: %1"
-msgstr ""
+msgstr "Nepodařilo se najít kartu NetKey se sériovým číslem: %1"
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:121
 #, kde-format
@@ -3535,6 +3562,8 @@ msgid ""
 "Please enter the old PIV Card Application Administration Key in hex-encoded "
 "form."
 msgstr ""
+"Zadejte prosím starý administrační klíč aplikace PIV karty v hexadecimálním "
+"kódování."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:163
 #, kde-format
@@ -3542,29 +3571,31 @@ msgid ""
 "Please enter the new PIV Card Application Administration Key in hex-encoded "
 "form. The key needs to consist of 24 bytes, i.e. 48 hex-characters."
 msgstr ""
+"Zadejte prosím nový administrační klíč aplikace PIV karty v hexadecimálním "
+"kódování. Klíč musí mít délku 24 bajtů, tj. 48 hexadecimálních znaků."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:165
 #, kde-format
 msgid "Please enter the new PIV Card Application Administration Key again."
-msgstr ""
+msgstr "Zadejte prosím znovu nový administrační klíč aplikace PIV karty."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:186
 #, kde-format
 msgctxt "@info"
 msgid "The two keys you have entered do not match. Please retry."
-msgstr ""
+msgstr "Dva zadané klíče se neshodují. Zkuste to znovu."
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:216
 #, kde-format
 msgctxt "@info"
 msgid "Setting the PIV Card Application Administration Key failed: %1"
-msgstr ""
+msgstr "Nastavení administračního klíče aplikace PIV karty se nezdařilo: %1"
 
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:218
 #, kde-format
 msgctxt "@info"
 msgid "PIV Card Application Administration Key set successfully."
-msgstr ""
+msgstr "Administrativní klíč aplikace PIV karty byl úspěšně nastaven."
 
 #: src/commands/setprimaryuseridcommand.cpp:121
 #, kde-kuit-format
@@ -3574,6 +3605,8 @@ msgid ""
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
+"<para>Při pokusu o označení ID uživatele<nl/><emphasis>%1</emphasis><nl/"
+">jako primárního došlo k chybě.</para><para><message>%2</message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp:130
 #, kde-kuit-format
@@ -3582,6 +3615,8 @@ msgid ""
 "<para>The user ID<nl/><emphasis>%1</emphasis><nl/>has been flagged "
 "successfully as the primary user ID.</para>"
 msgstr ""
+"<para>ID uživatele<nl/><emphasis>%1</emphasis><nl/>bylo úspěšně označeno "
+"jako primární.</para>"
 
 #: src/commands/signencryptfilescommand.cpp:272
 #, kde-format
@@ -3591,12 +3626,12 @@ msgstr "Chyba podepsání/šifrování souborů"
 #: src/commands/signencryptfilescommand.cpp:285
 #, kde-format
 msgid "Select One or More Files to Sign and/or Encrypt"
-msgstr ""
+msgstr "Vyberte jeden nebo více souborů k podepsání a/nebo zašifrování"
 
 #: src/commands/signencryptfoldercommand.cpp:34
 #, kde-format
 msgid "Select Folder to Sign and/or Encrypt"
-msgstr ""
+msgstr "Vyberte složku k podepsání a/nebo zašifrování"
 
 #: src/commands/togglecertificateenabledcommand.cpp:79
 #, kde-kuit-format
@@ -3625,6 +3660,12 @@ msgid ""
 "para><para><emphasis strong='true'>Are you sure you want to disable and hide "
 "the following certificate?</emphasis></para><list><item>%1</item></list>"
 msgstr ""
+"<para>Deaktivované certifikáty nelze vybrat pro podepisování ani šifrování. "
+"Jsou viditelné pouze v případě, že je aktivní filtr <interface>%2</"
+"interface>.</para><para>Tuto akci můžete kdykoli vrátit zpět přepnutím na "
+"filtr <interface>%2</interface> a opětovným povolením certifikátu.</"
+"para><para><emphasis strong='true'>Opravdu chcete deaktivovat a skrýt "
+"následující certifikát?</emphasis></para><list><item>%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp:127
 #, kde-format
@@ -3648,7 +3689,7 @@ msgstr "<nepojmenováno>"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "This parameter has been locked down by the system administrator."
-msgstr ""
+msgstr "Tento parametr byl uzamčen správcem systému."
 
 #: src/conf/appearanceconfigwidget.cpp:341
 #, kde-format
@@ -3660,31 +3701,31 @@ msgstr "V nástrojových tipech u certifikátů zobrazovat následující inform
 #, kde-format
 msgctxt "@option:check"
 msgid "Show validity"
-msgstr ""
+msgstr "Zobrazit platnost"
 
 #: src/conf/appearanceconfigwidget.cpp:347
 #, kde-format
 msgctxt "@option:check"
 msgid "Show owner information"
-msgstr ""
+msgstr "Zobrazit informace o vlastníkovi"
 
 #: src/conf/appearanceconfigwidget.cpp:350
 #, kde-format
 msgctxt "@option:check"
 msgid "Show technical details"
-msgstr ""
+msgstr "Zobrazit technické údaje"
 
 #: src/conf/appearanceconfigwidget.cpp:355
 #, kde-format
 msgctxt "@option:check"
 msgid "Show upcoming certificate expiration"
-msgstr ""
+msgstr "Zobrazit blížící se vypršení platnosti certifikátu"
 
 #: src/conf/appearanceconfigwidget.cpp:362
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for own certificates:"
-msgstr ""
+msgstr "Prahová hodnota pro vlastní certifikáty:"
 
 #: src/conf/appearanceconfigwidget.cpp:368
 #: src/conf/appearanceconfigwidget.cpp:382
@@ -3710,12 +3751,14 @@ msgid ""
 "Select the number of days you want to be warned in advance, if your own "
 "certificate is about to expire soon."
 msgstr ""
+"Zvolte počet dní, o kolik dopředu chcete být upozorněni, pokud se blíží "
+"konec platnosti vašeho certifikátu."
 
 #: src/conf/appearanceconfigwidget.cpp:376
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "Threshold for other certificates:"
-msgstr ""
+msgstr "Prahová hodnota pro ostatní certifikáty:"
 
 #: src/conf/appearanceconfigwidget.cpp:386
 #, kde-format
@@ -3724,6 +3767,8 @@ msgid ""
 "Select the number of days you want to be warned in advance, if another "
 "person's certificate is about to expire soon."
 msgstr ""
+"Zvolte počet dní, o kolik dopředu chcete být upozorněni, pokud se blíží "
+"konec platnosti certifikátu jiné osoby."
 
 #: src/conf/appearanceconfigwidget.cpp:396
 #, kde-format
@@ -3795,12 +3840,13 @@ msgstr "Kategorie certifikátů"
 #, kde-format
 msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
+"Náhled barev je deaktivován, protože je zapnutý režim s vysokým kontrastem."
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
 #: src/conf/appearanceconfigwidget.cpp:510 src/kcfg/settings.kcfg:147
 #, kde-format
 msgid "DN-Attribute Order"
-msgstr ""
+msgstr "Pořadí atributů DN"
 
 #: src/conf/configuredialog.cpp:35
 #, kde-format
@@ -3868,12 +3914,16 @@ msgid ""
 "So that they can be opened with an editor or sent in a mail body. This will "
 "increase file size by one third."
 msgstr ""
+"Nastavte tuto možnost tak, aby se šifrované nebo podepsané soubory kódovaly "
+"jako text v kódování Base64. Díky tomu je bude možné otevřít v textovém "
+"editoru nebo odeslat v těle e-mailu. Tím se velikost souboru zvětší o jednu "
+"třetinu."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:62
 #, kde-format
 msgctxt "@option:check"
 msgid "Treat .p7m files without extensions as mails."
-msgstr ""
+msgstr "Soubory .p7m bez přípony považovat za e-maily."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:63
 #, kde-format
@@ -3892,6 +3942,7 @@ msgstr "Vytvořit dočasně dešifrované soubory ve složce šifrovaného soubo
 msgctxt "@info"
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
+"Tuto možnost nastavte, pokud nechcete používat dočasný adresář uživatele."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:67
 #, kde-format
@@ -3909,7 +3960,7 @@ msgstr "Použít pouze symetrické šifrování."
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable public key encryption."
-msgstr ""
+msgstr "Nastavte tuto možnost, chcete-li zakázat šifrování veřejným klíčem."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:71
 #, kde-format
@@ -3921,13 +3972,13 @@ msgstr "Použít pouze šifrování veřejným klíčem."
 #, kde-format
 msgctxt "@info"
 msgid "Set this option to disable password-based encryption."
-msgstr ""
+msgstr "Nastavte tuto možnost, chcete-li deaktivovat šifrování pomocí hesla."
 
 #: src/conf/cryptooperationsconfigwidget.cpp:73
 #, kde-format
 msgctxt "@option:check"
 msgid "Remember settings from last sign / encrypt operation"
-msgstr ""
+msgstr "Zapamatovat nastavení z poslední operace podepsání/šifrování"
 
 #: src/conf/cryptooperationsconfigwidget.cpp:101
 #, kde-format
@@ -3938,7 +3989,7 @@ msgstr ""
 #: src/conf/cryptooperationsconfigwidget.cpp:106
 #, kde-format
 msgid "Archive command to use when archiving files:"
-msgstr ""
+msgstr "Příkaz pro archivaci souborů:"
 
 #: src/conf/dirservconfigpage.cpp:164
 #, kde-format
@@ -3950,13 +4001,13 @@ msgstr "Server klíčů OpenPGP"
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Please note that only one OpenPGP keyserver can be configured."
-msgstr ""
+msgstr "Upozorňujeme, že lze nastavit pouze jeden server klíčů OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:172
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Use OpenPGP keyserver"
-msgstr ""
+msgstr "Použít server klíčů OpenPGP"
 
 #: src/conf/dirservconfigpage.cpp:182
 #, kde-format
@@ -3970,6 +4021,8 @@ msgid ""
 "Enter the address of the keyserver to use when searching for OpenPGP "
 "certificates and when uploading OpenPGP certificates."
 msgstr ""
+"Zadejte adresu serveru klíčů, který se má používat při vyhledávání "
+"certifikátů OpenPGP a při nahrávání certifikátů OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:193
 #, kde-kuit-format
@@ -3979,12 +4032,15 @@ msgid ""
 "certificates and when uploading OpenPGP certificates. If you do not enter an "
 "address then an internal default will be used."
 msgstr ""
+"Zadejte adresu serveru klíčů, který se má používat při vyhledávání "
+"certifikátů OpenPGP a při nahrávání certifikátů OpenPGP. Pokud adresu "
+"nezadáte, použije se interní výchozí nastavení."
 
 #: src/conf/dirservconfigpage.cpp:216
 #, kde-format
 msgctxt "@label:checkbox"
 msgid "Search missing keys when verifying a signature"
-msgstr ""
+msgstr "Při ověřování podpisu vyhledat chybějící klíče"
 
 #: src/conf/dirservconfigpage.cpp:232
 #, kde-format
@@ -4014,12 +4070,15 @@ msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys that "
 "were used to certify the user IDs of newly imported OpenPGP keys."
 msgstr ""
+"Je-li tato funkce zapnutá, Kleopatra se automaticky pokusí načíst klíče, "
+"které byly použity k ověření identit uživatelů u nově importovaných klíčů "
+"OpenPGP."
 
 #: src/conf/dirservconfigpage.cpp:278
 #, kde-format
 msgctxt "@option:check"
 msgid "Query certificate directories of providers for all user IDs"
-msgstr ""
+msgstr "Prohledat adresáře certifikátů poskytovatelů pro všechna ID uživatelů"
 
 #: src/conf/dirservconfigpage.cpp:280
 #, kde-kuit-format
@@ -4030,6 +4089,10 @@ msgid ""
 "an OpenPGP certificate. If this option is enabled, then Kleopatra will query "
 "WKDs for all user IDs."
 msgstr ""
+"Při aktualizaci certifikátu OpenPGP Kleopatra ve výchozím nastavení "
+"prohledává adresáře certifikátů poskytovatelů (WKD) pouze pro ID uživatelů, "
+"která byla původně načtena z WKD. Je-li tato možnost zapnutá, bude Kleopatra "
+"prohledávat WKD pro všechna ID uživatelů."
 
 #: src/conf/dirservconfigpage.cpp:530
 #, kde-format
@@ -4057,7 +4120,7 @@ msgstr "Nápověda"
 msgctxt ""
 "Only available in German and English. Leave to English for other languages."
 msgid "handout_group-feature_gnupg_en.pdf"
-msgstr ""
+msgstr "handout_group-feature_gnupg_en.pdf"
 
 #: src/conf/groupsconfigwidget.cpp:142 src/dialogs/debugdialog.cpp:138
 #: src/dialogs/editgroupdialog.cpp:189 src/dialogs/editgroupdialog.cpp:278
@@ -4070,13 +4133,14 @@ msgstr "Hledat:"
 #, kde-format
 msgctxt "@label"
 msgid "Search groups"
-msgstr ""
+msgstr "Prohledat skupiny"
 
 #: src/conf/groupsconfigwidget.cpp:144 src/conf/groupsconfigwidget.cpp:150
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Search the list for groups matching the search term."
 msgstr ""
+"Prohledejte seznam a najděte skupiny, které odpovídají zadanému výrazu."
 
 #: src/conf/groupsconfigwidget.cpp:151 src/dialogs/editgroupdialog.cpp:198
 #: src/dialogs/editgroupdialog.cpp:287
@@ -4114,7 +4178,7 @@ msgstr "Smazat"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Start the certification process for all certificates in the group."
-msgstr ""
+msgstr "Spusťte proces certifikace pro všechny certifikáty ve skupině."
 
 #: src/conf/groupsconfigwidget.cpp:193
 #: src/dialogs/certificatedetailsdialog.cpp:65
@@ -4136,6 +4200,8 @@ msgid ""
 "<para>Do you really want to delete this group?</para><para><emphasis>%1</"
 "emphasis></para><para>Once deleted, it cannot be restored.</para>"
 msgstr ""
+"<para>Opravdu chcete tuto skupinu smazat?</para><para><emphasis>%1</"
+"emphasis></para><para>Po smazání již nebude možné skupinu obnovit.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:397
 #, kde-kuit-format
@@ -4147,8 +4213,14 @@ msgid_plural ""
 "<para>Do you really want to delete these %1 groups?</para><para>Once "
 "deleted, they cannot be restored.</para>"
 msgstr[0] ""
+"<para>Opravdu chcete tuto %1 skupinu smazat?</para><para>Po smazání ji nelze "
+"obnovit.</para>"
 msgstr[1] ""
+"<para>Opravdu chcete tyto %1 skupiny smazat?</para><para>Po smazání je již "
+"nebude možné obnovit.</para>"
 msgstr[2] ""
+"<para>Opravdu chcete těchto %1 skupin smazat?</para><para>Po smazání je již "
+"nebude možné obnovit.</para>"
 
 #: src/conf/groupsconfigwidget.cpp:409
 #, kde-format
@@ -4166,6 +4238,8 @@ msgid ""
 "The group contains certificates that cannot be used for encryption. This may "
 "lead to unexpected results."
 msgstr ""
+"Tato skupina obsahuje certifikáty, které nelze použít k šifrování. To může "
+"vést k neočekávaným výsledkům."
 
 #: src/conf/kleopageconfigdialog.cpp:87
 #, kde-format
@@ -4185,12 +4259,12 @@ msgstr "Provést nastavení"
 #: src/conf/smartcardconfigpage.cpp:64
 #, kde-format
 msgid "Smart card reader to use:"
-msgstr ""
+msgstr "Použitá čtečka čipových karet:"
 
 #: src/conf/smartcardconfigpage.cpp:88
 #, kde-format
 msgid "Cannot be configured with Kleopatra"
-msgstr ""
+msgstr "Nelze nastavit s aplikací Kleopatra"
 
 #: src/conf/smimevalidationconfigurationwidget.cpp:52
 #, kde-format
@@ -4202,7 +4276,7 @@ msgstr "HTTP proxy"
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Enter the proxy to use for HTTP requests."
-msgstr ""
+msgstr "Zadejte proxy server, který se má používat pro HTTP požadavky."
 
 #: src/conf/smimevalidationconfigurationwidget.cpp:135
 #, kde-format
@@ -4233,6 +4307,11 @@ msgid ""
 "implicitly whenever significant files in ~/.gnupg change. This option "
 "therefore only affects external factors of certificate validity."
 msgstr ""
+"Tato volba umožňuje provádět pravidelnou kontrolu platnosti certifikátů. "
+"Můžete také nastavit interval kontroly (v hodinách). Upozorňujeme, že "
+"ověření se provádí automaticky při každé změně důležitých souborů v adresáři "
+"~/.gnupg. Tato volba se tedy týká pouze vnějších faktorů ovlivňujících "
+"platnost certifikátů."
 
 #. i18n: ectx: property (text), widget (QCheckBox, intervalRefreshCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:21
@@ -4309,13 +4388,13 @@ msgstr "Ignorovat servisní URL certifikátů"
 #, kde-format
 msgid ""
 "Choose here the certificate with which the OCSP server signs its replies."
-msgstr ""
+msgstr "Zde vyberte certifikát, kterým server OCSP podepisuje své odpovědi."
 
 #. i18n: ectx: property (text), widget (QPushButton, ocspSelectButton)
 #: src/conf/smimevalidationconfigurationwidget.ui:130
 #, kde-format
 msgid "Change Certificate…"
-msgstr ""
+msgstr "Změnit certifikát…"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, doNotCheckCertPolicyCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:142
@@ -4395,6 +4474,11 @@ msgid ""
 "used.  With this option, all entries using the HTTP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
+"Při hledání umístění CRL obvykle testovaný certifikát obsahuje položky známé "
+"jako \"CRL Distribution Point\" (DP), což jsou adresy URL popisující způsob "
+"přístupu k CRL. Použije se první nalezená položka DP. Při použití této "
+"možnosti jsou při hledání vhodného DP ignorovány všechny položky používající "
+"schéma HTTP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreHTTPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:192
@@ -4434,6 +4518,10 @@ msgid ""
 "requests relating to S/MIME.</p><p>The syntax is host:port, for instance "
 "myproxy.nowhere.com:3128.</p>"
 msgstr ""
+"<p>Pokud není nastaven žádný systémový proxy server nebo pokud potřebujete "
+"pro GpgSM použít jiný proxy server, můžete zde zadat jeho umístění.</"
+"p><p>Bude použit pro všechny HTTP požadavky související s S/MIME.</"
+"p><p>Syntaxe je host:port, například myproxy.nowhere.com:3128.</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui:247
@@ -4463,6 +4551,11 @@ msgid ""
 "used.  With this option, all entries using the LDAP scheme are ignored when "
 "looking for a suitable DP."
 msgstr ""
+"Při hledání umístění seznamu CRL obsahuje certifikát, který má být "
+"zkontrolován, obvykle takzvané záznamy \"CRL Distribution Point\" (DP), což "
+"jsou adresy URL popisující způsob přístupu k CRL. Použije se první nalezená "
+"položka DP. Při použití této možnosti jsou při hledání vhodného DP "
+"ignorovány všechny položky používající schéma LDAP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui:266
@@ -4488,30 +4581,38 @@ msgid ""
 "The syntax is \"HOST\" or \"HOST:PORT\". If PORT is omitted, port 389 "
 "(standard LDAP port) is used."
 msgstr ""
+"Zadáním LDAP serveru do tohoto pole se zajistí, že všechny LDAP požadavky "
+"budou nejprve směřovány na tento server. Přesněji řečeno, toto nastavení "
+"přepisuje jakoukoli zadanou část URL adresy týkající se hostitele a portu a "
+"bude použito i v případě, že hostitel a port v URL adrese chybí. Ostatní "
+"LDAP servery budou použity pouze v případě, že se připojení k \"proxy\" "
+"nezdaří.\n"
+"Syntaxe je \"HOST\" nebo \"HOST:PORT\". Pokud je PORT vynechán, použije se "
+"port 389 (standardní port LDAP)."
 
 #: src/crypto/createchecksumscontroller.cpp:59
 #, kde-format
 msgctxt "@info"
 msgid "No checksum files have been created."
-msgstr ""
+msgstr "Nebyly vytvořeny žádné soubory s kontrolními součty."
 
 #: src/crypto/createchecksumscontroller.cpp:60
 #, kde-format
 msgctxt "@info"
 msgid "These checksum files have been successfully created:"
-msgstr ""
+msgstr "Tyto soubory s kontrolními součty byly úspěšně vytvořeny:"
 
 #: src/crypto/createchecksumscontroller.cpp:63
 #, kde-format
 msgctxt "@info"
 msgid "There were no errors."
-msgstr ""
+msgstr "Nedošlo k žádným chybám."
 
 #: src/crypto/createchecksumscontroller.cpp:64
 #, kde-format
 msgctxt "@info"
 msgid "The following errors were encountered:"
-msgstr ""
+msgstr "Došlo k následujícím chybám:"
 
 #: src/crypto/createchecksumscontroller.cpp:262
 #, kde-format
@@ -4519,6 +4620,9 @@ msgid ""
 "Create Checksums: input files must be either all checksum files or all files "
 "to be checksummed, not a mixture of both."
 msgstr ""
+"Vytvoření kontrolních součtů: vstupní soubory musí být buď výhradně soubory "
+"s kontrolními součty, nebo výhradně soubory, u nichž se mají kontrolní "
+"součty vypočítat; nesmí se jednat o jejich kombinaci."
 
 #: src/crypto/createchecksumscontroller.cpp:287
 #: src/dialogs/updatenotification.cpp:76
@@ -4535,7 +4639,7 @@ msgstr "Probíhá inicializace..."
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Checksum Progress"
-msgstr ""
+msgstr "Průběh vytváření kontrolních součtů"
 
 #: src/crypto/createchecksumscontroller.cpp:485
 #: src/crypto/verifychecksumscontroller.cpp:472 src/utils/output.cpp:754
@@ -4554,12 +4658,12 @@ msgstr "Nelze spustit %1: %2"
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
-msgstr ""
+msgstr "Nepodařilo se přepsat soubor <filename>%1</filename>."
 
 #: src/crypto/createchecksumscontroller.cpp:522
 #, kde-format
 msgid "No checksum programs defined."
-msgstr ""
+msgstr "Nebyly definovány žádné programy pro výpočet kontrolního součtu."
 
 #: src/crypto/createchecksumscontroller.cpp:534
 #: src/crypto/verifychecksumscontroller.cpp:510
@@ -4576,7 +4680,7 @@ msgstr "Počítám celkovou velikost..."
 #: src/crypto/createchecksumscontroller.cpp:563
 #, kde-format
 msgid "Checksumming (%2) in %1"
-msgstr ""
+msgstr "Výpočet kontrolního součtu (%2) v %1"
 
 #: src/crypto/createchecksumscontroller.cpp:576
 #: src/crypto/verifychecksumscontroller.cpp:554
@@ -4587,7 +4691,7 @@ msgstr "Hotovo."
 #: src/crypto/decryptverifyemailcontroller.cpp:56
 #, kde-format
 msgid "Status and progress of the crypto operations is shown here."
-msgstr ""
+msgstr "Zde se zobrazuje stav a průběh operací s šifrováním."
 
 #: src/crypto/decryptverifyemailcontroller.cpp:155
 #, kde-format
@@ -4603,37 +4707,38 @@ msgstr "Dešifrovat/ověřit e-mail"
 #: src/crypto/decryptverifyemailcontroller.cpp:261
 #, kde-format
 msgid "At least one input needs to be provided"
-msgstr ""
+msgstr "Je nutné zadat alespoň jeden údaj"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:265
 #, kde-format
 msgid "Informative sender/signed data count mismatch"
-msgstr ""
+msgstr "Nesoulad v počtu odeslaných/podepsaných dat"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:270
 #, kde-format
 msgid "Signature/signed data count mismatch"
-msgstr ""
+msgstr "Nesoulad v počtu podpisů/podepsaných dat"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:272
 #, kde-format
 msgid "Signed data can only be given for detached signature verification"
 msgstr ""
+"Podepsaná data lze poskytnout pouze za účelem ověření samostatného podpisu"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:278
 #, kde-format
 msgid "Input/Output count mismatch"
-msgstr ""
+msgstr "Nesoulad v počtu vstupů/výstupů"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:280
 #, kde-format
 msgid "Cannot use output and signed data simultaneously"
-msgstr ""
+msgstr "Nelze současně používat výstupní a podepsaná data"
 
 #: src/crypto/decryptverifyemailcontroller.cpp:287
 #, kde-format
 msgid "No backend support for %1"
-msgstr ""
+msgstr "Pro %1 není k dispozici podpora podpůrné vrstvy"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:175
 #, kde-kuit-format
@@ -4642,6 +4747,9 @@ msgid ""
 "Failed to find encrypted or signed data in one or more files.<nl/>If they "
 "contain signed or encrypted data please report a bug (see Help->Report Bug)."
 msgstr ""
+"V jednom nebo více souborech se nepodařilo najít šifrovaná nebo podepsaná "
+"data.<nl/>Pokud tyto soubory obsahují podepsaná nebo šifrovaná data, "
+"nahlaste prosím chybu (viz Nápověda->Nahlásit chybu)."
 
 #: src/crypto/decryptverifyfilescontroller.cpp:265
 #, kde-kuit-format
@@ -4650,12 +4758,14 @@ msgid ""
 "The file <filename>%1</filename> contains certificates and can't be "
 "decrypted or verified."
 msgstr ""
+"Soubor <filename>%1</filename> obsahuje certifikáty a nelze jej dešifrovat "
+"ani ověřit."
 
 #: src/crypto/decryptverifyfilescontroller.cpp:317
 #, kde-kuit-format
 msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
-msgstr ""
+msgstr "Vyberte soubor, jehož podpis chcete ověřit: <filename>%1</filename>"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:618
 #, kde-kuit-format
@@ -4682,37 +4792,39 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
-msgstr ""
+msgstr "Má být soubor uložen pod původním názvem <filename>%1</filename>?"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:642
 #, kde-format
 msgctxt "@title:window"
 msgid "Use Original File Name?"
-msgstr ""
+msgstr "Použít původní název souboru?"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:643
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
-msgstr ""
+msgstr "Ne, uložit jako <filename>%1</filename>"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:644
 #, kde-kuit-format
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
-msgstr ""
+msgstr "Ano, uložit jako <filename>%1</filename>"
 
 #: src/crypto/decryptverifyfilescontroller.cpp:667
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
-msgstr ""
+msgstr "Odstranění souboru <filename>%1</filename> se nezdařilo."
 
 #: src/crypto/decryptverifyfilescontroller.cpp:688
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
+"Nepodařilo se přesunout soubor <filename>%1</filename> do <filename>%2</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp:143
 #, kde-format
@@ -4726,21 +4838,21 @@ msgstr[2] "Příjemci:"
 #, kde-format
 msgctxt "@info"
 msgid "One unknown recipient"
-msgstr ""
+msgstr "Jeden neznámý příjemce"
 
 #: src/crypto/decryptverifytask.cpp:157
 #, kde-format
 msgid "One unknown recipient"
 msgid_plural "%1 unknown recipients"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jeden neznámý příjemce"
+msgstr[1] "%1 neznámí příjemci"
+msgstr[2] "%1 neznámých příjemců"
 
 #: src/crypto/decryptverifytask.cpp:222
 #, kde-format
 msgctxt "@info"
 msgid "Decryption and verification of <filename>%1</filename> canceled."
-msgstr ""
+msgstr "Dešifrování a ověření souboru <filename>%1</filename> bylo zrušeno."
 
 #: src/crypto/decryptverifytask.cpp:225
 #, kde-kuit-format
@@ -4748,13 +4860,13 @@ msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt and verify <filename>%1</filename>:"
-msgstr ""
+msgstr "Nelze dešifrovat a ověřit <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:229
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt and verify <filename>%1</filename>:"
-msgstr ""
+msgstr "Nepodařilo se dešifrovat a ověřit soubor <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:233
 #, kde-kuit-format
@@ -4763,18 +4875,20 @@ msgid ""
 "Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
 "filename>."
 msgstr ""
+"Soubor <filename>%1</filename> byl úspěšně dešifrován a ověřen jako "
+"<filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp:239
 #, kde-format
 msgctxt "@info"
 msgid "Verification of <filename>%1</filename> canceled."
-msgstr ""
+msgstr "Ověření souboru <filename>%1</filename> bylo zrušeno."
 
 #: src/crypto/decryptverifytask.cpp:241
 #, kde-kuit-format
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
-msgstr ""
+msgstr "Nepodařilo se ověřit <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:244
 #, kde-kuit-format
@@ -4785,14 +4899,20 @@ msgid_plural ""
 "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
 "filename>."
 msgstr[0] ""
+"Ověřen <filename>%2</filename> podle podpisu v souboru <filename>%3</"
+"filename>."
 msgstr[1] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
 msgstr[2] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp:252
 #, kde-format
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
-msgstr ""
+msgstr "Dešifrování souboru <filename>%1</filename> bylo zrušeno."
 
 #: src/crypto/decryptverifytask.cpp:255
 #, kde-kuit-format
@@ -4800,13 +4920,13 @@ msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
 msgid "Unable to decrypt <filename>%1</filename>:"
-msgstr ""
+msgstr "Nelze dešifrovat <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:258
 #, kde-kuit-format
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
-msgstr ""
+msgstr "Nepodařilo se dešifrovat <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:261
 #, kde-kuit-format
@@ -4814,17 +4934,20 @@ msgctxt "@info Successfully decrypted <file> as <file>."
 msgid ""
 "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
+"Soubor <filename>%1</filename> byl úspěšně dešifrován jako <filename>%2</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp:271
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr ""
+"Data nebyla zašifrována žádným tajným klíčem z vašeho seznamu certifikátů."
 
 #: src/crypto/decryptverifytask.cpp:273
 #, kde-format
 msgid "No integrity protection (MDC)."
-msgstr ""
+msgstr "Bez ochrany integrity (MDC)."
 
 #: src/crypto/decryptverifytask.cpp:284
 #, kde-format
@@ -4832,7 +4955,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption is %1."
-msgstr ""
+msgstr "Dešifrování je %1."
 
 #: src/crypto/decryptverifytask.cpp:287
 #, kde-format
@@ -4840,7 +4963,7 @@ msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
 "compliant or VS-NfD compliant"
 msgid "The decryption <b>is not</b> %1."
-msgstr ""
+msgstr "Dešifrování <b>není</b> %1."
 
 #: src/crypto/decryptverifytask.cpp:294
 #, kde-format
@@ -4850,6 +4973,9 @@ msgid ""
 "that the file is legitimate.  This is because back then integrity protection "
 "was not widely used."
 msgstr ""
+"<b>Tip:</b> Pokud byl tento soubor zašifrován před rokem 2003, je "
+"pravděpodobné, že se jedná o legitimní soubor. Důvodem je to, že v té době "
+"se ochrana integrity ještě příliš nepoužívala."
 
 #: src/crypto/decryptverifytask.cpp:299
 #, kde-format
@@ -4859,11 +4985,14 @@ msgid ""
 "it with gpg on the command line using the option <tt>--ignore-mdc-error</"
 "tt>. After decryption you should re-encrypt the file with your current key."
 msgstr ""
+"Pokud jste si jisti, že soubor nebyl nijak pozměněn, můžete jej dešifrovat "
+"pomocí gpg v příkazovém řádku s použitím volby <tt>--ignore-mdc-error</tt>. "
+"Po dešifrování byste měli soubor znovu zašifrovat svým aktuálním klíčem."
 
 #: src/crypto/decryptverifytask.cpp:311
 #, kde-format
 msgid "Embedded file name: '%1'"
-msgstr ""
+msgstr "Název vloženého souboru: '%1'"
 
 #: src/crypto/decryptverifytask.cpp:317
 #, kde-format
@@ -4871,66 +5000,68 @@ msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
 "signed."
 msgstr ""
+"<b>Poznámka:</b> Nelze s jistotou určit, kdo tuto zprávu zašifroval, protože "
+"není podepsána."
 
 #: src/crypto/decryptverifytask.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
-msgstr ""
+msgstr "Nepodařilo se dešifrovat poznámku: %1"
 
 #: src/crypto/decryptverifytask.cpp:535
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
-msgstr ""
+msgstr "Nepodařilo se ověřit poznámku: %1"
 
 #: src/crypto/decryptverifytask.cpp:539
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the notepad"
-msgstr ""
+msgstr "Poznámka byla úspěšně dešifrována a ověřena"
 
 #: src/crypto/decryptverifytask.cpp:542
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the notepad"
-msgstr ""
+msgstr "Poznámka byla úspěšně dešifrována"
 
 #: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the notepad"
-msgstr ""
+msgstr "Poznámka byla úspěšně ověřena"
 
 #: src/crypto/decryptverifytask.cpp:550
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
-msgstr ""
+msgstr "Nepodařilo se dešifrovat schránku: %1"
 
 #: src/crypto/decryptverifytask.cpp:553
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
-msgstr ""
+msgstr "Nepodařilo se ověřit schránku: %1"
 
 #: src/crypto/decryptverifytask.cpp:557
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted and verified the clipboard"
-msgstr ""
+msgstr "Schránka byla úspěšně dešifrována a ověřena"
 
 #: src/crypto/decryptverifytask.cpp:560
 #, kde-format
 msgctxt "@info"
 msgid "Successfully decrypted the clipboard"
-msgstr ""
+msgstr "Poznámka byla úspěšně dešifrována"
 
 #: src/crypto/decryptverifytask.cpp:563
 #, kde-format
 msgctxt "@info"
 msgid "Successfully verified the clipboard"
-msgstr ""
+msgstr "Poznámka byla úspěšně ověřena"
 
 #: src/crypto/decryptverifytask.cpp:600
 #, kde-format
@@ -4939,6 +5070,8 @@ msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
+"Upozornění: E-mailová adresa odesílatele není uložena v <a href=\"key:"
+"%1\">certifikátu</a> použitém k podepsání. Uloženo:<ul>%2</ul>"
 
 #: src/crypto/decryptverifytask.cpp:739 src/crypto/decryptverifytask.cpp:916
 #: src/crypto/decryptverifytask.cpp:993 src/crypto/decryptverifytask.cpp:1094
@@ -4946,7 +5079,7 @@ msgstr ""
 #: src/crypto/decryptverifytask.cpp:1380 src/crypto/decryptverifytask.cpp:1506
 #, kde-format
 msgid "Caught exception: %1"
-msgstr ""
+msgstr "Zachycena výjimka: %1"
 
 #: src/crypto/decryptverifytask.cpp:742 src/crypto/decryptverifytask.cpp:918
 #: src/crypto/decryptverifytask.cpp:996 src/crypto/decryptverifytask.cpp:1096
@@ -4964,6 +5097,8 @@ msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
 "ciphertext - maybe it is neither ciphertext nor a signature?"
 msgstr ""
+"Nedařilo se mi zjistit, zda se jedná o podpis nebo šifrovaný text ve formátu "
+"S/MIME či OpenPGP – možná to není ani šifrovaný text, ani podpis?"
 
 #: src/crypto/decryptverifytask.cpp:804
 #, kde-format
@@ -4976,6 +5111,8 @@ msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
 "is not ciphertext at all?"
 msgstr ""
+"Nedařilo se mi zjistit, zda se jedná o šifrování S/MIME nebo OpenPGP – možná "
+"to vůbec není šifrovaný text?"
 
 #: src/crypto/decryptverifytask.cpp:1057
 #, kde-format
@@ -4988,6 +5125,8 @@ msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
 "maybe it is not a signature at all?"
 msgstr ""
+"Nedařilo se mi zjistit, zda se jedná o podpis S/MIME nebo OpenPGP – možná to "
+"vůbec není podpis?"
 
 #: src/crypto/decryptverifytask.cpp:1211
 #, kde-format
@@ -5000,7 +5139,7 @@ msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
-msgstr ""
+msgstr "Ověřování <filename>%1</filename> s <filename>%2</filename>..."
 
 #: src/crypto/decryptverifytask.cpp:1466
 #, kde-format
@@ -5011,6 +5150,7 @@ msgstr "Ověřování podpisu %1..."
 #, kde-format
 msgid "Call to EncryptEMailController::protocolAsString() is ambiguous."
 msgstr ""
+"Volání funkce EncryptEMailController::protocolAsString() je nejednoznačné."
 
 #: src/crypto/encryptemailcontroller.cpp:131
 #: src/crypto/newsignencryptemailcontroller.cpp:237
@@ -5018,7 +5158,7 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp:359
 #, kde-format
 msgid "User cancel"
-msgstr "Uživatel přerušil"
+msgstr "Přerušeno uživatelem"
 
 #: src/crypto/encryptemailtask.cpp:62
 #, kde-format
@@ -5061,12 +5201,12 @@ msgstr "Zobrazit podrobnosti"
 #: src/crypto/gui/certificatelineedit.cpp:663
 #, kde-format
 msgid "No matching certificates or groups found"
-msgstr ""
+msgstr "Nebyly nalezeny žádné odpovídající certifikáty ani skupiny"
 
 #: src/crypto/gui/certificatelineedit.cpp:665
 #, kde-format
 msgid "Multiple matching certificates or groups found"
-msgstr ""
+msgstr "Bylo nalezeno více odpovídajících certifikátů nebo skupin"
 
 #: src/crypto/gui/certificatelineedit.cpp:667
 #, kde-format
@@ -5079,16 +5219,14 @@ msgid "This certificate is revoked"
 msgstr "Certifikát byl odvolán"
 
 #: src/crypto/gui/certificatelineedit.cpp:671
-#, fuzzy, kde-format
-#| msgid "This certificate is expired"
+#, kde-format
 msgid "This certificate is disabled"
-msgstr "Tento certifikát vypršel"
+msgstr "Tento certifikát je deaktivován"
 
 #: src/crypto/gui/certificatelineedit.cpp:673
-#, fuzzy, kde-format
-#| msgid "This certificate is expired"
+#, kde-format
 msgid "This certificate is unusable"
-msgstr "Tento certifikát vypršel"
+msgstr "Tento certifikát je neplatný"
 
 #: src/crypto/gui/certificatelineedit.cpp:757 src/dialogs/expirydialog.cpp:217
 #: src/view/smartcardwidget.cpp:370
@@ -5105,7 +5243,7 @@ msgstr "(nebyly nalezeny odpovídající certifikáty)"
 #: src/crypto/gui/certificateselectionline.cpp:40
 #, kde-format
 msgid "Please select a certificate"
-msgstr ""
+msgstr "Vyberte prosím certifikát"
 
 #: src/crypto/gui/certificateselectionline.cpp:201
 #, kde-format
@@ -5224,6 +5362,8 @@ msgid ""
 "<b>Warning:</b> None of the selected certificates seem to be your own. You "
 "will not be able to decrypt the encrypted data again."
 msgstr ""
+"<b>Upozornění:</b> Zdá se, že žádný z vybraných certifikátů není váš. "
+"Zašifrovaná data již nebudete moci znovu dešifrovat."
 
 #: src/crypto/gui/resolverecipientspage.cpp:560
 #, kde-format
@@ -5239,7 +5379,7 @@ msgstr "Příjemce (%1)"
 #: src/crypto/gui/resolverecipientspage.cpp:585
 #, kde-format
 msgid "<qt><p>Recipients predefined via GnuPG settings:</p>%1</qt>"
-msgstr ""
+msgstr "<qt><p>Příjemci předdefinovaní v nastavení GnuPG:</p>%1</qt>"
 
 #: src/crypto/gui/resultitemwidget.cpp:135
 #, kde-format
@@ -5274,7 +5414,7 @@ msgstr "Zobrazit e-mail"
 #, kde-format
 msgctxt "@option:check"
 msgid "Close window automatically on success"
-msgstr ""
+msgstr "Po úspěšném provedení okno automaticky zavřít"
 
 #: src/crypto/gui/signemailwizard.cpp:69
 #, kde-format
