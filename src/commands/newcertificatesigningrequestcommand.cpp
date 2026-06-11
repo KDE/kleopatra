@@ -117,7 +117,7 @@ void NewCertificateSigningRequestCommand::Private::createCSR()
     }
     QGpgME::Job::context(keyGenJob)->setArmor(Settings{}.saveCSRAsPEM());
 
-    if (const auto data = KleopatraApplication::instance()->distributionData(); data->uidComment) {
+    if (const auto data = KleopatraApplication::instance()->distributionData(); data && data->uidComment) {
         keyParameters.setComment(data->uidComment.value());
     }
 
