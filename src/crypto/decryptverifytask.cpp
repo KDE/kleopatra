@@ -227,8 +227,8 @@ public:
                                "Failed to decrypt and verify <filename>%1</filename>:",
                                m_inputLabel);
             } else {
-                label = xi18nc("@info Successfully decrypted and verified <file> as <file>.",
-                               "Successfully decrypted and verified <filename>%1</filename> as <filename>%2</filename>.",
+                label = xi18nc("@info Decrypted and verified <file> as <file>.",
+                               "Decrypted and verified <filename>%1</filename> as <filename>%2</filename>.",
                                m_inputLabel,
                                m_outputLabel);
             }
@@ -255,10 +255,8 @@ public:
             } else if (error.code() != GPG_ERR_NO_ERROR) {
                 label = xi18nc("@info 'Failed' meaning that there was an error during decryption", "Failed to decrypt <filename>%1</filename>:", m_inputLabel);
             } else {
-                label = xi18nc("@info Successfully decrypted <file> as <file>.",
-                               "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>.",
-                               m_inputLabel,
-                               m_outputLabel);
+                label =
+                    xi18nc("@info Decrypted <file> as <file>.", "Decrypted <filename>%1</filename> as <filename>%2</filename>.", m_inputLabel, m_outputLabel);
             }
         }
 
@@ -533,13 +531,13 @@ QString DecryptVerifyResult::overview() const
         }
 
         if (decrypting && verifying) {
-            return i18nc("@info", "Successfully decrypted and verified the notepad");
+            return i18nc("@info", "Decrypted and verified the notepad");
         }
         if (decrypting) {
-            return i18nc("@info", "Successfully decrypted the notepad");
+            return i18nc("@info", "Decrypted the notepad");
         }
         if (verifying) {
-            return i18nc("@info", "Successfully verified the notepad");
+            return i18nc("@info", "Verified the notepad");
         }
         return {};
     } else if (dataSource() == Task::Clipboard) {
@@ -551,13 +549,13 @@ QString DecryptVerifyResult::overview() const
         }
 
         if (decrypting && verifying) {
-            return i18nc("@info", "Successfully decrypted and verified the clipboard");
+            return i18nc("@info", "Decrypted and verified the clipboard");
         }
         if (decrypting) {
-            return i18nc("@info", "Successfully decrypted the clipboard");
+            return i18nc("@info", "Decrypted the clipboard");
         }
         if (verifying) {
-            return i18nc("@info", "Successfully verified the clipboard");
+            return i18nc("@info", "Verified the clipboard");
         }
         return {};
     }
