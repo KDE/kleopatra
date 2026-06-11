@@ -141,7 +141,7 @@ void NewOpenPGPCertificateCommand::Private::createCertificate()
         ctx->setPinentryMode(Context::PinentryLoopback);
     }
 
-    if (const auto data = KleopatraApplication::instance()->distributionData(); data->uidComment) {
+    if (const auto data = KleopatraApplication::instance()->distributionData(); data && data->uidComment) {
         keyParameters.setComment(data->uidComment.value());
     }
 
