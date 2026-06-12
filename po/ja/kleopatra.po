@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 00:45+0000\n"
+"POT-Creation-Date: 2026-06-12 00:44+0000\n"
 "PO-Revision-Date: 2025-03-07 13:41+0900\n"
 "Last-Translator: NIIBE Yutaka <gniibe@fsij.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -4894,11 +4894,14 @@ msgid "Failed to decrypt and verify <filename>%1</filename>:"
 msgstr "<filename>%1</filename> の復号と検証が失敗しました:"
 
 #: src/crypto/decryptverifytask.cpp:231
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted and verified <filename>%1</filename> as <filename>"
+#| "%2</filename>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> を <filename>%2</filename> で復号と検証をしました。"
 
@@ -4950,24 +4953,26 @@ msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "<filename>%1</filename> の復号に失敗しました:"
 
 #: src/crypto/decryptverifytask.cpp:259
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr "<filename>%1</filename> を <filename>%2</filename> で復号しました"
 
-#: src/crypto/decryptverifytask.cpp:269
+#: src/crypto/decryptverifytask.cpp:267
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "証明書リストのどの鍵にたいしてもこのデータは暗号化されませんでした。"
 
-#: src/crypto/decryptverifytask.cpp:271
+#: src/crypto/decryptverifytask.cpp:269
 #, kde-format
 msgid "No integrity protection (MDC)."
 msgstr "一貫性保護 (MDC) がありません。"
 
-#: src/crypto/decryptverifytask.cpp:282
+#: src/crypto/decryptverifytask.cpp:280
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4975,7 +4980,7 @@ msgctxt ""
 msgid "The decryption is %1."
 msgstr "復号は %1 です。"
 
-#: src/crypto/decryptverifytask.cpp:285
+#: src/crypto/decryptverifytask.cpp:283
 #, kde-format
 msgctxt ""
 "%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED "
@@ -4983,7 +4988,7 @@ msgctxt ""
 msgid "The decryption <b>is not</b> %1."
 msgstr "復号は %1 では <b>ありません</b>。"
 
-#: src/crypto/decryptverifytask.cpp:292
+#: src/crypto/decryptverifytask.cpp:290
 #, kde-format
 msgctxt "Integrity protection was missing because an old cipher was used."
 msgid ""
@@ -4994,7 +4999,7 @@ msgstr ""
 "<b>ヒント:</b> 2003年以前にこのファイルが暗号化された場合、このファイルは正当"
 "であると考えられます。当時は広く一貫性保護が使われていなかったからです。"
 
-#: src/crypto/decryptverifytask.cpp:297
+#: src/crypto/decryptverifytask.cpp:295
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5003,12 +5008,12 @@ msgid ""
 "tt>. After decryption you should re-encrypt the file with your current key."
 msgstr ""
 
-#: src/crypto/decryptverifytask.cpp:309
+#: src/crypto/decryptverifytask.cpp:307
 #, kde-format
 msgid "Embedded file name: '%1'"
 msgstr "埋め込まれたファイル名: '%1'"
 
-#: src/crypto/decryptverifytask.cpp:315
+#: src/crypto/decryptverifytask.cpp:313
 #, kde-format
 msgid ""
 "<b>Note:</b> You cannot be sure who encrypted this message as it is not "
@@ -5017,68 +5022,79 @@ msgstr ""
 "<b>注意:</b> 署名がないので、だれがこのメッセージを暗号化したかは確とすること"
 "ができません。"
 
-#: src/crypto/decryptverifytask.cpp:529
+#: src/crypto/decryptverifytask.cpp:527
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the notepad: %1"
 msgstr "ノートパッドの復号に失敗: %1"
 
-#: src/crypto/decryptverifytask.cpp:532
+#: src/crypto/decryptverifytask.cpp:530
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the notepad: %1"
 msgstr "ノートパッドの検証に失敗: %1"
 
-#: src/crypto/decryptverifytask.cpp:536
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:534
+#, fuzzy, kde-format
+#| msgid "Decrypt and/or verify files"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "ノートパッドの復号と検証をしました。"
+msgid "Decrypted and verified the notepad"
+msgstr "ファイルを復号/検証"
 
-#: src/crypto/decryptverifytask.cpp:539
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:537
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Encrypt Text"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "ノートパッドの復号ができました。"
+msgid "Decrypted the notepad"
+msgstr "テキストを暗号化"
 
-#: src/crypto/decryptverifytask.cpp:542
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:540
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the notepad"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
+msgid "Verified the notepad"
 msgstr "ノートパッドの検証ができました。"
 
-#: src/crypto/decryptverifytask.cpp:547
+#: src/crypto/decryptverifytask.cpp:545
 #, kde-format
 msgctxt "@info"
 msgid "Failed to decrypt the clipboard: %1"
 msgstr "クリップボードの復号に失敗: %1"
 
-#: src/crypto/decryptverifytask.cpp:550
+#: src/crypto/decryptverifytask.cpp:548
 #, kde-format
 msgctxt "@info"
 msgid "Failed to verify the clipboard: %1"
 msgstr "クリップボードの検証に失敗: %1"
 
-#: src/crypto/decryptverifytask.cpp:554
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:552
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "クリップボードの復号と検証をしました。"
 
-#: src/crypto/decryptverifytask.cpp:557
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:555
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "クリップボードの復号ができました。"
 
-#: src/crypto/decryptverifytask.cpp:560
-#, kde-format
+#: src/crypto/decryptverifytask.cpp:558
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the clipboard"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "クリップボードの検証ができました。"
 
 # dummy markup
-#: src/crypto/decryptverifytask.cpp:597
+#: src/crypto/decryptverifytask.cpp:595
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5088,25 +5104,25 @@ msgstr ""
 "警告: 送信者のメールアドレスが、署名に使用された<a href=\"key:%1\">証明書</a>"
 "に保存されていません。保存場所:<ul>%2</ul>"
 
-#: src/crypto/decryptverifytask.cpp:731 src/crypto/decryptverifytask.cpp:908
-#: src/crypto/decryptverifytask.cpp:985 src/crypto/decryptverifytask.cpp:1086
-#: src/crypto/decryptverifytask.cpp:1138 src/crypto/decryptverifytask.cpp:1297
-#: src/crypto/decryptverifytask.cpp:1372 src/crypto/decryptverifytask.cpp:1498
+#: src/crypto/decryptverifytask.cpp:729 src/crypto/decryptverifytask.cpp:906
+#: src/crypto/decryptverifytask.cpp:983 src/crypto/decryptverifytask.cpp:1084
+#: src/crypto/decryptverifytask.cpp:1136 src/crypto/decryptverifytask.cpp:1295
+#: src/crypto/decryptverifytask.cpp:1370 src/crypto/decryptverifytask.cpp:1496
 #, kde-format
 msgid "Caught exception: %1"
 msgstr "例外を検出: %1"
 
-#: src/crypto/decryptverifytask.cpp:734 src/crypto/decryptverifytask.cpp:910
-#: src/crypto/decryptverifytask.cpp:988 src/crypto/decryptverifytask.cpp:1088
-#: src/crypto/decryptverifytask.cpp:1141 src/crypto/decryptverifytask.cpp:1299
-#: src/crypto/decryptverifytask.cpp:1374 src/crypto/decryptverifytask.cpp:1500
+#: src/crypto/decryptverifytask.cpp:732 src/crypto/decryptverifytask.cpp:908
+#: src/crypto/decryptverifytask.cpp:986 src/crypto/decryptverifytask.cpp:1086
+#: src/crypto/decryptverifytask.cpp:1139 src/crypto/decryptverifytask.cpp:1297
+#: src/crypto/decryptverifytask.cpp:1372 src/crypto/decryptverifytask.cpp:1498
 #: src/uiserver/assuanserverconnection.cpp:1356
 #: src/uiserver/assuanserverconnection.cpp:1405
 #, kde-format
 msgid "Caught unknown exception"
 msgstr "未知の例外を検出"
 
-#: src/crypto/decryptverifytask.cpp:788
+#: src/crypto/decryptverifytask.cpp:786
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature/"
@@ -5115,12 +5131,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。暗号でも署名でも"
 "ないかもしれません？"
 
-#: src/crypto/decryptverifytask.cpp:796
+#: src/crypto/decryptverifytask.cpp:794
 #, kde-format
 msgid "Decrypting %1..."
 msgstr "復号中 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1041
+#: src/crypto/decryptverifytask.cpp:1039
 #, kde-format
 msgid ""
 "Could not determine whether this was S/MIME- or OpenPGP-encrypted - maybe it "
@@ -5129,12 +5145,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名/暗号 のどちらか決定できませんでした。まったくもって暗"
 "号でも署名でもないかもしれません？"
 
-#: src/crypto/decryptverifytask.cpp:1049
+#: src/crypto/decryptverifytask.cpp:1047
 #, kde-format
 msgid "Decrypting: %1..."
 msgstr "復号: %1..."
 
-#: src/crypto/decryptverifytask.cpp:1195 src/crypto/decryptverifytask.cpp:1436
+#: src/crypto/decryptverifytask.cpp:1193 src/crypto/decryptverifytask.cpp:1434
 #, kde-format
 msgid ""
 "Could not determine whether this is an S/MIME or an OpenPGP signature - "
@@ -5143,12 +5159,12 @@ msgstr ""
 "S/MIME か OpenPGP 署名のどちらか決定できませんでした。署名でないかもしれませ"
 "ん？"
 
-#: src/crypto/decryptverifytask.cpp:1203
+#: src/crypto/decryptverifytask.cpp:1201
 #, kde-format
 msgid "Verifying %1..."
 msgstr "検証中 %1..."
 
-#: src/crypto/decryptverifytask.cpp:1454
+#: src/crypto/decryptverifytask.cpp:1452
 #, kde-kuit-format
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
@@ -5156,7 +5172,7 @@ msgctxt ""
 msgid "Verifying <filename>%1</filename> with <filename>%2</filename>..."
 msgstr "<filename>%1</filename> を <filename>%2</filename> で検証中..."
 
-#: src/crypto/decryptverifytask.cpp:1458
+#: src/crypto/decryptverifytask.cpp:1456
 #, kde-format
 msgid "Verifying signature %1..."
 msgstr "署名を検証中 %1..."
@@ -13269,6 +13285,14 @@ msgid ""
 msgstr ""
 "ファイルから証明書をインポートします。<nl/>公開鍵サーバからインポートするに"
 "は、<interface>サーバでルックアップ</interface>を使ってください。"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully decrypted and verified the notepad"
+#~ msgstr "ノートパッドの復号と検証をしました。"
+
+#~ msgctxt "@info"
+#~ msgid "Successfully decrypted the notepad"
+#~ msgstr "ノートパッドの復号ができました。"
 
 #, fuzzy
 #~| msgctxt "A user ID (an error description)"
