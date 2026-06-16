@@ -9,22 +9,20 @@
      <whatsthis>This text will be used as placeholder text for the common name (CN) field of S/MIME certificates.</whatsthis>
      <default></default>
    </entry>
-   <entry key="CN_prefill" name="prefillCN" type="Bool">
+   <entry key="CN_prefill" name="prefillCN" type="StringList">
      <label>Prefill CN automatically</label>
-     <whatsthis>If true, then the common name (CN) field of S/MIME certificates will be prefilled with information gathered from the system,
-         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
-     <default>true</default>
+     <whatsthis>This setting specifies from which sources (and with what precedence) the common name (CN) of newly generated S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the name of the default profile of the desktop's email defaults. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable.</whatsthis>
+     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
      <label>Hint for EMAIL</label>
      <whatsthis>This text will be shown above the email address field of OpenPGP certificates and as placeholder in that field for S/MIME certificates.</whatsthis>
      <default></default>
    </entry>
-   <entry key="EMAIL_prefill" name="prefillEmail" type="Bool">
+   <entry key="EMAIL_prefill" name="prefillEmail" type="StringList">
      <label>Prefill EMAIL automatically</label>
-     <whatsthis>If true, then the email address field of OpenPGP and S/MIME certificates will be prefilled with information gathered from the system,
-         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
-     <default>true</default>
+     <whatsthis>This setting specifies from which sources (and with what precedence) the email address of newly generated OpenPGP certificates and S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the email address of the default profile of the desktop's email defaults. WinGetUserName (Windows-only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL environment variable.</whatsthis>
+     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="EMAIL" name="email" type="String">
      <label>Value of EMAIL</label>
@@ -36,11 +34,10 @@
      <whatsthis>This text will be shown above the name field of OpenPGP certificates.</whatsthis>
      <default></default>
    </entry>
-   <entry key="NAME_prefill" name="prefillName" type="Bool">
+   <entry key="NAME_prefill" name="prefillName" type="StringList">
      <label>Prefill NAME automatically</label>
-     <whatsthis>If true, then the name field of OpenPGP certificates will be prefilled with information gathered from the system,
-         e.g., from the email settings of the desktop or, on Windows, from the Active Directory.</whatsthis>
-     <default>true</default>
+     <whatsthis>This setting specifies from which sources (and with what precedence) the common name (CN) of newly generated S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the name of the default profile of the desktop's email defaults. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable.</whatsthis>
+     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="NAME" name="name" type="String">
      <label>Value of NAME</label>

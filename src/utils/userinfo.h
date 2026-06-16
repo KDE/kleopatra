@@ -8,17 +8,17 @@
 
 #pragma once
 
-class QString;
+#include <QStringList>
 
 namespace Kleo
 {
 /* Tries to obtain the users full name from the
  * operating system to be useable for Key creation. */
-QString userFullName();
+QString userFullName(const QStringList &sources);
 
 /* Tries to obtain the users email from the
  * operating system to be useable for Key creation. */
-QString userEmailAddress();
+QString userEmailAddress(const QStringList &sources);
 
 /* Checks if the user is running with an elevated security
  * token. This is only a concept of Windows and returns
