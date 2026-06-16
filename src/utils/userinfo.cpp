@@ -18,6 +18,10 @@
 #include <KEMailSettings>
 #include <KEmailAddress>
 
+#include <kleopatra_debug.h>
+
+using namespace Qt::StringLiterals;
+
 namespace
 {
 enum UserInfoDetail {
@@ -39,35 +43,53 @@ static QString env_get_user_name(UserInfoDetail detail)
 }
 }
 
-QString Kleo::userFullName()
+QString Kleo::userFullName(const QStringList &sources)
 {
-    const KEMailSettings e;
-    auto name = e.getSetting(KEMailSettings::RealName);
+    QString name;
+    for (const auto &source : sources) {
+        const QString sourceLower = source.toLower();
+        if (sourceLower == "kemailsettings"_L1) {
+            name = KEMailSettings().getSetting(KEMailSettings::RealName);
+        } else if (sourceLower == "wingetusername"_L1) {
 #ifdef Q_OS_WIN
-    if (name.isEmpty()) {
-        name = win_get_user_name(NameDisplay);
-    }
-    if (name.isEmpty()) {
-        name = win_get_user_name(NameUnknown);
-    }
+            name = win_get_user_name(NameDisplay);
+            if (name.isEmpty()) {
+                name = win_get_user_name(NameUnknown);
+            }
 #endif
-    if (name.isEmpty()) {
-        name = env_get_user_name(UserInfoName);
+        } else if (sourceLower == "envemail"_L1) {
+            name = env_get_user_name(UserInfoName);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Unknown/unsupported source" << source;
+        }
+        if (!name.isEmpty()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Using name from source" << source;
+            break;
+        }
     }
     return name;
 }
 
-QString Kleo::userEmailAddress()
+QString Kleo::userEmailAddress(const QStringList &sources)
 {
-    const KEMailSettings e;
-    auto mbox = e.getSetting(KEMailSettings::EmailAddress);
+    QString mbox;
+    for (const auto &source : sources) {
+        const QString sourceLower = source.toLower();
+        if (sourceLower == "kemailsettings"_L1) {
+            mbox = KEMailSettings().getSetting(KEMailSettings::EmailAddress);
+        } else if (sourceLower == "wingetusername"_L1) {
 #ifdef Q_OS_WIN
-    if (mbox.isEmpty()) {
-        mbox = win_get_user_name(NameUserPrincipal);
-    }
+            mbox = win_get_user_name(NameUserPrincipal);
 #endif
-    if (mbox.isEmpty()) {
-        mbox = env_get_user_name(UserInfoEmailAddress);
+        } else if (sourceLower == "envemail"_L1) {
+            mbox = env_get_user_name(UserInfoEmailAddress);
+        } else {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Unknown/unsupported source" << source;
+        }
+        if (!mbox.isEmpty()) {
+            qCDebug(KLEOPATRA_LOG) << __func__ << "Using email from source" << source;
+            break;
+        }
     }
     return mbox;
 }
