@@ -8,9 +8,9 @@
 
 #include "createcsrdialog.h"
 
-#include <settings.h>
+#include <utils/settings-helpers.h>
 
-#include <utils/userinfo.h>
+#include <settings.h>
 
 #include <Libkleo/Algorithm>
 #include <Libkleo/AnimatedExpander>
@@ -92,15 +92,13 @@ struct AttributeInfo {
 
 static std::vector<AttributeInfo> readAttributeOrder(const KConfigGroup &config)
 {
-    const auto settings = Kleo::Settings{};
     const auto attributeOrder = config.readEntry("DNAttributeOrder", QStringList{u"L"_s, u"OU"_s, u"O"_s, u"C"_s});
 
     std::vector<AttributeInfo> attributes;
     attributes.reserve(attributeOrder.size() + 2);
     // CN and EMAIL are always the first two attributes
-    auto &cn = attributes.emplace_back(AttributeInfo{.name = u"CN"_s, .preset = settings.prefillCN() ? userFullName() : QString{}, .required = true});
-    auto &email =
-        attributes.emplace_back(AttributeInfo{.name = u"EMAIL"_s, .preset = settings.prefillEmail() ? userEmailAddress() : QString{}, .required = true});
+    auto &cn = attributes.emplace_back(AttributeInfo{.name = u"CN"_s, .preset = cnForNewCertificates(), .required = true});
+    auto &email = attributes.emplace_back(AttributeInfo{.name = u"EMAIL"_s, .preset = emailForNewCertificates(), .required = true});
 
     for (const QString &rawName : attributeOrder) {
         QString name = rawName.trimmed().toUpper();

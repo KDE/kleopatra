@@ -449,6 +449,8 @@ set(_kleopatra_SRCS
   utils/overwritedialog.h
   utils/path-helper.cpp
   utils/path-helper.h
+  utils/settings-helpers.cpp
+  utils/settings-helpers.h
   utils/statusmessage.cpp
   utils/statusmessage.h
   utils/systemtrayicon.cpp

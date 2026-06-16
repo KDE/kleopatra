@@ -10,7 +10,7 @@
 
 #include "smartcard/algorithminfo.h"
 
-#include "utils/userinfo.h"
+#include <utils/settings-helpers.h>
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -48,7 +48,8 @@ public:
 
         if (requiredAttributes & KeyOwnerName) {
             auto nameLabel = new QLabel(i18nc("@label:textbox", "Name:"));
-            mNameEdit = new QLineEdit(userFullName());
+            mNameEdit = new QLineEdit();
+            mNameEdit->setText(nameForNewCertificates());
             connect(mNameEdit, &QLineEdit::textChanged, q, [this]() {
                 checkAcceptable();
             });
@@ -58,7 +59,8 @@ public:
         }
         if (requiredAttributes & KeyOwnerEmail) {
             auto mailLabel = new QLabel(i18nc("@label:textbox", "EMail:"));
-            mEmailEdit = new QLineEdit(userEmailAddress());
+            mEmailEdit = new QLineEdit();
+            mEmailEdit->setText(emailForNewCertificates());
             connect(mEmailEdit, &QLineEdit::textChanged, q, [this]() {
                 checkAcceptable();
             });

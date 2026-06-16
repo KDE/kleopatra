@@ -16,10 +16,8 @@
 #include "exportsecretteamkeycommand.h"
 #include "kleopatraapplication.h"
 #include "utils/emptypassphraseprovider.h"
-#include "utils/userinfo.h"
 #include <utils/distributiondata.h>
-
-#include <settings.h>
+#include <utils/settings-helpers.h>
 
 #include <Libkleo/AuditLogEntry>
 #include <Libkleo/Formatting>
@@ -27,10 +25,8 @@
 #include <Libkleo/KeyParameters>
 #include <Libkleo/OpenPGPCertificateCreationDialog>
 
-#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KSharedConfig>
 
 #include <QGpgME/KeyGenerationJob>
 #include <QGpgME/Protocol>
@@ -98,17 +94,8 @@ void NewOpenPGPCertificateCommand::Private::getCertificateDetails()
     applyWindowID(detailsDialog);
 
     if (keyParameters.protocol() == KeyParameters::NoProtocol) {
-        const auto settings = Kleo::Settings{};
-        const KConfigGroup config{KSharedConfig::openConfig(), QLatin1StringView("CertificateCreationWizard")};
-        // prefer the last used name and email address over the values retrieved from the system
-        detailsDialog->setName(config.readEntry("NAME", QString{}));
-        if (detailsDialog->name().isEmpty() && settings.prefillName()) {
-            detailsDialog->setName(userFullName());
-        }
-        detailsDialog->setEmail(config.readEntry("EMAIL", QString{}));
-        if (detailsDialog->email().isEmpty() && settings.prefillEmail()) {
-            detailsDialog->setEmail(userEmailAddress());
-        }
+        detailsDialog->setName(nameForNewCertificates());
+        detailsDialog->setEmail(emailForNewCertificates());
     } else {
         detailsDialog->setKeyParameters(keyParameters);
         detailsDialog->setProtectKeyWithPassword(protectKeyWithPassword);
