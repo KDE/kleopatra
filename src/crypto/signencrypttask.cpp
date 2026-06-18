@@ -975,9 +975,14 @@ QString SignEncryptTaskResult::overview() const
     if (dataSource() == Task::Notepad) {
         if (!d->m_sresult.isNull() && d->m_sresult.error()) {
             return i18nc("@info", "Failed to sign the notepad: %1", Formatting::errorAsString(d->m_sresult.error()));
+        } else if (!d->m_sresult.isNull() && d->m_sresult.error().isCanceled()) {
+            return i18nc("@info", "Signing canceled.");
         }
+
         if (!d->m_eresult.isNull() && d->m_eresult.error()) {
             return i18nc("@info", "Failed to encrypt the notepad: %1", Formatting::errorAsString(d->m_eresult.error()));
+        } else if (!d->m_eresult.isNull() && d->m_eresult.error().isCanceled()) {
+            return i18nc("@info", "Encryption canceled.");
         }
 
         if (!d->m_sresult.isNull() && !d->m_eresult.isNull()) {
@@ -993,9 +998,14 @@ QString SignEncryptTaskResult::overview() const
     if (dataSource() == Task::Clipboard) {
         if (!d->m_sresult.isNull() && d->m_sresult.error()) {
             return i18nc("@info", "Failed to sign the clipboard: %1", Formatting::errorAsString(d->m_sresult.error()));
+        } else if (!d->m_sresult.isNull() && d->m_sresult.error().isCanceled()) {
+            return i18nc("@info", "Signing canceled.");
         }
+
         if (!d->m_eresult.isNull() && d->m_eresult.error()) {
             return i18nc("@info", "Failed to encrypt the clipboard: %1", Formatting::errorAsString(d->m_eresult.error()));
+        } else if (!d->m_eresult.isNull() && d->m_eresult.error().isCanceled()) {
+            return i18nc("@info", "Encryption canceled.");
         }
 
         if (!d->m_sresult.isNull() && !d->m_eresult.isNull()) {
