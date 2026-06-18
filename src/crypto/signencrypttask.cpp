@@ -1014,7 +1014,7 @@ QString SignEncryptTaskResult::overview() const
                             !d->m_eresult.isNull(),
                             d->m_sresult.error().isError(),
                             d->m_eresult.error().isError(),
-                            d->m_sresult.error().isError() ? d->m_sresult.error() : d->m_eresult.error());
+                            !d->m_sresult.error().isSuccess() ? d->m_sresult.error() : d->m_eresult.error());
 }
 
 QString SignEncryptTaskResult::details() const
