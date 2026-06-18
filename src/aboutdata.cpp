@@ -130,6 +130,7 @@ static void loadCustomAboutData([[maybe_unused]] KAboutData &about)
         if (distributionData->isValid) {
             qCDebug(KLEOPATRA_LOG) << "VERSION file is valid. Updating about data.";
             QSettings settings(versionFile, QSettings::IniFormat);
+            settings.setIniCodec(QTextCodec::codecForName("UTF-8"));
             settings.beginGroup(QStringLiteral("Kleopatra"));
             distributionData->displayName = toOptionalString(settings.value(u"displayName"_s));
             distributionData->productName = toOptionalString(settings.value(u"productName"_s));
