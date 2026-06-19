@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 14:13+0100\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 16:58+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -6355,13 +6355,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Firma y cifrado cancelados."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Firma cancelada."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6647,55 +6649,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "La firma del bloc de notas ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "El cifrado del bloc de notas ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "El bloc de notas se ha cifrado y firmado con éxito"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "El bloc de notas se ha cifrado con éxito"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "El bloc de notas se ha firmado con éxito"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "La firma del portapapeles ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "El cifrado del portapapeles ha fallado: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "El portapapeles se ha cifrado y firmado correctamente"
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "El portapapeles se ha cifrado correctamente"
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -9114,6 +9116,17 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"Este ajuste indica desde qué fuentes (y con qué precedencia) se debe "
+"rellenar el nombre común (CN) de las solicitudes de firma de certificados S/"
+"MIME (CSR) recién generadas. KEMailSettings usa el nombre del perfil "
+"predeterminado de la configuración predeterminada de correo electrónico del "
+"escritorio. WinGetUserName (solo Windows) usa el valor NameDisplay devuelto "
+"por GetUserNameEx o el valor devuelto por GetUserName. EnvEmail usa la parte "
+"del nombre de la variable de entorno EMAIL. ADDisplayName (solo Windows) usa "
+"el atributo de nombre para mostrar (displayName) obtenido del servidor de "
+"Active Directory. ADFirstNameLastName (solo Windows) usa los atributos de "
+"nombre (givenName) y apellido (sn) obtenidos del servidor de Active "
+"Directory."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9166,6 +9179,15 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"Este ajuste indica de qué fuentes (y con qué precedencia) se debe rellenar "
+"previamente la dirección de correo electrónico de los certificados OpenPGP "
+"recién generados y las solicitudes de firma de certificados S/MIME (CSR). "
+"KEMailSettings usa la dirección de correo electrónico del perfil "
+"predeterminado de la configuración predeterminada de correo electrónico del "
+"escritorio. WinGetUserName (solo Windows) usa el valor NameUserPrincipal "
+"devuelto por GetUserNameEx. EnvEmail usa la dirección de correo electrónico "
+"de la variable de entorno EMAIL. ADMail (solo Windows) usa el atributo de "
+"correo electrónico (mail) obtenido del servidor de Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40

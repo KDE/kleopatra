@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 20:25+0300\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 19:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -6299,13 +6299,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "İmzalama ve şifreleme iptal edildi."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "İmzalama iptal edildi."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6589,55 +6591,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Not defteri imzalanamadı: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Not defteri şifrelenemedi: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "Not defteri başarıyla şifrelendi ve imzalandı"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "Not defteri başarıyla şifrelendi"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Not defteri başarıyla imzalandı"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "Pano imzalanamadı: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "Panonun şifrelenemedi: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "Pano başarıyla şifrelendi ve imzalandı"
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "Pano başarıyla şifrelendi"
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -9034,6 +9036,16 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"Bu ayar, yeni oluşturulan S/MIME sertifika imzalama isteklerinin (CSR) ortak "
+"adının (CN) hangi kaynaklardan (ve hangi öncelikle) önceden doldurulacağını "
+"belirtir. KEMailSettings, masaüstünün e-posta öntanımlılarının öntanımlı "
+"profilinin adını kullanır. WinGetUserName (yalnızca Windows), GetUserNameEx "
+"tarafından döndürülen NameDisplay değerini veya GetUserName tarafından "
+"döndürülen değeri kullanır. EnvEmail, EMAIL çevre değişkeninin ad bölümünü "
+"kullanır. ADDisplayName (yalnızca Windows), Active Directory sunucusundan "
+"alınan görünen ad özniteliğini (displayName) kullanır. ADFirstNameLastName "
+"(yalnızca Windows), Active Directory sunucusundan alınan ad (givenName) ve "
+"soyad (sn) özniteliklerini kullanır."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9084,6 +9096,14 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"Bu ayar, yeni oluşturulan OpenPGP sertifikalarının ve S/MIME sertifika "
+"imzalama isteklerinin (CSR) e-posta adreslerinin hangi kaynaklardan (ve "
+"hangi öncelikle) önceden doldurulacağını belirtir. KEMailSettings, "
+"masaüstünün e-posta öntanımlılarının öntanımlı profilinin e-posta adresini "
+"kullanır. WinGetUserName (yalnızca Windows), GetUserNameEx tarafından "
+"döndürülen NameUserPrincipal değerini kullanır. EnvEmail, EMAIL çevre "
+"değişkeninin e-posta adresini kullanır. ADMail (yalnızca Windows), Active "
+"Directory sunucusundan alınan posta özniteliğini (mail) kullanır."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40

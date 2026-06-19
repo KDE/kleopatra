@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 06:56+0200\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 06:53+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -6353,13 +6353,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Podpisovanje in šifriranje preklicano."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Podpisovanje preklicano."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6681,55 +6683,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Podpisovanje beležnice ni uspelo: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Šifriranje beležnice ni uspelo: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "Uspešno šifrirana in podpisana beležnica"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "Uspešno šifrirana beležnica"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Uspešno podpisana beležnica"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "Podpis odložišča ni uspel: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "Šifriranje odložišča ni uspelo: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "Odložišče je bilo uspešno šifrirano in podpisano"
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "Odložišče je bilo uspešno šifrirano"
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -9154,6 +9156,16 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"Ta nastavitev določa, iz katerih virov (in s kakšno prednostjo) se bo "
+"vnaprej izpolnilo običajno ime (CN) novo ustvarjenih zahtev za podpis "
+"potrdila S/MIME (CSR). KEMailSettings uporabi ime privzetega profila "
+"privzetih nastavitev e-pošte namizja. WinGetUserName (samo za Windows) "
+"uporabi vrednost NameDisplay, ki jo vrne GetUserNameEx, ali vrednost, ki jo "
+"vrne GetUserName. EnvEmail uporabi del imena spremenljivke okolja EMAIL. "
+"ADDisplayName (samo za Windows) uporabi atribut prikazovanega imena "
+"(displayName), pridobljen s strežnika Active Directory. ADFirstNameLastName "
+"(samo za Windows) uporabi atributa imena (givenName) in priimka (sn), "
+"pridobljena s strežnika Active Directory."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9205,6 +9217,14 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"Ta nastavitev določa, iz katerih virov (in s kakšno prednostjo) se bodo "
+"vnaprej izpolnili e-poštni naslovi novo ustvarjenih potrdil OpenPGP in "
+"zahtev za podpis potrdil S/MIME (CSR). KEMailSettings uporablja e-poštni "
+"naslov privzetega profila privzetih nastavitev e-pošte namizja. "
+"WinGetUserName (samo za Windows) uporablja vrednost NameUserPrincipal, ki jo "
+"vrne GetUserNameEx. EnvEmail uporablja e-poštni naslov okoljske "
+"spremenljivke EMAIL. ADMail (samo za Windows) uporablja atribut pošte "
+"(mail), pridobljen s strežnika Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40

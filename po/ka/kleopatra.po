@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 06:03+0200\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 05:51+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -6269,13 +6269,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "ხელმოწერა და დაშიფვრა გაუქმდა."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "ხელმოწერა გაუქმდა."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6561,55 +6563,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "ჩავარდა ხელმოწერა ბლოკნოტისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "ჩავარდა დაშიფვრა ბლოკნოტისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "ბლოკნოტის დაშიფვრა და ხელმოწერა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "ბლოკნოტის დაშიფვრა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "ბლოკნოტის ხელმოწერა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "ჩავარდა გადამოწმება ბუფერისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "ჩავარდა დაშიფვრა ბუფერისთვის: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "ბუფერის დაშიფვრა და ხელმოწერა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "ბუფერის დაშიფვრა წარმატებულია"
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -8995,6 +8997,17 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რომელი წყაროდან (და რა პრიორიტეტით) ხდება ახლად "
+"გენერირებული S/MIME სერტიფიკატის ხელმოწერის მოთხოვნის (CSR) ზოგადი სახელის "
+"(CN) წინასწარი შევსება. KEMailSettings იყენებს სამუშაო მაგიდის ელფოსტის "
+"ნაგულისხმევი მნიშვნელობების ნაგულისხმევი პროფილის სახელს. WinGetUserName "
+"(მხოლოდ Windows-ზე) იყენებს NameDisplay-ის მნიშვნელობას, რომელსაც აბრუნებს "
+"GetUserNameEx, ან GetUserName-ის დაბრუნებულ მნიშვნელობას. EnvMail იყენებს "
+"გარემოს ცვლადის EMAIL სახელის ნაწილს. ADDisplayName (მხოლოდ Windows-ზე) "
+"იყენებს საჩვენებელი სახელის ატრიბუტს (displayName), რომლის მიღებაც Active "
+"Directory-დან ხდება. ADFirstnameLastName (მხოლოდ Windows-ზე) იყენებს სახელის "
+"(givenName) და გვარის (sn) ატრიბუტებს, რომლებსაც ის Active Directory-ის "
+"სერვერიდან იღებს."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9046,6 +9059,14 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"ეს პარამეტრი მიუთითებს, რომელი წყაროდან (და რა პრიორიტეტით) ხდება ახალი "
+"OpenPGP სერტიფიკატის და S/MIME სერტიფიკატის ხელმოწერის მოთხოვნების (CSR) "
+"ელფოსტის მისამართის წინასწარი შევსება. KEMailSettings იყენებს სამუშაო "
+"მაგიდის ელფოსტის ნაგულისხმევი მნიშვნელობების ელფოსტის მისამართს. "
+"WinGetUserName (მხოლოდ Windows-ზე) იყენებს NameUserPrincipal-ის "
+"მნიშვნელობას, რომელსაც GetUserNameEx აბრუნებს. EnvEmail იყენებს გარემოს "
+"ცვლადს EMAIL. ADEmail (მხოლოდ Windows-ზე) იყენებს ატრიბუტს mail, რომლის "
+"მიღებაც Active Directory-ის სერვერიდან ხდება."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40

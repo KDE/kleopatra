@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 08:24+0300\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 08:42+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -6401,13 +6401,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Підписування і шифрування скасовано."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Підписування скасовано."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6729,55 +6731,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Не вдалося підписати нотатник: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Не вдалося зашифрувати нотатник: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "Нотатник успішно зашифровано і підписано"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "Нотатник успішно зашифровано"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Нотатник успішно підписано"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "Не вдалося підписати вміст буфера обміну: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "Не вдалося зашифрувати вміст буфера обміну: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "Вміст буфера обміну успішно зашифровано і підписано."
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "Вміст буфера обміну успішно зашифровано."
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -9240,6 +9242,17 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"Цей параметр визначає, з яких джерел (і з якою пріоритетністю) має бути "
+"попередньо заповнено загальне ім'я (CN) для щойно створених запитів на "
+"підписування сертифіката S/MIME (CSR). KEMailSettings — типово використати "
+"назву профілю для налаштувань електронної пошти стільничного середовища. "
+"WinGetUserName (лише для Windows) — використовувати значення NameDisplay, "
+"повернене GetUserNameEx, або значення, повернене GetUserName. EnvEmail — "
+"використовувати частину імені у змінній середовища EMAIL. ADDisplayName "
+"(лише для Windows) — використовувати атрибут імені для показу (displayName), "
+"отриманий із сервера Active Directory. ADFirstNameLastName (лише для "
+"Windows) — використовувати атрибути імені (givenName) та прізвища (sn), "
+"отримані із сервера Active Directory."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9291,6 +9304,15 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"Цей параметр визначає, з яких джерел (і з якою пріоритетністю) має бути "
+"попередньо заповнено адреси електронної пошти для щойно створених "
+"сертифікатів OpenPGP та запитів на підписування сертифікатів S/MIME (CSR). "
+"KEMailSettings — використати адресу електронної пошти стандартного профілю "
+"електронної пошти стільничного середовища. WinGetUserName (лише для Windows) "
+"— використовувати значення NameUserPrincipal, повернене GetUserNameEx. "
+"EnvEmail — використовувати адресу електронної пошти зі змінної середовища "
+"EMAIL. ADMail (лише для Windows) — використовувати атрибут пошти (mail), "
+"отриманий із сервера Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40

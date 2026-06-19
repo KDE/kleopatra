@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-18 00:44+0000\n"
-"PO-Revision-Date: 2026-06-12 18:19+0200\n"
+"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"PO-Revision-Date: 2026-06-18 14:29+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -6369,13 +6369,15 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Ondertekenen en versleuteling geannuleerd."
 
-#: src/crypto/signencrypttask.cpp:144
+#: src/crypto/signencrypttask.cpp:144 src/crypto/signencrypttask.cpp:979
+#: src/crypto/signencrypttask.cpp:1002
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Ondertekenen geannuleerd."
 
-#: src/crypto/signencrypttask.cpp:147
+#: src/crypto/signencrypttask.cpp:147 src/crypto/signencrypttask.cpp:985
+#: src/crypto/signencrypttask.cpp:1008
 #, kde-format
 msgctxt "@info"
 msgid "Encryption canceled."
@@ -6661,55 +6663,55 @@ msgctxt "@info"
 msgid "Failed to sign the notepad: %1"
 msgstr "Het notepad ondertekenen is mislukt: %1"
 
-#: src/crypto/signencrypttask.cpp:980
+#: src/crypto/signencrypttask.cpp:983
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the notepad: %1"
 msgstr "Het notepad versleutelen is mislukt: %1"
 
-#: src/crypto/signencrypttask.cpp:984
+#: src/crypto/signencrypttask.cpp:989
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the notepad"
 msgstr "Het notepad versleutelen en ondertekenen heeft succes"
 
-#: src/crypto/signencrypttask.cpp:986
+#: src/crypto/signencrypttask.cpp:991
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the notepad"
 msgstr "Het notepad versleutelen heeft succes"
 
-#: src/crypto/signencrypttask.cpp:988
+#: src/crypto/signencrypttask.cpp:993
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the notepad"
 msgstr "Het notepad ondertekenen heeft succes"
 
-#: src/crypto/signencrypttask.cpp:995
+#: src/crypto/signencrypttask.cpp:1000
 #, kde-format
 msgctxt "@info"
 msgid "Failed to sign the clipboard: %1"
 msgstr "Het klembord ondertekenen is mislukt: %1"
 
-#: src/crypto/signencrypttask.cpp:998
+#: src/crypto/signencrypttask.cpp:1006
 #, kde-format
 msgctxt "@info"
 msgid "Failed to encrypt the clipboard: %1"
 msgstr "Het klembord versleutelen is mislukt: %1"
 
-#: src/crypto/signencrypttask.cpp:1002
+#: src/crypto/signencrypttask.cpp:1012
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted and signed the clipboard"
 msgstr "Het klembord versleutelen en ondertekenen heeft succes"
 
-#: src/crypto/signencrypttask.cpp:1004
+#: src/crypto/signencrypttask.cpp:1014
 #, kde-format
 msgctxt "@info"
 msgid "Successfully encrypted the clipboard"
 msgstr "Het klembord versleutelen heeft succes"
 
-#: src/crypto/signencrypttask.cpp:1006
+#: src/crypto/signencrypttask.cpp:1016
 #, kde-format
 msgctxt "@info"
 msgid "Successfully signed the clipboard"
@@ -9117,6 +9119,18 @@ msgid ""
 "only) uses the first name (givenName) and last name (sn) attributes "
 "retrieved from the Active Directory server."
 msgstr ""
+"Deze instelling specificeert uit welke bronnen (en met welke prioriteit) de "
+"algemene naam (CN) van nieuw gegenereerde S/MIME-"
+"certificaatondertekeningsverzoeken (CSR's) vooraf moet worden ingevuld. "
+"KEMailSettings gebruikt de naam van het standaardprofiel van de e-"
+"mailinstellingen van de desktop. WinGetUserName (alleen Windows) gebruikt de "
+"NameDisplay-waarde die wordt geretourneerd door GetUserNameEx of de waarde "
+"die wordt geretourneerd door GetUserName. EnvEmail gebruikt het naamgedeelte "
+"van de omgevingsvariabele EMAIL.ADDisplayName (alleen Windows) gebruikt het "
+"weergavenaamkenmerk (displayName) dat wordt opgehaald van de Active "
+"Directory-server. ADFirstNameLastName (alleen Windows) gebruikt de voornaam "
+"(givenName) en achternaam (sn) die worden opgehaald van de Active Directory-"
+"server."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9168,6 +9182,15 @@ msgid ""
 "variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
 "from the Active Directory server."
 msgstr ""
+"Deze instelling specificeert uit welke bronnen (en met welke prioriteit) het "
+"e-mailadres van nieuw gegenereerde OpenPGP-certificaten en S/MIME-"
+"certificaatondertekeningsverzoeken (CSR) moet worden ingevuld. "
+"KEMailSettings gebruikt het e-mailadres van het standaardprofiel van de e-"
+"mailinstellingen van de desktop. WinGetUserName (alleen Windows) gebruikt de "
+"NameUserPrincipal-waarde die wordt geretourneerd door GetUserNameEx. "
+"EnvEmail gebruikt het e-mailadres van de omgevingsvariabele EMAIL. ADMail "
+"(alleen Windows) gebruikt het mailkenmerk (mail) dat is opgehaald van de "
+"Active Directory-server."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40
