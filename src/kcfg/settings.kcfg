@@ -18,7 +18,7 @@
    <entry key="CN_prefill_sources" name="prefillSourcesCN" type="StringList">
      <label>Prefill CN automatically</label>
      <whatsthis>This setting specifies from which sources (and with what precedence) the common name (CN) of newly generated S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the name of the desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName (Windows-only) uses the display name attribute (displayName) retrieved from the Active Directory server. ADFirstNameLastName (Windows-only) uses the first name (givenName) and last name (sn) attributes retrieved from the Active Directory server.</whatsthis>
-     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
+     <default>KEMailSettings,ADFirstNameLastName,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
      <label>Hint for EMAIL</label>
@@ -34,7 +34,7 @@
    <entry key="EMAIL_prefill_sources" name="prefillSourcesEmail" type="StringList">
      <label>Prefill EMAIL automatically</label>
      <whatsthis>This setting specifies from which sources (and with what precedence) the email address of newly generated OpenPGP certificates and S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the email address of the desktop's email settings. WinGetUserName (Windows-only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL environment variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved from the Active Directory server.</whatsthis>
-     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
+     <default>KEMailSettings,ADMail,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="EMAIL" name="email" type="String">
      <label>Value of EMAIL</label>
@@ -55,7 +55,7 @@
    <entry key="NAME_prefill_sources" name="prefillSourcesName" type="StringList">
      <label>Prefill NAME automatically</label>
      <whatsthis>This setting specifies from which sources (and with what precedence) the name used for newly generated OpenPGP certificates shall be prefilled. KEMailSettings uses the name of the desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName (Windows-only) uses the display name attribute (displayName) retrieved from the Active Directory server. ADFirstNameLastName (Windows-only) uses the first name (givenName) and last name (sn) attributes retrieved from the Active Directory server.</whatsthis>
-     <default>KEMailSettings,WinGetUserName,EnvEmail</default>
+     <default>KEMailSettings,ADFirstNameLastName,WinGetUserName,EnvEmail</default>
    </entry>
    <entry key="NAME" name="name" type="String">
      <label>Value of NAME</label>
