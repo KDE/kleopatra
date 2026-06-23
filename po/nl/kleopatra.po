@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-19 00:44+0000\n"
+"POT-Creation-Date: 2026-06-23 00:46+0000\n"
 "PO-Revision-Date: 2026-06-18 14:29+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -9083,8 +9083,7 @@ msgstr ""
 "name (CN) van S/MIME certificaten."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
-#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:13 src/kcfg/settings.kcfg:19
+#: src/kcfg/settings.kcfg:13
 #, kde-format
 msgid "Prefill CN automatically"
 msgstr "CN automatisch vooraf invullen"
@@ -9103,21 +9102,37 @@ msgstr ""
 "         bijv., uit de e-mailinstellingen van het bureaublad of, onder "
 "Windows, uit de Active Directory."
 
-#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
-#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:20 src/kcfg/settings.kcfg:57
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:19
 #, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:20
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies from which sources (and with what precedence) the "
+#| "common name (CN) of newly generated S/MIME certificate signing requests "
+#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
+#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
+#| "uses the NameDisplay value returned by GetUserNameEx or the value "
+#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+#| "environment variable. ADDisplayName (Windows-only) uses the display name "
+#| "attribute (displayName) retrieved from the Active Directory server. "
+#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
+#| "last name (sn) attributes retrieved from the Active Directory server."
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
-"common name (CN) of newly generated S/MIME certificate signing requests "
-"(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-"profile of the desktop's email defaults. WinGetUserName (Windows-only) uses "
-"the NameDisplay value returned by GetUserNameEx or the value returned by "
-"GetUserName. EnvEmail uses the name part of the EMAIL environment variable. "
-"ADDisplayName (Windows-only) uses the display name attribute (displayName) "
-"retrieved from the Active Directory server. ADFirstNameLastName (Windows-"
-"only) uses the first name (givenName) and last name (sn) attributes "
-"retrieved from the Active Directory server."
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
 msgstr ""
 "Deze instelling specificeert uit welke bronnen (en met welke prioriteit) de "
 "algemene naam (CN) van nieuw gegenereerde S/MIME-"
@@ -9149,8 +9164,7 @@ msgstr ""
 "certificaten en als plaatshouder in dat veld voor S/MIME certificaten."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
-#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:29 src/kcfg/settings.kcfg:35
+#: src/kcfg/settings.kcfg:29
 #, kde-format
 msgid "Prefill EMAIL automatically"
 msgstr "E-MAIL automatisch vooraf invullen"
@@ -9169,18 +9183,33 @@ msgstr ""
 "         bijv., uit de e-mailinstellingen van het bureaublad of, onder "
 "Windows, uit de Active Directory."
 
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:35
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies from which sources (and with what precedence) the "
+#| "email address of newly generated OpenPGP certificates and S/MIME "
+#| "certificate signing requests (CSR) shall be prefilled. KEMailSettings "
+#| "uses the email address of the default profile of the desktop's email "
+#| "defaults. WinGetUserName (Windows-only) uses the NameUserPrincipal value "
+#| "returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL "
+#| "environment variable. ADMail (Windows-only) uses the mail attribute "
+#| "(mail) retrieved from the Active Directory server."
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
-"email address of newly generated OpenPGP certificates and S/MIME certificate "
-"signing requests (CSR) shall be prefilled. KEMailSettings uses the email "
-"address of the default profile of the desktop's email defaults. "
-"WinGetUserName (Windows-only) uses the NameUserPrincipal value returned by "
-"GetUserNameEx. EnvEmail uses the email address of the EMAIL environment "
-"variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved "
-"from the Active Directory server."
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
 msgstr ""
 "Deze instelling specificeert uit welke bronnen (en met welke prioriteit) het "
 "e-mailadres van nieuw gegenereerde OpenPGP-certificaten en S/MIME-"
@@ -9224,8 +9253,7 @@ msgstr ""
 "Deze tekst zal getoond worden als het naamveld van OpenPGP certificaten."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
-#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:50 src/kcfg/settings.kcfg:56
+#: src/kcfg/settings.kcfg:50
 #, kde-format
 msgid "Prefill NAME automatically"
 msgstr "NAAM automatisch vooraf invullen"
@@ -9243,6 +9271,50 @@ msgstr ""
 "worden met informatie verzamelt uit het systeem,\n"
 "         bijv., uit de e-mailinstellingen van het bureaublad of, onder "
 "Windows, uit de Active Directory."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:56
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:57
+#, fuzzy, kde-format
+#| msgid ""
+#| "This setting specifies from which sources (and with what precedence) the "
+#| "common name (CN) of newly generated S/MIME certificate signing requests "
+#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
+#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
+#| "uses the NameDisplay value returned by GetUserNameEx or the value "
+#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+#| "environment variable. ADDisplayName (Windows-only) uses the display name "
+#| "attribute (displayName) retrieved from the Active Directory server. "
+#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
+#| "last name (sn) attributes retrieved from the Active Directory server."
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+"Deze instelling specificeert uit welke bronnen (en met welke prioriteit) de "
+"algemene naam (CN) van nieuw gegenereerde S/MIME-"
+"certificaatondertekeningsverzoeken (CSR's) vooraf moet worden ingevuld. "
+"KEMailSettings gebruikt de naam van het standaardprofiel van de e-"
+"mailinstellingen van de desktop. WinGetUserName (alleen Windows) gebruikt de "
+"NameDisplay-waarde die wordt geretourneerd door GetUserNameEx of de waarde "
+"die wordt geretourneerd door GetUserName. EnvEmail gebruikt het naamgedeelte "
+"van de omgevingsvariabele EMAIL.ADDisplayName (alleen Windows) gebruikt het "
+"weergavenaamkenmerk (displayName) dat wordt opgehaald van de Active "
+"Directory-server. ADFirstNameLastName (alleen Windows) gebruikt de voornaam "
+"(givenName) en achternaam (sn) die worden opgehaald van de Active Directory-"
+"server."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:61
