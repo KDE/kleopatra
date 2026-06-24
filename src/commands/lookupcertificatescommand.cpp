@@ -252,7 +252,9 @@ void LookupCertificatesCommand::Private::createDialog()
     applyWindowID(dialog);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
 
-    const bool wkdOnly = !haveKeyserverConfigured() && !haveX509DirectoryServerConfigured();
+    const bool openpgpKeyserverLookupPossible = haveKeyserverConfigured() && !Kleo::isDirmngrDisabled(GpgME::OpenPGP);
+    const bool smimeKeyserverLookupPossible = !Kleo::isDirmngrDisabled(GpgME::CMS);
+    const bool wkdOnly = !openpgpKeyserverLookupPossible && !smimeKeyserverLookupPossible;
     dialog->setQueryMode(wkdOnly ? LookupCertificatesDialog::EmailQuery : LookupCertificatesDialog::AnyQuery);
 
     connect(dialog, &LookupCertificatesDialog::searchTextChanged, q, [this](const QString &text) {
@@ -319,11 +321,20 @@ void LookupCertificatesCommand::Private::slotSearchTextChanged(const QString &st
         connect(progress, &QProgressDialog::canceled, q, [this]() {
             cancelLookup();
         });
+    } else {
+        if (dialog) {
+            dialog->setPassive(false);
+            dialog->setOverlayText(i18nc("@info", "Lookup not possible because no servers are configured or network access is disabled."));
+        }
     }
 }
 
 void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, const QString &str)
 {
+    if (Kleo::isDirmngrDisabled(protocol)) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping" << Formatting::displayName(proto) << "keylisting because dirmngr is disabled";
+        return;
+    }
     if ((proto == GpgME::OpenPGP) && !haveKeyserverConfigured()) {
         // avoid starting an OpenPGP key server lookup if key server usage has been disabled;
         // for S/MIME we start the job regardless of configured directory servers to account for
@@ -352,6 +363,10 @@ void LookupCertificatesCommand::Private::startKeyListJob(GpgME::Protocol proto, 
 
 void LookupCertificatesCommand::Private::startWKDLookupJob(const QString &str)
 {
+    if (Kleo::isDirmngrDisabled(GpgME::OpenPGP)) {
+        qCDebug(KLEOPATRA_LOG) << __func__ << "Skipping WKD lookup because dirmngr is disabled for gpg";
+        return;
+    }
     const auto job = createWKDLookupJob();
     if (!job) {
         qCDebug(KLEOPATRA_LOG) << "Failed to create WKDLookupJob";
@@ -644,9 +659,13 @@ void LookupCertificatesCommand::Private::showResult(QWidget *parent, const KeyLi
 
 bool LookupCertificatesCommand::Private::checkConfig() const
 {
+    if (Kleo::isDirmngrDisabled()) {
+        information(i18nc("@info", "Lookup on server is not possible because network access is disabled for OpenPGP and for S/MIME."),
+                    i18nc("@title", "Network Access Disabled"));
+        return false;
+    }
     // unless CMS-only lookup is requested we always try a lookup via WKD
-    const bool ok = (protocol != GpgME::CMS) || haveX509DirectoryServerConfigured();
-    if (!ok) {
+    if ((protocol == GpgME::CMS) && !haveX509DirectoryServerConfigured()) {
         information(xi18nc("@info",
                            "<para>You do not have any directory servers configured.</para>"
                            "<para>You need to configure at least one directory server to "
@@ -654,8 +673,9 @@ bool LookupCertificatesCommand::Private::checkConfig() const
                            "<para>You can configure directory servers here: "
                            "<interface>Settings->Configure Kleopatra</interface>.</para>"),
                     i18nc("@title", "No Directory Servers Configured"));
+        return false;
     }
-    return ok;
+    return true;
 }
 
 #undef d
