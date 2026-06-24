@@ -110,23 +110,13 @@ void RefreshCertificatesCommand::Private::start()
         return;
     }
 
+    const auto keysByProtocol = Kleo::partitionKeysByProtocol(keys());
+    pgpKeys = keysByProtocol.openpgp;
+    smimeKeys = keysByProtocol.cms;
+
     std::unique_ptr<QGpgME::Job> pgpRefreshJob;
     std::unique_ptr<QGpgME::Job> smimeRefreshJob;
     std::unique_ptr<QGpgME::Job> wkdRefreshJob;
-
-    auto keysByProtocol = Kleo::partitionKeysByProtocol(keys());
-
-    progressDialog = new QProgressDialog(i18ncp("@info", "Updating certificate…", "Updating %1 certificates…", keys().size()),
-                                         i18nc("@action:button", "Cancel"),
-                                         0,
-                                         0,
-                                         parentWidgetOrView());
-    progressDialog->setValue(0);
-    connect(progressDialog.get(), &QProgressDialog::canceled, q, &RefreshCertificatesCommand::cancel);
-    progressDialog->setMinimumDuration(500);
-
-    pgpKeys = keysByProtocol.openpgp;
-    smimeKeys = keysByProtocol.cms;
 
     if (!smimeKeys.empty()) {
         if (Kleo::isDirmngrDisabled(GpgME::CMS)) {
@@ -164,6 +154,15 @@ void RefreshCertificatesCommand::Private::start()
     pgpJob = pgpRefreshJob.release();
     smimeJob = smimeRefreshJob.release();
     wkdJob = wkdRefreshJob.release();
+
+    progressDialog = new QProgressDialog(i18ncp("@info", "Updating certificate…", "Updating %1 certificates…", keys().size()),
+                                         i18nc("@action:button", "Cancel"),
+                                         0,
+                                         0,
+                                         parentWidgetOrView());
+    progressDialog->setValue(0);
+    connect(progressDialog.get(), &QProgressDialog::canceled, q, &RefreshCertificatesCommand::cancel);
+    progressDialog->setMinimumDuration(500);
 }
 
 void RefreshCertificatesCommand::Private::cancel()
