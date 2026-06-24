@@ -129,20 +129,36 @@ void RefreshCertificatesCommand::Private::start()
     smimeKeys = keysByProtocol.cms;
 
     if (!smimeKeys.empty()) {
-        smimeRefreshJob = startSMIMEJob();
+        if (Kleo::isDirmngrDisabled(GpgME::CMS)) {
+            smimeError = Error::fromCode(GPG_ERR_USER_2);
+        } else {
+            smimeRefreshJob = startSMIMEJob();
+        }
     }
 
     if (!pgpKeys.empty()) {
-        if (haveKeyserverConfigured()) {
-            pgpRefreshJob = startKeyserverJob();
-        } else {
+        if (Kleo::isDirmngrDisabled(GpgME::OpenPGP)) {
+            keyserverResult = ImportResult{Error::fromCode(GPG_ERR_USER_2)};
+        } else if (!haveKeyserverConfigured()) {
             keyserverResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
+        } else {
+            pgpRefreshJob = startKeyserverJob();
         }
-        wkdRefreshJob = startWKDRefreshJob();
+
+        if (Kleo::isDirmngrDisabled(GpgME::OpenPGP)) {
+            wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_2)};
+        } else {
+            wkdRefreshJob = startWKDRefreshJob();
+        }
     }
 
     if (!pgpRefreshJob && !smimeRefreshJob && !wkdRefreshJob) {
-        finished();
+        QMetaObject::invokeMethod(
+            q,
+            [this]() {
+                checkFinished();
+            },
+            Qt::QueuedConnection);
         return;
     }
     pgpJob = pgpRefreshJob.release();
@@ -390,13 +406,16 @@ void RefreshCertificatesCommand::Private::checkFinished()
         return;
     }
 
-    const auto pgpSkipped = keyserverResult.error().code() == GPG_ERR_USER_1;
+    const auto pgpNoKeyserver = keyserverResult.error().code() == GPG_ERR_USER_1;
+    const auto pgpNoNetworkAccess = keyserverResult.error().code() == GPG_ERR_USER_2;
     const auto pgpKeyNotFound = keyserverResult.error().code() == GPG_ERR_NO_DATA;
     const auto wkdSkipped = wkdRefreshResult.error().code() == GPG_ERR_USER_1;
+    const auto wkdNoNetworkAccess = wkdRefreshResult.error().code() == GPG_ERR_USER_2;
+    const auto smimeNoNetworkAccess = smimeError && smimeError.value().code() == GPG_ERR_USER_2;
 
     const auto hasSmimeError = smimeError && *smimeError;
-    const auto hasPgpError = !keyserverResult.isNull() && keyserverResult.error() && !pgpSkipped && !pgpKeyNotFound;
-    const auto hasWkdError = !wkdRefreshResult.isNull() && wkdRefreshResult.error() && !wkdSkipped;
+    const auto hasPgpError = !keyserverResult.isNull() && keyserverResult.error();
+    const auto hasWkdError = !wkdRefreshResult.isNull() && wkdRefreshResult.error();
 
     bool success = false;
     QString text;
@@ -404,12 +423,14 @@ void RefreshCertificatesCommand::Private::checkFinished()
     if (!pgpKeys.empty()) {
         text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of OpenPGP certificate update from keyserver, LDAP server, or Active Directory")
             + QLatin1StringView{"</strong></p>"};
-        if (hasPgpError) {
-            text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(keyserverResult.error()));
-        } else if (pgpSkipped) {
+        if (pgpNoNetworkAccess) {
+            text += xi18nc("@info", "<para>Update skipped because network access is disabled for OpenPGP.</para>");
+        } else if (pgpNoKeyserver) {
             text += xi18nc("@info", "<para>Update skipped because no OpenPGP keyserver is configured.</para>");
         } else if (pgpKeyNotFound) {
             text += xi18ncp("@info", "<para>The certificate was not found.</para>", "<para>The certificates were not found.</para>", pgpKeys.size());
+        } else if (hasPgpError) {
+            text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(keyserverResult.error()));
         } else if (pgpKeys.size() > 1) {
             success = true;
             text += xi18ncp("@info", "<para>The certificate was updated.</para>", "<para>The certificates were updated.</para>", pgpKeys.size());
@@ -421,7 +442,9 @@ void RefreshCertificatesCommand::Private::checkFinished()
 
     if (!wkdKeys.empty() && !wkdSkipped) {
         text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of update from Web Key Directory") + QLatin1StringView{"</strong></p>"};
-        if (hasWkdError) {
+        if (wkdNoNetworkAccess) {
+            text += xi18nc("@info", "<para>Update skipped because network access is disabled for OpenPGP.</para>");
+        } else if (hasWkdError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(wkdRefreshResult.error()));
         } else if (wkdRefreshResult.numConsidered() == 0) {
             // explicitly use pgpKeys.size() also for WKD to avoid confusion caused by different plural forms for keyserver result and WKD result
@@ -438,7 +461,9 @@ void RefreshCertificatesCommand::Private::checkFinished()
 
     if (!smimeKeys.empty()) {
         text += QLatin1StringView{"<p><strong>"} + i18nc("@info", "Result of S/MIME certificate update") + QLatin1StringView{"</strong></p>"};
-        if (hasSmimeError) {
+        if (smimeNoNetworkAccess) {
+            text += xi18nc("@info", "<para>Update skipped because network access is disabled for S/MIME.</para>");
+        } else if (hasSmimeError) {
             text += xi18nc("@info", "<para>Update failed:</para><para><message>%1</message></para>", Formatting::errorAsString(*smimeError));
         } else {
             success = true;
