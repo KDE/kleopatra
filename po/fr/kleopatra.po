@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-23 00:46+0000\n"
+"POT-Creation-Date: 2026-06-25 00:45+0000\n"
 "PO-Revision-Date: 2026-06-20 09:39+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
@@ -3082,13 +3082,21 @@ msgstr ""
 "La copie de la clé, enregistrée sur votre ordinateur, a été supprimée avec "
 "succès."
 
-#: src/commands/lookupcertificatescommand.cpp:315
+#: src/commands/lookupcertificatescommand.cpp:317
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "Recherche de certificats correspondants..."
 
-#: src/commands/lookupcertificatescommand.cpp:462
+#: src/commands/lookupcertificatescommand.cpp:327
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3104,7 +3112,7 @@ msgstr ""
 "para><para>Vous pouvez vouloir configurer un service d'annuaire « X.509 » "
 "différent dans la boite de dialogue de configuration.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:469
+#: src/commands/lookupcertificatescommand.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3119,19 +3127,19 @@ msgstr ""
 "para><para>Vous pouvez vouloir configurer un serveur de clés « OpenPGP » "
 "différent dans la boite de dialogue de configuration.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:475
+#: src/commands/lookupcertificatescommand.cpp:490
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "Réponse non valable du serveur"
 
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "Aucun certificat trouvé"
 
-#: src/commands/lookupcertificatescommand.cpp:625
+#: src/commands/lookupcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3142,7 +3150,7 @@ msgstr ""
 "était :\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:633
+#: src/commands/lookupcertificatescommand.cpp:648
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3157,14 +3165,28 @@ msgstr ""
 "la limite locale dans la configuration, mais si les serveurs ont défini leur "
 "propre limite, vous devrez alors affiner votre recherche.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:641
+#: src/commands/lookupcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Résultat tronqué"
 
+#: src/commands/lookupcertificatescommand.cpp:663
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp:664
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
+
 # unreviewed-context
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:670
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3178,7 +3200,7 @@ msgstr ""
 "configurer les serveurs d'annuaire ici : <interface>Configuration / "
 "Configurer Kleopatra</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:656
+#: src/commands/lookupcertificatescommand.cpp:675
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3329,7 +3351,7 @@ msgstr ""
 "Il vous est impossible de générer une clé sur cette carte à puce car elle ne "
 "prend en charge aucun des algorithmes conformes."
 
-#: src/commands/refreshcertificatescommand.cpp:119
+#: src/commands/refreshcertificatescommand.cpp:158
 #, kde-format
 msgctxt "@info"
 msgid "Updating certificate…"
@@ -3337,63 +3359,63 @@ msgid_plural "Updating %1 certificates…"
 msgstr[0] "Mise à jour du certificat en cours..."
 msgstr[1] "Mise à jour de %1 certificats en cours..."
 
-#: src/commands/refreshcertificatescommand.cpp:120
+#: src/commands/refreshcertificatescommand.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/commands/refreshcertificatescommand.cpp:188
-#: src/commands/refreshcertificatescommand.cpp:261
+#: src/commands/refreshcertificatescommand.cpp:203
+#: src/commands/refreshcertificatescommand.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "Mise à jour de la clé en cours..."
 
-#: src/commands/refreshcertificatescommand.cpp:205
+#: src/commands/refreshcertificatescommand.cpp:220
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "Mise à jour du certificat en cours..."
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:295
 #, kde-format
 msgid "The certificate has not changed."
 msgstr "Le certificat n'a pas été modifié."
 
-#: src/commands/refreshcertificatescommand.cpp:284
+#: src/commands/refreshcertificatescommand.cpp:299
 #, kde-format
 msgid "The certificate has been revoked."
 msgstr "Le certificat a été révoqué."
 
-#: src/commands/refreshcertificatescommand.cpp:287
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "The certificate has been updated."
 msgstr "Le certificat a été mis à jour."
 
-#: src/commands/refreshcertificatescommand.cpp:291
+#: src/commands/refreshcertificatescommand.cpp:306
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "Nouveaux ID utilisateur : %1"
 
-#: src/commands/refreshcertificatescommand.cpp:294
+#: src/commands/refreshcertificatescommand.cpp:309
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "Nouvelles sous-clés : %1"
 
-#: src/commands/refreshcertificatescommand.cpp:297
+#: src/commands/refreshcertificatescommand.cpp:312
 #, kde-format
 msgid "New signatures: %1"
 msgstr "Nouvelles signatures : %1"
 
-#: src/commands/refreshcertificatescommand.cpp:307
+#: src/commands/refreshcertificatescommand.cpp:322
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
 msgstr[0] "De façon supplémentaire, une nouvelle clé a été retrouvée."
 msgstr[1] "De façon supplémentaire, %1 nouvelles clés ont été retrouvées."
 
-#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:423
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3403,16 +3425,20 @@ msgstr ""
 "Résultat de la mise à jour des certificats « OpenPGP » à partir du serveur "
 "de clés, du serveur « LDAP » ou « Active Directory »"
 
-#: src/commands/refreshcertificatescommand.cpp:408
-#: src/commands/refreshcertificatescommand.cpp:425
-#: src/commands/refreshcertificatescommand.cpp:442
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:426
+#: src/commands/refreshcertificatescommand.cpp:445
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>La mise à jour a échoué :</para><para><message>%1</message></para>"
+"<para>La mise à jour a été ignorée car aucun serveur « OpenPGP » n'est "
+"configuré.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:410
+#: src/commands/refreshcertificatescommand.cpp:428
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
@@ -3420,8 +3446,8 @@ msgstr ""
 "<para>La mise à jour a été ignorée car aucun serveur « OpenPGP » n'est "
 "configuré.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:428
+#: src/commands/refreshcertificatescommand.cpp:430
+#: src/commands/refreshcertificatescommand.cpp:450
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
@@ -3429,9 +3455,18 @@ msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>Il a été impossible de trouver le certificat.</para>"
 msgstr[1] "<para>Il a été impossible de trouver le certificat.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:415
 #: src/commands/refreshcertificatescommand.cpp:432
-#: src/commands/refreshcertificatescommand.cpp:445
+#: src/commands/refreshcertificatescommand.cpp:447
+#: src/commands/refreshcertificatescommand.cpp:466
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>La mise à jour a échoué :</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp:435
+#: src/commands/refreshcertificatescommand.cpp:454
+#: src/commands/refreshcertificatescommand.cpp:469
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
@@ -3439,19 +3474,31 @@ msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Le certificat a été mis à jour.</para>"
 msgstr[1] "<para>Les certificats ont été mis à jour.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:423
+#: src/commands/refreshcertificatescommand.cpp:443
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "Résultat de la mise à jour à partir du dossier de clés Internet"
 
-#: src/commands/refreshcertificatescommand.cpp:440
+#: src/commands/refreshcertificatescommand.cpp:462
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Résultat de la mise à jour des certificats « S/MIME »."
 
-#: src/commands/refreshcertificatescommand.cpp:450
+#: src/commands/refreshcertificatescommand.cpp:464
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>La mise à jour a été ignorée car aucun serveur « OpenPGP » n'est "
+"configuré.</para>"
+
+#: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
@@ -3459,7 +3506,7 @@ msgid_plural "Certificates Updated"
 msgstr[0] "Certificat mis à jour"
 msgstr[1] "Certificats mis à jour"
 
-#: src/commands/refreshcertificatescommand.cpp:450
+#: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"

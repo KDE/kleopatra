@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-23 00:46+0000\n"
+"POT-Creation-Date: 2026-06-25 00:45+0000\n"
 "PO-Revision-Date: 2026-06-21 20:25+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -2954,13 +2954,21 @@ msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
 msgstr "حُذفت نسخة المفتاح المخزّنة على هذا الحاسوب بنجاح."
 
-#: src/commands/lookupcertificatescommand.cpp:315
+#: src/commands/lookupcertificatescommand.cpp:317
 #, kde-format
 msgctxt "@info"
 msgid "Searching for matching certificates ..."
 msgstr "البحث عن الشهادات المطابقة…"
 
-#: src/commands/lookupcertificatescommand.cpp:462
+#: src/commands/lookupcertificatescommand.cpp:327
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp:477
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2974,7 +2982,7 @@ msgstr ""
 "البصمات مطلوبة بصفتها معرّفات فريدة للشهادات.</para><para>يمكنك إعداد خدمة "
 "دليل X.509 مختلفة في حوار الإعدادات.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:469
+#: src/commands/lookupcertificatescommand.cpp:484
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2987,19 +2995,19 @@ msgstr ""
 "البصمات مطلوبة بصفتها معرّفات فريدة للشهادات.</para><para>يمكنك إعداد خادوم "
 "مفاتيح OpenPGP مختلف في حوار الإعدادات.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:475
+#: src/commands/lookupcertificatescommand.cpp:490
 #, kde-format
 msgctxt "@title"
 msgid "Invalid Server Reply"
 msgstr "ردّ خادوم غير صالح"
 
-#: src/commands/lookupcertificatescommand.cpp:517
+#: src/commands/lookupcertificatescommand.cpp:532
 #, kde-format
 msgctxt "@info"
 msgid "No certificates found"
 msgstr "لم توجد شهادات"
 
-#: src/commands/lookupcertificatescommand.cpp:625
+#: src/commands/lookupcertificatescommand.cpp:640
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3009,7 +3017,7 @@ msgstr ""
 "فشل البحث على خادوم الشهادات. الخطأ الذي أعيد كان:\n"
 "%1"
 
-#: src/commands/lookupcertificatescommand.cpp:633
+#: src/commands/lookupcertificatescommand.cpp:648
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3024,13 +3032,27 @@ msgstr ""
 "الحدّ المحلي في حوار الإعدادات، لكن إن كان أحد الخواديم التي أعدّتها هو العامل "
 "المحدّد، فعليك تنقيح بحثك.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:641
+#: src/commands/lookupcertificatescommand.cpp:656
 #, kde-format
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "النتيجة مبتورة"
 
-#: src/commands/lookupcertificatescommand.cpp:651
+#: src/commands/lookupcertificatescommand.cpp:663
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp:664
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp:670
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3043,7 +3065,7 @@ msgstr ""
 "الأقل للبحث عليه.</para><para>يمكنك إعداد خواديم الدليل من هنا: "
 "<interface>الإعدادات->إعداد كليوبترا</interface>.</para>"
 
-#: src/commands/lookupcertificatescommand.cpp:656
+#: src/commands/lookupcertificatescommand.cpp:675
 #, kde-format
 msgctxt "@title"
 msgid "No Directory Servers Configured"
@@ -3191,7 +3213,7 @@ msgstr ""
 "لا يمكنك إنشاء مفتاح على هذه البطاقة الذكية لأنها لا تدعم أيًّا من الخوارزميات "
 "المتوافقة."
 
-#: src/commands/refreshcertificatescommand.cpp:119
+#: src/commands/refreshcertificatescommand.cpp:158
 #, kde-format
 msgctxt "@info"
 msgid "Updating certificate…"
@@ -3203,56 +3225,56 @@ msgstr[3] "تحديث %1 شهادات…"
 msgstr[4] "تحديث %1 شهادة…"
 msgstr[5] "تحديث %1 شهادة…"
 
-#: src/commands/refreshcertificatescommand.cpp:120
+#: src/commands/refreshcertificatescommand.cpp:159
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
 msgstr "ألغِ"
 
-#: src/commands/refreshcertificatescommand.cpp:188
-#: src/commands/refreshcertificatescommand.cpp:261
+#: src/commands/refreshcertificatescommand.cpp:203
+#: src/commands/refreshcertificatescommand.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating key..."
 msgstr "تحديث المفتاح…"
 
-#: src/commands/refreshcertificatescommand.cpp:205
+#: src/commands/refreshcertificatescommand.cpp:220
 #, kde-format
 msgctxt "@info:status"
 msgid "Updating certificate..."
 msgstr "تحديث الشهادة…"
 
-#: src/commands/refreshcertificatescommand.cpp:280
+#: src/commands/refreshcertificatescommand.cpp:295
 #, kde-format
 msgid "The certificate has not changed."
 msgstr "لم تتغيّر الشهادة."
 
-#: src/commands/refreshcertificatescommand.cpp:284
+#: src/commands/refreshcertificatescommand.cpp:299
 #, kde-format
 msgid "The certificate has been revoked."
 msgstr "الشهادة ألغيت."
 
-#: src/commands/refreshcertificatescommand.cpp:287
+#: src/commands/refreshcertificatescommand.cpp:302
 #, kde-format
 msgid "The certificate has been updated."
 msgstr "حُدّثت الشهادة."
 
-#: src/commands/refreshcertificatescommand.cpp:291
+#: src/commands/refreshcertificatescommand.cpp:306
 #, kde-format
 msgid "New user IDs: %1"
 msgstr "معرّفات مستخدمين جديدة: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:294
+#: src/commands/refreshcertificatescommand.cpp:309
 #, kde-format
 msgid "New subkeys: %1"
 msgstr "مفاتيح فرعية جديدة: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:297
+#: src/commands/refreshcertificatescommand.cpp:312
 #, kde-format
 msgid "New signatures: %1"
 msgstr "تواقيع جديدة: %1"
 
-#: src/commands/refreshcertificatescommand.cpp:307
+#: src/commands/refreshcertificatescommand.cpp:322
 #, kde-format
 msgid "Additionally, one new key has been retrieved."
 msgid_plural "Additionally, %1 new keys have been retrieved."
@@ -3263,7 +3285,7 @@ msgstr[3] "بالإضافة إلى ذلك، جُلب %1 مفاتيح جديدة.
 msgstr[4] "بالإضافة إلى ذلك، جُلب %1 مفتاحًا جديدًا."
 msgstr[5] "بالإضافة إلى ذلك، جُلب %1 مفتاح جديد."
 
-#: src/commands/refreshcertificatescommand.cpp:405
+#: src/commands/refreshcertificatescommand.cpp:423
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -3272,22 +3294,25 @@ msgid ""
 msgstr ""
 "نتيجة تحديث شهادة OpenPGP من خادوم المفاتيح، أو خادوم LDAP، أو الدليل النشط"
 
-#: src/commands/refreshcertificatescommand.cpp:408
-#: src/commands/refreshcertificatescommand.cpp:425
-#: src/commands/refreshcertificatescommand.cpp:442
-#, kde-kuit-format
+#: src/commands/refreshcertificatescommand.cpp:426
+#: src/commands/refreshcertificatescommand.cpp:445
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr "<para>فشل التّحديث:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
+msgstr "<para>قُفز عن التحديث لأنه لم يُعدّ أيّ خادوم مفاتيح OpenPGP.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:410
+#: src/commands/refreshcertificatescommand.cpp:428
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgstr "<para>قُفز عن التحديث لأنه لم يُعدّ أيّ خادوم مفاتيح OpenPGP.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:412
-#: src/commands/refreshcertificatescommand.cpp:428
+#: src/commands/refreshcertificatescommand.cpp:430
+#: src/commands/refreshcertificatescommand.cpp:450
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
@@ -3299,9 +3324,17 @@ msgstr[3] "<para>لا توجد الشّهادات.</para>"
 msgstr[4] "<para>لا توجد الشّهادات.</para>"
 msgstr[5] "<para>لا توجد الشّهادات.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:415
 #: src/commands/refreshcertificatescommand.cpp:432
-#: src/commands/refreshcertificatescommand.cpp:445
+#: src/commands/refreshcertificatescommand.cpp:447
+#: src/commands/refreshcertificatescommand.cpp:466
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr "<para>فشل التّحديث:</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp:435
+#: src/commands/refreshcertificatescommand.cpp:454
+#: src/commands/refreshcertificatescommand.cpp:469
 #, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
@@ -3313,19 +3346,29 @@ msgstr[3] "<para>حُدّثت الشّهادات.</para>"
 msgstr[4] "<para>حُدّثت الشّهادات.</para>"
 msgstr[5] "<para>حُدّثت الشّهادات.</para>"
 
-#: src/commands/refreshcertificatescommand.cpp:423
+#: src/commands/refreshcertificatescommand.cpp:443
 #, kde-format
 msgctxt "@info"
 msgid "Result of update from Web Key Directory"
 msgstr "نتيجة التحديث من دليل مفاتيح الويب"
 
-#: src/commands/refreshcertificatescommand.cpp:440
+#: src/commands/refreshcertificatescommand.cpp:462
 #, kde-format
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "نتيجة تحديث شهادة S/MIME"
 
-#: src/commands/refreshcertificatescommand.cpp:450
+#: src/commands/refreshcertificatescommand.cpp:464
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr "<para>قُفز عن التحديث لأنه لم يُعدّ أيّ خادوم مفاتيح OpenPGP.</para>"
+
+#: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
 msgctxt "@title:window"
 msgid "Certificate Updated"
@@ -3337,7 +3380,7 @@ msgstr[3] "حُدّثت الشهادات"
 msgstr[4] "حُدّثت الشهادات"
 msgstr[5] "حُدّثت الشهادات"
 
-#: src/commands/refreshcertificatescommand.cpp:450
+#: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
