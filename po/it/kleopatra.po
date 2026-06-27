@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-25 00:45+0000\n"
-"PO-Revision-Date: 2026-06-13 10:50+0200\n"
+"PO-Revision-Date: 2026-06-25 15:07+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -3033,6 +3033,8 @@ msgid ""
 "Lookup not possible because no servers are configured or network access is "
 "disabled."
 msgstr ""
+"Impossibile effettuare la ricerca perché non è stato configurato alcun "
+"server o l'accesso alla rete è disabilitato."
 
 #: src/commands/lookupcertificatescommand.cpp:477
 #, kde-kuit-format
@@ -3117,12 +3119,14 @@ msgid ""
 "Lookup on server is not possible because network access is disabled for "
 "OpenPGP and for S/MIME."
 msgstr ""
+"Impossibile effettuare ricerche sul server perché l'accesso alla rete è "
+"disabilitato per OpenPGP e per S/MIME."
 
 #: src/commands/lookupcertificatescommand.cpp:664
 #, kde-format
 msgctxt "@title"
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Accesso alla rete disabilitato"
 
 #: src/commands/lookupcertificatescommand.cpp:670
 #, kde-kuit-format
@@ -3364,16 +3368,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:426
 #: src/commands/refreshcertificatescommand.cpp:445
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>L'aggiornamento è stato saltato perché non è configurato alcun server "
-"delle chiavi OpenPGP.</para>"
+"<para>Aggiornamento saltato perché l'accesso alla rete è disabilitato per "
+"OpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:428
 #, kde-kuit-format
@@ -3424,16 +3425,13 @@ msgid "Result of S/MIME certificate update"
 msgstr "Risultato dell'aggiornamento del certificato S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:464
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for S/MIME.</para>"
 msgstr ""
-"<para>L'aggiornamento è stato saltato perché non è configurato alcun server "
-"delle chiavi OpenPGP.</para>"
+"<para>Aggiornamento saltato perché l'accesso alla rete per S/MIME è "
+"disabilitato.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
@@ -9135,7 +9133,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:19
 #, kde-format
 msgid "Sources for prefilling CN"
-msgstr ""
+msgstr "Fonti per il pre-compilazione CN"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
@@ -9152,6 +9150,16 @@ msgid ""
 "first name (givenName) and last name (sn) attributes retrieved from the "
 "Active Directory server."
 msgstr ""
+"Questa impostazione specifica da quali fonti (e con quale precedenza) deve "
+"essere pre-compilato il campo del nome comune (CN) delle richieste di firma "
+"del certificato S/MIME (CSR) appena generate. KEMailSettings utilizza il "
+"nome delle impostazioni di posta elettronica del desktop. WinGetUserName "
+"(solo Windows) utilizza il valore NameDisplay restituito da GetUserNameEx o "
+"il valore restituito da GetUserName. EnvEmail utilizza la parte del nome "
+"della variabile d'ambiente EMAIL. ADDisplayName (solo Windows) utilizza "
+"l'attributo del nome visualizzato (displayName) recuperato dal server Active "
+"Directory. ADFirstNameLastName (solo Windows) utilizza gli attributi del "
+"nome (givenName) e del cognome (sn) recuperati dal server Active Directory."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9194,7 +9202,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:35
 #, kde-format
 msgid "Sources for prefilling email"
-msgstr ""
+msgstr "Fonti per la pre-compilazione delle email"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
@@ -9209,6 +9217,14 @@ msgid ""
 "only) uses the mail attribute (mail) retrieved from the Active Directory "
 "server."
 msgstr ""
+"Questa impostazione specifica da quali fonti (e con quale precedenza) deve "
+"essere pre-compilato il campo dell'indirizzo di posta dei certificati "
+"OpenPGP appena generati e delle richieste di firma del certificato S/MIME "
+"(CSR). KEMailSettings utilizza l'indirizzo di posta delle impostazioni di "
+"posta elettronica del desktop. WinGetUserName (solo Windows) utilizza il "
+"valore NameUserPrincipal restituito da GetUserNameEx. EnvEmail utilizza "
+"l'indirizzo di posta della variabile d'ambiente EMAIL. ADMail (solo Windows) "
+"utilizza l'attributo di posta (mail) recuperato dal server Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40
@@ -9265,7 +9281,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:56
 #, kde-format
 msgid "Sources for prefilling name"
-msgstr ""
+msgstr "Fonti per la pre-compilazione del nome"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:57
@@ -9281,6 +9297,17 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
+"Questa impostazione specifica da quali fonti (e con quale precedenza) deve "
+"essere pre-compilato il nome comune (CN) delle richieste di firma del "
+"certificato S/MIME (CSR) appena generate. KEMailSettings utilizza il nome "
+"del profilo predefinito delle impostazioni di posta elettronica del desktop. "
+"WinGetUserName (solo Windows) utilizza il valore NameDisplay restituito da "
+"GetUserNameEx o il valore restituito da GetUserName. EnvEmail utilizza la "
+"parte del nome della variabile d'ambiente EMAIL. ADDisplayName (solo "
+"Windows) utilizza l'attributo del nome visualizzato (displayName) recuperato "
+"dal server Active Directory. ADFirstNameLastName (solo Windows) utilizza gli "
+"attributi del nome (givenName) e del cognome (sn) recuperati dal server "
+"Active Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:61
