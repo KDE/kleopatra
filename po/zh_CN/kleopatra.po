@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -142,20 +142,16 @@ msgid "GnuPG consulting"
 msgstr "GnuPG 咨询"
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
-msgstr "无法导出密钥到文件：<filename>%1</filename>。"
+msgstr ""
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The file <filename>%1</filename> already exists."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The file <filename>%1</filename> is missing."
-msgstr "文件 <filename>%1</filename> 已经存在。"
+msgstr ""
 
 #: src/aboutdata.cpp src/aboutdata.cpp
 #, kde-format
@@ -2855,6 +2851,14 @@ msgid "Searching for matching certificates ..."
 msgstr "正在搜索匹配的证书 ..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2922,6 +2926,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "结果已被截断"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3149,11 +3167,11 @@ msgstr "从密钥服务器、LDAP 服务器或活动目录更新 OpenPGP 证书�
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr "<para>更新失败:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3168,6 +3186,14 @@ msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "<para>没有找到证书。</para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr "<para>更新失败:</para><para><message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
@@ -3189,6 +3215,13 @@ msgstr "Web 密钥目录的更新结果"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME 证书更新结果"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4651,11 +4684,10 @@ msgstr "对 <filename>%1</filename> 的解密和验证失败："
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
-msgstr "已为  <filename>%2</filename>成功解密并验证 <filename>%1</filename> ."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4703,10 +4735,9 @@ msgstr "对 <filename>%1</filename> 的解密失败："
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
-msgstr "已成功将 <filename>%1</filename> 解密为 <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4784,20 +4815,20 @@ msgstr "无法验证记事本: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "已成功解密并验证记事本"
+msgid "Decrypted and verified the notepad"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "成功解密记事本"
+msgid "Decrypted the notepad"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "成功验证记事本"
+msgid "Verified the notepad"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4814,20 +4845,20 @@ msgstr "无法验证剪贴板内容：%1 "
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
-msgstr "已成功对剪贴板内容进行解密和验证"
+msgid "Decrypted and verified the clipboard"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
-msgstr "已成功对剪贴板内容进行解密"
+msgid "Decrypted the clipboard"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
-msgstr "已成功对剪贴板内容进行验证"
+msgid "Verified the clipboard"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -6012,12 +6043,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "签名和加密已取消。"
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "签名已取消。"
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -8624,6 +8657,28 @@ msgstr ""
 "息。\n"
 "         例如，来自桌面系统的电子邮件设置，或者来自 Windows 的活动目录。"
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -8658,6 +8713,26 @@ msgstr ""
 "如果为 true，则 OpenPGP 和 S/MIME 证书的电子邮件地址字段将被预先填写从系统中"
 "收集到的信息。\n"
 "         例如，来自桌面的电子邮件设置，或者在 Windows 上，来自活动目录。"
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -8705,6 +8780,27 @@ msgid ""
 msgstr ""
 "如果为 true，则 OpenPGP 证书的名称字段将被预填入从系统中收集到的信息。\n"
 "         例如，来自桌面的电子邮件设置，或者在 Windows 上，来自活动目录。"
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg

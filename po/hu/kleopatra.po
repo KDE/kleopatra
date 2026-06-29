@@ -1,12 +1,12 @@
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2011, 2014.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013, 2014.
-# SPDX-FileCopyrightText: 2024 Kristof Kiszel <ulysses@fsf.hu>
+# SPDX-FileCopyrightText: 2024, 2026 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2024-03-21 13:10+0100\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-06-18 21:50+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3241,6 +3241,14 @@ msgid "Searching for matching certificates ..."
 msgstr "A tanúsítvány ellenőrzése…"
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3305,6 +3313,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Az eredmény lerövidült"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3486,11 +3508,10 @@ msgstr[0] "Tanúsítványok exportálása..."
 msgstr[1] "Tanúsítványok exportálása..."
 
 #: src/commands/refreshcertificatescommand.cpp
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
@@ -3560,17 +3581,11 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>Hiba történt a tanúsítványok betöltése közben: <message>%1</message></"
-"para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3587,6 +3602,20 @@ msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "Ez a tanúsítvány lejárt."
 msgstr[1] "Ez a tanúsítvány lejárt."
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Hiba történt a tanúsítványok betöltése közben: <message>%1</message></"
+"para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
@@ -3611,6 +3640,13 @@ msgstr ""
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME-tanúsítványok"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, fuzzy, kde-format
@@ -4984,7 +5020,7 @@ msgstr "Előkészítés…"
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -5289,10 +5325,9 @@ msgstr ""
 #| msgid ""
 #| "Could not copy temporary file <filename>%1</filename> to file "
 #| "<filename>%2</filename>: <message>%3</message>"
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
 "ide: <filename>%2</filename>. <message>%3</message>"
@@ -5384,9 +5419,8 @@ msgstr ""
 #| msgid ""
 #| "Could not copy temporary file <filename>%1</filename> to file "
 #| "<filename>%2</filename>: <message>%3</message>"
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Nem sikerült átmásolni a(z) <filename>%1</filename> nevű ideiglenes fájlt "
 "ide: <filename>%2</filename>. <message>%3</message>"
@@ -5466,22 +5500,25 @@ msgstr "Nem sikerült a(z) „%1” végrehajtása: %2"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
-#| msgid "certificate"
+#| msgid "Decrypt and/or verify file(s)"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "tanúsítvány"
+msgid "Decrypted and verified the notepad"
+msgstr "Fájl dekódolása és/vagy ellenőrzése"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encrypt"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr ""
+msgid "Decrypted the notepad"
+msgstr "Titkosítás"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Key Pair Successfully Created"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr ""
+msgid "Verified the notepad"
+msgstr "Sikerült létrehozni a kulcspárt"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
@@ -5501,14 +5538,14 @@ msgstr "Nem sikerült a(z) „%1” végrehajtása: %2"
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "tanúsítvány"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "tanúsítvány"
 
 #: src/crypto/decryptverifytask.cpp
@@ -5516,7 +5553,7 @@ msgstr "tanúsítvány"
 #| msgctxt "@title"
 #| msgid "Key Pair Successfully Created"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "Sikerült létrehozni a kulcspárt"
 
 #: src/crypto/decryptverifytask.cpp
@@ -6806,6 +6843,7 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Az aláírás és a titkosítás sikerült."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
@@ -6813,6 +6851,7 @@ msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Az aláírás megszakadt."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
@@ -9830,6 +9869,28 @@ msgid ""
 "the Active Directory."
 msgstr ""
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9858,6 +9919,26 @@ msgid ""
 "will be prefilled with information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
 msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
@@ -9901,6 +9982,27 @@ msgid ""
 "information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)

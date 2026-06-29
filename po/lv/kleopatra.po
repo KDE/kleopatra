@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
 "PO-Revision-Date: 2025-08-21 12:33+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -3015,6 +3015,14 @@ msgid "Searching for matching certificates ..."
 msgstr "Meklēt atbilstošus sertifikātus..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3088,6 +3096,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultāts ir saīsināts"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3339,12 +3361,16 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>Atjauninājums neizdevās:</para><para><message>%1</message></para>"
+"<para>Atjauninājums ir izlaists, jo nav konfigurēts neviens „OpenPGP“ "
+"atslēgu serveris.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3369,6 +3395,15 @@ msgstr[2] "<para>Sertifikāti nav atrasti.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Atjauninājums neizdevās:</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Sertifikāts ir atjaunināts.</para>"
@@ -3386,6 +3421,18 @@ msgstr "Tīmekļa atslēgu direktorija atjaunināšanas rezultāts"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME sertifikāta atjaunināšanas rezultāts"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Atjauninājums ir izlaists, jo nav konfigurēts neviens „OpenPGP“ "
+"atslēgu serveris.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4940,11 +4987,14 @@ msgid "Failed to decrypt and verify <filename>%1</filename>:"
 msgstr "Neizdevās atšifrēt un verificēt „<filename>%1</filename>“:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted and verified <filename>%1</filename> as "
+#| "<filename>%2</filename>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Veiksmīgi atšifrēta un verificēta datne „<filename>%1</filename>“ kā "
 "„<filename>%2</filename>“"
@@ -5000,10 +5050,12 @@ msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "Neizdevās atšifrēt „<filename>%1</filename>“:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Neizdevās atšifrēt datni „<filename>%1</filename>“ kā „<filename>%2</"
 "filename>“"
@@ -5083,22 +5135,28 @@ msgid "Failed to verify the notepad: %1"
 msgstr "Neizdevās verificēt piezīmju blociņu: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted and verified text"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Atšifrēts un pārbaudīts piezīmju blociņš"
+msgid "Decrypted and verified the notepad"
+msgstr "Atšifrēts un verificēts teksts"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted text"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Atšifrēts piezīmju blociņš"
+msgid "Decrypted the notepad"
+msgstr "Atšifrēts teksts"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Verified text"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "Piezīmju blociņš ir pārbaudīts"
+msgid "Verified the notepad"
+msgstr "Verificēts teksts"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5113,21 +5171,27 @@ msgid "Failed to verify the clipboard: %1"
 msgstr "Neizdevās verificēt starpliktuvi: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "Atšifrēta un verificēta starpliktuve"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "Atšifrēta starpliktuve"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the clipboard"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "Pārbaudīt starpliktuve"
 
 #: src/crypto/decryptverifytask.cpp
@@ -6345,12 +6409,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Parakstīšana un šifrēšana ir atcelta."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Parakstīšana ir atcelta."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9119,6 +9185,28 @@ msgstr ""
 "         piemēram, no darbvirsmas e-pasta iestatījumiem from vai, ja "
 "lietojat „Windows“ — no „Active Directory“."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9154,6 +9242,26 @@ msgstr ""
 "ar informāciju, ko tā saņems no sistēmas,\n"
 "         piemēram, no darbvirsmas e-pasta iestatījumiem from vai, ja "
 "lietojat „Windows“ — no „Active Directory“."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9204,6 +9312,27 @@ msgstr ""
 "ar informāciju, ko tā saņems no sistēmas,\n"
 "         piemēram, no darbvirsmas e-pasta iestatījumiem from vai, ja "
 "lietojat „Windows“ — no „Active Directory“."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg

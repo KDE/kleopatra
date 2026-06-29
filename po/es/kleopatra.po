@@ -2,26 +2,26 @@
 # Copyright (C) 2004-2026 This file is copyright:
 # This file is distributed under the same license as the kleopatra package.
 #
-# SPDX-FileCopyrightText: 2004, 2005, 2007 Juan Manuel Garcia Molina <juanma@superiodico.net>
+# SPDX-FileCopyrightText: 2004-2005, 2007 Juan Manuel Garcia Molina <juanma@superiodico.net>
 # SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
 # SPDX-FileCopyrightText: 2007 Jaime Robles <jaime@kde.org>
-# SPDX-FileCopyrightText: 2008, 2009 Franco Mariluis <fmariluis@gmail.com>
+# SPDX-FileCopyrightText: 2008-2009 Franco Mariluis <fmariluis@gmail.com>
 # SPDX-FileCopyrightText: 2008-2009, 2015, 2019-2026 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2009 Dario Andres Rodriguez <andrebajotierra@gmail.com>
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Javier Viñal <fjvinal@gmail.com>
+# SPDX-FileCopyrightText: 2009-2019 Javier Viñal <fjvinal@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2026-05-14 12:01+0100\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-06-25 12:12+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.07.70\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -153,21 +153,16 @@ msgid "GnuPG consulting"
 msgstr "Consultas GnuPG"
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
-msgstr ""
-"La escritura de la clave en el archivo <filename>%1</filename> ha fallado."
+msgstr "La verificación del archivo <filename>%1</filename> ha fallado."
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The file <filename>%1</filename> already exists."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The file <filename>%1</filename> is missing."
-msgstr "El archivo <filename>%1</filename> ya existe."
+msgstr "Falta el archivo <filename>%1</filename>."
 
 #: src/aboutdata.cpp src/aboutdata.cpp
 #, kde-format
@@ -3038,6 +3033,16 @@ msgid "Searching for matching certificates ..."
 msgstr "Buscando certificados coincidentes…"
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+"No se puede buscar porque no ha configurado ningún servidor o porque el "
+"acceso a la red está desactivado."
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3111,6 +3116,22 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Resultado truncado"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+"No se puede buscar en el servidor porque el acceso a la red está desactivado "
+"para OpenPGP y para S/MIME."
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr "Acceso a la red desactivado"
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3351,12 +3372,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>La actualización ha fallado:</para><para><message>%1</message></para>"
+"<para>Se ha omitido la actualización porque el acceso a la red está "
+"desactivado para OpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3380,6 +3402,15 @@ msgstr[1] "<para>No se han encontrado los certificados.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>La actualización ha fallado:</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>El certificado se ha actualizado.</para>"
@@ -3396,6 +3427,15 @@ msgstr "Resultado de actualizar del directorio de claves web"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Resultado de la actualización de certificados S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Se ha omitido la actualización porque el acceso a la red está "
+"desactivado para S/MIME.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4957,13 +4997,12 @@ msgstr "El descifrado y la verificación de <filename>%1</filename> ha fallado:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
-"Se ha descifrado y verificado correctamente <filename>%1</filename> como "
-"<filename>%2</filename>."
+"Se ha descifrado y verificado <filename>%1</filename> como <filename>%2</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5014,12 +5053,9 @@ msgstr "El descifrado de <filename>%1</filename> ha fallado:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
-msgstr ""
-"Se ha descifrado correctamente <filename>%1</filename> como <filename>%2</"
-"filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgstr "Se ha descifrado <filename>%1</filename> como <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5103,20 +5139,20 @@ msgstr "La verificación del bloc de notas ha fallado: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "El bloc de notas se ha descifrado y verificado con éxito"
+msgid "Decrypted and verified the notepad"
+msgstr "Se ha descifrado y verificado el bloc de notas"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "El bloc de notas se ha descifrado con éxito"
+msgid "Decrypted the notepad"
+msgstr "Se ha descifrado el bloc de notas"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "El bloc de notas se ha verificado con éxito"
+msgid "Verified the notepad"
+msgstr "Se ha verificado el bloc de notas"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5133,20 +5169,20 @@ msgstr "La verificación del portapapeles ha fallado: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
-msgstr "El portapapeles se ha descifrado y verificado con éxito"
+msgid "Decrypted and verified the clipboard"
+msgstr "Se ha descifrado y verificado el portapapeles"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
-msgstr "El portapapeles se ha descifrado con éxito"
+msgid "Decrypted the clipboard"
+msgstr "Se ha descifrado el portapapeles"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
-msgstr "El portapapeles se ha verificado con éxito"
+msgid "Verified the clipboard"
+msgstr "Se ha verificado el portapapeles"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -6362,12 +6398,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Firma y cifrado cancelados."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Firma cancelada."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9106,6 +9144,39 @@ msgstr ""
 "(por ejemplo, de las preferencias de correo electrónico del escritorio o, en "
 "Windows, del «Directorio activo»)."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr "Fuentes para rellenar el CN"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+"Este ajuste indica desde qué fuentes (y con qué precedencia) se debe "
+"rellenar el campo de nombre común (CN) de las solicitudes de firma de "
+"certificados S/MIME (CSR) recién generadas. KEMailSettings usa el nombre "
+"predeterminado de las preferencias de correo electrónico del escritorio. "
+"WinGetUserName (solo Windows) usa el valor NameDisplay devuelto por "
+"GetUserNameEx o el valor devuelto por GetUserName. EnvEmail usa la parte del "
+"nombre de la variable de entorno EMAIL. ADDisplayName (solo Windows) usa el "
+"atributo de nombre para mostrar (displayName) obtenido del servidor de "
+"Active Directory. ADFirstNameLastName (solo Windows) usa los atributos de "
+"nombre (givenName) y apellido (sn) obtenidos del servidor de Active "
+"Directory."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9142,6 +9213,35 @@ msgstr ""
 "MIME se rellenará automáticamente con información recogida del sistema\n"
 "(por ejemplo, de las preferencias de correo electrónico del escritorio o, en "
 "Windows, del «Directorio activo»)."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr "Fuentes para rellenar el correo electrónico"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
+"Este ajuste indica de qué fuentes (y con qué precedencia) se debe rellenar "
+"el campo de la dirección de correo electrónico de los certificados OpenPGP "
+"recién generados y las solicitudes de firma de certificados S/MIME (CSR). "
+"KEMailSettings usa la dirección de correo electrónico de la configuración "
+"predeterminada de correo electrónico del escritorio. WinGetUserName (solo "
+"Windows) usa el valor NameUserPrincipal devuelto por GetUserNameEx. EnvEmail "
+"usa la dirección de correo electrónico de la variable de entorno EMAIL. "
+"ADMail (solo Windows) usa el atributo de correo electrónico (mail) obtenido "
+"del servidor de Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9194,6 +9294,37 @@ msgstr ""
 "automáticamente con información recogida del sistema\n"
 "(por ejemplo, de las preferencias de correo electrónico del escritorio o, en "
 "Windows, del «Directorio activo»)."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr "Fuentes para rellenar el nombre"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+"Este ajuste indica desde qué fuentes (y con qué precedencia) se debe "
+"rellenar el campo del nombre de las solicitudes de firma de certificados "
+"OpenPGP recién generadas. KEMailSettings usa el nombre de la configuración "
+"predeterminada de correo electrónico del escritorio. WinGetUserName (solo "
+"Windows) usa el valor NameDisplay devuelto por GetUserNameEx o el valor "
+"devuelto por GetUserName. EnvEmail usa la parte del nombre de la variable de "
+"entorno EMAIL. ADDisplayName (solo Windows) usa el atributo de nombre para "
+"mostrar (displayName) obtenido del servidor de Active Directory. "
+"ADFirstNameLastName (solo Windows) usa los atributos de nombre (givenName) y "
+"apellido (sn) obtenidos del servidor de Active Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg

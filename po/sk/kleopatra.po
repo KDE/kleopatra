@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
 "PO-Revision-Date: 2023-12-12 19:22+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -144,20 +144,16 @@ msgid "GnuPG consulting"
 msgstr "Konzultácie GnuPG"
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
-msgstr "Zlyhalo zapisovanie kľúča do súboru <filename>%1</filename>."
+msgstr "Overenie súboru <filename>%1</filename> zlyhalo."
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The file <filename>%1</filename> already exists."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The file <filename>%1</filename> is missing."
-msgstr "Súbor <i>%1</i> už existuje."
+msgstr "Súbor <filename>%1</filename> chýba."
 
 #: src/aboutdata.cpp src/aboutdata.cpp
 #, kde-format
@@ -2980,6 +2976,14 @@ msgid "Searching for matching certificates ..."
 msgstr "Hľadám zodpovedajúce certifikáty ..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3052,6 +3056,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Orezaný výsledok"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3292,12 +3310,15 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<qt><p>Nastala chyba počas načítavania certifikácií:</p><p><b>%1</b></p></qt>"
+"<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3321,6 +3342,15 @@ msgstr[2] "Tento certifikát stratil platnosť."
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<qt><p>Nastala chyba počas načítavania certifikácií:</p><p><b>%1</b></p></qt>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "Tento certifikát stratil platnosť."
@@ -3338,6 +3368,17 @@ msgstr "Result of update from Web Key Directory"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Výsledok aktualizácie certifikátu S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4875,11 +4916,14 @@ msgid "Failed to decrypt and verify <filename>%1</filename>:"
 msgstr "Dešifrovanie a overenie <filename>%1</filename> zlyhalo:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted and verified <filename>%1</filename> as "
+#| "<filename>%2</filename>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Úspešne dešifrované a overené <filename>%1</filename> ako <filename>%2</"
 "filename>."
@@ -4934,10 +4978,12 @@ msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "Dešifrovanie <filename>%1</filename> zlyhalo:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Úspešne dešifrované <filename>%1</filename> ako <filename>%2</filename>."
 
@@ -5020,22 +5066,28 @@ msgid "Failed to verify the notepad: %1"
 msgstr "Zlyhalo overenie poznámkového bloku: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted and verified text"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Poznámkový blok bol úspešne dešifrovaný a overený"
+msgid "Decrypted and verified the notepad"
+msgstr "Dešifrovaný a overený text"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted text"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Poznámkový blok bol úspešne dešifrovaný"
+msgid "Decrypted the notepad"
+msgstr "Dešifrovaný text"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Verified text"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "Poznámkový blok bol úspešne overený"
+msgid "Verified the notepad"
+msgstr "Verified text"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5050,21 +5102,27 @@ msgid "Failed to verify the clipboard: %1"
 msgstr "Zlyhalo overenie schránky: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "Schránka bola úspešne dešifrovaná a overená"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "Schránka bola úspešne dešifrovaná"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the clipboard"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "Schránka bola úspešne overená"
 
 #: src/crypto/decryptverifytask.cpp
@@ -6276,12 +6334,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Podpisovanie a šifrovanie bolo zrušené."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Podpisovanie zrušené."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9032,6 +9092,28 @@ msgstr ""
 "         napr., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9067,6 +9149,26 @@ msgstr ""
 "will be prefilled with information gathered from the system,\n"
 "         napr., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9117,6 +9219,27 @@ msgstr ""
 "information gathered from the system,\n"
 "         napr., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg

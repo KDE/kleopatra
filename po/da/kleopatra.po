@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
 "PO-Revision-Date: 2018-01-23 17:29+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish\n"
@@ -3244,6 +3244,14 @@ msgid "Searching for matching certificates ..."
 msgstr "Certificér certifikat..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3308,6 +3316,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Forkortet resultat"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3567,17 +3589,11 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
-"message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3594,6 +3610,20 @@ msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "Dette certifikat er udløbet."
 msgstr[1] "Dette certifikat er udløbet."
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>En fejl opstod under indlæsning af certificeringerne: <message>%1</"
+"message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
@@ -3618,6 +3648,13 @@ msgstr ""
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME-certifikater"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, fuzzy, kde-format
@@ -5264,10 +5301,9 @@ msgstr "Kunne ikke slette <filename>%1</filename>."
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr "Verificerer <filename>%1</filename> med <filename>%2</filename>"
 
 #: src/crypto/decryptverifytask.cpp
@@ -5328,9 +5364,8 @@ msgstr "Kunne ikke slette <filename>%1</filename>."
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr "Verificerer <filename>%1</filename> med <filename>%2</filename>"
 
 #: src/crypto/decryptverifytask.cpp
@@ -5420,23 +5455,23 @@ msgstr "Kunne ikke slette nøglen: %1"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
-#| msgid "Successfully copied the key to the card."
+#| msgid "Decrypt and/or verify files"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Kopiering af nøglgen til kortet lykkedes."
+msgid "Decrypted and verified the notepad"
+msgstr "Dekryptér og/eller verificér filer"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-format
+#| msgid "Encrypt"
+msgctxt "@info"
+msgid "Decrypted the notepad"
+msgstr "Kryptér"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
 #| msgid "Successfully copied the key to the card."
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Kopiering af nøglgen til kortet lykkedes."
-
-#: src/crypto/decryptverifytask.cpp
-#, fuzzy, kde-format
-#| msgid "Successfully copied the key to the card."
-msgctxt "@info"
-msgid "Successfully verified the notepad"
+msgid "Verified the notepad"
 msgstr "Kopiering af nøglgen til kortet lykkedes."
 
 #: src/crypto/decryptverifytask.cpp
@@ -5459,21 +5494,21 @@ msgstr "Kunne ikke slette nøglen: %1"
 #, fuzzy, kde-format
 #| msgid "Successfully copied the key to the card."
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "Kopiering af nøglgen til kortet lykkedes."
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
 #| msgid "Successfully copied the key to the card."
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "Kopiering af nøglgen til kortet lykkedes."
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
 #| msgid "Successfully copied the key to the card."
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "Kopiering af nøglgen til kortet lykkedes."
 
 #: src/crypto/decryptverifytask.cpp
@@ -6783,6 +6818,7 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Signering og kryptering lykkedes."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
@@ -6790,6 +6826,7 @@ msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Signering afbrudt."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
@@ -9758,6 +9795,28 @@ msgid ""
 "the Active Directory."
 msgstr ""
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9786,6 +9845,26 @@ msgid ""
 "will be prefilled with information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
 msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
@@ -9829,6 +9908,27 @@ msgid ""
 "information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)

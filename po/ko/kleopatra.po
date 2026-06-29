@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2026-04-26 22:34+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-05-25 21:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -139,20 +139,16 @@ msgid "GnuPG consulting"
 msgstr "GnuPG 컨설팅"
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
-msgstr "<filename>%1</filename>에 비밀 키를 기록할 수 없습니다."
+msgstr "<filename>%1</filename>을(를) 검증할 수 없습니다."
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The file <filename>%1</filename> already exists."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The file <filename>%1</filename> is missing."
-msgstr "<filename>%1</filename> 파일이 이미 존재합니다."
+msgstr "<filename>%1</filename> 파일이 없습니다."
 
 #: src/aboutdata.cpp src/aboutdata.cpp
 #, kde-format
@@ -2910,6 +2906,14 @@ msgid "Searching for matching certificates ..."
 msgstr "일치하는 인증서 검색 중..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2979,6 +2983,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "결과 잘림"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3212,12 +3230,15 @@ msgstr "키 서버, LDAP 서버, 액티브 디렉터리에서의 OpenPGP 인증�
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>업데이트에 실패했습니다.</para><para><message>%1</message></para>"
+"<para>설정한 OpenPGP 키 서버가 없어서 업데이트를 건너뛰었습니다.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3239,6 +3260,15 @@ msgstr[0] "<para>인증서를 찾을 수 없습니다.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>업데이트에 실패했습니다.</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>인증서를 업데이트했습니다.</para>"
@@ -3254,6 +3284,17 @@ msgstr "웹 키 디렉터리에서의 업데이트 결과"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME 인증서 업데이트 결과"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>설정한 OpenPGP 키 서버가 없어서 업데이트를 건너뛰었습니다.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4742,11 +4783,14 @@ msgid "Failed to decrypt and verify <filename>%1</filename>:"
 msgstr "<filename>%1</filename>을(를) 복호화 및 검증하는 중 실패함:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted and verified <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted and verified <filename>%1</filename> as "
+#| "<filename>%2</filename>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 복호화 및 검증했"
 "습니다."
@@ -4796,10 +4840,12 @@ msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr "<filename>%1</filename>을(를) 복호화하는 중 실패함:"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully decrypted <file> as <file>."
+#| msgid ""
+#| "Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename>을(를) <filename>%2</filename>(으)로 복호화했습니다."
 
@@ -4882,22 +4928,28 @@ msgid "Failed to verify the notepad: %1"
 msgstr "메모장을 검증할 수 없음: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted and verified text"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "메모장을 복호화 및 검증함"
+msgid "Decrypted and verified the notepad"
+msgstr "복호화 및 검증된 텍스트"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Decrypted text"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "메모장을 복호화함"
+msgid "Decrypted the notepad"
+msgstr "복호화된 텍스트"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@label:textbox for assistive tools"
+#| msgid "Verified text"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "메모장을 검증함"
+msgid "Verified the notepad"
+msgstr "검증된 텍스트"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4912,21 +4964,27 @@ msgid "Failed to verify the clipboard: %1"
 msgstr "클립보드를 검증할 수 없음: %1"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted and verified the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "클립보드를 복호화 및 검증함"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully decrypted the clipboard"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "클립보드를 복호화함"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@info"
+#| msgid "Successfully verified the clipboard"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "클립보드를 검증함"
 
 #: src/crypto/decryptverifytask.cpp
@@ -6128,12 +6186,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "서명과 암호화가 취소되었습니다."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "서명이 취소되었습니다."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -8777,6 +8837,28 @@ msgstr ""
 "         예: 데스크톱의 이메일 설정 또는 Windows의 경우 액티브 디렉터리의 정"
 "보."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -8812,6 +8894,26 @@ msgstr ""
 "한 정보로 미리 입력합니다.\n"
 "         예: 데스크톱의 이메일 설정 또는 Windows의 경우 액티브 디렉터리의 정"
 "보."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -8862,6 +8964,27 @@ msgstr ""
 "력합니다.\n"
 "         예: 데스크톱의 이메일 설정 또는 Windows의 경우 액티브 디렉터리의 정"
 "보."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9842,12 +9965,10 @@ msgid "Really Quit?"
 msgstr "정말 종료하시겠습니까?"
 
 #: src/mainwindow.cpp
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "GpgConf (Configuration) installation"
+#, kde-format
 msgctxt "@info:status"
 msgid "Corrupt installation"
-msgstr "GpgConf(설정) 설치"
+msgstr "설치 손상됨"
 
 #: src/mainwindow.cpp
 #, kde-format

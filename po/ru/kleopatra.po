@@ -1,6 +1,6 @@
 # translation of kleopatra.po to Russian
 # Copyright (c) 2004, KDE Team.
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2023, 2024, 2025, 2026 Alexander Yavorsky <kekcuha@gmail.com>
+# SPDX-FileCopyrightText: 2018-2021, 2023-2026 Alexander Yavorsky <kekcuha@gmail.com>
 # Oleg Batalov <olegbatalov@mail.ru>, 2004.
 # Олег Баталов <batalov@twiga.kz>, 2004.
 # Andrey Cherepanov <skull@kde.ru>, 2005, 2009.
@@ -15,15 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2026-04-03 20:32+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-06-25 11:46+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.04.2\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : "
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -161,20 +161,16 @@ msgid "GnuPG consulting"
 msgstr "Консультирование GnuPG"
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "Writing key to file <filename>%1</filename> failed."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
-msgstr "Не удалось записать ключ в файл <filename>%1</filename>."
+msgstr "Не удалось проверить файл <filename>%1</filename>."
 
 #: src/aboutdata.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "The file <filename>%1</filename> already exists."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "The file <filename>%1</filename> is missing."
-msgstr "Файл <filename>%1</filename> уже существует."
+msgstr "Файл <filename>%1</filename> отсутствует."
 
 #: src/aboutdata.cpp src/aboutdata.cpp
 #, kde-format
@@ -3023,6 +3019,15 @@ msgid "Searching for matching certificates ..."
 msgstr "Поиск соответствующих сертификатов…"
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+"Поиск невозможен, так как не заданы серверы или отключён доступ к сети."
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3093,6 +3098,22 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Результат запроса усечён"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+"Поиск на сервере невозможен, так как сетевой доступ отключён для OpenPGP и S/"
+"MIME."
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr "Сетевой доступ отключён"
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3336,11 +3357,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr "<para>Не удалось обновить:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
+msgstr ""
+"<para>Обновление пропущено, так как сетевой доступ для OpenPGP отключён.</"
+"para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3365,6 +3388,14 @@ msgstr[3] "<para>Сертификат не найден.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr "<para>Не удалось обновить:</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Сертификаты обновлены.</para>"
@@ -3383,6 +3414,15 @@ msgstr "Результат обновления из веб-каталога к�
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Результат обновления сертификата S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Обновление пропущено, так как сетевой доступ отключён для S/MIME.</"
+"para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4962,10 +5002,9 @@ msgstr "Не удалось расшифровать и проверить фа�
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Выполнена расшифровка и проверка файла <filename>%1</filename> как "
 "<filename>%2</filename>."
@@ -5025,9 +5064,8 @@ msgstr "Не удалось расшифровать файл <filename>%1</file
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "Выполнена расшифровка файла <filename>%1</filename> как <filename>%2</"
 "filename>."
@@ -5114,20 +5152,20 @@ msgstr "Не удалось проверить текст: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Текст расшифрован и проверен"
+msgid "Decrypted and verified the notepad"
+msgstr "Расшифрованный и удостоверенный блокнот"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Текст расшифрован"
+msgid "Decrypted the notepad"
+msgstr "Расшифрованный блокнот"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "Текст проверен"
+msgid "Verified the notepad"
+msgstr "Проверенный блокнот"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5144,19 +5182,19 @@ msgstr "Не удалось проверить содержимое буфера
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "Содержимое буфера обмена расшифровано и проверено"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "Содержимое буфера обмена расшифровано"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "Содержимое буфера обмена проверено"
 
 #: src/crypto/decryptverifytask.cpp
@@ -5356,7 +5394,7 @@ msgstr "…"
 #, kde-format
 msgctxt "@title:window"
 msgid "Retry with Lower Security?"
-msgstr ""
+msgstr "Повторить с пониженной безопасностью?"
 
 #: src/crypto/gui/cryptouihelpers.cpp
 #, kde-format
@@ -5364,22 +5402,19 @@ msgctxt "@info"
 msgid ""
 "Encryption failed because at least one certificate could not be validated."
 msgstr ""
+"Ошибка шифрования, так как не удалось проверить по крайней мере один "
+"сертификат."
 
 #: src/crypto/gui/cryptouihelpers.cpp
-#, fuzzy, kde-format
-#| msgctxt "@info:tooltip"
-#| msgid "Update the CRLs and do a full validation check of the certificate."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "You can retry the operation with fewer validity checks on the certificates."
 msgstr ""
-"Обновить списки отозванных сертификатов и выполнить полную проверку "
-"действительности сертификата"
+"Повторить операцию с меньшим числом проверок действительности сертификатов."
 
 #: src/crypto/gui/cryptouihelpers.cpp
-#, fuzzy, kde-format
-#| msgctxt "A user ID (an error description)"
-#| msgid "%1 (%2)"
+#, kde-format
 msgctxt "@action:button Sign / Encrypt (not Compliant)"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
@@ -5388,13 +5423,13 @@ msgstr "%1 (%2)"
 #, kde-format
 msgctxt "@action:button"
 msgid "with Lower Security"
-msgstr ""
+msgstr "Пониженная безопасность"
 
 #: src/crypto/gui/cryptouihelpers.cpp
 #, kde-format
 msgctxt "@info"
 msgid "WARNING: Compliance of the result: %1"
-msgstr ""
+msgstr "ПРЕДУПРЕЖДЕНИЕ: Соответствие результата: %1"
 
 #: src/crypto/gui/decryptverifyfilesdialog.cpp
 #, kde-format
@@ -6381,12 +6416,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Подписывание и шифрование отменены."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Подписывание отменено."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9188,6 +9225,38 @@ msgstr ""
 "         (например, из параметров электронной почты рабочего стола или (в "
 "Windows) из Active Directory)."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr "Источники для предварительного заполнения CN"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+"Этот параметр определяет, из каких источников (и с каким приоритетом) будет "
+"предварительно заполняться поле общего имени (CN) в запросах на подпись "
+"сертификата S/MIME (CSR). KEMailSettings использует имя из настроек "
+"электронной почты рабочего стола. WinGetUserName (только в Windows) "
+"использует значение NameDisplay, возвращаемое GetUserNameEx, или значение, "
+"возвращаемое GetUserName. EnvEmail использует часть имени из переменной "
+"окружения EMAIL. ADDisplayName (только в Windows) использует атрибут "
+"displayName, полученный с сервера Active Directory. ADFirstNameLastName "
+"(только в Windows) использует атрибуты имени (givenName) и фамилии (sn), "
+"полученные с сервера Active Directory."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9224,6 +9293,35 @@ msgstr ""
 "OpenPGP и S/MIME будет предварительно заполняться данными из системы\n"
 "         (например, из параметров электронной почты рабочего стола или (в "
 "Windows) из Active Directory)."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr "Источники для предварительного заполнения email"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
+"Этот параметр определяет, из каких источников (и с каким приоритетом) будет "
+"предварительно заполняться поле адреса электронной почты для вновь "
+"создаваемых сертификатов OpenPGP и запросов на создание подписи сертификата "
+"S/MIME (CSR).KEMailSettings использует адрес электронной почты из параметров "
+"электронной почты рабочего стола.WinGetUserName (только в Windows) "
+"использует значение NameUserPrincipal, возвращаемое функцией "
+"GetUserNameEx.EnvEmail использует адрес электронной почты из переменной "
+"окружения EMAIL.ADMail (только в Windows) использует атрибут mail, "
+"полученный с сервера Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9275,6 +9373,37 @@ msgstr ""
 "предварительно заполняться данными из системы\n"
 "         (например, из параметров электронной почты рабочего стола или (в "
 "Windows) из Active Directory)."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr "Источники для предварительного заполнения имени"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+"Этот параметр определяет, из каких источников (и с каким приоритетом) будет "
+"предварительно заполняться поле имени вновь создаваемых сертификатов "
+"OpenPGP. KEMailSettings использует имя из настроек электронной почты "
+"рабочего стола. WinGetUserName (только в Windows) использует значение "
+"NameDisplay, возвращаемое GetUserNameEx, или значение, возвращаемое "
+"GetUserName. EnvEmail использует часть имени из переменной окружения EMAIL. "
+"ADDisplayName (только в Windows) использует атрибут displayName, полученный "
+"с сервера Active Directory. ADFirstNameLastName (только в Windows) "
+"использует атрибуты имени (givenName) и фамилии (sn), полученные с сервера "
+"Active Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -10180,14 +10309,7 @@ msgid "Prohibited"
 msgstr "Запрещено"
 
 #: src/main.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para><application>Kleopatra</application> cannot be run as adminstrator "
-#| "without breaking file permissions in the GnuPG data folder.</"
-#| "para><para>To manage keys for other users please manage them as a normal "
-#| "user and copy the <filename>AppData\\Roaming\\gnupg</filename> directory "
-#| "with proper permissions.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para><application>Kleopatra</application> cannot be run as administrator "
@@ -10200,16 +10322,14 @@ msgstr ""
 "от имени администратора без нарушения прав доступа к файлам в папке данных "
 "GnuPG.</para><para>Для управления ключами других пользователей откройте "
 "приложение от имени обычного пользователя и скопируйте каталог "
-"<filename>AppData\\Roaming\\gnupg</filename> с соответствующими разрешениями."
-"</para>"
+"<filename>%APPDATA%\\gnupg*</filename> с соответствующими разрешениями.</"
+"para>"
 
 #: src/main.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>Are you sure that you want to continue?</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>Are you sure that you want to continue at your own risk?</para>"
-msgstr "<para>Продолжить?</para>"
+msgstr "<para>Продолжить на свой страх и риск?</para>"
 
 #: src/main.cpp src/main.cpp
 #, kde-format
@@ -10226,6 +10346,10 @@ msgid ""
 "administrator at your own risk then set the registry value <filename>%1</"
 "filename> to <icode>%2</icode>.</para>"
 msgstr ""
+"<para>Приложение <application>Kleopatra</application> не следует запускать "
+"от имени администратора.</para><para>Если вы всё же хотите запустить "
+"приложение от имени администратора на свой страх и риск, установите значение "
+"реестра <filename>%1</filename> в <icode>%2</icode>.</para>"
 
 #: src/main.cpp
 #, kde-kuit-format
@@ -10310,12 +10434,10 @@ msgid "Really Quit?"
 msgstr "Действительно выйти?"
 
 #: src/mainwindow.cpp
-#, fuzzy, kde-format
-#| msgctxt "@title"
-#| msgid "GpgConf (Configuration) installation"
+#, kde-format
 msgctxt "@info:status"
 msgid "Corrupt installation"
-msgstr "GpgConf (конфигурация)"
+msgstr "Установка повреждена"
 
 #: src/mainwindow.cpp
 #, kde-format

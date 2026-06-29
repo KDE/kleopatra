@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdepim-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2026-05-19 13:25+0300\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-06-25 18:52+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -3001,6 +3001,16 @@ msgid "Searching for matching certificates ..."
 msgstr "Eşleşen sertifikalar aranıyor…"
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+"Arama olanaklı değil; çünkü yapılandırılmış bir sunucu yok veya ağ erişimi "
+"devre dışı bırakılmış."
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3074,6 +3084,22 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Sonuç Kısaltıldı"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+"Sunucuda arama olanaklı değil; çünkü ağ erişimi OpenPGP ve S/MIME için devre "
+"dışı bırakılmış."
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr "Ağ Erişimi Devre Dışı"
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3314,11 +3340,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr "<para>Güncelleme başarısız:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
+msgstr ""
+"<para>Güncelleme atlandı; çünkü ağ erişimi OpenPGP için devre dışı "
+"bırakılmış.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3342,6 +3370,14 @@ msgstr[1] "<para>Sertifikalar bulunamadı.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr "<para>Güncelleme başarısız:</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Sertifika güncellendi.</para>"
@@ -3358,6 +3394,15 @@ msgstr "Web Anahtar Dizini’nden güncellemenin sonucu"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "S/MIME sertifikası güncellemesi sonucu"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Güncelleme atlandı; çünkü ağ erişimi S/MIME için devre dışı bırakılmış."
+"</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4905,13 +4950,12 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> dosyasının şifresi, <filename>%2</filename> olarak "
-"başarıyla çözüldü ve doğrulandı."
+"çözüldü ve doğrulandı."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4962,12 +5006,11 @@ msgstr "<filename>%1</filename> dosyasının şifresi çözülemedi:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "<filename>%1</filename> dosyasının şifresi, <filename>%2</filename> olarak "
-"başarıyla çözüldü."
+"çözüldü."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5050,20 +5093,20 @@ msgstr "Not defteri doğrulanamadı: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Not defterinin şifresi başarıyla çözüldü ve doğrulandı"
+msgid "Decrypted and verified the notepad"
+msgstr "Not defterinin şifresi çözüldü ve doğrulandı"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Not defterinin şifresi başarıyla çözüldü"
+msgid "Decrypted the notepad"
+msgstr "Not defterinin şifresi çözüldü"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "Not defteri başarıyla doğrulandı"
+msgid "Verified the notepad"
+msgstr "Not defteri doğrulandı"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5080,20 +5123,20 @@ msgstr "Pano doğrulanamadı: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
-msgstr "Panonun şifresi başarıyla çözüldü ve doğrulandı"
+msgid "Decrypted and verified the clipboard"
+msgstr "Panonun şifresi çözüldü ve doğrulandı"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
-msgstr "Panonun şifresi başarıyla çözüldü"
+msgid "Decrypted the clipboard"
+msgstr "Panonun şifresi çözüldü"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
-msgstr "Pano başarıyla doğrulandı"
+msgid "Verified the clipboard"
+msgstr "Pano doğrulandı"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -6302,12 +6345,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "İmzalama ve şifreleme iptal edildi."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "İmzalama iptal edildi."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9021,6 +9066,38 @@ msgstr ""
 "ile önden doldurulacaktır;\n"
 "örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory’den."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr "Ortak adları önden doldurma kaynakları"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+"Bu ayar, yeni oluşturulan S/MIME sertifika imzalama isteklerinin (CSR) ortak "
+"ad (CN) alanının hangi kaynaklardan (ve hangi öncelikle) önceden "
+"doldurulacağını belirtir. KEMailSettings, masaüstünün e-posta ayarlarının "
+"adını kullanır. WinGetUserName (yalnızca Windows), GetUserNameEx tarafından "
+"döndürülen NameDisplay değerini veya GetUserName tarafından döndürülen "
+"değeri kullanır. EnvEmail, EMAIL çevre değişkeninin ad bölümünü kullanır. "
+"ADDisplayName (yalnızca Windows), Active Directory sunucusundan alınan "
+"görünen ad özniteliğini (displayName) kullanır. ADFirstNameLastName "
+"(yalnızca Windows), Active Directory sunucusundan alınan ad (givenName) ve "
+"soyad (sn) özniteliklerini kullanır."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9055,6 +9132,34 @@ msgstr ""
 "Ayarlıysa OpenPGP ve S/MIME sertifikalarının e-posta alanı sistemden alınan "
 "bilgi ile önden doldurulacaktır;\n"
 "örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory’den."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr "E-postayı önden doldurma kaynakları"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
+"Bu ayar, yeni oluşturulan OpenPGP sertifikalarının ve S/MIME sertifika "
+"imzalama isteklerinin (CSR) e-posta adresi alanının hangi kaynaklardan (ve "
+"hangi öncelikle) önceden doldurulacağını belirtir. KEMailSettings, "
+"masaüstünün e-posta ayarlarının e-posta adresini kullanır. WinGetUserName "
+"(yalnızca Windows), GetUserNameEx tarafından döndürülen NameUserPrincipal "
+"değerini kullanır. EnvEmail, EMAIL çevre değişkeninin e-posta adresini "
+"kullanır. ADMail (yalnızca Windows), Active Directory sunucusundan alınan "
+"posta özniteliğini (mail) kullanır."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9104,6 +9209,37 @@ msgstr ""
 "Ayarlıysa OpenPGP sertifikalarının ad alanı sistemden alınan bilgi ile önden "
 "doldurulacaktır;\n"
 "örn. masaüstü e-posta ayarları veya Windows üzerindeyse Active Directory’den."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr "Adı önden doldurma kaynakları"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+"Bu ayar, yeni oluşturulan OpenPGP sertifikalarının ad alanının hangi "
+"kaynaklardan (ve hangi öncelikle) önden doldurulacağını belirtir. "
+"KEMailSettings, masaüstünün e-posta ayarlarının adını kullanır. "
+"WinGetUserName (yalnızca Windows), GetUserNameEx tarafından döndürülen "
+"NameDisplay değerini veya GetUserName tarafından döndürülen değeri kullanır. "
+"EnvEmail, EMAIL çevre değişkeninin ad kısmını kullanır. ADDisplayName "
+"(yalnızca Windows), Active Directory sunucusundan alınan görünen ad "
+"özniteliğini (displayName) kullanır. ADFirstNameLastName (yalnızca Windows), "
+"Active Directory sunucusundan alınan ad (givenName) ve soyadı (sn) "
+"niteliklerini kullanır."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg

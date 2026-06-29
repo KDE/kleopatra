@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
-"PO-Revision-Date: 2026-05-19 07:12+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"PO-Revision-Date: 2026-06-25 17:20+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -3016,6 +3016,16 @@ msgid "Searching for matching certificates ..."
 msgstr "Iskanje ustreznih potrdil …"
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+"Iskanje ni mogoče, ker ni konfiguriran noben strežnik ali pa je dostop do "
+"omrežja onemogočen."
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3087,6 +3097,22 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "Rezultat je skrajšan"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+"Iskanje na strežniku ni mogoče, ker je dostop do omrežja onemogočen za "
+"OpenPGP in S/MIME."
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr "Dostop do omrežja onemogočen"
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3331,12 +3357,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>Posodabljanje ni uspelo.</para><para><message>%1</message></para>"
+"<para>Posodobitev je bila preskočena, ker je dostop do omrežja za OpenPGP "
+"onemogočen.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3362,6 +3389,15 @@ msgstr[3] "<para>Potrdil ni bilo mogoče najti.</para>"
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr ""
+"<para>Posodabljanje ni uspelo.</para><para><message>%1</message></para>"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
 msgid "<para>The certificate was updated.</para>"
 msgid_plural "<para>The certificates were updated.</para>"
 msgstr[0] "<para>Potrdila so bila posodobljena.</para>"
@@ -3380,6 +3416,15 @@ msgstr "Rezultat posodobitve prek imenika spletnih ključev"
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "Rezultat posodobitve potrdila S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
+"<para>Posodobitev je bila preskočena, ker je omrežni dostop onemogočen za S/"
+"MIME.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-format
@@ -4947,12 +4992,11 @@ msgstr "Neuspelo dešifriranje in verificiranje <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
-"Uspešno dešifrirano in preverjeno <filename>%1</filename> kot <filename>%2</"
+"Dešifrirano in verificirano <filename>%1</filename> kot <filename>%2</"
 "filename>."
 
 #: src/crypto/decryptverifytask.cpp
@@ -5007,11 +5051,9 @@ msgstr "Neuspelo dešifriranje <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
-msgstr ""
-"Uspešno dešifrirano <filename>%1</filename> kot <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgstr "Dešifrirano <filename>%1</filename> kot <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5095,20 +5137,20 @@ msgstr "Beležnice ni bilo mogoče verificirati: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "Beležnica je bila uspešno dešifrirana in verificirana"
+msgid "Decrypted and verified the notepad"
+msgstr "Dešifrirana in verificirana beležnica"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr "Beležnica je bila uspešno dešifrirana"
+msgid "Decrypted the notepad"
+msgstr "Dešifrirana beležnica"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr "Beležnica je bila uspešno verificirana"
+msgid "Verified the notepad"
+msgstr "Verificirana beležnica"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5125,20 +5167,20 @@ msgstr "Odložišča ni bilo mogoče verificirati: %1"
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
-msgstr "Odložišče je bilo uspešno dešifrirano in verificirano"
+msgid "Decrypted and verified the clipboard"
+msgstr "Dešifrirano in verificirano odložišče"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
-msgstr "Odložišče je bilo uspešno dešifrirano"
+msgid "Decrypted the clipboard"
+msgstr "Dešifrirano odložišče"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
-msgstr "Odložišče je bilo uspešno verificirano"
+msgid "Verified the clipboard"
+msgstr "Verificirano odložišče"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -6353,12 +6395,14 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "Podpisovanje in šifriranje preklicano."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
 msgid "Signing canceled."
 msgstr "Podpisovanje preklicano."
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, kde-format
 msgctxt "@info"
@@ -9138,6 +9182,38 @@ msgstr ""
 "         npr. iz nastavitev e-pošte na namizju ali, v sistemu Windows ali "
 "aktivnega imenika."
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr "Viri za predizpolnjevanje CN"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+"Ta nastavitev določa, iz katerih virov (in s kakšno prednostjo) se bo "
+"vnaprej izpolnilo običajno ime (CN) novo ustvarjenih zahtev za podpis "
+"potrdila S/MIME (CSR). KEMailSettings uporabi ime privzetega profila "
+"privzetih nastavitev e-pošte namizja. WinGetUserName (samo za Windows) "
+"uporabi vrednost NameDisplay, ki jo vrne GetUserNameEx, ali vrednost, ki jo "
+"vrne GetUserName. EnvEmail uporabi del imena spremenljivke okolja EMAIL. "
+"ADDisplayName (samo za Windows) uporabi atribut prikazovanega imena "
+"(displayName), pridobljen s strežnika Active Directory. ADFirstNameLastName "
+"(samo za Windows) uporabi atributa lastnega imena (givenName) in priimka "
+"(sn), pridobljena s strežnika Active Directory."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9173,6 +9249,34 @@ msgstr ""
 "S/MIME vnaprej izpolnjeno z informacijami, zbranimi iz sistema,\n"
 "         npr. iz nastavitev e-pošte na namizju ali, v sistemu Windows ali "
 "aktivnega imenika."
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr "Viri za predizpolnjevanje e-pošte"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
+msgstr ""
+"Ta nastavitev določa, iz katerih virov (in s kakšno prednostjo) se bodo "
+"vnaprej izpolnili e-poštni naslovi novo ustvarjenih potrdil OpenPGP in "
+"zahtev za podpis potrdil S/MIME (CSR). KEMailSettings uporablja e-poštni "
+"naslov privzetega profila privzetih nastavitev e-pošte namizja. "
+"WinGetUserName (samo za Windows) uporablja vrednost NameUserPrincipal, ki jo "
+"vrne GetUserNameEx. EnvEmail uporablja e-poštni naslov okoljske "
+"spremenljivke EMAIL. ADMail (samo za Windows) uporablja atribut pošte "
+"(mail), pridobljen s strežnika Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9223,6 +9327,36 @@ msgstr ""
 "izpolnjeno z informacijami, zbranimi iz sistema,\n"
 "         npr. iz nastavitev e-pošte na namizju ali, v sistemu Windows ali "
 "aktivnega imenika."
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr "Viri za preizpolnjevanje imena"
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+"Ta nastavitev določa, iz katerih virov (in s kakšno prednostjo) naj bo polje "
+"z imenom novo ustvarjenih potrdil OpenPGP vnaprej izpolnjeno. KEMailSettings "
+"uporablja ime e-poštnih nastavitev namizja. WinGetUserName (samo za Windows) "
+"uporablja vrednost NameDisplay, ki jo vrne GetUserNameEx, ali vrednost, ki "
+"jo vrne GetUserName. EnvEmail uporablja del imena spremenljivke okolja "
+"EMAIL. ADDisplayName (samo za Windows) uporablja atribut prikaznega imena "
+"(displayName), pridobljen s strežnika Active Directory. ADFirstNameLastName "
+"(samo za Windows) uporablja atributa imena (givenName) in priimka (sn), "
+"pridobljena s strežnika Active Directory."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -12436,7 +12570,7 @@ msgstr "Počisti predpomnilnik seznama preklicanih potrdil"
 #: src/view/keylistcontroller.cpp
 #, kde-format
 msgid "Dump CRL Cache"
-msgstr "Izpis predpomnilnika seznama preklicanih potrdil (CRL)"
+msgstr "Izpiši predpomnilnik seznama preklicanih potrdil (CRL)"
 
 #: src/view/keylistcontroller.cpp
 #, kde-format

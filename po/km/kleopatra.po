@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-19 14:44+0200\n"
+"POT-Creation-Date: 2026-06-29 09:24+0200\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -3189,6 +3189,14 @@ msgid "Searching for matching certificates ..."
 msgstr "ផ្ទៀងផ្ទាត់​វិញ្ញាបនបត្រ..."
 
 #: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup not possible because no servers are configured or network access is "
+"disabled."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3252,6 +3260,20 @@ msgstr ""
 msgctxt "@title"
 msgid "Result Truncated"
 msgstr "បានកាត់​លទ្ធផល​ឲ្យ​ខ្លី"
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Lookup on server is not possible because network access is disabled for "
+"OpenPGP and for S/MIME."
+msgstr ""
+
+#: src/commands/lookupcertificatescommand.cpp
+#, kde-format
+msgctxt "@title"
+msgid "Network Access Disabled"
+msgstr ""
 
 #: src/commands/lookupcertificatescommand.cpp
 #, kde-kuit-format
@@ -3500,15 +3522,11 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
-#: src/commands/refreshcertificatescommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>An error occurred while loading the certifications: <message>%1</"
-#| "message></para>"
+#, kde-kuit-format
 msgctxt "@info"
-msgid "<para>Update failed:</para><para><message>%1</message></para>"
-msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
+msgid ""
+"<para>Update skipped because network access is disabled for OpenPGP.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, kde-kuit-format
@@ -3524,6 +3542,18 @@ msgctxt "@info"
 msgid "<para>The certificate was not found.</para>"
 msgid_plural "<para>The certificates were not found.</para>"
 msgstr[0] "វិញ្ញាបនបត្រ​បាន​ផុត​កំណត់ ។"
+
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#: src/commands/refreshcertificatescommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid "<para>Update failed:</para><para><message>%1</message></para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/refreshcertificatescommand.cpp
 #: src/commands/refreshcertificatescommand.cpp
@@ -3547,6 +3577,13 @@ msgstr ""
 msgctxt "@info"
 msgid "Result of S/MIME certificate update"
 msgstr "វិញ្ញាបនបត្រ S/MIME"
+
+#: src/commands/refreshcertificatescommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Update skipped because network access is disabled for S/MIME.</para>"
+msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp
 #, fuzzy, kde-format
@@ -5194,10 +5231,9 @@ msgstr ""
 #| msgid ""
 #| "Could not copy temporary file <filename>%1</filename> to file "
 #| "<filename>%2</filename>: <message>%3</message>"
-msgctxt "@info Successfully decrypted and verified <file> as <file>."
+msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
-"Successfully decrypted and verified <filename>%1</filename> as <filename>%2</"
-"filename>."
+"Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -5286,9 +5322,8 @@ msgstr ""
 #| msgid ""
 #| "Could not copy temporary file <filename>%1</filename> to file "
 #| "<filename>%2</filename>: <message>%3</message>"
-msgctxt "@info Successfully decrypted <file> as <file>."
-msgid ""
-"Successfully decrypted <filename>%1</filename> as <filename>%2</filename>."
+msgctxt "@info Decrypted <file> as <file>."
+msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -5368,22 +5403,25 @@ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 �
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
-#| msgid "certificate"
+#| msgid "Decrypt and/or verify file(s)"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the notepad"
-msgstr "វិញ្ញាបនបត្រ​"
+msgid "Decrypted and verified the notepad"
+msgstr "ឌិគ្រីប និង/ឬ​ផ្ទៀងផ្ទាត់​ឯកសារ"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Encrypt"
 msgctxt "@info"
-msgid "Successfully decrypted the notepad"
-msgstr ""
+msgid "Decrypted the notepad"
+msgstr "អ៊ីនគ្រិប"
 
 #: src/crypto/decryptverifytask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "@title"
+#| msgid "Key Pair Successfully Created"
 msgctxt "@info"
-msgid "Successfully verified the notepad"
-msgstr ""
+msgid "Verified the notepad"
+msgstr "បាន​បង្កើត​គូសោ​ដោយ​ជោគជ័យ"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
@@ -5403,14 +5441,14 @@ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 �
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info"
-msgid "Successfully decrypted and verified the clipboard"
+msgid "Decrypted and verified the clipboard"
 msgstr "វិញ្ញាបនបត្រ​"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-format
 #| msgid "certificate"
 msgctxt "@info"
-msgid "Successfully decrypted the clipboard"
+msgid "Decrypted the clipboard"
 msgstr "វិញ្ញាបនបត្រ​"
 
 #: src/crypto/decryptverifytask.cpp
@@ -5418,7 +5456,7 @@ msgstr "វិញ្ញាបនបត្រ​"
 #| msgctxt "@title"
 #| msgid "Key Pair Successfully Created"
 msgctxt "@info"
-msgid "Successfully verified the clipboard"
+msgid "Verified the clipboard"
 msgstr "បាន​បង្កើត​គូសោ​ដោយ​ជោគជ័យ"
 
 #: src/crypto/decryptverifytask.cpp
@@ -6710,6 +6748,7 @@ msgctxt "@info"
 msgid "Signing and encryption canceled."
 msgstr "ការ​ចុះហត្ថលេខា និង​អ៊ិនគ្រីប​បាន​ជោគជ័យ ។"
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Signing canceled."
@@ -6717,6 +6756,7 @@ msgctxt "@info"
 msgid "Signing canceled."
 msgstr "បាន​បោះបង់​ការ​ចុះហត្ថលេខា ។"
 
+#: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
 #| msgid "Encryption canceled."
@@ -9698,6 +9738,28 @@ msgid ""
 "the Active Directory."
 msgstr ""
 
+#. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"common name (CN) field of newly generated S/MIME certificate signing "
+"requests (CSR) shall be prefilled. KEMailSettings uses the name of the "
+"desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay "
+"value returned by GetUserNameEx or the value returned by GetUserName. "
+"EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName "
+"(Windows-only) uses the display name attribute (displayName) retrieved from "
+"the Active Directory server. ADFirstNameLastName (Windows-only) uses the "
+"first name (givenName) and last name (sn) attributes retrieved from the "
+"Active Directory server."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9726,6 +9788,26 @@ msgid ""
 "will be prefilled with information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling email"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"email address field of newly generated OpenPGP certificates and S/MIME "
+"certificate signing requests (CSR) shall be prefilled. KEMailSettings uses "
+"the email address of the desktop's email settings. WinGetUserName (Windows-"
+"only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail "
+"uses the email address of the EMAIL environment variable. ADMail (Windows-"
+"only) uses the mail attribute (mail) retrieved from the Active Directory "
+"server."
 msgstr ""
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
@@ -9769,6 +9851,27 @@ msgid ""
 "information gathered from the system,\n"
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
+msgstr ""
+
+#. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Sources for prefilling name"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This setting specifies from which sources (and with what precedence) the "
+"name field of newly generated OpenPGP certificates shall be prefilled. "
+"KEMailSettings uses the name of the desktop's email settings. WinGetUserName "
+"(Windows-only) uses the NameDisplay value returned by GetUserNameEx or the "
+"value returned by GetUserName. EnvEmail uses the name part of the EMAIL "
+"environment variable. ADDisplayName (Windows-only) uses the display name "
+"attribute (displayName) retrieved from the Active Directory server. "
+"ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
+"name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
