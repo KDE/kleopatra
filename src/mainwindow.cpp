@@ -289,6 +289,10 @@ public:
                 statusBar->insertWidget(0, new QLabel{KAboutData::applicationData().version()});
                 auto statusLbl = std::make_unique<QLabel>(i18nc("@info:status", "Corrupt installation"));
                 statusLbl->setToolTip(distributionData->detailedError);
+                statusLbl->setAutoFillBackground(true);
+                auto statusPalette = qApp->palette();
+                KColorScheme::adjustBackground(statusPalette, KColorScheme::NegativeBackground, QPalette::Window, KColorScheme::View);
+                statusLbl->setPalette(statusPalette);
                 statusBar->insertPermanentWidget(0, statusLbl.release());
             }
             q->setStatusBar(statusBar.release()); // QMainWindow takes ownership
