@@ -100,22 +100,6 @@ CreateCSRForCardKeyCommand::Private::~Private()
 {
 }
 
-static KeyUsage getKeyUsage(const KeyPairInfo &keyInfo)
-{
-    // note: gpgsm does not support creating CSRs for authentication certificates
-    KeyUsage usage;
-    if (keyInfo.canCertify()) {
-        usage.setCanCertify(true);
-    }
-    if (keyInfo.canSign()) {
-        usage.setCanSign(true);
-    }
-    if (keyInfo.canEncrypt()) {
-        usage.setCanEncrypt(true);
-    }
-    return usage;
-}
-
 void CreateCSRForCardKeyCommand::Private::start()
 {
     if (appName != NetKeyCard::AppName && appName != OpenPGPCard::AppName && appName != PIVCard::AppName) {
@@ -137,7 +121,10 @@ void CreateCSRForCardKeyCommand::Private::start()
         dialog->setName(card->cardHolder());
     }
     const KeyPairInfo &keyInfo = card->keyInfo(keyRef);
-    dialog->setUsage(getKeyUsage(keyInfo));
+    KeyUsage keyUsage = keyInfo.keyUsage();
+    // gpgsm does not support creating CSRs for authentication certificates -> clear the flag
+    keyUsage.setCanAuthenticate(false);
+    dialog->setUsage(keyUsage);
     dialog->setAlgorithm(QString::fromStdString(keyInfo.algorithm));
     dialog->setReadOnly(CreateCSRDialog::Algorithm | CreateCSRDialog::Usage);
 
