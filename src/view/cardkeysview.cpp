@@ -27,6 +27,7 @@
 #include <Libkleo/KeyFilterManager>
 #include <Libkleo/KeyHelpers>
 #include <Libkleo/KeyList>
+#include <Libkleo/KeyUsage>
 #include <Libkleo/SystemInfo>
 #include <Libkleo/TreeWidget>
 
@@ -127,31 +128,21 @@ private:
     Subkey mSubkey;
 };
 
-static QString cardKeyUsageDisplayName(char c)
-{
-    switch (c) {
-    case 'e':
-        return i18n("encrypt");
-    case 's':
-        return i18n("sign");
-    case 'c':
-        return i18n("certify");
-    case 'a':
-        return i18n("authenticate");
-    default:
-        return {};
-    };
-}
-
-static QStringList cardKeyUsageDisplayNames(const std::string &usage)
+static QStringList cardKeyUsageDisplayNames(KeyUsage usage)
 {
     QStringList result;
-    if (usage == "-") {
-        // special case (e.g. for some NetKey keys)
-        return result;
+    if (usage.canAuthenticate()) {
+        result.push_back(i18n("authenticate"));
     }
-    result.reserve(usage.size());
-    std::ranges::transform(usage, std::back_inserter(result), &cardKeyUsageDisplayName);
+    if (usage.canCertify()) {
+        result.push_back(i18n("certify"));
+    }
+    if (usage.canEncrypt()) {
+        result.push_back(i18n("encrypt"));
+    }
+    if (usage.canSign()) {
+        result.push_back(i18n("sign"));
+    }
     return result;
 }
 
@@ -192,8 +183,10 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         item->setData(KeyGrip, Qt::DisplayRole, QString::fromStdString(keyInfo.grip));
         item->setData(KeyGrip, Qt::AccessibleTextRole, Formatting::accessibleHexID(keyInfo.grip.c_str()));
     }
-    // usage
-    auto usages = cardKeyUsageDisplayNames(keyInfo.usage);
+    // common usage of slot and subkey (unless subkey is null)
+    const QStringList usages = subkey.isNull() //
+        ? cardKeyUsageDisplayNames(keyInfo.keyUsage())
+        : cardKeyUsageDisplayNames(KeyUsage{keyInfo.keyUsage().value() & Kleo::keyUsage(subkey).value()});
     if (usages.empty()) {
         item->setData(Usage, Qt::DisplayRole, QString::fromStdString(keyInfo.usage));
         item->setData(Usage, Qt::AccessibleTextRole, i18nc("@info entry in Usage column of a smart card key", "none"));
