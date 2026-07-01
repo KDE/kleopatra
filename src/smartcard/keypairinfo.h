@@ -13,6 +13,8 @@
 
 namespace Kleo
 {
+class KeyUsage;
+
 namespace SmartCard
 {
 struct KeyPairInfo {
@@ -22,6 +24,7 @@ struct KeyPairInfo {
     bool canCertify() const;
     bool canEncrypt() const;
     bool canSign() const;
+    KeyUsage keyUsage() const;
 
     void update(const KeyPairInfo &other);
 

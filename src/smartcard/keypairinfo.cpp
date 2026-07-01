@@ -8,10 +8,13 @@
 
 #include "keypairinfo.h"
 
+#include <Libkleo/KeyUsage>
+
 #include <QString>
 #include <QStringList>
 #include <QTimeZone>
 
+using namespace Kleo;
 using namespace Kleo::SmartCard;
 using namespace Qt::Literals::StringLiterals;
 
@@ -62,6 +65,24 @@ bool KeyPairInfo::canEncrypt() const
 bool KeyPairInfo::canSign() const
 {
     return usage.find('s') != std::string::npos;
+}
+
+KeyUsage KeyPairInfo::keyUsage() const
+{
+    KeyUsage usage;
+    if (canAuthenticate()) {
+        usage.setCanAuthenticate(true);
+    }
+    if (canCertify()) {
+        usage.setCanCertify(true);
+    }
+    if (canSign()) {
+        usage.setCanSign(true);
+    }
+    if (canEncrypt()) {
+        usage.setCanEncrypt(true);
+    }
+    return usage;
 }
 
 void KeyPairInfo::update(const KeyPairInfo &other)
