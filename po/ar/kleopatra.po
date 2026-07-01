@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-25 00:45+0000\n"
-"PO-Revision-Date: 2026-06-21 20:25+0400\n"
+"PO-Revision-Date: 2026-06-30 22:10+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -2966,7 +2966,7 @@ msgctxt "@info"
 msgid ""
 "Lookup not possible because no servers are configured or network access is "
 "disabled."
-msgstr ""
+msgstr "تعذّر البحث لعدم ضبط أي خوادم أو لتعطيل الوصول إلى الشبكة."
 
 #: src/commands/lookupcertificatescommand.cpp:477
 #, kde-kuit-format
@@ -3044,13 +3044,13 @@ msgctxt "@info"
 msgid ""
 "Lookup on server is not possible because network access is disabled for "
 "OpenPGP and for S/MIME."
-msgstr ""
+msgstr "تعذّر البحث في الخادم لتعطيل الوصول إلى الشبكة لكلٍ من OpenPGP وS/MIME."
 
 #: src/commands/lookupcertificatescommand.cpp:664
 #, kde-format
 msgctxt "@title"
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "الوصول إلى الشبكة معطّل"
 
 #: src/commands/lookupcertificatescommand.cpp:670
 #, kde-kuit-format
@@ -3296,14 +3296,11 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:426
 #: src/commands/refreshcertificatescommand.cpp:445
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for OpenPGP.</para>"
-msgstr "<para>قُفز عن التحديث لأنه لم يُعدّ أيّ خادوم مفاتيح OpenPGP.</para>"
+msgstr "<para>جرى تخطّي التحديث لتعطيل الوصول إلى الشبكة لـOpenPGP.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:428
 #, kde-kuit-format
@@ -3359,14 +3356,11 @@ msgid "Result of S/MIME certificate update"
 msgstr "نتيجة تحديث شهادة S/MIME"
 
 #: src/commands/refreshcertificatescommand.cpp:464
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for S/MIME.</para>"
-msgstr "<para>قُفز عن التحديث لأنه لم يُعدّ أيّ خادوم مفاتيح OpenPGP.</para>"
+msgstr "<para>جرى تخطّي التحديث لتعطيل الوصول إلى الشبكة لـS/MIME.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
@@ -9136,22 +9130,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:19
 #, kde-format
 msgid "Sources for prefilling CN"
-msgstr ""
+msgstr "مصادر الملء المسبق لـCN"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "common name (CN) field of newly generated S/MIME certificate signing "
@@ -9164,16 +9147,14 @@ msgid ""
 "first name (givenName) and last name (sn) attributes retrieved from the "
 "Active Directory server."
 msgstr ""
-"يحدد هذا الإعداد المصادر (وبأي أسبقية) التي سيتم ملء الاسم الشائع (CN) منها "
-"مسبقاً لطلبات توقيع شهادات S/MIME (CSR) التي يتم إنشاؤها حديثاً. "
-"KEMailSettings: يستخدم الاسم الخاص بالملف الشخصي المبدئي (Default profile) "
-"لإعدادات البريد الإلكتروني المبدئية لسطح المكتب.    WinGetUserName (لنظام "
-"ويندوز فقط): يستخدم قيمة NameDisplay التي ترجعها دالة GetUserNameEx أو "
-"القيمة التي ترجعها دالة GetUserName.  EnvEmail: يستخدم جزء الاسم من متغير "
-"البيئة EMAIL. ADDisplayName (لنظام ويندوز فقط): يستخدم سمة اسم العرض "
-"(displayName) المستردة من خادم الدليل النشط (Active Directory).  "
-"ADFirstNameLastName (لنظام ويندوز فقط): يستخدم سمتا الاسم الأول (givenName) "
-"واسم العائلة (sn) المستردتان من خادم الدليل النشط (Active Directory)."
+"يحدّد هذا الإعداد المصادر (وبأي أولوية) التي سيُملأ منها حقل الاسم الشائع (CN) "
+"لطلبات توقيع الشهادات (CSR) الجديدة من S/MIME. يستخدم KEMailSettings اسم "
+"إعدادات البريد الإلكتروني لسطح المكتب. يستخدم WinGetUserName (لنظام ويندوز "
+"فقط) قيمة NameDisplay التي يُرجعها GetUserNameEx أو القيمة التي يُرجعها "
+"GetUserName. يستخدم EnvEmail جزء الاسم من متغير البيئة EMAIL. يستخدم "
+"ADDisplayName (لنظام ويندوز فقط) سمة اسم العرض (displayName) المستردة من "
+"خادم الدليل النشط. يستخدم ADFirstNameLastName (لنظام ويندوز فقط) سمتَي الاسم "
+"الأول (givenName) واسم العائلة (sn) المستردتين من خادم الدليل النشط."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9215,20 +9196,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:35
 #, kde-format
 msgid "Sources for prefilling email"
-msgstr ""
+msgstr "مصادر الملء المسبق للبريد الإلكتروني"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "email address of newly generated OpenPGP certificates and S/MIME "
-#| "certificate signing requests (CSR) shall be prefilled. KEMailSettings "
-#| "uses the email address of the default profile of the desktop's email "
-#| "defaults. WinGetUserName (Windows-only) uses the NameUserPrincipal value "
-#| "returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL "
-#| "environment variable. ADMail (Windows-only) uses the mail attribute "
-#| "(mail) retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "email address field of newly generated OpenPGP certificates and S/MIME "
@@ -9239,14 +9211,13 @@ msgid ""
 "only) uses the mail attribute (mail) retrieved from the Active Directory "
 "server."
 msgstr ""
-"يحدد هذا الإعداد المصادر (وبأي أسبقية) التي سيتم ملء عنوان البريد الإلكتروني "
-"منها مسبقاً لشهادات OpenPGP وطلبات توقيع شهادات S/MIME (CSR) التي يتم إنشاؤها "
-"حديثاً. KEMailSettings: يستخدم عنوان البريد الإلكتروني الخاص بالملف الشخصي "
-"الافتراضي (Default profile) لإعدادات البريد الإلكتروني الافتراضية لسطح "
-"المكتب. WinGetUserName (لنظام ويندوز فقط): يستخدم قيمة NameUserPrincipal "
-"التي ترجعها دالة GetUserNameEx. EnvEmail: يستخدم عنوان البريد الإلكتروني من "
-"متغير البيئة EMAIL. ADMail (لنظام ويندوز فقط): يستخدم سمة البريد (mail) "
-"المستردة من خادم الدليل النشط (Active Directory)."
+"يحدّد هذا الإعداد المصادر (وبأي أولوية) التي سيُملأ منها حقل عنوان البريد "
+"الإلكتروني لشهادات OpenPGP الجديدة وطلبات توقيع الشهادات (CSR) من S/MIME. "
+"يستخدم KEMailSettings عنوان البريد الإلكتروني لإعدادات البريد الإلكتروني "
+"لسطح المكتب. يستخدم WinGetUserName (لنظام ويندوز فقط) قيمة NameUserPrincipal "
+"التي يُرجعها GetUserNameEx. يستخدم EnvEmail عنوان البريد الإلكتروني من متغير "
+"البيئة EMAIL. يستخدم ADMail (لنظام ويندوز فقط) سمة البريد (mail) المستردة من "
+"خادم الدليل النشط."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40
@@ -9302,22 +9273,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:56
 #, kde-format
 msgid "Sources for prefilling name"
-msgstr ""
+msgstr "مصادر الملء المسبق للاسم"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:57
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "name field of newly generated OpenPGP certificates shall be prefilled. "
@@ -9329,16 +9289,14 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
-"يحدد هذا الإعداد المصادر (وبأي أسبقية) التي سيتم ملء الاسم الشائع (CN) منها "
-"مسبقاً لطلبات توقيع شهادات S/MIME (CSR) التي يتم إنشاؤها حديثاً. "
-"KEMailSettings: يستخدم الاسم الخاص بالملف الشخصي المبدئي (Default profile) "
-"لإعدادات البريد الإلكتروني المبدئية لسطح المكتب.    WinGetUserName (لنظام "
-"ويندوز فقط): يستخدم قيمة NameDisplay التي ترجعها دالة GetUserNameEx أو "
-"القيمة التي ترجعها دالة GetUserName.  EnvEmail: يستخدم جزء الاسم من متغير "
-"البيئة EMAIL. ADDisplayName (لنظام ويندوز فقط): يستخدم سمة اسم العرض "
-"(displayName) المستردة من خادم الدليل النشط (Active Directory).  "
-"ADFirstNameLastName (لنظام ويندوز فقط): يستخدم سمتا الاسم الأول (givenName) "
-"واسم العائلة (sn) المستردتان من خادم الدليل النشط (Active Directory)."
+"يحدّد هذا الإعداد المصادر (وبأي أولوية) التي سيُملأ منها حقل الاسم لشهادات "
+"OpenPGP الجديدة. يستخدم KEMailSettings اسم إعدادات البريد الإلكتروني لسطح "
+"المكتب. يستخدم WinGetUserName (لنظام ويندوز فقط) قيمة NameDisplay التي "
+"يُرجعها GetUserNameEx أو القيمة التي يُرجعها GetUserName. يستخدم EnvEmail جزء "
+"الاسم من متغير البيئة EMAIL. يستخدم ADDisplayName (لنظام ويندوز فقط) سمة اسم "
+"العرض (displayName) المستردة من خادم الدليل النشط. يستخدم "
+"ADFirstNameLastName (لنظام ويندوز فقط) سمتَي الاسم الأول (givenName) واسم "
+"العائلة (sn) المستردتين من خادم الدليل النشط."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:61

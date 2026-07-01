@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-06-25 00:45+0000\n"
-"PO-Revision-Date: 2026-06-19 18:42+0200\n"
+"PO-Revision-Date: 2026-06-30 09:59+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -3014,6 +3014,8 @@ msgid ""
 "Lookup not possible because no servers are configured or network access is "
 "disabled."
 msgstr ""
+"Не може да се извърши търсене, тъй като няма настроени сървъри или достъпът "
+"до мрежата е изключен."
 
 #: src/commands/lookupcertificatescommand.cpp:477
 #, kde-kuit-format
@@ -3096,12 +3098,14 @@ msgid ""
 "Lookup on server is not possible because network access is disabled for "
 "OpenPGP and for S/MIME."
 msgstr ""
+"Не може да се извърши търсене на сървъра, тъй като достъпът до мрежата е "
+"изключен за OpenPGP и S/MIME."
 
 #: src/commands/lookupcertificatescommand.cpp:664
 #, kde-format
 msgctxt "@title"
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Достъпът до мрежата е деактивиран"
 
 #: src/commands/lookupcertificatescommand.cpp:670
 #, kde-kuit-format
@@ -3343,16 +3347,13 @@ msgstr ""
 
 #: src/commands/refreshcertificatescommand.cpp:426
 #: src/commands/refreshcertificatescommand.cpp:445
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for OpenPGP.</para>"
 msgstr ""
-"<para>Актуализирането е пропуснато, защото няма настроен OpenPGP сървър за "
-"ключове.</para>"
+"<para>Обновяването е пропуснато, тъй като мрежовият достъп за OpenPGP е "
+"изключен.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:428
 #, kde-kuit-format
@@ -3403,16 +3404,13 @@ msgid "Result of S/MIME certificate update"
 msgstr "Резултат от актуализирането на S/MIME сертификати"
 
 #: src/commands/refreshcertificatescommand.cpp:464
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>Update skipped because no OpenPGP keyserver is configured.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Update skipped because network access is disabled for S/MIME.</para>"
 msgstr ""
-"<para>Актуализирането е пропуснато, защото няма настроен OpenPGP сървър за "
-"ключове.</para>"
+"<para>Обновяването е пропуснато, тъй като мрежовият достъп за S/MIME е "
+"изключен.</para>"
 
 #: src/commands/refreshcertificatescommand.cpp:474
 #, kde-format
@@ -9109,22 +9107,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:19
 #, kde-format
 msgid "Sources for prefilling CN"
-msgstr ""
+msgstr "Източници за автоматично попълване на CN"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:20
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "common name (CN) field of newly generated S/MIME certificate signing "
@@ -9138,15 +9125,15 @@ msgid ""
 "Active Directory server."
 msgstr ""
 "Тази настройка задава, от кои източници (и с какъв приоритет) да се попълни "
-"общото име (CN) на новогенерираните заявки за подписване на сертификат S/"
-"MIME (CSR). KEMailSettings използва името на профила по подразбиране на "
-"електронните пощенски настройки на десктопа. WinGetUserName (само за "
-"Windows) използва стойността NameDisplay, върната от GetUserNameEx, или "
-"стойността, върната от GetUserName. EnvEmail използва името от променливата "
-"на средата EMAIL. ADDisplayName (само за Windows) използва атрибута с "
-"показвано име (displayName), извлечен от сървъра Active Directory. "
-"ADFirstNameLastName (само за Windows) използва атрибутите с първо име "
-"(givenName) и последно име (sn), извлечени от сървъра Active Directory."
+"полето с общото име (CN) на новогенерираните заявки за подписване на "
+"сертификат S/MIME (CSR). KEMailSettings използва името на профила по "
+"подразбиране на електронните пощенски настройки на десктопа. WinGetUserName "
+"(само за Windows) използва стойността NameDisplay, върната от GetUserNameEx, "
+"или стойността, върната от GetUserName. EnvEmail използва името от "
+"променливата на средата EMAIL. ADDisplayName (само за Windows) използва "
+"атрибута с показвано име (displayName), извлечен от сървъра Active "
+"Directory. ADFirstNameLastName (само за Windows) използва атрибутите с първо "
+"име (givenName) и последно име (sn), извлечени от сървъра Active Directory."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
@@ -9188,20 +9175,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:35
 #, kde-format
 msgid "Sources for prefilling email"
-msgstr ""
+msgstr "Източници за автоматично попълване на имейли"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:36
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "email address of newly generated OpenPGP certificates and S/MIME "
-#| "certificate signing requests (CSR) shall be prefilled. KEMailSettings "
-#| "uses the email address of the default profile of the desktop's email "
-#| "defaults. WinGetUserName (Windows-only) uses the NameUserPrincipal value "
-#| "returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL "
-#| "environment variable. ADMail (Windows-only) uses the mail attribute "
-#| "(mail) retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "email address field of newly generated OpenPGP certificates and S/MIME "
@@ -9213,13 +9191,13 @@ msgid ""
 "server."
 msgstr ""
 "Тази настройка указва от кои източници (и с какъв приоритет) трябва да бъде "
-"предварително попълнен имейл адресът на новогенерираните OpenPGP сертификати "
-"и заявки за подписване на сертификат S/MIME (CSR). KEMailSettings използва "
-"имейл адреса на профила по подразбиране на имейл настройките на десктопа. "
-"WinGetUserName (само за Windows) използва стойността NameUserPrincipal, "
-"върната от GetUserNameEx. EnvEmail използва имейл адреса от системната "
-"променлива EMAIL. ADMail (само за Windows) използва атрибута mail, получен "
-"от сървъра Active Directory."
+"предварително попълнено полето с имейл адресът на новогенерираните OpenPGP "
+"сертификати и заявки за подписване на сертификат S/MIME (CSR). "
+"KEMailSettings използва имейл адреса на профила по подразбиране на имейл "
+"настройките на десктопа. WinGetUserName (само за Windows) използва "
+"стойността NameUserPrincipal, върната от GetUserNameEx. EnvEmail използва "
+"имейл адреса от системната променлива EMAIL. ADMail (само за Windows) "
+"използва атрибута mail, получен от сървъра Active Directory."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40
@@ -9275,22 +9253,11 @@ msgstr ""
 #: src/kcfg/settings.kcfg:56
 #, kde-format
 msgid "Sources for prefilling name"
-msgstr ""
+msgstr "Източници за автоматично попълване на името"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:57
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "name field of newly generated OpenPGP certificates shall be prefilled. "
@@ -9303,8 +9270,8 @@ msgid ""
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 "Тази настройка задава, от кои източници (и с какъв приоритет) да се попълни "
-"общото име (CN) на новогенерираните заявки за подписване на сертификат S/"
-"MIME (CSR). KEMailSettings използва името на профила по подразбиране на "
+"полето за име (CN) на новогенерираните заявки за подписване на сертификати "
+"OpenPGP. KEMailSettings използва името на профила по подразбиране на "
 "електронните пощенски настройки на десктопа. WinGetUserName (само за "
 "Windows) използва стойността NameDisplay, върната от GetUserNameEx, или "
 "стойността, върната от GetUserName. EnvEmail използва името от променливата "
