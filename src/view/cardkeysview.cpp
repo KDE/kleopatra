@@ -183,10 +183,8 @@ static void updateTreeWidgetItem(CardKeysWidgetItem *item, const KeyPairInfo &ke
         item->setData(KeyGrip, Qt::DisplayRole, QString::fromStdString(keyInfo.grip));
         item->setData(KeyGrip, Qt::AccessibleTextRole, Formatting::accessibleHexID(keyInfo.grip.c_str()));
     }
-    // common usage of slot and subkey (unless subkey is null)
-    const QStringList usages = subkey.isNull() //
-        ? cardKeyUsageDisplayNames(keyInfo.keyUsage())
-        : cardKeyUsageDisplayNames(KeyUsage{keyInfo.keyUsage().value() & Kleo::keyUsage(subkey).value()});
+    // usage of subkey, or usage of slot if subkey is null
+    const QStringList usages = cardKeyUsageDisplayNames(subkey.isNull() ? keyInfo.keyUsage() : Kleo::keyUsage(subkey));
     if (usages.empty()) {
         item->setData(Usage, Qt::DisplayRole, QString::fromStdString(keyInfo.usage));
         item->setData(Usage, Qt::AccessibleTextRole, i18nc("@info entry in Usage column of a smart card key", "none"));
