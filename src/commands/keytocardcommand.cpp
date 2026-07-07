@@ -26,6 +26,8 @@
 #include <utils/filedialog.h>
 #include <utils/path-helper.h>
 
+#include <settings.h>
+
 #include <Libkleo/Algorithm>
 #include <Libkleo/Dn>
 #include <Libkleo/Formatting>
@@ -484,18 +486,57 @@ void KeyToCardCommand::Private::updateDone()
     keyHasBeenCopiedToCard();
 }
 
+namespace
+{
+enum class PostCopyAction {
+    CreateBackup,
+    DeleteCopyOnDisk,
+    KeepCopyOnDisk,
+};
+}
+
+static PostCopyAction askForPostCopyAction(QWidget *parent)
+{
+    if (Settings{}.offerBackupOfSubkeyAfterCopyingSubkeyToCard()) {
+        const auto answer = KMessageBox::questionTwoActionsCancel( //
+            parent,
+            xi18nc("@info", "<para>The key has been copied to the card.</para>")
+                + xi18nc("@info",
+                         "<para>You can now delete the copy of the key stored on this computer. "
+                         "Optionally, you can first create a backup of the key.</para>"),
+            i18nc("@title:window", "Success"),
+            KGuiItem{i18nc("@action:button", "Create backup")},
+            KGuiItem{i18nc("@action:button", "Delete copy on disk")},
+            KGuiItem{i18nc("@action:button", "Keep copy on disk")});
+        switch (answer) {
+        case KMessageBox::ButtonCode::PrimaryAction:
+            return PostCopyAction::CreateBackup;
+        case KMessageBox::ButtonCode::SecondaryAction:
+            return PostCopyAction::DeleteCopyOnDisk;
+        default:
+            return PostCopyAction::KeepCopyOnDisk;
+        }
+    } else {
+        const auto answer = KMessageBox::questionTwoActions( //
+            parent,
+            xi18nc("@info", "<para>The key has been copied to the card.</para>")
+                + xi18nc("@info", "<para>Do you want to delete the copy of the key stored on this computer?</para>"),
+            i18nc("@title:window", "Success"),
+            KGuiItem{i18nc("@action:button", "Delete copy on disk")},
+            KGuiItem{i18nc("@action:button", "Keep copy on disk")});
+        switch (answer) {
+        case KMessageBox::ButtonCode::PrimaryAction:
+            return PostCopyAction::DeleteCopyOnDisk;
+        default:
+            return PostCopyAction::KeepCopyOnDisk;
+        }
+    }
+}
+
 void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
 {
-    const auto answer = KMessageBox::questionTwoActionsCancel(parentWidgetOrView(),
-                                                              xi18nc("@info",
-                                                                     "<para>The key has been copied to the card.</para>"
-                                                                     "<para>You can now delete the copy of the key stored on this computer. "
-                                                                     "Optionally, you can first create a backup of the key.</para>"),
-                                                              i18nc("@title:window", "Success"),
-                                                              KGuiItem{i18nc("@action:button", "Create backup")},
-                                                              KGuiItem{i18nc("@action:button", "Delete copy on disk")},
-                                                              KGuiItem{i18nc("@action:button", "Keep copy on disk")});
-    if (answer == KMessageBox::ButtonCode::PrimaryAction) {
+    switch (askForPostCopyAction(parentWidgetOrView())) {
+    case PostCopyAction::CreateBackup: {
         const QString backupFilename = backupKey();
         if (backupFilename.isEmpty()) {
             // user canceled the backup or there was an error; repeat above question
@@ -504,9 +545,11 @@ void KeyToCardCommand::Private::keyHasBeenCopiedToCard()
             });
         }
         backupHasBeenCreated(backupFilename);
-    } else if (answer == KMessageBox::ButtonCode::SecondaryAction) {
+    } break;
+    case PostCopyAction::DeleteCopyOnDisk: {
         startDeleteSecretKeyLocally(AskForConfirmation);
-    } else {
+    } break;
+    case PostCopyAction::KeepCopyOnDisk:
         finished();
     }
 }
