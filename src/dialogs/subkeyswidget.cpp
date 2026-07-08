@@ -50,6 +50,8 @@
 #include <gpgme++/context.h>
 #include <gpgme++/key.h>
 
+#include <gpgme++/gpgmepp_version.h>
+
 #include <gpgme.h>
 
 Q_DECLARE_METATYPE(GpgME::Subkey)
@@ -57,6 +59,15 @@ Q_DECLARE_METATYPE(GpgME::Subkey)
 using namespace Kleo;
 using namespace Kleo::Commands;
 using namespace Qt::StringLiterals;
+
+static inline bool isPrimaryKey(const GpgME::Subkey subkey)
+{
+#if GPGMEPP_VERSION >= QT_VERSION_CHECK(2, 1, 1)
+    return subkey.isPrimaryKey();
+#else
+    return subkey.keyID() == subkey.parent().keyID();
+#endif
+}
 
 static QPushButton *addActionButton(QLayout *buttonBox, QAction *action, bool bindVisibility = true)
 {
@@ -310,8 +321,7 @@ void SubKeysWidget::Private::tableContextMenuRequested(const QPoint &p)
         action->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
     }
 
-    const bool isPrimarySubkey = subkey.keyID() == key.keyID();
-    if (isOwnKey && !isPrimarySubkey) {
+    if (isOwnKey && !isPrimaryKey(subkey)) {
         auto action = menu->addAction(QIcon::fromTheme(QStringLiteral("view-certificate-export")), i18n("Export secret subkey"), q, [this, subkey]() {
             exportSecret(subkey);
         });
@@ -344,7 +354,7 @@ void SubKeysWidget::Private::updateState()
     const bool secretSubkeyStoredInKeyRing = subkey.isSecret() && !subkey.isCardKey();
     ui.exportOpenSSHAction->setEnabled(subkey.canAuthenticate());
     ui.changeValidityAction->setEnabled(key.hasSecret() && canBeUsedForSecretKeyOperations(subkey.parent()));
-    ui.exportSecretAction->setEnabled(key.hasSecret() && subkey.fingerprint() != key.primaryFingerprint() && secretSubkeyStoredInKeyRing);
+    ui.exportSecretAction->setEnabled(key.hasSecret() && !isPrimaryKey(subkey) && secretSubkeyStoredInKeyRing);
     ui.restoreAction->setEnabled(!secretSubkeyStoredInKeyRing);
     ui.transferToSmartcardAction->setEnabled(secretSubkeyStoredInKeyRing && !KeyToCardCommand::getSuitableCards(subkey).empty());
 }
@@ -415,7 +425,6 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
                       subkey.neverExpires() ? Kleo::Formatting::accessibleExpirationDate(subkey.parent()) : Kleo::Formatting::accessibleExpirationDate(subkey));
         item->setData(Private::Usage, Qt::DisplayRole, Kleo::Formatting::usageString(subkey));
         item->setData(Private::Algorithm, Qt::DisplayRole, Kleo::Formatting::prettyAlgorithmName(subkey.algoName()));
-        const auto isPrimary = subkey.keyID() == key.keyID();
         if (!key.hasSecret()) {
             item->setData(Private::Storage, Qt::DisplayRole, i18nc("not applicable", "n/a"));
         } else if (subkey.isCardKey()) {
@@ -424,7 +433,7 @@ void SubKeysWidget::setKey(const GpgME::Key &key)
             } else {
                 item->setData(Private::Storage, Qt::DisplayRole, i18n("smart card"));
             }
-        } else if (isPrimary && key.hasSecret() && !subkey.isSecret()) {
+        } else if (isPrimaryKey(subkey) && key.hasSecret() && !subkey.isSecret()) {
             item->setData(Private::Storage, Qt::DisplayRole, i18nc("key is 'offline key', i.e. secret key is not stored on this computer", "offline"));
         } else if (subkey.isSecret()) {
             item->setData(Private::Storage, Qt::DisplayRole, i18n("on this computer"));
