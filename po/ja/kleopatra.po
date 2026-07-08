@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-03 00:46+0000\n"
+"POT-Creation-Date: 2026-07-08 00:45+0000\n"
 "PO-Revision-Date: 2025-03-07 13:41+0900\n"
 "Last-Translator: NIIBE Yutaka <gniibe@fsij.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -292,7 +292,7 @@ msgstr "ユーザ ID の追加に成功"
 #: src/commands/certificatetopivcardcommand.cpp:121
 #: src/commands/certificatetopivcardcommand.cpp:180
 #: src/commands/importcertificatefrompivcardcommand.cpp:79
-#: src/commands/keytocardcommand.cpp:371
+#: src/commands/keytocardcommand.cpp:373
 #: src/commands/pivgeneratecardkeycommand.cpp:123
 #: src/commands/pivgeneratecardkeycommand.cpp:195
 #: src/commands/setpivcardapplicationadministrationkeycommand.cpp:195
@@ -313,7 +313,7 @@ msgid ""
 msgstr "PIV カードアプリケーションの管理鍵を16進の形式で入力してください。"
 
 #: src/commands/certificatetocardcommand.cpp:70
-#: src/commands/keytocardcommand.cpp:58
+#: src/commands/keytocardcommand.cpp:60
 #, kde-format
 msgctxt "smartcard application - serial number of smartcard"
 msgid "%1 - %2"
@@ -328,8 +328,8 @@ msgstr "空きのスマートカードが見つかりません。"
 #: src/commands/certificatetocardcommand.cpp:250
 #: src/commands/certificatetocardcommand.cpp:313
 #: src/commands/certificatetocardcommand.cpp:372
-#: src/commands/keytocardcommand.cpp:188 src/commands/keytocardcommand.cpp:470
-#: src/commands/keytocardcommand.cpp:650
+#: src/commands/keytocardcommand.cpp:190 src/commands/keytocardcommand.cpp:472
+#: src/commands/keytocardcommand.cpp:693
 #, kde-format
 msgid "Failed to find the card with the serial number: %1"
 msgstr "そのシリアル番号を持ったカードを見つけるのに失敗しました: %1"
@@ -342,7 +342,7 @@ msgstr "副鍵 %1 をスマートカードのスロットに見つけられま�
 
 #: src/commands/certificatetocardcommand.cpp:285
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:256
-#: src/commands/keytocardcommand.cpp:261
+#: src/commands/keytocardcommand.cpp:263
 #: src/commands/openpgpgeneratecardkeycommand.cpp:135
 #: src/commands/openpgpgeneratecardkeycommand.cpp:172
 #, kde-format
@@ -350,7 +350,7 @@ msgid "Failed to find the OpenPGP card with the serial number: %1"
 msgstr "そのシリアル番号で OpenPGP カードが見つけられませんでした: %1"
 
 #: src/commands/certificatetocardcommand.cpp:322
-#: src/commands/keytocardcommand.cpp:478
+#: src/commands/keytocardcommand.cpp:480
 #, kde-format
 msgctxt "@info"
 msgid "Copying the key to the card failed."
@@ -381,7 +381,7 @@ msgid ""
 msgstr "本当にこのコンピュータ上の秘密鍵のコピーを削除したいですか？"
 
 #: src/commands/certificatetocardcommand.cpp:352
-#: src/commands/keytocardcommand.cpp:658
+#: src/commands/keytocardcommand.cpp:701
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirm Deletion"
@@ -398,7 +398,7 @@ msgstr ""
 "para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp:424
-#: src/commands/keytocardcommand.cpp:744
+#: src/commands/keytocardcommand.cpp:787
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -409,7 +409,7 @@ msgstr ""
 "para>"
 
 #: src/commands/certificatetopivcardcommand.cpp:128
-#: src/commands/keytocardcommand.cpp:349
+#: src/commands/keytocardcommand.cpp:351
 #, kde-format
 msgid "Sorry! No suitable certificate to write to this card slot was found."
 msgstr ""
@@ -1113,8 +1113,8 @@ msgstr ""
 msgid "CRL cache cleared successfully."
 msgstr "CRL キャッシュをクリアしました。"
 
-#: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:492
-#: src/commands/keytocardcommand.cpp:520
+#: src/commands/command_p.h:98 src/commands/keytocardcommand.cpp:505
+#: src/commands/keytocardcommand.cpp:522 src/commands/keytocardcommand.cpp:563
 #: src/commands/newopenpgpcertificatecommand.cpp:305 src/utils/csrutils.cpp:89
 #, kde-format
 msgctxt "@title:window"
@@ -2065,7 +2065,7 @@ msgid ""
 msgstr "カード上の既存の鍵は<b>削除</b>され新しい鍵で置き換えられます。"
 
 #: src/commands/generateopenpgpcardkeysandcertificatecommand.cpp:269
-#: src/commands/keytocardcommand.cpp:286 src/commands/keytocardcommand.cpp:405
+#: src/commands/keytocardcommand.cpp:288 src/commands/keytocardcommand.cpp:407
 #: src/commands/openpgpgeneratecardkeycommand.cpp:183
 #: src/commands/pivgeneratecardkeycommand.cpp:134
 #, kde-format
@@ -2798,17 +2798,17 @@ msgstr ""
 "<para>秘密鍵を復旧しようとしてエラーが発生しました。</para><para><command>"
 "%1</command> からの出力は以下のとおりです: <message>%2</message></para>"
 
-#: src/commands/keytocardcommand.cpp:158
+#: src/commands/keytocardcommand.cpp:160
 #, kde-format
 msgid "Select Card"
 msgstr "カードを選択"
 
-#: src/commands/keytocardcommand.cpp:159
+#: src/commands/keytocardcommand.cpp:161
 #, kde-format
 msgid "Please select the card the key should be written to:"
 msgstr "この鍵を書き込むカードを選択してください:"
 
-#: src/commands/keytocardcommand.cpp:198
+#: src/commands/keytocardcommand.cpp:200
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2817,40 +2817,40 @@ msgstr ""
 "すみません! 鍵をカード <emphasis>%1</emphasis> に書き込むことはサポートされて"
 "ません。"
 
-#: src/commands/keytocardcommand.cpp:226
+#: src/commands/keytocardcommand.cpp:228
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Signature"
 msgstr "署名"
 
-#: src/commands/keytocardcommand.cpp:230
+#: src/commands/keytocardcommand.cpp:232
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Encryption"
 msgstr "暗号化"
 
-#: src/commands/keytocardcommand.cpp:234
+#: src/commands/keytocardcommand.cpp:236
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Authentication"
 msgstr "認証"
 
-#: src/commands/keytocardcommand.cpp:240
+#: src/commands/keytocardcommand.cpp:242
 #, kde-format
 msgid "Select Card Slot"
 msgstr "カードスロットを選択"
 
-#: src/commands/keytocardcommand.cpp:241
+#: src/commands/keytocardcommand.cpp:243
 #, kde-format
 msgid "Please select the card slot the key should be written to:"
 msgstr "以下から鍵を書き込むべきカードスロットを選択してください:"
 
-#: src/commands/keytocardcommand.cpp:271
+#: src/commands/keytocardcommand.cpp:273
 #, kde-format
 msgid "Sorry! This key cannot be transferred to an OpenPGP card."
 msgstr "すみません! この鍵は OpenPGP カードには転送できません。"
 
-#: src/commands/keytocardcommand.cpp:289 src/commands/keytocardcommand.cpp:408
+#: src/commands/keytocardcommand.cpp:291 src/commands/keytocardcommand.cpp:410
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -2862,84 +2862,109 @@ msgstr ""
 "鍵は<b>上書き</b>されます。</p><p>バックアップがない場合、復旧できない形で既"
 "存の鍵は失われます。</p>"
 
-#: src/commands/keytocardcommand.cpp:292
+#: src/commands/keytocardcommand.cpp:294
 #, kde-format
 msgid "The existing key has the fingerprint:"
 msgstr "既存の鍵にはこのフィンガープリントがあります:"
 
-#: src/commands/keytocardcommand.cpp:295 src/commands/keytocardcommand.cpp:414
+#: src/commands/keytocardcommand.cpp:297 src/commands/keytocardcommand.cpp:416
 #: src/commands/pivgeneratecardkeycommand.cpp:138
 #, kde-format
 msgctxt "@title:window"
 msgid "Overwrite existing key"
 msgstr "既存の鍵を上書き"
 
-#: src/commands/keytocardcommand.cpp:296 src/commands/keytocardcommand.cpp:415
+#: src/commands/keytocardcommand.cpp:298 src/commands/keytocardcommand.cpp:417
 #, kde-format
 msgctxt "@action:button"
 msgid "Overwrite Existing Key"
 msgstr "既存の鍵を上書き"
 
-#: src/commands/keytocardcommand.cpp:354
+#: src/commands/keytocardcommand.cpp:356
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Certificate"
 msgstr "証明書を選択"
 
-#: src/commands/keytocardcommand.cpp:355
+#: src/commands/keytocardcommand.cpp:357
 #, kde-format
 msgid ""
 "Please select the certificate whose key pair you want to write to the card:"
 msgstr "鍵ペアをカードに書き込む証明書を選択してください:"
 
-#: src/commands/keytocardcommand.cpp:390
+#: src/commands/keytocardcommand.cpp:392
 #, kde-format
 msgid "Sorry! This key cannot be transferred to a PIV card."
 msgstr "すみません! この鍵は PIV カードには転送できません。"
 
-#: src/commands/keytocardcommand.cpp:395
+#: src/commands/keytocardcommand.cpp:397
 #, kde-format
 msgid ""
 "Sorry! Only encryption keys and signing keys can be transferred to a PIV "
 "card."
 msgstr "すみません! 暗号化鍵と署名用鍵だけが PIV カードに転送できます。"
 
-#: src/commands/keytocardcommand.cpp:411
+#: src/commands/keytocardcommand.cpp:413
 #, kde-format
 msgid "The existing key has the key grip:"
 msgstr "既存の鍵にはこの鍵グリップがあります:"
 
-#: src/commands/keytocardcommand.cpp:489
-#, kde-kuit-format
+#: src/commands/keytocardcommand.cpp:501 src/commands/keytocardcommand.cpp:520
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>この鍵はスマートカードにコピーされました。</para>"
+
+#: src/commands/keytocardcommand.cpp:503
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>鍵はカードにコピーされました。</para><para>このコンピュータに保管された"
 "鍵のコピーを削除できます。オプションで、この鍵のバックアップを作成できます。"
 "</para>"
 
-#: src/commands/keytocardcommand.cpp:493
+#: src/commands/keytocardcommand.cpp:506
 #, kde-format
 msgctxt "@action:button"
 msgid "Create backup"
 msgstr "バックアップを作成"
 
-#: src/commands/keytocardcommand.cpp:494 src/commands/keytocardcommand.cpp:521
+#: src/commands/keytocardcommand.cpp:507 src/commands/keytocardcommand.cpp:523
+#: src/commands/keytocardcommand.cpp:564
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "ディスクのコピーを削除"
 
-#: src/commands/keytocardcommand.cpp:495 src/commands/keytocardcommand.cpp:522
+#: src/commands/keytocardcommand.cpp:508 src/commands/keytocardcommand.cpp:524
+#: src/commands/keytocardcommand.cpp:565
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "ディスクにコピーを保存"
 
-#: src/commands/keytocardcommand.cpp:517
+#: src/commands/keytocardcommand.cpp:521
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "本当にこのコンピュータ上に保存された秘密鍵のコピーを削除したいですか？"
+
+#: src/commands/keytocardcommand.cpp:560
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -2951,19 +2976,19 @@ msgstr ""
 "まれました。</para><para>このコンピュータに保管された鍵のコピーを削除します"
 "か？</para>"
 
-#: src/commands/keytocardcommand.cpp:556
+#: src/commands/keytocardcommand.cpp:599
 #, kde-format
 msgctxt "@title:window"
 msgid "Backup Secret Key"
 msgstr "秘密鍵をバックアップ"
 
-#: src/commands/keytocardcommand.cpp:559
+#: src/commands/keytocardcommand.cpp:602
 #, kde-format
 msgctxt "description of filename filter"
 msgid "Secret Key Backup Files"
 msgstr "秘密鍵バックアップファイル"
 
-#: src/commands/keytocardcommand.cpp:614
+#: src/commands/keytocardcommand.cpp:657
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the private key file <filename>%1</filename> for reading."
@@ -2971,33 +2996,33 @@ msgstr ""
 "プライベート鍵ファイル <filename>%1</filename> を読み取りのために開けませんで"
 "した。"
 
-#: src/commands/keytocardcommand.cpp:623
+#: src/commands/keytocardcommand.cpp:666
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr "プライベート鍵ファイル <filename>%1</filename> が空です。"
 
-#: src/commands/keytocardcommand.cpp:633
+#: src/commands/keytocardcommand.cpp:676
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Cannot open the file <filename>%1</filename> for writing."
 msgstr "ファイル <filename>%1</filename> を書き込みのために開けませんでした"
 
-#: src/commands/keytocardcommand.cpp:640
+#: src/commands/keytocardcommand.cpp:683
 #, kde-kuit-format
 msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
 "秘密鍵のバックアップの <filename>%1</filename> への書き込みに失敗しました。"
 
-#: src/commands/keytocardcommand.cpp:657
+#: src/commands/keytocardcommand.cpp:700
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Do you really want to delete the copy of the key stored on this computer?"
 msgstr "本当にこのコンピュータ上に保存された秘密鍵のコピーを削除したいですか？"
 
-#: src/commands/keytocardcommand.cpp:680
+#: src/commands/keytocardcommand.cpp:723
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -3007,7 +3032,7 @@ msgstr ""
 "<para>このコンピュータ上に保存された秘密鍵のコピーの削除に失敗しました:</"
 "para><para><message>%1</message></para>"
 
-#: src/commands/keytocardcommand.cpp:683
+#: src/commands/keytocardcommand.cpp:726
 #, kde-format
 msgctxt "@info"
 msgid "Successfully deleted the copy of the key stored on this computer."
@@ -4380,7 +4405,7 @@ msgstr "(現在のシステム設定: %1)"
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
 #. i18n: ectx: whatsthis, entry (RefreshInterval), group (SMime Validation)
 #: src/conf/smimevalidationconfigurationwidget.ui:18
-#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:269
+#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:274
 #, kde-format
 msgid ""
 "This option enables interval checking of certificate validity. You can also "
@@ -9744,33 +9769,47 @@ msgstr ""
 "る場合、gpgsm --learn を呼び出します。これはコマンドが実行されている間、時間"
 "がかかることがあり、スマートカードをブロックします。"
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg:266
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg:267
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
-#: src/kcfg/settings.kcfg:268
+#: src/kcfg/settings.kcfg:273
 #, kde-format
 msgid "Certificate refresh interval (in hours). Zero (0) disables."
 msgstr "証明書を更新する間隔 (時間単位)。ゼロで更新を無効にします。"
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:276
+#: src/kcfg/settings.kcfg:281
 #, kde-format
 msgid "Disable profile settings"
 msgstr "プロファイル設定を禁止"
 
 #. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
-#: src/kcfg/settings.kcfg:280
+#: src/kcfg/settings.kcfg:285
 #, kde-format
 msgid "Allow custom debug commands"
 msgstr "カスタムのデバッグコマンドを許す"
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
-#: src/kcfg/settings.kcfg:284
+#: src/kcfg/settings.kcfg:289
 #, fuzzy, kde-format
 #| msgid "Show results after encryption"
 msgid "Show results after signing and encrypting files"
 msgstr "暗号化の後、結果を表示する"
 
 #. i18n: ectx: label, entry (RestoreSignEncryptValues), group (General)
-#: src/kcfg/settings.kcfg:288
+#: src/kcfg/settings.kcfg:293
 #, fuzzy, kde-format
 #| msgctxt "@info:tooltip"
 #| msgid "This is the filename of the OpenPGP-signed and encrypted file."
@@ -9778,13 +9817,13 @@ msgid "Use last-used values for the sign/encrypt configuration"
 msgstr "これは OpenPGP 署名/暗号化のファイル名です。"
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:294
+#: src/kcfg/settings.kcfg:299
 #, kde-format
 msgid "Show certificate validity"
 msgstr "証明書の有効性を表示する"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:295
+#: src/kcfg/settings.kcfg:300
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -9793,13 +9832,13 @@ msgstr ""
 "ツールチップに証明書の有効性に関する情報を表示します (失効、破棄など)。"
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:299
+#: src/kcfg/settings.kcfg:304
 #, kde-format
 msgid "Show certificate owner information"
 msgstr "証明書保持者の情報を表示する"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:300
+#: src/kcfg/settings.kcfg:305
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -9809,13 +9848,13 @@ msgstr ""
 "者など)。"
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:304
+#: src/kcfg/settings.kcfg:309
 #, kde-format
 msgid "Show certificate details"
 msgstr "証明書の詳細を表示する"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:305
+#: src/kcfg/settings.kcfg:310
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -9825,13 +9864,13 @@ msgstr ""
 "ど)。"
 
 #. i18n: ectx: label, entry (WelcomeText), group (Welcome)
-#: src/kcfg/settings.kcfg:311
+#: src/kcfg/settings.kcfg:316
 #, kde-format
 msgid "Custom Welcome text"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (WelcomeText), group (Welcome)
-#: src/kcfg/settings.kcfg:312
+#: src/kcfg/settings.kcfg:317
 #, kde-format
 msgid ""
 "This text is shown on the Welcome page replacing most of the standard text."
