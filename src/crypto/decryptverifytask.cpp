@@ -1373,14 +1373,21 @@ void VerifyDetachedTask::Private::slotResult(const VerificationResult &result)
     }
 }
 
+// returns the file name of \a filePath if \a filePath and \a otherFilePath have the same path
+static QString stripSamePath(const QString &filePath, const QString &otherFilePath)
+{
+    const QFileInfo fi{filePath};
+    return (fi.path() == QFileInfo{otherFilePath}.path()) ? fi.fileName() : filePath;
+}
+
 QString VerifyDetachedTask::Private::signatureLabel() const
 {
-    return m_input ? m_input->label() : m_signatureFilePath;
+    return m_input ? m_input->label() : stripSamePath(m_signatureFilePath, m_signedFilePath);
 }
 
 QString VerifyDetachedTask::Private::signedDataLabel() const
 {
-    return m_signedData ? m_signedData->label() : m_signedFilePath;
+    return m_signedData ? m_signedData->label() : stripSamePath(m_signedFilePath, m_signatureFilePath);
 }
 
 VerifyDetachedTask::VerifyDetachedTask(QObject *parent)
