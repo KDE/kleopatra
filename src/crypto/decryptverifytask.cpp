@@ -238,12 +238,31 @@ public:
             } else if (error) {
                 label = xi18nc("@info Failed to verify <file>:", "Failed to verify <filename>%1</filename>:", m_inputLabel);
             } else {
-                label = xi18ncp("@info Verified <file> with signature(s) in <file>.",
-                                "Verified <filename>%2</filename> with signature in <filename>%3</filename>.",
-                                "Verified <filename>%2</filename> with %1 signatures in <filename>%3</filename>.",
-                                m_verificationResult.numSignatures(),
-                                m_outputLabel,
-                                m_inputLabel);
+                if ((m_inputLabel.size() == m_outputLabel.size() + 4) && m_inputLabel.startsWith(m_outputLabel)) {
+                    const bool isDetachedSignature = qobject_cast<VerifyDetachedTask *>(q->parentTask()) != nullptr;
+                    if (isDetachedSignature) {
+                        // in the common case of a detached signature file foo.txt.sig for a file foo.txt we omit the name of the detached signature file
+                        label = xi18ncp("@info Verified <file> with N detached signature(s).",
+                                        "Verified <filename>%2</filename> with detached signature.",
+                                        "Verified <filename>%2</filename> with %1 detached signatures.",
+                                        m_verificationResult.numSignatures(),
+                                        m_outputLabel);
+                    } else {
+                        // ditto in the case of signed files with embedded signatures where only the signed file exists
+                        label = xi18ncp("@info Verified <file> with N embedded signature(s).",
+                                        "Verified <filename>%2</filename> with embedded signature.",
+                                        "Verified <filename>%2</filename> with %1 embedded signatures.",
+                                        m_verificationResult.numSignatures(),
+                                        m_outputLabel);
+                    }
+                } else {
+                    label = xi18ncp("@info Verified <file> with signature(s) in <file>.",
+                                    "Verified <filename>%2</filename> with signature in <filename>%3</filename>.",
+                                    "Verified <filename>%2</filename> with %1 signatures in <filename>%3</filename>.",
+                                    m_verificationResult.numSignatures(),
+                                    m_outputLabel,
+                                    m_inputLabel);
+                }
             }
         } else {
             if (error.isCanceled()) {
