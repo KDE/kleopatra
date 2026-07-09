@@ -336,7 +336,7 @@ std::vector<std::shared_ptr<Task>> AutoDecryptVerifyFilesController::Private::bu
                     foundSig = true;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
 #if QGPGME_FILE_JOBS_SUPPORT_DIRECT_FILE_IO
-                    if (cFile.protocol == GpgME::OpenPGP) {
+                    if (proto == GpgME::OpenPGP) {
                         t->setSignatureFile(sig);
                         t->setSignedFile(cFile.fileName);
                     } else {
