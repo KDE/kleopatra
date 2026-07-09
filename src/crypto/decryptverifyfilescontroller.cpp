@@ -350,7 +350,7 @@ std::vector<std::shared_ptr<Task>> DecryptVerifyFilesController::Private::buildT
                     }
                     foundSig = true;
                     std::shared_ptr<VerifyDetachedTask> t(new VerifyDetachedTask);
-                    if (cFile.protocol == GpgME::OpenPGP) {
+                    if (proto == GpgME::OpenPGP) {
                         t->setSignatureFile(sig);
                         t->setSignedFile(cFile.fileName);
                     } else {
