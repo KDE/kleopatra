@@ -584,6 +584,7 @@ target_link_libraries(kleopatra_bin kcm_kleopatra_static)
 #endif()
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
+set(_kleopatra_platform_libs)
 if (WIN32)
   set(_kleopatra_platform_libs "secur32")
 endif ()
