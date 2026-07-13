@@ -477,15 +477,6 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
         q->certificateSelectionRequested(recipient.edit);
     });
 
-    if (mIsExclusive) {
-        connect(recipient.edit, &CertificateLineEdit::keyChanged, q, [this]() {
-            if (mCurrentProto != GpgME::CMS) {
-                return;
-            }
-            mSigChk->setChecked(false);
-        });
-    }
-
     updateAllExpiryMessages();
 
     return recipient.edit;
