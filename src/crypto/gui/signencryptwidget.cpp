@@ -134,6 +134,7 @@ public:
     ExpiryChecker *expiryChecker();
     void updateExpiryMessages(KMessageWidget *w, const GpgME::UserID &userID, ExpiryChecker::CheckFlags flags);
     void updateAllExpiryMessages();
+    bool isMutualExclusiveSignEncrypt() const;
 
 public:
     UserIDSelectionCombo *mSigSelect = nullptr;
@@ -346,37 +347,28 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             d->mStateConfig->sync();
         });
 
-        if (d->mIsExclusive) {
-            connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool value) {
-                if (d->mCurrentProto != GpgME::CMS) {
-                    return;
-                }
-                if (value) {
-                    d->mSigChk->setChecked(false);
-                }
-            });
-            connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool value) {
-                if (d->mCurrentProto != GpgME::CMS || !value) {
-                    return;
-                }
+        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
                 d->mSigChk->setChecked(false);
-            });
-            connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool value) {
-                if (d->mCurrentProto != GpgME::CMS) {
-                    return;
+            }
+        });
+        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool checked) {
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
+                d->mSigChk->setChecked(false);
+            }
+        });
+        connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
+                d->mEncSelfChk->setChecked(false);
+                d->mEncOtherChk->setChecked(false);
+                // Copying the vector makes sure that all items are actually deleted.
+                for (const auto &widget : std::vector(d->mRecpWidgets)) {
+                    d->recpRemovalRequested(widget);
                 }
-                if (value) {
-                    d->mEncSelfChk->setChecked(false);
-                    d->mEncOtherChk->setChecked(false);
-                    // Copying the vector makes sure that all items are actually deleted.
-                    for (const auto &widget : std::vector(d->mRecpWidgets)) {
-                        d->recpRemovalRequested(widget);
-                    }
-                    d->addRecipientWidget();
-                    d->mRecpWidgets[0].edit->setEnabled(false);
-                }
-            });
-        }
+                d->addRecipientWidget();
+                d->mRecpWidgets[0].edit->setEnabled(false);
+            }
+        });
 
         // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
         d->mSigChk->setMinimumWidth(qMax(d->mEncOtherChk->width(), d->mEncSelfChk->width()));
@@ -933,9 +925,9 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
         if (mSymmetric->isChecked() && mCurrentProto == GpgME::CMS) {
             mSymmetric->setChecked(false);
         }
-        if (mSigChk->isChecked() && mCurrentProto == GpgME::CMS && (mEncSelfChk->isChecked() || encryptForOthers)) {
-            mSigChk->setChecked(false);
-        }
+    }
+    if (isMutualExclusiveSignEncrypt() && mSigChk->isChecked() && (mEncSelfChk->isChecked() || encryptForOthers)) {
+        mSigChk->setChecked(false);
     }
 }
 
@@ -1073,6 +1065,11 @@ void SignEncryptWidget::Private::updateAllExpiryMessages()
             updateExpiryMessages(recipient.expiryMessage, recipient.edit->userID(), ExpiryChecker::EncryptionKey);
         }
     }
+}
+
+bool SignEncryptWidget::Private::isMutualExclusiveSignEncrypt() const
+{
+    return mIsExclusive && (mCurrentProto == GpgME::CMS);
 }
 
 #include "moc_signencryptwidget.cpp"
