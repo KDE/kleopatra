@@ -457,7 +457,7 @@ private Q_SLOTS:
         });
 
         mOutLayout->setEnabled(false);
-        if (cms || pgp || !sigKey.isNull()) {
+        if (mWidget->currentOp() != SignEncryptWidget::NoOperation) {
             mPlaceholderWidget->setVisible(false);
             mOutputLabel->setVisible(true);
             mRequesters[SignEncryptFilesDialog::SignatureCMS]->setVisible(!mUseOutputDir && sigKey.protocol() == Protocol::CMS);
@@ -469,7 +469,7 @@ private Q_SLOTS:
             auto firstNotHidden = std::find_if(std::cbegin(mRequesters), std::cend(mRequesters), [](auto w) {
                 return !w->isHidden();
             });
-            mOutputLabel->setBuddy(*firstNotHidden);
+            mOutputLabel->setBuddy(firstNotHidden != mRequesters.cend() ? *firstNotHidden : nullptr);
         } else {
             mPlaceholderWidget->setVisible(true);
             mOutputLabel->setVisible(false);
