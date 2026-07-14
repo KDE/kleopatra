@@ -1097,12 +1097,6 @@ void SignEncryptWidget::Private::updateMutualExclusiveSignEncrypt(Operation pref
             mEncSelfChk->setChecked(false);
             mEncOtherChk->setChecked(false);
             mSymmetric->setChecked(false);
-            // Copying the vector makes sure that all items are actually deleted.
-            for (const auto &widget : std::vector(mRecpWidgets)) {
-                recpRemovalRequested(widget);
-            }
-            addRecipientWidget();
-            mRecpWidgets[0].edit->setEnabled(false);
         } else {
             mSigChk->setChecked(false);
         }
