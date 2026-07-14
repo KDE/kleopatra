@@ -239,6 +239,16 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
         connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSigSelect->setEnabled(checked);
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
+                d->mEncSelfChk->setChecked(false);
+                d->mEncOtherChk->setChecked(false);
+                // Copying the vector makes sure that all items are actually deleted.
+                for (const auto &widget : std::vector(d->mRecpWidgets)) {
+                    d->recpRemovalRequested(widget);
+                }
+                d->addRecipientWidget();
+                d->mRecpWidgets[0].edit->setEnabled(false);
+            }
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
             d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"SignAsChecked"_s, checked);
@@ -282,6 +292,11 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         });
         connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSelfSelect->setEnabled(checked);
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
+                d->mSigChk->setChecked(false);
+            }
+            updateOp();
+            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
             d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForMeChecked"_s, checked);
             d->mStateConfig->sync();
         });
@@ -324,20 +339,18 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         lay->addStretch();
 
         // Connect it
-        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
-            d->mSelfSelect->setEnabled(checked);
-            updateOp();
-            d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
-        });
         connect(d->mSelfSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
         });
-        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](const auto enabled) {
+        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](const auto checked) {
             for (const auto &widget : d->mRecpWidgets) {
-                widget.edit->setEnabled(enabled);
+                widget.edit->setEnabled(checked);
             }
-            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForOthersChecked"_s, enabled);
+            if (checked && d->isMutualExclusiveSignEncrypt()) {
+                d->mSigChk->setChecked(false);
+            }
+            d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForOthersChecked"_s, checked);
             d->mStateConfig->sync();
             updateOp();
         });
@@ -345,29 +358,6 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             updateOp();
             d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptSymmetricChecked"_s, checked);
             d->mStateConfig->sync();
-        });
-
-        connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mSigChk->setChecked(false);
-            }
-        });
-        connect(d->mEncOtherChk, &QCheckBox::toggled, this, [this](bool checked) {
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mSigChk->setChecked(false);
-            }
-        });
-        connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mEncSelfChk->setChecked(false);
-                d->mEncOtherChk->setChecked(false);
-                // Copying the vector makes sure that all items are actually deleted.
-                for (const auto &widget : std::vector(d->mRecpWidgets)) {
-                    d->recpRemovalRequested(widget);
-                }
-                d->addRecipientWidget();
-                d->mRecpWidgets[0].edit->setEnabled(false);
-            }
         });
 
         // Ensure that the d->mSigChk is aligned together with the encryption check boxes.
