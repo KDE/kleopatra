@@ -46,6 +46,11 @@ public:
 
     ~SignEncryptWidget() override;
 
+    /** Sets whether an archive (instead of individual files) will be signed/encrypted.
+     *  For archives certain combinations of signing and encryption are disallowed.
+     */
+    void setSignEncryptArchive(bool archive);
+
     /** Overwrite default text with custom text, e.g. with a character marked
      *  as shortcut key. */
     void setSignAsText(const QString &text);

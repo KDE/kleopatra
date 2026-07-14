@@ -182,6 +182,7 @@ public:
         connect(mUseOutputDirChk, &QCheckBox::toggled, this, [this](bool state) {
             mUseOutputDir = state;
             mArchive = !mUseOutputDir && !mSingleFile;
+            mWidget->setSignEncryptArchive(mArchive);
             updateFileWidgets();
         });
 
@@ -215,6 +216,7 @@ public:
     {
         mArchive = archive;
         setArchiveMutable(!archive);
+        mWidget->setSignEncryptArchive(mArchive);
     }
 
     void setArchiveMutable(bool archive)
@@ -232,6 +234,7 @@ public:
     {
         mSingleFile = singleFile;
         mArchive = !mUseOutputDir && !mSingleFile;
+        mWidget->setSignEncryptArchive(mArchive);
     }
 
     bool validatePage()
