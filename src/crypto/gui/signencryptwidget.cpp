@@ -135,6 +135,7 @@ public:
     void updateExpiryMessages(KMessageWidget *w, const GpgME::UserID &userID, ExpiryChecker::CheckFlags flags);
     void updateAllExpiryMessages();
     bool isMutualExclusiveSignEncrypt() const;
+    void updateMutualExclusiveSignEncrypt(Operation preferredOperation);
 
 public:
     UserIDSelectionCombo *mSigSelect = nullptr;
@@ -154,6 +155,7 @@ public:
     QCheckBox *mEncSelfChk = nullptr;
     GpgME::Protocol mCurrentProto = GpgME::UnknownProtocol;
     const bool mIsExclusive;
+    bool mSignEncryptArchive = false;
     std::unique_ptr<ExpiryChecker> mExpiryChecker;
     QRadioButton *mPGPRB = nullptr;
     QRadioButton *mCMSRB = nullptr;
@@ -233,21 +235,15 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             ownCertificateSelectionRequested(CertificateSelectionDialog::SignOnly, d->mSigSelect);
         });
         connect(d->mSigSelect, &UserIDSelectionCombo::customItemSelected, this, [this]() {
+            d->updateMutualExclusiveSignEncrypt(Operation::Sign);
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
         });
 
         connect(d->mSigChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSigSelect->setEnabled(checked);
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mEncSelfChk->setChecked(false);
-                d->mEncOtherChk->setChecked(false);
-                // Copying the vector makes sure that all items are actually deleted.
-                for (const auto &widget : std::vector(d->mRecpWidgets)) {
-                    d->recpRemovalRequested(widget);
-                }
-                d->addRecipientWidget();
-                d->mRecpWidgets[0].edit->setEnabled(false);
+            if (checked) {
+                d->updateMutualExclusiveSignEncrypt(Operation::Sign);
             }
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
@@ -255,6 +251,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             d->mStateConfig->sync();
         });
         connect(d->mSigSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
+            d->updateMutualExclusiveSignEncrypt(Operation::Sign);
             updateOp();
             d->updateExpiryMessages(d->mSignKeyExpiryMessage, signUserId(), ExpiryChecker::OwnSigningKey);
         });
@@ -287,13 +284,14 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             ownCertificateSelectionRequested(CertificateSelectionDialog::EncryptOnly, d->mSelfSelect);
         });
         connect(d->mSelfSelect, &UserIDSelectionCombo::customItemSelected, this, [this]() {
+            d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
         });
         connect(d->mEncSelfChk, &QCheckBox::toggled, this, [this](bool checked) {
             d->mSelfSelect->setEnabled(checked);
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mSigChk->setChecked(false);
+            if (checked) {
+                d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
             }
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
@@ -340,6 +338,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 
         // Connect it
         connect(d->mSelfSelect, &UserIDSelectionCombo::currentKeyChanged, this, [this]() {
+            d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
             updateOp();
             d->updateExpiryMessages(d->mEncryptToSelfKeyExpiryMessage, selfUserId(), ExpiryChecker::OwnEncryptionKey);
         });
@@ -347,14 +346,17 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
             for (const auto &widget : d->mRecpWidgets) {
                 widget.edit->setEnabled(checked);
             }
-            if (checked && d->isMutualExclusiveSignEncrypt()) {
-                d->mSigChk->setChecked(false);
+            if (checked) {
+                d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
             }
+            updateOp();
             d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptForOthersChecked"_s, checked);
             d->mStateConfig->sync();
-            updateOp();
         });
         connect(d->mSymmetric, &QCheckBox::toggled, this, [this](bool checked) {
+            if (checked) {
+                d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
+            }
             updateOp();
             d->mStateConfig->group(u"SignEncryptWidget"_s).writeEntry(u"EncryptSymmetricChecked"_s, checked);
             d->mStateConfig->sync();
@@ -396,6 +398,12 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
 }
 
 SignEncryptWidget::~SignEncryptWidget() = default;
+
+void SignEncryptWidget::setSignEncryptArchive(bool archive)
+{
+    d->mSignEncryptArchive = archive;
+    d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
+}
 
 void SignEncryptWidget::setSignAsText(const QString &text)
 {
@@ -653,6 +661,7 @@ void SignEncryptWidget::recipientsChanged()
     if (!hasEmptyRecpWidget) {
         d->addRecipientWidget();
     }
+    d->updateMutualExclusiveSignEncrypt(Operation::Encrypt);
     updateOp();
     for (const auto &recipient : std::as_const(d->mRecpWidgets)) {
         if (!recipient.edit->isEditingInProgress() || recipient.edit->isEmpty()) {
@@ -897,7 +906,6 @@ void SignEncryptWidget::setProtocol(GpgME::Protocol proto)
 
 void Kleo::SignEncryptWidget::Private::onProtocolChanged()
 {
-    auto encryptForOthers = q->recipients().size() > 0;
     mSigSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new SignCertificateFilter(mCurrentProto)));
     mSelfSelect->setKeyFilter(std::shared_ptr<KeyFilter>(new EncryptSelfCertificateFilter(mCurrentProto)));
     const auto encFilter = std::shared_ptr<KeyFilter>(new EncryptCertificateFilter(mCurrentProto));
@@ -916,9 +924,7 @@ void Kleo::SignEncryptWidget::Private::onProtocolChanged()
             mSymmetric->setChecked(false);
         }
     }
-    if (isMutualExclusiveSignEncrypt() && mSigChk->isChecked() && (mEncSelfChk->isChecked() || encryptForOthers)) {
-        mSigChk->setChecked(false);
-    }
+    updateMutualExclusiveSignEncrypt(Operation::Encrypt);
 }
 
 static bool recipientIsOkay(const CertificateLineEdit *edit)
@@ -1059,7 +1065,48 @@ void SignEncryptWidget::Private::updateAllExpiryMessages()
 
 bool SignEncryptWidget::Private::isMutualExclusiveSignEncrypt() const
 {
-    return mIsExclusive && (mCurrentProto == GpgME::CMS);
+    // First check for explicit mutual exclusive sign/encrypt for S/MIME (used by Notepad and clipboard)
+    if (mIsExclusive && (mCurrentProto == GpgME::CMS)) {
+        return true;
+    }
+    // Next check for problematic combinations of sign and encrypt of archives
+    if (mSignEncryptArchive) {
+        // Disallow signing of archives in combination with S/MIME-only encryption because this would
+        // result in a signed but unencrypted archive (and a separate encrypted archive) and some people
+        // might share the signed archive assuming that it's also encrypted or that it's a detached
+        // signature.
+        // For the same reason disallow S/MIME-signing of archives combined with any kind of encryption.
+        const bool signAny = mSigChk->isChecked();
+        const bool signSMIME = q->signUserId().parent().protocol() == GpgME::CMS;
+        const bool encryptAny = mEncSelfChk->isChecked() || mEncOtherChk->isChecked() || mSymmetric->isChecked();
+        const auto encryptionKeys = q->recipients();
+        const bool encryptSMIMEOnly = !q->encryptSymmetric() && !encryptionKeys.empty() && std::ranges::all_of(encryptionKeys, [](const Key &key) {
+            return key.protocol() == GpgME::CMS;
+        });
+        if ((signAny && encryptSMIMEOnly) || (signSMIME && encryptAny)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void SignEncryptWidget::Private::updateMutualExclusiveSignEncrypt(Operation preferredOperation)
+{
+    if (isMutualExclusiveSignEncrypt() && mSigChk->isChecked() && (mEncSelfChk->isChecked() || mEncOtherChk->isChecked() || mSymmetric->isChecked())) {
+        if (preferredOperation == Operation::Sign) {
+            mEncSelfChk->setChecked(false);
+            mEncOtherChk->setChecked(false);
+            mSymmetric->setChecked(false);
+            // Copying the vector makes sure that all items are actually deleted.
+            for (const auto &widget : std::vector(mRecpWidgets)) {
+                recpRemovalRequested(widget);
+            }
+            addRecipientWidget();
+            mRecpWidgets[0].edit->setEnabled(false);
+        } else {
+            mSigChk->setChecked(false);
+        }
+    }
 }
 
 #include "moc_signencryptwidget.cpp"
