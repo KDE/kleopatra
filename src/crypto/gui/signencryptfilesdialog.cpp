@@ -233,6 +233,9 @@ public:
     void setSingleFile(bool singleFile)
     {
         mSingleFile = singleFile;
+        if (singleFile) {
+            mUseOutputDirChk->setVisible(false);
+        }
         mArchive = !mUseOutputDir && !mSingleFile;
         mWidget->setSignEncryptArchive(mArchive);
     }
