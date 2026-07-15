@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
-"PO-Revision-Date: 2026-06-26 09:43+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
+"PO-Revision-Date: 2026-07-11 09:17+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1143,7 +1143,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Le cache des LRC a été effacé avec succès."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2974,17 +2974,22 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "La clé existante possède une empreinte numérique :"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>La clé a été copiée sur la carte à puce.</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>La clé a été copiée sur la carte. </para><para>Voulez-vous vraiment "
-"supprimer la copie de la clé, présente sur cet ordinateur ? De façon "
-"optionnelle, vous pouvez tout d'abord créer une archive de la clé.</para>"
+"<para>Maintenant, vous pouvez supprimer la copie de la clé, présente sur cet "
+"ordinateur. De façon optionnelle, vous pouvez tout d'abord créer une archive "
+"de la clé.</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2993,16 +2998,28 @@ msgid "Create backup"
 msgstr "Créer une sauvegarde"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Supprimer la copie présente sur le disque"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Conserver la copie sur le disque"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<para>Voulez-vous vraiment supprimer la copie de la clé présente sur votre "
+"ordinateur ?</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5108,6 +5125,22 @@ msgstr "Vérification de <filename>%1</filename> annulée."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Impossible de vérifier <filename>%1</filename> :"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "<filename>%2</filename> vérifié avec signature séparée."
+msgstr[1] "<filename>%1</filename> vérifié avec <filename>%2</filename>…"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "<filename>%2</filename> vérifié avec signature intégrée."
+msgstr[1] "<filename>%1</filename> vérifié avec <filename>%2</filename>…"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9294,18 +9327,7 @@ msgstr "Sources de pré-remplissage CN"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "common name (CN) field of newly generated S/MIME certificate signing "
@@ -9319,17 +9341,17 @@ msgid ""
 "Active Directory server."
 msgstr ""
 "Ce paramètre spécifie à partir de quelles sources (Et avec quelle priorité) "
-"le nom commun (CN) des demandes de signature de certificats « S / MIME » "
-"(CSR) nouvellement générés doit être pré-rempli. KEMailSettings utilise le "
-"nom du profil par défaut de la configuration par défaut de messagerie du "
-"bureau. WinGetUserName (Windows uniquement) utilise la valeur "
-"« NameDisplay » retournée par « GetUserNameEx » ou la valeur renvoyée par "
-"« GetUserName ». EnvEmail utilise la partie de nom de la variable "
-"d'environnement « EMAIL ». ADDisplayName (Windows uniquement) utilise "
-"l'attribut de nom d'affichage (displayName) chargé à partir du serveur "
-"Active Directory. ADFirstNameLastName (Windows uniquement) utilise les "
-"attributs « prénom » (givenName) et « nom » (sn) chargé à partir du serveur "
-"Active Directory."
+"le champ de nom commun (CN) des demandes de signature de certificats « S / "
+"MIME » (CSR) nouvellement générés doit être pré-rempli. KEMailSettings "
+"utilise le nom de la configuration de messagerie du bureau. WinGetUserName "
+"(Uniquement sous Windows) utilise la valeur « NameDisplay » retournée par la "
+"fonction « GetUserNameEx » ou celle renvoyée par « GetUserName ». EnvEmail "
+"utilise la partie de nom de la variable d'environnement « EMAIL ». "
+"ADDisplayName (Uniquement sous Windows) utilise l'attribut de nom "
+"d'affichage « displayName » chargé à partir du serveur « Active Directory ». "
+"ADFirstNameLastName (Uniquement sous Windows) utilise les attributs "
+"« prénom » (givenName) et « nom » (sn) chargé à partir du serveur « Active "
+"Directory »."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9377,16 +9399,7 @@ msgstr "Sources de pré-remplissage de courriel"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "email address of newly generated OpenPGP certificates and S/MIME "
-#| "certificate signing requests (CSR) shall be prefilled. KEMailSettings "
-#| "uses the email address of the default profile of the desktop's email "
-#| "defaults. WinGetUserName (Windows-only) uses the NameUserPrincipal value "
-#| "returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL "
-#| "environment variable. ADMail (Windows-only) uses the mail attribute "
-#| "(mail) retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "email address field of newly generated OpenPGP certificates and S/MIME "
@@ -9398,13 +9411,13 @@ msgid ""
 "server."
 msgstr ""
 "Ce paramètre spécifie à partir de quelles sources (Et avec quelle priorité) "
-"ll'adresse de courriels des certificats « OpenPGP » nouvellement générés et "
-"les demandes de signature de certificat « S / MIME » (CSR) doivent être pré-"
-"remplies. KEMailSettings utilise l'adresse de courriel du profil par défaut "
-"provenant de la configuration par défaut de la messagerie  du bureau. "
-"WinGetUserName (Windows uniquement) utilise la valeur « NameUserPrincipal » "
-"renvoyée par « GetUserNameEx ». EnvEmail utilise l'adresse de courriel de la "
-"variable d'environnement « EMAIL ». ADMail (Windows uniquement) utilise "
+"le champ d'adresse de courriels des certificats « OpenPGP » nouvellement "
+"générés et les demandes de signature de certificat « S / MIME » (CSR) "
+"doivent être pré-remplies. KEMailSettings utilise l'adresse de courriel de "
+"la configuration de la messagerie du bureau. WinGetUserName (Uniquement sous "
+"Windows) utilise la valeur « NameUserPrincipal » renvoyée par la fonction "
+"« GetUserNameEx ». EnvEmail utilise l'adresse de courriel de la variable "
+"d'environnement « EMAIL ». ADMail (Uniquement sous Windows) utilise "
 "l'attribut « mail » (mail) chargé à partir du serveur « Active Directory »."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
@@ -9468,18 +9481,7 @@ msgstr "Sources pour le pré-remplissage du nom"
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
-#, fuzzy, kde-format
-#| msgid ""
-#| "This setting specifies from which sources (and with what precedence) the "
-#| "common name (CN) of newly generated S/MIME certificate signing requests "
-#| "(CSR) shall be prefilled. KEMailSettings uses the name of the default "
-#| "profile of the desktop's email defaults. WinGetUserName (Windows-only) "
-#| "uses the NameDisplay value returned by GetUserNameEx or the value "
-#| "returned by GetUserName. EnvEmail uses the name part of the EMAIL "
-#| "environment variable. ADDisplayName (Windows-only) uses the display name "
-#| "attribute (displayName) retrieved from the Active Directory server. "
-#| "ADFirstNameLastName (Windows-only) uses the first name (givenName) and "
-#| "last name (sn) attributes retrieved from the Active Directory server."
+#, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
 "name field of newly generated OpenPGP certificates shall be prefilled. "
@@ -9492,17 +9494,17 @@ msgid ""
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 "Ce paramètre spécifie à partir de quelles sources (Et avec quelle priorité) "
-"le nom commun (CN) des demandes de signature de certificats « S / MIME » "
-"(CSR) nouvellement générés doit être pré-rempli. KEMailSettings utilise le "
-"nom du profil par défaut de la configuration par défaut de messagerie du "
-"bureau. WinGetUserName (Windows uniquement) utilise la valeur "
-"« NameDisplay » retournée par « GetUserNameEx » ou la valeur renvoyée par "
+"le champ de nom commun (CN) des demandes de signature de certificats « S / "
+"MIME » (CSR) nouvellement générés doit être pré-rempli. KEMailSettings "
+"utilise le nom de la configuration de messagerie de bureau. WinGetUserName "
+"(Uniquement sous Windows) utilise la valeur « NameDisplay » retournée par la "
+"fonction « GetUserNameEx » ou celle renvoyée par la fonction "
 "« GetUserName ». EnvEmail utilise la partie de nom de la variable "
-"d'environnement « EMAIL ». ADDisplayName (Windows uniquement) utilise "
+"d'environnement « EMAIL ». ADDisplayName (Uniquement sous Windows) utilise "
 "l'attribut de nom d'affichage (displayName) chargé à partir du serveur "
-"Active Directory. ADFirstNameLastName (Windows uniquement) utilise les "
-"attributs « prénom » (givenName) et « nom » (sn) chargé à partir du serveur "
-"Active Directory."
+"« Active Directory ». ADFirstNameLastName (Uniquement sous Windows) utilise "
+"les attributs « prénom » (givenName) et « nom » (sn) chargé à partir du "
+"serveur « Active Directory »."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -10090,6 +10092,23 @@ msgstr ""
 "« gpgsm --learn », si une carte mémoire « PKCS #15 » est présente avec des "
 "certificats inconnus. Ceci peut prendre un peu de temps et verrouille la "
 "carte mémoire durant l'exécution de la commande."
+
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+"Proposer une sauvegarde de la sous-clé après sa copie sur une carte à puce"
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+"Si l'option est activée, Kleopatra affichera un bouton « Créer une "
+"sauvegarde » après la copie de la sous-clé sur une carte à puce."
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
@@ -12382,13 +12401,8 @@ msgstr "Impossible de supprimer le fichier %1 : %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "chiffrer"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "signer"
+msgid "authenticate"
+msgstr "authentifier"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12397,8 +12411,13 @@ msgstr "certifier"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "authentifier"
+msgid "encrypt"
+msgstr "chiffrer"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "signer"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

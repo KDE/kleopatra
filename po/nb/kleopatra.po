@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2014-09-13 09:02+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@nuug.no>\n"
@@ -386,10 +386,10 @@ msgid "Copying the key to the card failed."
 msgstr ""
 
 #: src/commands/certificatetocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key was copied to the smart card.</para>"
-msgstr ""
+msgstr "Nøkkelen er blitt tilbakekalt."
 
 #: src/commands/certificatetocardcommand.cpp
 #, kde-kuit-format
@@ -1171,7 +1171,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CLR-mellomlageret tømt."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, fuzzy, kde-format
 #| msgid "Success"
@@ -2964,13 +2964,18 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "Nøkkelen er blitt tilbakekalt."
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp
@@ -2981,15 +2986,25 @@ msgid "Create backup"
 msgstr "Opprett sikringskopi"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
+msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp
@@ -5050,6 +5065,22 @@ msgstr "Klarte ikke eksportere til <filename>%1</filename>"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -6745,10 +6776,12 @@ msgid "Successfully encrypted the notepad"
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "AutoFillManager|"
+#| msgid "Successfully imported"
 msgctxt "@info"
 msgid "Successfully signed the notepad"
-msgstr ""
+msgstr "Suksessfull importering"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
@@ -9948,6 +9981,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12256,15 +12303,10 @@ msgstr "Kan ikke fjerne fila %1: %2"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-#| msgid "Encrypt"
-msgid "encrypt"
-msgstr "Krypter"
-
-#: src/view/cardkeysview.cpp
-#, fuzzy, kde-format
-#| msgid "&Design"
-msgid "sign"
-msgstr "&Utforming"
+#| msgctxt "Name"
+#| msgid "authenticate"
+msgid "authenticate"
+msgstr "autentiser"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
@@ -12274,10 +12316,15 @@ msgstr "Sertifisere"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-#| msgctxt "Name"
-#| msgid "authenticate"
-msgid "authenticate"
-msgstr "autentiser"
+#| msgid "Encrypt"
+msgid "encrypt"
+msgstr "Krypter"
+
+#: src/view/cardkeysview.cpp
+#, fuzzy, kde-format
+#| msgid "&Design"
+msgid "sign"
+msgstr "&Utforming"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

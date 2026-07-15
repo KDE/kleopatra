@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
-"PO-Revision-Date: 2026-06-25 17:20+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
+"PO-Revision-Date: 2026-07-10 07:10+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1115,7 +1115,7 @@ msgstr ""
 "Predpomnilnik seznama preklicanih potrdil (CRL) je bil uspešno počiščen."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2902,17 +2902,21 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Obstoječi ključ ima oprijem ključa:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>Ključ je bil prekopiran na kartico.</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>Ključ je bil kopiran na kartico.</para><para>Zdaj lahko izbrišete "
-"kopijo ključa, shranjeno v tem računalniku. Po želji lahko najprej ustvarite "
-"varnostno kopijo ključa.</para>"
+"<para>Zdaj lahko izbrišete kopijo ključa, shranjeno v tem računalniku. "
+"Neobvezno lahko najprej ustvarite varnostno kopijo ključa.</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2921,16 +2925,28 @@ msgid "Create backup"
 msgstr "Ustvari varnostno kopijo"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Izbriši kopijo na disku"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Ohranjaj kopijo na disku"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<para>Ali res želite izbrisati kopijo ključa, shranjenega na tem računalniku?"
+"</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5010,6 +5026,26 @@ msgstr "Verificiranje <filename>%1</filename> preklicano."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Verificiranje <filename>%1</filename> ni uspelo:"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "Verificirana <filename>%2</filename> z %1 ločenimi podpisi."
+msgstr[1] "Verificirana <filename>%2</filename> z %1 ločenim podpisom."
+msgstr[2] "Verificirana <filename>%2</filename> z %1 ločenima podpisoma."
+msgstr[3] "Verificirana <filename>%2</filename> z %1 ločenimi podpisi."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "Verificirana <filename>%2</filename> z %1 vdelanimi podpisi."
+msgstr[1] "Verificirana <filename>%2</filename> z %1 vdelanim podpisom."
+msgstr[2] "Verificirana <filename>%2</filename> z %1 vdelanima podpisoma."
+msgstr[3] "Verificirana <filename>%2</filename> z %1 vdelanimi podpisi."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9912,6 +9948,23 @@ msgstr ""
 "pametna kartica PKCS#15 z neznanimi potrdili. To lahko nekaj časa traja in "
 "blokira pametno kartico, dokler se izvaja ukaz."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+"Ponudi varnostno kopijo podključa po kopiranju podključa na pametno kartico"
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+"Če je nastavljeno na true, bo Kleopatra po kopiranju podključa na pametno "
+"kartico prikazala gumb \"Ustvari varnostno kopijo\"."
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12158,13 +12211,8 @@ msgstr "Ni mogoče odstraniti datoteke %1: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "šifriraj"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "podpiši"
+msgid "authenticate"
+msgstr "avtenticiraj"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12173,8 +12221,13 @@ msgstr "potrdi"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "avtenticiraj"
+msgid "encrypt"
+msgstr "šifriraj"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "podpiši"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

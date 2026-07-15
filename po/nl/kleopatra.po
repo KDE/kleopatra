@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
-"PO-Revision-Date: 2026-06-25 13:37+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
+"PO-Revision-Date: 2026-07-10 12:44+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -1116,7 +1116,7 @@ msgid "CRL cache cleared successfully."
 msgstr "De CRL-cache was succesvol geleegd."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2916,17 +2916,22 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "De bestaande sleutel heeft de sleutel-greep:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>De sleutel is gekopieerd naar de kaart.</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>De sleutel is naar de card gekopieerd.</para><para>U kunt nu de kopie "
-"van de sleutel opgeslagen op deze computer verwijderen. Eventueel kunt u "
-"eerst een reservekopie van de sleutel aanmaken.</para>"
+"<para>U kunt nu de kopie van de sleutel opgeslagen op deze computer "
+"verwijderen. Eventueel kunt u eerst een reservekopie van de sleutel maken.</"
+"para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2935,16 +2940,28 @@ msgid "Create backup"
 msgstr "Reservekopie maken"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Kopie op schijf verwijderen"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Kopie op schijf behouden"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<para>Wilt u de kopie van de sleutel opgeslagen op deze computer verwijderen?"
+"</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5015,6 +5032,24 @@ msgstr "Verifiëren van <filename>%1</filename> is geannuleerd."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Verifiëren van <filename>%1</filename> is mislukt:"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "Geverifieerd <filename>%2</filename> met losse ondertekening."
+msgstr[1] ""
+"Geverifieerd <filename>%2</filename> met %1 losse ondertekeningen.filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "Geverifieerd <filename>%2</filename> met ingebedde ondertekening."
+msgstr[1] ""
+"Geverifieerd <filename>%2</filename> met %1 ingebedde ondertekeningen."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9904,6 +9939,24 @@ msgstr ""
 "is ingestoken met onbekende certificaten. Dit kan even duren en de smartcard "
 "blokkeren terwijl het commando bezig is."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+"Bied een reservekopie van de subsleutel aan na het kopiëren van de "
+"subsleutel naar de smartcard"
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+"Als dit waar is, toont Kleopatra een knop \"Reservekopie maken\" nadat een "
+"subsleutel naar een smartcard is gekopieerd."
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12153,13 +12206,8 @@ msgstr "Kon bestand %1 niet verwijderen: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "versleutelen"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "teken"
+msgid "authenticate"
+msgstr "authenticeren"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12168,8 +12216,13 @@ msgstr "certificeren"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "authenticeren"
+msgid "encrypt"
+msgstr "versleutelen"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "teken"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

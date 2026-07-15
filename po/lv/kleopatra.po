@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2025-08-21 12:33+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -1103,7 +1103,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL kešatmiņa ir notīrīta."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2905,13 +2905,25 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Esošajai atslēgai ir atslēgas satvere:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>Atslēga ir nokopēta viedkartē.</para>"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>Atslēga ir nokopēta kartē.</para><para>Varat dzēst datorā esošo "
 "atslēgas kopiju. Tāpat varat vispirms izveidot tās rezerves kopiju.</para>"
@@ -2923,16 +2935,29 @@ msgid "Create backup"
 msgstr "Izveidot rezerves kopiju"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Dzēst diskā esošos kopiju"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Paturēt diskā esošo kopiju"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "Vai tiešām vēlaties dzēst šajā datorā uzglabātās atslēgas kopiju?"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5010,6 +5035,50 @@ msgstr "Datnes „<filename>%1</filename>“ verificēšana ir atcelta."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Neizdevās verificēt „<filename>%1</filename>“:"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstu datnē "
+"„<filename>%3</filename>“."
+msgstr[1] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstiem datnē "
+"„<filename>%3</filename>“."
+msgstr[2] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstiem datnē "
+"„<filename>%3</filename>“."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstu datnē "
+"„<filename>%3</filename>“."
+msgstr[1] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstiem datnē "
+"„<filename>%3</filename>“."
+msgstr[2] ""
+"Verificēta datne „<filename>%2</filename>“ ar %1 parakstiem datnē "
+"„<filename>%3</filename>“."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9886,6 +9955,20 @@ msgstr ""
 "PKCS#15 viedkarti ar nezināmiem sertifikātiem. Tas var aizņemt kādu laiku un "
 "bloķēt viedkartes izmantošanu līdz komanda ir izpildīta."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12150,13 +12233,8 @@ msgstr "Neizdevās dzēst datni „%1“: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "šifrēt"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "parakstīt"
+msgid "authenticate"
+msgstr "autentificēt"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12165,8 +12243,13 @@ msgstr "sertificēt"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "autentificēt"
+msgid "encrypt"
+msgstr "šifrēt"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "parakstīt"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

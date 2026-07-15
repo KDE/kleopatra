@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -1206,7 +1206,7 @@ msgid "CRL cache cleared successfully."
 msgstr "បាន​ជម្រះ​ឃ្លាំង​សម្ងាត់ CRL ដោយ​ជោគជ័យ ។"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -3067,14 +3067,24 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "ខ្ញុំ​បាន​បញ្ជាក់​ស្នាម​ផ្ដិត​ម្រាមដៃ​​"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "វិញ្ញាបនបត្រ​បាន​ផុត​កំណត់ ។"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
-msgstr ""
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3084,16 +3094,30 @@ msgid "Create backup"
 msgstr "ឯកសារ​សោ​សម្ងាត់"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5259,6 +5283,32 @@ msgstr ""
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
 
@@ -10386,6 +10436,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12687,15 +12751,9 @@ msgstr "មិន​អាច​យក​ឯកសារ​ %1 ៖ %2 ចេញ�
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-#| msgid "Encrypt"
-msgid "encrypt"
-msgstr "អ៊ីនគ្រិប"
-
-#: src/view/cardkeysview.cpp
-#, fuzzy, kde-format
-#| msgid "Signing"
-msgid "sign"
-msgstr "ការ​ចុះហត្ថលេខា"
+#| msgid "Authenticate"
+msgid "authenticate"
+msgstr "ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
@@ -12705,9 +12763,15 @@ msgstr "បញ្ជាក់"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-#| msgid "Authenticate"
-msgid "authenticate"
-msgstr "ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
+#| msgid "Encrypt"
+msgid "encrypt"
+msgstr "អ៊ីនគ្រិប"
+
+#: src/view/cardkeysview.cpp
+#, fuzzy, kde-format
+#| msgid "Signing"
+msgid "sign"
+msgstr "ការ​ចុះហត្ថលេខា"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2025-09-25 02:45+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -1080,7 +1080,7 @@ msgid "CRL cache cleared successfully."
 msgstr "憑證撤銷清冊快取已成功清除。"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2804,6 +2804,14 @@ msgstr "抱歉！只有加密金鑰和簽章金鑰才能被移轉到 PIV 卡片�
 msgid "The existing key has the key grip:"
 msgstr "現存金鑰的 key grip："
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>金鑰已複製到智慧卡上。</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
@@ -2812,9 +2820,8 @@ msgstr "現存金鑰的 key grip："
 #| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>金鑰已被複製到卡片上。</para><para>您要刪除該金鑰儲存在這台電腦上的複本"
 "嗎？</para>"
@@ -2826,16 +2833,29 @@ msgid "Create backup"
 msgstr "建立備份"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "刪除磁碟上的複本"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "保留磁碟上的複本"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "您確定要刪除金鑰在這台電腦上的複本嗎？"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
@@ -4835,6 +4855,28 @@ msgstr "將金鑰寫入至檔案 <filename>%1</filename> 時失敗。"
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "檢查 <filename>%1</filename> 時失敗："
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
@@ -9526,6 +9568,20 @@ msgstr ""
 "若為真，則 Kleopatra 在插入有未知憑證的 PKCS#15 智慧卡時會呼叫 gpgsm --"
 "learn。這會需要一段時間並在指令執行中時會擋住智慧卡其他功能。"
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -11751,13 +11807,8 @@ msgstr "無法移除檔案 %1：%2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "加密"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "簽署"
+msgid "authenticate"
+msgstr "認證"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -11766,8 +11817,13 @@ msgstr "保證"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "認證"
+msgid "encrypt"
+msgstr "加密"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "簽署"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -1206,7 +1206,7 @@ msgid "CRL cache cleared successfully."
 msgstr "A 'cache' de CRL foi esvaziada com sucesso."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -3098,6 +3098,14 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "A chave existente tem o ID de chave:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "O certificado foi actualizado."
+
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
@@ -3106,9 +3114,8 @@ msgstr "A chave existente tem o ID de chave:"
 #| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>A chave foi copiada para o cartão.</para><para>Deseja remover a cópia "
 "da chave guardada neste computador?</para>"
@@ -3121,16 +3128,27 @@ msgid "Create backup"
 msgstr "Cópia em papel"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Do you really want to delete the local copy of the secret key?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "Deseja realmente remover a cópia local da chave privada?"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
@@ -5295,6 +5313,34 @@ msgstr "Não foi possível gravar a chave no ficheiro <filename>%1</filename>."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Não foi possível substituir o <filename>%1</filename>."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+msgstr[1] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+msgstr[1] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
@@ -10485,6 +10531,20 @@ msgstr ""
 "inserido um cartão PKCS#15 com certificados desconhecidos. Isto pode demorar "
 "algum tempo e bloqueia o cartão enquanto o comando estiver em execução."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12841,6 +12901,18 @@ msgstr "Não é possível remover o ficheiro %1: %2"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
+#| msgid "Authentication"
+msgid "authenticate"
+msgstr "Autenticação"
+
+#: src/view/cardkeysview.cpp
+#, fuzzy, kde-format
+#| msgid "Certify"
+msgid "certify"
+msgstr "Certificar"
+
+#: src/view/cardkeysview.cpp
+#, fuzzy, kde-format
 #| msgctxt "@action:button"
 #| msgid "Encrypt"
 msgid "encrypt"
@@ -12851,18 +12923,6 @@ msgstr "Encriptar"
 #| msgid "Signing"
 msgid "sign"
 msgstr "Assinatura"
-
-#: src/view/cardkeysview.cpp
-#, fuzzy, kde-format
-#| msgid "Certify"
-msgid "certify"
-msgstr "Certificar"
-
-#: src/view/cardkeysview.cpp
-#, fuzzy, kde-format
-#| msgid "Authentication"
-msgid "authenticate"
-msgstr "Autenticação"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

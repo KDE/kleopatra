@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2026-02-25 15:59+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -1116,7 +1116,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL-välimuistin tyhjennys onnistui."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2884,13 +2884,25 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Olemassa olevalla avaimella on avainkahva:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>Avain kopioitiin älykortille.</para>"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>Avain on kopioitu kortille.</para><para>Koneelle talletetun avaimen "
 "kopion voi nyt poistaa. Valinnaisesti voi avaimesta ensin tehdä "
@@ -2903,16 +2915,29 @@ msgid "Create backup"
 msgstr "Tee varmuuskopio"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Poista kopio levyltä"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Säilytä kopio levyllä"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "Haluatko varmasti poistaa tälle koneelle talletetun avaimen kopion?"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4955,6 +4980,44 @@ msgstr "Tiedoston <filename>%1</filename> todentaminen peruttiin."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Tiedoston <filename>%1</filename> todentaminen epäonnistui:"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Varmennettu <filename>%2</filename> allekirjoituksella tiedostosta "
+"<filename>%3</filename>."
+msgstr[1] ""
+"Varmennettu <filename>%2</filename> %1 allekirjoituksella tiedostosta "
+"<filename>%3</filename>."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Varmennettu <filename>%2</filename> allekirjoituksella tiedostosta "
+"<filename>%3</filename>."
+msgstr[1] ""
+"Varmennettu <filename>%2</filename> %1 allekirjoituksella tiedostosta "
+"<filename>%3</filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9753,6 +9816,20 @@ msgstr ""
 "varmenteita sisältävä PKCS#15-älykortti kytketään. Tämä voi kestää hetken ja "
 "estää älykortin käytön komennon suorituksen ajan."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12015,13 +12092,8 @@ msgstr "Ei voi poistaa tiedostoa %1: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "salaa"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "allekirjoita"
+msgid "authenticate"
+msgstr "todenna"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12030,8 +12102,13 @@ msgstr "varmenna"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "todenna"
+msgid "encrypt"
+msgstr "salaa"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "allekirjoita"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

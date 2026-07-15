@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2025-03-07 13:41+0900\n"
 "Last-Translator: NIIBE Yutaka <gniibe@fsij.org>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -1114,7 +1114,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL キャッシュをクリアしました。"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2910,13 +2910,25 @@ msgstr "すみません! 暗号化鍵と署名用鍵だけが PIV カードに�
 msgid "The existing key has the key grip:"
 msgstr "既存の鍵にはこの鍵グリップがあります:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>この鍵はスマートカードにコピーされました。</para>"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>鍵はカードにコピーされました。</para><para>このコンピュータに保管された"
 "鍵のコピーを削除できます。オプションで、この鍵のバックアップを作成できます。"
@@ -2929,16 +2941,29 @@ msgid "Create backup"
 msgstr "バックアップを作成"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "ディスクのコピーを削除"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "ディスクにコピーを保存"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "本当にこのコンピュータ上に保存された秘密鍵のコピーを削除したいですか？"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4964,6 +4989,30 @@ msgstr "<filename>%1</filename> の検証がキャンセルされました。"
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "<filename>%1</filename> の検証に失敗しました。"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"<filename>%1</filename> を <filename>%2</filename> の署名で検証しました"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"<filename>%1</filename> を <filename>%2</filename> の署名で検証しました"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
@@ -9754,6 +9803,20 @@ msgstr ""
 "る場合、gpgsm --learn を呼び出します。これはコマンドが実行されている間、時間"
 "がかかることがあり、スマートカードをブロックします。"
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -11998,13 +12061,8 @@ msgstr "ファイル %1 を削除できませんでした: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "暗号化"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "署名"
+msgid "authenticate"
+msgstr "認証"
 
 # 証明書に署名
 #: src/view/cardkeysview.cpp
@@ -12014,8 +12072,13 @@ msgstr "保証"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "認証"
+msgid "encrypt"
+msgstr "暗号化"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "署名"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

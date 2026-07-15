@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2026-05-25 21:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1074,7 +1074,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL 캐시를 지웠습니다."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2800,13 +2800,25 @@ msgstr "죄송합니다! 암호화 및 서명 키만 PIV 카드로 전송할 수
 msgid "The existing key has the key grip:"
 msgstr "기존 키의 키 그립은 다음과 같습니다:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>키를 스마트카드로 복사했습니다.</para>"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>키를 카드로 복사했습니다.</para><para>컴퓨터에 저장된 키를 삭제할 수 있"
 "습니다. 삭제하기 전에 키를 백업해 둘 수도 있습니다.</para>"
@@ -2818,16 +2830,29 @@ msgid "Create backup"
 msgstr "백업 만들기"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "디스크의 복사본 삭제"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "디스크의 복사본 유지"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "이 컴퓨터에 저장된 키를 삭제하시겠습니까?"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4806,6 +4831,38 @@ msgstr "<filename>%1</filename> 검증이 취소되었습니다."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "<filename>%1</filename>을(를) 검증할 수 없음:"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"<filename>%2</filename>을(를) <filename>%3</filename>에 포함된 서명 %1개로 검"
+"증했습니다."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"<filename>%2</filename>을(를) <filename>%3</filename>에 포함된 서명 %1개로 검"
+"증했습니다."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9521,6 +9578,20 @@ msgstr ""
 "카드를 감지했을 때 gpgsm --learn 명령을 실행합니다. 이 작업에는 시간이 걸릴 "
 "수 있으며 명령이 실행 중일 때 스마트카드를 점유합니다."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -11718,13 +11789,8 @@ msgstr "%1 파일을 삭제할 수 없음: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "암호화"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "서명"
+msgid "authenticate"
+msgstr "인증"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -11733,8 +11799,13 @@ msgstr "인증"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "인증"
+msgid "encrypt"
+msgstr "암호화"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "서명"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

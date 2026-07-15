@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
-"PO-Revision-Date: 2026-06-26 23:16+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
+"PO-Revision-Date: 2026-07-08 11:06+0200\n"
 "Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1103,7 +1103,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Mezipaměť CRL byla úspěšně vyprázdněna."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -2884,17 +2884,21 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Stávající klíč má klíčenku:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>Klíč byl zkopírován na kartu.</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>Klíč byl zkopírován na kartu.</para><para>Nyní můžete kopii klíče "
-"uloženou v tomto počítači smazat. Případně můžete nejprve vytvořit zálohu "
-"klíče.</para>"
+"<para>Nyní můžete kopii klíče uloženou v tomto počítači smazat. Případně "
+"můžete nejprve vytvořit zálohu klíče.</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2903,16 +2907,27 @@ msgid "Create backup"
 msgstr "Vytvořit zálohu"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Odstranit kopii na disku"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Zachovat kopii na disku"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<para>Opravdu chcete odstranit kopii klíče uloženou v tomto počítači?</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4963,6 +4978,50 @@ msgstr "Ověření souboru <filename>%1</filename> bylo zrušeno."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Nepodařilo se ověřit <filename>%1</filename>:"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Ověřen <filename>%2</filename> podle podpisu v souboru <filename>%3</"
+"filename>."
+msgstr[1] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
+msgstr[2] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature(s) in <file>."
+#| msgid ""
+#| "Verified <filename>%2</filename> with signature in <filename>%3</"
+#| "filename>."
+#| msgid_plural ""
+#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Ověřen <filename>%2</filename> podle podpisu v souboru <filename>%3</"
+"filename>."
+msgstr[1] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
+msgstr[2] ""
+"Ověřen <filename>%2</filename> podle %1 podpisů v souboru <filename>%3</"
+"filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
@@ -9850,6 +9909,22 @@ msgstr ""
 "případě, že je vložena čipová karta PKCS#15 s neznámými certifikáty. Tento "
 "proces může chvíli trvat a během jeho provádění je čipová karta zablokována."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr "Nabídnout zálohování podklíče po jeho zkopírování na čipovou kartu"
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+"Pokud je to zapnuto, Kleopatra po zkopírování podklíče na čipovou kartu "
+"zobrazí tlačítko \"Vytvořit zálohu\"."
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12099,13 +12174,8 @@ msgstr "Nelze odstranit soubor %1: %2"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "encrypt"
-msgstr "šifrovat"
-
-#: src/view/cardkeysview.cpp
-#, kde-format
-msgid "sign"
-msgstr "podepsat"
+msgid "authenticate"
+msgstr "ověřit"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
@@ -12114,8 +12184,13 @@ msgstr "certifikovat"
 
 #: src/view/cardkeysview.cpp
 #, kde-format
-msgid "authenticate"
-msgstr "ověřit"
+msgid "encrypt"
+msgstr "šifrovat"
+
+#: src/view/cardkeysview.cpp
+#, kde-format
+msgid "sign"
+msgstr "podepsat"
 
 #: src/view/cardkeysview.cpp
 #, kde-format

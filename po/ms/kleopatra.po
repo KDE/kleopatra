@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-29 09:24+0200\n"
+"POT-Creation-Date: 2026-07-15 15:29+0200\n"
 "PO-Revision-Date: 2008-11-24 22:51+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -1185,7 +1185,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Cache CRL berjaya dikosongkan."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -3011,14 +3011,24 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Fetching certificate from server..."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "Mengutip sijil dari pelayan..."
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3028,16 +3038,30 @@ msgid "Create backup"
 msgstr "Pengeksportan Kekunci Rahsia"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -5081,6 +5105,32 @@ msgstr "Tidak dapat menjana sijil: %1"
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Tidak dapat menjana sijil: %1"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+msgstr[1] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+msgstr[1] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
@@ -9990,6 +10040,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -12196,15 +12260,8 @@ msgstr "Tidak dapat menjana sijil: %1"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-#| msgid "For &encrypting only"
-msgid "encrypt"
-msgstr "Untuk &penyulitan sahaja"
-
-#: src/view/cardkeysview.cpp
-#, fuzzy, kde-format
-#| msgid "Canceled."
-msgid "sign"
-msgstr "Dibatalkan."
+msgid "authenticate"
+msgstr "Maklumat Sijil"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
@@ -12214,8 +12271,15 @@ msgstr "Penggunaan Sijil"
 
 #: src/view/cardkeysview.cpp
 #, fuzzy, kde-format
-msgid "authenticate"
-msgstr "Maklumat Sijil"
+#| msgid "For &encrypting only"
+msgid "encrypt"
+msgstr "Untuk &penyulitan sahaja"
+
+#: src/view/cardkeysview.cpp
+#, fuzzy, kde-format
+#| msgid "Canceled."
+msgid "sign"
+msgstr "Dibatalkan."
 
 #: src/view/cardkeysview.cpp
 #, kde-format
