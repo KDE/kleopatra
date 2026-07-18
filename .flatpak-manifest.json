@@ -1,7 +1,7 @@
 {
     "app-id": "org.kde.kleopatra",
     "runtime": "org.kde.Platform",
-    "runtime-version": "6.10",
+    "runtime-version": "6.11",
     "sdk": "org.kde.Sdk",
     "command": "kleopatra",
     "rename-icon": "kleopatra",
@@ -19,19 +19,19 @@
             "name": "boost",
             "buildsystem": "simple",
             "build-commands": [
-                "./bootstrap.sh --prefix=/app --with-libraries=system",
+                "./bootstrap.sh --prefix=/app",
                 "./b2 -j $FLATPAK_BUILDER_N_JOBS install"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2",
-                    "sha256": "1bed88e40401b2cb7a1f76d4bab499e352fa4d0c5f31c0dbae64e24d34d7513b",
+                    "url": "https://archives.boost.io/release/1.91.0/source/boost_1_91_0.tar.bz2",
+                    "sha256": "de5e6b0e4913395c6bdfa90537febd9028ea4c0735d2cdb0cd9b45d5f51264f5",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 6845,
                         "stable-only": true,
-                        "url-template": "https://archive.boosts.io/release/$version/source/boost_${major}_${minor}_$patch.tar.bz2"
+                        "url-template": "https://archives.boost.io/release/$version/source/boost_${major}_${minor}_$patch.tar.bz2"
                     }
                 }
             ]
@@ -65,8 +65,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-2.0.1.tar.bz2",
-                    "sha256": "821ab0695c842eab51752a81980c92b0410c7eadd04103f791d5d2a526784966",
+                    "url": "https://gnupg.org/ftp/gcrypt/gpgme/gpgme-2.1.2.tar.bz2",
+                    "sha256": "0687a95b299871c4141f507c0f740de6b429c9ac067d0fa4e062e3264df5fb77",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 1239,
@@ -86,13 +86,13 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-2.0.0.tar.xz",
-                    "sha256": "d4796049c06708a26f3096f748ef095347e1a3c1e570561701fe952c3f565382",
+                    "url": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-2.1.0.tar.xz",
+                    "sha256": "57f804468f0204504b172c6b139cb05124b4263be7ad514932c7c4c5062a16e2",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 378536,
                         "stable-only": true,
-                        "url-template": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-$version.tar.bz2"
+                        "url-template": "https://gnupg.org/ftp/gcrypt/gpgmepp/gpgmepp-$version.tar.xz"
                     }
                 }
             ]
@@ -102,18 +102,19 @@
             "buildsystem": "cmake-ninja",
             "config-opts": [
                 "-DBUILD_TESTING=OFF",
+                "-DBUILD_WITH_QT5=OFF",
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-2.0.0.tar.xz",
-                    "sha256": "15645b2475cca6118eb2ed331b3a8d9442c9d4019c3846ba3f6d25321b4a61ad",
+                    "url": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-2.1.0.tar.xz",
+                    "sha256": "5b32feb3eee4a7f9402d22b7206480908dc43bb4df382917c075c512116f8f08",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 378538,
                         "stable-only": true,
-                        "url-template": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-$version.tar.bz2"
+                        "url-template": "https://gnupg.org/ftp/gcrypt/qgpgme/qgpgme-$version.tar.xz"
                     }
                 }
             ]
@@ -144,36 +145,6 @@
                 "/include",
                 "/lib/cmake",
                 "/mkspecs"
-            ]
-        },
-        {
-            "name": "ktextaddons",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DBUILD_TESTING=OFF",
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://invent.kde.org/libraries/ktextaddons",
-                    "branch": "1.9"
-                }
-            ]
-        },
-        {
-            "name": "kpimtextedit",
-            "buildsystem": "cmake-ninja",
-            "config-opts": [
-                "-DBUILD_TESTING=OFF",
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
-            ],
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://invent.kde.org/pim/kpimtextedit",
-                    "branch": "master"
-                }
             ]
         },
         {
@@ -216,6 +187,26 @@
             ],
             "config-opts": [
                 "-DBUILD_TESTING=OFF"
+            ]
+        },
+        {
+            "name": "kdsingleapplication",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DKDSingleApplication_QT6=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/KDAB/KDSingleApplication/archive/refs/tags/v1.2.1.tar.gz",
+                    "sha256": "e3254ce9dc5ecf6d61ef83264bc61d486a307f0e3c9ed1bb2176f068cdbcbe09",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 370439,
+                        "stable-only": true,
+                        "url-template": "https://github.com/KDAB/KDSingleApplication/archive/refs/tags/v$version.tar.gz"
+                    }
+                }
             ]
         },
         {
