@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-16 00:45+0000\n"
-"PO-Revision-Date: 2026-07-21 02:18+0200\n"
+"PO-Revision-Date: 2026-07-21 14:15+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -9117,8 +9117,8 @@ msgid ""
 msgstr ""
 "Egia bada, S/MIME ziurtagirien izen arrunta (CN) eremua aurrez beteko da "
 "sisteman bildutako informazioarekin,\n"
-"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
-"Direktorio Aktibotik."
+"         adib., mahaigaineko e-posta ezarpenetatik edo, Windows-en, "
+"Direktorio Aktibotik (AD)."
 
 #. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:19
@@ -9141,12 +9141,23 @@ msgid ""
 "first name (givenName) and last name (sn) attributes retrieved from the "
 "Active Directory server."
 msgstr ""
+"Ezarpen honek sortu berri diren S/MIME ziurtagirien sinatze-eskaeren (CSR) "
+"izen arrunta (CN) eremua aurrez betetzeko zein sorburu eta zer lehentasun-"
+"hurrenkerarekin erabiliko diren zehazten du. KEMailSettings-ek mahaigaineko "
+"e-posta ezarpenetako izena erabiltzen du. WinGetUserName-ek (Windows-en "
+"bakarrik) GetUserNameEx-ek itzulitako NameDisplay balioa edo GetUserName-ek "
+"itzulitako balio erabiltzen du. EnvEmail-ek EMAIL ingurune-aldagaiaren izen "
+"zatia erabiltzen du. ADDisplayName-k (Windows-en bakarrik) Direktorio "
+"Aktiboaren (AD) zerbitzaritik eskuratutako bistaratze-izenaren atributua "
+"(displayName) erabiltzen du. ADFirstNameLastName-k (Windows-en bakarrik) "
+"Direktorio Aktiboaren (AD) zerbitzaritik eskuratutako izena (givenName) eta "
+"abizena (sn) atributuak erabiltzen ditu."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:24
 #, kde-format
 msgid "Hint for EMAIL"
-msgstr "«EMAIL»erako argibidea"
+msgstr "EMAILerako argibidea"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:25
@@ -9162,7 +9173,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:29
 #, kde-format
 msgid "Prefill EMAIL automatically"
-msgstr "Aurrez bete «EMAIL» automatikoki"
+msgstr "Aurrez bete EMAIL automatikoki"
 
 #. i18n: ectx: whatsthis, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:31
@@ -9173,10 +9184,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
-"Egia bada, OpenPGP eta S/MIME ziurtagirien e-posta helbidea eremua aurrez "
+"Egia bada, OpenPGP eta S/MIME ziurtagirien e-posta helbidearen eremua aurrez "
 "beteko da sisteman bildutako informazioarekin,\n"
-"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
-"Direktorio Aktibotik."
+"         adib., mahaigaineko e-posta ezarpenetatik edo, Windows-en, "
+"Direktorio Aktibotik (AD)."
 
 #. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:35
@@ -9197,12 +9208,21 @@ msgid ""
 "only) uses the mail attribute (mail) retrieved from the Active Directory "
 "server."
 msgstr ""
+"Ezarpen honek sortu berri diren OpenPGP ziurtagirien eta S/MIME ziurtagirien "
+"sinatze-eskaeren (CSR) e-posta helbidearen eremua aurrez betetzeko zein "
+"sorburu eta zer lehentasun-hurrenkerarekin erabiliko diren zehazten du. "
+"KEMailSettings-ek mahaigaineko e-posta ezarpenetako e-posta helbidea "
+"erabiltzen du. WinGetUserName-k (Windows-en bakarrik) GetUserNameEx-ek "
+"itzulitako NameUserPrincipal balioa erabiltzen du. EnvEmail-ek EMAIL "
+"ingurune-aldagaiaren e-posta helbidea erabiltzen du. ADMail-ek (Windows-en "
+"bakarrik) Direktorio Aktiboaren (AD) zerbitzaritik eskuratutako e-posta "
+"helbidearen (mail) atributua erabiltzen du."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40
 #, kde-format
 msgid "Value of EMAIL"
-msgstr "«EMAIL»en balioa"
+msgstr "EMAILen balioa"
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:41
@@ -9212,27 +9232,29 @@ msgid ""
 "certificates. This will override EMAIL_prefill. It is useful if no or "
 "unsuitable system settings are found for EMAIL_prefill."
 msgstr ""
-"OpenPGP eta S/MIME ziurtagirien e-posta helbide eremurako aurrez beteriko "
-"balioa. Horrek «EMAIL_prefill» gainidatziko du. Erabilgarria «EMAIL_prefill» "
-"sistemaren ezarpena baliorik gabe edo edo balio ezegokiarekin aurkitzen bada."
+"OpenPGP eta S/MIME ziurtagirien e-posta helbide eremurako aurrez betetako "
+"balioa. Horrek EMAIL_prefill gainidatziko du. Erabilgarria da EMAIL_prefill-"
+"erako sistemaren ezarpenik aurkitzen ez bada edo aurkitutako ezarpenak "
+"desegokiak badira."
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:45
 #, kde-format
 msgid "Hint for NAME"
-msgstr "«NAME»rako argibidea"
+msgstr "NAMErako argibidea"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:46
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
-msgstr "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+"Testu hori OpenPGP ziurtagirien izenaren eremuaren gainean erakutsiko da."
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:50
 #, kde-format
 msgid "Prefill NAME automatically"
-msgstr "Aurrez bete «NAME» automatikoki"
+msgstr "Aurrez bete NAME automatikoki"
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:52
@@ -9243,10 +9265,10 @@ msgid ""
 "         e.g., from the email settings of the desktop or, on Windows, from "
 "the Active Directory."
 msgstr ""
-"Egia bada, OpenPGP ziurtagiriaren izena eremua aurrez beteko da sisteman "
+"Egia bada, OpenPGP ziurtagiriaren izenaren eremua aurrez beteko da sisteman "
 "bildutako informazioarekin,\n"
-"         adib., mahaigaineko e-posta ezarpenetatik edo, «Windows»en, "
-"Direktorio Aktibotik."
+"         adib., mahaigaineko e-posta ezarpenetatik edo, Windows-en, "
+"Direktorio Aktibotik (AD)."
 
 #. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:56
@@ -9268,12 +9290,23 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
+"Ezarpen honek sortu berri diren OpenPGP ziurtagirien izenaren eremua aurrez "
+"betetzeko zein sorburu eta zer lehentasun-hurrenkerarekin erabiliko diren "
+"zehazten du. KEMailSettings-ek mahaigaineko e-posta ezarpenetako izena "
+"erabiltzen du. WinGetUserName-k (Windows-en bakarrik) GetUserNameEx-ek "
+"itzulitako NameDisplay balioa edo GetUserName-ek itzulitako balioa "
+"erabiltzen du. EnvEmail-ek EMAIL ingurune-aldagaiaren izen zatia erabiltzen "
+"du. ADDisplayName-k (Windows-en bakarrik) Direktorio Aktiboaren (AD) "
+"zerbitzaritik eskuratutako bistaratze-izenaren (displayName) atributua "
+"erabiltzen du. ADFirstNameLastName-k (Windows-en bakarrik) Direktorio "
+"Aktiboaren (AD) zerbitzaritik eskuratutako izenaren (givenName) eta "
+"abizenaren (sn) atributuak erabiltzen ditu."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:61
 #, kde-format
 msgid "Value of NAME"
-msgstr "«NAME»ren balioa"
+msgstr "NAMEren balioa"
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:62
@@ -9283,9 +9316,9 @@ msgid ""
 "override NAME_prefill. It is useful if no or an unsuitable system setting is "
 "found for NAME_prefill."
 msgstr ""
-"OpenPGP ziurtagirien izen eremurako aurrez beteriko balioa. Horrek "
-"«NAME_prefill» gainidatziko du. Erabilgarria «NAME_prefill» sistemaren "
-"ezarpena baliorik gabe edo edo balio ezegokiarekin aurkitzen bada."
+"OpenPGP ziurtagirien izenaren eremurako aurrez betetako balioa. Horrek "
+"NAME_prefill gainidatziko du. Erabilgarria da NAME_prefill-erako sistemaren "
+"ezarpenik aurkitzen ez bada edo aurkitutako ezarpena desegokia bada."
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
