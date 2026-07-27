@@ -127,6 +127,7 @@ public:
     /* Inserts a new recipient widget after widget @p after or at the end
      * if @p after is null. */
     CertificateLineEdit *insertRecipientWidget(CertificateLineEdit *after);
+    void updateUnknownRecipients();
     void recpRemovalRequested(const RecipientWidgets &recipient);
     void onProtocolChanged();
     void updateCheckBoxes();
@@ -368,6 +369,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
     connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
         d->updateCheckBoxes();
         d->updateAllExpiryMessages();
+        d->updateUnknownRecipients();
     });
     connect(KleopatraApplication::instance(), &KleopatraApplication::configurationChanged, this, [this]() {
         d->updateCheckBoxes();
@@ -621,31 +623,32 @@ void SignEncryptWidget::addUnknownRecipient(const char *keyID)
         setTabOrder(lastWidget, unknownWidget);
     }
     d->mRecpLayout->addWidget(unknownWidget);
+}
 
-    connect(KeyCache::instance().get(), &Kleo::KeyCache::keysMayHaveChanged, this, [this]() {
-        // Check if any unknown recipient can now be found.
-        // Iterate over a copy because mUnknownWidgets might be modified in the loop
-        const auto unknownWidgets = d->mUnknownWidgets;
-        for (auto w : unknownWidgets) {
-            auto key = KeyCache::instance()->findByKeyIDOrFingerprint(w->keyID().toLatin1().constData());
-            if (key.isNull()) {
-                std::vector<std::string> subids;
-                subids.push_back(std::string(w->keyID().toLatin1().constData()));
-                for (const auto &subkey : KeyCache::instance()->findSubkeysByKeyID(subids)) {
-                    key = subkey.parent();
-                }
+void SignEncryptWidget::Private::updateUnknownRecipients()
+{
+    // Check if any unknown recipient can now be found.
+    // Iterate over a copy because mUnknownWidgets might be modified in the loop
+    const auto unknownWidgets = mUnknownWidgets;
+    for (auto w : unknownWidgets) {
+        auto key = KeyCache::instance()->findByKeyIDOrFingerprint(w->keyID().toLatin1().constData());
+        if (key.isNull()) {
+            std::vector<std::string> subids;
+            subids.push_back(std::string(w->keyID().toLatin1().constData()));
+            for (const auto &subkey : KeyCache::instance()->findSubkeysByKeyID(subids)) {
+                key = subkey.parent();
             }
-            if (key.isNull()) {
-                continue;
-            }
-            // Key is now available replace by line edit.
-            qCDebug(KLEOPATRA_LOG) << "Removing widget for keyid: " << w->keyID();
-            d->mRecpLayout->removeWidget(w);
-            d->mUnknownWidgets.removeAll(w);
-            delete w;
-            addRecipient(key);
         }
-    });
+        if (key.isNull()) {
+            continue;
+        }
+        // Key is now available replace by line edit.
+        qCDebug(KLEOPATRA_LOG) << "Removing widget for keyid: " << w->keyID();
+        mRecpLayout->removeWidget(w);
+        mUnknownWidgets.removeAll(w);
+        delete w;
+        q->addRecipient(key);
+    }
 }
 
 void SignEncryptWidget::recipientsChanged()
