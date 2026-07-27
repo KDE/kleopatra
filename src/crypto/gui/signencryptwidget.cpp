@@ -600,6 +600,7 @@ void SignEncryptWidget::clearAddedRecipients()
         d->mRecpLayout->removeWidget(w);
         delete w;
     }
+    d->mUnknownWidgets.clear();
 
     for (auto &key : std::as_const(d->mAddedKeys)) {
         removeRecipient(key);
