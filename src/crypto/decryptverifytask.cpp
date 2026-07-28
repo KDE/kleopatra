@@ -603,7 +603,7 @@ QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
     for (const Signature &sig : d->m_verificationResult.signatures()) {
         const auto signerKey = KeyCache::instance()->findSigner(sig);
         const auto informativeMailAddress = QString::fromUtf8(d->m_informativeSender.address());
-        auto text = Kleo::Formatting::prettySignature(sig, informativeMailAddress);
+        auto text = Kleo::Formatting::prettyDataSignature(sig, informativeMailAddress);
         if (!informativeMailAddress.isEmpty() && !signerKey.isNull() && !keyContainsEmail(signerKey, informativeMailAddress)) {
             QString emailsList;
             for (const auto &email : extractEmails(signerKey)) {
