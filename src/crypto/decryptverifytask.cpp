@@ -292,7 +292,7 @@ public:
             label += u' ' + Formatting::errorAsString(error) + u'.';
         }
 
-        if (!error && DeVSCompliance::isCompliant()) {
+        if (decrypt && error.isSuccess() && DeVSCompliance::isCompliant()) {
             label += "<br />"_L1
                 + ((m_decryptionResult.isDeVs()
                         ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
