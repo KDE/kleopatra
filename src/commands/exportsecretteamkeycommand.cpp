@@ -10,6 +10,7 @@
 
 #include <utils/applicationstate.h>
 #include <utils/filedialog.h>
+#include <utils/memory-helpers.h>
 #include <utils/path-helper.h>
 
 #include <settings.h>
@@ -362,7 +363,7 @@ void ExportSecretTeamKeyCommand::Private::prepareExport(bool exportSecretSigning
 
     if (!exportSecretSigningSubkey && !signKeyFpr.isEmpty()) {
         // export the public signing subkey to share it together with the secret encryption subkey with the team members
-        std::unique_ptr<QGpgME::ExportJob> exportJob{QGpgME::openpgp()->publicKeyExportJob(format == OutputFormat::Armor)};
+        const auto exportJob = wrap_unique(QGpgME::openpgp()->publicKeyExportJob(format == OutputFormat::Armor));
 #if GPGME_VERSION_NUMBER >= QT_VERSION_CHECK(2, 0, 2) && QGPGME_VERSION >= QT_VERSION_CHECK(2, 0, 1)
         // export only the signing subkey (if gpgme is new enough); otherwise, the complete public team key is exported
         exportJob->setExportFilter("drop-subkey=fpr <> "_L1 + signKeyFpr);
