@@ -607,10 +607,12 @@ void SignEncryptWidget::clearAddedRecipients()
     for (auto &key : std::as_const(d->mAddedKeys)) {
         removeRecipient(key);
     }
+    d->mAddedKeys.clear();
 
     for (auto &group : std::as_const(d->mAddedGroups)) {
         removeRecipient(group);
     }
+    d->mAddedGroups.clear();
 }
 
 void SignEncryptWidget::addUnknownRecipient(const char *keyID)
