@@ -162,7 +162,7 @@ private Q_SLOTS:
         QVERIFY(sigFile.open(QFile::ReadOnly));
         const QByteArray ciphertext = sigFile.readAll();
 
-        QGpgME::DecryptVerifyJob *job = mBackend->decryptVerifyJob();
+        const std::unique_ptr<QGpgME::DecryptVerifyJob> job{mBackend->decryptVerifyJob()};
         result = job->exec(ciphertext, plaintext);
         QVERIFY(result.first.error().code());
 
