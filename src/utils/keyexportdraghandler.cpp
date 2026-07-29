@@ -5,6 +5,7 @@
 
 #include <kleopatraapplication.h>
 
+#include <utils/memory-helpers.h>
 #include <utils/path-helper.h>
 
 #include "kleopatra_debug.h"
@@ -49,11 +50,11 @@ public:
         Q_UNUSED(type);
 
         if (pgpData.isEmpty() && !pgpFprs.isEmpty()) {
-            auto job = QGpgME::openpgp()->publicKeyExportJob(true);
+            const auto job = wrap_unique(QGpgME::openpgp()->publicKeyExportJob(true));
             job->exec(pgpFprs, pgpData);
         }
         if (smimeData.isEmpty() && !smimeFprs.isEmpty()) {
-            auto job = QGpgME::smime()->publicKeyExportJob(true);
+            const auto job = wrap_unique(QGpgME::smime()->publicKeyExportJob(true));
             job->exec(smimeFprs, smimeData);
         }
 
