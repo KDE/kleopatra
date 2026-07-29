@@ -10,6 +10,8 @@
 
 #include "importpaperkeycommand.h"
 
+#include <utils/memory-helpers.h>
+
 #include <Libkleo/Formatting>
 #include <Libkleo/GnuPG>
 
@@ -121,9 +123,8 @@ void ImportPaperKeyCommand::postSuccessHook(QWidget *)
     auto data = secKey.readAll();
     secKey.close();
 
-    auto importjob = QGpgME::openpgp()->importJob();
+    const auto importjob = wrap_unique(QGpgME::openpgp()->importJob());
     auto result = importjob->exec(data);
-    delete importjob;
     if (result.error()) {
         d->error(Formatting::errorAsString(result.error()), errorCaption());
         return;

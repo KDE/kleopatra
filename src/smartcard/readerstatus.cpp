@@ -13,6 +13,8 @@
 
 #include "deviceinfowatcher.h"
 
+#include <utils/memory-helpers.h>
+
 #include <Libkleo/Algorithm>
 #include <Libkleo/Assuan>
 #include <Libkleo/FileSystemWatcher>
@@ -810,7 +812,7 @@ static void importCardCertificates(std::shared_ptr<Context> &gpgAgent)
         }
         qCDebug(KLEOPATRA_LOG) << __func__ << "Retrieved certificate data from the card for slot" << certInfo.keyref;
 
-        const auto job = std::unique_ptr<QGpgME::ImportJob>(QGpgME::smime()->importJob());
+        const auto job = wrap_unique(QGpgME::smime()->importJob());
         const ImportResult result = job->exec(QByteArray::fromStdString(certificateData));
         if (result.error()) {
             qCDebug(KLEOPATRA_LOG) << __func__ << "Import of certificate data failed:" << result.error();
