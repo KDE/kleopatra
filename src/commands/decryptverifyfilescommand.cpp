@@ -168,7 +168,8 @@ void DecryptVerifyFilesCommand::doStart()
             return;
         }
 
-        for (const auto &file : std::as_const(d->files)) {
+        const auto files = d->files;
+        for (const auto &file : files) {
             const unsigned int classification = classify(file);
             if (classification & Class::MimeFile) {
                 d->emailFiles << file;
