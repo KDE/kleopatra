@@ -51,6 +51,7 @@ private:
     QComboBox *commandCombo;
     QTextEdit *outputEdit;
     QLabel *exitCodeLabel;
+    LabelledWidget<QLineEdit> searchField;
 };
 
 DebugDialog::Private::Private(DebugDialog *qq)
@@ -133,26 +134,25 @@ DebugDialog::DebugDialog(QWidget *parent)
 
     auto searchLayout = new QHBoxLayout;
 
-    auto searchField = new LabelledWidget<QLineEdit>();
-    searchField->createWidgets(this);
-    searchField->label()->setText(i18nc("@label", "Search:"));
-    searchField->widget()->setToolTip(i18nc("@info:tooltip", "Search in output"));
-    searchField->widget()->setPlaceholderText(i18nc("@info:placeholder", "Enter search term"));
-    connect(searchField->widget(), &QLineEdit::textChanged, this, [this, searchField]() {
+    d->searchField.createWidgets(this);
+    d->searchField.label()->setText(i18nc("@label", "Search:"));
+    d->searchField.widget()->setToolTip(i18nc("@info:tooltip", "Search in output"));
+    d->searchField.widget()->setPlaceholderText(i18nc("@info:placeholder", "Enter search term"));
+    connect(d->searchField.widget(), &QLineEdit::textChanged, this, [this]() {
         d->outputEdit->moveCursor(QTextCursor::Start);
-        d->outputEdit->find(searchField->widget()->text());
+        d->outputEdit->find(d->searchField.widget()->text());
     });
 
-    auto searchNext = [this, searchField]() {
-        if (!d->outputEdit->find(searchField->widget()->text())) {
+    auto searchNext = [this]() {
+        if (!d->outputEdit->find(d->searchField.widget()->text())) {
             d->outputEdit->moveCursor(QTextCursor::Start);
-            d->outputEdit->find(searchField->widget()->text());
+            d->outputEdit->find(d->searchField.widget()->text());
         }
     };
 
-    connect(searchField->widget(), &QLineEdit::returnPressed, this, searchNext);
-    searchLayout->addWidget(searchField->label());
-    searchLayout->addWidget(searchField->widget());
+    connect(d->searchField.widget(), &QLineEdit::returnPressed, this, searchNext);
+    searchLayout->addWidget(d->searchField.label());
+    searchLayout->addWidget(d->searchField.widget());
 
     auto nextButton = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-down")), {});
     nextButton->setToolTip(i18nc("@info:tooltip", "Jump to next match"));
@@ -163,10 +163,10 @@ DebugDialog::DebugDialog(QWidget *parent)
     auto previousButton = new QPushButton(QIcon::fromTheme(QStringLiteral("arrow-up")), {});
     previousButton->setToolTip(i18nc("@info:tooltip", "Jump to previous match"));
     previousButton->setAccessibleName(i18nc("@action:button", "Find Previous"));
-    connect(previousButton, &QPushButton::clicked, this, [this, searchField]() {
-        if (!d->outputEdit->find(searchField->widget()->text(), QTextDocument::FindBackward)) {
+    connect(previousButton, &QPushButton::clicked, this, [this]() {
+        if (!d->outputEdit->find(d->searchField.widget()->text(), QTextDocument::FindBackward)) {
             d->outputEdit->moveCursor(QTextCursor::End);
-            d->outputEdit->find(searchField->widget()->text(), QTextDocument::FindBackward);
+            d->outputEdit->find(d->searchField.widget()->text(), QTextDocument::FindBackward);
         }
     });
     searchLayout->addWidget(previousButton);
