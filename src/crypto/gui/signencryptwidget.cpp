@@ -189,7 +189,7 @@ SignEncryptWidget::SignEncryptWidget(QWidget *parent, bool sigEncExclusive)
         lay->addLayout(protocolSelectionLay);
         lay->addSpacing(style()->pixelMetric(QStyle::PM_LayoutVerticalSpacing) * 3);
 
-        auto grp = new QButtonGroup;
+        auto grp = new QButtonGroup{this};
         d->mPGPRB = new QRadioButton(i18nc("@option:radio", "OpenPGP"));
         d->mCMSRB = new QRadioButton(i18nc("@option:radio", "S/MIME"));
         grp->addButton(d->mPGPRB);
