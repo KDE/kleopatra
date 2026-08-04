@@ -757,6 +757,8 @@ static QString expiryMessage(const ExpiryChecker::Result &result)
     case ExpiryChecker::InvalidKey:
     case ExpiryChecker::InvalidCheckFlags:
         break; // wrong usage of ExpiryChecker; can be ignored
+    case Kleo::ExpiryChecker::NoStatus:
+        break; // this value never occurs; ignore it
     case ExpiryChecker::NotNearExpiry:;
     }
     return {};
