@@ -49,13 +49,8 @@ set(_kleopatra_uiserver_SRCS
 
 set(_kleopatra_uiserver_extra_libs LibAssuan::LibAssuan LibGpgError::LibGpgError)
 
-if(HAVE_GPG_ERR_SOURCE_KLEO)
-  add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
-  add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
-else()
-  add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
-  add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_USER_1)
-endif()
+add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
+add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
 
 if(KPim6IdentityManagementCore_FOUND AND KPim6MailTransport_FOUND AND KPim6AkonadiMime_FOUND)
   set(_kleopatra_mail_libs
