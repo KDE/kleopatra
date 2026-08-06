@@ -284,6 +284,9 @@ public:
         } else if (error.code() == GPG_ERR_NO_SECKEY) {
             label += u' ' + Formatting::errorAsString(error) + u'.';
             label += "<br />"_L1 + i18nc("@info", "The data was not encrypted for any secret key in your certificate list.");
+        } else if ((error.code() == GPG_ERR_ENOENT) && (error.sourceID() == GPG_ERR_SOURCE_KLEO)) {
+            // handle our own error code that's used if the decrypted file doesn't exist although gpgme reported successful decryption
+            label += u' ' + i18nc("@info Diagnostics is the label of a button", "An unknown error occurred. Please check Diagnostics for details.");
         } else if (m_decryptionResult.isLegacyCipherNoMDC()) {
             label += u' ' + i18n("No integrity protection (MDC).");
         } else if (!m_errorString.isEmpty()) {
@@ -757,6 +760,13 @@ void DecryptVerifyTask::Private::slotResult(const DecryptionResult &dr, const Ve
     const QString errorString = m_output ? m_output->errorString() : QString{};
     if (((drErr == GPG_ERR_EIO || drErr == GPG_ERR_NO_DATA) && !errorString.isEmpty()) || (m_output && m_output->failed())) {
         q->emitResult(q->fromDecryptResult(drErr ? dr.error() : Error::fromCode(GPG_ERR_EIO), errorString, auditLog));
+        return;
+    }
+    // double check that the decrypted file exists after (seemingly) successful decryption
+    if (!dr.isNull() && dr.error().isSuccess() && !m_extractArchive && !m_output && !m_outputFilePath.isEmpty() && !QFile::exists(m_outputFilePath)) {
+        DecryptionResult newDr{dr};
+        newDr.setError(Error::fromCode(GPG_ERR_ENOENT));
+        q->emitResult(q->fromDecryptVerifyResult(newDr, vr, plainText, m_output ? m_output->fileName() : m_outputFilePath, auditLog));
         return;
     }
 
