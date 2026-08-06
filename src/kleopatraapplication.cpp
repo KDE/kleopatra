@@ -319,17 +319,13 @@ public:
     void exportFocusWindow()
     {
 #ifdef HAVE_WAYLAND
-        // #if KWINDOWSYSTEM_VERSION >= QT_VERSION_CHECK(6, 28, 0)
-        //         KWaylandExtras::exportToplevel(QGuiApplication::focusWindow());
-        // #else
-        QT_WARNING_PUSH
-        QT_WARNING_DISABLE_DEPRECATED
-        // silence the deprecation warning for KWaylandExtras::exportWindow;
-        // using the recommended replacement KWaylandExtras::exportTopLevel causes a crash:
-        // https://bugs.kde.org/show_bug.cgi?id=523917
+#if KWINDOWSYSTEM_VERSION >= QT_VERSION_CHECK(6, 28, 0)
+        if (auto w = QGuiApplication::focusWindow()) {
+            KWaylandExtras::exportToplevel(w);
+        }
+#else
         KWaylandExtras::self()->exportWindow(QGuiApplication::focusWindow());
-        QT_WARNING_POP
-        // #endif
+#endif
 #endif
     }
 };
