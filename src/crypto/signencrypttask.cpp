@@ -131,7 +131,8 @@ static QString formatResultLine(const QStringList &inputs,
                                 bool encrypt,
                                 bool signingFailed,
                                 bool encryptionFailed,
-                                const GpgME::Error &error)
+                                const GpgME::Error &error,
+                                const GpgME::SignatureMode signatureMode)
 {
     Q_ASSERT(inputs.size() > 0);
     Q_ASSERT(sign || encrypt);
@@ -237,21 +238,28 @@ static QString formatResultLine(const QStringList &inputs,
 
     if (sign) {
         if (inputs.size() == 1) {
-            return xi18nc("@info Successfully signed <file> and saved the signature in <file>.",
-                          "Successfully signed <filename>%1</filename> and saved the signature in <filename>%2</filename>.",
-                          inputs[0],
-                          output);
+            if (signatureMode == SignatureMode::Detached) {
+                return xi18nc("@info Successfully signed <file> and saved the signature in <file>.",
+                              "Successfully signed <filename>%1</filename> and saved the signature in <filename>%2</filename>.",
+                              inputs[0],
+                              output);
+            } else {
+                return xi18nc("@info Successfully signed <file> and saved it as <file>.",
+                              "Successfully signed <filename>%1</filename> and saved it as <filename>%2</filename>.",
+                              inputs[0],
+                              output);
+            }
         }
         if (inputs.size() == 2) {
-            return xi18nc("@info Successfully signed <file> and <file> and saved the signature in <file>.",
-                          "Successfully signed <filename>%1</filename> and <filename>%2</filename> and saved the signature in <filename>%3</filename>.",
+            return xi18nc("@info Successfully signed <file> and <file> and saved them as <file>.",
+                          "Successfully signed <filename>%1</filename> and <filename>%2</filename> and saved them as <filename>%3</filename>.",
                           inputs[0],
                           inputs[1],
                           output);
         }
-        return xi18ncp("@info Successfully signed <file> and <n> other(s) and saved the signature in <file>.",
-                       "Successfully signed <filename>%2</filename> and %1 other and saved the signature in <filename>%3</filename>.",
-                       "Successfully signed <filename>%2</filename> and %1 others and saved the signature in <filename>%3</filename>.",
+        return xi18ncp("@info Successfully signed <file> and <n> other(s) and saved them as <file>.",
+                       "Successfully signed <filename>%2</filename> and %1 other and saved them as <filename>%3</filename>.",
+                       "Successfully signed <filename>%2</filename> and %1 others and saved them as <filename>%3</filename>.",
                        inputs.size() - 1,
                        inputs[0],
                        output);
@@ -324,7 +332,7 @@ QString ErrorResult::overview() const
     Q_ASSERT(m_error || m_error.isCanceled());
     Q_ASSERT(m_sign || m_encrypt);
 
-    return formatResultLine(m_input.fileNames, m_outputLabel, m_sign, m_encrypt, true, true, m_error);
+    return formatResultLine(m_input.fileNames, m_outputLabel, m_sign, m_encrypt, true, true, m_error, SignatureMode::NormalSignatureMode);
 }
 
 QString ErrorResult::details() const
@@ -1018,13 +1026,17 @@ QString SignEncryptTaskResult::overview() const
         return {};
     }
 
+    const auto signatures = d->m_sresult.isNull() ? std::vector<CreatedSignature>{} : d->m_sresult.createdSignatures();
+    const SignatureMode sigMode = signatures.empty() ? SignatureMode::NormalSignatureMode : signatures.front().mode();
+
     return formatResultLine(d->m_input.fileNames,
                             d->m_output.label,
                             !d->m_sresult.isNull(),
                             !d->m_eresult.isNull(),
                             d->m_sresult.error().isError(),
                             d->m_eresult.error().isError(),
-                            !d->m_sresult.error().isSuccess() ? d->m_sresult.error() : d->m_eresult.error());
+                            !d->m_sresult.error().isSuccess() ? d->m_sresult.error() : d->m_eresult.error(),
+                            sigMode);
 }
 
 QString SignEncryptTaskResult::details() const
