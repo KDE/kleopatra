@@ -222,15 +222,15 @@ static QString formatResultLine(const QStringList &inputs,
                           output);
         }
         if (inputs.size() == 2) {
-            return xi18nc("@info Successfully signed and encrypted <file> and <file> and saved it as <file>.",
-                          "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</filename> and saved it as <filename>%3</filename>.",
+            return xi18nc("@info Successfully signed and encrypted <file> and <file> and saved them as <file>.",
+                          "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</filename> and saved them as <filename>%3</filename>.",
                           inputs[0],
                           inputs[1],
                           output);
         }
         return xi18ncp("@info Successfully signed and encrypted <file> and <n> other(s) as <file>.",
-                       "Successfully signed and encrypted <filename>%2</filename> and %1 other and saved it as <filename>%3</filename>.",
-                       "Successfully signed and encrypted <filename>%2</filename> and %1 others and saved it as <filename>%3</filename>.",
+                       "Successfully signed and encrypted <filename>%2</filename> and %1 other and saved them as <filename>%3</filename>.",
+                       "Successfully signed and encrypted <filename>%2</filename> and %1 others and saved them as <filename>%3</filename>.",
                        inputs.size() - 1,
                        inputs[0],
                        output);
@@ -272,15 +272,15 @@ static QString formatResultLine(const QStringList &inputs,
                       output);
     }
     if (inputs.size() == 2) {
-        return xi18nc("@info Successfully encrypted <file> and <file> and saved it as <file>.",
-                      "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> and saved it as <filename>%3</filename>.",
+        return xi18nc("@info Successfully encrypted <file> and <file> and saved them as <file>.",
+                      "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> and saved them as <filename>%3</filename>.",
                       inputs[0],
                       inputs[1],
                       output);
     }
-    return xi18ncp("@info Successfully encrypted <file> and <n> other(s) and saved it as <file>.",
-                   "Successfully encrypted <filename>%2</filename> and %1 other and saved it as <filename>%3</filename>.",
-                   "Successfully encrypted <filename>%2</filename> and %1 others and saved it as <filename>%3</filename>.",
+    return xi18ncp("@info Successfully encrypted <file> and <n> other(s) and saved them as <file>.",
+                   "Successfully encrypted <filename>%2</filename> and %1 other and saved them as <filename>%3</filename>.",
+                   "Successfully encrypted <filename>%2</filename> and %1 others and saved them as <filename>%3</filename>.",
                    inputs.size() - 1,
                    inputs[0],
                    output);
