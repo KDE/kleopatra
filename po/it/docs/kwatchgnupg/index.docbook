@@ -215,51 +215,17 @@
 >Configurazione di &kwatchgnupg;</title>
 
 <para
->Per configurare &kwatchgnupg; seleziona <menuchoice
+>Per configura &kwatchgnupg; selezionare <menuchoice
 ><guimenu
 >Impostazioni</guimenu
 ><guimenuitem
 >Configura &kwatchgnupg;</guimenuitem
 ></menuchoice
->, oppure fai clic sulla corrispondente azione della barra degli strumenti. La finestra di configurazione di &kwatchgnupg; è divisa in due parti che sono descritte qui di seguito. </para>
+>, oppure fai clic sull'icona della barra degli strumenti corrispondente. </para>
 
 <sect1 id="configure.dialog"
 ><title
 >Finestra delle impostazioni</title>
-
-<sect2 id="configure.watchgnupg"
-><title
->Impostazioni di &watchgnupg;</title>
-
-<para
->&watchgnupg; è il processo che tiene sotto controllo il socket per il log e formatta le linee di testo così come appaiono nella vista testuale di &kwatchgnupg;. Le impostazioni di questo gruppo sono passate al backend usando il meccanismo &gpgconf;. </para>
-
-<para
-><guilabel
->Eseguibile</guilabel
-> contiene il percorso dell'applicazione &watchgnupg;. Se &watchgnupg; è nel <varname
->$PATH</varname
->, puoi usare il valore predefinito <userinput
->watchgnupg</userinput
->. Se il percorso di &watchgnupg; non è nell'elenco dei percorsi di <varname
->$PATH</varname
->, o se c'è più di una versione installata, inserisci in questa casella il percorso completo del programma watchgnupg. </para>
-
-<para
-><guilabel
->Socket</guilabel
-> contiene il socket che &watchgnupg; deve tenere sotto controllo. Tutte le modifiche a questo valore verranno distribuite ai moduli di backend di &gnupg; che usano &gpgconf; quindi non è necessario cambiare questo valore se i file di configurazione di &gnupg; hanno il campo <varname
->log-file</varname
-> configurato diversamente. </para>
-
-<para
-><guilabel
->Livello predefinito log</guilabel
-> determina la quantità di informazione restituita dai moduli di backend. Vedi la documentazione di &watchgnupg; per sapere quale livello include un certo tipo di informazione. Tutte le modifiche a questo valore verranno distribuite ai moduli di backend di &gnupg; che usano &gpgconf; quindi non è necessario cambiare questo valore se i file di configurazione di &gnupg; hanno il campo <varname
->log-level</varname
-> configurato diversamente. </para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"
 ><title
@@ -274,6 +240,17 @@
 >. Ricorda però che l'occupazione di memoria di &kwatchgnupg; crescerà in proporzione al numero di righe di log che vengono conservate. Se usi una dimensione illimitata per la cronologia, assicurati che &kwatchgnupg; venga eseguito solo per brevi operazioni, oppure pulisci a mano la cronologia periodicamente. </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>Impostazioni di registrazione di &gnupg;</title>
+
+<para
+>Utilizza la finestra delle impostazioni di &kleopatra; per configurare la registrazione dei log dei componenti del sistema di &gnupg;. Per ogni componente di cui desideri visualizzare i log, scegli un livello di debug e inserisci <filename
+>socket://</filename
+> come file in cui scrivere i log. </para>
 
 </sect1>
 
