@@ -468,6 +468,8 @@ set(_kleopatra_SRCS
   view/htmllabel.h
   view/infofield.cpp
   view/infofield.h
+  view/infopopup.cpp
+  view/infopopup.h
   view/keycacheoverlay.cpp
   view/keycacheoverlay.h
   view/keylistcontroller.cpp
