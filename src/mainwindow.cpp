@@ -685,11 +685,13 @@ void MainWindow::Private::setupActions()
     ui.columnsVisibilityMenuAction = new KActionMenu(i18nc("@action:inmenu", "Configure columns"), q);
     ui.columnsVisibilityMenuAction->setPopupMode(QToolButton::InstantPopup);
     ui.columnsVisibilityMenuAction->setIcon(QIcon::fromTheme(u"show_table_column"_s));
+    ui.columnsVisibilityMenuAction->setMenuRole(QAction::NoRole); // avoid misdetection on MacOS
     coll->addAction(QStringLiteral("columns_menu"), ui.columnsVisibilityMenuAction);
 
     ui.columnsSortingMenuAction = new KActionMenu(i18nc("@action:inmenu", "Configure sorting"), q);
     ui.columnsSortingMenuAction->setPopupMode(QToolButton::InstantPopup);
     ui.columnsSortingMenuAction->setIcon(QIcon::fromTheme(u"view-sort"_s));
+    ui.columnsSortingMenuAction->setMenuRole(QAction::NoRole); // avoid misdetection on MacOS
     coll->addAction(QStringLiteral("columns_sort_menu"), ui.columnsSortingMenuAction);
 
     connect(
