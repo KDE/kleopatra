@@ -79,9 +79,9 @@
 >&GPLNotice;</legalnotice>
 
 <date
->2016-07-26</date>
+>2024-10-24</date>
 <releaseinfo
->1.0 (Anwendungen 16.08)</releaseinfo>
+>(Gear 24.12)</releaseinfo>
 
 <abstract>
 <para
@@ -110,7 +110,7 @@
 > 
 
 <para
->&kwatchgnupg; ist ein einfacher Betrachter für die Protokollausgabe der &gnupg;-Versionen 1.4, 2.0 und 2.0. Es funktioniert als eine &GUI; um das Befehlszeilenprogramm &watchgnupg;. welches an einem Socket auf Protokollzeilen von den &gnupg;-Hintergrundapplikationen wartet. Nähere Informationen zu &watchgnupg; finden Sie unter <userinput
+>&kwatchgnupg; ist ein einfacher Betrachter für die Protokollausgabe von &gnupg;. Es ist eine &GUI; für das Befehlszeilenprogramm &watchgnupg;, welches via Socket Protokollnachrichten von den &gnupg;-Hintergrundanwendungen liest. Nähere Informationen zu &watchgnupg; finden Sie unter <userinput
 >info watchgnupg</userinput
 >.</para>
 
@@ -207,47 +207,13 @@
 ><guimenu
 >Einstellungen</guimenu
 ><guimenuitem
->&kwatchgnupg; einrichten ...</guimenuitem
+>&kwatchgnupg; einrichten …</guimenuitem
 ></menuchoice
-> aus dem Menü aus oder betätigen die entsprechende Schaltfläche in der Werkzeugleiste. Der Einrichtungsdialog von &kwatchgnupg; besteht aus zwei Teilen, die hier beide beschrieben werden. </para>
+> aus dem Menü aus oder klicken Sie auf die entsprechende Schaltfläche in der Werkzeugleiste. </para>
 
 <sect1 id="configure.dialog"
 ><title
 >Einrichtungsdialog</title>
-
-<sect2 id="configure.watchgnupg"
-><title
->&watchgnupg;-Einstellungen</title>
-
-<para
->&watchgnupg; ist der Prozess, der das Protokollsocket auf Aktivität überwacht in die Zeilen so formatiert, wie sie in der Textansicht von &kwatchgnupg; zu sehen sind. Die Einstellungen in dieser Gruppe werden über den &gpgconf;-Mechanismus an das Hintergrundprogramm weitergereicht. </para>
-
-<para
-><guilabel
->Ausführbares Programm</guilabel
-> enthält den Pfad zum &watchgnupg;-Programm. Wenn sich &watchgnupg; in Ihrem <varname
->$PATH</varname
-> befindet, können Sie es bei der Standardeinstellung <userinput
->watchgnupg</userinput
-> belassen. Wenn sich &watchgnupg; nicht in Ihrem <varname
->$PATH</varname
-> befindet oder Sie mehr als eine Version installiert haben, dann sollten Sie hier den vollständigen Dateinamen der ausführbaren Datei angeben. </para>
-
-<para
-><guilabel
->Socket</guilabel
-> enthält das Socket, an dem &watchgnupg; lauschen soll. Eine Änderung dieses Wertes wird über den &gpgconf;-Mechanismus an alle &gnupg;-Hintergrundprogramm-Module weitergereicht, sodass Sie diese Einstellung nicht ändern müssen, wenn in Ihren &gnupg;-Einrichtungsdateien eine andere Protokolldatei (<varname
->log-file</varname
->) eingestellt ist. </para>
-
-<para
-><guilabel
->Standard-Protokollniveau</guilabel
-> bestimmt die Menge der Protokollinformationen, die von den Hintergrundprogramm-Modulen zurückgegeben werden soll. Die &watchgnupg;-Dokumentation beschreibt, welches Protokollniveau welche Informationen beinhaltet. Eine Änderung dieser Einstellung wird über den &gpgconf;-Mechanismus an alle &gnupg;-Hintergrundprogramm-Module weitergereicht, sodass Sie diese Einstellung in Ihren &gnupg;-Konfigurationsdateien nicht ändern müssen, wenn dort ein anderer <varname
->log-level</varname
-> eingestellt ist. </para>
-
-</sect2>
 
 <sect2 id="configure.logwindow"
 ><title
@@ -262,6 +228,17 @@
 > abschalten. Beachten Sie aber, dass sich der Speicherverbrauch von &kwatchgnupg; mit der Anzahl der angezeigten Zeilen vergrößert. Wenn Sie eine unbeschränkte Größe für den Verlaufspeicher verwenden, dann sollten Sie entweder &kwatchgnupg; nur kurze Zeit laufen lassen oder den Verlaufspeicher regelmäßig von Hand löschen. </para>
 
 </sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>Einstellungen zur &gnupg;-Protokollierung</title>
+
+<para
+>Verwenden Sie den Einstellungsdialog von &kleopatra;, um die Protokollierung der Komponenten des &gnupg;-Systems einzurichten. Wählen Sie für jede Komponente, die protokolliert werden soll, eine Debug-Stufe aus und geben Sie unter <filename
+>socket://</filename
+> eine Datei an, in der die Protokolle gespeichert werden sollen. </para>
 
 </sect1>
 

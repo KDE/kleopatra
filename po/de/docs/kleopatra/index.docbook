@@ -5,7 +5,7 @@
 >">
   <!ENTITY uiserver "UiServer">
   <!ENTITY kwatchgnupg "<application
->KWatchGnuPG</application
+>GnuPG Log Viewer</application
 >">
   <!ENTITY gpgsm "<application
 >GpgSM</application
@@ -306,7 +306,7 @@
 > austauschbar verwendet, sofern das nicht ausdrücklich anders angegeben ist.</para>
 
 <para
->&ca;s müssen ebenfalls wiederum von anderen &ca;s signiert sein, um gültig zu sein. Natürlich muss diese Kette irgendwo enden, deshalb signiert die oberste &ca; (die Wurzel-&ca;) ihren Schlüssel mit sich selbst (dies wird eine Selbst-Signatur genannt). Wurzel-Zertifikaten muss daher die Gültigkeit (meistens Vertrauenswürdigkeit genannt) manuell zugewiesen werden, z. B. durch Vergleichen des Fingerabdrucks mit dem auf der Webseite der &ca;. Dies wird normalerweise vom Systemverwalter oder dem Hersteller des Produkts, das Zertifikate verwendet, vorgenommen, kann aber über die Befehlszeilenschnittstelle von &gpgsm; auch vom Benutzer durchgeführt werden.</para>
+>&ca;s müssen ebenfalls wiederum von anderen &ca;s signiert sein, um gültig zu sein. Natürlich muss diese Kette irgendwo enden, deshalb signiert die oberste &ca; (die Wurzel-&ca;) ihren Schlüssel mit sich selbst (dies wird eine Selbst-Signatur genannt). Wurzel-Zertifikaten muss daher die Gültigkeit (meistens Vertrauenswürdigkeit genannt) manuell zugewiesen werden, z. B. durch Vergleichen des Fingerabdrucks mit dem auf der Webseite der &ca;. Dies wird normalerweise vom Systemverwalter oder dem Hersteller des Produkts, das Zertifikate verwendet, vorgenommen, kann aber über die Befehlszeilenschnittstelle von &gpgsm; auch vom Benutzer durchgeführt werden.</para>
 
 <para
 >Um zu sehen, welche Zertifikate Wurzel-Zertifikate sind, können Sie mit <xref linkend="view-hierarchical-key-list"/> in den hierarchischen Anzeigemodus wechseln.</para>
@@ -362,7 +362,7 @@ selected.</para-->
 >Zertifikate suchen und importieren</title>
 
 <para
->Normalerweise bekommen Sie neue Zertifikate durch Überprüfen von Signaturen in E-Mail-Nachrichten, weil die Zertifikate normalerweise in die Signaturen, die damit vorgenommen wurden, eingebettet werden. Wenn Sie aber jemandem eine Nachricht senden wollen, mit dem Sie bisher noch keinen Kontakt hatten, dann müssen Sie das Zertifikat aus einem &ldap;-Ordner (<ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+>Normalerweise bekommen Sie neue Zertifikate durch Überprüfen von Signaturen in E-Mail-Nachrichten, weil die Zertifikate normalerweise in die Signaturen, die damit vorgenommen wurden, eingebettet werden. Wenn Sie aber jemandem eine Nachricht senden möchten, mit dem Sie bisher noch keinen Kontakt hatten, dann müssen Sie das Zertifikat aus einem &ldap;-Ordner (<ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
 >&gpgsm;</ulink
 > kann das aber auch automatisch für Sie tun) oder einer Datei holen. Außerdem müssen Sie Ihr eigenes Zertifikat importieren, nachdem Sie die Antwort der &ca; auf Ihre Zertifizierungsanfrage bekommen haben.</para>
 
@@ -504,7 +504,7 @@ not found in 4.2
 <para
 ><guilabel
 >Ländercode (C):</guilabel
-> Der zweibuchstabige Code, der das Land bezeichnet, in dem Sie leben (z. B. <quote
+> Der zweibuchstabige Code, der das Land bezeichnet, in dem Sie leben (z. B. <quote
 >DE</quote
 >);</para>
 </listitem>
@@ -525,7 +525,7 @@ not found in 4.2
 >Solange Sie den privaten Schlüssel und die Passphrase besitzen, können Sie einen abgelaufenen Schlüssel wieder benutzbar machen. Wenn Sie einen Schlüssel endgültig unbenutzbar machen möchten, müssen Sie ihn sperren. Das wird mittels einer speziellen Sperrsignatur erreicht, die zum Schlüssel hinzugefügt wird.</para>
 
 <para
->Eine Widerrufssignatur in einer gesonderten Datei gespeichert. Diese kann später in den Schlüsselbund importiert werden und wird dann an den Schlüssel angehängt und macht ihn damit unbrauchbar. Bitte beachten Sie, dass dazu das Passwort des Schlüssels nicht erforderlich ist. Deshalb sollten Sie die Datei mit der Sperrsignatur sicher aufbewahren, am besten getrennt von Ihrem privaten Schlüssel. Es ist ratsam, dazu einen Ort zu wählen, der nicht mit einem Computer verbunden ist, z. B. können Sie die Datei auf ein externes Speichermedium wie einen USB-Stick übertragen oder Sie drucken sie einfach aus.</para>
+>Eine Widerrufssignatur in einer gesonderten Datei gespeichert. Diese kann später in den Schlüsselbund importiert werden und wird dann an den Schlüssel angehängt und macht ihn damit unbrauchbar. Bitte beachten Sie, dass dazu das Passwort des Schlüssels nicht erforderlich ist. Deshalb sollten Sie die Datei mit der Sperrsignatur sicher aufbewahren, am besten getrennt von Ihrem privaten Schlüssel. Es ist ratsam, dazu einen Ort zu wählen, der nicht mit einem Computer verbunden ist, z. B. können Sie die Datei auf ein externes Speichermedium wie einen USB-Stick übertragen oder Sie drucken sie einfach aus.</para>
 
 <para
 >In &kleopatra; gibt es keine Funktion, um so eine Widerrufssignatur zu einem beliebigen Zeitpunkt zu erzeugen. Sie können dazu jedoch das &kde;-Programm &kgpg; verwenden und in diesem Programm <menuchoice
@@ -1194,7 +1194,7 @@ Verify Checksum Files...
             <para
 >Diese Funktion steht nur zur Verfügung, wenn genau ein &smime;-Wurzelzertifikat ausgewählt ist und das Zertifikat noch nicht vertrauenswürdig ist. </para>
             <para
->Benutzen Sie <xref linkend="certificates-distrust-root"/>, um diese Funktion wieder rückgängig zu machen. </para>
+>Verwenden Sie <xref linkend="certificates-distrust-root"/>, um diese Funktion wieder rückgängig zu machen. </para>
           </listitem>
         </varlistentry>
 
@@ -1215,7 +1215,7 @@ Verify Checksum Files...
             <para
 >Diese Funktion steht nur zur Verfügung, wenn genau ein &smime;-Wurzelzertifikat ausgewählt ist und das Zertifikat vertrauenswürdig ist. </para>
             <para
->Diese Funktion wird benutzt, um <xref linkend="certificates-trust-root"/> rückgängig zu machen. Näheres finden Sie in dieser Verknüpfung. </para>
+>Diese Funktion wird verwendet, um <xref linkend="certificates-trust-root"/> rückgängig zu machen. Näheres finden Sie in dieser Verknüpfung. </para>
           </listitem>
         </varlistentry>
 
@@ -1344,7 +1344,7 @@ uncommon).</para>
 >Ermöglicht die Änderung des Ablaufdatums Ihres &openpgp;-Zertifikats.</action>
             </para>
             <para
->Benutzen Sie diese Funktion, um die Verfallszeit Ihrer &openpgp;-Zertifikate zu verlängern, als eine Alternative zum Erstellen eines neuen Zertifikats oder eines unbegrenzten Ablaufdatums (<quote
+>Verwenden Sie diese Funktion, um die Verfallszeit Ihrer &openpgp;-Zertifikate zu verlängern, als eine Alternative zum Erstellen eines neuen Zertifikats oder eines unbegrenzten Ablaufdatums (<quote
 >verfällt nie</quote
 >). </para>
             <para
@@ -1884,7 +1884,7 @@ updated.</para>
 <para
 >Verschlüsseln und/oder Signieren von Datei(en). Analog zu <option
 >--sign-encrypt</option
->, nicht benutzen</para>
+>, nicht verwenden</para>
 </listitem>
 </varlistentry>
 
@@ -1979,7 +1979,7 @@ updated.</para>
 > <!-- linebreak here'd show up in xref text :/ -->
           <listitem>
             <para
->Bestimmt das Netzwerkprotokoll, welches benutzt wird, um den Server zu erreichen. Häufig genutzte Schemata sind <guilabel
+>Bestimmt das Netzwerkprotokoll, welches verwendet wird, um den Server zu erreichen. Häufig genutzte Schemata sind <guilabel
 >ldap</guilabel
 > (und das &ssl;-gesicherte Pendant <guilabel
 >ldaps</guilabel
@@ -2088,7 +2088,7 @@ updated.</para>
         </varlistentry>
       </variablelist>
       <para
->Sie können so viele &smime;-Server (&x509;) einrichten, wie Sie wollen. Jedoch ist nur ein &openpgp;-Server erlaubt. Die &GUI; stellt dies sicher. </para>
+>Sie können so viele &smime;-Server (&x509;) einrichten, wie Sie möchten. Jedoch ist nur ein &openpgp;-Server erlaubt. Die &GUI; stellt dies sicher. </para>
       <para
 >Um einen neuen Server hinzuzufügen, klicken Sie auf den Knopf <guibutton
 >Neu</guibutton
@@ -2413,7 +2413,7 @@ list.</para>
         <para
 >Hier können Sie einige Dinge der E-Mail-Operationen des &kleopatra;-&uiserver;s einstellen. Derzeit lässt sich nur einstellen, ob Sie den <quote
 >Schnell-Modus</quote
-> für das Signieren und Verschlüsseln von E-Mails nutzen wollen. </para>
+> für das Signieren und Verschlüsseln von E-Mails nutzen möchten. </para>
         <para
 >Wenn der <quote
 >Schnell-Modus</quote
@@ -2558,7 +2558,7 @@ list.</para>
               <para
 >Auswählen dieser Option lässt &gpgsm; diese &URL;s ignorieren und nutzt nur die oben eingestellten. </para>
               <para
->Benutzen Sie dies um &eg; die Verwendung eines firmenweiten &ocsp;-Proxys zu erzwingen. </para>
+>Verwenden Sie dies um &eg; die Verwendung eines firmenweiten &ocsp;-Proxys zu erzwingen. </para>
             </listitem>
           </varlistentry>
 
@@ -2681,7 +2681,7 @@ list.</para>
 ></term>
             <listitem>
               <para
->Sollte kein systemweiter Proxy vorgegeben sein oder Sie einen anderen Proxy für &gpgsm; nutzen wollen, können Sie diesen hier angeben. </para>
+>Sollte kein systemweiter Proxy vorgegeben sein oder Sie einen anderen Proxy für &gpgsm; nutzen möchten, können Sie diesen hier angeben. </para>
               <para
 >Dieser wird für alle &HTTP;-Anfragen, die &smime; betreffen, genutzt. </para>
               <para
@@ -2695,7 +2695,7 @@ list.</para>
 ></userinput
 >, &eg; <userinput
 >meinproxy.nirgendwo.de:3128</userinput
-> benutzt. </para>
+> verwendet. </para>
             </listitem>
           </varlistentry>
         </variablelist>
@@ -2954,11 +2954,11 @@ list.</para>
 >CertificateCreationWizard</literal
 > in der systemweiten <filename
 >kleopatrarc</filename
->-Datei an. Wenn Sie die Reihenfolge der Attribute verändern wollen, oder nur bestimmte Elemente anzeigen wollen, dann definieren Sie einen Schlüssel namens <varname
+>-Datei an. Wenn Sie die Reihenfolge der Attribute verändern möchten, oder nur bestimmte Elemente anzeigen möchten, dann definieren Sie einen Schlüssel namens <varname
 >DNAttributeOrder</varname
 >. Das Argument besteht aus einem oder mehreren der Elementen <varname
 >CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
->. Wenn Sie Felder mit einem bestimmten Wert initialisieren wollen, dann schreiben Sie Attribut=Wert. Wenn das Attribut obligatorisch sein soll, dann fügen Sie ihm ein Ausrufungszeichen an (wie in <varname
+>. Wenn Sie Felder mit einem bestimmten Wert initialisieren möchten, dann schreiben Sie Attribut=Wert. Wenn das Attribut obligatorisch sein soll, dann fügen Sie ihm ein Ausrufungszeichen an (wie in <varname
 >CN!,L,OU,O!,C!,EMAIL!</varname
 >, der Standardeinstellung).</para>
 
@@ -2967,11 +2967,11 @@ list.</para>
 >KIOSK</acronym
 >-Modus-Modifikator <varname
 >$e</varname
-> können Sie Werte aus Umgebungsvariablen oder einem ausgewerteten Skript oder Binärprogramm verwenden. Wenn Sie außerdem noch das Editieren des entsprechenden Feldes verhindern wollen, verwenden Sie den Modifikator <varname
+> können Sie Werte aus Umgebungsvariablen oder einem ausgewerteten Skript oder Binärprogramm verwenden. Wenn Sie außerdem noch das Editieren des entsprechenden Feldes verhindern möchten, verwenden Sie den Modifikator <varname
 >$i</varname
 >. Wenn Sie die Benutzung der Schaltfläche <guibutton
 >Meine Adresse einfügen</guibutton
-> verbieten wollen, dann setzen Sie <varname
+> verbieten möchten, dann setzen Sie <varname
 >ShowSetWhoAmI</varname
 > auf false.</para>
 
@@ -3151,7 +3151,7 @@ C=DE
 >Schlüsselkategorien</guilabel
 > verändern. <guilabel
 >Schlüsselkategorien</guilabel
-> werden auch benutzt, um die Liste der Zertifikate zu filtern. In diesem Abschnitt beschreiben wir, wie Sie die verfügbaren Kategorien editieren und neue hinzufügen können. </para>
+> werden auch verwendet, um die Liste der Zertifikate zu filtern. In diesem Abschnitt beschreiben wir, wie Sie die verfügbaren Kategorien editieren und neue hinzufügen können. </para>
 
       <para
 >Um herauszufinden, zu welcher Kategorie ein Schlüssel gehört, versucht &kleopatra;, den Schlüssel mit einer Folge von Schlüsselfiltern abzugleichen, die in der Datei <filename
@@ -3361,7 +3361,7 @@ C=DE
 	      <entry
 >Boolescher Wert</entry>
 	      <entry
->der Schlüssel vom Benutzer deaktiviert worden ist (nicht mehr benutzt werden soll). Wird bei &smime;-Schlüsseln ignoriert. </entry>
+>der Schlüssel vom Benutzer deaktiviert worden ist (nicht mehr verwendet werden soll). Wird bei &smime;-Schlüsseln ignoriert. </entry>
 	    </row>
 	    <row>
 	      <entry
@@ -3423,7 +3423,7 @@ C=DE
 	      <entry
 >Boolescher Wert</entry>
 	      <entry
->der Schlüssel kann benutzt werden, um qualifizierte Signaturen zu erzeugen, wie sie im deutschen Signaturgesetz ((Gesetz über Rahmenbedingungen für elektronische Signaturen) definiert sind. </entry>
+>der Schlüssel kann verwendet werden, um qualifizierte Signaturen zu erzeugen, wie sie im deutschen Signaturgesetz ((Gesetz über Rahmenbedingungen für elektronische Signaturen) definiert sind. </entry>
 	    </row>
 	    <row>
 	      <entry
@@ -3571,7 +3571,7 @@ C=DE
 >match-contexts</varname
 > begrenzt die Anwendungsmöglichkeit des Filters. Es sind zurzeit zwei Kontexte definiert: <literal
 >appearance</literal
-> wird benutzt zur Definition von Farben und Schriften für die Anzeige. Mit <literal
+> wird verwendet zur Definition von Farben und Schriften für die Anzeige. Mit <literal
 >filtering</literal
 > werden Zertifikate in der Ansicht ein- oder ausgeblendet.  <literal
 >any</literal
@@ -3600,7 +3600,7 @@ C=DE
       <para
 >Jeder Filter beinhaltet eine <quote
 >Genauigkeit</quote
->, die alle passenden Filter bewertet. Der genauere Filter wird dem weniger genauen vorgezogen. Haben zwei Filter die gleiche Genauigkeit, wird der zuerst in der Konfigurationsdatei aufgeführte benutzt. Die Genauigkeit entspricht der Anzahl der Kriterien des Filters. </para>
+>, die alle passenden Filter bewertet. Der genauere Filter wird dem weniger genauen vorgezogen. Haben zwei Filter die gleiche Genauigkeit, wird der zuerst in der Konfigurationsdatei aufgeführte verwendet. Die Genauigkeit entspricht der Anzahl der Kriterien des Filters. </para>
 
       <example>
 	<title
@@ -3759,7 +3759,7 @@ is-at-least-ownertrust=marginal
 >pack-command=tar cf -</programlisting
 > Beispiel (ZIP): <programlisting
 >pack-command=zip -r - %f</programlisting
-> In diesem Fall werden die Dateinamen über die Befehlszeile übergeben, genau so, als wenn die Befehlszeileneingabe genutzt würde. &kleopatra; benutzt keine Shell um den Befehl auszuführen. Daher ist die sicherste Methode Dateinamen zu übergeben, auch wenn dies auf einigen Systemen an Begrenzungen der Befehlszeilenlänge stoßen kann. Sofern das Literal <literal
+> In diesem Fall werden die Dateinamen über die Befehlszeile übergeben, genau so, als wenn die Befehlszeileneingabe genutzt würde. &kleopatra; verwendet keine Shell um den Befehl auszuführen. Daher ist die sicherste Methode Dateinamen zu übergeben, auch wenn dies auf einigen Systemen an Begrenzungen der Befehlszeilenlänge stoßen kann. Sofern das Literal <literal
 >%f</literal
 > angegeben ist, wird es durch die Namen der zu archivierenden Dateien ersetzt. Anderenfalls werden diese Dateinamen an das Ende der Befehlszeile abgehängt. Daher kann das ZIP-Beispiel wie folgt gleichbedeutend umgeschrieben werden: <programlisting
 >pack-command=zip -r -</programlisting>
