@@ -181,15 +181,12 @@ public:
     }
     ~Private()
     {
-#ifndef QT_NO_SYSTEMTRAYICON
-        delete sysTray;
-#endif
     }
     void setUpSysTrayIcon()
     {
 #ifndef QT_NO_SYSTEMTRAYICON
         Q_ASSERT(readerStatus);
-        sysTray = new SysTrayIcon();
+        sysTray = new SysTrayIcon{q};
         sysTray->setFirstCardWithNullPin(readerStatus->firstCardWithNullPin());
         connect(readerStatus.get(), &SmartCard::ReaderStatus::firstCardWithNullPinChanged, sysTray, &SysTrayIcon::setFirstCardWithNullPin);
 #endif
