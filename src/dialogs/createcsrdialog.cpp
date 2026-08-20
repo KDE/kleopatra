@@ -594,25 +594,27 @@ private:
         if (ui.nameAndEmail->userID().isEmpty() && !ui.nameAndEmail->nameIsRequired() && !ui.nameAndEmail->emailIsRequired()) {
             labelsAndErrors.push_back({{}, i18n("Enter a name or an email address.")});
         }
-        if (const QString error = ui.nameAndEmail->nameError(); !error.isEmpty()) {
-            labelsAndErrors.push_back({ui.nameAndEmail->nameLabel(), error});
-        }
-        if (const auto error = ui.nameAndEmail->emailError(); !error.isEmpty()) {
-            labelsAndErrors.push_back({ui.nameAndEmail->emailLabel(), error});
-        }
-        for (const auto &attr : ui.additionalAttributes) {
-            if (const QString error = attr.input->currentError(); !error.isEmpty()) {
-                labelsAndErrors.push_back({attr.input->labelText(), error});
+        if (!ui.nameAndEmail->isValid()) {
+            if (const QString error = ui.nameAndEmail->nameError(); !error.isEmpty()) {
+                labelsAndErrors.push_back({ui.nameAndEmail->nameLabel(), error});
+            }
+            if (const auto error = ui.nameAndEmail->emailError(); !error.isEmpty()) {
+                labelsAndErrors.push_back({ui.nameAndEmail->emailLabel(), error});
             }
         }
-        if (const QString error = ui.emailsField->currentError(); !error.isEmpty()) {
-            labelsAndErrors.push_back({ui.emailsField->labelText(), error});
+        for (const auto &attr : ui.additionalAttributes) {
+            if (!attr.input->isValid()) {
+                labelsAndErrors.push_back({attr.input->labelText(), attr.input->currentError()});
+            }
         }
-        if (const QString error = ui.domainNamesField->currentError(); !error.isEmpty()) {
-            labelsAndErrors.push_back({ui.domainNamesField->labelText(), error});
+        if (!ui.emailsField->isValid()) {
+            labelsAndErrors.push_back({ui.emailsField->labelText(), ui.emailsField->currentError()});
         }
-        if (const QString error = ui.urisField->currentError(); !error.isEmpty()) {
-            labelsAndErrors.push_back({ui.urisField->labelText(), error});
+        if (!ui.domainNamesField->isValid()) {
+            labelsAndErrors.push_back({ui.domainNamesField->labelText(), ui.domainNamesField->currentError()});
+        }
+        if (!ui.urisField->isValid()) {
+            labelsAndErrors.push_back({ui.urisField->labelText(), ui.urisField->currentError()});
         }
 
         if (labelsAndErrors.size() > 1) {
