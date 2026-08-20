@@ -242,6 +242,15 @@ QString NameAndEmailWidget::emailError() const
     return d->ui.emailInput->currentError();
 }
 
+bool NameAndEmailWidget::isValid() const
+{
+    // make sure that both isValid() functions are called because they trigger
+    // a validation of the current values of the inputs
+    const bool nameValid = d->ui.nameInput->isValid();
+    const bool emailValid = d->ui.emailInput->isValid();
+    return nameValid && emailValid;
+}
+
 QString NameAndEmailWidget::userID() const
 {
     return buildUserId(name(), email());

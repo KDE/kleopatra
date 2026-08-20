@@ -48,6 +48,11 @@ public:
     QString emailError() const;
 
     /**
+     * Returns \c true if both inputs have a valid value.
+     */
+    bool isValid() const;
+
+    /**
      * Returns the user ID built from the entered name and/or email address.
      */
     QString userID() const;

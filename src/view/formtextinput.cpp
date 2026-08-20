@@ -389,6 +389,12 @@ QString FormTextInputBase::currentError() const
     return {};
 }
 
+bool FormTextInputBase::isValid() const
+{
+    d->updateError();
+    return d->mError == FormTextInputBase::Private::Error::EntryOK;
+}
+
 bool FormTextInputBase::validate(const QString &text, int pos) const
 {
     QString textCopy = text;

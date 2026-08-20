@@ -143,6 +143,12 @@ public:
     QString currentError() const;
 
     /**
+     * Returns \c true if the input has a valid value. Triggers an explicit
+     * validation of the current value.
+     */
+    bool isValid() const;
+
+    /**
      * Returns \c true, if the input has a value. This function is used to
      * check required input fields for non-empty user input.
      * Needs to be implemented for concrete widget classes.
