@@ -159,7 +159,11 @@ public:
 
     void focusFirstChild(Qt::FocusReason reason) override
     {
-        ui.searchBar->lineEdit()->setFocus(reason);
+        static bool firstCall = true; // there's only one CertificateView per app so that using a function static is okay
+        if (firstCall) {
+            firstCall = false;
+            ui.searchBar->lineEdit()->setFocus(reason);
+        }
     }
 
 private:
