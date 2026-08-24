@@ -156,6 +156,9 @@ SysTrayIcon::Private::Private(SysTrayIcon *qq)
     cardMenu.addAction(&setInitialPinAction);
     menu.addSeparator();
     menu.addAction(&quitAction);
+#ifdef Q_OS_MACOS
+    menu.setAsDockMenu();
+#endif
 
     q->setContextMenu(&menu);
     clipboardMenu.setMainWindow(q->mainWindow());
