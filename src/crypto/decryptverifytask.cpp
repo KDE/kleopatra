@@ -283,7 +283,7 @@ static QString formatSigningInformation(const Signature &sig)
     }
     text += i18n("With certificate:") + QStringLiteral("<br>") + renderKey(key);
 
-    if (DeVSCompliance::isCompliant()) {
+    if (DeVSCompliance::isCompliant() && ((sig.summary() & GpgME::Signature::Valid) || (sig.summary() & GpgME::Signature::Green))) {
         text += (QStringLiteral("<br/>")
                  + (sig.isDeVs() ? i18nc("%1 is a placeholder for the name of a compliance mode. E.g. NATO RESTRICTED compliant or VS-NfD compliant",
                                          "The signature is %1",
