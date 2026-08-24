@@ -12,6 +12,7 @@
 #ifndef QT_NO_SYSTEMTRAYICON
 
 #include "kleopatra_debug.h"
+#include <QApplication>
 #include <QEvent>
 #include <QPointer>
 #include <QTimer>
@@ -44,13 +45,6 @@ private:
             attentionAnimationTimer.stop();
             attentionIconShown = false;
             q->setIcon(normalIcon);
-        }
-    }
-
-    void slotActivated(ActivationReason reason)
-    {
-        if (reason == QSystemTrayIcon::Trigger) {
-            q->doActivated();
         }
     }
 
@@ -88,9 +82,20 @@ SystemTrayIcon::Private::Private(SystemTrayIcon *qq)
     attentionAnimationTimer.setSingleShot(false);
     attentionAnimationTimer.setInterval(1000 * ATTENTION_ANIMATION_FRAMES_PER_SEC / 2);
 
-    connect(q, &QSystemTrayIcon::activated, q, [this](QSystemTrayIcon::ActivationReason reason) {
-        slotActivated(reason);
+#ifdef Q_OS_MACOS
+    // activate when dock item is clicked; systray icon should show menu, only
+    connect(qApp, &QApplication::applicationStateChanged, q, [this](Qt::ApplicationState state) {
+        if (state == Qt::ApplicationActive && !qApp->focusWindow()) {
+            q->doActivated();
+        }
     });
+#else
+    connect(q, &QSystemTrayIcon::activated, q, [this](QSystemTrayIcon::ActivationReason reason) {
+        if (reason == QSystemTrayIcon::Trigger) {
+            q->doActivated();
+        }
+    });
+#endif
     connect(&attentionAnimationTimer, &QTimer::timeout, q, [this]() {
         slotAttentionAnimationTimerTimout();
     });
