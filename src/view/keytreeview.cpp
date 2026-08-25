@@ -155,6 +155,7 @@ void KeyTreeView::setColumnSizes(const std::vector<int> &sizes)
     if (auto const hv = static_cast<HeaderView *>(m_view->header())) {
         hv->setSectionSizes(sizes);
     }
+    m_onceResized = true;
 }
 
 void KeyTreeView::setSortColumn(int sortColumn, Qt::SortOrder sortOrder)
