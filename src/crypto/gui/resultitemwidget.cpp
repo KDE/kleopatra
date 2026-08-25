@@ -16,6 +16,7 @@
 #include "commands/lookupcertificatescommand.h"
 #include "crypto/decryptverifytask.h"
 #include "view/htmllabel.h"
+#include "view/infopopup.h"
 
 #include <Libkleo/ApplicationPaletteWatcher>
 #include <Libkleo/AuditLogEntry>
@@ -164,6 +165,26 @@ void ResultItemWidget::Private::updateStyleSheets()
     }
 }
 
+auto createInfoButton(const QString &text, QWidget *parent)
+{
+    auto button = new QPushButton{parent};
+    button->setFlat(true);
+    button->setIcon(QIcon::fromTheme(u"help-contextual"_s));
+    button->setAccessibleName(i18nc("@action:button Opens a popup with some explanations for the assessment of a signature", "Explain this result"));
+    button->setToolTip(i18nc("@info:tooltip Opens a popup with some explanations for the assessment of a signature", "Explain this result"));
+    // set a non-empty string as accessible description to prevent screen readers
+    // from reading the tool tip which isn't meant for screen readers
+    button->setAccessibleDescription(u" "_s);
+
+    QPointer<QWidget> parentHolder{parent};
+    QObject::connect(button, &QPushButton::clicked, button, [button, text, parentHolder]() {
+        const auto pos = button->mapToGlobal(QPoint{0, 0}) + QPoint(button->width(), 0);
+        Kleo::InfoPopup::showText(pos, text, parentHolder.get());
+    });
+
+    return button;
+}
+
 ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &result, ResultItemWidget *qq)
     : q(qq)
     , m_result(result)
@@ -237,6 +258,11 @@ ResultItemWidget::Private::Private(const std::shared_ptr<const Task::Result> &re
         });
 
         row->addWidget(detailsLabel, 1);
+
+        if (!detail.additionalInfo.isEmpty()) {
+            row->addWidget(createInfoButton(detail.additionalInfo, q));
+        }
+
         vlay->addWidget(frame);
     }
 
