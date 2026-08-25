@@ -603,13 +603,14 @@ static Task::Result::VisualCode codeForSignature(const Signature &signature)
 QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
 {
     QList<Task::Result::ResultListItem> details;
+    details.reserve(d->m_verificationResult.numSignatures());
     for (const Signature &sig : d->m_verificationResult.signatures()) {
-        const auto signerKey = KeyCache::instance()->findSigner(sig);
         const auto informativeMailAddress = QString::fromUtf8(d->m_informativeSender.address());
-        auto text = Kleo::Formatting::prettyDataSignature(sig, informativeMailAddress);
-        if (!informativeMailAddress.isEmpty() && !signerKey.isNull() && !keyContainsEmail(signerKey, informativeMailAddress)) {
+        const auto sigAssessment = Kleo::assessSignature(sig, informativeMailAddress);
+        auto text = Kleo::Formatting::prettyDataSignature(sigAssessment);
+        if (!informativeMailAddress.isEmpty() && !sigAssessment.key.isNull() && !keyContainsEmail(sigAssessment.key, informativeMailAddress)) {
             QString emailsList;
-            for (const auto &email : extractEmails(signerKey)) {
+            for (const auto &email : extractEmails(sigAssessment.key)) {
                 emailsList += "<li>"_L1 + email + "</li>"_L1;
             }
             text += "<br />"_L1
@@ -618,8 +619,15 @@ QList<Task::Result::ResultListItem> DecryptVerifyResult::detailsList() const
                         QString::fromLatin1(sig.key().primaryFingerprint()),
                         emailsList);
         }
+        QStringList explanations = Kleo::Formatting::explanationsForDataSignature(sigAssessment.status);
+        if (const QString guidance = Kleo::Formatting::guidanceForDataSignature(sigAssessment.status, parentTask()->protocol()); //
+            !guidance.isEmpty()) {
+            explanations.push_back(i18nc("@info What can be done: Some guidance", "What can be done: %1", guidance));
+        }
+        const QString additionalInfo = explanations.empty() ? QString{} : ("<p>"_L1 % explanations.join("</p><p>"_L1) % "</p>"_L1);
         details += Task::Result::ResultListItem{
             .details = text,
+            .additionalInfo = additionalInfo,
             .code = codeForSignature(sig),
         };
     }

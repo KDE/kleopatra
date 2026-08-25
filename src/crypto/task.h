@@ -121,6 +121,7 @@ public:
 
     struct ResultListItem {
         QString details;
+        QString additionalInfo;
         Task::Result::VisualCode code;
     };
 
