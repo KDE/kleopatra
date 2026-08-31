@@ -329,6 +329,11 @@ static bool IsGoodOrValid(const Signature &sig)
     return (sig.summary() & Signature::Valid) || (sig.summary() & Signature::Green);
 }
 
+static bool IsValid(const Signature &sig)
+{
+    return sig.summary() & Signature::Valid;
+}
+
 static UserID findUserIDByMailbox(const Key &key, const Mailbox &mbox)
 {
     const auto userIDs{key.userIDs()};
@@ -422,7 +427,7 @@ static Task::Result::VisualCode codeForVerificationResult(const VerificationResu
         return Task::Result::Danger;
     }
 
-    if ((size_t)std::count_if(sigs.begin(), sigs.end(), IsGoodOrValid) == sigs.size()) {
+    if ((size_t)std::count_if(sigs.begin(), sigs.end(), IsValid) == sigs.size()) {
         return Task::Result::AllGood;
     }
 
