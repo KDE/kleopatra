@@ -186,7 +186,7 @@ static QString signatureSummaryToString(int summary)
 {
     if (summary & Signature::None) {
         return i18n("Error: Signature not verified");
-    } else if (summary & Signature::Valid || summary & Signature::Green) {
+    } else if (summary & Signature::Valid) {
         return i18n("Good signature");
     } else if (summary & Signature::KeyRevoked) {
         return i18n("Signing certificate was revoked");
@@ -206,6 +206,8 @@ static QString signatureSummaryToString(int summary)
         return i18n("System error"); // ### retrieve system error details?
     } else if (summary & Signature::Red) {
         return i18n("Bad signature");
+    } else if (summary & Signature::Green) {
+        return i18n("Good signature");
     }
     return QString();
 }
