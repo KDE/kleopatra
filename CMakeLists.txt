@@ -46,6 +46,14 @@ endif()
 
 project(kleopatra VERSION ${kleopatra_version})
 
+option(USE_MOLD_LINKER "Use the mold linker when available (much faster link times)" ON)
+if(USE_MOLD_LINKER AND NOT DEFINED CMAKE_LINKER_TYPE)
+    find_program(MOLD_EXECUTABLE mold)
+    if(MOLD_EXECUTABLE)
+        set(CMAKE_LINKER_TYPE MOLD)
+    endif()
+endif()
+
 option(DISABLE_KWATCHGNUPG "Don't build the kwatchgnupg tool [default=OFF]" OFF)
 
 # Standalone build. Find / include everything necessary.
