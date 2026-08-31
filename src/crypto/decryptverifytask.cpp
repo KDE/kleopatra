@@ -465,6 +465,11 @@ static QString formatVerificationResultOverview(const VerificationResult &res, c
         return i18np("<b>The data could not be verified.</b>", "<b>%1 signatures could not be verified.</b>", warn);
     }
 
+    // not all good, e.g. if the S/MIME signing certificate has expired
+    if (!std::all_of(sigs.cbegin(), sigs.cend(), &IsValid)) {
+        return {};
+    }
+
     // Good signature:
     QString text;
     if (sigs.size() == 1) {
