@@ -327,8 +327,8 @@ public:
                 [addButton, this](const QItemSelection &, const QItemSelection &) {
                     addButton->setEnabled(ui.availableKeysList->selectedKeys().size() > 0);
                 });
-        connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
-            showKeyDetails(index);
+        connect(ui.availableKeysList->view(), &QAbstractItemView::doubleClicked, q, [this]() {
+            addKeysToGroup();
         });
         connect(ui.groupKeysFilter, &QLineEdit::textChanged, ui.groupKeysList, &KeyTreeView::setStringFilter);
         connect(ui.groupKeysList->view()->selectionModel(),
@@ -337,8 +337,8 @@ public:
                 [removeButton](const QItemSelection &selected, const QItemSelection &) {
                     removeButton->setEnabled(!selected.isEmpty());
                 });
-        connect(ui.groupKeysList->view(), &QAbstractItemView::doubleClicked, q, [this](const QModelIndex &index) {
-            showKeyDetails(index);
+        connect(ui.groupKeysList->view(), &QAbstractItemView::doubleClicked, q, [this]() {
+            removeKeysFromGroup();
         });
         connect(addButton, &QPushButton::clicked, q, [this]() {
             addKeysToGroup();
