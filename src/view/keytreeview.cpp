@@ -10,6 +10,8 @@
 #include "keytreeview.h"
 #include "searchbar.h"
 
+#include <commands/detailscommand.h>
+
 #include <Libkleo/KeyList>
 #include <Libkleo/KeyListModel>
 #include <Libkleo/KeyListSortFilterProxyModel>
@@ -47,6 +49,7 @@
 static int tagsColumn;
 
 using namespace Kleo;
+using namespace Kleo::Commands;
 using namespace GpgME;
 using namespace Qt::StringLiterals;
 
@@ -238,6 +241,19 @@ void KeyTreeView::init()
         connect(m_view, &KeyTreeView::customContextMenuRequested, this, [this](const auto &pos) {
             auto menu = new QMenu;
             menu->setAttribute(Qt::WA_DeleteOnClose, true);
+
+            const QModelIndex clickedIndex = m_view->indexAt(pos);
+            const auto key = clickedIndex.isValid() ? clickedIndex.data(KeyList::KeyRole).value<GpgME::Key>() : GpgME::Key{};
+
+            auto detailsAction = new QAction(QIcon::fromTheme(u"info"_s), i18nc("@action:inmenu", "Details"), menu);
+            detailsAction->setEnabled(!key.isNull());
+            connect(detailsAction, &QAction::triggered, this, [this, key]() {
+                DetailsCommand *const c = new DetailsCommand{key};
+                c->setParentWidget(this);
+                c->start();
+            });
+            menu->addAction(detailsAction);
+            menu->addSeparator();
             menu->addAction(m_view->copyCellContentsAction());
             menu->addSeparator();
             auto columnVisibilityAction = new QAction(QIcon::fromTheme(u"show_table_column"_s), i18nc("@action:inmenu", "Configure columns"), menu);
