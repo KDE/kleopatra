@@ -353,6 +353,11 @@ public:
             updateFromKeyCache();
         });
 
+        connect(qApp, &QApplication::focusChanged, q, [this, addButton, removeButton](QWidget *, QWidget *focusWidget) {
+            addButton->setDefault(focusWidget == ui.availableKeysList->view());
+            removeButton->setDefault(focusWidget == ui.groupKeysList->view());
+        });
+
         // calculate default size with enough space for the key list
         const auto fm = q->fontMetrics();
         const QSize sizeHint = q->sizeHint();
