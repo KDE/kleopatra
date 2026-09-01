@@ -110,7 +110,8 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
 
 DecryptVerifyFilesDialog::~DecryptVerifyFilesDialog()
 {
-    qCDebug(KLEOPATRA_LOG);
+    qCDebug(KLEOPATRA_LOG) << this << __func__;
+
     writeConfig();
 }
 
@@ -130,7 +131,7 @@ void DecryptVerifyFilesDialog::allDone()
     if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->button(m_saveButton)->setEnabled(true);
     } else {
-        m_buttonBox->removeButton(m_buttonBox->button(QDialogButtonBox::Close));
+        delete m_buttonBox->button(QDialogButtonBox::Close);
         m_buttonBox->addButton(QDialogButtonBox::Ok);
     }
 }
@@ -141,8 +142,8 @@ void DecryptVerifyFilesDialog::started(const std::shared_ptr<Task> &task)
     m_progressLabel->setText(task->label());
     if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->button(m_saveButton)->setEnabled(false);
-    } else if (m_buttonBox->button(QDialogButtonBox::Ok)) {
-        m_buttonBox->removeButton(m_buttonBox->button(QDialogButtonBox::Ok));
+    } else if (auto okBtn = m_buttonBox->button(QDialogButtonBox::Ok)) {
+        delete okBtn;
         m_buttonBox->addButton(QDialogButtonBox::Close);
     }
 }
