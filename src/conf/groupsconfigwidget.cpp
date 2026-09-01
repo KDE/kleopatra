@@ -26,6 +26,7 @@
 #include <KMessageBox>
 #include <KRandom>
 
+#include <QApplication>
 #include <QItemSelectionModel>
 #include <QLabel>
 #include <QLineEdit>
@@ -223,6 +224,9 @@ public:
         });
         connect(ui.exportButton, &QPushButton::clicked, q, [this]() {
             exportGroup();
+        });
+        connect(qApp, &QApplication::focusChanged, q, [this](QWidget *, QWidget *focusWidget) {
+            ui.editButton->setDefault(focusWidget == ui.groupsList);
         });
     }
 
