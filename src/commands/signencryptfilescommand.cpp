@@ -83,7 +83,10 @@ SignEncryptFilesCommand::Private::Private(SignEncryptFilesCommand *qq, KeyListCo
 
 SignEncryptFilesCommand::Private::~Private()
 {
-    qCDebug(KLEOPATRA_LOG) << q << __func__;
+    // we cannot use q_func() here because this is called from ~Command() when ~SignEncryptFilesCommand() already ran
+#undef q
+    qCDebug(KLEOPATRA_LOG) << "Kleo::Commands::SignEncryptFilesCommand::Private(" << (void *)q << ")" << __func__;
+#define q q_func()
 }
 
 SignEncryptFilesCommand::SignEncryptFilesCommand(KeyListController *c)
