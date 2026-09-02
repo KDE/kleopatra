@@ -263,7 +263,7 @@ public:
     }
     void finalize() override
     {
-        qCDebug(KLEOPATRA_LOG) << this;
+        qCDebug(KLEOPATRA_LOG) << "OutputImplBase(" << this << ")" << __func__;
         if (m_isFinalized || m_isFinalizing) {
             return;
         }
@@ -283,7 +283,7 @@ public:
 
     void cancel() override
     {
-        qCDebug(KLEOPATRA_LOG) << this;
+        qCDebug(KLEOPATRA_LOG) << "OutputImplBase(" << this << ")" << __func__;
         if (m_isFinalizing) {
             m_cancelPending = true;
         } else if (!m_canceled) {
@@ -403,7 +403,7 @@ public:
     explicit FileOutput(const QString &fileName, const std::shared_ptr<OverwritePolicy> &policy);
     ~FileOutput() override
     {
-        qCDebug(KLEOPATRA_LOG) << this;
+        qCDebug(KLEOPATRA_LOG) << "FileOutput(" << this << ")" << __func__;
     }
 
     QString label() const override
@@ -417,7 +417,7 @@ public:
     void doFinalize() override;
     void doCancel() override
     {
-        qCDebug(KLEOPATRA_LOG) << this;
+        qCDebug(KLEOPATRA_LOG) << "FileOutput(" << this << ")" << __func__;
     }
     QString fileName() const override
     {
@@ -619,7 +619,7 @@ OverwritePolicy::PolicyAndFileName OverwritePolicy::obtainOverwritePermission(co
 
 void FileOutput::doFinalize()
 {
-    qCDebug(KLEOPATRA_LOG) << this;
+    qCDebug(KLEOPATRA_LOG) << "FileOutput(" << this << ")" << __func__;
 
     struct Remover {
         QString file;

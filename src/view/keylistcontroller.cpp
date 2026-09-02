@@ -121,7 +121,7 @@ public:
 public:
     void slotDestroyed(QObject *o)
     {
-        qCDebug(KLEOPATRA_LOG) << (void *)o;
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << o;
         std::erase(views, o);
         std::erase(commands, o);
     }
@@ -792,7 +792,7 @@ void KeyListController::registerCommand(Command *cmd)
         return;
     }
     d->addCommand(cmd);
-    qCDebug(KLEOPATRA_LOG) << (void *)cmd;
+    qCDebug(KLEOPATRA_LOG) << this << __func__ << cmd;
     if (d->commands.size() == 1) {
         Q_EMIT commandsExecuting(true);
     }
@@ -890,7 +890,7 @@ void KeyListController::Private::slotCommandFinished()
     if (!cmd || !ranges::binary_search(commands, cmd)) {
         return;
     }
-    qCDebug(KLEOPATRA_LOG) << (void *)cmd;
+    qCDebug(KLEOPATRA_LOG) << q << __func__ << cmd;
     if (commands.size() == 1) {
         Q_EMIT q->commandsExecuting(false);
     }
