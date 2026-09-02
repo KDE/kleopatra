@@ -34,7 +34,18 @@ Q_SIGNALS:
     void progress(int current, int total, const QString &what);
 
 protected:
+    /*!
+     * Emits the error signal for last error if there was an error. Otherwise, emits the done signal.
+     */
     void emitDoneOrError();
+    /*!
+     * Emits the error signal for last error if there was an error and resets the last error.
+     */
+    void emitLastError();
+    /*!
+     * Emits the done signal.
+     */
+    void emitDone();
     void setLastError(int err, const QString &details);
     void connectTask(const std::shared_ptr<Task> &task);
 

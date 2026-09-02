@@ -72,12 +72,24 @@ void Controller::setLastError(int err, const QString &msg)
 void Controller::emitDoneOrError()
 {
     if (d->lastError) {
+        emitLastError();
+    } else {
+        emitDone();
+    }
+}
+
+void Controller::emitLastError()
+{
+    if (d->lastError) {
         Q_EMIT error(d->lastError, d->lastErrorString, QPrivateSignal{});
         d->lastError = 0;
         d->lastErrorString = QString();
-    } else {
-        Q_EMIT done(QPrivateSignal{});
     }
+}
+
+void Controller::emitDone()
+{
+    Q_EMIT done(QPrivateSignal{});
 }
 
 #include "moc_controller.cpp"
