@@ -115,9 +115,10 @@ SignEncryptFilesCommand::SignEncryptFilesCommand(const QStringList &files, QAbst
 void SignEncryptFilesCommand::Private::init()
 {
     controller.setExecutionContext(shared_qq);
-    connect(&controller, &Controller::done, q, [this]() {
+    const auto callSlotControllerDone = [this]() {
         slotControllerDone();
-    });
+    };
+    connect(&controller, &Controller::done, q, callSlotControllerDone, Qt::SingleShotConnection);
     connect(&controller, &Controller::error, q, [this](int err, const QString &details) {
         slotControllerError(err, details);
     });
