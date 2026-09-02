@@ -60,6 +60,7 @@ public:
 private:
     void slotWizardOperationPrepared();
     void slotWizardCanceled();
+    void slotWizardDestroyed();
 
 private:
     void ensureWizardCreated();
@@ -69,7 +70,8 @@ private:
     void reportError(int err, const QString &details)
     {
         q->setLastError(err, details);
-        q->emitDoneOrError();
+        q->emitLastError();
+        q->emitDone();
     }
 
     void schedule();
@@ -364,6 +366,11 @@ void SignEncryptFilesController::Private::slotWizardCanceled()
     qCDebug(KLEOPATRA_LOG) << q << __func__;
     q->cancel();
     reportError(gpg_error(GPG_ERR_CANCELED), i18n("User cancel"));
+}
+
+void SignEncryptFilesController::Private::slotWizardDestroyed()
+{
+    q->emitDone();
 }
 
 void SignEncryptFilesController::start()
@@ -728,7 +735,10 @@ void SignEncryptFilesController::Private::schedule()
 
     if (!cms && !openpgp) {
         kleo_assert(runnable.empty());
-        q->emitDoneOrError();
+        q->emitLastError();
+        if (!wizard) {
+            q->emitDone();
+        }
     }
 }
 
@@ -821,6 +831,10 @@ void SignEncryptFilesController::Private::ensureWizardCreated()
 
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);
     connect(w.get(), SIGNAL(rejected()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
+    const auto callSlotWizardDestroyed = [this]() {
+        slotWizardDestroyed();
+    };
+    connect(w.get(), &QObject::destroyed, q, callSlotWizardDestroyed, Qt::QueuedConnection);
     wizard = w.release();
 
     updateWizardMode();
