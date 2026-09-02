@@ -47,9 +47,9 @@ private:
     {
         finished();
     }
-    void slotControllerError(int, const QString &)
+    void slotControllerError(int err, const QString &s)
     {
-        finished();
+        qCDebug(KLEOPATRA_LOG) << q << __func__ << err << s;
     }
 
 private:
