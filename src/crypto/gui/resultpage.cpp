@@ -180,7 +180,7 @@ QLabel *ResultPage::Private::labelForTag(const QString &tag)
 
 bool ResultPage::isComplete() const
 {
-    return d->m_tasks ? d->m_tasks->allTasksCompleted() : true;
+    return d->m_tasks ? d->m_tasks->allTasksCompleted() : !d->m_progressBar->isVisible();
 }
 
 #include "moc_resultpage.cpp"
