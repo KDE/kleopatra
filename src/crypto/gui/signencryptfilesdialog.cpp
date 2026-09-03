@@ -560,21 +560,23 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     }
 
     mOkButton = buttons->addButton(i18nc("@action:button", "&Sign / Encrypt"), QDialogButtonBox::ActionRole);
-    QPointer<QPushButton> cancelButton = buttons->addButton(QDialogButtonBox::Cancel);
-    connect(cancelButton, &QPushButton::clicked, this, &QDialog::reject);
+    mCancelButton = buttons->addButton(KStandardGuiItem::cancel().text(), QDialogButtonBox::RejectRole);
+    connect(mCancelButton, &QPushButton::clicked, this, [this]() {
+        if ((mStackedLayout->currentIndex() == 1) && mResultPage->isComplete()) {
+            accept();
+        } else {
+            reject();
+        }
+    });
     connect(mOkButton, &QPushButton::clicked, this, [this]() {
         mSigEncPage->done();
     });
-    connect(mSigEncPage, &SigEncPage::finished, this, [this, title, cancelButton]() {
-        if (mStackedLayout->currentIndex() == 0) {
-            mStackedLayout->setCurrentIndex(1);
-            Q_EMIT operationPrepared();
-            title->setText(i18nc("@title:dialog", "Results"));
-            updateButtons();
-            delete cancelButton;
-        } else {
-            accept();
-        }
+    connect(mSigEncPage, &SigEncPage::finished, this, [this, title]() {
+        Q_ASSERT(mStackedLayout->currentIndex() == 0);
+        mStackedLayout->setCurrentIndex(1);
+        Q_EMIT operationPrepared();
+        title->setText(i18nc("@title:dialog", "Results"));
+        updateButtons();
     });
 
     connect(mSigEncPage, &SigEncPage::checkReady, this, &SignEncryptFilesDialog::updateButtons);
@@ -598,7 +600,11 @@ QString SignEncryptFilesDialog::buttonLabel() const
 
 void SignEncryptFilesDialog::updateButtons()
 {
-    mOkButton->setText((mStackedLayout->currentIndex() == 0) ? buttonLabel() : i18nc("@action:button", "Finish"));
+    mOkButton->setText(buttonLabel());
+    mOkButton->setVisible(mStackedLayout->currentIndex() == 0);
+    mCancelButton->setText(((mStackedLayout->currentIndex() == 1) && mResultPage->isComplete()) //
+                               ? KStandardGuiItem::close().text()
+                               : KStandardGuiItem::cancel().text());
     if (KleopatraApplication::showComplianceStatus()) {
         const bool unforcedCompliance = DeVSCompliance::isCompliant() && mSigEncPage->isDeVsAndValid();
         const bool de_vs = unforcedCompliance & !mForceNotCompliant;
