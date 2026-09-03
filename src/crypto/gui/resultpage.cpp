@@ -43,7 +43,7 @@ public:
     QProgressBar *m_progressBar;
     QHash<QString, QLabel *> m_progressLabelByTag;
     QVBoxLayout *m_progressLabelLayout;
-    int m_lastErrorItemIndex = 0;
+    bool m_hasErrors = false;
     ResultListWidget *m_resultList;
     QCheckBox *m_autoCloseCB;
 };
@@ -84,7 +84,8 @@ void ResultPage::Private::clearProgressLabels()
 void ResultPage::Private::allDone()
 {
     Q_ASSERT(m_tasks);
-    q->setAutoAdvance(m_autoCloseCB->isChecked() && !m_tasks->errorOccurred());
+    m_hasErrors = m_tasks->errorOccurred();
+    q->setAutoAdvance(m_autoCloseCB->isChecked() && !m_hasErrors);
     m_progressBar->setVisible(false);
     m_tasks.reset();
     clearProgressLabels();
@@ -163,6 +164,7 @@ void ResultPage::clearTaskCollection()
     d->clearProgressLabels();
     d->m_resultList->clearTaskCollections();
     d->m_tasks.reset();
+    d->m_hasErrors = false;
 }
 
 QLabel *ResultPage::Private::labelForTag(const QString &tag)
@@ -181,6 +183,11 @@ QLabel *ResultPage::Private::labelForTag(const QString &tag)
 bool ResultPage::isComplete() const
 {
     return d->m_tasks ? d->m_tasks->allTasksCompleted() : !d->m_progressBar->isVisible();
+}
+
+bool ResultPage::hasErrors() const
+{
+    return d->m_hasErrors;
 }
 
 #include "moc_resultpage.cpp"
