@@ -101,6 +101,7 @@ private:
     SigEncPage *mSigEncPage = nullptr;
     SignEncryptResultPage *mResultPage = nullptr;
     QPushButton *mOkButton = nullptr;
+    QPushButton *mCancelButton = nullptr;
     QPushButton *mComplianceLabelButton = nullptr;
     bool mSigningUserMutable = true;
     bool mEncryptionUserMutable = true;
