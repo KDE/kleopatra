@@ -13,4 +13,6 @@ class AboutData : public KAboutData
 {
 public:
     AboutData();
+
+    static QString standardShortDescription();
 };
