@@ -34,6 +34,7 @@ public:
     void clearTaskCollection();
 
     bool isComplete() const override;
+    bool hasErrors() const;
 
     bool keepOpenWhenDone() const;
     void setKeepOpenWhenDone(bool keep);
