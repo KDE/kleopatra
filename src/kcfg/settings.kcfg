@@ -5,8 +5,18 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <group name="CertificateCreationWizard">
    <entry key="CN_placeholder" name="cnPlaceholder" type="String">
-     <label>Placeholder for CN</label>
-     <whatsthis>This text will be used as placeholder text for the common name (CN) field of S/MIME certificates.</whatsthis>
+     <label>Placeholder for CN (deprecated use cnHint instead)</label>
+     <whatsthis>This text will be shown above the common name (CN) field of S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="CN_hint" name="cnHint" type="String">
+     <label>Hint for CN</label>
+     <whatsthis>This text will be shown above the common name (CN) field of S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="CN_label" name="cnLabel" type="String">
+     <label>Label for CN</label>
+     <whatsthis>This text will be the label of the common name (CN) field of S/MIME certification requests.</whatsthis>
      <default></default>
    </entry>
    <entry key="CN_prefill" name="prefillCN" type="Bool">
@@ -20,9 +30,24 @@
      <whatsthis>This setting specifies from which sources (and with what precedence) the common name (CN) field of newly generated S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the name of the desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName (Windows-only) uses the display name attribute (displayName) retrieved from the Active Directory server. ADFirstNameLastName (Windows-only) uses the first name (givenName) and last name (sn) attributes retrieved from the Active Directory server.</whatsthis>
      <default>KEMailSettings,ADFirstNameLastName,WinGetUserName,EnvEmail</default>
    </entry>
+   <entry key="CN_regex" name="cnRegex" type="String">
+     <label>Regex for CN</label>
+     <whatsthis>This text will be used as pattern validator for the common name (CN) field of S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
    <entry key="EMAIL_placeholder" name="emailPlaceholder" type="String">
+     <label>Hint for EMAIL (deprecated use emailHint instead)</label>
+     <whatsthis>This text will be shown above the email address field of OpenPGP certificates and S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="EMAIL_hint" name="emailHint" type="String">
      <label>Hint for EMAIL</label>
-     <whatsthis>This text will be shown above the email address field of OpenPGP certificates and as placeholder in that field for S/MIME certificates.</whatsthis>
+     <whatsthis>This text will be shown above the email address field of OpenPGP certificates and S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="EMAIL_label" name="emailLabel" type="String">
+     <label>Label for EMAIL</label>
+     <whatsthis>This text will be the label of the email address field of OpenPGP certificates and S/MIME certification requests.</whatsthis>
      <default></default>
    </entry>
    <entry key="EMAIL_prefill" name="prefillEmail" type="Bool">
@@ -36,13 +61,28 @@
      <whatsthis>This setting specifies from which sources (and with what precedence) the email address field of newly generated OpenPGP certificates and S/MIME certificate signing requests (CSR) shall be prefilled. KEMailSettings uses the email address of the desktop's email settings. WinGetUserName (Windows-only) uses the NameUserPrincipal value returned by GetUserNameEx. EnvEmail uses the email address of the EMAIL environment variable. ADMail (Windows-only) uses the mail attribute (mail) retrieved from the Active Directory server.</whatsthis>
      <default>KEMailSettings,ADMail,WinGetUserName,EnvEmail</default>
    </entry>
+   <entry key="EMAIL_regex" name="emailRegex" type="String">
+     <label>Regex for EMAIL</label>
+     <whatsthis>This text will be used as pattern validator for the address email field of OpenPGP certificates and S/MIME certification requests.</whatsthis>
+     <default></default>
+   </entry>
    <entry key="EMAIL" name="email" type="String">
      <label>Value of EMAIL</label>
      <whatsthis>Prefilled value for the email address field of OpenPGP and S/MIME certificates. This will override EMAIL_prefill. It is useful if no or unsuitable system settings are found for EMAIL_prefill.</whatsthis>
      <default></default>
    </entry>
    <entry key="NAME_placeholder" name="namePlaceholder" type="String">
+     <label>Hint for NAME (deprecated use NAME_hint instead)</label>
+     <whatsthis>This text will be shown above the name field of OpenPGP certificates.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="NAME_hint" name="nameHint" type="String">
      <label>Hint for NAME</label>
+     <whatsthis>This text will be shown above the name field of OpenPGP certificates.</whatsthis>
+     <default></default>
+   </entry>
+   <entry key="NAME_label" name="nameLabel" type="String">
+     <label>Label for NAME</label>
      <whatsthis>This text will be shown above the name field of OpenPGP certificates.</whatsthis>
      <default></default>
    </entry>
@@ -56,6 +96,11 @@
      <label>Sources for prefilling name</label>
      <whatsthis>This setting specifies from which sources (and with what precedence) the name field of newly generated OpenPGP certificates shall be prefilled. KEMailSettings uses the name of the desktop's email settings. WinGetUserName (Windows-only) uses the NameDisplay value returned by GetUserNameEx or the value returned by GetUserName. EnvEmail uses the name part of the EMAIL environment variable. ADDisplayName (Windows-only) uses the display name attribute (displayName) retrieved from the Active Directory server. ADFirstNameLastName (Windows-only) uses the first name (givenName) and last name (sn) attributes retrieved from the Active Directory server.</whatsthis>
      <default>KEMailSettings,ADFirstNameLastName,WinGetUserName,EnvEmail</default>
+   </entry>
+   <entry key="NAME_regex" name="nameRegex" type="String">
+     <label>Regex for NAME</label>
+     <whatsthis>This text will be used as pattern validator for the name field of OpenPGP certificates.</whatsthis>
+     <default></default>
    </entry>
    <entry key="NAME" name="name" type="String">
      <label>Value of NAME</label>
