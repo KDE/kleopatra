@@ -513,11 +513,6 @@ public:
         setTitle(i18nc("@title", "Results"));
         setSubTitle(i18nc("@title", "Status and progress of the crypto operations is shown here."));
         setKeepOpenWhenDone(Settings{}.showResultsAfterSignEncrypt());
-        connect(this, &SignEncryptResultPage::completeChanged, this, [this, parent]() {
-            if (autoAdvance()) {
-                parent->close();
-            }
-        });
         connect(parent, &QDialog::finished, this, [this]() {
             Settings settings;
             settings.setShowResultsAfterSignEncrypt(keepOpenWhenDone());
@@ -534,8 +529,6 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     setWindowTitle(i18nc("@title", "Sign / Encrypt Files"));
 
     mSigEncPage = new SigEncPage;
-    mResultPage = new SignEncryptResultPage(this);
-    mResultPage->setVisible(false);
     auto layout = new QVBoxLayout(this);
 
     auto title = new KTitleWidget;
@@ -544,7 +537,7 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
 
     mStackedLayout = new QStackedLayout;
     mStackedLayout->addWidget(mSigEncPage);
-    mStackedLayout->addWidget(mResultPage);
+    setUpResultPage();
     layout->addLayout(mStackedLayout);
 
     auto buttons = new QDialogButtonBox;
@@ -560,6 +553,8 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     }
 
     mOkButton = buttons->addButton(i18nc("@action:button", "&Sign / Encrypt"), QDialogButtonBox::ActionRole);
+    mRetryButton = buttons->addButton(i18nc("@action:button", "Retry"), QDialogButtonBox::ActionRole);
+    mRetryButton->hide();
     mCancelButton = buttons->addButton(KStandardGuiItem::cancel().text(), QDialogButtonBox::RejectRole);
     connect(mCancelButton, &QPushButton::clicked, this, [this]() {
         if ((mStackedLayout->currentIndex() == 1) && mResultPage->isComplete()) {
@@ -571,11 +566,19 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     connect(mOkButton, &QPushButton::clicked, this, [this]() {
         mSigEncPage->done();
     });
-    connect(mSigEncPage, &SigEncPage::finished, this, [this, title]() {
+    connect(mRetryButton, &QPushButton::clicked, this, [this]() {
+        mStackedLayout->setCurrentIndex(0);
+        delete mResultPage;
+        setUpResultPage();
+        Q_EMIT retryRequested();
+    });
+    connect(mSigEncPage, &SigEncPage::finished, this, [this]() {
         Q_ASSERT(mStackedLayout->currentIndex() == 0);
         mStackedLayout->setCurrentIndex(1);
         Q_EMIT operationPrepared();
-        title->setText(i18nc("@title:dialog", "Results"));
+    });
+    connect(mStackedLayout, &QStackedLayout::currentChanged, this, [this, title](int currentIndex) {
+        title->setText((currentIndex == 0) ? i18nc("@title:dialog", "Sign / Encrypt Files") : i18nc("@title:dialog", "Results"));
         updateButtons();
     });
 
@@ -583,6 +586,20 @@ SignEncryptFilesDialog::SignEncryptFilesDialog(QWidget *parent, Qt::WindowFlags 
     connect(&mAppPaletteWatcher, &ApplicationPaletteWatcher::paletteChanged, this, &SignEncryptFilesDialog::updateButtons);
 
     layout->addWidget(buttons);
+}
+
+void SignEncryptFilesDialog::setUpResultPage()
+{
+    Q_ASSERT(!mResultPage);
+    mResultPage = new SignEncryptResultPage(this);
+    mResultPage->setVisible(false);
+    mStackedLayout->addWidget(mResultPage);
+    connect(mResultPage, &SignEncryptResultPage::completeChanged, this, [this]() {
+        updateButtons();
+        if (mResultPage->autoAdvance()) {
+            close();
+        }
+    });
 }
 
 QString SignEncryptFilesDialog::buttonLabel() const
@@ -602,6 +619,7 @@ void SignEncryptFilesDialog::updateButtons()
 {
     mOkButton->setText(buttonLabel());
     mOkButton->setVisible(mStackedLayout->currentIndex() == 0);
+    mRetryButton->setVisible((mStackedLayout->currentIndex() == 1) && mResultPage->hasErrors());
     mCancelButton->setText(((mStackedLayout->currentIndex() == 1) && mResultPage->isComplete()) //
                                ? KStandardGuiItem::close().text()
                                : KStandardGuiItem::cancel().text());

@@ -59,6 +59,7 @@ public:
 
 private:
     void slotWizardOperationPrepared();
+    void slotWizardRetryRequested();
     void slotWizardCanceled();
     void slotWizardDestroyed();
 
@@ -719,6 +720,15 @@ void SignEncryptFilesController::Private::slotWizardOperationPrepared()
     }
 }
 
+void SignEncryptFilesController::Private::slotWizardRetryRequested()
+{
+    Q_ASSERT(!cms);
+    Q_ASSERT(!openpgp);
+    Q_ASSERT(runnable.empty());
+    completed.clear();
+    alwaysTrust = false;
+}
+
 void SignEncryptFilesController::Private::schedule()
 {
     if (!cms)
@@ -830,6 +840,9 @@ void SignEncryptFilesController::Private::ensureWizardCreated()
     w->setAttribute(Qt::WA_DeleteOnClose);
 
     connect(w.get(), SIGNAL(operationPrepared()), q, SLOT(slotWizardOperationPrepared()), Qt::QueuedConnection);
+    connect(w.get(), &SignEncryptFilesDialog::retryRequested, q, [this]() {
+        slotWizardRetryRequested();
+    });
     connect(w.get(), SIGNAL(rejected()), q, SLOT(slotWizardCanceled()), Qt::QueuedConnection);
     const auto callSlotWizardDestroyed = [this]() {
         slotWizardDestroyed();

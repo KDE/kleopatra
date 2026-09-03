@@ -16,6 +16,7 @@
 
 #include <QDialog>
 #include <QMap>
+#include <QPointer>
 
 #include <memory>
 
@@ -92,15 +93,18 @@ protected:
 
 Q_SIGNALS:
     void operationPrepared();
+    void retryRequested();
 
 private:
+    void setUpResultPage();
     void updateButtons();
 
     ApplicationPaletteWatcher mAppPaletteWatcher;
     QStackedLayout *mStackedLayout = nullptr;
     SigEncPage *mSigEncPage = nullptr;
-    SignEncryptResultPage *mResultPage = nullptr;
+    QPointer<SignEncryptResultPage> mResultPage = nullptr;
     QPushButton *mOkButton = nullptr;
+    QPushButton *mRetryButton = nullptr;
     QPushButton *mCancelButton = nullptr;
     QPushButton *mComplianceLabelButton = nullptr;
     bool mSigningUserMutable = true;
