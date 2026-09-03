@@ -12,6 +12,7 @@
 
 #include "kleopatraapplication.h"
 
+#include "aboutdata.h"
 #include "kleopatra_options.h"
 #include "mainwindow.h"
 #include "settings.h"
@@ -475,7 +476,9 @@ QString KleopatraApplication::newInstance(const QCommandLineParser &parser, cons
 
     // handle standard Qt options and KAboutData options
     if (parser.isSet(u"help"_s)) {
-        KMessageBox::information(nullptr, parser.helpText());
+        QString helpText = parser.helpText();
+        helpText.replace(KAboutData::applicationData().shortDescription(), AboutData::standardShortDescription());
+        KMessageBox::information(nullptr, helpText);
         return QString();
     }
     if (parser.isSet(u"help-all"_s)) {

@@ -155,7 +155,7 @@ AboutData::AboutData()
     : KAboutData(QStringLiteral("kleopatra"),
                  i18n("Kleopatra"),
                  QLatin1StringView(KLEOPATRA_VERSION_STRING),
-                 i18n("Certificate manager and cryptography app"),
+                 standardShortDescription(),
                  KAboutLicense::GPL,
                  i18nc("@info:credit", "\u00A9 2019-%1 g10 Code GmbH", QStringLiteral("2024")) + QLatin1Char('\n')
                      + i18nc("@info:credit", "\u00A9 2015-2018 Intevation GmbH") + QLatin1Char('\n')
@@ -179,9 +179,15 @@ AboutData::AboutData()
 #if KLEOPATRA_LIST_AS_COMPONENT
     const QLatin1StringView commitId{KLEOPATRA_COMMIT_ID};
     if (!commitId.isEmpty()) {
-        addComponent(i18n("Kleopatra"), i18n("Certificate manager and cryptography app"), commitId, u"https://apps.kde.org/kleopatra"_s, KAboutLicense::GPL);
+        addComponent(i18n("Kleopatra"), standardShortDescription(), commitId, u"https://apps.kde.org/kleopatra"_s, KAboutLicense::GPL);
     }
 #endif
 
     loadCustomAboutData(*this);
+}
+
+// static
+QString AboutData::standardShortDescription()
+{
+    return i18n("Certificate manager and cryptography app");
 }
