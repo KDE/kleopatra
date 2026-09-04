@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-09-02 00:44+0000\n"
+"POT-Creation-Date: 2026-09-04 00:46+0000\n"
 "PO-Revision-Date: 2020-04-01 23:02+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-doc@kde.org>\n"
@@ -173,13 +173,6 @@ msgstr ""
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp:158 src/aboutdata.cpp:182
-#, fuzzy, kde-format
-#| msgid "Certificate Manager and Unified Crypto GUI"
-msgid "Certificate manager and cryptography app"
-msgstr ""
-"Liudijimų tvarkytuvė ir jungtinė grafinė kriptografijos naudotojo sąsaja"
-
 #: src/aboutdata.cpp:160
 #, kde-format
 msgctxt "@info:credit"
@@ -210,6 +203,13 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "(c) 2010-2019 Kleopatra programuotojai"
+
+#: src/aboutdata.cpp:192
+#, fuzzy, kde-format
+#| msgid "Certificate Manager and Unified Crypto GUI"
+msgid "Certificate manager and cryptography app"
+msgstr ""
+"Liudijimų tvarkytuvė ir jungtinė grafinė kriptografijos naudotojo sąsaja"
 
 #: src/commands/addadskcommand.cpp:106
 #, fuzzy, kde-format
@@ -1133,7 +1133,7 @@ msgstr "\"gpgconf --reload gpg-agent\" patyrė nesėkmę: %1"
 #: src/commands/checksumverifyfilescommand.cpp:148
 #: src/commands/decryptverifyclipboardcommand.cpp:158
 #: src/commands/decryptverifyfilescommand.cpp:197
-#: src/commands/signencryptfilescommand.cpp:272
+#: src/commands/signencryptfilescommand.cpp:276
 #, kde-format
 msgid "An error occurred: %1"
 msgstr "Įvyko klaida: %1"
@@ -3258,7 +3258,7 @@ msgstr ""
 "para>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp:213
-#: src/kleopatraapplication.cpp:584
+#: src/kleopatraapplication.cpp:587
 #, fuzzy, kde-format
 msgid "You are not allowed to create S/MIME certificate signing requests."
 msgstr "Liudijimo informacija"
@@ -3821,12 +3821,12 @@ msgid ""
 "successfully as the primary user ID.</para>"
 msgstr ""
 
-#: src/commands/signencryptfilescommand.cpp:272
+#: src/commands/signencryptfilescommand.cpp:276
 #, kde-format
 msgid "Sign/Encrypt Files Error"
 msgstr ""
 
-#: src/commands/signencryptfilescommand.cpp:285
+#: src/commands/signencryptfilescommand.cpp:289
 #, kde-format
 msgid "Select One or More Files to Sign and/or Encrypt"
 msgstr ""
@@ -4063,7 +4063,7 @@ msgid "The preview of colors is disabled because high-contrast mode is active."
 msgstr ""
 
 #. i18n: ectx: label, entry (AttributeOrder), group (DN)
-#: src/conf/appearanceconfigwidget.cpp:513 src/kcfg/settings.kcfg:162
+#: src/conf/appearanceconfigwidget.cpp:513 src/kcfg/settings.kcfg:207
 #, kde-format
 msgid "DN-Attribute Order"
 msgstr ""
@@ -4527,7 +4527,7 @@ msgstr ""
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, intervalRefreshSB)
 #. i18n: ectx: whatsthis, entry (RefreshInterval), group (SMime Validation)
 #: src/conf/smimevalidationconfigurationwidget.ui:18
-#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:274
+#: src/conf/smimevalidationconfigurationwidget.ui:31 src/kcfg/settings.kcfg:319
 #, kde-format
 msgid ""
 "This option enables interval checking of certificate validity. You can also "
@@ -5468,7 +5468,7 @@ msgstr ""
 #: src/crypto/encryptemailcontroller.cpp:131
 #: src/crypto/newsignencryptemailcontroller.cpp:237
 #: src/crypto/signemailcontroller.cpp:148
-#: src/crypto/signencryptfilescontroller.cpp:366
+#: src/crypto/signencryptfilescontroller.cpp:369
 #, kde-format
 msgid "User cancel"
 msgstr ""
@@ -5660,19 +5660,19 @@ msgstr "%1: Visos operacijos užbaigtos."
 msgid "All operations completed."
 msgstr "Visos operacijos užbaigtos."
 
-#: src/crypto/gui/newresultpage.cpp:118 src/crypto/gui/resultpage.cpp:105
+#: src/crypto/gui/newresultpage.cpp:118 src/crypto/gui/resultpage.cpp:106
 #, kde-format
 msgctxt "number, operation description"
 msgid "Operation %1: %2"
 msgstr "Operacija %1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultpage.cpp:107
+#: src/crypto/gui/newresultpage.cpp:120 src/crypto/gui/resultpage.cpp:108
 #, kde-format
 msgctxt "tag( \"OpenPGP\" or \"CMS\"),  operation description"
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:115
+#: src/crypto/gui/newresultpage.cpp:128 src/crypto/gui/resultpage.cpp:116
 #, kde-format
 msgid "<b>Results</b>"
 msgstr ""
@@ -6188,13 +6188,14 @@ msgctxt "@title"
 msgid "Status and progress of the crypto operations is shown here."
 msgstr "Čia yra rodomi kriptografinių operacijų būsena ir eiga."
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:534
+#: src/crypto/gui/signencryptfilesdialog.cpp:529
 #, kde-format
 msgctxt "@title"
 msgid "Sign / Encrypt Files"
 msgstr "Pasirašyti / Šifruoti failus"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:542
+#: src/crypto/gui/signencryptfilesdialog.cpp:535
+#: src/crypto/gui/signencryptfilesdialog.cpp:581
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Sign / Encrypt Files"
@@ -6202,8 +6203,8 @@ msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
 msgstr "Pasirašyti / Šifruoti failus"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:562
-#: src/crypto/gui/signencryptfilesdialog.cpp:595
+#: src/crypto/gui/signencryptfilesdialog.cpp:555
+#: src/crypto/gui/signencryptfilesdialog.cpp:614
 #, fuzzy, kde-format
 #| msgctxt "@action"
 #| msgid "Sign / Encrypt"
@@ -6211,7 +6212,13 @@ msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Pasirašyti / Šifruoti"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:572
+#: src/crypto/gui/signencryptfilesdialog.cpp:556
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
+
+#: src/crypto/gui/signencryptfilesdialog.cpp:581
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Results"
@@ -6219,26 +6226,19 @@ msgctxt "@title:dialog"
 msgid "Results"
 msgstr "Rezultatai"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:590
+#: src/crypto/gui/signencryptfilesdialog.cpp:609
 #, fuzzy, kde-format
 #| msgid "Sign"
 msgctxt "@action:button"
 msgid "&Sign"
 msgstr "Pasirašyti"
 
-#: src/crypto/gui/signencryptfilesdialog.cpp:592
+#: src/crypto/gui/signencryptfilesdialog.cpp:611
 #, fuzzy, kde-format
 #| msgid "Encrypt"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Šifruoti"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp:601
-#: src/dialogs/signencryptclipboarddialog.cpp:184
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp:183
 #, fuzzy, kde-format
@@ -6575,50 +6575,50 @@ msgstr "Pasirašymas nepavyko: %1"
 msgid "Signing succeeded."
 msgstr "Pasirašymas pavyko."
 
-#: src/crypto/signencryptfilescontroller.cpp:118
+#: src/crypto/signencryptfilescontroller.cpp:121
 #, kde-format
 msgid "Archive and Sign Files"
 msgstr "Archyvuoti ir pasirašyti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:120
+#: src/crypto/signencryptfilescontroller.cpp:123
 #, kde-format
 msgid "Sign Files"
 msgstr "Pasirašyti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:126
+#: src/crypto/signencryptfilescontroller.cpp:129
 #, kde-format
 msgid "Archive and Encrypt Files"
 msgstr "Archyvuoti ir šifruoti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:128
+#: src/crypto/signencryptfilescontroller.cpp:131
 #, kde-format
 msgid "Encrypt Files"
 msgstr "Šifruoti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:133
+#: src/crypto/signencryptfilescontroller.cpp:136
 #, kde-format
 msgid "Archive and Sign/Encrypt Files"
 msgstr "Archyvuoti ir pasirašyti/šifruoti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:135
+#: src/crypto/signencryptfilescontroller.cpp:138
 #, kde-format
 msgid "Sign/Encrypt Files"
 msgstr "Pasirašyti/šifruoti failus"
 
-#: src/crypto/signencryptfilescontroller.cpp:276
+#: src/crypto/signencryptfilescontroller.cpp:279
 #, kde-format
 msgctxt "base name of an archive file, e.g. archive.zip or archive.tar.gz"
 msgid "archive"
 msgstr "archyvas"
 
-#: src/crypto/signencryptfilescontroller.cpp:709
+#: src/crypto/signencryptfilescontroller.cpp:717
 #, kde-format
 msgid ""
 "Caught unexpected exception in SignEncryptFilesController::Private::"
 "slotWizardOperationPrepared: %1"
 msgstr ""
 
-#: src/crypto/signencryptfilescontroller.cpp:711
+#: src/crypto/signencryptfilescontroller.cpp:719
 #, kde-format
 msgid ""
 "Caught unknown exception in SignEncryptFilesController::Private::"
@@ -8962,6 +8962,12 @@ msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Šifravimas"
 
+#: src/dialogs/signencryptclipboarddialog.cpp:184
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
+
 #: src/dialogs/signencryptclipboarddialog.cpp:196
 #, fuzzy, kde-format
 #| msgid ""
@@ -9521,25 +9527,46 @@ msgstr "Liudijimo informacija"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:8
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Placeholder for CN (deprecated use cnHint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:9
-#, kde-format
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:9 src/kcfg/settings.kcfg:14
+#, fuzzy, kde-format
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Liudijimo informacija"
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:13
+#, kde-format
+msgid "Hint for CN"
 msgstr ""
 
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:18
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:19
+#, fuzzy, kde-format
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Liudijimo informacija"
+
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:13
+#: src/kcfg/settings.kcfg:23
 #, kde-format
 msgid "Prefill CN automatically"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillCN), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:15
+#: src/kcfg/settings.kcfg:25
 #, kde-format
 msgid ""
 "If true, then the common name (CN) field of S/MIME certificates will be "
@@ -9549,13 +9576,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillSourcesCN), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:19
+#: src/kcfg/settings.kcfg:29
 #, kde-format
 msgid "Sources for prefilling CN"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesCN), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:20
+#: src/kcfg/settings.kcfg:30
 #, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
@@ -9570,28 +9597,63 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:34
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:35
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:24
+#: src/kcfg/settings.kcfg:39
+#, kde-format
+msgid "Hint for EMAIL (deprecated use emailHint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:40 src/kcfg/settings.kcfg:45
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:44
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:25
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:49
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:50
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:29
+#: src/kcfg/settings.kcfg:54
 #, kde-format
 msgid "Prefill EMAIL automatically"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillEmail), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:31
+#: src/kcfg/settings.kcfg:56
 #, kde-format
 msgid ""
 "If true, then the email address field of OpenPGP and S/MIME certificates "
@@ -9601,13 +9663,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillSourcesEmail), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:35
+#: src/kcfg/settings.kcfg:60
 #, kde-format
 msgid "Sources for prefilling email"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesEmail), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:36
+#: src/kcfg/settings.kcfg:61
 #, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
@@ -9620,14 +9682,28 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:65
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:66
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:40
+#: src/kcfg/settings.kcfg:70
 #, kde-format
 msgid "Value of EMAIL"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (email), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:41
+#: src/kcfg/settings.kcfg:71
 #, kde-format
 msgid ""
 "Prefilled value for the email address field of OpenPGP and S/MIME "
@@ -9636,25 +9712,40 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:45
+#: src/kcfg/settings.kcfg:75
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:46
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:76 src/kcfg/settings.kcfg:81
+#: src/kcfg/settings.kcfg:86
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
 
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:80
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:85
+#, kde-format
+msgid "Label for NAME"
+msgstr ""
+
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:50
+#: src/kcfg/settings.kcfg:90
 #, kde-format
 msgid "Prefill NAME automatically"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:52
+#: src/kcfg/settings.kcfg:92
 #, kde-format
 msgid ""
 "If true, then the name field of OpenPGP certificates will be prefilled with "
@@ -9664,13 +9755,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillSourcesName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:56
+#: src/kcfg/settings.kcfg:96
 #, kde-format
 msgid "Sources for prefilling name"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (prefillSourcesName), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:57
+#: src/kcfg/settings.kcfg:97
 #, kde-format
 msgid ""
 "This setting specifies from which sources (and with what precedence) the "
@@ -9684,14 +9775,28 @@ msgid ""
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:101
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg:102
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
+msgstr ""
+
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:61
+#: src/kcfg/settings.kcfg:106
 #, kde-format
 msgid "Value of NAME"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (name), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:62
+#: src/kcfg/settings.kcfg:107
 #, kde-format
 msgid ""
 "Prefilled value for the name field of OpenPGP certificates. This will "
@@ -9700,13 +9805,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:66
+#: src/kcfg/settings.kcfg:111
 #, kde-format
 msgid "Default validity period"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:67
+#: src/kcfg/settings.kcfg:112
 #, kde-format
 msgid ""
 "Specifies the default validity period of new or extended OpenPGP keys in "
@@ -9714,7 +9819,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:68
+#: src/kcfg/settings.kcfg:113
 #, kde-format
 msgid ""
 "This setting specifies how many days an OpenPGP key will be valid by default "
@@ -9726,13 +9831,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:72
+#: src/kcfg/settings.kcfg:117
 #, kde-format
 msgid "Minimum validity period"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:73
+#: src/kcfg/settings.kcfg:118
 #, kde-format
 msgid ""
 "Specifies the minimum allowed validity period of new or extended OpenPGP "
@@ -9740,7 +9845,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:74
+#: src/kcfg/settings.kcfg:119
 #, kde-format
 msgid ""
 "This setting specifies the minimum number of days a user can choose for the "
@@ -9749,13 +9854,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:78
+#: src/kcfg/settings.kcfg:123
 #, kde-format
 msgid "Maximum validity period"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:79
+#: src/kcfg/settings.kcfg:124
 #, kde-format
 msgid ""
 "Specifies the maximum allowed validity period of new or extended OpenPGP "
@@ -9763,7 +9868,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:80
+#: src/kcfg/settings.kcfg:125
 #, kde-format
 msgid ""
 "This setting specifies the maximum number of days a user can choose for the "
@@ -9773,33 +9878,33 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:84
+#: src/kcfg/settings.kcfg:129
 #, fuzzy, kde-format
 #| msgid "Advanced Settings"
 msgid "Hide advanced settings"
 msgstr "Išplėstinės nuostatos"
 
 #. i18n: ectx: whatsthis, entry, group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg:85
+#: src/kcfg/settings.kcfg:130
 #, kde-format
 msgid ""
 "If true, hides the advanced settings button in the new certificate wizard."
 msgstr ""
 
 #. i18n: ectx: label, entry, group (Certification)
-#: src/kcfg/settings.kcfg:91
+#: src/kcfg/settings.kcfg:136
 #, fuzzy, kde-format
 msgid "Default certification validity"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: tooltip, entry, group (Certification)
-#: src/kcfg/settings.kcfg:92
+#: src/kcfg/settings.kcfg:137
 #, kde-format
 msgid "Specifies the default validity of certifications in days."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (Certification)
-#: src/kcfg/settings.kcfg:93
+#: src/kcfg/settings.kcfg:138
 #, kde-format
 msgid ""
 "This setting specifies how many days a certification is valid by default, "
@@ -9808,32 +9913,32 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ChecksumDefinitionId), group (ChecksumOperations)
-#: src/kcfg/settings.kcfg:99
+#: src/kcfg/settings.kcfg:144
 #, kde-format
 msgid "Checksum program to use when creating checksum files"
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:105
+#: src/kcfg/settings.kcfg:150
 #, kde-format
 msgid "Show results after signing"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterSigningClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:106
+#: src/kcfg/settings.kcfg:151
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully signing the clipboard."
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:110
+#: src/kcfg/settings.kcfg:155
 #, kde-format
 msgid "Show results after encryption"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ShowResultsAfterEncryptingClipboard), group (Clipboard)
-#: src/kcfg/settings.kcfg:111
+#: src/kcfg/settings.kcfg:156
 #, kde-format
 msgid ""
 "If true, then the results are shown after successfully encrypting the "
@@ -9841,20 +9946,20 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:117
+#: src/kcfg/settings.kcfg:162
 #, fuzzy, kde-format
 #| msgid "S/MIME"
 msgid "Enable S/MIME"
 msgstr "S/MIME"
 
 #. i18n: ectx: tooltip, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:118
+#: src/kcfg/settings.kcfg:163
 #, kde-format
 msgid "Enables support for S/MIME (CMS)."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cmsEnabled), group (CMS)
-#: src/kcfg/settings.kcfg:119
+#: src/kcfg/settings.kcfg:164
 #, kde-format
 msgid ""
 "If false, then Kleopatra's main UI will not offer any functionality related "
@@ -9862,20 +9967,20 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:123
+#: src/kcfg/settings.kcfg:168
 #, fuzzy, kde-format
 #| msgid "S/MIME Certificates"
 msgid "Allow S/MIME certificate creation"
 msgstr "S/MIME liudijimai"
 
 #. i18n: ectx: tooltip, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:124
+#: src/kcfg/settings.kcfg:169
 #, fuzzy, kde-format
 msgid "Allows the creation of S/MIME certificate signing requests."
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: whatsthis, entry (cmsCertificateCreationAllowed), group (CMS)
-#: src/kcfg/settings.kcfg:125
+#: src/kcfg/settings.kcfg:170
 #, fuzzy, kde-format
 msgid ""
 "If false, then Kleopatra will not offer the creation of S/MIME certificate "
@@ -9883,13 +9988,13 @@ msgid ""
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: label, entry, group (CMS)
-#: src/kcfg/settings.kcfg:129
+#: src/kcfg/settings.kcfg:174
 #, kde-format
 msgid "Save generated CSR as PEM"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry, group (CMS)
-#: src/kcfg/settings.kcfg:130
+#: src/kcfg/settings.kcfg:175
 #, kde-format
 msgid ""
 "If true then the generated S/MIME certificate signing request will be saved "
@@ -9897,58 +10002,58 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowAppearanceConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:136
+#: src/kcfg/settings.kcfg:181
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "Show appearance configuration"
 msgstr "Rodyti informaciją apie savininką"
 
 #. i18n: ectx: label, entry (ShowCryptoOperationsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:140
+#: src/kcfg/settings.kcfg:185
 #, fuzzy, kde-format
 msgid "Show crypto operations configuration"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: label, entry (ShowDirectoryServicesConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:144
+#: src/kcfg/settings.kcfg:189
 #, kde-format
 msgid "Show directory services configuration"
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowGnuPGSystemConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:148
+#: src/kcfg/settings.kcfg:193
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "Show GnuPG system configuration"
 msgstr "Rodyti informaciją apie savininką"
 
 #. i18n: ectx: label, entry (ShowSmartCardsConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:152
+#: src/kcfg/settings.kcfg:197
 #, fuzzy, kde-format
 #| msgid "Show owner information"
 msgid "Show smart cards configuration"
 msgstr "Rodyti informaciją apie savininką"
 
 #. i18n: ectx: label, entry (ShowSMimeValidationConfiguration), group (ConfigurationDialog)
-#: src/kcfg/settings.kcfg:156
+#: src/kcfg/settings.kcfg:201
 #, kde-format
 msgid "Show S/MIME validation configuration"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (AttributeOrder), group (DN)
-#: src/kcfg/settings.kcfg:163
+#: src/kcfg/settings.kcfg:208
 #, kde-format
 msgid "Specifies the display order of the DN attributes of X.509 certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (AllowPublicKeyUpload), group (Export)
-#: src/kcfg/settings.kcfg:169
+#: src/kcfg/settings.kcfg:214
 #, kde-format
 msgid "Allow upload of public keys to keyservers"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (AllowPublicKeyUpload), group (Export)
-#: src/kcfg/settings.kcfg:170
+#: src/kcfg/settings.kcfg:215
 #, kde-format
 msgid ""
 "If this option is disabled then Kleopatra only allows the upload of OpenPGP "
@@ -9956,27 +10061,27 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:176
+#: src/kcfg/settings.kcfg:221
 #, kde-format
 msgid "Use pgp as the default extension for generated OpenPGP files"
 msgstr ""
 "Naudoti pgp kaip numatytąjį plėtinį, skirtą sugeneruotiems OpenPGP failams"
 
 #. i18n: ectx: whatsthis, entry (UsePGPFileExt), group (FileOperations)
-#: src/kcfg/settings.kcfg:177
+#: src/kcfg/settings.kcfg:222
 #, kde-format
 msgid ""
 "Set this to make kleopatra default to pgp file extensions for OpenPGP files."
 msgstr ""
 
 #. i18n: ectx: label, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:181
+#: src/kcfg/settings.kcfg:226
 #, kde-format
 msgid "Automatically extract archives after decryption."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (AutoExtractArchives), group (FileOperations)
-#: src/kcfg/settings.kcfg:182
+#: src/kcfg/settings.kcfg:227
 #, kde-format
 msgid ""
 "If this option is set, then Kleopatra automatically extracts file archives "
@@ -9984,13 +10089,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:186
+#: src/kcfg/settings.kcfg:231
 #, kde-format
 msgid "Use this command to create file archives."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (ArchiveCommand), group (FileOperations)
-#: src/kcfg/settings.kcfg:187
+#: src/kcfg/settings.kcfg:232
 #, kde-format
 msgid ""
 "When encrypting multiple files or a folder Kleopatra creates an encrypted "
@@ -9998,13 +10103,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:191
+#: src/kcfg/settings.kcfg:236
 #, kde-format
 msgid "Create signed or encrypted files as text files."
 msgstr "Sukurti pasirašytus ar šifruotus failus kaip tekstinius failus."
 
 #. i18n: ectx: whatsthis, entry (AddASCIIArmor), group (FileOperations)
-#: src/kcfg/settings.kcfg:192
+#: src/kcfg/settings.kcfg:237
 #, kde-format
 msgid ""
 "Set this option to encode encrypted or signed files as base64 encoded text. "
@@ -10013,69 +10118,69 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:196
+#: src/kcfg/settings.kcfg:241
 #, kde-format
 msgid "Create temporary decrypted files in the folder of the encrypted file."
 msgstr "Sukurti laikinai iššifruotus failus šifruoto failo aplanke."
 
 #. i18n: ectx: whatsthis, entry (DontUseTmpDir), group (FileOperations)
-#: src/kcfg/settings.kcfg:197
+#: src/kcfg/settings.kcfg:242
 #, kde-format
 msgid "Set this option to avoid using the users temporary directory."
 msgstr ""
 
 #. i18n: ectx: label, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:201
+#: src/kcfg/settings.kcfg:246
 #, kde-format
 msgid "Use symmetric encryption only."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (SymmetricEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:202
+#: src/kcfg/settings.kcfg:247
 #, kde-format
 msgid "Set this option to disable public key encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:206
+#: src/kcfg/settings.kcfg:251
 #, fuzzy, kde-format
 #| msgid "Save backup of encryption key"
 msgid "Use public key encryption only."
 msgstr "Įrašyti atsarginę šifravimo rakto kopiją"
 
 #. i18n: ectx: whatsthis, entry (PublicKeyEncryptionOnly), group (FileOperations)
-#: src/kcfg/settings.kcfg:207
+#: src/kcfg/settings.kcfg:252
 #, kde-format
 msgid "Set this option to disable password-based encryption."
 msgstr ""
 
 #. i18n: ectx: label, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:213
+#: src/kcfg/settings.kcfg:258
 #, fuzzy, kde-format
 #| msgid "Show Details"
 msgid "Enable Groups"
 msgstr "Rodyti išsamiau"
 
 #. i18n: ectx: tooltip, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:214
+#: src/kcfg/settings.kcfg:259
 #, kde-format
 msgid "Enable usage of groups of keys."
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (GroupsEnabled), group (Groups)
-#: src/kcfg/settings.kcfg:215
+#: src/kcfg/settings.kcfg:260
 #, kde-format
 msgid "Enable usage of groups of keys to create lists of recipients."
 msgstr ""
 
 #. i18n: ectx: label, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:221
+#: src/kcfg/settings.kcfg:266
 #, kde-format
 msgid "Retrieve signer keys after import"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (RetrieveSignerKeysAfterImport), group (Import)
-#: src/kcfg/settings.kcfg:224
+#: src/kcfg/settings.kcfg:269
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will automatically try to retrieve the keys\n"
@@ -10085,13 +10190,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:228
+#: src/kcfg/settings.kcfg:273
 #, kde-format
 msgid "Query certificate directories of providers for all user IDs"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (QueryWKDsForAllUserIDs), group (Import)
-#: src/kcfg/settings.kcfg:231
+#: src/kcfg/settings.kcfg:276
 #, kde-format
 msgid ""
 "By default, Kleopatra only queries the certificate directories of providers "
@@ -10103,13 +10208,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:237
+#: src/kcfg/settings.kcfg:282
 #, fuzzy, kde-format
 msgid "Notify about upcoming certificate expiration"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: whatsthis, entry (ShowExpiryNotifications), group (Notifications)
-#: src/kcfg/settings.kcfg:239
+#: src/kcfg/settings.kcfg:284
 #, kde-format
 msgid ""
 "If enabled, then Kleopatra will show notifications in some place when using\n"
@@ -10117,13 +10222,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:245
+#: src/kcfg/settings.kcfg:290
 #, kde-format
 msgid "URL schemes to block"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (BlockedUrlSchemes), group (Privacy)
-#: src/kcfg/settings.kcfg:247
+#: src/kcfg/settings.kcfg:292
 #, kde-format
 msgid ""
 "This is a list of URL schemes that shall be blocked by the application.\n"
@@ -10132,14 +10237,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:253
+#: src/kcfg/settings.kcfg:298
 #, fuzzy, kde-format
 #| msgid "Search for a certificate on a keyserver"
 msgid "Always search smartcard certificates on keyserver"
 msgstr "Ieškoti liudijimo raktų serveryje"
 
 #. i18n: ectx: tooltip, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:254
+#: src/kcfg/settings.kcfg:299
 #, fuzzy, kde-format
 #| msgid "Search for certificates online using a public keyserver"
 msgid ""
@@ -10148,7 +10253,7 @@ msgid ""
 msgstr "Ieškoti liudijimų internete naudojant viešąjį raktų serverį"
 
 #. i18n: ectx: whatsthis, entry (AlwaysSearchCardOnKeyserver), group (Smartcard)
-#: src/kcfg/settings.kcfg:256
+#: src/kcfg/settings.kcfg:301
 #, kde-format
 msgid ""
 "Searches on keyservers regardless of the protocol for the smartcards key, "
@@ -10158,19 +10263,19 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:260
+#: src/kcfg/settings.kcfg:305
 #, kde-format
 msgid "Try to load S/MIME certificates from PKCS#15 smartcards"
 msgstr ""
 
 #. i18n: ectx: tooltip, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:261
+#: src/kcfg/settings.kcfg:306
 #, kde-format
 msgid "Automatically load S/MIME certificates from PKCS#15 (CardOS) smartcards"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (autoLoadP15Certs), group (Smartcard)
-#: src/kcfg/settings.kcfg:262
+#: src/kcfg/settings.kcfg:307
 #, kde-format
 msgid ""
 "If true, then Kleopatra will call gpgsm --learn if a PKCS#15 Smartcard is "
@@ -10179,13 +10284,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
-#: src/kcfg/settings.kcfg:266
+#: src/kcfg/settings.kcfg:311
 #, kde-format
 msgid "Offer backup of subkey after copying subkey to smartcard"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
-#: src/kcfg/settings.kcfg:267
+#: src/kcfg/settings.kcfg:312
 #, kde-format
 msgid ""
 "If true then Kleopatra will show a \"Create backup\" button after a subkey "
@@ -10193,46 +10298,46 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
-#: src/kcfg/settings.kcfg:273
+#: src/kcfg/settings.kcfg:318
 #, kde-format
 msgid "Certificate refresh interval (in hours). Zero (0) disables."
 msgstr ""
 "Liudijimų įkėlimo iš naujo intervalas (valandomis). Nulis (0) išjungia."
 
 #. i18n: ectx: label, entry (ProfilesDisabled), group (General)
-#: src/kcfg/settings.kcfg:281
+#: src/kcfg/settings.kcfg:326
 #, kde-format
 msgid "Disable profile settings"
 msgstr ""
 
 #. i18n: ectx: label, entry (AllowCustomDebugCommands), group (General)
-#: src/kcfg/settings.kcfg:285
+#: src/kcfg/settings.kcfg:330
 #, kde-format
 msgid "Allow custom debug commands"
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowResultsAfterSignEncrypt), group (General)
-#: src/kcfg/settings.kcfg:289
+#: src/kcfg/settings.kcfg:334
 #, fuzzy, kde-format
 #| msgid "Signing and encryption succeeded."
 msgid "Show results after signing and encrypting files"
 msgstr "Pasirašymas ir šifravimas pavyko."
 
 #. i18n: ectx: label, entry (RestoreSignEncryptValues), group (General)
-#: src/kcfg/settings.kcfg:293
+#: src/kcfg/settings.kcfg:338
 #, fuzzy, kde-format
 #| msgid "The signed and encrypted file."
 msgid "Use last-used values for the sign/encrypt configuration"
 msgstr "Pasirašytas ir šifruotas failas."
 
 #. i18n: ectx: label, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:299
+#: src/kcfg/settings.kcfg:344
 #, fuzzy, kde-format
 msgid "Show certificate validity"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: whatsthis, entry (ShowValidity), group (Tooltip)
-#: src/kcfg/settings.kcfg:300
+#: src/kcfg/settings.kcfg:345
 #, kde-format
 msgid ""
 "Show validity information for certificates in tooltip, such as whether the "
@@ -10240,13 +10345,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:304
+#: src/kcfg/settings.kcfg:349
 #, fuzzy, kde-format
 msgid "Show certificate owner information"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: whatsthis, entry (ShowOwnerInformation), group (Tooltip)
-#: src/kcfg/settings.kcfg:305
+#: src/kcfg/settings.kcfg:350
 #, kde-format
 msgid ""
 "Show owner information for certificates in tooltip, such as User IDs, "
@@ -10254,13 +10359,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:309
+#: src/kcfg/settings.kcfg:354
 #, fuzzy, kde-format
 msgid "Show certificate details"
 msgstr "Liudijimo informacija"
 
 #. i18n: ectx: whatsthis, entry (ShowCertificateDetails), group (Tooltip)
-#: src/kcfg/settings.kcfg:310
+#: src/kcfg/settings.kcfg:355
 #, kde-format
 msgid ""
 "Show more certificate details, such as fingerprint, key length and "
@@ -10268,13 +10373,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (WelcomeText), group (Welcome)
-#: src/kcfg/settings.kcfg:316
+#: src/kcfg/settings.kcfg:361
 #, kde-format
 msgid "Custom Welcome text"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (WelcomeText), group (Welcome)
-#: src/kcfg/settings.kcfg:317
+#: src/kcfg/settings.kcfg:362
 #, kde-format
 msgid ""
 "This text is shown on the Welcome page replacing most of the standard text."
@@ -10478,14 +10583,14 @@ msgctxt "@info:shell"
 msgid "String or Fingerprint for query and search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:464
+#: src/kleopatraapplication.cpp:465
 #, fuzzy, kde-format
 #| msgid "Failed to execute command"
 msgctxt "@title:window"
 msgid "Failed to execute command"
 msgstr "Nepavyko įvykdyti komandos"
 
-#: src/kleopatraapplication.cpp:485
+#: src/kleopatraapplication.cpp:488
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -10493,42 +10598,42 @@ msgid ""
 "application> is not already running."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:522
+#: src/kleopatraapplication.cpp:525
 #, kde-format
 msgid "Ambiguous protocol: --openpgp and --cms"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:556
+#: src/kleopatraapplication.cpp:559
 #, kde-format
 msgid "No search string specified for --search"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:567
+#: src/kleopatraapplication.cpp:570
 #, kde-format
 msgid "No fingerprint argument specified for --query"
 msgstr ""
 
-#: src/kleopatraapplication.cpp:628
+#: src/kleopatraapplication.cpp:631
 #, kde-format
 msgid "Ambiguous commands \"%1\" and \"%2\""
 msgstr ""
 
-#: src/kleopatraapplication.cpp:635
+#: src/kleopatraapplication.cpp:638
 #, kde-format
 msgid "No files specified for \"%1\" command"
 msgstr "Komandai \"%1\" nėra nurodyti jokie failai"
 
-#: src/kleopatraapplication.cpp:649
+#: src/kleopatraapplication.cpp:652
 #, kde-format
 msgid "Cannot read \"%1\""
 msgstr "Nepavyksta perskaityti \"%1\""
 
-#: src/kleopatraapplication.cpp:928
+#: src/kleopatraapplication.cpp:931
 #, kde-format
 msgid "Opening an external link is administratively prohibited."
 msgstr ""
 
-#: src/kleopatraapplication.cpp:928
+#: src/kleopatraapplication.cpp:931
 #, kde-format
 msgctxt "@title:window"
 msgid "Prohibited"
