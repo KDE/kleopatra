@@ -99,6 +99,13 @@ void ResultListWidget::Private::allTasksDone()
     if (!q->isComplete()) {
         return;
     }
+    // focus the first result item widget
+    if (const auto scrollAreaLayout = qobject_cast<QBoxLayout *>(m_scrollArea->widget()->layout()); //
+        scrollAreaLayout && (scrollAreaLayout->count() > 0)) {
+        if (const auto wid = qobject_cast<ResultItemWidget *>(scrollAreaLayout->itemAt(0)->widget())) {
+            wid->setFocus();
+        }
+    }
     Q_EMIT q->completeChanged();
 }
 
