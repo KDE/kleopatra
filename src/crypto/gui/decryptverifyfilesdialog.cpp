@@ -98,7 +98,7 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
         m_buttonBox->addButton(QDialogButtonBox::Close);
         connect(m_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     }
-    if (m_saveButton) {
+    if (m_saveButton != QDialogButtonBox::NoButton) {
         m_buttonBox->addButton(m_saveButton);
         m_buttonBox->button(m_saveButton)->setEnabled(false);
     }
