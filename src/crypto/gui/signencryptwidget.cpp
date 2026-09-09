@@ -453,7 +453,7 @@ CertificateLineEdit *SignEncryptWidget::Private::insertRecipientWidget(Certifica
         Kleo::forceSetTabOrder(prevWidget, recipient.edit);
         Kleo::forceSetTabOrder(recipient.edit, recipient.expiryMessage);
     } else {
-        Kleo::forceSetTabOrder(mEncryptToSelfKeyExpiryMessage, recipient.edit);
+        Kleo::forceSetTabOrder(mEncOtherChk, recipient.edit);
         Kleo::forceSetTabOrder(recipient.edit, recipient.expiryMessage);
     }
     Kleo::forceSetTabOrder(recipient.expiryMessage, mSymmetric);
