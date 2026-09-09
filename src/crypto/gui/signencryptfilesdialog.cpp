@@ -141,6 +141,7 @@ public:
         auto mainLayout = new QVBoxLayout(this);
         mainLayout->setContentsMargins({});
         auto scrollArea = new KAdjustingScrollArea;
+        scrollArea->setFocusPolicy(Qt::NoFocus);
         mainLayout->addWidget(scrollArea);
 
         auto wrapper = new QWidget;
