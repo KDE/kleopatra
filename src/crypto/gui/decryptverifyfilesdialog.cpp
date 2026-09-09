@@ -15,8 +15,9 @@
 #include "crypto/gui/resultlistwidget.h"
 #include "crypto/gui/resultpage.h"
 #include "crypto/taskcollection.h"
-#include "utils/fileutils.h"
-#include "utils/path-helper.h"
+#include <utils/fileutils.h>
+#include <utils/gui-helper.h>
+#include <utils/path-helper.h>
 
 #include <Libkleo/FileNameRequester>
 
@@ -101,6 +102,9 @@ DecryptVerifyFilesDialog::DecryptVerifyFilesDialog(const std::shared_ptr<TaskCol
         m_buttonBox->addButton(m_saveButton);
         m_buttonBox->button(m_saveButton)->setEnabled(false);
     }
+
+    // prevent unexpected triggering of "Save All" button when user tries to trigger another button (e.g. "Show Audit Log") with Enter
+    Kleo::unsetAutoDefaultButtons(this);
 
     m_progressLabel = new QLabel;
     m_progressLabel->setTextFormat(Qt::RichText);
@@ -202,6 +206,23 @@ void DecryptVerifyFilesDialog::showContent(const std::shared_ptr<const Task::Res
         MessageViewerDialog dialog(decryptVerifyResult->fileName());
         dialog.exec();
     }
+}
+
+bool DecryptVerifyFilesDialog::event(QEvent *event)
+{
+    const bool result = QWidget::event(event);
+
+    switch (event->type()) {
+    case QEvent::Show:
+        // undo QDialogButtonBox making the "Save All" button the default button to prevent unexpected triggering
+        // of this button when user tries to trigger another button (e.g. "Show Audit Log") with Enter
+        Kleo::unsetDefaultButtons(m_buttonBox);
+        break;
+    default:
+        break;
+    }
+
+    return result;
 }
 
 #include "moc_decryptverifyfilesdialog.cpp"
