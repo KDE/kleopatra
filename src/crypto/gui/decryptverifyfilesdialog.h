@@ -55,6 +55,8 @@ protected:
     void readConfig();
     void writeConfig();
 
+    bool event(QEvent *event) override;
+
 private:
     std::shared_ptr<TaskCollection> m_tasks;
     QProgressBar *m_progressBar;
