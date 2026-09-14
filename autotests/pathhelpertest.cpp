@@ -63,7 +63,7 @@ void PathHelperTest::testSanitizedFileName_data()
 {
     QTest::addColumn<QString>("fileName");
     QTest::addColumn<QString>("sanitizedFileName");
-    static const auto badChars = u" /\\:*?\"<>|"_s;
+
     QTest::newRow("digits") << u"0123456789"_s << u"0123456789"_s;
     QTest::newRow("upper case letters") << u"ABCDEFGHIJKLMNOPQRSTUVWXYZ"_s << u"ABCDEFGHIJKLMNOPQRSTUVWXYZ"_s;
     QTest::newRow("lower case letters") << u"abcdefghijklmnopqrstuvwxyz"_s << u"abcdefghijklmnopqrstuvwxyz"_s;
