@@ -28,6 +28,7 @@
 #include <algorithm>
 
 using namespace Kleo;
+using namespace Qt::Literals::StringLiterals;
 
 static QString commonPrefix(const QString &s1, const QString &s2)
 {
@@ -102,7 +103,11 @@ QString Kleo::stripSuffix(const QString &fileName)
 
 QString Kleo::sanitizedFileName(QString &&fileName)
 {
-    return std::move(fileName.replace(u' ', u'_').replace(u'/', u'_').replace(u'\\', u'_').replace(u':', u'_'));
+    static const auto badChars = u" /\\:*?\"<>|"_s;
+    for (QChar c : badChars) {
+        fileName.replace(c, u'_');
+    }
+    return std::move(fileName);
 }
 
 bool Kleo::isWritable(const QFileInfo &fi)
