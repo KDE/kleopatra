@@ -51,7 +51,6 @@
 #include <QPropertyAnimation>
 #include <QPushButton>
 #include <QScrollArea>
-#include <QToolButton>
 #include <QVBoxLayout>
 
 #include <gpgme++/key.h>

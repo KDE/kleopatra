@@ -24,7 +24,6 @@
 #include <KAboutData>
 #include <KActionMenu>
 #include <KLocalizedString>
-#include <QEventLoopLocker>
 #include <QIcon>
 
 #include <QAction>
