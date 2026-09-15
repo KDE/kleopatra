@@ -117,7 +117,6 @@ void ResultItemWidget::Private::oneImportFinished()
 
 void ResultItemWidget::Private::updateShowDetailsLabel()
 {
-    m_auditLogButton->setVisible(false);
     if (const int code = m_result->auditLog().error().code()) {
         if (code == GPG_ERR_NOT_IMPLEMENTED) {
             qCDebug(KLEOPATRA_LOG) << "not showing link (not implemented)";
@@ -126,17 +125,18 @@ void ResultItemWidget::Private::updateShowDetailsLabel()
         } else {
             qCDebug(KLEOPATRA_LOG) << "Error Retrieving Audit Log:" << Formatting::errorAsString(m_result->auditLog().error());
         }
+        m_auditLogButton->setVisible(false);
         return;
     }
 
     if (m_result->auditLog().text().isEmpty()) {
+        m_auditLogButton->setVisible(false);
         return;
     }
 
     const auto auditLogLinkText = m_result->hasError() ? i18n("Diagnostics") //
                                                        : i18nc("The Audit Log is a detailed error log from the gnupg backend", "Show Audit Log");
     m_auditLogButton->setText(auditLogLinkText);
-    m_auditLogButton->setVisible(true);
 }
 
 void ResultItemWidget::Private::updateStyleSheets()
