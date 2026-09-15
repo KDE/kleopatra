@@ -44,7 +44,7 @@
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QMenu>
-#include <QToolButton>
+#include <QPushButton>
 
 using namespace Kleo;
 using namespace GpgME;
@@ -264,7 +264,7 @@ public:
         }
 
         QLineEdit lineEdit;
-        QToolButton button;
+        QPushButton button;
         ErrorLabel errorLabel;
     } ui;
 
@@ -390,7 +390,7 @@ CertificateLineEdit::Private::Private(CertificateLineEdit *qq, AbstractKeyListMo
     connect(mShowDetailsAction, &QAction::triggered, q, [this]() {
         openDetailsDialog();
     });
-    connect(&ui.button, &QToolButton::clicked, q, &CertificateLineEdit::certificateSelectionRequested);
+    connect(&ui.button, &QAbstractButton::clicked, q, &CertificateLineEdit::certificateSelectionRequested);
     connect(mCompleter, qOverload<const QModelIndex &>(&QCompleter::activated), q, [this](const QModelIndex &index) {
         Key key = mCompleter->completionModel()->data(index, KeyList::KeyRole).value<Key>();
         auto group = mCompleter->completionModel()->data(index, KeyList::GroupRole).value<KeyGroup>();
