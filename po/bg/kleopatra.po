@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
-"PO-Revision-Date: 2026-06-30 09:59+0200\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
+"PO-Revision-Date: 2026-09-09 22:19+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -163,11 +163,6 @@ msgstr "Файлът <filename>%1</filename> липсва."
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, kde-format
-msgid "Certificate manager and cryptography app"
-msgstr "Мениджър на сертификати и приложение за криптография"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -197,6 +192,11 @@ msgstr "© 2001-2010 Klarälvdalens Datakonsult AB"
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "© 2001-%1 Разработчиците на Kleopatra"
+
+#: src/aboutdata.cpp
+#, kde-format
+msgid "Certificate manager and cryptography app"
+msgstr "Мениджър на сертификати и приложение за криптография"
 
 #: src/commands/addadskcommand.cpp
 #, kde-format
@@ -240,8 +240,8 @@ msgstr "Добавяне на ADSK"
 #: src/commands/addsubkeycommand.cpp
 #, kde-format
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<p> Възникна грешка при опит за добавяне на подключ <b> %1 </b>:</p><p>%2</p>"
 
@@ -399,8 +399,8 @@ msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>Копирането на ключа върху картата е неуспешно:</para><para><message>"
-"%1</message></para>"
+"<para>Копирането на ключа върху картата е неуспешно:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/certificatetopivcardcommand.cpp
 #: src/commands/keytocardcommand.cpp
@@ -512,8 +512,8 @@ msgid ""
 "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t%2</"
 "p>"
 msgstr ""
-"<p> Възникна грешка при опит за сертифициране <br/><br/><b>%1</b>:</p><p>\t"
-"%2</p>"
+"<p> Възникна грешка при опит за сертифициране <br/><br/><b>%1</b>:</"
+"p><p>\t%2</p>"
 
 #: src/commands/certifycertificatecommand.cpp
 #, kde-format
@@ -1110,7 +1110,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Кеш-паметта CRL е изчистена успешно."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1291,8 +1291,8 @@ msgstr "CMS бекенд: %1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p> Възникна грешка при опит за изтриване на сертификата:</p><p><b> %1 </"
 "b></p></qt>"
@@ -1489,8 +1489,8 @@ msgstr "Експортиране на сертификати..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Грешка при експортиране на удостоверението:</p><p><b>%1</b></p></qt>"
 
@@ -1526,6 +1526,12 @@ msgid "Certificate Groups (*%1)"
 msgstr "Сертификатни групи (*%1)"
 
 #: src/commands/exportgroupscommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "Не може да презапише съществуващ <filename>%1</filename>."
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1538,12 +1544,6 @@ msgstr "Сертификатни групи (*%1)"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Експортирането е неуспешно"
-
-#: src/commands/exportgroupscommand.cpp
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "Не може да презапише съществуващ <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2235,16 +2235,16 @@ msgstr[0] "Импортиране на сертификати от 1 файл...
 msgstr[1] "Импортиране на сертификати от %1 файла..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "Не можа да се отвори файл %1 за четене: %2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Грешка при импортиране на сертификат"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "Не можа да се отвори файл %1 за четене: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2563,8 +2563,8 @@ msgstr "Показване на дневника на одита"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p> Възникна грешка при опит за импортиране на сертификата:</p><p><b> %1 "
 "</b></p></qt>"
@@ -2572,8 +2572,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Грешка при импортиране на удостоверението %1:</p><p><b>%2</b></p></qt>"
 
@@ -2897,17 +2897,21 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Съществуващият ключ има следния keygrip:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>Ключът е копиран на смарт картата.</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>Ключът е копиран в картата.</para><para>Вече можете да изтриете "
-"копието на ключа, съхранявано на този компютър. По желание можете първо "
-"дасъздадете резервно копие на ключа.</para>"
+"<para>Вече можете да изтриете копието на ключа, съхранено на този компютър. "
+"По желание можете първо да създадете резервно копие на ключа.</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2916,16 +2920,28 @@ msgid "Create backup"
 msgstr "Създаване на резервно копие"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Изтриване на копието от диска"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Запазване на копието на диска"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<para>Искате ли да изтриете копието на ключа, съхранено на този компютър?</"
+"para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -3988,8 +4004,8 @@ msgstr "Настройки"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 "Създаване на OpenPGP шифрирани файлове с \". pgp \"файлови разширения вместо "
 "\". gpg \""
@@ -4578,8 +4594,8 @@ msgid ""
 "looking for a suitable DP."
 msgstr ""
 "Когато се търси местоположението на CRL, сертификатът, който трябва да бъде "
-"тестван, обикновено съдържа така наречените \"точки за разпространение на CRL"
-"\"(DP), които са URL адреси, описващи начина за достъп до CRL. Първият "
+"тестван, обикновено съдържа така наречените \"точки за разпространение на "
+"CRL\"(DP), които са URL адреси, описващи начина за достъп до CRL. Първият "
 "намерен DP запис се използва. С тази опция всички записи, използващи LDAP "
 "схемата, се игнорират, когато се търси подходящ DP."
 
@@ -4656,10 +4672,10 @@ msgid ""
 "looking for a suitable DP."
 msgstr ""
 "Когато се търси местоположението на CRL, сертификатът, който трябва да бъде "
-"тестван, обикновено съдържа така наречените \"точки за разпространение на CRL"
-"\"(Distribution Point /DP), които са URL адреси, описващи начина за достъп "
-"до CRL. Първият намерен DP запис се използва. С тази опция всички записи, "
-"използващи LDAP схемата, се игнорират, когато се търси подходящ DP."
+"тестван, обикновено съдържа така наречените \"точки за разпространение на "
+"CRL\"(Distribution Point /DP), които са URL адреси, описващи начина за "
+"достъп до CRL. Първият намерен DP запис се използва. С тази опция всички "
+"записи, използващи LDAP схемата, се игнорират, когато се търси подходящ DP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoreLDAPDPCB)
 #: src/conf/smimevalidationconfigurationwidget.ui
@@ -4728,15 +4744,15 @@ msgstr ""
 "сума, или всички файлове да бъдат контролирани, а не смес от двете."
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "Инициализиране…"
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "Отказ"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "Инициализиране…"
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4993,6 +5009,22 @@ msgstr "Неуспешно верифициране на <filename>%1</filename>
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "Проверен е <filename>%2</filename> с отделен подпис."
+msgstr[1] "Проверен е <filename>%2</filename> с %1 отделени подписи."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "Проверен е <filename>%2</filename> с вграден подпис."
+msgstr[1] "Проверен <filename>%2</filename> с %1 вградени подписа."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5000,7 +5032,7 @@ msgid_plural ""
 "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
 "filename>."
 msgstr[0] ""
-"Проверен <filename>%2</filename> с подпис в <filename>%3</filename>."
+"Проверен е <filename>%2</filename> с подпис в <filename>%3</filename>."
 msgstr[1] ""
 "Проверен <filename>%2</filename> с %1 подписa в <filename>%3</filename>."
 
@@ -5037,6 +5069,14 @@ msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr ""
 "Данните не са шифрирани с никой от секретните ключове във вашия списък със "
 "сертификати."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
+"Възникна неизвестна грешка. Моля, проверете раздела „Диагностика“ за "
+"подробности."
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5164,8 +5204,15 @@ msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
-"Предупреждение: Пощенският адрес на изпращача не се съхранява в <a href="
-"\"key:%1\">сертификата</a>, използван за подписване. Съхранено:<ul>%2</ul>"
+"Предупреждение: Пощенският адрес на изпращача не се съхранява в <a "
+"href=\"key:%1\">сертификата</a>, използван за подписване. Съхранено:<ul>%2</"
+"ul>"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr "Възможни действия: %1"
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5529,6 +5576,22 @@ msgstr "Диагностика"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Показване на дневника на одита"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr "Обяснение на този резултат"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr "Обяснение на този резултат"
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, kde-format
@@ -5955,6 +6018,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Подписване/шифриране на файлове"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
@@ -5966,6 +6030,12 @@ msgstr "Подписване/шифриране на файлове"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "&Подписване / Шифриране"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr "Повторен опит"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
@@ -5984,13 +6054,6 @@ msgstr "&Подпис"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "&Шифриране"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr "Завършване"
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6354,20 +6417,20 @@ msgstr "архив"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"Уловено неочаквано изключение в SignEncryptFilesController :: Private ::"
-"slotWizardOperationPrepared: %1"
+"Уловено неочаквано изключение в SignEncryptFilesController :: "
+"Private ::slotWizardOperationPrepared: %1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"Уловено неизвестно изключение в SignEncryptFilesController :: Private ::"
-"slotWizardOperationPrepared"
+"Уловено неизвестно изключение в SignEncryptFilesController :: "
+"Private ::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-format
@@ -6393,8 +6456,8 @@ msgstr "Шифрирането е отменено."
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "Неуспешно подписване и шифриране на <filename>%1</filename>: <emphasis "
 "strong='true'>%2</emphasis>"
@@ -6448,8 +6511,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6510,14 +6573,14 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
-"Успешно подписани и шифрирани <filename>%1</filename> и <filename>%2</"
-"filename> и записани като <filename>%3</filename>."
+"<filename>%1</filename> и <filename>%2</filename> бяха успешно подписани и "
+"криптирани и записани като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6525,15 +6588,15 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
-"Успешно подписан и шифриран <filename>%2</filename> и %1 друг и запазен като "
-"<filename>%3</filename>."
+"Успешно подписан и криптиран <filename>%2</filename> и %1 друг и запазен "
+"като <filename>%3</filename>."
 msgstr[1] ""
-"Успешно подписан и шифриран <filename>%2</filename> и %1 други и запазени "
+"Успешно подписани и криптирани <filename>%2</filename> и %1 други и запазени "
 "като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
@@ -6548,33 +6611,40 @@ msgstr ""
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr ""
+"Успешно подписан е файлът <filename>%1</filename> и запазен като "
+"<filename>%2</filename>."
+
+#: src/crypto/signencrypttask.cpp
+#, kde-kuit-format
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr ""
-"Успешно подписани <filename>%1</filename> и <filename>%2</filename> и "
-"запазен подпис в <filename>%3</filename>."
+"Успешно бяха подписани <filename>%1</filename> и <filename>%2</filename> и "
+"бяха запазени като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
-"Успешно подписан <filename>%2</filename> и %1 друг и запазен подписът в "
+"Успешно подписани <filename>%2</filename> и още 1 файл, запазени като "
 "<filename>%3</filename>."
 msgstr[1] ""
-"Успешно подписване на <filename>%2</filename> и още %1 и запазване на "
-"подписа в <filename>%3</filename>."
+"Успешно подписани <filename>%2</filename> и още %1 други файлове, запазени "
+"като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6589,30 +6659,31 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
-"Успешно шифрирани <filename>%1</filename> и <filename>%2</filename> и "
-"записани като <filename>%3</filename>."
+"Успешно криптирах <filename>%1</filename> и <filename>%2</filename> и запази "
+"като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
-"Успешно шифриран <filename>%2</filename> и %1 друг и го запази като "
-"<filename>%3</filename>."
+"Успешно е криптиран файлът <filename>%2</filename> и %1 друг файл и запазени "
+"като <filename>%3</filename>."
 msgstr[1] ""
-"Успешно шифриран <filename>%2</filename> и %1 други и запазен като <filename>"
-"%3</filename>."
+"Успешно са криптирани файловете <filename>%2</filename> и %1 други файлове и "
+"запазени като <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
@@ -8314,23 +8385,25 @@ msgstr "Грешка: Описанието не трябва да съдържа
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
-"<para>Вие сте на път да отмените следния сертификат:</para><para>&nbsp;&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis strong='true "
-"'>Отмяната ще влезе в сила незабавно и не може да бъде отменена.</emphasis></"
-"para><para>Последствия: <list><item>Все още можете да дешифрирате всичко "
-"шифрирано за този сертификат.</item><item>Вие вече не можете да подписвате "
-"нищо с този сертификат.</item><item>Вече не можете да удостоверявате други "
-"сертификати с него.</item><item>Други хора вече не могат да шифроват с него "
-"след получаване на отмяната.</item></list></para>"
+"<para>Вие сте на път да отмените следния сертификат:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true '>Отмяната ще влезе в сила незабавно и не "
+"може да бъде отменена.</emphasis></para><para>Последствия: <list><item>Все "
+"още можете да дешифрирате всичко шифрирано за този сертификат.</"
+"item><item>Вие вече не можете да подписвате нищо с този сертификат.</"
+"item><item>Вече не можете да удостоверявате други сертификати с него.</"
+"item><item>Други хора вече не могат да шифроват с него след получаване на "
+"отмяната.</item></list></para>"
 
 #: src/dialogs/revokerswidget.cpp
 #, kde-format
@@ -8506,8 +8579,8 @@ msgstr "Задаване на първоначален PIN (NKS)"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 "Стъпка 2: Задайте първоначалния PIN за сертификат за квалифициран подпис (\" "
 "SigG \"):"
@@ -8529,6 +8602,12 @@ msgstr "Подписване/шифриране на клипборда"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Подписване/шифриране на клипборда"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr "Завършване"
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -9070,17 +9149,40 @@ msgstr "Неуспешно зареждане на сертификати"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
-msgstr "Заместващо име за CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
+msgstr "Подсказка за CN (остаряло, използвайте CN_hint вместо това)"
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
+"Този текст ще се покаже над полето за общо име (CN) при заявките за S/MIME "
+"сертификати."
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for CN"
+msgstr "Подсказка за общо име (CN)"
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr "Заместващо име за общо име (CN)"
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
 msgstr ""
-"Този текст ще се използва като заместител за полето за общо име  (CN) на S/"
+"Този текст ще бъде етикетът за полето за общо име (CN) при заявките за S/"
 "MIME сертификати."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
@@ -9135,21 +9237,60 @@ msgstr ""
 "Directory. ADFirstNameLastName (само за Windows) използва атрибутите с първо "
 "име (givenName) и последно име (sn), извлечени от сървъра Active Directory."
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr "Регулярен израз за CN"
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+"Този текст ще се използва като валидатор на шаблона за полето за общо име "
+"(CN) при заявките за S/MIME сертификати."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr "Подсказка за EMAIL (остаряло, използвайте EMAIL_hint вместо това)"
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+"Този текст ще се показва над полето за имейл адрес на OpenPGP сертификатите "
+"и заявките за S/MIME сертификация."
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr "Подсказка за EMAIL"
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr "Етикет за ИМЕЙЛ"
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
-"Този текст ще бъде показан над полето за имейл адрес на OpenPGP и като "
-"заместител в това поле за S/MIME сертификати."
+"Този текст ще бъде етикетът на полето за имейл адрес на OpenPGP "
+"сертификатите и заявките за S/MIME сертификация."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9199,6 +9340,22 @@ msgstr ""
 "имейл адреса от системната променлива EMAIL. ADMail (само за Windows) "
 "използва атрибута mail, получен от сървъра Active Directory."
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr "Регулярен израз за ИМЕЙЛ"
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+"Този текст ще се използва като шаблон за проверка на полето за имейл адрес "
+"на OpenPGP сертификати и заявки за S/MIME сертификати."
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9220,14 +9377,29 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
-msgstr "Подсказка за име"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
+msgstr "Подсказка за ИМЕ (остаряло, използвайте NAME_hint)"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr "Този текст ще бъде показан над полето за име на OpenPGP сертификатите."
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr "Подсказка за име"
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
+msgstr "Етикет за ИМЕ"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9279,6 +9451,22 @@ msgstr ""
 "показвано име (displayName), извлечен от сървъра Active Directory. "
 "ADFirstNameLastName (само за Windows) използва атрибутите с първо име "
 "(givenName) и последно име (sn), извлечени от сървъра Active Directory."
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr "Регулярен израз за ИМЕ"
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
+msgstr ""
+"Този текст ще се използва като валидатор на шаблона за полето за име на "
+"OpenPGP сертификатите."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9852,6 +10040,24 @@ msgstr ""
 "Smartcard с неизвестни сертификати. Това може да отнеме известно време и да "
 "блокира смарткартата, докато се изпълнява командата."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+"Предлагане на резервно копие на подключ след копиране на подключ към смарт "
+"карта"
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+"Ако е true, тогава Kleopatra ще покаже бутон „Създаване на резервно копие“, "
+"след като подключ бъде копиран на смарт карта."
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10301,8 +10507,8 @@ msgstr "Само и затвори прозореца"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "<application>%1</application> може да се използва от други приложения като "
 "услуга.<nl/>Може вместо това да искате да затворите този прозорец, без да "
@@ -11432,11 +11638,11 @@ msgstr "Няма дадени получатели или само с --info"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Уловено неочаквано изключение в EncryptCommand :: Private ::"
-"slotRecipientsResolved: %1"
+"Уловено неочаквано изключение в EncryptCommand :: "
+"Private ::slotRecipientsResolved: %1"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
@@ -11468,20 +11674,20 @@ msgstr "SENDER не може да бъде дадено преди PREP_ENCRYPT,
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Уловено неочаквано изключение в PrepEncryptCommand :: Private ::"
-"slotRecipientsResolved: %1"
+"Уловено неочаквано изключение в PrepEncryptCommand :: "
+"Private ::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Уловено неизвестно изключение в PrepEncryptCommand :: Private ::"
-"slotRecipientsResolved"
+"Уловено неизвестно изключение в PrepEncryptCommand :: "
+"Private ::slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11512,11 +11718,11 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Уловено неочаквано изключение в PrepSignCommand :: Private ::"
-"slotRecipientsResolved: %1"
+"Уловено неочаквано изключение в PrepSignCommand :: "
+"Private ::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11529,20 +11735,20 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
-"Уловено неочаквано изключение в SelectCertificateCommand :: Private ::"
-"slotDialogAccepted: %1"
+"Уловено неочаквано изключение в SelectCertificateCommand :: "
+"Private ::slotDialogAccepted: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
-"Уловено неизвестно изключение в SelectCertificateCommand :: Private ::"
-"slotDialogAccepted"
+"Уловено неизвестно изключение в SelectCertificateCommand :: "
+"Private ::slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
@@ -11581,8 +11787,8 @@ msgstr ""
 msgid ""
 "Caught unknown exception in SignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Уловено неизвестно изключение в SignCommand :: Private ::"
-"slotRecipientsResolved"
+"Уловено неизвестно изключение в SignCommand :: "
+"Private ::slotRecipientsResolved"
 
 #: src/uiserver/signencryptfilescommand.cpp
 #: src/uiserver/signencryptfilescommand.cpp
@@ -12563,6 +12769,12 @@ msgstr "Иерархичен списък от сертификати"
 msgid "List of certificates"
 msgstr "Списък от сертификати"
 
+#: src/view/keytreeview.cpp
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "Подробности"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -13412,8 +13624,8 @@ msgstr "Добре дошли в Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 "Kleopatra е интерфейс за крипто софтуера <a href=\" https://gnupg.org \"> "
 "GnuPG </a>."
@@ -13469,8 +13681,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 "Вижте това <a href=\"action:help_doc_symenc\">ръководство</a> за повече "
 "информация относно метода за шифриране с пароли."

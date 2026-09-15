@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2009-01-08 13:02+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -171,12 +171,6 @@ msgstr ""
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Information"
-msgid "Certificate manager and cryptography app"
-msgstr "Информација од менаџерот за сертификати"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -206,6 +200,12 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr ""
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Information"
+msgid "Certificate manager and cryptography app"
+msgstr "Информација од менаџерот за сертификати"
 
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
@@ -253,8 +253,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -1202,7 +1202,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL-кешот се исчисти успешно"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1373,8 +1373,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -1591,8 +1591,8 @@ msgstr "Извезување на сертификат..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Се случи грешка при обидот да се извези сертификатот:</p><p><b>%1</"
 "b></p></qt>"
@@ -1634,6 +1634,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "Употреба на сертификат"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "Не можам да создадам сертификат: %1"
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1647,13 +1654,6 @@ msgstr "Употреба на сертификат"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Извезувањето на сертификатот не успеа"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "Не можам да создадам сертификат: %1"
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2361,17 +2361,17 @@ msgstr[1] "Внеси сертификати..."
 msgstr[2] "Внеси сертификати..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgid "Could not open file %1 for reading: %2"
+msgstr "Не можам да создадам сертификат: %1"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Внесувањето на сертификатот не успеа"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
-msgid "Could not open file %1 for reading: %2"
-msgstr "Не можам да создадам сертификат: %1"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2710,8 +2710,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to import the certificate %1:</"
 #| "p><p><b>%2</b></p></qt>"
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Се појави грешка при обидот да се внеси сертификатот %1:</p><p><b>%2</"
 "b></p></qt>"
@@ -2719,8 +2719,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Се појави грешка при обидот да се внеси сертификатот %1:</p><p><b>%2</"
 "b></p></qt>"
@@ -3058,14 +3058,25 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Fetching certificate from server..."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "Земам сертификат од серверот..."
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3075,16 +3086,31 @@ msgid "Create backup"
 msgstr "Извези таен клуч"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4177,8 +4203,8 @@ msgstr "Локација"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4868,16 +4894,16 @@ msgid ""
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr ""
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Cancel"
 msgstr "Откажано."
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -5163,6 +5189,42 @@ msgstr "Не можам да создадам сертификат: %1"
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+msgstr[1] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+msgstr[2] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+msgstr[1] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+msgstr[2] ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5217,6 +5279,12 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
@@ -5348,6 +5416,12 @@ msgctxt "@info"
 msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5732,6 +5806,22 @@ msgstr ""
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
@@ -6161,6 +6251,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Бришам клучеви..."
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:dialog"
@@ -6174,6 +6265,12 @@ msgstr "Бришам клучеви..."
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Само &за криптографирање"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -6195,13 +6292,6 @@ msgstr "Само &за потпишување"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Само &за криптографирање"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6592,15 +6682,15 @@ msgstr "Барај:"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
@@ -6633,8 +6723,8 @@ msgstr "Бришењето на сертификатот не успеа"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -6697,8 +6787,8 @@ msgstr ""
 #| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6775,14 +6865,19 @@ msgstr ""
 "b></p></qt>"
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-kuit-format
@@ -6793,10 +6888,10 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -6825,12 +6920,23 @@ msgstr ""
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr ""
+"<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
+"b></p></qt>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -6841,14 +6947,13 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -6878,10 +6983,10 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -6892,13 +6997,14 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>%1</"
 "b></p></qt>"
@@ -8691,14 +8797,15 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -8874,8 +8981,8 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -8897,6 +9004,12 @@ msgstr "Само &за криптографирање"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Само &за криптографирање"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -9475,16 +9588,39 @@ msgstr "Листањето на сертификатите не успеа"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Избриши ги сертификатите"
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+msgid "Hint for CN"
 msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Избриши ги сертификатите"
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9524,18 +9660,53 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -9574,6 +9745,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9592,13 +9777,28 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
@@ -9636,6 +9836,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -10132,6 +10346,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10560,8 +10788,8 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 
 #: src/mainwindow.cpp
@@ -11658,8 +11886,8 @@ msgstr ""
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/encryptcommand.cpp
@@ -11688,15 +11916,15 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -11726,8 +11954,8 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -11739,15 +11967,15 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
 
 #: src/uiserver/signcommand.cpp
@@ -12848,6 +13076,13 @@ msgstr "Хиерархиска листа на клучеви"
 msgid "List of certificates"
 msgstr "&Сертификати"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "&Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "&Детали"
+
 #: src/view/padwidget.cpp
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
@@ -13727,8 +13962,8 @@ msgstr ""
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13776,8 +14011,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13816,2333 +14051,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Card Certificate"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "Извези сертификати..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "Бришам клучеви..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "Збирка сертификати оклопени со ASCII (*.pem)"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "Збирка сертификати оклопени со ASCII (*.pem)"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "Извези таен клуч"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Детали на сертификатот..."
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "(optional)"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "Детали на сертификатот..."
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Your Personal Data"
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "Твои лични податоци"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%1 (%2):"
-#~ msgstr[1] "%1 (%2):"
-#~ msgstr[2] "%1 (%2):"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 бит"
-#~ msgstr[1] "%1 бит"
-#~ msgstr[2] "%1 бит"
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgid "EMail"
-#~ msgstr "Е-пошта"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Real name:"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Operation canceled."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "Key pair created successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "Одберете сертификат датотека"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "Одберете сертификат датотека"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Key Generation Wizard"
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "Волшебник за создавање на клучеви"
-
-#, fuzzy
-#~| msgid "Do you really want to delete this certificate?"
-#~| msgid_plural "Do you really want to delete these %1 certificates?"
-#~ msgid "Please process this certificate."
-#~ msgstr "Дали навистина сакате да го избришете овој %1 сертификат"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "Откажано."
-
-#, fuzzy
-#~| msgid "Your Certificate Request is Ready to Be Sent"
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "Вашето барање за сертификат е подготвено за испраќање"
-
-#, fuzzy
-#~| msgid "For &signing only"
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "Само &за потпишување"
-
-#, fuzzy
-#~| msgid "For &signing only"
-#~ msgid "&Sign as:"
-#~ msgstr "Само &за потпишување"
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Decrypt / Verify"
-#~ msgstr "Бришам клучеви..."
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "Опции на барањето на сертификат"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се исчисти CRL-кешот. Излезот од DirMngr "
-#~ "беше:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "Опции на барањето на сертификат"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се исчисти CRL-кешот. Излезот од DirMngr "
-#~ "беше:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure Groups..."
-#~ msgstr "Конфигурирај го &GpgME задниот крај"
-
-#~ msgid "Stop Operation"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "Збирка сертификати оклопени со ASCII (*.pem)"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "Внеси сертификати..."
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "Резултат од внесувањето на сертификатот"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "Опции на барањето на сертификат"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgid "Show certificate overview"
-#~ msgstr "Детали на сертификатот..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "Бришам клучеви..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "Бришам клучеви..."
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "Kleopatra Error"
-#~ msgstr "Kleopatra"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "group keys"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Unknown certificate"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Verification canceled."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "No signatures found."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "Нови потписи:"
-#~ msgstr[1] "Нови потписи:"
-#~ msgstr[2] "Нови потписи:"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "CRL-кешот се исчисти успешно"
-#~ msgstr[1] "CRL-кешот се исчисти успешно"
-#~ msgstr[2] "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Valid signature by %1."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "Нови потписи:"
-#~ msgstr[1] "Нови потписи:"
-#~ msgstr[2] "Нови потписи:"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Decryption canceled."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "Барај:"
-
-#, fuzzy
-#~| msgid "Imported:"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "Внесено:"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "certificate"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgid "Signing failed."
-#~ msgstr "Откажано."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid " Encryption succeeded."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "Description"
-#~ msgid "Recipients"
-#~ msgstr "Опис"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "Само &за криптографирање"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "Тековен одржувач"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Good signature"
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signing certificate is expired"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Export Failed"
-#~ msgid "Certificate is not available"
-#~ msgstr "Извезувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "System error"
-#~ msgstr "Грешка на Kleopatra"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "With certificate:"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Set F&ont..."
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "Постави Ф&онт..."
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "New name:"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "Error"
-#~ msgstr "Грешка на Kleopatra"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgid "Subkeys"
-#~ msgstr "Нови потклучеви:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Issuer certificate not found ( %1)"
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "Сертификатот на издавачот не може да виде пронајден ( %1)"
-
-#, fuzzy
-#~ msgid "Authentication"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgid "Select Key"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "OpenPGP keys:"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgid "Keys:"
-#~ msgstr "Нови потклучеви:"
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "Сериски"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "Сериски"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Dump CRL Cache..."
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "Исфрли го CLR-кешот"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "Отпечаток"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Enter a name."
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "Барај:"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "Барај:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "Ново укинати:"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "Укини"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "Укини"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~ msgid "&Group configuration"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "Secret keys unchanged:"
-#~ msgid "The key hasn't changed."
-#~ msgstr "Непроменети тајни клучеви:"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "The key has been revoked."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Certificate Export Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "Извезувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid "Export Secret Key..."
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Извези таен клуч..."
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се исчисти CRL-кешот. Излезот од DirMngr "
-#~ "беше:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "Познато како"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Одберете сертификат датотека"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "Нови потклучеви:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "Нови потклучеви:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "Нови потклучеви:"
-
-#, fuzzy
-#~| msgid "&Chain"
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "&Сврзи"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid "Exporting certificate..."
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "Извезување на сертификат..."
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Show Details"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Save Certificate"
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "Зачувај сертификат"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Export Secret Key..."
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Извези таен клуч..."
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Укини"
-
-#, fuzzy
-#~| msgid "Overwrite File?"
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Да запишам над датотеката?"
-
-#, fuzzy
-#~| msgid "Overwrite File?"
-#~ msgid "Overwrite All"
-#~ msgstr "Да запишам над датотеката?"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Import Certificates"
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Import CRLs..."
-#~ msgid "Import CRLs"
-#~ msgstr "Внеси CRL..."
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "File Operations"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgid "Secret Key Files"
-#~ msgstr "Извези таен клуч"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "Извези таен клуч"
-
-#, fuzzy
-#~| msgid "Secret-Key Export Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "Извезувањето на тајниот клуч не успеа"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "Внесени тајни клучеви:"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "Извези сертификати..."
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgid "Sender"
-#~ msgstr "Сериски"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgid "Certificate Details"
-#~ msgstr "Детали на сертификатот..."
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgid "Explain expiration"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Valid"
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "Валидно"
-#~ msgstr[1] "Валидно"
-#~ msgstr[2] "Валидно"
-
-#, fuzzy
-#~| msgid "Valid"
-#~ msgid "Valid for:"
-#~ msgstr "Валидно"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "Apply profile"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "Прегледувач на GnuPG дневници"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "Прегледувач на GnuPG дневници"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "EMail Operations"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Encrypt Mail Message"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title:window"
-#~ msgid "Sign Mail Message"
-#~ msgstr "Откажано."
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Внесени тајни клучеви:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Fetching Certificate Chain"
-#~ msgid "This is my certificate"
-#~ msgstr "Верига за земање на сертификатите"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action"
-#~ msgid "Encrypt"
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication not possible."
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Import from a file."
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint: <b>%1</b>"
-#~ msgstr "Отпечаток"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to revoke the certification of<br/><br/"
-#~ "><b>%1</b>:</p><p>\t%2</p>"
-#~ msgstr ""
-#~ "<qt><p>Грешка се случи при обидот да се избришат сертификатите:</p><p><b>"
-#~ "%1</b></p></qt>"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Revocation Error"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Revocation Succeeded"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@title:window arg is name, email of certificate holder"
-#~ msgid "Revoke Certification: %1"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "The key whose certifications shall be revoke"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Expiry Date Change Error"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Do you really want to delete this certificate?"
-#~| msgid_plural "Do you really want to delete these %1 certificates?"
-#~ msgid "Please select when to expire this subkey:"
-#~ msgstr "Дали навистина сакате да го избришете овој %1 сертификат"
-
-#, fuzzy
-#~| msgid "Do you really want to delete this certificate?"
-#~| msgid_plural "Do you really want to delete these %1 certificates?"
-#~ msgid "Please select when to expire this certificate:"
-#~ msgstr "Дали навистина сакате да го избришете овој %1 сертификат"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "Непроменети:"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a new certificate"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Do you really want to delete this certificate?"
-#~| msgid_plural "Do you really want to delete these %1 certificates?"
-#~ msgid "Choose which type of key pair you want to create."
-#~ msgstr "Дали навистина сакате да го избришете овој %1 сертификат"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Create a Personal X.509 Key Pair and Certification Request"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgctxt "@action:button"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Одберете сертификат датотека"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@action:button"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title:window"
-#~ msgid "Sending Mail"
-#~ msgstr "Откажано."
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "Барај:"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "Барај:"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Certifications..."
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Publish Certificate"
-#~ msgstr "Внеси сертификати..."
-
-#~ msgid "CRL cache dump:"
-#~ msgstr "Исфрлок на CRL-кешот:"
-
-#~ msgid "Unable to start gpgsm process. Please check your installation."
-#~ msgstr ""
-#~ "Не можам да го стартувам gpgsm-процесот. Проверете ја вашата инсталација."
-
-#~ msgid "Certificate Manager Error"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#~ msgid "The GpgSM process ended prematurely because of an unexpected error."
-#~ msgstr "GpgSM-процесот заврши прерано поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "Грешка на Kleopatra"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "Укини"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "CRL-кешот се исчисти успешно"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Refreshed"
-#~ msgstr "Ново укинати:"
-
-#, fuzzy
-#~| msgid "Key Generation Wizard"
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "Волшебник за создавање на клучеви"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Load additional certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Exporting certificate..."
-#~ msgid "Loading certificates..."
-#~ msgstr "Извезување на сертификат..."
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Error: The entered name contains invalid characters."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The entered name is not valid."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "New user IDs:"
-#~ msgid "Add New User-ID"
-#~ msgstr "Нови Ид. на корисниците:"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Click for details."
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The signature."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "Certificate Information"
-#~ msgctxt "@title"
-#~ msgid "Choose Format"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "&Configure %1..."
-#~ msgstr "Конфигурирај го &GpgME задниот крај"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "&Shutdown Kleopatra"
-#~ msgstr "Kleopatra"
-
-#~ msgid "Automatically add &new servers discovered in CRL distribution points"
-#~ msgstr ""
-#~ "Автоматски додавај &нови сервери откриени во точките за дистрибуција на "
-#~ "CLR"
-
-#, fuzzy
-#~| msgid "<qt><p>Detailed results of importing %1:</p><table>%2</table></qt>"
-#~ msgid ""
-#~ "<qt><p>Detailed results of certificate import:</p><table width=\"100%\">"
-#~ "%1</table></qt>"
-#~ msgstr ""
-#~ "<qt><p>Детални резултати од внесувањето  %1:</p><table>%2</table></qt>"
-
-#, fuzzy
-#~| msgid "<qt><p>Detailed results of importing %1:</p><table>%2</table></qt>"
-#~ msgid ""
-#~ "<qt><p>Detailed results of importing %1:</p><table width=\"100%\">%2</"
-#~ "table></qt>"
-#~ msgstr ""
-#~ "<qt><p>Детални резултати од внесувањето  %1:</p><table>%2</table></qt>"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Totals"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not determine certificate type of %1."
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Multiple certificates"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Fetching Certificate Chain"
-#~ msgid "Change Certificate Date of Expiry"
-#~ msgstr "Верига за земање на сертификатите"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Configuration of directory services"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgid "Colors & Fonts Configuration"
-#~ msgstr "Конфигурација на боја & фонт"
-
-#, fuzzy
-#~| msgid "Backend configuration framework, KIO integration"
-#~ msgid "Configuration of Crypto Operations"
-#~ msgstr "Структура на задниот крај, интеграција со KIO"
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure GnuPG Backend..."
-#~ msgstr "Конфигурирај го &GpgME задниот крај"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgid "Signing key:"
-#~ msgstr "Откажано."
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Generate &revocation certificate"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgid "&Export..."
-#~ msgstr "Само &за криптографирање"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@info"
-#~ msgid "Failed to set PIN: %1"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Subject"
-#~ msgid "Subject-DN:"
-#~ msgstr "Наслов"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 бит"
-#~ msgstr[1] "%1 бит"
-#~ msgstr[2] "%1 бит"
-
-#, fuzzy
-#~| msgid "Validate"
-#~ msgid "Valid Until:"
-#~ msgstr "Ратификувај"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgctxt "@title"
-#~ msgid "Review Parameters"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Show all details"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~ msgid "Authentication:"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~ msgid "Card authentication:"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Digital signature:"
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "Add email to DN in request for broken CAs"
-#~ msgid "Add email address to DN (only needed for broken CAs)"
-#~ msgstr "Додај е-пошта на DN со барање на CAs"
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Certify ..."
-#~ msgstr "Бришам клучеви..."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "%1 nice serial number, %2 real serial number"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "VS-NfD-conforming is a German standard for restricted documents for which "
-#~ "special restrictions about algorithms apply.  The string states that a "
-#~ "signature is compliant with that."
-#~ msgid "The signature is VS-NfD-compliant."
-#~ msgstr "Нови потписи:"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Refresh X.509 Certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt ""
-#~ "Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-#~ "placeholder 2 is the identifier of a slot on a smart card"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "Code successfully changed."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "Certificate: %1\n"
-#~ "Fingerprint: %2"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Failed."
-#~ msgctxt "self-check did not pass"
-#~ msgid "Failed"
-#~ msgstr "Неуспешно."
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgctxt "Self-test did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed.\n"
-#~ "\n"
-#~ "Error code: %1\n"
-#~ "Diagnostics:"
-#~ msgstr "Конфигурација на боја & фонт"
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgctxt "self-check did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed with error code %1.\n"
-#~ "No output was received."
-#~ msgstr "Конфигурација на боја & фонт"
-
-#, fuzzy
-#~| msgid "Do you really want to delete this certificate?"
-#~| msgid_plural "Do you really want to delete these %1 certificates?"
-#~ msgctxt "@info"
-#~ msgid "Please select export options for %1:"
-#~ msgstr "Дали навистина сакате да го избришете овој %1 сертификат"
-
-#, fuzzy
-#~| msgid "Not imported:"
-#~ msgctxt "@title"
-#~ msgid "Incomplete data"
-#~ msgstr "Невнесени:"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Secret Certificate"
-#~ msgstr "Извези сертификати..."
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Please select a certificate."
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Description"
-#~ msgid "<h3>Recipients:</h3>"
-#~ msgstr "Опис"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Certificate Server Certificate Lookup"
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate Usage:"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate missing"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed on %1 with unknown certificate %2."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed with unknown certificate %1."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed by %1 with certificate %2."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed on %1 with certificate %2."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed with certificate %1."
-#~ msgstr "Бришење на CA-сертификати"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Hide Details"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "Save Certificate"
-#~ msgid "New Certificate..."
-#~ msgstr "Зачувај сертификат"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Certificates to Server..."
-#~ msgstr "Извези сертификати..."
-
-#~ msgid "Import Certificates..."
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Dump Certificate"
-#~ msgstr "Внеси сертификати..."
-
-#, fuzzy
-#~| msgid "&Overwrite"
-#~ msgid "Overview"
-#~ msgstr "&Запиши над датотеката"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "Add..."
-#~ msgstr "Познато како"
-
-#, fuzzy
-#~| msgid "Du&mp"
-#~ msgid "Dump"
-#~ msgstr "Ис&фрли"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@title:window"
-#~ msgid "Selected Files"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "No files selected."
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action"
-#~ msgid "More..."
-#~ msgstr "Укини"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Archive name (OpenPGP):"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Archive name (S/MIME):"
-#~ msgstr "Сериски број"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "Add"
-#~ msgstr "Познато како"
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgid "E-Mail"
-#~ msgstr "Е-пошта"
-
-#, fuzzy
-#~| msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
-#~ msgid "<tr><th>%1:</th><td>%2</td></tr>"
-#~ msgstr "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "%1-bit %2"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is currently valid."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#~ msgid "Subject"
-#~ msgstr "Наслов"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "a.k.a."
-#~ msgstr "Познато како"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate type"
-#~ msgstr "Употреба на сертификат"
-
-#, fuzzy
-#~| msgid "Done."
-#~ msgid "No"
-#~ msgstr "Готово."
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgctxt "marginal trust"
-#~ msgid "marginal"
-#~ msgstr "Е-пошта"
-
-#, fuzzy
-#~| msgid "Validate"
-#~ msgctxt "ultimate trust"
-#~ msgid "ultimate"
-#~ msgstr "Ратификувај"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Bad signature by an unknown certificate: %1"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Good signature by an unknown certificate."
-#~ msgstr "Избриши ги сертификатите"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Invalid signature by an unknown certificate: %1"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Fetching certificate from server..."
-#~ msgid "The import of this certificate was canceled."
-#~ msgstr "Земам сертификат од серверот..."
-
-#, fuzzy
-#~| msgid "Fetching certificate from server..."
-#~ msgid ""
-#~ "The import contained no new data for this certificate. It is unchanged."
-#~ msgstr "Земам сертификат од серверот..."
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to open file \"%1\" for reading and writing: %2"
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "did not pass"
-#~ msgid "Self-Check Failed"
-#~ msgstr "Одбери CRL-датотека"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certificate cache loaded."
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Listing OpenPGP certificates"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Set F&ont..."
-#~ msgid "Select Icon"
-#~ msgstr "Постави Ф&онт..."
-
-#, fuzzy
-#~ msgid "International"
-#~ msgstr "Информација за сертификат"
-
-#, fuzzy
-#~| msgid "Path"
-#~ msgid "Path List"
-#~ msgstr "Патека"
-
-#~ msgid "Path"
-#~ msgstr "Патека"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "Option"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Imported:"
-#~ msgid "Impose"
-#~ msgstr "Внесено:"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "Setup Error"
-#~ msgstr "Грешка на Kleopatra"
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred while trying to refresh keys:\n"
-#~| "%1"
-#~ msgid ""
-#~ "An error occurred while reading the current configuration.\n"
-#~ "\n"
-#~ "Error: %1"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се освежат клучевите:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid ""
-#~| "Could not start GnuPG LogViewer (kwatchgnupg). Please check your "
-#~| "installation!"
-#~ msgid ""
-#~ "Could not start the GnuPG Administrative Console (kgpgconf). Please check "
-#~ "your installation."
-#~ msgstr ""
-#~ "Не можам да го подигнам GnuPG прегледувачот на дневници (kwatchgnupg). "
-#~ "Проверете ја Вашата инсталација!"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "No certificates loaded yet."
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~ msgid "File"
-#~ msgstr "Неуспешно."
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "GnuPG log viewer"
-#~ msgstr "Прегледувач на GnuPG дневници"
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure KWatchGnuPG"
-#~ msgstr "Конфигурирај го &GpgME задниот крај"
-
-#, fuzzy
-#~| msgid "Done."
-#~ msgid "None"
-#~ msgstr "Готово."
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "KWatchGnuPG Log Viewer"
-#~ msgstr "Прегледувач на GnuPG дневници"
-
-#, fuzzy
-#~| msgid "Find"
-#~ msgid "&Find:"
-#~ msgstr "Најди"
-
-#~ msgid "Search Toolbar"
-#~ msgstr "Лента со алатки за барање"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Tools"
-#~ msgstr "&Детали"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Listing private X.509 certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Listing private OpenPGP certificates"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Perform flat certificate listing"
-#~ msgstr "&Сертификати"
-
-#, fuzzy
-#~| msgid "Hierarchical Key List"
-#~ msgid "Perform hierarchical certificate listing"
-#~ msgstr "Хиерархиска листа на клучеви"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "OpenPGP certificate to look up"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "X.509 certificate to look up"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "Secret Certificate Deletion"
-#~ msgstr "Бришењето на сертификатот не успеа"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Certificate Export Error"
-#~ msgstr "Грешка во менаџерот за сертификати"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Certificate Export Finished"
-#~ msgstr "Опции на барањето на сертификат"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "KDAB (Kleopatra)"
-#~ msgstr "Kleopatra"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Secret Certificate..."
-#~ msgstr "Извези сертификати..."
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "Checksum Operations"
-#~ msgstr "Запри ја операцијата"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Request by Email..."
-#~ msgstr "Одберете сертификат датотека"
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to learn the smart card's "
-#~ "certificates.</para> <para>The output from <command>%1</command> was: "
-#~ "<message>%2</message></para>"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се исчисти CRL-кешот. Излезот од DirMngr "
-#~ "беше:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgid "Smart card certificates successfully learned."
-#~ msgstr "Внесени тајни клучеви:"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to change the passphrase ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "DirMngr-процесот кој се обиде да го исчисти CRL-кешот заврши прерано "
-#~ "поради неочекувана грешка."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to change the passphrase.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "Се случи грешка при обидот да се исчисти CRL-кешот. Излезот од DirMngr "
-#~ "беше:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "1024 Bits"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "1536 Bits"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "3072 Bits"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "%1 bit"
-#~| msgid_plural "%1 bits"
-#~ msgid "v1 (1024 Bits)"
-#~ msgstr "%1 бит"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not determine parent directory of \"%1\""
-#~ msgstr "Не можам да создадам сертификат: %1"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certificate Download Failed"
-#~ msgstr "Симнувањето на сертификатот не успеа"
-
-#~ msgid ""
-#~ "Some or all of the selected certificates are issuers (CA certificates) "
-#~ "for other, non-selected certificates.\n"
-#~ "Deleting a CA certificate will also delete all certificates issued by it."
-#~ msgstr ""
-#~ "Некои или сите од избраните сертификати се издавачи (CA-Сертификати) за "
-#~ "други, неизбрани сертификати.\n"
-#~ "Бришењето на CA-сертификат исто така ќе ги избрише сите сертификати "
-#~ "издадени од него."

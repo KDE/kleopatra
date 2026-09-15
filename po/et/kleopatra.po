@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2020-10-11 02:40+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -173,12 +173,6 @@ msgstr ""
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager and Unified Crypto GUI"
-msgid "Certificate manager and cryptography app"
-msgstr "Sertifikaadihaldur ja ühendatud krüptimise graafiline kasutajaliides"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -211,6 +205,12 @@ msgstr "(c) 2004: Klarälvdalens Datakonsult AB\n"
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "(c) 2010-2020: Kleopatra arendajad, g10 Code GmbH, Intevation GmbH"
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager and Unified Crypto GUI"
+msgid "Certificate manager and cryptography app"
+msgstr "Sertifikaadihaldur ja ühendatud krüptimise graafiline kasutajaliides"
 
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
@@ -257,8 +257,8 @@ msgstr ""
 #| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
 #| "</p><p>%2</p>"
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr "<p>Tekkis viga, kui püüti muuta <b>%1</b> paroolifraasi:</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp
@@ -1191,7 +1191,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL vahemälu edukalt puhastatud."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, fuzzy, kde-format
 #| msgctxt "@title"
@@ -1382,8 +1382,8 @@ msgstr "CMS taustaprogramm: %1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Tekkis viga, kui püüti kustutada sertifikaati:</p><p><b>%1</b></p></"
 "qt>"
@@ -1578,8 +1578,8 @@ msgstr "Sertifikaatide eksport..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Tekkis viga, kui püüti eksportida sertifikaati:</p><p><b>%1</b></p></"
 "qt>"
@@ -1620,6 +1620,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "Sertifikaadi tõmmis"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Failed to overwrite <filename>%1</filename>."
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "<filename>%1</filename> ülekirjutamine nurjus."
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1633,13 +1640,6 @@ msgstr "Sertifikaadi tõmmis"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Sertifikaadi eksport nurjus"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Failed to overwrite <filename>%1</filename>."
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "<filename>%1</filename> ülekirjutamine nurjus."
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2364,16 +2364,16 @@ msgstr[0] "Sertifikaadi import failist"
 msgstr[1] "Sertifikaadi import failist"
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "Faili %1 avamine lugemiseks nurjus: %2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Sertifikaadi import nurjus"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "Faili %1 avamine lugemiseks nurjus: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2717,8 +2717,8 @@ msgstr "Näita auditi logi"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Tekkis viga, kui püüti importida sertifikaati:</p><p><b>%1</b></p></"
 "qt>"
@@ -2726,8 +2726,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Tekkis viga, kui püüti importida sertifikaati %1:</p><p><b>%2</b></"
 "p></qt>"
@@ -3071,14 +3071,25 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "Olemasoleva võtme sõrmejälg:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "See sertifikaat on aegunud."
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
+"<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3088,16 +3099,28 @@ msgid "Create backup"
 msgstr "Pabervarukoopia"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "Successfully generated a new key for this card."
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "Kaardile genereeriti uus võti edukalt."
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4206,8 +4229,8 @@ msgstr "&Seadistused"
 #| "\".gpg\""
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr "OpenPGP krüptitud failidele antakse \".gpg\" asemel laiendiks \".pgp\""
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4843,8 +4866,8 @@ msgid ""
 msgstr ""
 "<p>Kui süsteemset puhverserverit pole määratud või sul on vaja kasutada "
 "GpgSM puhul mõnda muud, siis kirjuta siia selle asukoht.</p><p>Seda "
-"kasutatakse kõigi HTTP päringute jaoks S/MIME puhul.</p><p>Süntaks on masin:"
-"port, näiteks minupuhverserver.kuskil.ee:3128.</p>"
+"kasutatakse kõigi HTTP päringute jaoks S/MIME puhul.</p><p>Süntaks on "
+"masin:port, näiteks minupuhverserver.kuskil.ee:3128.</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui
@@ -4947,15 +4970,15 @@ msgstr ""
 "aga need ei tohi segiläbi esineda."
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "Initsialiseerimine..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "Loobu"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "Initsialiseerimine..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -5245,6 +5268,34 @@ msgstr "<filename>%1</filename> ülekirjutamine nurjus."
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
+msgstr[1] ""
+"Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
+msgstr[1] ""
+"Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5295,6 +5346,12 @@ msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "Andmed on krüptitud selle võtme / sertifikaadiga."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5447,6 +5504,12 @@ msgid ""
 msgstr ""
 "<br/><b>Hoiatus:</b> saatja e-posti aadress ei ole salvestatud "
 "sertifikaatides, mida kasutatakse allkirjastamiseks."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5829,6 +5892,22 @@ msgstr "Diagnostika"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Näita auditi logi"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, fuzzy, kde-format
@@ -6274,6 +6353,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Failide allkirjastamine/krüptimine"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Sign / Encrypt Files"
@@ -6289,6 +6369,12 @@ msgstr "Failide allkirjastamine/krüptimine"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Allkirjasta/krüpti"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -6311,13 +6397,6 @@ msgstr "Allkirjasta"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Krüptimine"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, fuzzy, kde-format
@@ -6714,20 +6793,20 @@ msgstr "arhiiv"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"Ilmnes ootamatu erind SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared puhul: %1"
+"Ilmnes ootamatu erind "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared puhul: %1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"Ilmnes ootamatu erind SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared puhul"
+"Ilmnes ootamatu erind "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared puhul"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
@@ -6757,8 +6836,8 @@ msgstr "Krüptimine katkestati."
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</filename> "
 "nurjus."
@@ -6812,8 +6891,8 @@ msgstr ""
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6880,14 +6959,14 @@ msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
 "Ajutise faili <filename>%1</filename> kopeerimine failina <filename>%2</"
 "filename> nurjus: <message>%3</message>"
@@ -6902,10 +6981,10 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 msgstr[1] ""
@@ -6929,12 +7008,22 @@ msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 
 #: src/crypto/signencrypttask.cpp
@@ -6944,14 +7033,13 @@ msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 msgstr[1] ""
@@ -6973,13 +7061,13 @@ msgstr "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "Ajutise faili <filename>%1</filename> kopeerimine failina <filename>%2</"
 "filename> nurjus: <message>%3</message>"
@@ -6991,13 +7079,14 @@ msgstr ""
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "Verifitseeriti <filename>%1</filename> failiga <filename>%2</filename>"
 msgstr[1] ""
@@ -8880,14 +8969,15 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -9081,8 +9171,8 @@ msgstr "Määra algne PIN (NKS)"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 "Teine samm: algse PIN-i määramine kvalifitseeritud allkirja sertifikaadile "
 "(\"SigG\"):"
@@ -9106,6 +9196,12 @@ msgstr "Notepadi allkirjastamine/krüptimine"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Notepadi allkirjastamine/krüptimine"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, fuzzy, kde-format
@@ -9693,16 +9789,39 @@ msgstr "Sertifitseerimiste laadimine nurjus"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Create a new key pair or certificate signing request"
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Uue võtmepaari ja sertifikaadipäringu loomine "
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+msgid "Hint for CN"
 msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Create a new key pair or certificate signing request"
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Uue võtmepaari ja sertifikaadipäringu loomine "
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9742,18 +9861,53 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -9792,6 +9946,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9810,13 +9978,28 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
@@ -9854,6 +10037,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -10365,6 +10562,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10609,8 +10820,8 @@ msgstr "Kontrollsummafaili loomine või kontrollimine"
 #: src/kleopatra_options.h
 #, fuzzy, kde-format
 #| msgctxt ""
-#| "If a certificate is already known it shows the certificate details dialog."
-#| "Otherwise it brings up the certificate search dialog."
+#| "If a certificate is already known it shows the certificate details "
+#| "dialog.Otherwise it brings up the certificate search dialog."
 #| msgid ""
 #| "Show details of a local certificate or search for it on a keyserver by "
 #| "fingerprint"
@@ -10820,8 +11031,8 @@ msgstr "Sul&ge ainult aken"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "%1 võib olla mõne teise rakenduse jaoks kasutusel teenusena.\n"
 "Väljumise asemel võiks lihtsalt sulgeda %1 akna."
@@ -11968,8 +12179,8 @@ msgstr "Saajat pole määratud või ainult --info korral"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "Ilmnes ootamatu erind EncryptCommand::Private::slotRecipientsResolved puhul: "
 "%1"
@@ -12003,8 +12214,8 @@ msgstr "SENDER ei tohi olla enne kui PREP_ENCRYPT, välja arvatud --info korral"
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "Ilmnes ootamatu erind PrepEncryptCommand::Private::slotRecipientsResolved "
 "puhul: %1"
@@ -12012,8 +12223,8 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
 "Ilmnes ootamatu erind PrepEncryptCommand::Private::slotRecipientsResolved "
 "puhul"
@@ -12049,8 +12260,8 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "Ilmnes ootamatu erind PrepSignCommand::Private::slotRecipientsResolved "
 "puhul: %1"
@@ -12065,8 +12276,8 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
 "Ilmnes ootamatu erind SelectCertificateCommand::Private::slotDialogAccepted "
 "puhul: %1"
@@ -12074,8 +12285,8 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
 "Ilmnes ootamatu erind SelectCertificateCommand::Private::slotDialogAccepted "
 "puhul"
@@ -13164,6 +13375,13 @@ msgstr "Hierarhiline sertifikaatide nimekiri"
 msgid "List of certificates"
 msgstr "X.509 sertifikaatide loend"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "Üksikasjad"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -14083,8 +14301,8 @@ msgstr "Tere tulemast - Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 "Kleopatra on krüptotarkvara <a href=\"https://gnupg.org\">GnuPG</a> "
 "kasutajaliides."
@@ -14144,8 +14362,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -14186,4175 +14404,3 @@ msgid ""
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
 "Avalikust võtmeserverist importimiseks kasuta käsku \"Otsing serveris\"."
-
-#, fuzzy
-#~| msgid "Successfully copied the key to the card."
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "Võti kopeeriti edukalt kaardile."
-
-#, fuzzy
-#~| msgid "Successfully copied the key to the card."
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted the notepad"
-#~ msgstr "Võti kopeeriti edukalt kaardile."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "It seems another <application>Kleopatra</application> is running (with "
-#~| "process-id %1)"
-#~ msgctxt "@title"
-#~ msgid "<application>Kleopatra</application> failed to start"
-#~ msgstr ""
-#~ "Tundub, et <application>Kleopatra</application> juba töötab (protsess ID-"
-#~ "ga %1)"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Load Certificates"
-#~ msgid "Card Certificate"
-#~ msgstr "Laadi sertifikaadid"
-
-#, fuzzy
-#~| msgctxt "@title %1:\"OpenPGP\" or \"CMS\""
-#~| msgid "%1 Certificate Server"
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "%1 sertifikaadi server"
-
-#, fuzzy
-#~| msgid "Decrypt/Verify Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "Lahtikrüptimise/verifitseerimise lõikepuhvri viga"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "%1 imporditud sertifikaadid"
-
-#~ msgctxt ""
-#~ "The user is offered to force decrypt a non integrity protected message. "
-#~ "With the strong advice to re-encrypt it."
-#~ msgid ""
-#~ "If you are confident that the file was not manipulated you should re-"
-#~ "encrypt it after you have forced the decryption."
-#~ msgstr ""
-#~ "Kui oled kindel, et failiga ei ole manipuleeritud, võiksid selle pärast "
-#~ "jõuga lahtikrüptimist uuesti krüptida."
-
-#, fuzzy
-#~| msgid "Force decryption"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "Jõuga lahtikrüptimine"
-
-#, fuzzy
-#~| msgid "Do not list SMIME certificates"
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "SMIME sertifikaate ei näidata"
-
-#, fuzzy
-#~| msgid "Do not list SMIME certificates"
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "SMIME sertifikaate ei näidata"
-
-#~ msgctxt "@info"
-#~ msgid "The size of the URL may not exceed 254 characters."
-#~ msgstr "URL-i suurus ei tohi ületada 254 märki."
-
-#, fuzzy
-#~| msgctxt "@title:window"
-#~| msgid "Secret Key Export Error"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "Salajase võtme ekspordi viga"
-
-#~ msgid ""
-#~ "If this option is checked while a root CA certificate is being imported, "
-#~ "you will be asked to confirm its fingerprint and to state whether or not "
-#~ "you consider this root certificate to be trusted. A root certificate "
-#~ "needs to be trusted before the certificates it certified become trusted, "
-#~ "but lightly allowing trusted root certificates into your certificate "
-#~ "store will undermine the security of the system."
-#~ msgstr ""
-#~ "Valiku märkimisel palutakse SK juursertifikaadi importimisel kinnitada "
-#~ "selle sõrmejälg ning määrata, kas seda juursertifikaati tuleb usaldada "
-#~ "või mitte. Juursertifikaat peab olema usaldusväärne, enne kui saab "
-#~ "usaldada sertifikaate, mida see sertifitseerib, kuid juursertifikaatide "
-#~ "kergemeelne usaldamine ja nende paigutamine oma sertifikaadihoidlasse "
-#~ "võib õõnestada süsteemi turvalisust."
-
-#~ msgid "Allow to mark root certificates as trusted"
-#~ msgstr "Juursertifikaadid märgitakse usaldusväärseks"
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Sertifikaadi üksikasjad"
-
-#~ msgctxt "@title"
-#~ msgid "Request Saved"
-#~ msgstr "Päring salvestatud"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></"
-#~ "para>"
-
-#~ msgctxt "@title"
-#~ msgid "Error Saving Request"
-#~ msgstr "Viga päringu salvestamisel"
-
-#, fuzzy
-#~| msgid "Cannot open <filename>%1</filename> for reading."
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "Faili <filename>%1</filename> avamine lugemiseks nurjus."
-
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "(required)"
-#~ msgstr "(nõutav)"
-
-#~ msgid "(optional)"
-#~ msgstr "(pole kohustuslik)"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is required, but empty."
-#~ msgstr "<interface>%1</interface> on nõutav, aga tühi."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-#~ "<icode>%2</icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> on nõutav, aga tühi.<nl/>Kohalik "
-#~ "administraatori reegel: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is incomplete."
-#~ msgstr "<interface>%1</interface> on ebatäielik."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> on ebatäielik.<nl/>Kohalik administraatori "
-#~ "reegel: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is invalid."
-#~ msgstr "<interface>%1</interface> on vigane."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> on vigane.<nl/>Kohalik administraatori reegel: "
-#~ "<icode>%2</icode>"
-
-#, fuzzy
-#~| msgid "Subkey Strength:"
-#~ msgctxt "@info:label"
-#~ msgid "RSA key strength:"
-#~ msgstr "Alamvõtme tugevus:"
-
-#, fuzzy
-#~| msgid "Technical Details"
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "Tehnilised üksikasjad"
-
-#, fuzzy
-#~| msgid "EMail Addresses"
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "E-posti aadressid"
-
-#, fuzzy
-#~| msgid "DNS Names"
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "DNS-i nimed"
-
-#, fuzzy
-#~| msgid "Personal Details"
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "Isiklikud üksikasjad"
-
-#~ msgid "new email"
-#~ msgstr "uus e-post"
-
-#~ msgid "new dns name"
-#~ msgstr "uus DNS nimi"
-
-#~ msgid "new uri"
-#~ msgstr "uus URI"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%2 (1-bitine)"
-#~ msgstr[1] "%2 (%1-bitine)"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "1-bitine"
-#~ msgstr[1] "%1-bitine"
-
-#~ msgid "EMail"
-#~ msgstr "E-post"
-
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "Üksikasjad"
-
-#~ msgid "Real name:"
-#~ msgstr "Tegelik nimi:"
-
-#~ msgid "EMail address:"
-#~ msgstr "E-posti aadress:"
-
-#~ msgid "Advanced Settings..."
-#~ msgstr "Muud seadistused..."
-
-#, fuzzy
-#~| msgid "Please enter a name or email address..."
-#~ msgid "Please enter your personal details below."
-#~ msgstr "Palun kirjuta nimi või e-posti aadress..."
-
-#~ msgid ""
-#~ "Please enter your personal details below. If you want more control over "
-#~ "the parameters, click on the Advanced Settings button."
-#~ msgstr ""
-#~ "Palun sisesta allpool enda kohta käivad andmed. Kui soovid parameetreid "
-#~ "täpsemalt määrata, klõpsa nupule Muud seadistused."
-
-#~ msgctxt "@action"
-#~ msgid "Create"
-#~ msgstr "Loo"
-
-#~ msgid "Operation canceled."
-#~ msgstr "Toiming katkestati."
-
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "Võtmepaari loomine nurjus: %1"
-
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "Väljundfaili %1 kirjutamine nurjus: %2"
-
-#~ msgid "Key pair created successfully."
-#~ msgstr "Võtmepaar on edukalt loodud."
-
-#, fuzzy
-#~| msgid "Remove"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "Eemalda"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "Võtmepaari loomise nõustaja"
-
-#, fuzzy
-#~| msgid "Result"
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "Tulemus"
-
-#, fuzzy
-#~| msgid ""
-#~| "Drag this icon to your mail application's composer to attach the request "
-#~| "to a mail."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Drag this icon to your mail application's composer to attach the request "
-#~ "to a mail."
-#~ msgstr ""
-#~ "Lohista see ikoon oma e-posti rakenduse koostajasse, et lisada kirjale "
-#~ "päring."
-
-#~ msgid "Restart This Wizard (Keeps Your Parameters)"
-#~ msgstr "Nõustaja taaskäivitamine (parameetrid säilitatakse)"
-
-#, fuzzy
-#~| msgid "Next Steps"
-#~ msgctxt "@title:group"
-#~ msgid "Next Steps"
-#~ msgstr "Järgmised sammud"
-
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "Salvesta sertifikaadipäring faili..."
-
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "Saada sertifikaadipäring e-kirjaga..."
-
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "Loo samade parameetritega allkirjastamise sertifikaat"
-
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "Loo samade parameetritega krüptimise sertifikaat"
-
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "Võtme loomine nurjus"
-
-#~ msgid ""
-#~ "Key pair creation failed. Please find details about the failure below."
-#~ msgstr "Võtmepaari loomine nurjus. Palun tutvu üksikasjadega allpool"
-
-#~ msgctxt "@title"
-#~ msgid "Key Pair Successfully Created"
-#~ msgstr "Võtmepaar on edukalt loodud"
-
-#~ msgid ""
-#~ "Your new key pair was created successfully. Please find details on the "
-#~ "result and some suggested next steps below."
-#~ msgstr ""
-#~ "Sinu uus võtmepaar on edukalt loodud. Allpool näeb üksikasju ja mõningaid "
-#~ "soovitusi edasiseks."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~ "%2</filename>: <message>%3</message>"
-#~ msgstr ""
-#~ "Ajutise faili <filename>%1</filename> kopeerimine failina <filename>%2</"
-#~ "filename> nurjus: <message>%3</message>"
-
-#~ msgid "Please process this certificate."
-#~ msgstr "Palun töötle seda sertifikaati."
-
-#~ msgid ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-#~ msgstr ""
-#~ "Palun töötle seda sertifikaati ja teavita saatjat asukohast, kust tõmmata "
-#~ "tulemuseks saadud sertifikaat.\n"
-#~ "\n"
-#~ "Ette tänades,\n"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then drag the <application>Kleopatra</"
-#~ "application> icon and drop it on the message compose window of your mail "
-#~ "client.</para><para>If that does not work, either, save the request to a "
-#~ "file, and then attach that.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> püüdis saata kirja sinu "
-#~ "vaikimisi e-posti kliendiga.</para><para>Mõned e-posti kliendid ei toeta "
-#~ "kaasatud faile, kui neid sel moel käivitatakse.</para><para>Kui nii "
-#~ "käitub ka sinu e-posti rakendus, siis lohista <application>Kleopatra</"
-#~ "application> ikoon oma e-posti kliendi kirja koostamise aknasse.</"
-#~ "para><para>Kui ka see ei toimi, salvesta päring faili ja kaasa see siis "
-#~ "tavapärasel viisil.</para>"
-
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "Kirja saatmine"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "This operation will delete the certification request. Please make sure "
-#~ "that you have sent or saved it before proceeding."
-#~ msgstr ""
-#~ "See toiming kustutab sertifikaadipärinug. Palun kontrolli, et sa oleksid "
-#~ "selle teele saatnud või salvestanud."
-
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "Sertifikaadipäringu kustutamine"
-
-#, fuzzy
-#~| msgid "Sign as:"
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "Allkirjastaja:"
-
-#, fuzzy
-#~| msgid "Sign as:"
-#~ msgid "&Sign as:"
-#~ msgstr "Allkirjastaja:"
-
-#~ msgid "Decrypt / Verify"
-#~ msgstr "Krüpti lahti/verifitseeri"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>OpenPGP sertifikaatide värskendamine tähendab kõigi sertifikaatide "
-#~ "uuesti allalaadimist, et kontrollida, kas mõni neist pole vahepeal "
-#~ "tühistatud.</para><para>See võib seada suure koormuse alla nii sinu kui "
-#~ "ka teiste võrguühenduse ning nõuda tunni või enam aega sõltuvalt "
-#~ "võrguühendusest ja kontrollitavate sertifikaatide arvust.</para><para>Kas "
-#~ "tõesti jätkata?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "OpenPGP sertifikaadi värskendamise viga"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "OpenPGP sertifikaadi värskendamine on lõpetatud"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG protsess, mis püüdis värskendada OpenPGP sertifikaate, lõpetas "
-#~ "töö enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli "
-#~ "üksikasjade teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>OpenPGP sertifikaatide värskendamisel tekkis viga.</para><para>Käsu "
-#~ "<command>%1</command> väljund oli: <bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "OpenPGP sertifikaadid on edukalt värskendatud."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>X.509 sertifikaatide värskendamine tähendab kõigo sertifikaatide "
-#~ "CRL-ide allalaadimist, isegi kui nad on muidu igati kehtivad.</"
-#~ "para><para>See võib tekitada korraliku koormuse nii sinu enda kui ka "
-#~ "teiste võrgule ning võtta tunni või kauemgi sõltuvalt võrguühendusest ja "
-#~ "kontrollitavate sertifikaatide arvust.</para><para>Kas soovid kindlasti "
-#~ "jätkata?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "X.509 sertifikaadi värskendamine"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "X.509 sertifikaadi värskendamise viga"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "X.509 sertifikaadi värskendamine lõpetatud"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>Protsess GpgSM, mis püüdis värskendada X.509 sertifikaate, lõpetas "
-#~ "töö enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli "
-#~ "üksikasjade teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>X.509 sertifikaatide värskendamisel tekkis tõrge.</para><para>Käsu "
-#~ "<command>%1</command> väljund oli: <bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "X.509 sertifikaadid värskendati edukalt."
-
-#~ msgid "&Window"
-#~ msgstr "&Aken"
-
-#, fuzzy
-#~| msgid "&Configure %1..."
-#~ msgid "Configure Groups..."
-#~ msgstr "%1 &seadistamine..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "Peata tegevus"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "Värskenda OpenPGP sertifikaate"
-
-#, fuzzy
-#~| msgid "S/MIME Certificates"
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "S/MIME sertifikaadid"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "%1 imporditud sertifikaadid"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "Imporditi sertifikaadid järgmistest allikatest:<br/>%1"
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "Sertifikaadiimpordi tulemus"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "OpenPGP sertifikaadi eksport on lõpetatud"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "OpenPGP sertifikaadid on edukalt eksporditud."
-
-#~ msgid "GpgME library too old"
-#~ msgstr "GpgME teek on liiga vana"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "GpgME teek on liiga vana või in GpgME++ teek kompileeritud vanema GpgME "
-#~ "toetusega, mis ei toeta ühendumist gpg-agendiga."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "Uuenda <application>gpgme</application> versioonile 1.2.0 või uuem ja "
-#~ "kontrolli, et gpgme++ oleks kompileeritud selle toega."
-
-#~ msgid "Keep open after operation completed"
-#~ msgstr "Hoitakse pärast toimingut avatuna"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "Sertifikaadid"
-
-#, fuzzy
-#~| msgid "Show certificate details"
-#~ msgid "Show certificate overview"
-#~ msgstr "Sertifikaadi üksikasjade näitamine"
-
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "Lahtikrüptimise/verifitseerimise hüpikakna geomeetria"
-
-#~ msgid ""
-#~ "The remembered size and position of the Decrypt/Verify Result Popup used "
-#~ "by clients which do not support inline display of D/V results, such as MS "
-#~ "Outlook."
-#~ msgstr ""
-#~ "Lahtikrüptimise/verifitseerimise tulemuste hüpikakna suuruse ja asukoha "
-#~ "määramine klientide tarbeks, mis ei toeta nende tulemuste sisest "
-#~ "näitamist (nt. MS Outlook)."
-
-#, fuzzy
-#~| msgid ""
-#~| "Automatically start operation based on input detection for decrypt/"
-#~| "verify."
-#~ msgctxt "@option:check"
-#~ msgid ""
-#~ "Automatically start operation based on input detection for decrypt/verify."
-#~ msgstr "Toimingu automaatne käivitamine vastavalt sisestatu tuvastamisele"
-
-#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
-#~ msgstr "Ei õnnestunud tuvastada, kas sisendandmed on OpenPGP või CMS"
-
-#~ msgid "No usable inputs found"
-#~ msgstr "Kasutuskõlblikku sisendit ei leitud"
-
-#~ msgid "<b>Choose operations to be performed</b>"
-#~ msgstr "<b>Sooritatava toimingu valik</b>"
-
-#~ msgid ""
-#~ "Here you can check and, if needed, override the operations Kleopatra "
-#~ "detected for the input given."
-#~ msgstr ""
-#~ "Siin saab kontrollida ja vajaduse korral tähistada toiminguid, mida "
-#~ "Kleopatra on tuvastanud määratud sisendi puhul."
-
-#, fuzzy
-#~| msgid "&Decrypt/Verify"
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "K&rüpti lahti/verifitseeri"
-
-#~ msgid "Create all output files in a single folder"
-#~ msgstr "Kõik väljundfailid luuakse ühte kataloogi"
-
-#~ msgid "&Output folder:"
-#~ msgstr "Väljundkatal&oog:"
-
-#~ msgid "Input file:"
-#~ msgstr "Sisendfail:"
-
-#~ msgid "&Input file is a detached signature"
-#~ msgstr "S&isendfail on eraldi allkiri"
-
-#~ msgid "&Signed data:"
-#~ msgstr "Allkirja&statud andmed:"
-
-#~ msgid "&Input file is an archive; unpack with:"
-#~ msgstr "S&isendfail on arhiiv, paki see lahti programmiga:"
-
-#~ msgid ""
-#~ "Automatically start operation based on input detection for decrypt/verify."
-#~ msgstr "Toimingu automaatne käivitamine vastavalt sisestatu tuvastamisele"
-
-#~ msgid ""
-#~ "With this option set Kleopatra no longer asks you what you want to do "
-#~ "with input files but instead automatically starts the operations it "
-#~ "detects as applicable to the input."
-#~ msgstr ""
-#~ "Seda valides ei päri Kleopatra enam, mida sisendfailidega ette võtta, "
-#~ "vaid alustab automaatselt toiminguid, mida peab sisendile kohaseks."
-
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "Kriitilise võtme %1 saatmine nurjus: %2"
-
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "Failiasukoha %1 saatmine nurjus: %2"
-
-#~ msgid "Failed to send sender %1: %2"
-#~ msgstr "Saatja %1 saatmine nurjus: %2"
-
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "Saaja %1 saamine nurjus: %2"
-
-#~ msgid "Change..."
-#~ msgstr "Muuda..."
-
-#~ msgid "Kleopatra Error"
-#~ msgstr "Kleopatra tõrge"
-
-#~ msgid "There was an error while connecting to Kleopatra: %1"
-#~ msgstr "Kleopatraga ühendumisel tekkis tõrge: %1"
-
-#, fuzzy
-#~| msgid "Encrypt Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "Krüptimise lõikepuhvri viga"
-
-#, fuzzy
-#~| msgid "Sign Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Signing clipboard…"
-#~ msgstr "Allkirjastamise lõikepuhvri viga"
-
-#, fuzzy
-#~| msgid "S/MIME-Sign..."
-#~ msgctxt "@action"
-#~ msgid "S/MIME-Sign..."
-#~ msgstr "S/MIME allkiri..."
-
-#, fuzzy
-#~| msgid "OpenPGP-Sign..."
-#~ msgctxt "@action"
-#~ msgid "OpenPGP-Sign..."
-#~ msgstr "OpenPGP allkiri..."
-
-#, fuzzy
-#~| msgid "Search on keyserver"
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr "Otsimine võtmeserveris"
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "Faili valimine"
-
-#, fuzzy
-#~| msgid "Remove Selected"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "Eemalda valitud"
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "Näita üksikasju"
-
-#, fuzzy
-#~| msgid "Search on keyserver"
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "Otsimine võtmeserveris"
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgid "group keys"
-#~ msgstr "Näita üksikasju"
-
-#~ msgid "Unknown certificate"
-#~ msgstr "Tundmatu sertifikaat"
-
-#, fuzzy
-#~| msgid "<b>Verification canceled.</b>"
-#~ msgid "Verification canceled."
-#~ msgstr "<b>Verifitseerimine katkestati.</b>"
-
-#, fuzzy
-#~| msgid "<b>No signatures found.</b>"
-#~ msgid "No signatures found."
-#~ msgstr "<b>Allkirju ei leitud.</b>"
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "<b>Vigane allkiri.</b>"
-#~ msgstr[1] "<b>%1 vigast allkirja.</b>"
-
-#, fuzzy
-#~| msgid "<b>The data could not be verified.</b>"
-#~| msgid_plural "<b>%1 signatures could not be verified.</b>"
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "<b>Andmete kontroll nurjus.</b>"
-#~ msgstr[1] "<b>%1 signatuuri kontrollimine .</b>"
-
-#, fuzzy
-#~| msgid "<b>Valid signature by %1</b>"
-#~ msgid "Valid signature by %1."
-#~ msgstr "<b>%1 kehtiv allkiri</b>"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "Halb allkiri"
-#~ msgstr[1] "Halb allkiri"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#~| "certificates used for signing."
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
-#~ "used for signing."
-#~ msgstr ""
-#~ "<br/><b>Hoiatus:</b> saatja e-posti aadress ei ole salvestatud "
-#~ "sertifikaatides, mida kasutatakse allkirjastamiseks."
-
-#, fuzzy
-#~| msgid "Encryption canceled."
-#~ msgid "Decryption canceled."
-#~ msgstr "Krüptimine katkestati."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr ""
-#~ "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</"
-#~ "filename> nurjus."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</"
-#~ "filename> nurjus."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "Faili <filename>%1</filename> liigutamine asukohta <filename>%2</"
-#~ "filename> nurjus."
-
-#~ msgid ""
-#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
-#~ "p>"
-#~ msgstr ""
-#~ "<p>Saatja aadress %1 ei ole sertifikaadis salvestatud. Salvestatud: %2</p>"
-
-#~ msgctxt "separator for a list of e-mail addresses"
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "Otsi%1"
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "Impordi%1"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 "
-#~| "used for signing."
-#~ msgctxt ""
-#~ "@info The placeholder is a link to the certificate. The text of the link "
-#~ "is the translated work 'certificate'"
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the %1 used for "
-#~ "signing."
-#~ msgstr ""
-#~ "<br/><b>Hoiatus:</b> saatja e-posti aadress ei ole salvestatud %1is, mida "
-#~ "kasutatakse allkirjastamiseks."
-
-#~ msgid "certificate"
-#~ msgstr "sertifikaat"
-
-#~ msgctxt "Input file --> Output file (rarr is arrow"
-#~ msgid "%1 &rarr; %2"
-#~ msgstr "%1 &rarr; %2"
-
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "<b>Verifitseerimine nurjus: %1.</b>"
-
-#~ msgid "<b>Valid signature.</b>"
-#~ msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgstr[0] "<b>Kehtiv allkiri.</b>"
-#~ msgstr[1] "<b>%1 kehtivat allkirja.</b>"
-
-#~ msgid "<b>Decryption canceled.</b>"
-#~ msgstr "<b>Lahtikrüptimine katkestati.</b>"
-
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "<b>Lahtikrüptimine nurjus: %1.</b>"
-
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "<b>Lahtikrüptimine õnnestus.</b>"
-
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1: %2"
-
-#~ msgid "Signing failed."
-#~ msgstr "Allkirjastamine nurjus."
-
-#~ msgid "Encryption failed."
-#~ msgstr "Krüptimine nurjus."
-
-#~ msgid " Encryption succeeded."
-#~ msgstr "Krüptimine õnnestus."
-
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "%1: <b>allkirjastamine/krüptimine katkestati.</b>"
-
-#~ msgid " %1: Sign/encrypt failed."
-#~ msgstr "%1: allkirjastamine/krüptimine nurjus."
-
-#~ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
-#~ msgid "%1: <b>%2</b>"
-#~ msgstr "%1: <b>%2</b>"
-
-#~ msgctxt "e.g. \"Input to tar xf - file1 ...\""
-#~ msgid "Input to %1 ..."
-#~ msgstr "Sisend %1..."
-
-#~ msgctxt "e.g. \"Input to tar xf - file\""
-#~ msgid "Input to %1"
-#~ msgstr "Sisend %1"
-
-#~ msgid "Root Trust Update Failed"
-#~ msgstr "Juure usaldusväärsuse uuendamine nurjus"
-
-#, fuzzy
-#~| msgid ""
-#~| "Encrypt with password. Anyone you share the password with can read the "
-#~| "data."
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid ""
-#~ "Encrypt with &password. Anyone you share the password with can read the "
-#~ "data."
-#~ msgstr ""
-#~ "Krüptimine parooliga. Andmeid saavad lugeda kõik, kellega parooli jagad."
-
-#, fuzzy
-#~| msgid "Output"
-#~ msgctxt "@title:group"
-#~ msgid "Output"
-#~ msgstr "Väljund"
-
-#, fuzzy
-#~| msgid "Prove authenticity (sign)"
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "Autentsuse tõendamine (allkiri)"
-
-#, fuzzy
-#~| msgid "Encrypt"
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "Krüptimine"
-
-#, fuzzy
-#~| msgid "<h3>Protocol:</h3>"
-#~ msgctxt "@label:textbox"
-#~ msgid "<h3>Protocol:</h3>"
-#~ msgstr "<h3>Protokoll:</h3>"
-
-#~ msgid "Recipients"
-#~ msgstr "Saajad"
-
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "Tõrge krüptotoimingu sooritamisel"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "Praegune hooldaja"
-
-#~ msgid ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-#~ msgstr ""
-#~ "(c) 2002: Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009: Marc Mutz, Klarälvdalens Datakonsult AB"
-
-#, fuzzy
-#~| msgid "Cannot open <filename>%1</filename> for reading."
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr "Faili <filename>%1</filename> avamine lugemiseks nurjus."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr ""
-#~ "<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></"
-#~ "para>"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "One unknown recipient."
-#~ msgid_plural "%1 unknown recipients."
-#~ msgstr[0] "Üks tundmatu saaja."
-#~ msgstr[1] "%1 tundmatut saajat."
-
-#~ msgid "Error: Signature not verified"
-#~ msgstr "Viga: allkirja õigsust pole võimalik kontrollida"
-
-#~ msgid "Good signature"
-#~ msgstr "Hea allkiri"
-
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "Allkirjastamise sertifikaat on tühistatud"
-
-#~ msgid "Signing certificate is expired"
-#~ msgstr "Allkirjastamise sertifikaat on aegunud"
-
-#~ msgid "Certificate is not available"
-#~ msgstr "Sertifikaat pole saadaval"
-
-#~ msgid "Signature expired"
-#~ msgstr "Allkiri on aegunud"
-
-#~ msgid "CRL missing"
-#~ msgstr "CRL puudub"
-
-#~ msgid "CRL too old"
-#~ msgstr "CRL on liiga vana"
-
-#~ msgid "Bad policy"
-#~ msgstr "Halb reegel"
-
-#~ msgid "System error"
-#~ msgstr "Süsteemi viga"
-
-#~ msgid ""
-#~ "The signature is valid but the trust in the certificate's validity is "
-#~ "only marginal."
-#~ msgstr ""
-#~ "Allkiri on kehtiv, aga sertifikaadi kehtivuse usaldusväärsus on kõigest "
-#~ "kesine."
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is fully trusted."
-#~ msgstr ""
-#~ "Allkiri on kehtiv ja sertifikaadi kehtivus on täielikult usaldusväärne."
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is ultimately "
-#~ "trusted."
-#~ msgstr ""
-#~ "Allkiri on kehtiv ja sertifikaadi kehtivus on ülimalt usaldusväärne."
-
-#~ msgid ""
-#~ "The signature is valid but the certificate's validity is <em>not trusted</"
-#~ "em>."
-#~ msgstr ""
-#~ "Allkiri on kehtiv, aga sertifikaadi kehtivus <em>ei ole usaldusväärne</"
-#~ "em>."
-
-#~ msgid "The signature is valid but the certificate's validity is unknown."
-#~ msgstr "Allkiri on kehtiv, aga sertifikaadi kehtivus on tundmatu."
-
-#~ msgid "The signature is valid but the certificate's validity is undefined."
-#~ msgstr "Allkiri on kehtiv, aga sertifikaadi kehtivus on määramata."
-
-#~ msgctxt "1 is a date"
-#~ msgid "Signature created on %1"
-#~ msgstr "Allkiri on loodud %1"
-
-#~ msgid "With certificate:"
-#~ msgstr "Sertifikaadiga:"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "Allkiri on kehtetu: %1"
-
-#, fuzzy
-#~| msgctxt ""
-#~| "VS-NfD-conforming is a German standard for restricted documents for "
-#~| "which special restrictions about algorithms apply.  The string states "
-#~| "that a signature is not compliant with that."
-#~| msgid "The signature <b>is not</b> VS-NfD-compliant."
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "Allkiri <b>ei ole</b> VS-NfD ühilduv."
-
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "Allkiri on kehtetu: %1"
-
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr "Sertifikaati võib otsida võtmeserverist või importida failist."
-
-#~ msgid "The used key is not certified by you or any trusted person."
-#~ msgstr ""
-#~ "Kasutatavat võtit ei ole sertifitseerinud ei sina ise ega ükski "
-#~ "usaldusväärne isik."
-
-#~ msgid ""
-#~ "The used certificate is not certified by a trustworthy Certificate "
-#~ "Authority or the Certificate Authority is unknown."
-#~ msgstr ""
-#~ "Kasutatud sertifikaati ei ole sertifitseerinud ükski usaldusväärne "
-#~ "sertifitseerimiskeskus või sertifitseerimiskeskus tundmatu."
-
-#~ msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set NKS PIN"
-#~ msgstr "Määra NKS PIN"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set SigG PIN"
-#~ msgstr "Määra SigG PIN"
-
-#~ msgid "Setting a PIN is required but <b>can't be reverted</b>."
-#~ msgstr "PIN-i määramine on nõutav, kuid seda <b>ei saa tagasi võtta</b>."
-
-#~ msgid ""
-#~ "If you proceed you will be asked to enter a new PIN and later to repeat "
-#~ "that PIN."
-#~ msgstr "Kui jätkad, palutakse sul sisestada uus PIN ja hiljem seda korrata."
-
-#~ msgid ""
-#~ "It will <b>not be possible</b> to recover the card if the PIN has been "
-#~ "entered wrongly more than 2 times."
-#~ msgstr ""
-#~ "Kaarti <b>ei ole võimalik</b> taastada, kui PIN üle kahe korra järjest "
-#~ "valesti sisestada."
-
-#, fuzzy
-#~| msgid "Set initial PIN"
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "Algse PIN-i määramine"
-
-#, fuzzy
-#~| msgid "Change"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "Muuda"
-
-#~ msgid "New name:"
-#~ msgstr "Uus nimi:"
-
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "Nimi on edukalt muudetud."
-
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "URL on edukalt muudetud."
-
-#, fuzzy
-#~| msgid "Change PIN"
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "Muuda PIN-i"
-
-#, fuzzy
-#~| msgid "Create a new OpenPGP key pair"
-#~ msgctxt "@action:button"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "Uue OpenPGP võtmepaari loomine"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "Muuda SigG PIN-i"
-
-#~ msgid "Error"
-#~ msgstr "Tõrge"
-
-#, fuzzy
-#~| msgid "Change PIN"
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "Muuda PIN-i"
-
-#, fuzzy
-#~| msgid "Subkeys:"
-#~ msgid "Subkeys"
-#~ msgstr "Alamvõtmed:"
-
-#, fuzzy
-#~| msgid "Type"
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "Tüüp"
-
-#, fuzzy
-#~| msgid "Serial number:"
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "Seerianumber:"
-
-#, fuzzy
-#~| msgid "Owner:"
-#~ msgctxt "@title:column"
-#~ msgid "Owner"
-#~ msgstr "Omanik:"
-
-#, fuzzy
-#~| msgid "Certification will be performed using certificate %1."
-#~ msgctxt "@info"
-#~ msgid "Smartcard information is only available for your own certificates."
-#~ msgstr "Sertifitseerimine sooritatakse sertifikaadiga %1."
-
-#, fuzzy
-#~| msgctxt "Unknown encryption protocol"
-#~| msgid "Unknown"
-#~ msgctxt "Unknown <type> <version> (card)"
-#~ msgid "Unknown %1 v%2"
-#~ msgstr "Tundmatu"
-
-#, fuzzy
-#~| msgctxt "name, email, key id"
-#~| msgid "%1 %2 (%3)"
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 %2 (%3)"
-
-#, fuzzy
-#~| msgid "unknown"
-#~ msgctxt "unknown cardholder"
-#~ msgid "unknown"
-#~ msgstr "teadmata"
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "Kiipkaart"
-
-#, fuzzy
-#~| msgid "This certificate has been disabled locally."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "See sertifikaat on kohalikult keelatud."
-
-#~ msgid "Authentication"
-#~ msgstr "Autentimine"
-
-#, fuzzy
-#~| msgid "Certificates:"
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "Sertifikaadid:"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create"
-#~ msgctxt "@action:button"
-#~ msgid "Create CSR"
-#~ msgstr "Loo"
-
-#, fuzzy
-#~| msgid "Create a new key pair or certificate signing request"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "Uue võtmepaari ja sertifikaadipäringu loomine "
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgid "Select Key"
-#~ msgstr "Faili valimine"
-
-#, fuzzy
-#~| msgid "Create a new key pair or certificate signing request"
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr "Uue võtmepaari ja sertifikaadipäringu loomine "
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "Näita üksikasju"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "Loo võti"
-
-#, fuzzy
-#~| msgid "Slot empty"
-#~ msgctxt "@info"
-#~ msgid "<em>No key</em>"
-#~ msgstr "Pesa on tühi"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Successfully generated a new key for this card."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Generate a key for this card slot"
-#~ msgstr "Kaardile genereeriti uus võti edukalt."
-
-#, fuzzy
-#~| msgid "Public key not found."
-#~ msgctxt "@info"
-#~ msgid "<em>Public key not found locally</em>"
-#~ msgstr "Avalikku võtit ei leitud."
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "<b>Vigane allkiri.</b>"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "Loo võti"
-
-#, fuzzy
-#~| msgid "OpenPGP"
-#~ msgid "OpenPGP keys:"
-#~ msgstr "OpenPGP"
-
-#~ msgid "Keys:"
-#~ msgstr "Võtmed:"
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "Üldine"
-
-#, fuzzy
-#~| msgid "With certificate:"
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "Sertifikaadiga:"
-
-#, fuzzy
-#~| msgid "Import Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "Impordi sertifikaadid"
-
-#, fuzzy
-#~| msgid "Slot empty"
-#~ msgctxt "@info"
-#~ msgid "<em>slot empty</em>"
-#~ msgstr "Pesa on tühi"
-
-#, fuzzy
-#~| msgid "General"
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "Üldine"
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "(sobivaid sertifikaate ei leitud)"
-
-#, fuzzy
-#~| msgid "Places"
-#~ msgctxt "@action:button"
-#~ msgid "Replace"
-#~ msgstr "Kohad"
-
-#~ msgid "Reload"
-#~ msgstr "Laadi uuesti"
-
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "CRL puhvritõmmise viga"
-
-#, fuzzy
-#~| msgid "Could not create certificate: %1"
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "Sertifikaadi loomine nurjus: %1"
-
-#, fuzzy
-#~| msgid "Fingerprint:"
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "Sõrmejälg:"
-
-#, fuzzy
-#~| msgid "Name"
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "Nimi"
-
-#, fuzzy
-#~| msgid "new dns name"
-#~ msgid "Enter a name."
-#~ msgstr "uus DNS nimi"
-
-#, fuzzy
-#~| msgid "EMail address:"
-#~ msgctxt "@label"
-#~ msgid "Email address"
-#~ msgstr "E-posti aadress:"
-
-#, fuzzy
-#~| msgid "Please enter a name or email address..."
-#~ msgid "Enter an email address."
-#~ msgstr "Palun kirjuta nimi või e-posti aadress..."
-
-#, fuzzy
-#~| msgid "The validity of the signature cannot be verified."
-#~ msgctxt "@info"
-#~ msgid "The date cannot be changed."
-#~ msgstr "Selle allkirja usaldusväärsust ei saa kontrollida."
-
-#, fuzzy
-#~| msgid "(required)"
-#~ msgctxt "@label label text (required)"
-#~ msgid "%1 (required)"
-#~ msgstr "(nõutav)"
-
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr "Sertifikaatide otsimine avalikus võtmeserveris"
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "Otsi..."
-
-#, fuzzy
-#~| msgid "Search...<%1>"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "Otsi...<%1>"
-
-#, fuzzy
-#~| msgid "Serial number:"
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "Seerianumber:"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "Hiljuti tühistatud:"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "Tühista..."
-
-#, fuzzy
-#~| msgid "Command not specified"
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "Käsku pole määratud"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "Tühista..."
-
-#, fuzzy
-#~| msgid "Publish on keyserver afterwards."
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "Avaldamine hiljem võtmeserveris."
-
-#, fuzzy
-#~| msgid "ID"
-#~ msgctxt "@title:column"
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgctxt "@info"
-#~ msgid "Changing the Reset Code failed: %1"
-#~ msgstr "Lähtestamise koodi muutmine nurjus: %1"
-
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "PUK on edukalt muudetud."
-
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "Lähtestamise kood on edukalt muudetud."
-
-#~ msgid "Create a new primary key and generate subkeys on the card."
-#~ msgstr "Uue primaarvõtme loomine ja alamvõtmete genereerimine kaardil."
-
-#~ msgid "Change Reset Code"
-#~ msgstr "Muuda lähtestamise koodi"
-
-#, fuzzy
-#~| msgid "Show owner information"
-#~ msgid "&Group configuration"
-#~ msgstr "Omaniku teabe näitamine"
-
-#, fuzzy
-#~| msgid "Create a new OpenPGP key pair"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "Uue OpenPGP võtmepaari loomine"
-
-#, fuzzy
-#~| msgid "Create a new primary key and generate subkeys on the card."
-#~ msgid "Create an OpenPGP key for the keys stored on the card."
-#~ msgstr "Uue primaarvõtme loomine ja alamvõtmete genereerimine kaardil."
-
-#, fuzzy
-#~| msgid "Secret keys unchanged:"
-#~ msgid "The key hasn't changed."
-#~ msgstr "Salajasi võtmeid muutmata:"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "OpenPGP certificates exported successfully."
-#~ msgid "The key has been revoked."
-#~ msgstr "OpenPGP sertifikaadid on edukalt eksporditud."
-
-#, fuzzy
-#~| msgid "Your key is being created."
-#~ msgid "The key has been updated."
-#~ msgstr "Sinu võtit luuakse."
-
-#, fuzzy
-#~| msgctxt "@title:window"
-#~| msgid "Update Available"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "Saadaval  on uuendus"
-
-#, fuzzy
-#~| msgid "&Update"
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "&Uuenda"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></"
-#~ "para>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Sertifitseerimise laadimisel tekkis viga: <message>%1</message></"
-#~ "para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Tõrge salajase võtme trükkimisel"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG protsess, mis püüdis eksportida salajast võtit, lõpetas töö "
-#~ "enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli üksikasjade "
-#~ "teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Salajase võtme eksportimisel tekkis viga.</para><para>Käsu <command>"
-#~ "%1</command> väljund oli: <message>%2</message></para>"
-
-#, fuzzy
-#~| msgid "RSA"
-#~ msgctxt "@option:radio"
-#~ msgid "RSA"
-#~ msgstr "RSA"
-
-#, fuzzy
-#~| msgid "+ RSA"
-#~ msgctxt "@option:check"
-#~ msgid "+ RSA"
-#~ msgstr "+ RSA"
-
-#, fuzzy
-#~| msgid "DSA"
-#~ msgctxt "@option:radio"
-#~ msgid "DSA"
-#~ msgstr "DSA"
-
-#, fuzzy
-#~| msgid "+ Elgamal"
-#~ msgctxt "@option:check"
-#~ msgid "+ Elgamal"
-#~ msgstr "+ Elgamal"
-
-#, fuzzy
-#~| msgid "The private key is needed to decrypt or sign."
-#~ msgctxt "@info:tooltip"
-#~ msgid "This subkey is required for encryption."
-#~ msgstr "Privaatvõtit on tarvis lahtikrüptimiseks või allkirjastamiseks."
-
-#, fuzzy
-#~| msgid "ECDSA"
-#~ msgctxt "@option:radio"
-#~ msgid "ECDSA"
-#~ msgstr "ECDSA"
-
-#, fuzzy
-#~| msgid "+ ECDH"
-#~ msgctxt "@option:check"
-#~ msgid "+ ECDH"
-#~ msgstr "+ ECDH"
-
-#, fuzzy
-#~| msgid "Additional User-IDs"
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "Täiendavad kasutaja ID-d"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Adding more than one User ID is not yet implemented."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Adding more than one user ID is not yet implemented."
-#~ msgstr "Rohkem kui ühe kasutaja ID lisamine ei ole veel võimalik."
-
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr ""
-#~ "Võtmepaar on edukalt loodud.\n"
-#~ "Sõrmejälg: %1"
-
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Tee oma võtmepaarist varukoopia..."
-
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Saada avalik võti e-kirjaga..."
-
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Laadi avalik võti kataloogiserverisse..."
-
-#~ msgid "Create Revocation Request..."
-#~ msgstr "Loo tühistamispäring..."
-
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "Minu uus avalik OpenPGP võti"
-
-#~ msgid "Please find attached my new public OpenPGP key."
-#~ msgstr "Palun vaata minu kaasatud uut OpenPGP võtit."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para><application>Kleopatra</application> tried to send a mail via your "
-#~| "default mail client.</para><para>Some mail clients are known not to "
-#~| "support attachments when invoked this way.</para><para>If your mail "
-#~| "client does not have an attachment, then drag the "
-#~| "<application>Kleopatra</application> icon and drop it on the message "
-#~| "compose window of your mail client.</para><para>If that does not work, "
-#~| "either, save the request to a file, and then attach that.</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then attach the file <filename>%1</"
-#~ "filename> manually.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> püüdis saata kirja sinu "
-#~ "vaikimisi e-posti kliendiga.</para><para>Mõned e-posti kliendid ei toeta "
-#~ "kaasatud faile, kui neid sel moel käivitatakse.</para><para>Kui nii "
-#~ "käitub ka sinu e-posti rakendus, siis lohista <application>Kleopatra</"
-#~ "application> ikoon oma e-posti kliendi kirja koostamise aknasse.</"
-#~ "para><para>Kui ka see ei toimi, salvesta päring faili ja kaasa see siis "
-#~ "tavapärasel viisil.</para>"
-
-#~ msgid "Related addresses:"
-#~ msgstr "Seotud aadressid:"
-
-#, fuzzy
-#~| msgid "&More details..."
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "&Rohkem üksikasju ..."
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "Näita üksikasju"
-
-#, fuzzy
-#~| msgid "Subkeys:"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "Alamvõtmed:"
-
-#, fuzzy
-#~| msgid "Subkeys:"
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "Alamvõtmed:"
-
-#~ msgid "Restore printed backup"
-#~ msgstr "Taasta trükitud varukoopia"
-
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "Alamvõtmete üksikasjad"
-
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "Usaldusahel"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "Tõrge kiipkaardi uurimisel"
-
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "Kiipkaardi uurimine on lõpetatud"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG või GpgSM protsess, mis püüdis uurida kiipkaarti, lõpetas töö "
-#~ "enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli üksikasjade "
-#~ "teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "Sertifitseerimiste laadimine ... (võib võtta veidi aega)"
-
-#~ msgid "Show Details"
-#~ msgstr "Näita üksikasju"
-
-#, fuzzy
-#~| msgid "Learn NetKey v3 Card Certificates"
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "Uuri NetKey v3 kaardi sertifikaate"
-
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "Kaardil leidub tundmatuid sertifikaate."
-
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "Laadi sertifikaadid"
-
-#, fuzzy
-#~| msgid "Strength"
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "Tugevus"
-
-#, fuzzy
-#~| msgid "Primary"
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "Esmane"
-
-#, fuzzy
-#~| msgid "Yes"
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "Jah"
-
-#~ msgid "View Columns"
-#~ msgstr "Vaade veergudes"
-
-#, fuzzy
-#~| msgid "Backup Secret Key"
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Salavõtme varundamine"
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Faili valimine"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Tühista..."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "Fail <b>%1</b> on juba olemas.\n"
-#~ "Kas kirjutada see üle?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Kas kirjutada fail üle?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Kirjuta kõik üle"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgid "Save changes"
-#~ msgstr "Salvestamine"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "Salvestamine"
-
-#~ msgid "Import Certificates"
-#~ msgstr "Impordi sertifikaadid"
-
-#~ msgid "Import CRLs"
-#~ msgstr "Impordi CRL-id"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>OpenPGP kataloogiservereid pole seadistatud.</para><para>Et ühtegi "
-#~ "pole seadistatud, kasutab <application>Kleopatra</application> "
-#~ "varuvariandina serverit <resource>keys.gnupg.net</resource>.</"
-#~ "para><para>OpenPGP kataloogiservereid saab seadistada "
-#~ "<application>Kleopatra</application> seadistustedialoogis.</"
-#~ "para><para>Kas soovid jätkata varuserveriga <resource>keys.gnupg.net</"
-#~ "resource>?</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>OpenPGP kataloogiservereid pole seadistatud.</para><para>Kui ükski "
-#~ "sertifikaat ei kanna eelistatud sertifikaadiserveri nime (mõned seda "
-#~ "siiski teevad), on vajalik määrata varuserver.</para><para>Et aga ühtegi "
-#~ "pole seadistatud, kasutab <application>Kleopatra</application> "
-#~ "varuvariandina serverit <resource>keys.gnupg.net</resource>.</"
-#~ "para><para>OpenPGP kataloogiservereid saab seadistada Kleopatra "
-#~ "seadistustedialoogis.</para><para>Kas soovid jätkata varuserveriga "
-#~ "<resource>keys.gnupg.net</resource>?</para>"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-256)"
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECDH (Curve P-256)"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-384)"
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECDH (Curve P-384)"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-256)"
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECDH (Curve P-256)"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-384)"
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECDH (Curve P-384)"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-256)"
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECDH (Curve P-256)"
-
-#, fuzzy
-#~| msgid "ECDH (Curve P-384)"
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECDH (Curve P-384)"
-
-#, fuzzy
-#~| msgid "RSA (2048 bits)"
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA (2048 bitti)"
-
-#~ msgid "File Operations"
-#~ msgstr "Failioperatsioonid"
-
-#~ msgid "Secret Key Files"
-#~ msgstr "Salajase võtme failid"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "Salajase võtme ekspordi viga"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "Salajase võtme eksport on lõpetatud"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG või GpgSM protsess, mis püüdis eksportida salajast võtit, "
-#~ "lõpetas töö enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli "
-#~ "üksikasjade teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "Salajane võti on edukalt eksporditud."
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Failed to find PaperKey executable."
-#~ msgctxt "@info"
-#~ msgid "Failed to write data."
-#~ msgstr "PaperKey täitmisfaili ei leitud."
-
-#, fuzzy
-#~| msgid ""
-#~| "The CMS backend does not support certificate deletion.\n"
-#~| "Check your installation."
-#~ msgctxt "@info"
-#~ msgid "The backend does not support this operation."
-#~ msgstr ""
-#~ "CMS taustaprogramm ei toeta sertifikaadi kustutamist.\n"
-#~ "Palun kontrolli paigaldust."
-
-#, fuzzy
-#~| msgid "Export Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "Sertifikaatide eksport"
-
-#~ msgid "Sender"
-#~ msgstr "Saatja"
-
-#, fuzzy
-#~| msgid "Delete"
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "Kustuta"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Eksport"
-
-#~ msgid "Certificate Details"
-#~ msgstr "Sertifikaadi üksikasjad"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgid "Explain expiration"
-#~ msgstr "Muuda aegumise kuupäeva..."
-
-#, fuzzy
-#~| msgid "Trusted issuer?"
-#~ msgid "Explain trusted introducer"
-#~ msgstr "Kas väljaandja on usaldusväärne?"
-
-#, fuzzy
-#~| msgid "There are unknown certificates on this card."
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "Kaardil leidub tundmatuid sertifikaate."
-
-#, fuzzy
-#~| msgid "Valid from:"
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "Kehtiv alates:"
-#~ msgstr[1] "Kehtiv alates:"
-
-#, fuzzy
-#~| msgid "Valid from:"
-#~ msgid "Valid for:"
-#~ msgstr "Kehtiv alates:"
-
-#~ msgid "Days"
-#~ msgstr "päeva pärast"
-
-#~ msgid "Weeks"
-#~ msgstr "nädala pärast"
-
-#~ msgid "Months"
-#~ msgstr "kuu pärast"
-
-#~ msgid "Failed to create output folder."
-#~ msgstr "Väljundkataloogi loomine nurjus."
-
-#~ msgid "Tooltips"
-#~ msgstr "Kohtspikrid"
-
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "Faili \"%1\" eemaldamine ülekirjutamiseks nurjus."
-
-#, fuzzy
-#~| msgid "Initializing..."
-#~ msgid "Finalizing output..."
-#~ msgstr "Initsialiseerimine..."
-
-#~ msgid ""
-#~ "This means that every configuration option of the GnuPG System will be "
-#~ "reset to its default."
-#~ msgstr ""
-#~ "See tähendab, et kõik GnuPG süsteemi seadistused on lähtestatud "
-#~ "vaikeväärtustele."
-
-#~ msgid "Apply profile"
-#~ msgstr "Rakenda profiili"
-
-#~ msgctxt "%1 is the name of the profile"
-#~ msgid "The configuration profile \"%1\" was applied."
-#~ msgstr "Profiili \"%1\" seadistused rakendati."
-
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "GnuPG profiil - Kleopatra"
-
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "Üldtoimingud"
-
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "GnuPG profiili rakendamine:"
-
-#~ msgid ""
-#~ "A profile consists of various settings that can apply to multiple "
-#~ "components of the GnuPG system."
-#~ msgstr ""
-#~ "Profiil koosneb mitmest seadistusest, mis rakenduvad GnuPG süsteemi "
-#~ "erinevatele osadele."
-
-#~ msgid "Apply"
-#~ msgstr "Rakenda"
-
-#~ msgid "EMail Operations"
-#~ msgstr "E-posti toimingud"
-
-#~ msgid ""
-#~ "Don't confirm signing certificate if there is only one valid certificate "
-#~ "for the identity"
-#~ msgstr ""
-#~ "Allkirjastamise sertifikaati ei kinnitata, kui identiteedile on ainult "
-#~ "üks kehtiv sertifikaat"
-
-#~ msgid ""
-#~ "Don't confirm encryption certificates if there is exactly one valid "
-#~ "certificate for each recipient"
-#~ msgstr ""
-#~ "Krüptimise sertifikaati ei kinnitata, kui igale saajale on ainult üks "
-#~ "kehtiv sertifikaat"
-
-#~ msgctxt "@title:window"
-#~ msgid "Encrypt Mail Message"
-#~ msgstr "E-kirja krüptimine"
-
-#~ msgctxt "@title:window"
-#~ msgid "Sign Mail Message"
-#~ msgstr "E-kirja allkirjastamine"
-
-#~ msgid "Quick Sign EMail"
-#~ msgstr "E-kirja kiirallkirjastamine"
-
-#~ msgid ""
-#~ "Minimize the number of steps when signing emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr ""
-#~ "Sammude võimalikult väike arv e-kirjade allkirjastamisel: kasutatakse "
-#~ "vaikeväärtusi, kui ei teki mingeid probleeme."
-
-#~ msgid ""
-#~ "Minimize the number of steps when encrypting emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr ""
-#~ "Sammude võimalikult väike arv e-kirjade krüptimisel: kasutatakse "
-#~ "vaikeväärtusi, kui ei teki mingeid probleeme."
-
-#~ msgid ""
-#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
-#~ "actually belongs to the person it claims it is from?"
-#~ msgstr ""
-#~ "<b>2. samm:</b> kui põhjalikult oled kontrollinud, et see sertifikaat "
-#~ "kuulub tõepoolest isikule, kes seda väidab?"
-
-#~ msgid "I have not checked at all"
-#~ msgstr "Pole üldse kontrollinud"
-
-#~ msgid "Describe semantics here..."
-#~ msgstr "Kirjelda siin semantikat..."
-
-#~ msgid "I have checked casually"
-#~ msgstr "Kontrollisin põgusalt"
-
-#~ msgid ""
-#~ "Choose this if you know the person, and have asked them whether this was "
-#~ "their certificate, but you have not verified they are actually in "
-#~ "possession of the secret certificate."
-#~ msgstr ""
-#~ "Selle valimine tähendab, et tunned isikut ja oled tema käest küsinud, kas "
-#~ "see on tema sertifikaat, aga ei ole kontrollinud, kas tal on tõepoolest "
-#~ "salajane sertifikaat olemas."
-
-#~ msgid "I have checked very thoroughly"
-#~ msgstr "Kontrollisin väga hoolikalt"
-
-#~ msgid ""
-#~ "Choose this if you have, for instance, checked the ID card of the person, "
-#~ "and have verified that they are in possession of the secret key (e.g. by "
-#~ "sending them encrypted mail and asking for it to be decrypted)."
-#~ msgstr ""
-#~ "Selle valimine tähendab, et oled kontrollinud näiteks isiku dokumente ja "
-#~ "seda, et tal on tõepoolest olemas salajane võti (saates näiteks talle "
-#~ "krüptitud e-kirju ja paludes tal need lahti krüptida)."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Salajane võti imporditud:"
-
-#, fuzzy
-#~| msgid "Signature"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "Allkiri"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "Krüptimine"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "Autentimine"
-
-#~ msgctxt "@info"
-#~ msgid "Moving the key to the card failed: %1"
-#~ msgstr "Võtme liigutamine kaardile nurjus: %1"
-
-#, fuzzy
-#~| msgid "Successfully copied the key to the card."
-#~ msgctxt "@info"
-#~ msgid "Successfully copied the key pair to the card."
-#~ msgstr "Võti kopeeriti edukalt kaardile."
-
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<p>Tekkis tõrge, kui püüti muuta <b>%1</b> sertifitseerimise "
-#~ "usaldusväärsust:</p><p>%2</p>"
-
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "Sertifitseerimise usaldusväärsus muudeti edukalt."
-
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "Sertifitseerimise usaldusväärsuse muutmine õnnestus"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "%1 usaldustaseme muutmine"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr ""
-#~ "Kui palju usaldad sertifitseerimisi, mida on teinud <b>%1</b> "
-#~ "sertifikaatide autentsuse korrektseks kontrollimiseks?"
-
-#~ msgid "I do not know"
-#~ msgstr "Ma ei tea"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>(tundmatu usaldusväärsus)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Selle valimine tähendab, et sul puudub arvamus "
-#~ "sertifikaadiomaniku usaldusväärtuse kohta.<br>Selle tasemega sertifikaate "
-#~ "eiratakse OpenPGP sertifikaatide kehtivuse kontrollimisel.</font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "Ma EI USALDA neid"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>(mitte kunagi ei usaldata)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Selle valimine tähendab, et sa <em>ei usalda</em> "
-#~ "sertifikaadiomanikku kohe üldse, näiteks seepärast, et tead, et sa "
-#~ "sertifitseerib ilma kontrollimata või ilma sertifikaadiomaniku "
-#~ "nõusolekuta.<br>Selle tasemega sertifikaate eiratakse OpenPGP "
-#~ "sertifikaatide kehtivuse kontrollimisel.</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "Ma usun, et kontroll on põgus"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>(kesine usaldusväärsus)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Selle valimine tähendab, et sinu arvates on "
-#~ "sertifitseerimine tehtud teatud, aga siiski mitte väga hoolika "
-#~ "kontrollimisega.<br>Selle taseme korral kehtivad sertifikaadid alles "
-#~ "mitme sertifitseerimise (tavaliselt kolm) järel. See on üldiselt päris "
-#~ "mõistlik valik.</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "Ma usun, et kontroll on väga hoolikas"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>(täielik usaldusväärsus)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">Selle valimine tähendab, et sinu arvates on "
-#~ "sertifitseerimine tehtud väga hoolikalt.<br>Selle taseme korral kehtivad "
-#~ "sertifikaadid kõigest ühe sertifitseerimise järel, nii et ole sellega "
-#~ "ettevaatlik.</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "See on minu sertifikaat"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>(ülim usaldusväärsus)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">See tuleb valida ainult siis, kui tegemist on tõesti "
-#~ "sinu enda sertifikaadiga. See on vaikeväärtus, kui saadaval on salajane "
-#~ "võti, aga kui oled selle sertifikaadi importinud, tuleb sul "
-#~ "usaldusväärsuse taset ise reguleerida.<br>Selle taseme korral kehtivad "
-#~ "sertifikaadid kõigest ühe sertifitseerimise järel.</font>"
-
-#~ msgctxt "@action"
-#~ msgid "Encrypt"
-#~ msgstr "Krüpti"
-
-#~ msgctxt ""
-#~ "1 is an operation to apply to the notepad. Like Sign/Encrypt or just "
-#~ "Encrypt."
-#~ msgid "%1 Notepad"
-#~ msgstr "Notepadi %1"
-
-#, fuzzy
-#~| msgctxt ""
-#~| "VS-NfD-conforming is a German standard for restricted documents for "
-#~| "which special restrictions about algorithms apply.  The string states "
-#~| "that all cryptographic operations necessary for the communication are "
-#~| "compliant with that."
-#~| msgid "VS-NfD-compliant communication possible."
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication possible."
-#~ msgstr "VS-NfD ühilduv side on võimalik."
-
-#, fuzzy
-#~| msgctxt ""
-#~| "VS-NfD-conforming is a German standard for restricted documents for "
-#~| "which special restrictions about algorithms apply.  The string states "
-#~| "that all cryptographic operations necessary for the communication are "
-#~| "compliant with that."
-#~| msgid "VS-NfD-compliant communication not possible."
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication not possible."
-#~ msgstr "VS-NfD ühilduv side ei ole võimalik."
-
-#~ msgid "Create a new OpenPGP key pair"
-#~ msgstr "Uue OpenPGP võtmepaari loomine"
-
-#~ msgid ""
-#~ "To create an S/MIME certificate request use \"New Key Pair\" from the "
-#~ "'File' Menu instead"
-#~ msgstr ""
-#~ "S/MIME sertifikaadi loomiseks kasuta menüü Fail käsku \"Uus võtmepaar\""
-
-#~ msgid "Import from a file."
-#~ msgstr "Import failist."
-
-#~ msgid "Fingerprint: <b>%1</b>"
-#~ msgstr "Sõrmejälg: <b>%1</b>"
-
-#~ msgid ""
-#~ "<i>Only the fingerprint clearly identifies the key and its owner.</i>"
-#~ msgstr "<i>Ainult sõrmejälg tuvastab selgelt võtme ja selle omaniku.</i>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>An error occurred while trying to certify<br/><br/><b>%1</b>:</p><p>\t"
-#~| "%2</p>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to revoke the certification of<br/><br/"
-#~ "><b>%1</b>:</p><p>\t%2</p>"
-#~ msgstr ""
-#~ "<p><b>%1</b><br/><br/>sertifitseerimisel tekkis tõrge:</p><p>\t%2</p>"
-
-#, fuzzy
-#~| msgid "Certification Error"
-#~ msgid "Revocation Error"
-#~ msgstr "Sertifitseerimise tõrge"
-
-#, fuzzy
-#~| msgid "Certification Succeeded"
-#~ msgid "Revocation Succeeded"
-#~ msgstr "Sertifitseerimine õnnestus"
-
-#, fuzzy
-#~| msgid "Certification"
-#~ msgctxt "@title:window arg is name, email of certificate holder"
-#~ msgid "Revoke Certification: %1"
-#~ msgstr "Sertifitseerimine"
-
-#, fuzzy
-#~| msgid "This certificate has been revoked."
-#~ msgid "The key whose certifications shall be revoke"
-#~ msgstr "See sertifikaat on tühistatud."
-
-#~ msgid ""
-#~ "<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>The "
-#~ "error given was: <b>%1</b><br/>You can use Kleopatra as a certificate "
-#~ "manager, but cryptographic plugins that rely on a GPG UI Server being "
-#~ "present might not work correctly, or at all.</qt>"
-#~ msgstr ""
-#~ "<qt>Kleopatra GPG UI serveri mooduli initsialiseerimine nurjus.<br/"
-#~ ">Veateade oli järgmine: <b>%1</b><br/>Sa saad kasutada Kleopatrat "
-#~ "sertifikaadihaldurina, aga krüptopluginad, mis vajavad GPG UI serverit, "
-#~ "ei pruugi töötada korrektselt või on üldse kasutuskõlbmatud.</qt>"
-
-#~ msgid "Kleopatra Self-Test Results"
-#~ msgstr "Kleopatra enesetesti tulemused"
-
-#~ msgid "Expiry Date Change Error"
-#~ msgstr "Aegumisaja muutmise viga"
-
-#~ msgid "Expiry Date Change Succeeded"
-#~ msgstr "Aegumisaja muutmine õnnestus"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change the expiration date"
-#~ msgstr "Muuda aegumise kuupäeva..."
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "Muuda aegumise kuupäeva..."
-
-#~ msgctxt "Expires"
-#~ msgid "never"
-#~ msgstr "mitte kunagi"
-
-#, fuzzy
-#~| msgid "Please select when to expire this certificate:"
-#~ msgid "Please select when to expire this subkey:"
-#~ msgstr "Sertifikaadi aegumise aeg:"
-
-#~ msgid "Please select when to expire this certificate:"
-#~ msgstr "Sertifikaadi aegumise aeg:"
-
-#~ msgid "Ne&ver"
-#~ msgstr "M&itte kunagi"
-
-#~ msgid "In"
-#~ msgstr " "
-
-#~ msgid "On this da&y:"
-#~ msgstr "Sellel &kuupäeval:"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "Aegumise muutmine"
-
-#~ msgid "Change Expiry Date..."
-#~ msgstr "Muuda aegumise kuupäeva..."
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a new certificate"
-#~ msgstr "Uue sertifikaadi loomine"
-
-#, fuzzy
-#~| msgid "Please choose which type you want to create. "
-#~ msgid "Choose which type of key pair you want to create."
-#~ msgstr "Palun vali, millist tüüpi luua. "
-
-#~ msgid ""
-#~ "OpenPGP key pairs are certified by confirming the fingerprint of the "
-#~ "public key."
-#~ msgstr ""
-#~ "OpenPGP võtmepaari sertifitseeritakse avaliku võtme sõrmejälje "
-#~ "kinnitamisega."
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create a Personal OpenPGP Key Pair"
-#~ msgstr "Isikliku OpenPGP võtmepaari loomine"
-
-#, fuzzy
-#~| msgctxt "X.509/CMS encryption standard"
-#~| msgid "X.509"
-#~ msgid "X.509"
-#~ msgstr "X.509"
-
-#~ msgid ""
-#~ "X.509 key pairs are certified by a certification authority (CA). The "
-#~ "generated request needs to be sent to a CA to finalize creation."
-#~ msgstr ""
-#~ "X.509 võtmepaare sertifitseeribcsertifitseerimiskeskus (SK). Loomise "
-#~ "lõpetamiseks tuleb SK-le saata genereeritud päring."
-
-#, fuzzy
-#~| msgid "Create a personal X.509 key pair and certification request "
-#~ msgid "Create a Personal X.509 Key Pair and Certification Request"
-#~ msgstr "Isikliku X.509 võtmepaari ja sertifikaadipäringu loomine "
-
-#, fuzzy
-#~| msgid "Make a Backup Of Your Key Pair..."
-#~ msgctxt "@action:button"
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Tee oma võtmepaarist varukoopia..."
-
-#, fuzzy
-#~| msgid "Send Public Key By EMail..."
-#~ msgctxt "@action:button"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Saada avalik võti e-kirjaga..."
-
-#, fuzzy
-#~| msgid "Upload Public Key To Directory Service..."
-#~ msgctxt "@action:button"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Laadi avalik võti kataloogiserverisse..."
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Sending Mail"
-#~ msgctxt "@title:window"
-#~ msgid "Sending Mail"
-#~ msgstr "Kirja saatmine"
-
-#~ msgctxt "stored..."
-#~ msgid "on SmartCard with serial no. %1"
-#~ msgstr "kiipkaardil seerianumbriga %1"
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "Otsi..."
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "Otsi..."
-
-#~ msgid "Select the file to verify with \"%1\""
-#~ msgstr "Faili valimine verifitseerimiseks failiga \"%1\""
-
-#~ msgid "Type:"
-#~ msgstr "Tüüp:"
-
-#, fuzzy
-#~| msgid "Export..."
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "Ekspordi ..."
-
-#, fuzzy
-#~| msgid "&Certifications..."
-#~ msgctxt "@action:button"
-#~ msgid "Certifications..."
-#~ msgstr "Ser&tifikaadid ..."
-
-#~ msgctxt "<name> of <company>"
-#~ msgid "%1 of %2"
-#~ msgstr "%2 %1"
-
-#~ msgid ""
-#~ "You can use this certificate to secure communication with the following "
-#~ "email addresses:"
-#~ msgstr ""
-#~ "Seda sertifikaati saab tarvitada turvaliseks suhtlemiseks järgmiste e-"
-#~ "posti aadressidega:"
-
-#~ msgid "Publishing:"
-#~ msgstr "Avaldamine:"
-
-#, fuzzy
-#~| msgid "Publish Certificate"
-#~ msgctxt "@action:button"
-#~ msgid "Publish Certificate"
-#~ msgstr "Avalda sertifikaat"
-
-#~ msgid "Refresh the view (F5) to update the smartcard status."
-#~ msgstr "Vaate värskendamine (F5) kiipkaardi staatuse uuendamiseks."
-
-#~ msgid "CRL cache dump:"
-#~ msgstr "CRL vahemälu:"
-
-#~ msgid "&Update"
-#~ msgstr "&Uuenda"
-
-#~ msgid "Unable to start gpgsm process. Please check your installation."
-#~ msgstr "GpgSM protsessi käivitamine nurjus. Palun kontrolli paigaldust."
-
-#~ msgid "Certificate Manager Error"
-#~ msgstr "Sertifikaadihalduri viga"
-
-#~ msgid "The GpgSM process ended prematurely because of an unexpected error."
-#~ msgstr "GpgSM protsess lõpetas töö enneaegselt ootamatu vea tõttu."
-
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "Tõrge"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "Tühista..."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "OpenPGP certificates exported successfully."
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "OpenPGP sertifikaadid on edukalt eksporditud."
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Refreshed"
-#~ msgstr "Hiljuti tühistatud:"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Key Creation Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "Võtme loomine nurjus"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Load Certificates"
-#~ msgid "Load additional certificates"
-#~ msgstr "Laadi sertifikaadid"
-
-#, fuzzy
-#~| msgid "Loading certificate cache..."
-#~ msgid "Loading certificates..."
-#~ msgstr "Sertifikaadipuhvri laadimine..."
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "(sobivaid sertifikaate ei leitud)"
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "(sobivaid sertifikaate ei leitud)"
-
-#, fuzzy
-#~| msgid "Name:"
-#~ msgctxt "@label"
-#~ msgid "Name:"
-#~ msgstr "Nimi:"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "<interface>Comment</interface> contains invalid characters."
-#~ msgid "Error: The entered name contains invalid characters."
-#~ msgstr "<interface>Kommentaar</interface> sisaldab vigaseid märke."
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgctxt "@label"
-#~ msgid "Email:"
-#~ msgstr "E-post:"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgid "The entered name is not valid."
-#~ msgstr "Allkiri on kehtetu: %1"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "<interface>EMail address</interface> is invalid."
-#~ msgid "The entered email address is not valid."
-#~ msgstr "<interface>E-posti aadress</interface> on vigane."
-
-#~ msgctxt "@title:window"
-#~ msgid "Add New EMail"
-#~ msgstr "Uue e-posti lisamine"
-
-#~ msgid "Comment"
-#~ msgstr "Kommentaar"
-
-#~ msgid "Add New User-ID"
-#~ msgstr "Uue kasutaja ID lisamine"
-
-#~ msgid "Open selection dialog."
-#~ msgstr "Valikudialoogi avamine."
-
-#, fuzzy
-#~| msgid "&More details..."
-#~ msgid "Click for details."
-#~ msgstr "&Rohkem üksikasju ..."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Changing the Reset Code failed: %1"
-#~ msgctxt "@info"
-#~ msgid "Reading the list of readers failed:"
-#~ msgstr "Lähtestamise koodi muutmine nurjus: %1"
-
-#, fuzzy
-#~| msgid "Slot empty"
-#~ msgctxt "@info No smartcard readers have been found"
-#~ msgid "<em>None</em>"
-#~ msgstr "Pesa on tühi"
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgid "List Smartcard Readers"
-#~ msgstr "Kiipkaart"
-
-#~ msgid "The signature."
-#~ msgstr "Allkiri."
-
-#~ msgctxt "@title"
-#~ msgid "Choose Format"
-#~ msgstr "Vormingu valimine"
-
-#~ msgctxt "Quit [ApplicationName]"
-#~ msgid "&Quit %1"
-#~ msgstr "&Välju rakendusest %1"
-
-#~ msgid "&Configure %1..."
-#~ msgstr "%1 &seadistamine..."
-
-#~ msgid "&About %1..."
-#~ msgstr "%1 &info..."
-
-#~ msgid "&Shutdown Kleopatra"
-#~ msgstr "&Välju Kleopatrast"
-
-#~ msgid "Invalid hex char '%1' in input stream."
-#~ msgstr "Vigane 16ndkoodis märk '%1' sisendvoos."
-
-#~ msgid "Premature end of hex-encoded char in input stream"
-#~ msgstr "16ndkoodis märgi enneaegne lõpp sisendvoos"
-
-#~ msgid "Automatically add &new servers discovered in CRL distribution points"
-#~ msgstr "CRL jaotuspu&nktides tuvastatud uute serverite automaatse lisamine"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of certificate import:</p><table width=\"100%\">"
-#~ "%1</table></qt>"
-#~ msgstr ""
-#~ "<qt><p>Sertifikaadi importimise üksikasjalikud tulemused:</p><table width="
-#~ "\"100%\">%1</table></qt>"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of importing %1:</p><table width=\"100%\">%2</"
-#~ "table></qt>"
-#~ msgstr ""
-#~ "<qt><p>%1 importimise üksikasjalikud tulemused:</p><table width=\"100%\">"
-#~ "%2</table></qt>"
-
-#~ msgid "Totals"
-#~ msgstr "Kokku"
-
-#~ msgid "Could not determine certificate type of %1."
-#~ msgstr "%1 sertifikaadi tüübi tuvastamine nurjus."
-
-#~ msgid "Multiple certificates"
-#~ msgstr "Mitu sertifikaati"
-
-#~ msgid "Change Certificate Date of Expiry"
-#~ msgstr "Sertifikaadi aegumisaja muutmine"
-
-#, fuzzy
-#~| msgid "Scanning directories..."
-#~ msgid "Configuration of directory services"
-#~ msgstr "Kataloogide läbiuurimine..."
-
-#, fuzzy
-#~| msgid "Color && Font Configuration"
-#~ msgid "Colors & Fonts Configuration"
-#~ msgstr "Värvide ja fontide seadistamine"
-
-#, fuzzy
-#~| msgid "Configuration Error"
-#~ msgid "Configuration of Crypto Operations"
-#~ msgstr "Seadistamisviga"
-
-#~ msgid "Configure GnuPG Backend..."
-#~ msgstr "GnuPG taustarakenduse seadistamine..."
-
-#~ msgid ""
-#~ "Could not configure the cryptography backend (gpgconf tool not found)"
-#~ msgstr ""
-#~ "Krüptotaustaprogrammi seadistamine nurjus (tööriista gpgconf ei leitud)"
-
-#~ msgid "Configuration Error"
-#~ msgstr "Seadistamisviga"
-
-#, fuzzy
-#~| msgid "Signing"
-#~ msgid "Signing key:"
-#~ msgstr "Allkirjastamine"
-
-#~ msgid "Slot empty"
-#~ msgstr "Pesa on tühi"
-
-#~ msgid "Generate &revocation certificate"
-#~ msgstr "Loo &tühistamise sertifikaat"
-
-#~ msgid "00/00/00"
-#~ msgstr "00/00/00"
-
-#~ msgid "&Export..."
-#~ msgstr "&Ekspordi ..."
-
-#~ msgid "You cannot certify using the same key."
-#~ msgstr "Sama võtmega ei saa sertifitseerida."
-
-#~ msgid ""
-#~ "If this option is selected, S/MIME certificates are validated using "
-#~ "Certificate Revocation Lists (CRLs)."
-#~ msgstr ""
-#~ "Selle sisselülitamisel kontrollitakse S/MIME sertifikaate sertifikaatide "
-#~ "tühistamise nimekirju (CRL) kasutades."
-
-#~ msgid "Validate certificates using CRLs"
-#~ msgstr "Sertifikaatide kontroll CRL-ide vahendusel"
-
-#~ msgid "S/MIME export file:"
-#~ msgstr "S/MIME eksportfail:"
-
-#~ msgctxt "@info"
-#~ msgid "Failed to set PIN: %1"
-#~ msgstr "PIN-i määramine nurjus: %1"
-
-#~ msgid "Email Address:"
-#~ msgstr "E-posti aadress:"
-
-#~ msgid "Subject-DN:"
-#~ msgstr "Teema-DN:"
-
-#~ msgid "Key Type:"
-#~ msgstr "Võtme tüüp:"
-
-#~ msgid "Key Curve:"
-#~ msgstr "Võtme kõver:"
-
-#~ msgid "Key Strength:"
-#~ msgstr "Võtme tugevus:"
-
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "1-bitine"
-#~ msgstr[1] "%1-bitine"
-
-#~ msgctxt "separator for key usages"
-#~ msgid ",&nbsp;"
-#~ msgstr ",&nbsp;"
-
-#~ msgid "Subkey Type:"
-#~ msgstr "Alamvõtme tüüp:"
-
-#~ msgid "Subkey Usage:"
-#~ msgstr "Alamvõtme kasutamine:"
-
-#~ msgid "Valid Until:"
-#~ msgstr "Kehtiv kuni:"
-
-#~ msgid "Add. Email Address:"
-#~ msgstr "Täiendav e-posti aadress:"
-
-#~ msgid "DNS Name:"
-#~ msgstr "DNS nimi:"
-
-#~ msgid "URI:"
-#~ msgstr "URI:"
-
-#~ msgctxt "@title"
-#~ msgid "Review Parameters"
-#~ msgstr "Parameetrite ülevaade"
-
-#~ msgid "Please review the parameters before proceeding."
-#~ msgstr "Palun vaata enne jätkamist hoolikalt üle kõik parameetrid."
-
-#~ msgid "Show all details"
-#~ msgstr "Näita kõiki üksikasju"
-
-#~ msgid "Change the PIN required to reset the smartcard to an empty state."
-#~ msgstr ""
-#~ "PIN-i muutmine, mida on tarvis kiipkaardi lähtestamiseks tühja olekusse."
-
-#~ msgid "Authentication:"
-#~ msgstr "Autentimine:"
-
-#, fuzzy
-#~| msgid ""
-#~| "Your new key pair was created successfully. Please find details on the "
-#~| "result and some suggested next steps below."
-#~ msgid ""
-#~ "The certificate signing request was created successfully. Please find the "
-#~ "result and suggested next steps below."
-#~ msgstr ""
-#~ "Sinu uus võtmepaar on edukalt loodud. Allpool näeb üksikasju ja mõningaid "
-#~ "soovitusi edasiseks."
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create"
-#~ msgctxt "@title:window"
-#~ msgid "CSR Created"
-#~ msgstr "Loo"
-
-#, fuzzy
-#~| msgid "Authentication:"
-#~ msgid "PIV authentication:"
-#~ msgstr "Autentimine:"
-
-#, fuzzy
-#~| msgid "Authentication:"
-#~ msgid "Card authentication:"
-#~ msgstr "Autentimine:"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Digital signature:"
-#~ msgstr "Halb allkiri"
-
-#~ msgid "Add email address to DN (only needed for broken CAs)"
-#~ msgstr "\"email to DN\" lisamine vigaste SK-de jaoks"
-
-#~ msgid "Certify ..."
-#~ msgstr "Sertifitseeri ..."
-
-#~ msgctxt ""
-#~ "Title for a generic data input / output area supporting text actions."
-#~ msgid "Notepad"
-#~ msgstr "Notepad"
-
-#~ msgid "Switch to Pad view."
-#~ msgstr "Lülitu Notepadi vaatesse."
-
-#~ msgid "Edit or initialize a crypto hardware token."
-#~ msgstr "Riistvaraliste krüptopääsmike muutmine või initsialiseerimine."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "%1 nice serial number, %2 real serial number"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "<a href=https://www.gpg4win.org>Visit the Gpg4win homepage</a>"
-#~ msgstr "<a href=https://www.gpg4win.org>Gpg4win'i kodulehekülg</a>"
-
-#~ msgctxt ""
-#~ "VS-NfD-conforming is a German standard for restricted documents for which "
-#~ "special restrictions about algorithms apply.  The string states that a "
-#~ "signature is compliant with that."
-#~ msgid "The signature is VS-NfD-compliant."
-#~ msgstr "Allkiri on VS-NfD ühilduv."
-
-#~ msgctxt ""
-#~ "Compliance means that GnuPG is running in a more restricted mode e.g. to "
-#~ "handle restricted documents."
-#~ msgid "Compliance: %1"
-#~ msgstr "Ühilduvus: %1"
-
-#~ msgid "Refresh X.509 Certificates"
-#~ msgstr "Värskenda X.509 sertifikaate"
-
-#, fuzzy
-#~| msgid "Slot empty"
-#~ msgctxt "@info"
-#~ msgid "Slot empty"
-#~ msgstr "Pesa on tühi"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt ""
-#~ "Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-#~ "placeholder 2 is the identifier of a slot on a smart card"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgctxt "@info"
-#~ msgid "Code successfully changed."
-#~ msgstr "Kood on edukalt muudetud."
-
-#~ msgid "RSA Keysize:"
-#~ msgstr "RSA võtme suurus:"
-
-#, fuzzy
-#~| msgid "Authentication:"
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "Autentimine:"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit; default)"
-#~ msgid_plural "%2 (%1 bits; default)"
-#~ msgstr[0] "%2 (1-bitine; vaikimisi)"
-#~ msgstr[1] "%2 (%1-bitine; vaikimisi)"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit (default)"
-#~ msgid_plural "%1 bits (default)"
-#~ msgstr[0] "1-bitine (vaikimisi)"
-#~ msgstr[1] "%1-bitine (vaikimisi)"
-
-#~ msgid "<b>Step 2:</b> Choose how to certify."
-#~ msgstr "<b>2. samm:</b> palun vali sertifitseerimise viis."
-
-#~ msgid "Choose which of your certificates to sign with:"
-#~ msgstr "Sertifikaadi valik allkirjastamiseks:"
-
-#~ msgid "Certify only for myself"
-#~ msgstr "Sertifitseerimine ainult iseendale"
-
-#~ msgid "Send certified certificate to server afterwards"
-#~ msgstr "Sertifitseeritud sertifikaadi saatmine serverisse"
-
-#~ msgid ""
-#~ "<b>Step 1:</b> Please select the names and email addresses you wish to "
-#~ "certify."
-#~ msgstr ""
-#~ "<b>1. samm:</b> palun vali nimed ja e-posti aadressid, keda soovid "
-#~ "sertifitseerida."
-
-#~ msgid "<b>Summary:</b>"
-#~ msgstr "<b>Kokkuvõte:</b>"
-
-#~ msgid "Check level:"
-#~ msgstr "Kontrollimise tase:"
-
-#~ msgid "No statement made"
-#~ msgstr "Midagi pole öeldud"
-
-#~ msgid "Not checked"
-#~ msgstr "Kontrollimata"
-
-#~ msgid "Casually checked"
-#~ msgstr "Põgusalt kontrollitud"
-
-#~ msgid "Thoroughly checked"
-#~ msgstr "Põhjalikult kontrollitud"
-
-#~ msgid ""
-#~ "The certificate was not certified because it was already certified by the "
-#~ "same certificate."
-#~ msgstr ""
-#~ "Sertifikaati ei sertifitseeritud, sest see on juba sertifitseeritud sama "
-#~ "sertifikaadiga."
-
-#~ msgid "The certificate could not be certified. <b>Error</b>: %1"
-#~ msgstr "Sertifikaadi sertifitseerimine nurjus. <b>Viga</b>: %1"
-
-#~ msgid "I have verified the fingerprint"
-#~ msgstr "Olen kontrollinud sõrmejälke"
-
-#~ msgid ""
-#~ "Certificate: %1\n"
-#~ "Fingerprint: %2"
-#~ msgstr ""
-#~ "Sertifikaat: %1\n"
-#~ "Sõrmejälg: %2"
-
-#~ msgid ""
-#~ "<p>You seem to be searching for a fingerPrint or a key-id.</"
-#~ "p><p>Different keyservers expect different ways to search for these. Some "
-#~ "require a \"0x\" prefix, while others require there be no such prefix.</"
-#~ "p><p>If your search does not yield any results, try removing the 0x "
-#~ "prefix from your search.</p>"
-#~ msgstr ""
-#~ "<p>Paistab, et otsid sõrmejälge või võtme ID-d.</p><p>Eri võtmeserverites "
-#~ "käib nende otsimine erimoodi. Mõned nõuavad prefiksit \"0x\", mõned aga "
-#~ "mitte.</p><p>Kui otsing ei anna tulemusi, proovi eemaldada otsingust "
-#~ "prefiks 0x.</p>"
-
-#~ msgid ""
-#~ "<p>You seem to be searching for a fingerPrint or a key-id.</"
-#~ "p><p>Different keyservers expect different ways to search for these. Some "
-#~ "require a \"0x\" prefix, while others require there be no such prefix.</"
-#~ "p><p>If your search does not yield any results, try adding the 0x prefix "
-#~ "to your search.</p>"
-#~ msgstr ""
-#~ "<p>Paistab, et otsid sõrmejälge või võtme ID-d.</p><p>Eri võtmeserverites "
-#~ "käib nende otsimine erimoodi. Mõned nõuavad prefiksit \"0x\", mõned aga "
-#~ "mitte.</p><p>Kui otsing ei anna tulemusi, proovi lisada otsingusse "
-#~ "prefiks 0x.</p>"
-
-#~ msgid "Hex-String Search"
-#~ msgstr "16nd-koodis stringi otsing"
-
-#~ msgid "The process terminated prematurely"
-#~ msgstr "Protsess lõpetas töö enneaegselt"
-
-#~ msgid "Diagnostics:"
-#~ msgstr "Diagnostika:"
-
-#~ msgctxt "self-check did not pass"
-#~ msgid "Failed"
-#~ msgstr "Nurjus"
-
-#~ msgctxt "Self-test did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed.\n"
-#~ "\n"
-#~ "Error code: %1\n"
-#~ "Diagnostics:"
-#~ msgstr ""
-#~ "GnuPG seadistuse enesekontroll nurjus.\n"
-#~ "\n"
-#~ "Veakood: %1\n"
-#~ "Diagnostika:"
-
-#~ msgctxt "self-check did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed with error code %1.\n"
-#~ "No output was received."
-#~ msgstr ""
-#~ "GnuPG seadistuse enesekontroll nurjus veakoodiga %1.\n"
-#~ "Väljund puudub."
-
-#~ msgctxt "@info"
-#~ msgid "Please select export options for %1:"
-#~ msgstr "Palun vali %1 ekspordi valikud:"
-
-#~ msgid "Secret Key Files (*.pem *.p12 *.gpg *.asc *.pgp)"
-#~ msgstr "Salajase võtme failid (*.pem *.p12 *.gpg *.asc *.pgp)"
-
-#~ msgctxt "@info"
-#~ msgid "You have to enter an output filename."
-#~ msgstr "Sisestada tuleb väljundi failinimi."
-
-#~ msgctxt "@title"
-#~ msgid "Incomplete data"
-#~ msgstr "Ebatäielikud andmed"
-
-#~ msgctxt "@info"
-#~ msgid "You have to choose a passphrase character set."
-#~ msgstr "Valida tuleb paroolifraasi kodeering."
-
-#~ msgid "Export Secret Certificate"
-#~ msgstr "Salajase sertifikaadi eksport"
-
-#~ msgid "Output file:"
-#~ msgstr "Väljundfail:"
-
-#~ msgid "Passphrase charset:"
-#~ msgstr "Paroolifraasi kodeering:"
-
-#~ msgid "ASCII armor"
-#~ msgstr "ASCII armor"
-
-#~ msgid "Please select a certificate."
-#~ msgstr "Palun vali sertifikaat."
-
-#, fuzzy
-#~| msgid "<b>Recipients</b>"
-#~ msgid "<h3>Recipients:</h3>"
-#~ msgstr "<b>Saajad</b>"
-
-#~ msgid "No Audit Log available"
-#~ msgstr "Auduti logi pole kättesaadav"
-
-#~ msgid "Error Retrieving Audit Log: %1"
-#~ msgstr "Viga auditi logi hankimisel: %1"
-
-#~ msgid "Certificate Server Certificate Lookup"
-#~ msgstr "Sertifikaadi otsimine sertifikaadiserverist"
-
-#~ msgid ""
-#~ "The process of creating a key requires large amounts of random numbers. "
-#~ "To foster this process, you can use the entry field below to enter some "
-#~ "gibberish. The text itself does not matter - only the inter-character "
-#~ "timing. You can also move this window around with your mouse, or start "
-#~ "some disk-intensive application."
-#~ msgstr ""
-#~ "Võtme loomine nõuab suurt hulka juhuarve. Protsessi kiirendamiseks võib "
-#~ "kasutada allolevat välja mis tahes mõttetuse sisestamiseks. Teksti ennast "
-#~ "ei kasutata kuidagi, kasutamist leiab ainult märkide sisestamise vahele "
-#~ "jääv aeg. Samuti võid liigutada hiirega akent või käivitada mõne ketast "
-#~ "ohtralt koormava rakenduse."
-
-#~ msgid "Certificate Usage:"
-#~ msgstr "Sertifikaadi kasutamine:"
-
-#~ msgid "Comment:"
-#~ msgstr "Kommentaar:"
-
-#~ msgid "No public certificate to verify the signature"
-#~ msgstr "Allkirja õigsuse kontrollimiseks vajalik avalik sertifikaat puudub"
-
-#~ msgid "Certificate missing"
-#~ msgstr "Sertifikaat puudub"
-
-#~ msgid "Signed on %1 with unknown certificate %2."
-#~ msgstr "Allkirjastatud %1 tundmatu sertifikaadiga %2."
-
-#~ msgid "Signed with unknown certificate %1."
-#~ msgstr "Allkirjastatud tundmatu sertifikaadiga %1."
-
-#~ msgctxt "date, key owner, key ID"
-#~ msgid "Signed on %1 by %2 (Key ID: %3)."
-#~ msgstr "Allkirjastanud %1 %2(Võtme ID: %3)."
-
-#~ msgid "Signed by %1 with certificate %2."
-#~ msgstr "Allkirjastanud %1 sertifikaadiga %2."
-
-#~ msgid "Signed on %1 with certificate %2."
-#~ msgstr "Allkirjastatud %1 sertifikaadiga %2."
-
-#~ msgid "Signed with certificate %1."
-#~ msgstr "Allkirjastatud sertifikaadiga %1."
-
-#~ msgid "<b>Not enough information to check signature validity.</b>"
-#~ msgid_plural "<b>%1 signatures could not be verified.</b>"
-#~ msgstr[0] "<b>Allkirja kehtivuse kontrollimiseks napib teavet.</b>"
-#~ msgstr[1] "<b>%1 allkirja ei saa verifitseerida.</b>"
-
-#~ msgid "<b>Signature is valid.</b>"
-#~ msgstr "<b>Allkiri on kehtiv.</b>"
-
-#~ msgid "<b>Signed by %1</b>"
-#~ msgstr "<b>Allkirjastanud %1</b>"
-
-#~ msgid "Hide Details"
-#~ msgstr "Peida üksikasjad"
-
-#~ msgid ""
-#~ "OpenPGP key pairs are created locally, and certified by your friends and "
-#~ "acquaintances. There is no central certification authority; instead, "
-#~ "every individual creates a personal Web of Trust by certifying other "
-#~ "users' key pairs with their own certificate."
-#~ msgstr ""
-#~ "OpenPGP võtmepaarid luuakse kohalikult ning neid sertifitseerivad sinu "
-#~ "sõbrad ja tuttavad. Keskne sertifitseerimiskeskus puudub, selle asemel "
-#~ "loob iga üksikisik omaenda usaldusrigni, sertifitseerides teiste "
-#~ "kasutajate võtmepaare omaenda sertifikaadiga."
-
-#~ msgid "New Certificate..."
-#~ msgstr "Uus sertifikaat..."
-
-#~ msgid "Export Certificates to Server..."
-#~ msgstr "Ekspordi sertifikaadid serverisse..."
-
-#~ msgid "Import Certificates..."
-#~ msgstr "Impordi sertifikaadid..."
-
-#~ msgid "Decrypt/Verify Files..."
-#~ msgstr "Krüpti failid lahti/verifitseeri failid..."
-
-#~ msgid "Sign/Encrypt Files..."
-#~ msgstr "Allkirjasta/krüpti failid..."
-
-#~ msgid "Dump Certificate"
-#~ msgstr "Tee sertifikaadi tõmmis"
-
-#~ msgid ""
-#~ "Gpg4win is an installer package for Windows for EMail and file encryption "
-#~ "using the core component GnuPG for Windows. Both relevant cryptography "
-#~ "standards are supported, OpenPGP and S/MIME. Gpg4win and the software "
-#~ "included with Gpg4win are Free Software."
-#~ msgstr ""
-#~ "Gpg4win on e-posti ja failikrüptimise paigalduspakett Windowsile, mis "
-#~ "kasutab GnuPG for Windows tuumikkomponenti. Toetatud on mõlemad "
-#~ "krüptostandardid: OpenPGP ja S/MIME. Gpg4win ja sellega kaasnev tarkvara "
-#~ "on vaba tarkvara."
-
-#~ msgid ""
-#~ "This Free Software product was developed mostly as part of commercial "
-#~ "contracts by the following companies:<ul><li><a href='http://intevation."
-#~ "net'>Intevation GmbH</a> (Projekt coordination, QA, Compendium)</"
-#~ "li><li><a href='http://www.g10code.com'>g10 Code GmbH</a> (Crypto "
-#~ "Funktionality, GpgOL, GpgEX, GPA)</li> <li><a href='http://www.kdab."
-#~ "com'>KDAB</a> (Kleopatra)</li></ul>Contributors:<br><br>"
-#~ msgstr ""
-#~ "Selle vaba tarkvara toote arendamise taga seisid peamiselt "
-#~ "kommertslepingud järgmiste ettevõtetega:<ul><li><a href='http://"
-#~ "intevation.net'>Intevation GmbH</a> (projekti koordineerimine, "
-#~ "kvaliteedikontroll, kompendium)</li><li><a href='http://www.g10code."
-#~ "com'>g10 Code GmbH</a> (krüptofunktsionaalsus, GpgOL, GpgEX, GPA)</li> "
-#~ "<li><a href='http://www.kdab.com'>KDAB</a> (Kleopatra)</li></"
-#~ "ul>Kaasaaitajad:<br><br>"
-
-#~ msgid ""
-#~ "Till Adam<br>Marcus Brinkmann<br>Brigitte Hamilton<br>Andre "
-#~ "Heinecke<br>Bernhard Herzog<br>Werner Koch<br>Colin Leroy<br>Marc "
-#~ "Mutz<br>Marcel Newmann<br>Frank Osterfeld<br>Bernhard Reiter<br>Florian "
-#~ "v. Samson<br>Emanuel Schütze<br>Dr. Jan-Oliver Wagner"
-#~ msgstr ""
-#~ "Till Adam<br>Marcus Brinkmann<br>Brigitte Hamilton<br>Andre "
-#~ "Heinecke<br>Bernhard Herzog<br>Werner Koch<br>Colin Leroy<br>Marc "
-#~ "Mutz<br>Marcel Newmann<br>Frank Osterfeld<br>Bernhard Reiter<br>Florian "
-#~ "v. Samson<br>Emanuel Schütze<br>Dr. Jan-Oliver Wagner"
-
-#~ msgid "Gpg4win"
-#~ msgstr "Gpg4win"
-
-#~ msgid "About Gpg4win"
-#~ msgstr "Teave Gpg4wini kohta"
-
-#~ msgid "Please wait while generating the dump..."
-#~ msgstr "Palun oota, genereeritakse tõmmis..."
-
-#~ msgid "Overview"
-#~ msgstr "Ülevaade"
-
-#~ msgid "Trust Certifications Made by This Certificate..."
-#~ msgstr "Usalda selle sertifikaadiga tehtud sertifitseerimisi..."
-
-#~ msgid "Photo"
-#~ msgstr "Foto"
-
-#~ msgid ""
-#~ "<p>At the moment, Kleopatra does not support photos in certificates. It "
-#~ "has no support for adding, nor for displaying them. This is for the "
-#~ "following reasons:</p>\n"
-#~ "<ul>\n"
-#~ "<li>Photos give a false sense of security.</li>\n"
-#~ "<li>Photos increase the size of certificates.</li>\n"
-#~ "</ul>"
-#~ msgstr ""
-#~ "<p>Kleopatra ei toeta veel fotosid sertifikaatides. Toetatud ei ole "
-#~ "fotode lisamine ega ka nende näitamine. Põhjused on järgmised:</p>\n"
-#~ "<ul>\n"
-#~ "<li>Fotod tekitavad väära turvatunde.</li>\n"
-#~ "<li>Fotod suurendavad sertifikaatide suurust.</li>\n"
-#~ "</ul>"
-
-#~ msgid "Add..."
-#~ msgstr "Lisa..."
-
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "Dump"
-#~ msgstr "Tõmmis"
-
-#~ msgid ""
-#~ "This is a dump of all information the backend has about this certificate:"
-#~ msgstr "Kogu teabe tõmmis, mida taustaprogramm teab sertifikaadi kohta:"
-
-#~ msgctxt "@info"
-#~ msgid "Could not connect to GpgAgent: <message>%1</message>"
-#~ msgstr "Ühendumine GpgAgentiga nurjus: <message>%1</message>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Check that gpg-agent is running and that the "
-#~ "<environment>GPG_AGENT_INFO</environment> variable is set and up-to-date."
-#~ "</para>"
-#~ msgstr ""
-#~ "<para>Kontrolli, kas gpg-agent töötab ning keskkonnamuutuja "
-#~ "<environment>GPG_AGENT_INFO</environment> on määratud ja ajakohane.</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Selected Files"
-#~ msgstr "Valitud failid"
-
-#~ msgid "No files selected."
-#~ msgstr "Ühtegi faili pole valitud."
-
-#~ msgctxt "@action"
-#~ msgid "More..."
-#~ msgstr "Rohkem..."
-
-#~ msgid "Archive files with:"
-#~ msgstr "Failid arhiveeritakse kasutades:"
-
-#~ msgid "Archive name (OpenPGP):"
-#~ msgstr "Arhiivi nimi (OpenPGP):"
-
-#~ msgid "Archive name (S/MIME):"
-#~ msgstr "Arhiivi nimi (S/MIME):"
-
-#~ msgid "Sign and Encrypt (OpenPGP only)"
-#~ msgstr "Allkirjastamine ja krüptimine (ainult OpenPGP)"
-
-#~ msgctxt "@title"
-#~ msgid "What do you want to do?"
-#~ msgstr "Mida soovid ette võtta?"
-
-#~ msgid "This operation is not available for S/MIME"
-#~ msgstr "See toiming ei ole S/MIME korral võimalik"
-
-#~ msgid "Add"
-#~ msgstr "Lisa"
-
-#~ msgctxt "@title"
-#~ msgid "For whom do you want to encrypt?"
-#~ msgstr "Kellele soovid krüptida?"
-
-#~ msgctxt "@title"
-#~ msgid ""
-#~ "Please select for whom you want the files to be encrypted. Do not forget "
-#~ "to pick one of your own certificates."
-#~ msgstr ""
-#~ "Palun vali, kellele soovid faile krüptida. Ära unusta valimast mõnda oma "
-#~ "sertifikaatidest."
-
-#~ msgid "Sign with OpenPGP"
-#~ msgstr "Allkirjasta OpenPGP-ga"
-
-#~ msgid "Sign with S/MIME"
-#~ msgstr "Allkirjasta S/MIME-ga"
-
-#~ msgctxt "@title"
-#~ msgid "Who do you want to sign as?"
-#~ msgstr "Kellena soovid allkirjastada?"
-
-#~ msgctxt "@title"
-#~ msgid "Please choose an identity with which to sign the data."
-#~ msgstr "Palun vali identiteet, kellena andmed allkirjastada."
-
-#~ msgid "E-Mail"
-#~ msgstr "E-post"
-
-#~ msgid "Key-ID"
-#~ msgstr "Võtme ID"
-
-#~ msgid "<tr><th>%1:</th><td>%2</td></tr>"
-#~ msgstr "<tr><th>%1:</th><td>%2</td></tr>"
-
-#~ msgid "%1-bit %2 (secret key available)"
-#~ msgstr "%1-bitine %2 (salajane võti on saadaval)"
-
-#~ msgid "%1-bit %2"
-#~ msgstr "%1-bitine %2"
-
-#~ msgid "Signing EMails and Files (Qualified)"
-#~ msgstr "E-kirjade ja failide allkirjastamine (kvalifitseeritud)"
-
-#~ msgid "Signing EMails and Files"
-#~ msgstr "E-kirjade ja failide allkirjastamine"
-
-#~ msgid "Encrypting EMails and Files"
-#~ msgstr "E-kirjade ja failide krüptimine"
-
-#~ msgid "Authenticate against Servers"
-#~ msgstr "Serverites autentimine"
-
-#~ msgid "This certificate is currently valid."
-#~ msgstr "See sertifikaat on praegu kehtiv."
-
-#~ msgid "The validity of this certificate cannot be checked at the moment."
-#~ msgstr "Selle sertifikaadi usaldusväärsust ei saa praegu kontrollida."
-
-#~ msgid "Subject"
-#~ msgstr "Teema"
-
-#~ msgid "User-ID"
-#~ msgstr "Kasutaja ID"
-
-#~ msgid "a.k.a."
-#~ msgstr "Aka"
-
-#~ msgid "from %1 until forever"
-#~ msgstr "alates %1 kuni igavesti"
-
-#~ msgid "from %1 through %2"
-#~ msgstr "alates %1 kuni %2"
-
-#~ msgid "Certificate type"
-#~ msgstr "Sertifikaadi tüüp"
-
-#~ msgid "No"
-#~ msgstr "Ei"
-
-#~ msgid "untrusted"
-#~ msgstr "ebausaldusväärne"
-
-#~ msgctxt "marginal trust"
-#~ msgid "marginal"
-#~ msgstr "põgusalt"
-
-#~ msgctxt "full trust"
-#~ msgid "full"
-#~ msgstr "täielikult"
-
-#~ msgctxt "ultimate trust"
-#~ msgid "ultimate"
-#~ msgstr "ülimalt"
-
-#~ msgctxt "undefined trust"
-#~ msgid "undefined"
-#~ msgstr "määramata"
-
-#~ msgctxt "as in good/valid signature"
-#~ msgid "good"
-#~ msgstr "hea"
-
-#~ msgid "class %1"
-#~ msgstr "klass %1"
-
-#~ msgctxt "good/valid signature"
-#~ msgid "good"
-#~ msgstr "hea"
-
-#~ msgctxt "fake/invalid signature"
-#~ msgid "bad"
-#~ msgstr "halb"
-
-#~ msgid "Bad signature by unknown certificate %1: %2"
-#~ msgstr "Halb allkiri tundmatu sertifikaadiga %1: %2"
-
-#~ msgid "Bad signature by an unknown certificate: %1"
-#~ msgstr "Halb allkiri tundmatu sertifikaadiga: %1"
-
-#~ msgid "Bad signature by %1: %2"
-#~ msgstr "Halb allkiri %1 käest: %2"
-
-#~ msgid "Good signature by an unknown certificate."
-#~ msgstr "Hea allkiri tundmatu sertifikaadiga."
-
-#~ msgid "Good signature by %1."
-#~ msgstr "Hea allkiri %1 käest."
-
-#~ msgid "Invalid signature by unknown certificate %1: %2"
-#~ msgstr "Vigane allkiri tundmatu sertifikaadiga %1: %2"
-
-#~ msgid "Invalid signature by an unknown certificate: %1"
-#~ msgstr "Vigane allkiri tundmatu sertifikaadiga: %1"
-
-#~ msgid "Invalid signature by %1: %2"
-#~ msgstr "Vigane allkiri %1 käest: %2"
-
-#~ msgid "This certificate was imported from the following sources:"
-#~ msgstr "See sertifikaat imporditi järgmistest allikatest:"
-
-#~ msgid "The import of this certificate was canceled."
-#~ msgstr "Sertifikaadi import katkestati."
-
-#~ msgid "New user-ids were added to this certificate by the import."
-#~ msgstr "Importimisel lisati sertifikaadile uued kasutaja ID-d."
-
-#~ msgid "New signatures were added to this certificate by the import."
-#~ msgstr "Importimisel lisati sertifikaadile uued allkirjad."
-
-#~ msgid "New subkeys were added to this certificate by the import."
-#~ msgstr "Importimisel lisati sertifikaadile uued alamvõtmed."
-
-#~ msgid ""
-#~ "The import contained no new data for this certificate. It is unchanged."
-#~ msgstr ""
-#~ "Import ei sisaldanud sertifikaadi jaoks uusi andmeid. Seda ei muudetud."
-
-#~ msgctxt "@info:whatsthis"
-#~ msgid ""
-#~ "When 'Quick Mode' is enabled, no dialog is shown when signing "
-#~ "(encrypting) emails, respectively, unless there is a conflict that needs "
-#~ "manual resolution."
-#~ msgstr ""
-#~ "Kui kiirrežiim on lubatud, ei näidata kirjade allkirjastamisel või "
-#~ "krüptimisel dialoogi, kui ei teki just konflikt, mis vajab käsitsi "
-#~ "lahendamist."
-
-#~ msgid "Use 'Quick Mode' when signing"
-#~ msgstr "Kiirrežiimi kasutamine allkirjastamisel"
-
-#~ msgctxt "@info:whatsthis"
-#~ msgid ""
-#~ "<p>Check this if you want to have OpenPGP encrypted files created by "
-#~ "Kleopatra have the .pgp file extension.</p>\n"
-#~ "<p>This will not modify any contents of the created files.</p>\n"
-#~ msgstr ""
-#~ "<p>Märkimise korral antakse Kleopatraga loodud OpenPGP krüptitud "
-#~ "failidele laiend .pgp.</p>\n"
-#~ "<p>See ei muuda kuidagi loodud failide sisu.</p>\n"
-
-#~ msgctxt "@info:whatsthis"
-#~ msgid ""
-#~ "<p>Choose here which of the configured checksum programs should be used "
-#~ "when creating checksum files.</p>\n"
-#~ "<p>When verifying checksums, the program to use is automatically found, "
-#~ "based on the names of the checksum files found.</p>\n"
-#~ msgstr ""
-#~ "<p>Siin saab valida, milliseid kontrollsummaprogramme kasutada failide "
-#~ "kontrollsumma loomisel.</p>\n"
-#~ "<p>Kontrollsummade verifitseerimisel leitakse vajalik programm "
-#~ "automaatselt leitud kontrollsummafailide nimede põhjal.</p>\n"
-
-#~ msgid "Failed to open file \"%1\" for reading and writing: %2"
-#~ msgstr "Faili \"%1\" avamine lugemiseks ja kirjutamiseks nurjus: %2"
-
-#~ msgid ""
-#~ "Caught unexpected exception in DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared: %1"
-#~ msgstr ""
-#~ "Tekkis ootamatu erind DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared puhul: %1"
-
-#~ msgid ""
-#~ "Caught unknown exception in DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared"
-#~ msgstr ""
-#~ "Tekkis ootamatu erind DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared puhul"
-
-#~ msgid "Performing Self-Check..."
-#~ msgstr "Enesekontroll..."
-
-#~ msgctxt "did not pass"
-#~ msgid "Self-Check Failed"
-#~ msgstr "Enesekontroll nurjus"
-
-#~ msgid "Self-Check Passed"
-#~ msgstr "Enesekontroll tehtud"
-
-#~ msgid "Certificate cache loaded."
-#~ msgstr "Sertifikaadipuhver laaditud."
-
-#~ msgid "Remove unencrypted original file when done"
-#~ msgstr "Krüptimata faili hilisem eemaldamine"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You have requested the unencrypted data to be removed after "
-#~ "encryption.</para><para>Are you really sure you do not need to access the "
-#~ "data anymore in decrypted form?</para>"
-#~ msgstr ""
-#~ "<para>Soovisid, et krüptimata andmed pärast krüptimist eemaldataks.</"
-#~ "para><para>Kas oled päris kindel, et sa ei vaja enam neid andmed "
-#~ "krüptimata kujul?</para>"
-
-#~ msgid ""
-#~ "You need to select an OpenPGP signing certificate to perform this "
-#~ "operation."
-#~ msgstr ""
-#~ "Selleks toiminguks tuleb valida OpenPGP allkirjastamise sertifikaat."
-
-#~ msgid ""
-#~ "Only OpenPGP certificates will be offered for selection because you "
-#~ "specified a combined sign/encrypt operation that is only available for "
-#~ "OpenPGP."
-#~ msgstr ""
-#~ "Valida on ainult OpenPGP sertifikaadid, sest valisid nii allkirjastamise "
-#~ "kui ka krüptimise, mda võimaldab vaid OpenPGP."
-
-#~ msgid ""
-#~ "Only OpenPGP certificates will be offered for selection because you only "
-#~ "specified an OpenPGP signing certificate."
-#~ msgstr ""
-#~ "Valida on ainult OpenPGP sertifikaadid, sest valisid ainult OpenPGP "
-#~ "allkirjastamise sertifikaadi."
-
-#~ msgid ""
-#~ "Only S/MIME certificates will be offered for selection because you only "
-#~ "specified an S/MIME signing certificate."
-#~ msgstr ""
-#~ "Valida on ainult S/MIME sertifikaadid, sest valisid ainult S/MIME "
-#~ "allkirjastamise sertifikaadi."
-
-#~ msgid ""
-#~ "You have selected both OpenPGP and S/MIME signing certificate types, thus "
-#~ "two signatures will be created."
-#~ msgstr ""
-#~ "Oled valinud nii OpenPGP kui ka S/MIME allkirjastamise sertifikaadid, "
-#~ "mistõttu luuakse kaks allkirja."
-
-#~ msgid ""
-#~ "If you select both OpenPGP and S/MIME receipient certificates, two "
-#~ "encrypted files will be created: one for OpenPGP recipients, one for S/"
-#~ "MIME recipients."
-#~ msgstr ""
-#~ "Kui valid nii OpenPGP kui ka S/MIME saaja sertifikaadid, luuakse kaks "
-#~ "krüptitud faili, üks OpenPGP saajate, teine S/MIME saajate jaoks."
-
-#~ msgid "No command provided but arguments present"
-#~ msgstr "Käsku pole antud, aga argumendid on olemas"
-
-#~ msgctxt "Version string is a guess"
-#~ msgid "guessed"
-#~ msgstr "oletatavasti"
-
-#~ msgid "(please wait while certifications are being loaded)"
-#~ msgstr "(palun oota, laaditakse sertifitseerimisi)"
-
-#~ msgid "good"
-#~ msgstr "hea"
-
-#~ msgid "Listing OpenPGP certificates"
-#~ msgstr "OpenPGP sertifikaatide loend"
-
-#~ msgid "Select Icon"
-#~ msgstr "Ikooni valik"
-
-#~ msgid "Icon Source"
-#~ msgstr "Ikooni allikas"
-
-#~ msgid "S&ystem icons:"
-#~ msgstr "&Süsteemsed ikoonid:"
-
-#~ msgid "O&ther icons:"
-#~ msgstr "Muud i&koonid:"
-
-#~ msgid "&Browse..."
-#~ msgstr "&Lehitse..."
-
-#~ msgid "Search interactively for icon names (e.g. folder)."
-#~ msgstr "Interaktiivne ikooninimede (nt. kataloogi) otsimine."
-
-#~ msgid "Applications"
-#~ msgstr "Rakendused"
-
-#~ msgid "Devices"
-#~ msgstr "Seadmed"
-
-#~ msgid "Emblems"
-#~ msgstr "Embleemid"
-
-#~ msgid "Emotes"
-#~ msgstr "Emotikonid"
-
-#~ msgid "Filesystems"
-#~ msgstr "Failisüsteemid"
-
-#~ msgid "International"
-#~ msgstr "Rahvusvaheline"
-
-#~ msgid "Mimetypes"
-#~ msgstr "MIME tüübid"
-
-#~ msgid "Open"
-#~ msgstr "Ava"
-
-#~ msgid "Icon Files (*.png *.xpm *.svg *.svgz)"
-#~ msgstr "Ikoonifailid (*.png *.xpm *.svg *.svgz"
-
-#~ msgid "Parse error on gpgconf --list-config output: %1"
-#~ msgstr "Parsimisviga käsu gpgconf --list-config väljundis: %1"
-
-#~ msgid "gpgconf --list-config: Unknown component: %1"
-#~ msgstr "gpgconf --list-config: tundmatu komponent: %1"
-
-#~ msgid "gpgconf --list-config: Unknown entry: %1:%2"
-#~ msgstr "gpgconf --list-config: tundmatu kirje: %1:%2"
-
-#~ msgid "gpgconf --list-config: Invalid entry: value must start with '\"': %1"
-#~ msgstr ""
-#~ "gpgconf --list-config: vigane kirje: väärtuse alguses peab olema '\"': %1"
-
-#~ msgid "Parse error on gpgconf --list-components. output: %1"
-#~ msgstr "Parsimisviga käsu sees gpgconf --list-component väljundis: %1"
-
-#~ msgid "gpgconf not found or cannot be started"
-#~ msgstr "gpgconf'i ei leitud või ei saa seda käivitada"
-
-#~ msgid "gpgconf terminated unexpectedly"
-#~ msgstr "gpgconf lõpetas töö ootamatult"
-
-#~ msgid "timeout while executing gpgconf"
-#~ msgstr "aegumine gpgconf'i täitmisel"
-
-#~ msgid "error while writing to gpgconf"
-#~ msgstr "viga gpgconf'i kirjutamisel"
-
-#~ msgid "error while reading from gpgconf"
-#~ msgstr "viga gpgconf'i lugemisel"
-
-#~ msgid "Unknown error while executing gpgconf"
-#~ msgstr "Tundmatu viga gpgconf'i täitmisel"
-
-#~ msgctxt "as in \"verbosity level\""
-#~ msgid "Level"
-#~ msgstr "Tase"
-
-#~ msgid "Set/Unset"
-#~ msgstr "Määra/tühista"
-
-#~ msgid "String List"
-#~ msgstr "Stringide loend"
-
-#~ msgid "String"
-#~ msgstr "String"
-
-#~ msgid "List of Integers"
-#~ msgstr "Täisarvude loend"
-
-#~ msgid "Integer"
-#~ msgstr "Täisarv"
-
-#~ msgid "List of Unsigned Integers"
-#~ msgstr "Märgita täisarvude loend"
-
-#~ msgid "Unsigned Integer "
-#~ msgstr "Märgita täisarv "
-
-#~ msgid "Path List"
-#~ msgstr "Asukohtade nimekiri"
-
-#~ msgid "Path"
-#~ msgstr "Asukoht"
-
-#~ msgid "List of URLs"
-#~ msgstr "URL-ide nimekiri"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "List of LDAP URLs"
-#~ msgstr "LDAP URL-ide nimekiri"
-
-#~ msgid "Directory Path List"
-#~ msgstr "Kataloogide asukohtade nimekiri"
-
-#~ msgid "Directory Path"
-#~ msgstr "Kataloogide asukoht"
-
-#~ msgid "Option"
-#~ msgstr "Valik"
-
-#~ msgid "Impose"
-#~ msgstr "Kehtestamine"
-
-#~ msgid "Reset user settings to built-in default"
-#~ msgstr "Kasutaja seadistuste lähtestamine vaikeväärtustele"
-
-#~ msgid "Custom value:"
-#~ msgstr "Kohandatud väärtus:"
-
-#~ msgid "Impose setting on all users"
-#~ msgstr "Seadistuse kehtestamine kõigile kasutajatele"
-
-#~ msgid "Setup Error"
-#~ msgstr "Seadistamise viga"
-
-#~ msgid ""
-#~ "KGpgConf could not execute gpgconf.exe.\n"
-#~ "\n"
-#~ "Error: %1\n"
-#~ "Error Code: %2"
-#~ msgstr ""
-#~ "KGpgConf ei suutnud käivitada faili gpgconf.exe.\n"
-#~ "\n"
-#~ "Viga: %1\n"
-#~ "Veakood: %2"
-
-#~ msgid "Parsing Error"
-#~ msgstr "Parsimisviga"
-
-#~ msgid ""
-#~ "An error occurred while reading the current configuration.\n"
-#~ "\n"
-#~ "Error: %1"
-#~ msgstr ""
-#~ "Aktiivse seadistuse lugemisel tekkis viga:\n"
-#~ "\n"
-#~ "Viga: %1"
-
-#~ msgid "Write Error"
-#~ msgstr "Kirjutamise viga"
-
-#~ msgid ""
-#~ "Could not open file %1 for writing. You might not have the permission to "
-#~ "write to that file."
-#~ msgstr ""
-#~ "Faili %1 avamine kirjutamiseks nurjus. Võimalik, et sul pole selle faili "
-#~ "kirjutamise õigust."
-
-#~ msgid "Error while writing to file %1."
-#~ msgstr "Viga faili %1 kirjutamisel."
-
-#~ msgid ""
-#~ "Could not start the GnuPG Administrative Console (kgpgconf). Please check "
-#~ "your installation."
-#~ msgstr ""
-#~ "GnuPG halduskonsooli (kgpgconf) käivitamine nurjus. Palun kontrolli "
-#~ "paigaldust."
-
-#~ msgid "Error Starting KGpgConf"
-#~ msgstr "Viga KGpgConfi käivitamisel"
-
-#~ msgid "GnuPG Administrative Console"
-#~ msgstr "GnuPG halduskonsool"
-
-#~ msgid "No certificates loaded yet."
-#~ msgstr "Sertifikaate pole veel laaditud."
-
-#~ msgid "File"
-#~ msgstr "Fail"
-
-#~ msgid "View"
-#~ msgstr "Vaade"
-
-#~ msgid "KWatchGnuPG"
-#~ msgstr "KWatchGnuPG"
-
-#~ msgid "GnuPG log viewer"
-#~ msgstr "GnuPG logi näitaja..."
-
-#~ msgid "Configure KWatchGnuPG"
-#~ msgstr "KWatchGnuPG seadistamine"
-
-#~ msgid "WatchGnuPG"
-#~ msgstr "WatchGnuPG"
-
-#~ msgid "&Executable:"
-#~ msgstr "Käivitatav &fail:"
-
-#~ msgid "&Socket:"
-#~ msgstr "&Sokkel:"
-
-#~ msgid "None"
-#~ msgstr "Puudub"
-
-#~ msgid "Basic"
-#~ msgstr "Põhiline"
-
-#~ msgid "Expert"
-#~ msgstr "Ekspert"
-
-#~ msgid "Guru"
-#~ msgstr "Guru"
-
-#~ msgid "Default &log level:"
-#~ msgstr "Vaikimisi &logitase:"
-
-#~ msgid "Log Window"
-#~ msgstr "Logiaken"
-
-#~ msgid "&History size:"
-#~ msgstr "A&jaloo suurus:"
-
-#~ msgid "Set &Unlimited"
-#~ msgstr "&Piiramatu"
-
-#~ msgid "Enable &word wrapping"
-#~ msgstr "Reamurdmin&e lubatud"
-
-#~ msgid "[%1] Log cleared"
-#~ msgstr "[%1] Logi puhastatud"
-
-#~ msgid "C&lear History"
-#~ msgstr "Puhasta aja&lugu"
-
-#~ msgid "[%1] Log stopped"
-#~ msgstr "[%1] Logi peatatud"
-
-#~ msgid ""
-#~ "The watchgnupg logging process could not be started.\n"
-#~ "Please install watchgnupg somewhere in your $PATH.\n"
-#~ "This log window is unable to display any useful information."
-#~ msgstr ""
-#~ "Watchgnupg logimist ei suudeta alustada.\n"
-#~ "Palun paigalda watchgnupg oma otsinguteele (PATH).\n"
-#~ "Logiaknast pole praegu mingit kasu."
-
-#~ msgid "[%1] Log started"
-#~ msgstr "[%1] Logi käivitatud"
-
-#~ msgid "There are no components available that support logging."
-#~ msgstr "Logimist toetavaid komponente pole saadaval."
-
-#~ msgid ""
-#~ "The watchgnupg logging process died.\n"
-#~ "Do you want to try to restart it?"
-#~ msgstr ""
-#~ "Watchgnupg logimine lõppes ära.\n"
-#~ "Kas soovid seda uuesti alustada?"
-
-#~ msgid "Try Restart"
-#~ msgstr "Alusta uuesti"
-
-#~ msgid "====== Restarting logging process ====="
-#~ msgstr "====== Logimise taaskäivitamine ====="
-
-#~ msgid ""
-#~ "The watchgnupg logging process is not running.\n"
-#~ "This log window is unable to display any useful information."
-#~ msgstr ""
-#~ "Watchgnupg hetkel ei logi.\n"
-#~ "Logiaknast pole praegu mingit kasu."
-
-#~ msgid "Could not save file %1: %2"
-#~ msgstr "Faili %1 salvestamine nurjus: %2"
-
-#~ msgid "KWatchGnuPG Log Viewer"
-#~ msgstr "KWatchGnuPG logi näitaja"
-
-#~ msgid "&Find:"
-#~ msgstr "&Otsing:"
-
-#~ msgid "Search Toolbar"
-#~ msgstr "Otsinguriba"
-
-#~ msgid "CTRL+SHIFT+N"
-#~ msgstr "CTRL+SHIFT+N"
-
-#~ msgid "CTRL+SHIFT+R"
-#~ msgstr "CTRL+SHIFT+R"
-
-#~ msgid "CTRL+SHIFT+D"
-#~ msgstr "CTRL+SHIFT+D"
-
-#~ msgid "CTRL+SHIFT+W"
-#~ msgstr "CTRL+SHIFT+W"
-
-#~ msgid "CTRL+SHIFT+LEFT"
-#~ msgstr "CTRL+SHIFT+Nool vasakule"
-
-#~ msgid "CTRL+SHIFT+RIGHT"
-#~ msgstr "CTRL+SHIFT+Nool paremale"
-
-#~ msgid "CTRL+."
-#~ msgstr "CTRL+."
-
-#~ msgid "CTRL+,"
-#~ msgstr "CTRL+,"
-
-#, fuzzy
-#~| msgid "&Tools"
-#~ msgid "Tools"
-#~ msgstr "&Tööriistad"
-
-#~ msgid "Listing private X.509 certificates"
-#~ msgstr "X.509 erasertifikaatide loend"
-
-#~ msgid "Listing private OpenPGP certificates"
-#~ msgstr "OpenPGP erasertifikaatide loend"
-
-#~ msgid "qttest"
-#~ msgstr "qttest"
-
-#~ msgid "VerificationResultDialog Test"
-#~ msgstr "VerificationResultDialog test"
-
-#~ msgid "Data file"
-#~ msgstr "Andmefail"
-
-#~ msgid "FlatKeyListModel Test"
-#~ msgstr "FlatKeyListModel test"
-
-#~ msgid "Perform flat certificate listing"
-#~ msgstr "Ühtlane võtmete nimekiri"
-
-#~ msgid "Perform hierarchical certificate listing"
-#~ msgstr "Hierarhiline võtmete nimekiri"
-
-#~ msgid "UserIDListModel Test"
-#~ msgstr "UserIDListModel test"
-
-#~ msgid "OpenPGP certificate to look up"
-#~ msgstr "Otsitav OpenPGP sertifikaat"
-
-#~ msgid "X.509 certificate to look up"
-#~ msgstr "Otsitav X.509 sertifikaat"
-
-#~ msgid "Secret Certificate Deletion"
-#~ msgstr "Salajase sertifikaadi kustutamine"
-
-#~ msgid "'extensions' entry is empty/missing"
-#~ msgstr "kirje 'extensions on tühi või puudub"
-
-#~ msgid "Intevation GmbH (Project Management)"
-#~ msgstr "Intevation GmbH (projektihaldus)"
-
-#~ msgid "g¹ºcode GmbH (Crypto Functionality, GpgOL, GpgEX, GPA)"
-#~ msgstr "g¹ºcode GmbH (krüptimisfunktsionaalsus, GpgOL, GpgEX, GPA)"
-
-#~ msgid "KDAB (Kleopatra)"
-#~ msgstr "KDAB (Kleopatra)"
-
-#~ msgid "Gpg4win is being developed by the following companies:"
-#~ msgstr "Gpg4wini arendavad järgmised ettevõtted:"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "Checksum Operations"
-#~ msgstr "Peata tegevus"
-
-#~ msgid "Send Request by Email..."
-#~ msgstr "Saada päring e-kirjaga..."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The sender address <email>%1</email> matches more than one "
-#~ "cryptographic format.</para><para>Which format do you want to use?</para>"
-#~ msgstr ""
-#~ "<para>Saatja aadress <email>%1</email> sobib enam kui ühe "
-#~ "krüptovorminguga.</para><para>Millist vormingut kasutada?</para>"
-
-#~ msgctxt "@title"
-#~ msgid "Format Choice"
-#~ msgstr "Vormingu valik"
-
-#~ msgctxt "@action:button"
-#~ msgid "Send OpenPGP-Signed"
-#~ msgstr "Saada OpenPGP allkirjaga"
-
-#~ msgctxt "@action:button"
-#~ msgid "Send S/MIME-Signed"
-#~ msgstr "Saada S/MIME allkirjaga"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to learn the smart card's "
-#~ "certificates.</para> <para>The output from <command>%1</command> was: "
-#~ "<message>%2</message></para>"
-#~ msgstr ""
-#~ "<para>Kiipkaardi sertifikaatide uurimisel tekkis viga.</para><para>Käsu "
-#~ "<command>%1</command> väljund oli: <message>%2</message></para>"
-
-#~ msgid "Smart card certificates successfully learned."
-#~ msgstr "Kiipkaardi sertifikaadid on edukalt läbi uuritud."
-
-#~ msgctxt "@title:window"
-#~ msgid "Passphrase Change Finished"
-#~ msgstr "Paroolifraas on muudetud"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to change the passphrase ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG või GpgSM protsess, mis püüdis muuta paroolifraasi, lõpetas töö "
-#~ "enneaegselt ootamatu vea tõttu.</para><para>Palun kontrolli üksikasjade "
-#~ "teadasaamiseks <icode>%1</icode> väljundit.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to change the passphrase.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Paroolifraasi muutmisel tekkis viga.</para><para>Käsu <command>%1</"
-#~ "command> väljund oli: <message>%2</message></para>"
-
-#~ msgid "Real Name:"
-#~ msgstr "Tegelik nimi"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>Real name</interface> is required, but missing."
-#~ msgstr "<interface>Tegelik nimi</interface> on nõutav, aga puudub."
-
-#~ msgctxt "@info"
-#~ msgid "<interface>Real name</interface> must be at least 5 characters long."
-#~ msgstr ""
-#~ "<interface>Tegelik nimi</interface> peab koosnema vähemalt 5 märgist."
-
-#~ msgctxt "@info"
-#~ msgid "<interface>EMail address</interface> is required, but missing."
-#~ msgstr "<interface>E-posti aadress</interface> on nõutav, aga puudub."
-
-#~ msgctxt "@info"
-#~ msgid "<interface>EMail address</interface> is incomplete."
-#~ msgstr "<interface>E-posti aadress</interface> on vigane."
-
-#~ msgid "&Real name:"
-#~ msgstr "&Tegelik nimi:"
-
-#~ msgid "&EMail address:"
-#~ msgstr "&E-posti aadress:"
-
-#~ msgid "Co&mment (optional):"
-#~ msgstr "Ko&mmentaar (pole kohustuslik):"
-
-#~ msgid "Backend Default"
-#~ msgstr "Taustaprogrammi vaikeväärtus"
-
-#~ msgid "1024 Bits"
-#~ msgstr "1024 bitti"
-
-#~ msgid "1536 Bits"
-#~ msgstr "1536 bitti"
-
-#~ msgid "2048 Bits"
-#~ msgstr "2048 bitti"
-
-#~ msgid "3072 Bits"
-#~ msgstr "3072 bitti"
-
-#~ msgid "4096 Bits"
-#~ msgstr "4096 bitti"
-
-#~ msgid "v1 (1024 Bits)"
-#~ msgstr "v1 (1024 bitti)"
-
-#~ msgid "Directory (\"%1\") as output not supported"
-#~ msgstr "Kataloog (\"%1\") ei ole väljundina toetatud"
-
-#~ msgid "\"%1\" is not a valid directory"
-#~ msgstr "\"%1\" ei ole korrektne kataloog"
-
-#~ msgid "Could not determine parent directory of \"%1\""
-#~ msgstr "\"%1\" emakataloogi tuvastamine nurjus"
-
-#~ msgid "Could not access directory \"%1\" for reading"
-#~ msgstr "Kataloogi \"%1\" avamine lugemiseks nurjus"

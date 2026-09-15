@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2008-11-24 22:51+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -170,12 +170,6 @@ msgstr "Fail bernama \"%1\" sudah wujud. Anda pasti ingin menulisgantinya?"
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager Information"
-msgid "Certificate manager and cryptography app"
-msgstr "Maklumat Pengurus Sijil"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -205,6 +199,12 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr ""
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager Information"
+msgid "Certificate manager and cryptography app"
+msgstr "Maklumat Pengurus Sijil"
 
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
@@ -251,8 +251,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
@@ -1185,7 +1185,7 @@ msgid "CRL cache cleared successfully."
 msgstr "Cache CRL berjaya dikosongkan."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1356,8 +1356,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
@@ -1570,8 +1570,8 @@ msgstr "Mengeksport sijil..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba mengeksport sijil:</p><p><b>%1</b></p></qt>"
 
@@ -1611,6 +1611,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "Penggunaan Sijil"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Could not generate certificate: %1"
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "Tidak dapat menjana sijil: %1"
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1624,13 +1631,6 @@ msgstr "Penggunaan Sijil"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Gagal Eksport Sijil"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Could not generate certificate: %1"
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "Tidak dapat menjana sijil: %1"
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2324,17 +2324,17 @@ msgstr[0] "Import Sijil..."
 msgstr[1] "Import Sijil..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, fuzzy, kde-format
+#| msgid "Could not generate certificate: %1"
+msgid "Could not open file %1 for reading: %2"
+msgstr "Tidak dapat menjana sijil: %1"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Gagal Import Sijil"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, fuzzy, kde-format
-#| msgid "Could not generate certificate: %1"
-msgid "Could not open file %1 for reading: %2"
-msgstr "Tidak dapat menjana sijil: %1"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2672,8 +2672,8 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to import the certificate %1:</"
 #| "p><p><b>%2</b></p></qt>"
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba mengimport sijil %1:</p><p><b>%2</b></p></"
 "qt>"
@@ -2681,8 +2681,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba mengimport sijil %1:</p><p><b>%2</b></p></"
 "qt>"
@@ -3011,14 +3011,24 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Fetching certificate from server..."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "Mengutip sijil dari pelayan..."
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3028,16 +3038,30 @@ msgid "Create backup"
 msgstr "Pengeksportan Kekunci Rahsia"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -4111,8 +4135,8 @@ msgstr "Lokasi"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4799,16 +4823,16 @@ msgid ""
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr ""
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, fuzzy, kde-format
 #| msgid "Canceled."
 msgid "Cancel"
 msgstr "Dibatalkan."
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -5087,6 +5111,32 @@ msgstr "Tidak dapat menjana sijil: %1"
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+msgstr[1] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+msgstr[1] ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5135,6 +5185,12 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
@@ -5266,6 +5322,12 @@ msgctxt "@info"
 msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5647,6 +5709,22 @@ msgstr ""
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
@@ -6074,6 +6152,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Menghapuskan kekunci..."
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgid "Deleting keys..."
 msgctxt "@title:dialog"
@@ -6087,6 +6166,12 @@ msgstr "Menghapuskan kekunci..."
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Untuk &penyulitan sahaja"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -6108,13 +6193,6 @@ msgstr "Untuk &tandatangan sahaja"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Untuk &penyulitan sahaja"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6503,15 +6581,15 @@ msgstr "Cari:"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
@@ -6544,8 +6622,8 @@ msgstr "Gagal Menghapuskan Sijil"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
@@ -6603,8 +6681,8 @@ msgstr ""
 #| "p><p><b>%1</b></p></qt>"
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6668,14 +6746,18 @@ msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-kuit-format
@@ -6686,10 +6768,10 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 msgstr[1] ""
@@ -6712,12 +6794,22 @@ msgstr ""
 #| msgid ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr ""
+"<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "<qt><p>An error occurred while trying to delete the certificates:</"
+#| "p><p><b>%1</b></p></qt>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
@@ -6727,14 +6819,13 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 msgstr[1] ""
@@ -6758,10 +6849,10 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 
@@ -6771,13 +6862,14 @@ msgstr ""
 #| "<qt><p>An error occurred while trying to delete the certificates:</"
 #| "p><p><b>%1</b></p></qt>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></qt>"
 msgstr[1] ""
@@ -8553,14 +8645,15 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -8735,8 +8828,8 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -8758,6 +8851,12 @@ msgstr "Untuk &penyulitan sahaja"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Untuk &penyulitan sahaja"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -9332,16 +9431,39 @@ msgstr "Gagal Menyenaraikan Sijil"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Hapuskan Sijil"
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+msgid "Hint for CN"
 msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Delete Certificates"
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "Hapuskan Sijil"
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9381,18 +9503,53 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -9431,6 +9588,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9449,13 +9620,28 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
@@ -9493,6 +9679,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -9989,6 +10189,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10417,8 +10631,8 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 
 #: src/mainwindow.cpp
@@ -11513,8 +11727,8 @@ msgstr ""
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/encryptcommand.cpp
@@ -11543,15 +11757,15 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -11581,8 +11795,8 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -11594,15 +11808,15 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
 
 #: src/uiserver/signcommand.cpp
@@ -12695,6 +12909,13 @@ msgstr "Senarai Kekunci Berhierarki"
 msgid "List of certificates"
 msgstr "&Sijil"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "&Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "&Perincian"
+
 #: src/view/padwidget.cpp
 #, fuzzy, kde-format
 #| msgid "For &encrypting only"
@@ -13574,8 +13795,8 @@ msgstr ""
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13623,8 +13844,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13663,2296 +13884,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Card Certificate"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "Eksport Sijil..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "Menghapuskan kekunci..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "Berkas Sijil  Berperisai ASCII  (*.pem)"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "Berkas Sijil  Berperisai ASCII  (*.pem)"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "Pengeksportan Kekunci Rahsia"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Perincian  Sijil..."
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "(optional)"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "Perincian  Sijil..."
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Your Personal Data"
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "Data Peribadi Anda"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%1 (%2):"
-#~ msgstr[1] "%1 (%2):"
-
-#, fuzzy
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "_n: %1 bit"
-#~ msgstr[1] "_n: %1 bit"
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgid "EMail"
-#~ msgstr "E-mel"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Real name:"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Operation canceled."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "Key pair created successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "Pilih Fail Sijil"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "Pilih Fail Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Key Generation Wizard"
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "Wizard Penjanaan Kekunci"
-
-#, fuzzy
-#~ msgid "Please process this certificate."
-#~ msgstr "_n: Anda pasti ingin menghapuskan sijil ini?"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "Dibatalkan."
-
-#, fuzzy
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "Permohonan Sijil Anda Sedia Untuk Dihantar"
-
-#, fuzzy
-#~| msgid "For &signing only"
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "Untuk &tandatangan sahaja"
-
-#, fuzzy
-#~| msgid "For &signing only"
-#~ msgid "&Sign as:"
-#~ msgstr "Untuk &tandatangan sahaja"
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Decrypt / Verify"
-#~ msgstr "Menghapuskan kekunci..."
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "Opsyen Permohonan Sijil"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba mengosongkan fail  CRL. Output dari  DirMngr "
-#~ "adalah:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "Opsyen Permohonan Sijil"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba mengosongkan fail  CRL. Output dari  DirMngr "
-#~ "adalah:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure Groups..."
-#~ msgstr "Konfigurkan Hujung Belakang &GpgME"
-
-#~ msgid "Stop Operation"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "ASCII Armored Certificate Bundles (*.pem)"
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "Berkas Sijil  Berperisai ASCII  (*.pem)"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "Import Sijil..."
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "Hasil Import Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "Opsyen Permohonan Sijil"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgid "Show certificate overview"
-#~ msgstr "Perincian  Sijil..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "Menghapuskan kekunci..."
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "Menghapuskan kekunci..."
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "Kleopatra Error"
-#~ msgstr "Kleopatra"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "group keys"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Unknown certificate"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Verification canceled."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "No signatures found."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "Tandatangan baru:"
-#~ msgstr[1] "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "Cache CRL berjaya dikosongkan."
-#~ msgstr[1] "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Valid signature by %1."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "Tandatangan baru:"
-#~ msgstr[1] "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Decryption canceled."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "Cari:"
-
-#, fuzzy
-#~| msgid "Imported:"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "Diimport:"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "certificate"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgid "Signing failed."
-#~ msgstr "Dibatalkan."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid " Encryption succeeded."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "Description"
-#~ msgid "Recipients"
-#~ msgstr "Huraian"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "Penyenggara Semasa"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Good signature"
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signing certificate is expired"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Certificate Export Failed"
-#~ msgid "Certificate is not available"
-#~ msgstr "Gagal Eksport Sijil"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "System error"
-#~ msgstr "Ralat Kleopatra "
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "With certificate:"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Set F&ont..."
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "Setkan F&on..."
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "New name:"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "Error"
-#~ msgstr "Ralat Kleopatra "
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgid "Subkeys"
-#~ msgstr "Subkekunci baru:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Issuer certificate not found ( %1)"
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "Sijil pengeluar tidak ditemui ( %1)"
-
-#, fuzzy
-#~ msgid "Authentication"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgid "Select Key"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "OpenPGP keys:"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgid "Keys:"
-#~ msgstr "Subkekunci baru:"
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "Bersiri"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "Bersiri"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Dump CRL Cache..."
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "Abaikan cache CRL..."
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "Cap jari"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Enter a name."
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "Cari:"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "Cari:"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "Baru dibatalkan:"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "Batalkan"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "Batalkan"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~ msgid "&Group configuration"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "Secret keys unchanged:"
-#~ msgid "The key hasn't changed."
-#~ msgstr "Kekunci rahsia tidak diubah:"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "The key has been revoked."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Certificate Export Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "Gagal Eksport Sijil"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid "Export Secret Key..."
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Eksport Kekunci Rahsia..."
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba mengosongkan fail  CRL. Output dari  DirMngr "
-#~ "adalah:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "A.k.a."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Pilih Fail Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "Subkekunci baru:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "Subkekunci baru:"
-
-#, fuzzy
-#~| msgid "New subkeys:"
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "Subkekunci baru:"
-
-#, fuzzy
-#~| msgid "&Chain"
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "&Rantaian"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid "Exporting certificate..."
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "Mengeksport sijil..."
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Show Details"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Save Certificate"
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "Simpan Sijil"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Export Secret Key..."
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Eksport Kekunci Rahsia..."
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Batalkan"
-
-#, fuzzy
-#~| msgid "Overwrite File?"
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Tulis Ganti Fail?"
-
-#, fuzzy
-#~| msgid "Overwrite File?"
-#~ msgid "Overwrite All"
-#~ msgstr "Tulis Ganti Fail?"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Import Certificates"
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Import CRLs..."
-#~ msgid "Import CRLs"
-#~ msgstr "Import CRL..."
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "File Operations"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgid "Secret Key Files"
-#~ msgstr "Pengeksportan Kekunci Rahsia"
-
-#, fuzzy
-#~| msgid "Secret Key Export"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "Pengeksportan Kekunci Rahsia"
-
-#, fuzzy
-#~| msgid "Secret-Key Export Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "Gagal Mengekspot Kekunci Rahsia"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "Kekunci rahsia telah diimport:"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "Eksport Sijil..."
-
-#, fuzzy
-#~| msgid "Serial"
-#~ msgid "Sender"
-#~ msgstr "Bersiri"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "Certificate Details..."
-#~ msgid "Certificate Details"
-#~ msgstr "Perincian  Sijil..."
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgid "Explain expiration"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Valid"
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "Sah"
-#~ msgstr[1] "Sah"
-
-#, fuzzy
-#~| msgid "Valid"
-#~ msgid "Valid for:"
-#~ msgstr "Sah"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "Apply profile"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "Pemapar Log GnuPG..."
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "Pemapar Log GnuPG..."
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "EMail Operations"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Encrypt Mail Message"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title:window"
-#~ msgid "Sign Mail Message"
-#~ msgstr "Dibatalkan."
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "Kekunci rahsia telah diimport:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Fetching Certificate Chain"
-#~ msgid "This is my certificate"
-#~ msgstr "Memungut Rantaian Sijil"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action"
-#~ msgid "Encrypt"
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication not possible."
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Import from a file."
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint: <b>%1</b>"
-#~ msgstr "Cap jari"
-
-#, fuzzy
-#~| msgid ""
-#~| "<qt><p>An error occurred while trying to delete the certificates:</"
-#~| "p><p><b>%1</b></p></qt>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to revoke the certification of<br/><br/"
-#~ "><b>%1</b>:</p><p>\t%2</p>"
-#~ msgstr ""
-#~ "<qt><p>Ralat berlaku semasa cuba menghapuskan sijil:</p><p><b>%1</b></p></"
-#~ "qt>"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Revocation Error"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Revocation Succeeded"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@title:window arg is name, email of certificate holder"
-#~ msgid "Revoke Certification: %1"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "The key whose certifications shall be revoke"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Expiry Date Change Error"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~ msgid "Please select when to expire this subkey:"
-#~ msgstr "_n: Anda pasti ingin menghapuskan sijil ini?"
-
-#, fuzzy
-#~ msgid "Please select when to expire this certificate:"
-#~ msgstr "_n: Anda pasti ingin menghapuskan sijil ini?"
-
-#, fuzzy
-#~| msgid "Unchanged:"
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "Tidak diubah:"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a new certificate"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~ msgid "Choose which type of key pair you want to create."
-#~ msgstr "_n: Anda pasti ingin menghapuskan sijil ini?"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Create a Personal X.509 Key Pair and Certification Request"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgctxt "@action:button"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Pilih Fail Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@action:button"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgctxt "@title:window"
-#~ msgid "Sending Mail"
-#~ msgstr "Dibatalkan."
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "Cari:"
-
-#, fuzzy
-#~| msgid "Search:"
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "Cari:"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Certifications..."
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgctxt "@action:button"
-#~ msgid "Publish Certificate"
-#~ msgstr "Import Sijil..."
-
-#~ msgid "CRL cache dump:"
-#~ msgstr "Pengabaian cache CRL:"
-
-#~ msgid "Unable to start gpgsm process. Please check your installation."
-#~ msgstr "Tidak dapat memulakan proses gpgsm. Semak pemasangan anda."
-
-#~ msgid "Certificate Manager Error"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#~ msgid "The GpgSM process ended prematurely because of an unexpected error."
-#~ msgstr "Proses  GpgSM tamat separuh jalan kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "Ralat Kleopatra "
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "Batalkan"
-
-#, fuzzy
-#~| msgid "CRL cache cleared successfully."
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "Cache CRL berjaya dikosongkan."
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Refreshed"
-#~ msgstr "Baru dibatalkan:"
-
-#, fuzzy
-#~| msgid "Key Generation Wizard"
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "Wizard Penjanaan Kekunci"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Load additional certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Exporting certificate..."
-#~ msgid "Loading certificates..."
-#~ msgstr "Mengeksport sijil..."
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Error: The entered name contains invalid characters."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The entered name is not valid."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "New user IDs:"
-#~ msgid "Add New User-ID"
-#~ msgstr "ID pengguna baru:"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Click for details."
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "The signature."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "Certificate Information"
-#~ msgctxt "@title"
-#~ msgid "Choose Format"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "&Configure %1..."
-#~ msgstr "Konfigurkan Hujung Belakang &GpgME"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "&Shutdown Kleopatra"
-#~ msgstr "Kleopatra"
-
-#~ msgid "Automatically add &new servers discovered in CRL distribution points"
-#~ msgstr ""
-#~ "Menambah pelayan  &baru yang ditemui di dalam titik agihan CRL secara "
-#~ "automatik"
-
-#, fuzzy
-#~| msgid "<qt><p>Detailed results of importing %1:</p><table>%2</table></qt>"
-#~ msgid ""
-#~ "<qt><p>Detailed results of certificate import:</p><table width=\"100%\">"
-#~ "%1</table></qt>"
-#~ msgstr "<qt><p>Hasil perincian import %1:</p><table>%2</table></qt>"
-
-#, fuzzy
-#~| msgid "<qt><p>Detailed results of importing %1:</p><table>%2</table></qt>"
-#~ msgid ""
-#~ "<qt><p>Detailed results of importing %1:</p><table width=\"100%\">%2</"
-#~ "table></qt>"
-#~ msgstr "<qt><p>Hasil perincian import %1:</p><table>%2</table></qt>"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Totals"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not determine certificate type of %1."
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Multiple certificates"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Fetching Certificate Chain"
-#~ msgid "Change Certificate Date of Expiry"
-#~ msgstr "Memungut Rantaian Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Configuration of directory services"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgid "Colors & Fonts Configuration"
-#~ msgstr "Konfigurasi Warna & Fon"
-
-#, fuzzy
-#~| msgid "Backend configuration framework, KIO integration"
-#~ msgid "Configuration of Crypto Operations"
-#~ msgstr "Rangka kerja konfigurasi tepi belakang , penyepaduan KIO "
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure GnuPG Backend..."
-#~ msgstr "Konfigurkan Hujung Belakang &GpgME"
-
-#, fuzzy
-#~| msgid "Canceled."
-#~ msgid "Signing key:"
-#~ msgstr "Dibatalkan."
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Generate &revocation certificate"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "For &encrypting only"
-#~ msgid "&Export..."
-#~ msgstr "Untuk &penyulitan sahaja"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgctxt "@info"
-#~ msgid "Failed to set PIN: %1"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Subject"
-#~ msgid "Subject-DN:"
-#~ msgstr "Subjek"
-
-#, fuzzy
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "_n: %1 bit"
-#~ msgstr[1] "_n: %1 bit"
-
-#, fuzzy
-#~| msgid "Validate"
-#~ msgid "Valid Until:"
-#~ msgstr "Sahkan"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgctxt "@title"
-#~ msgid "Review Parameters"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Show all details"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~ msgid "Authentication:"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~ msgid "Card authentication:"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgid "Digital signature:"
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "Add email to DN in request for broken CAs"
-#~ msgid "Add email address to DN (only needed for broken CAs)"
-#~ msgstr "Tambah e-mel kepada DN sebagai permohonan untuk PBP yang rosak"
-
-#, fuzzy
-#~| msgid "Deleting keys..."
-#~ msgid "Certify ..."
-#~ msgstr "Menghapuskan kekunci..."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt "%1 nice serial number, %2 real serial number"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt ""
-#~ "VS-NfD-conforming is a German standard for restricted documents for which "
-#~ "special restrictions about algorithms apply.  The string states that a "
-#~ "signature is compliant with that."
-#~ msgid "The signature is VS-NfD-compliant."
-#~ msgstr "Tandatangan baru:"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Refresh X.509 Certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2):"
-#~ msgctxt ""
-#~ "Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-#~ "placeholder 2 is the identifier of a slot on a smart card"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2):"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgctxt "@info"
-#~ msgid "Code successfully changed."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid ""
-#~ "Certificate: %1\n"
-#~ "Fingerprint: %2"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Failed."
-#~ msgctxt "self-check did not pass"
-#~ msgid "Failed"
-#~ msgstr "Gagal."
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgctxt "Self-test did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed.\n"
-#~ "\n"
-#~ "Error code: %1\n"
-#~ "Diagnostics:"
-#~ msgstr "Konfigurasi Warna & Fon"
-
-#, fuzzy
-#~| msgid "Color & Font Configuration"
-#~ msgctxt "self-check did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed with error code %1.\n"
-#~ "No output was received."
-#~ msgstr "Konfigurasi Warna & Fon"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "Please select export options for %1:"
-#~ msgstr "_n: Anda pasti ingin menghapuskan sijil ini?"
-
-#, fuzzy
-#~| msgid "Not imported:"
-#~ msgctxt "@title"
-#~ msgid "Incomplete data"
-#~ msgstr "Tidak diimport:"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Secret Certificate"
-#~ msgstr "Eksport Sijil..."
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Please select a certificate."
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Description"
-#~ msgid "<h3>Recipients:</h3>"
-#~ msgstr "Huraian"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Certificate Server Certificate Lookup"
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate Usage:"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate missing"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed on %1 with unknown certificate %2."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed with unknown certificate %1."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed by %1 with certificate %2."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed on %1 with certificate %2."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "Deleting CA Certificates"
-#~ msgid "Signed with certificate %1."
-#~ msgstr "Menghapuskan sijil PBP"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Hide Details"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "Save Certificate"
-#~ msgid "New Certificate..."
-#~ msgstr "Simpan Sijil"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Certificates to Server..."
-#~ msgstr "Eksport Sijil..."
-
-#~ msgid "Import Certificates..."
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "Import Certificates..."
-#~ msgid "Dump Certificate"
-#~ msgstr "Import Sijil..."
-
-#, fuzzy
-#~| msgid "&Overwrite"
-#~ msgid "Overview"
-#~ msgstr "&Tulis Ganti"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "Add..."
-#~ msgstr "A.k.a."
-
-#, fuzzy
-#~| msgid "Du&mp"
-#~ msgid "Dump"
-#~ msgstr "&Abaikan"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "@title:window"
-#~ msgid "Selected Files"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "No files selected."
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Revoke"
-#~ msgctxt "@action"
-#~ msgid "More..."
-#~ msgstr "Batalkan"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Archive name (OpenPGP):"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "Serial Number"
-#~ msgid "Archive name (S/MIME):"
-#~ msgstr "Nombor Siri"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "Add"
-#~ msgstr "A.k.a."
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgid "E-Mail"
-#~ msgstr "E-mel"
-
-#, fuzzy
-#~| msgid "<tr><td align=\"right\">%1</td><td>%2</td></tr>"
-#~ msgid "<tr><th>%1:</th><td>%2</td></tr>"
-#~ msgstr "<tr><td jajar=\"kanan\">%1</td><td>%2</td></tr>"
-
-#, fuzzy
-#~ msgid "%1-bit %2"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "This certificate is currently valid."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#~ msgid "Subject"
-#~ msgstr "Subjek"
-
-#, fuzzy
-#~| msgid "A.k.a."
-#~ msgid "a.k.a."
-#~ msgstr "A.k.a."
-
-#, fuzzy
-#~| msgid "Certificate Usage"
-#~ msgid "Certificate type"
-#~ msgstr "Penggunaan Sijil"
-
-#, fuzzy
-#~| msgid "Done."
-#~ msgid "No"
-#~ msgstr "Selesai."
-
-#, fuzzy
-#~| msgid "Email"
-#~ msgctxt "marginal trust"
-#~ msgid "marginal"
-#~ msgstr "E-mel"
-
-#, fuzzy
-#~| msgid "Validate"
-#~ msgctxt "ultimate trust"
-#~ msgid "ultimate"
-#~ msgstr "Sahkan"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Bad signature by an unknown certificate: %1"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Delete Certificates"
-#~ msgid "Good signature by an unknown certificate."
-#~ msgstr "Hapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Invalid signature by an unknown certificate: %1"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Fetching certificate from server..."
-#~ msgid "The import of this certificate was canceled."
-#~ msgstr "Mengutip sijil dari pelayan..."
-
-#, fuzzy
-#~| msgid "Fetching certificate from server..."
-#~ msgid ""
-#~ "The import contained no new data for this certificate. It is unchanged."
-#~ msgstr "Mengutip sijil dari pelayan..."
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Failed to open file \"%1\" for reading and writing: %2"
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Select CRL File"
-#~ msgctxt "did not pass"
-#~ msgid "Self-Check Failed"
-#~ msgstr "Pilih Fail CRL"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certificate cache loaded."
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "Listing OpenPGP certificates"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Set F&ont..."
-#~ msgid "Select Icon"
-#~ msgstr "Setkan F&on..."
-
-#, fuzzy
-#~ msgid "International"
-#~ msgstr "Maklumat Sijil"
-
-#, fuzzy
-#~| msgid "Path"
-#~ msgid "Path List"
-#~ msgstr "Laluan"
-
-#~ msgid "Path"
-#~ msgstr "Laluan"
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "Option"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Imported:"
-#~ msgid "Impose"
-#~ msgstr "Diimport:"
-
-#, fuzzy
-#~| msgid "Kleopatra Error"
-#~ msgid "Setup Error"
-#~ msgstr "Ralat Kleopatra "
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred while trying to refresh keys:\n"
-#~| "%1"
-#~ msgid ""
-#~ "An error occurred while reading the current configuration.\n"
-#~ "\n"
-#~ "Error: %1"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba memuat semula kekunci:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid ""
-#~| "Could not start GnuPG LogViewer (kwatchgnupg). Please check your "
-#~| "installation!"
-#~ msgid ""
-#~ "Could not start the GnuPG Administrative Console (kgpgconf). Please check "
-#~ "your installation."
-#~ msgstr ""
-#~ "Tidak dapat memulakan pemapar log GnuPG  (kwatchgnupg). Semak pemasangan "
-#~ "anda!"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "No certificates loaded yet."
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~ msgid "File"
-#~ msgstr "Gagal."
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "GnuPG log viewer"
-#~ msgstr "Pemapar Log GnuPG..."
-
-#, fuzzy
-#~| msgid "Configure &GpgME Backend"
-#~ msgid "Configure KWatchGnuPG"
-#~ msgstr "Konfigurkan Hujung Belakang &GpgME"
-
-#, fuzzy
-#~| msgid "Done."
-#~ msgid "None"
-#~ msgstr "Selesai."
-
-#, fuzzy
-#~| msgid "GnuPG Log Viewer..."
-#~ msgid "KWatchGnuPG Log Viewer"
-#~ msgstr "Pemapar Log GnuPG..."
-
-#, fuzzy
-#~| msgid "Find"
-#~ msgid "&Find:"
-#~ msgstr "cari"
-
-#~ msgid "Search Toolbar"
-#~ msgstr "Bar Alat Carian"
-
-#, fuzzy
-#~| msgid "&Details"
-#~ msgid "Tools"
-#~ msgstr "&Perincian"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Listing private X.509 certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Listing private OpenPGP certificates"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "&Certificates"
-#~ msgid "Perform flat certificate listing"
-#~ msgstr "&Sijil"
-
-#, fuzzy
-#~| msgid "Hierarchical Key List"
-#~ msgid "Perform hierarchical certificate listing"
-#~ msgstr "Senarai Kekunci Berhierarki"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "OpenPGP certificate to look up"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgid "X.509 certificate to look up"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Deletion Failed"
-#~ msgid "Secret Certificate Deletion"
-#~ msgstr "Gagal Menghapuskan Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Manager Error"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Certificate Export Error"
-#~ msgstr "Ralat Pengurus Sijil"
-
-#, fuzzy
-#~| msgid "Certificate Request Options"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Certificate Export Finished"
-#~ msgstr "Opsyen Permohonan Sijil"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "KDAB (Kleopatra)"
-#~ msgstr "Kleopatra"
-
-#, fuzzy
-#~| msgid "Export Certificates..."
-#~ msgid "Export Secret Certificate..."
-#~ msgstr "Eksport Sijil..."
-
-#, fuzzy
-#~| msgid "Stop Operation"
-#~ msgid "Checksum Operations"
-#~ msgstr "Hentikan Operasi"
-
-#, fuzzy
-#~| msgid "Select Certificate File"
-#~ msgid "Send Request by Email..."
-#~ msgstr "Pilih Fail Sijil"
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to learn the smart card's "
-#~ "certificates.</para> <para>The output from <command>%1</command> was: "
-#~ "<message>%2</message></para>"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba mengosongkan fail  CRL. Output dari  DirMngr "
-#~ "adalah:\n"
-#~ "%1"
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgid "Smart card certificates successfully learned."
-#~ msgstr "Kekunci rahsia telah diimport:"
-
-#, fuzzy
-#~| msgid ""
-#~| "The DirMngr process that tried to clear the CRL cache ended prematurely "
-#~| "because of an unexpected error."
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to change the passphrase ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "Proses cubaan DirMngr untuk mengosongkan cache CRL tamat separuh jalan "
-#~ "kerana ralat yang tak dijangka."
-
-#, fuzzy
-#~| msgid ""
-#~| "An error occurred when trying to clear the CRL cache. The output from "
-#~| "DirMngr was:\n"
-#~| "%1"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to change the passphrase.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "Ralat berlaku semasa cuba mengosongkan fail  CRL. Output dari  DirMngr "
-#~ "adalah:\n"
-#~ "%1"
-
-#, fuzzy
-#~ msgid "1024 Bits"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~ msgid "1536 Bits"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~ msgid "3072 Bits"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~ msgid "v1 (1024 Bits)"
-#~ msgstr "_n: %1 bit"
-
-#, fuzzy
-#~| msgid "Could not generate certificate: %1"
-#~ msgid "Could not determine parent directory of \"%1\""
-#~ msgstr "Tidak dapat menjana sijil: %1"
-
-#, fuzzy
-#~| msgid "Certificate Download Failed"
-#~ msgid "Certificate Download Failed"
-#~ msgstr "Muat Turun Sijil Gagal"
-
-#~ msgid ""
-#~ "Some or all of the selected certificates are issuers (CA certificates) "
-#~ "for other, non-selected certificates.\n"
-#~ "Deleting a CA certificate will also delete all certificates issued by it."
-#~ msgstr ""
-#~ "Sebahagian atau semua sijil yang dipilih adalah pengeluar  (sijil PBP) "
-#~ "untuk sijil tak dipilih yang lain.\n"
-#~ "Menghapuskan sijil PBP akan menghapuskan juga semua sijil yang "
-#~ "dikeluarkan olehnya."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2012-07-11 10:25+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer\n"
@@ -155,8 +155,8 @@ msgstr "បង្ហាញ​ព័ត៌មាន​របស់​ម្ចា
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info:tooltip"
 msgid "The verification of the file <filename>%1</filename> failed."
 msgstr ""
@@ -178,12 +178,6 @@ msgstr ""
 #, kde-format
 msgid "Kleopatra"
 msgstr "Kleopatra"
-
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager and Unified Crypto GUI"
-msgid "Certificate manager and cryptography app"
-msgstr "កម្មវិធី​គ្រប់គ្រង​វិញ្ញាបនបត្រ និង​ Crypto GUI ដែល​​បញ្ចូល"
 
 #: src/aboutdata.cpp
 #, kde-format
@@ -215,6 +209,12 @@ msgstr "រក្សាសិទ្ធិ​​ឆ្នាំ ២០០៤ ដ�
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr ""
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager and Unified Crypto GUI"
+msgid "Certificate manager and cryptography app"
+msgstr "កម្មវិធី​គ្រប់គ្រង​វិញ្ញាបនបត្រ និង​ Crypto GUI ដែល​​បញ្ចូល"
 
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
@@ -262,8 +262,8 @@ msgstr ""
 #| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
 #| "</p><p>%2</p>"
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<p>កំហុស​បាន​កើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់​ប្ដូរ​ឃ្លា​សម្ងាត់​សម្រាប់​ <b>%1</b> ៖​</p><p>%2</p>"
 
@@ -1206,7 +1206,7 @@ msgid "CRL cache cleared successfully."
 msgstr "បាន​ជម្រះ​ឃ្លាំង​សម្ងាត់ CRL ដោយ​ជោគជ័យ ។"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1393,8 +1393,8 @@ msgstr "ផ្នែក​ខាងក្រោយ CMS ៖ %1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>កំហុស​បាន​កើតឡើង ខណៈ​ដែល​កំពុង​ព្យាយាម​លុប​វិញ្ញាបនបត្រ ៖</p><p><b>%1</b></p></qt>"
 
@@ -1588,8 +1588,8 @@ msgstr "កំពុង​នាំចេញ​វិញ្ញាបនបត្
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>កំហុស​បាន​កើតឡើង ខណៈ​ដែល​កំពុង​ព្យាយាម​នាំចេញ​វិញ្ញាបនបត្រ ៖</p><p><b>%1</b></p></qt>"
 
@@ -1627,6 +1627,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "បោះវិញ្ញាបនបត្រ​ចោល"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Could not open file \"%1\" for reading"
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" បានទេ"
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1640,13 +1647,6 @@ msgstr "បោះវិញ្ញាបនបត្រ​ចោល"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "ការ​នាំចេញ​វិញ្ញាបនបត្រ​បានបរាជ័យ"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Could not open file \"%1\" for reading"
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" បានទេ"
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -1694,8 +1694,8 @@ msgstr "កំហុស​នាំចូល CRL"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Writing groups to file <filename>%1</filename> failed."
 msgstr ""
@@ -1722,8 +1722,8 @@ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" �
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Writing certificates to file <filename>%1</filename> failed."
 msgstr ""
@@ -1989,8 +1989,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Writing key to file <filename>%1</filename> failed."
 msgstr ""
@@ -2049,8 +2049,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Writing subkey to file <filename>%2</filename> failed."
 msgid_plural "Writing subkeys to file <filename>%2</filename> failed."
@@ -2130,8 +2130,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "The secret team key was saved to <filename>%1</filename>"
 msgstr ""
@@ -2372,16 +2372,16 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "វិញ្ញាបនបត្រ​ដែលបាននាំចូល​ពី %1​"
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "មិន​អាច​បើក​​ឯកសារ​​ %1 ​សម្រាប់​​អាន​ ៖​ %2 បាន​ឡើយ​"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "ការ​នាំចូល​វិញ្ញាបនបត្រ​បាន​បរាជ័យ​"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "មិន​អាច​បើក​​ឯកសារ​​ %1 ​សម្រាប់​​អាន​ ៖​ %2 បាន​ឡើយ​"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2538,8 +2538,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Detailed results of import from <filename>%1</filename>:"
 msgstr ""
@@ -2718,15 +2718,15 @@ msgstr "បង្ហាញ​កំណត់ហេតុ​ត្រួតពិ
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>កំហុស​បាន​កើតឡើង នៅពេល​នាំចូល​វិញ្ញាបនបត្រ ៖</p><p><b>%1</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>កំហុស​បាន​កើត​ឡើង​ខណៈពេល​ដែល​កំពុង​ព្យាយាម​នាំចូល​វិញ្ញាបនបត្រ​ %1 ៖ </p><p><b>%2</b></"
 "p></qt>"
@@ -2801,8 +2801,8 @@ msgstr "ប្រភេទ​វិញ្ញាបនបត្រ (%1) ​នេ
 #: src/commands/importcrlcommand.cpp
 #, fuzzy, kde-format
 #| msgid ""
-#| "Certificate Revocation Lists, DER encoded (*.crl *.arl *-crl.der *-arl."
-#| "der)"
+#| "Certificate Revocation Lists, DER encoded (*.crl *.arl *-crl.der *-"
+#| "arl.der)"
 msgid "Certificate Revocation Lists, DER encoded"
 msgstr "ការ​ដកហូត​បញ្ជី​វិញ្ញាបនបត្រ​វិញ​​ បាន​អ៊ិនកូដ ​DER ​ (*.crl *.arl *-crl.der *-arl.der)"
 
@@ -2878,8 +2878,8 @@ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 �
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Successfully restored the secret key parts from <filename>%1</filename>"
 msgstr ""
@@ -2944,8 +2944,8 @@ msgid ""
 "<para>The output from <command>%1</command> was:</para><para><message>%2</"
 "message></para>"
 msgstr ""
-"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ <command>"
-"%1</command> គឺ​ ៖​ <message>%2</message></para>"
+"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ "
+"<command>%1</command> គឺ​ ៖​ <message>%2</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3067,14 +3067,24 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "ខ្ញុំ​បាន​បញ្ជាក់​ស្នាម​ផ្ដិត​ម្រាមដៃ​​"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "This certificate has expired."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "វិញ្ញាបនបត្រ​បាន​ផុត​កំណត់ ។"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
-msgstr ""
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-format
@@ -3084,16 +3094,30 @@ msgid "Create backup"
 msgstr "ឯកសារ​សោ​សម្ងាត់"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>An error occurred while loading the certifications: <message>%1</"
+#| "message></para>"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -3129,8 +3153,8 @@ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" �
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "The private key file <filename>%1</filename> is empty."
 msgstr ""
@@ -3148,8 +3172,8 @@ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" �
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Writing the backup of the secret key to <filename>%1</filename> failed."
 msgstr ""
@@ -3795,8 +3819,8 @@ msgid ""
 "<para>An error occurred while trying to revoke the user ID<nl/><emphasis>%1</"
 "emphasis>.</para><para><message>%2</message></para>"
 msgstr ""
-"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ <command>"
-"%1</command> គឺ​ ៖​ <message>%2</message></para>"
+"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ "
+"<command>%1</command> គឺ​ ៖​ <message>%2</message></para>"
 
 #: src/commands/revokeuseridcommand.cpp
 #, kde-kuit-format
@@ -3877,8 +3901,8 @@ msgid ""
 "emphasis><nl/>as the primary user ID.</para><para><message>%2</message></"
 "para>"
 msgstr ""
-"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ <command>"
-"%1</command> គឺ​ ៖​ <message>%2</message></para>"
+"<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ "
+"<command>%1</command> គឺ​ ៖​ <message>%2</message></para>"
 
 #: src/commands/setprimaryuseridcommand.cpp
 #, kde-kuit-format
@@ -4190,8 +4214,8 @@ msgstr "ការ​កំណត់"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4920,15 +4944,15 @@ msgstr ""
 "ទាំងពីរ​ទេ  ។"
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "កំពុង​ចាប់ផ្ដើម​..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "​បោះបង់"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "កំពុង​ចាប់ផ្ដើម​..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4953,8 +4977,8 @@ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 �
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Failed to overwrite <filename>%1</filename>."
 msgstr ""
@@ -5064,8 +5088,8 @@ msgstr "មាន​ឯកសារ​ឈ្មោះ \"%1\" រួច​ហើ�
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@title:window"
 msgid "Select the file to verify with the signature <filename>%1</filename>"
 msgstr ""
@@ -5076,8 +5100,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
@@ -5090,8 +5114,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid ""
 "<para>Failed to move <filename>%1</filename> to <filename>%2</filename>.</"
@@ -5104,8 +5128,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid ""
 "Shall the file be saved with the original file name <filename>%1</filename>?"
@@ -5123,8 +5147,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@action:button"
 msgid "No, Save As <filename>%1</filename>"
 msgstr ""
@@ -5135,8 +5159,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@action:button"
 msgid "Yes, Save As <filename>%1</filename>"
 msgstr ""
@@ -5147,8 +5171,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Failed to delete <filename>%1</filename>."
 msgstr ""
@@ -5159,8 +5183,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgstr ""
@@ -5191,8 +5215,8 @@ msgstr[0] "មិនស្គាល់​អ្នក​ទទួល %1"
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Decryption and verification of <filename>%1</filename> canceled."
 msgstr ""
@@ -5203,8 +5227,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
@@ -5217,8 +5241,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt and verify <filename>%1</filename>:"
 msgstr ""
@@ -5229,8 +5253,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
 "Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
@@ -5242,8 +5266,8 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Verification of <filename>%1</filename> canceled."
 msgstr ""
@@ -5254,8 +5278,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr ""
@@ -5266,8 +5290,34 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5282,8 +5332,8 @@ msgstr[0] ""
 #, fuzzy, kde-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid "Decryption of <filename>%1</filename> canceled."
 msgstr ""
@@ -5294,8 +5344,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
 "@info 'Unable' meaning that decryption can't be started because there is no "
 "secret key"
@@ -5308,8 +5358,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info 'Failed' meaning that there was an error during decryption"
 msgid "Failed to decrypt <filename>%1</filename>:"
 msgstr ""
@@ -5320,8 +5370,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Decrypted <file> as <file>."
 msgid "Decrypted <filename>%1</filename> as <filename>%2</filename>."
 msgstr ""
@@ -5332,6 +5382,12 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
@@ -5472,6 +5528,12 @@ msgstr ""
 "<br/><b>ការ​ព្រមាន ៖</b> អាសយដ្ឋាន​របស់​ផ្ញើ​មិន​ត្រូវ​បាន​ទុក​នៅ​ក្នុង​វិញ្ញាបនបត្រ​ដែល​បានប្រើ​សម្រាប់​"
 "ចុះហត្ថលេខា​ទេ ។"
 
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
+
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5537,8 +5599,8 @@ msgstr "ផ្ទៀងផ្ទាត់ ៖ %1..."
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
 "Verification of a detached signature in progress. The first file contains "
 "the data.The second file is the signature file."
@@ -5855,6 +5917,22 @@ msgstr "ការវិនិច្ឆ័យ ៖"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "បង្ហាញ​កំណត់ហេតុ​ត្រួតពិនិត្យ"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, fuzzy, kde-format
@@ -6299,6 +6377,7 @@ msgid "Sign / Encrypt Files"
 msgstr "ចុះ​ហត្ថ​លេខ/អ៊ិនគ្រីប​ឯកសារ"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgid "Sign/Encrypt Files"
 msgctxt "@title:dialog"
@@ -6313,6 +6392,12 @@ msgstr "ចុះ​ហត្ថ​លេខ/អ៊ិនគ្រីប​ឯ�
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "ចុះហត្ថលេខា និង​អ៊ិនគ្រីប​"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -6335,13 +6420,6 @@ msgstr "​ចុះហត្ថលេខា"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "អ៊ីនគ្រិប"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6726,20 +6804,20 @@ msgstr "ប័ណ្ណសារ​"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹងទុក​នៅ​ក្នុង SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared ៖ %1"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹងទុក​នៅ​ក្នុង "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared ៖ %1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​​ស្គាល់​នៅ​ក្នុង SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​​ស្គាល់​នៅ​ក្នុង "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
@@ -6768,12 +6846,12 @@ msgstr "បាន​បោះបង់​ការ​អ៊ិនគ្រីប
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -6782,8 +6860,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to sign and encrypt <file> and <file>: <reason>"
 msgid ""
 "Failed to sign and encrypt <filename>%1</filename> and <filename>%2</"
@@ -6807,8 +6885,8 @@ msgstr[0] ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to sign <file>: <reason>"
 msgid ""
 "Failed to sign <filename>%1</filename>: <emphasis strong='true'>%2</emphasis>"
@@ -6820,8 +6898,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to sign <file> and <file>: <reason>"
 msgid ""
 "Failed to sign <filename>%1</filename> and <filename>%2</filename>: "
@@ -6834,12 +6912,12 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6851,8 +6929,8 @@ msgstr[0] ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to encrypt <file>: <reason>"
 msgid ""
 "Failed to encrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
@@ -6865,8 +6943,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to encrypt <file> and <file>: <reason>"
 msgid ""
 "Failed to encrypt <filename>%1</filename> and <filename>%2</filename>: "
@@ -6879,8 +6957,8 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Failed to encrypt <file> and <n> other(s): <reason>"
 msgid ""
 "Failed to encrypt <filename>%2</filename> and %1 other: <emphasis "
@@ -6896,8 +6974,8 @@ msgstr[0] ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
 "@info Successfully signed and encrypted <file> and saved it as <file>."
 msgid ""
@@ -6911,14 +6989,14 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -6927,16 +7005,16 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -6945,8 +7023,8 @@ msgstr[0] ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Successfully signed <file> and saved the signature in <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and saved the signature in "
@@ -6959,14 +7037,12 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Successfully signed <file> and saved it as <file>."
 msgid ""
-"Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -6975,17 +7051,30 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
-msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
+"saved them as <filename>%3</filename>."
+msgstr ""
+"មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
+"filename> ៖ <message>%3</message>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
+msgctxt ""
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
+msgid ""
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -6994,8 +7083,8 @@ msgstr[0] ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info Successfully encrypted <file> and saved it as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and saved it as <filename>%2</"
@@ -7008,13 +7097,13 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -7023,16 +7112,17 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
 "filename> ៖ <message>%3</message>"
@@ -7995,8 +8085,8 @@ msgstr ""
 msgid ""
 "<p>Changing the certification trust of the key <b>%1</b> failed:</p><p>%2</p>"
 msgstr ""
-"<p>កំហុស​មួយ​បានកើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​លើ​ម្ចាស់​សម្រាប់ <b>%1</b> ៖</p><p>"
-"%2</p>"
+"<p>កំហុស​មួយ​បានកើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​លើ​ម្ចាស់​សម្រាប់ <b>%1</b> ៖</"
+"p><p>%2</p>"
 
 #: src/dialogs/certifywidget.cpp
 #, fuzzy, kde-format
@@ -8884,14 +8974,15 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -9093,8 +9184,8 @@ msgstr "កំណត់​​ PIN ដំបូង​ (NKS)​"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr "ជំហាន ២ ៖​ ​កំណត់​ PIN ដំបូង​សម្រាប់​វិញ្ញាបនបត្រ​​ហត្ថលេខា​ដែល​មាន​គុណភាព​ (\"SigG\") ៖"
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -9119,6 +9210,12 @@ msgstr "ចុះហត្ថលេខា និង​អ៊ិនគ្រី�
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "ចុះហត្ថលេខា និង​អ៊ិនគ្រីប​"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, fuzzy, kde-format
@@ -9710,16 +9807,39 @@ msgstr "បាន​បរាជ័យ​ក្នុងការ​ផ្ទុ
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Create a personal X.509 key pair and certification request "
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+msgid "Hint for CN"
 msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Create a personal X.509 key pair and certification request "
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9759,18 +9879,53 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -9809,6 +9964,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9827,13 +9996,28 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
@@ -9871,6 +10055,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -10385,6 +10583,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10833,8 +11045,8 @@ msgstr "បិទ​តែ​បង្អួច​ប៉ុណ្ណោះ"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "%1 អាច​ត្រូវ​បាន​ប្រើ​ដោយ​កម្មវិធី​ផ្សេង​ជា​សេវា ។\n"
 "អ្នក​អាច​ចង់​បិទ​បង្អួច​នេះ​ដោយ​មិន​ចេញ​ពី %1 ។"
@@ -11918,8 +12130,8 @@ msgstr "DECRYPT​​/VERIFY_FILES មិន​អាច​ប្រើ​ថត
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង SignCommand::Private::"
-"slotMicAlgDetermined: %1"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង "
+"SignCommand::Private::slotMicAlgDetermined: %1"
 
 #: src/uiserver/echocommand.cpp src/uiserver/signcommand.cpp
 #, kde-format
@@ -11979,11 +12191,11 @@ msgstr "គ្មាន​ឈ្មោះ​អ្នកទទួល​បាន
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"បាន​ទទួល​​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង EncryptCommand::Private::"
-"slotRecipientsResolved ៖ %1"
+"បាន​ទទួល​​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង "
+"EncryptCommand::Private::slotRecipientsResolved ៖ %1"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
@@ -12011,20 +12223,20 @@ msgstr "SENDER អាច​មិន​ត្រូវ​បាន​ផ្ដ�
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង PrepEncryptCommand::Private::"
-"slotRecipientsResolved ៖ %1"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង "
+"PrepEncryptCommand::Private::slotRecipientsResolved ៖ %1"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​ស្គាល់​នៅ​ក្នុង PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​ស្គាល់​នៅ​ក្នុង "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -12054,37 +12266,37 @@ msgstr "នៅ​ក្នុង​សម័យនេះ​ ពិធីកា�
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​រំពឹង​នៅ​ក្នុង PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​រំពឹង​នៅ​ក្នុង "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
 "Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​​ដែល​មិន​ស្គាល់​នៅ​ក្នុង PrepSignCommand::Private::"
-"slotRecipientsResolved"
+"បាន​ទទួល​ករណី​លើកលែង​​ដែល​មិន​ស្គាល់​នៅ​ក្នុង "
+"PrepSignCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
-"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
-"បាន​ទទួល​ករនី​​លើក​លែង​ដែល​មិន​ស្គាល់​​នៅ​ក្នុង​ SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"បាន​ទទួល​ករនី​​លើក​លែង​ដែល​មិន​ស្គាល់​​នៅ​ក្នុង​ "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
@@ -12307,8 +12519,8 @@ msgstr "រក្សាទុក​សំណើ"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid ""
 "<para>Failed to write the request to the file <filename>%1</filename>.</"
@@ -12345,8 +12557,8 @@ msgstr "ថត​លទ្ធផល ៖"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt "@info"
 msgid ""
 "<para>Failed to create output folder <filename>%1</filename>.</"
@@ -13192,6 +13404,13 @@ msgstr "បញ្ជី​សញ្ញា​បត្រ​តាម​ឋាន
 #| msgid "Listing X.509 certificates"
 msgid "List of certificates"
 msgstr "រាយ​​​​វិញ្ញាបនបត្ររបស់​​​ X.509 "
+
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "សេចក្ដី​លម្អិត"
 
 #: src/view/padwidget.cpp
 #, fuzzy, kde-format
@@ -14091,8 +14310,8 @@ msgstr ""
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -14140,8 +14359,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -14182,3795 +14401,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#, fuzzy
-#~| msgid "certificate"
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "It seems another <application>Kleopatra</application> is running (with "
-#~| "process-id %1)"
-#~ msgctxt "@title"
-#~ msgid "<application>Kleopatra</application> failed to start"
-#~ msgstr ""
-#~ "ហាក់ដូចជា​មាន <application>Kleopatra</application> ផ្សេងទៀត​កំពុង​ដំណើរការ (មាន​លេខ​"
-#~ "សម្គាល់​ដំណើរការ %1)"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgid "Card Certificate"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgctxt "@title %1:\"OpenPGP\" or \"CMS\""
-#~| msgid "%1 Certificate Server"
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "%1 ម៉ាស៊ីនបម្រើវិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Decrypt/Verify Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "កំហុស​ក្នុង​ការ​ឌិគ្រីប​/​បញ្ជាក់​ក្ដារ​តម្បៀត​ខ្ទាស់"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "វិញ្ញាបនបត្រ​ដែលបាននាំចូល​ពី %1​"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "ការ​​អ៊ិនគ្រីប​"
-
-#, fuzzy
-#~| msgid "S/MIME Certificates"
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "វិញ្ញាបនបត្រ S/MIME"
-
-#, fuzzy
-#~| msgctxt "@title:window"
-#~| msgid "Secret Key Export Error"
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "កំហុស​នាំ​សោ​សម្ងាត់​ចេញ​​"
-
-#~ msgid ""
-#~ "If this option is checked while a root CA certificate is being imported, "
-#~ "you will be asked to confirm its fingerprint and to state whether or not "
-#~ "you consider this root certificate to be trusted. A root certificate "
-#~ "needs to be trusted before the certificates it certified become trusted, "
-#~ "but lightly allowing trusted root certificates into your certificate "
-#~ "store will undermine the security of the system."
-#~ msgstr ""
-#~ "ប្រសិន​បើ​ ជម្រើស​នេះ​ត្រូវ​បាន​ធីក​ខណៈ​ពេល​ដែល​​វិញ្ញាបនបត្រ​របស់​ root CA ​កំពុង​ត្រូវ​បាន​នាំចូល​​ អ្នក​នឹង​"
-#~ "ត្រូវ​បាន​សួរ ​ដើម្បី​អះអាង​​ស្ថាន​ភាព​ និង​ស្នាម​ផ្ដិត​​ម្រាម​ដៃ​របស់​វា​ ធ្វើ ឬ​ក៏​​អត់​​ដែល​អ្នក​គិត​ថា​"
-#~ "វិញ្ញាបនបត្រ​ root នេះ​ត្រូវ​បាន​​ជឿ​ទុកចិត្ត​ ។​ វិញ្ញាបនបត្រ​​ root ត្រូវការ ​ដើម្បី​ត្រូវ​បាន​ជឿ​ទុកចិត្ត​"
-#~ "មុន​ពេល​​វិញ្ញាបនបត្រ​​​​វា​បាន​បញ្ជាក់​ដោយ​ជឿ​ទុកចិត្ត​ ប៉ុន្តែ​អនុញ្ញា​វិញ្ញាបនបត្រ​ root ដែល​ជឿ​ទុកចិត្ត​នៅ​ក្នុង​"
-#~ "វិញ្ញាបនបត្រ​​របស់​អ្នក​នឹង​​​ទម្លាយ​ចោល​ប្រព័ន្ធ​សុវត្ថិភាព​ ។"
-
-#~ msgid "Allow to mark root certificates as trusted"
-#~ msgstr "អនុញ្ញាត​ដើម្បី​សម្គាល់​វិ​ញ្ញាបនបត្រ​​ root ដូច​ដែល​ជឿ​ទុកចិត្ត​"
-
-#, fuzzy
-#~| msgid "Certificate Details"
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "សេចក្ដី​លម្អិត​វិញ្ញាបនបត្រ"
-
-#~ msgctxt "@title"
-#~ msgid "Request Saved"
-#~ msgstr "បាន​រក្សាទុក​សំណើ"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
-
-#~ msgctxt "@title"
-#~ msgid "Error Saving Request"
-#~ msgstr "កំហុស​ក្នុងកា​ររក្សាទុក​សំណើ"
-
-#, fuzzy
-#~| msgid "Could not open file \"%1\" for reading"
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" បានទេ"
-
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "(required)"
-#~ msgstr "(ត្រូវការ)"
-
-#~ msgid "(optional)"
-#~ msgstr "(ជម្រើស)"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is required, but empty."
-#~ msgstr "<interface>%1</interface> ត្រូវ​​​បាន​ទាមទារ ប៉ុន្តែ​វា​ទទេ ។​"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-#~ "<icode>%2</icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> ត្រូវ​បាន​ទាមទារ​​ ប៉ុន្តែ​វា​ទទេ​ ។<nl/>ច្បាប់​​គ្រប់គ្រង​មូលដ្ឋាន​ ៖ "
-#~ "<icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is incomplete."
-#~ msgstr "<interface>%1</interface> មិន​ពេញលេញ ។"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> មិន​ពេញលេញ​ ។​<nl/>ច្បាប់​គ្រប់គ្រង​មូលដ្ឋាន​ ៖​ <icode>%2</"
-#~ "icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is invalid."
-#~ msgstr "<interface>%1</interface> មិនត្រឹមត្រូវ​ ។"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> មិន​ត្រឹមត្រូវ ។​<nl/>ច្បាប់​គ្រប់គ្រង​មូលដ្ឋាន​ ៖​ <icode>%2</"
-#~ "icode>"
-
-#, fuzzy
-#~| msgid "Subkey Strength:"
-#~ msgctxt "@info:label"
-#~ msgid "RSA key strength:"
-#~ msgstr "កម្លាំង​សោ​រង ៖"
-
-#, fuzzy
-#~| msgid "Technical Details"
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "សេចក្ដី​លម្អិត​បច្ចេកទេស"
-
-#, fuzzy
-#~| msgid "EMail Addresses"
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "អាសយដ្ឋាន​អ៊ីមែល"
-
-#, fuzzy
-#~| msgid "DNS Names"
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "ឈ្មោះ DNS"
-
-#, fuzzy
-#~| msgid "Personal Details"
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "សេចក្ដី​លម្អិត​ផ្ទាល់ខ្លួន"
-
-#~ msgid "new email"
-#~ msgstr "អ៊ីមែល​ថ្មី"
-
-#~ msgid "new dns name"
-#~ msgstr "ឈ្មោះ dns ថ្មី"
-
-#~ msgid "new uri"
-#~ msgstr "uri ថ្មី"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%2 (%1 ប៊ីត​​)"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 ប៊ីត​"
-
-#~ msgid "EMail"
-#~ msgstr "អ៊ីមែល"
-
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "បញ្ចូល​សេចក្ដី​លម្អិត"
-
-#~ msgid "Real name:"
-#~ msgstr "លេខ​​ពិត ៖"
-
-#~ msgid "EMail address:"
-#~ msgstr "អាសយដ្ឋាន​អ៊ីមែល ៖"
-
-#~ msgid "Advanced Settings..."
-#~ msgstr "កា​រកំណត់​កម្រិត​ខ្ពស់..."
-
-#, fuzzy
-#~| msgid ""
-#~| "Please enter your personal details below. If you want more control over "
-#~| "the certificate parameters, click on the Advanced Settings button."
-#~ msgid ""
-#~ "Please enter your personal details below. If you want more control over "
-#~ "the parameters, click on the Advanced Settings button."
-#~ msgstr ""
-#~ "សូម​បញ្ចូល​សេចក្ដី​លម្អិត​ផ្ទាល់ខ្លួន​របស់​អ្នក​ខាង​ក្រោម ។ ប្រសិន​បើ​អ្នក​ចង់​ត្រួតពិនិត្យ​បន្ថែម​លើ​ប៉ារ៉ាម៉ែត្រ​"
-#~ "វិញ្ញាបនបត្រ ចុច​លើ​ប៊ូតុង​កា​រកំណត់​កម្រិត​ខ្ពស់ ។"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action"
-#~ msgid "Create"
-#~ msgstr "បង្កើត​សោ"
-
-#~ msgid "Operation canceled."
-#~ msgstr "បាន​បោះបង់ប្រតិបត្តិការ ។"
-
-#, fuzzy
-#~| msgid "Could not create socket: %1"
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "មិនអាច​បង្កើត​រន្ធ ៖ %1"
-
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "មិន​អាច​សរសេរ​​ឯកសារ​លទ្ធផល %1 ៖ %2"
-
-#, fuzzy
-#~| msgid "Certificate created successfully."
-#~ msgid "Key pair created successfully."
-#~ msgstr "បាន​បង្កើត​វិញ្ញាបនបត្រ​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Remove"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "យកចេញ​"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Certificate Creation Wizard"
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "អ្នក​ជំនួយការ​បង្កើត​វិញ្ញាបនបត្រ"
-
-#, fuzzy
-#~| msgid "Result"
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "លទ្ធផល"
-
-#, fuzzy
-#~| msgid ""
-#~| "Drag this icon to your mail application's composer to attach the request "
-#~| "to a mail."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Drag this icon to your mail application's composer to attach the request "
-#~ "to a mail."
-#~ msgstr "អូស​រូបតំណាង​នេះ​ទៅ​កម្មវិធី​តែង​របស់​កម្មវិធី​អ៊ីមែល​របស់​អ្នក​ ដើម្បី​ភ្ជាប់​សំណើ​ទៅ​សំបុត្រ ។"
-
-#~ msgid "Restart This Wizard (Keeps Your Parameters)"
-#~ msgstr "ចាប់ផ្ដើម​អ្នកជំនួយការ​នេះ​ឡើង​វិញ (រក្សា​ប៉ារ៉ាម៉ែត្រ​របស់​អ្នក)"
-
-#, fuzzy
-#~| msgid "Next Steps"
-#~ msgctxt "@title:group"
-#~ msgid "Next Steps"
-#~ msgstr "ជំហាន​បន្ទាប់"
-
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "រក្សា​ទុក​សំណើ​របស់​វិញ្ញាបនបត្រ​ទៅកាន់​ឯកសារ​​..."
-
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "ផ្ញើ​សំណើ​របស់​វិញ្ញាបនបត្រ​ដោយ​អ៊ីមែល​​..."
-
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "បង្កើត​ការ​ចុះហត្ថលេខា​​វិញ្ញាបនបត្រ​ជា​មួយ​ប៉ារ៉ាម៉ែត្រ​តែ​មួយ"
-
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "បង្កើត​វិញ្ញាបនបត្រ​អ៊ិនគ្រីប​ជា​មួយ​ប៉ារ៉ាម៉ែត្រ​ដូច​គ្នា"
-
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "បានបរាជ័យ​ក្នុងការ​បង្កើត​សោ"
-
-#~ msgid ""
-#~ "Key pair creation failed. Please find details about the failure below."
-#~ msgstr "បាន​បរាជ័យ​ក្នុងកា​របង្កើត​គូសោ ។ សូម​រក​សេចក្ដី​លម្អិត​អំពី​បរាជ័យ​ដូច​ខាង​ក្រោម ។"
-
-#~ msgctxt "@title"
-#~ msgid "Key Pair Successfully Created"
-#~ msgstr "បាន​បង្កើត​គូសោ​ដោយ​ជោគជ័យ"
-
-#~ msgid ""
-#~ "Your new key pair was created successfully. Please find details on the "
-#~ "result and some suggested next steps below."
-#~ msgstr ""
-#~ "គូ​សោ​ថ្មី​​របស់​អ្នក​ត្រូវ​បាន​បង្កើត​ដោយជោគជ័យ ។ សូម​រក​សេចក្ដីលម្អិត​ខាង​ក្រោម​អំពីលទ្ធផល​ និង​ជំហាន​បន្ទាប់​"
-#~ "ដែល​បាន​ស្នើ ។"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~ "%2</filename>: <message>%3</message>"
-#~ msgstr ""
-#~ "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-#~ "filename> ៖ <message>%3</message>"
-
-#~ msgid "Please process this certificate."
-#~ msgstr "សូម​ដំណើរការ​វិញ្ញាបនបត្រ​នេះ ។"
-
-#~ msgid ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-#~ msgstr ""
-#~ "សូម​ដំណើរការ​វិញ្ញាបនបត្រ​នេះ និង​ប្រាប់​អ្នក​ផ្ញើ​អំពី​ទីតាំង​ត្រូវ​ទៅ​យក​លទ្ធផល​របស់​វិញ្ញាបនបត្រ ។\n"
-#~ "\n"
-#~ "សូម​អរគុណ\n"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then drag the <application>Kleopatra</"
-#~ "application> icon and drop it on the message compose window of your mail "
-#~ "client.</para><para>If that does not work, either, save the request to a "
-#~ "file, and then attach that.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> បាន​ព្យាយាម​ផ្ញើ​សំបុត្រ​តាមរយៈ​កម្មវិធី​អ៊ីមែល​"
-#~ "លំនាំ​ដើម​របស់​អ្នក ។</para><para>កម្មវិធី​អ៊ីមែល​មួយ​ចំនួន​ត្រូវ​បាន​ដឹង​ថា​មិន​គាំទ្រ​ឯកសារ​ភ្ជាប់​នៅពេល​ដក​"
-#~ "ហូត​វិធី​នេះ ។</para><para>ប្រសិន​បើ​​កម្មវិធី​អ៊ីមែល​មិន​មាន​ឯកសារ​ភ្ជាប់ បន្ទាប់​អូស​ និង​ទម្លាក់​រូបតំណាង "
-#~ "<application>Kleopatra</application> នៅ​លើ​បង្អួច​កម្មវិធី​តែងសារ​របស់​កម្មវិធី​អ៊ីមែល​របស់​"
-#~ "អ្នក ។</para><para>ប្រសិន​បើ​វា​មិន​ធ្វើការ រក្សាទុក​សំណើ​​ទៅ​ឯកសារ និង​បន្ទាប់​មក​ភ្ជាប់​វា ។</"
-#~ "para>"
-
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "ផ្ញើ​អ៊ីមែល"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "This operation will delete the certification request. Please make sure "
-#~ "that you have sent or saved it before proceeding."
-#~ msgstr "ប្រតិបត្តិការនេះ​នឹង​លុប​សំណើ​បញ្ជាក់ ។ សូម​ប្រាកដ​ថា អ្នក​បាន​ផ្ញើ ឬ​រក្សា​វា​ទុក​មុននឹង​បន្ត ។"
-
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "សំណើ​វិញ្ញាបនបត្រ​រៀបនឹង​ត្រូវ​បាន​លុប"
-
-#, fuzzy
-#~| msgid "Sign Files"
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "ចុះហត្ថលេខា​ឯកសារ"
-
-#, fuzzy
-#~| msgid "Sign Files"
-#~ msgid "&Sign as:"
-#~ msgstr "ចុះហត្ថលេខា​ឯកសារ"
-
-#, fuzzy
-#~| msgid "&Decrypt/Verify"
-#~ msgid "Decrypt / Verify"
-#~ msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់​​អនុវត្ត​ការ​ទាញ​វិញ្ញាបនបត្រ​ទាំងអស់​ដែល​ថ្មី "
-#~ "ដើម្បីពិនិត្យប្រសិនបើ​ពួកវា​ត្រូវ​បានដក​នៅ​ក្នុង​ពេលនោះ ។</para><para>វា​អាច​ដាក់​កម្រិត​ម៉ាស៊ីនបម្រើ​នៅ​"
-#~ "លើ​អ្នក​ផ្ទាល់ ព្រម​ទាំង​ការ​តភ្ជាប់​បណ្ដាញ​របស់​មនុស្ស​ផ្សេងៗ​ទៀត និង​អាច​ចំណាយ​ពេលមួយម៉ោង ឬ​ច្រើន​ដើម្បី​"
-#~ "បញ្ចប់ ដោយ​អាស្រ័យ​លើ​ការ​តភ្ជាប់​បណ្ដាញ​របស់​អ្នក និង​ចំនួន​វិញ្ញាបនបត្រត្រូវ​ត្រួតពិនិត្យ ។</para> "
-#~ "<para>តើ​អ្នក​ប្រាកដ​ជា​ចង់​បន្ត​ឬ ?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "កំហុស​ក្នុង​ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់​"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "បាន​បញ្ចប់​ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់​"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>ដំណើរការ GPG ដែល​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់ បាន​បញ្ចប់​មុន​ពេល ដោយសារ​មាន​កំហុស​"
-#~ "ដោយ​មិននឹកស្មាន ។</para><para> ចំពោះ​សេចក្ដី​លម្អិត សូម​ពិនិត្យ​មើល​លទ្ធផល <icode>%1</icode> "
-#~ "។</para>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~| "para> <para>The output from <command>%1</command> was: <message>%2</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>កំហុស​មួយ​បាន​កើតឡើង​នៅ​ខណៈ​ដែល​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់ ។</para> "
-#~ "<para>លទ្ធផល​ពី <command>%1</command> គឺ ៖ <message>%2</message></para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "បាន​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់​ដោយ​ជោគជ័យ ។​"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់​បញ្ជាក់​ពី CRL ទាញ​យក​សម្រាប់​វិញ្ញាបនបត្រ​ទាំងអស់ ទោះបី​"
-#~ "ជា​ពួកវា​នៅ​ត្រឹមត្រូវ​ក៏ដោយ ។</para><para> វា​អាច​ដាក់ strain ដែល​ត្រឹមត្រូវ​នៅ​លើ​ការ​តភ្ជាប់​"
-#~ "បណ្ដាញ​របស់​អ្នក ក៏ដូចជា​របស់​អ្នក​ផ្សេងទៀត​ផង​ដែរ ហើយ​អាច​លើក​ដល់​មួយ​ម៉ោង ឬ​ច្រើន​ជាង​នេះ​ដើម្បី​បញ្ចប់ "
-#~ "ដោយ​អាស្រ័យ​លើ​ការ​តភ្ជាប់​បណ្ដាញ​របស់​អ្នក និង​ចំនួន​វិញ្ញាបនបត្រ​ដែល​ត្រូវ​ពិនិត្យ ។</para> <para>តើ​"
-#~ "អ្នក​ពិតជា​ចង់​បន្ត​ឬ​ទេ ?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់​"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "កំហុស​ក្នុង​ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់​"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "បាន​បញ្ចប់​ក្នុង​​ការ​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>ដំណើរការ GpgSM ដែល​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់ បាន​បញ្ចប់​មុនពេល ដោយសារ​មាន​កំហុស​"
-#~ "ដោយ​មិននឹកស្មាន ។ </para><para>ចំពោះ​សេចក្ដីលម្អិត សូម​ពិនិត្យ​មើល​លទ្ធផល <icode>%1</"
-#~ "icode> ។</para>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~| "para><para>The output from <command>%1</command> was: <message>%2</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>កំហុស​បាន​កើតឡើង ខណៈ​ដែល​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់ ។</para><para> លទ្ធផល​ពី "
-#~ "<command>%1</command> គឺ ៖ <message>%2</message></para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "បាន​ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់​ដោយ​ជោគជ័យ ។​"
-
-#~ msgid "&Window"
-#~ msgstr "បង្អួច"
-
-#, fuzzy
-#~| msgid "&Configure %1..."
-#~ msgid "Configure Groups..."
-#~ msgstr "កំណត់​រចនាសម្ព័ន្ធ %1..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "បញ្ឈប់​ប្រតិបត្តិ​ការ"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ OpenPGP ស្រស់"
-
-#, fuzzy
-#~| msgid "S/MIME Certificates"
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "វិញ្ញាបនបត្រ S/MIME"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "វិញ្ញាបនបត្រ​ដែលបាននាំចូល​ពី %1​"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "វិញ្ញាបនបត្រ​​​ដែល​បាន​នាំចូល​ពី​ប្រភព​ទាំងនេះ​ ៖ <br/>%1 "
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "លទ្ធផល​នាំចូល​នៃ​វិញ្ញាបនបត្រ​"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "បាន​បញ្ចប់​នាំ​វិញ្ញាបនបត្រ​ OpenPGP ចេញ​"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "បាន​នាំ​វិញ្ញាបនបត្រ​ OpenPGP ចេញ​ដោយ​ជោគជ័យ​ ។"
-
-#~ msgid "GpgME library too old"
-#~ msgstr "បណ្ណាល័យ​របស់​ GpgME ចាស់​ពេល​"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "បណ្ណាល័យ​របស់​​ GpgME ខ្លួន​វា​ចាស់​ពេក ឬ​បណ្ណាល័យ GpgME++ បាន​ចងក្រង​ប្រឆាំង​ជាមួយ GpgME ចាស់​ចាង​"
-#~ "ដែល​មិនបាន​គាំទ្រ​ការ​តភ្ជាប់​ទៅកាន់​​ gpg-agent ។"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "ធ្វើ​ឲ្យ​ប្រសើរ​ទៅកាន់​​ <application>gpgme</application> ១.២.០ ឬ ខ្ពស់​ជាង​ ហើយ​ប្រាកដ​"
-#~ "ថា​ gpgme++ ត្រូវ​បាន​ចងក្រង​ប្រឆាំង​ជាមួយ​វា ។​"
-
-#~ msgid "Keep open after operation completed"
-#~ msgstr "ទុក​ឲ្យ​នៅ​បើក បន្ទាប់​ពី​បញ្ចប់​ប្រតិបត្តិការ"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Show certificate details"
-#~ msgid "Show certificate overview"
-#~ msgstr "បង្ហាញ​វិញ្ញាបនបត្រ​លម្អិត"
-
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "ឌិគ្រីប/បញ្ជាក់​ធរណីមាត្រ​​លេចឡើង"
-
-#~ msgid ""
-#~ "The remembered size and position of the Decrypt/Verify Result Popup used "
-#~ "by clients which do not support inline display of D/V results, such as MS "
-#~ "Outlook."
-#~ msgstr ""
-#~ "ទីតាំង និង​ទំហំ​​ដែល​បាន​ចងចាំ​នៃ​ ឌិគ្រីប/​បញ្ជាក់​ការ​លេចឡើង​លទ្ធផល ត្រូវបាន​ប្រើ​ដោយ​ម៉ាស៊ីន​ភ្ញៀវ​ដែល​មិន​"
-#~ "គាំទ្រ​ការ​បង្ហាញ​ក្នុង​តួ​នៃ​លទ្ធផល​ឌិគ្រីប/បញ្ជាក់ ដូចជា MS Outlook ។"
-
-#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
-#~ msgstr "មិន​អាច​កំណត់​ថា​តើ​​បញ្ចូល​ទិន្នន័យ​គឺ​​ OpenPGP ឬ CMS ឡើយ​​"
-
-#~ msgid "No usable inputs found"
-#~ msgstr "រក​មិន​ឃើញ​ព័ត៌មាន​បញ្ចូល​ដែល​អាច​ប្រើ​បាន​ទេ"
-
-#~ msgid "<b>Choose operations to be performed</b>"
-#~ msgstr "<b>ជ្រើស​ប្រតិបត្តិការ​ដែល​ត្រូវ​ធ្វើ</b>"
-
-#~ msgid ""
-#~ "Here you can check and, if needed, override the operations Kleopatra "
-#~ "detected for the input given."
-#~ msgstr ""
-#~ "នៅ​ទីនេះ អ្នក​អាច​ពិនិត្យ​មើល ហើយ​បើ​ចាំបាច់​គឺ​អាច​បដិសេធ​ប្រតិបត្តិការ Kleopatra ដែលបាន​រកឃើញ​"
-#~ "សម្រាប់​ព័ត៌មាន​បញ្ចូល​ដែល​បាន​ផ្ដល់ ។"
-
-#, fuzzy
-#~| msgid "&Decrypt/Verify"
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់"
-
-#~ msgid "Create all output files in a single folder"
-#~ msgstr "បង្កើត​ឯកសារ​លទ្ធផល​ទាំងអស់​នៅ​ក្នុង​ថត​មួយ"
-
-#~ msgid "&Output folder:"
-#~ msgstr "ថត​លទ្ធផល ៖"
-
-#~ msgid "Input file:"
-#~ msgstr "ឯកសារ​បញ្ចូល​"
-
-#~ msgid "&Input file is a detached signature"
-#~ msgstr "ឯកសារ​បញ្ចូល ជា​ហត្ថលេខា​ដែល​បាន​ផ្ដាច់"
-
-#~ msgid "&Signed data:"
-#~ msgstr "ទិន្នន័យ​ដែល​បាន​ចុះហត្ថលេខា ៖"
-
-#~ msgid "&Input file is an archive; unpack with:"
-#~ msgstr "ឯកសារ​ដែល​បាន​បញ្ចូល​គឺជា​ប័ណ្ណ​សារ ស្រាយ​ជាមួយ​ ៖​"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgid "Failed to send sender %1: %2"
-#~ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
-
-#, fuzzy
-#~| msgid "Change Passphrase..."
-#~ msgid "Change..."
-#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "Kleopatra Error"
-#~ msgstr "Kleopatra"
-
-#, fuzzy
-#~| msgid "Encrypt Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "កំហុស​ក្នុងការ​អ៊ិនគ្រីប​ក្ដារ​តម្បៀត​ខ្ទាស់"
-
-#, fuzzy
-#~| msgid "Sign Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Signing clipboard…"
-#~ msgstr "កំហុស​ក្នុង​ការ​ចុះហត្ថលេខា​ក្ដារ​តម្បៀត​ខ្ទាស់"
-
-#, fuzzy
-#~| msgid "S/MIME-Sign..."
-#~ msgctxt "@action"
-#~ msgid "S/MIME-Sign..."
-#~ msgstr "ហត្ថលេខា S/MIME..."
-
-#, fuzzy
-#~| msgid "OpenPGP-Sign..."
-#~ msgctxt "@action"
-#~ msgid "OpenPGP-Sign..."
-#~ msgstr "ហត្ថលេខា OpenPGP..."
-
-#, fuzzy
-#~| msgid ""
-#~| "Certificate: %1\n"
-#~| "Fingerprint: %2"
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr ""
-#~ "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
-#~ "ស្នាម​ម្រាមដៃ ​៖​ %2"
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "ជ្រើសឯកសារ"
-
-#, fuzzy
-#~| msgid "Remove Selected"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "យក​អ្នក​ទទួល​ដែលបាន​ជ្រើស​ចេញ"
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
-
-#, fuzzy
-#~| msgid ""
-#~| "Certificate: %1\n"
-#~| "Fingerprint: %2"
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr ""
-#~ "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
-#~ "ស្នាម​ម្រាមដៃ ​៖​ %2"
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgid "group keys"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
-
-#~ msgid "Unknown certificate"
-#~ msgstr "មិន​ស្គាល់​វិញ្ញាបនបត្រ​​"
-
-#, fuzzy
-#~| msgid "<b>Verification canceled.</b>"
-#~ msgid "Verification canceled."
-#~ msgstr "<b>បាន​បោះបង់​ការ​ផ្ទៀងផ្ទាត់ ។</b>"
-
-#, fuzzy
-#~| msgid "<b>No signatures found.</b>"
-#~ msgid "No signatures found."
-#~ msgstr "<b>រក​មិន​ឃើញ​ហត្ថលេខា ។</b>"
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "<b>ហត្ថលេខា %1 មិន​ត្រឹមត្រូវ ។</b>"
-
-#, fuzzy
-#~| msgid "The certificate could not be certified. <b>Error</b>: %1"
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "វិញ្ញាបនបត្រ​មិន​អាច​ត្រូវ​បានបញ្ជាក់​ទេ ។ <b>កំហុស</b> ៖ %1"
-
-#, fuzzy
-#~| msgid "<b>Valid signature.</b>"
-#~| msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgid "Valid signature by %1."
-#~ msgstr "<b>ហត្ថលេខា​មិន​ត្រឹមត្រូវ %1</b>"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "ហត្ថលេខា​មិន​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#~| "certificates used for signing."
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
-#~ "used for signing."
-#~ msgstr ""
-#~ "<br/><b>ការ​ព្រមាន ៖</b> អាសយដ្ឋាន​របស់​ផ្ញើ​មិន​ត្រូវ​បាន​ទុក​នៅ​ក្នុង​វិញ្ញាបនបត្រ​ដែល​បានប្រើ​"
-#~ "សម្រាប់​ចុះហត្ថលេខា​ទេ ។"
-
-#, fuzzy
-#~| msgid "Encryption canceled."
-#~ msgid "Decryption canceled."
-#~ msgstr "បាន​បោះបង់​ការ​អ៊ិនគ្រីប ។"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~| "%2</filename>: <message>%3</message>"
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr ""
-#~ "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-#~ "filename> ៖ <message>%3</message>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~| "%2</filename>: <message>%3</message>"
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-#~ "filename> ៖ <message>%3</message>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~| "%2</filename>: <message>%3</message>"
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "មិន​អាច​ម្លង​ឯកសារ​បណ្ដោះអាសន្ន <filename>%1</filename> ទៅ​ឯកសារ <filename>%2</"
-#~ "filename> ៖ <message>%3</message>"
-
-#~ msgid ""
-#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
-#~ "p>"
-#~ msgstr "<p>អាសយដ្ឋាន​របស់​អ្នកផ្ញើ %1 មិន​ត្រូវ​បានទុក​នៅ​ក្នុង​វិញ្ញាបនបត្រ​ទេ ។​ បាន​ទុក​ ៖ %2</p>"
-
-#~ msgctxt "separator for a list of e-mail addresses"
-#~ msgid ", "
-#~ msgstr ", "
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "ស្វែងរក"
-
-#, fuzzy
-#~| msgid "Import"
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "នាំចូល"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 "
-#~| "used for signing."
-#~ msgctxt ""
-#~ "@info The placeholder is a link to the certificate. The text of the link "
-#~ "is the translated work 'certificate'"
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the %1 used for "
-#~ "signing."
-#~ msgstr ""
-#~ "<br/><b>ការ​ព្រមាន ៖</b> អាសយដ្ឋាន​អ៊ីមែល​របស់​អ្នក​ផ្ញើ​មិន​ត្រូ​វបានទុក​នៅ​ក្នុង %1 ដែល​បាន​ប្រើ​"
-#~ "សម្រាប់​ចុះហត្ថលេខា​ទេ ។"
-
-#~ msgid "certificate"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#~ msgctxt "Input file --> Output file (rarr is arrow"
-#~ msgid "%1 &rarr; %2"
-#~ msgstr "%1 &rarr; %2"
-
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "<b>ការ​ផ្ទៀងផ្ទាត់​បាន​បរាជ័យ ៖ %1 ។</b>"
-
-#~ msgid "<b>Valid signature.</b>"
-#~ msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgstr[0] "<b>ហត្ថលេខា​មិន​ត្រឹមត្រូវ %1</b>"
-
-#~ msgid "<b>Decryption canceled.</b>"
-#~ msgstr "<b>បាន​បោះបង់​ការ​ឌិគ្រីប ។</b>"
-
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "<b>ការ​ឌិគ្រីប​បាន​បរាជ័យ ៖ %1 ។</b>"
-
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "<b>ការ​ឌិគ្រីប​បាន​ជោគជ័យ ។</b>"
-
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1 ៖ %2"
-
-#~ msgid "Signing failed."
-#~ msgstr "បរាជ័យ​ក្នុង​ការ​ចុះហត្ថលេខា ។"
-
-#~ msgid "Encryption failed."
-#~ msgstr "បរាជ័យ​ក្នុង​ការ​អ៊ិនគ្រីប ។"
-
-#~ msgid " Encryption succeeded."
-#~ msgstr " ការ​អ៊ិនគ្រីប​បាន​ជោគជ័យ ។"
-
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "%1 ៖ <b>បាន​បោះបង់​ការ​ចុះហត្ថលេខា/អ៊ិនគ្រីប ។</b>"
-
-#~ msgid " %1: Sign/encrypt failed."
-#~ msgstr " %1 ៖ ចុះហត្ថលេខា/​អ៊ិនគ្រីប​បាន​បរាជ័យ ។"
-
-#~ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
-#~ msgid "%1: <b>%2</b>"
-#~ msgstr "%1 ៖ <b>%2</b>"
-
-#~ msgctxt "e.g. \"Input to tar xf - file1 ...\""
-#~ msgid "Input to %1 ..."
-#~ msgstr "បញ្ចូល​ទៅកាន់​ %1 ..."
-
-#~ msgctxt "e.g. \"Input to tar xf - file\""
-#~ msgid "Input to %1"
-#~ msgstr "បញ្ចូល​ទៅកាន់​​ %1"
-
-#~ msgid "Root Trust Update Failed"
-#~ msgstr "បាន​បរាជ័យ​ក្នុង​ធ្វើ​បច្ចុប្បន្នភាព​ដែល​​ជឿ​ទុកចិត្ត​ Root ​"
-
-#, fuzzy
-#~| msgid "Output file:"
-#~ msgctxt "@title:group"
-#~ msgid "Output"
-#~ msgstr "ឯកសារ​លទ្ធផល ៖"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid "Encrypt"
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "អ៊ីនគ្រិប"
-
-#, fuzzy
-#~| msgid "Recipient"
-#~ msgid "Recipients"
-#~ msgstr "អ្នក​ទទួល"
-
-#, fuzzy
-#~| msgid "Encryption Options"
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "ជម្រើស​ការ​អ៊ិនគ្រីប"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "អ្នក​ថែទាំ​បច្ចុប្បន្ន"
-
-#, fuzzy
-#~| msgid ""
-#~| "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~| "Klarälvdalens Datakonsult AB\n"
-#~| "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-#~ msgid ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-#~ msgstr ""
-#~ "រក្សាសិទ្ធិ​ឆ្នាំ ២០០២ ដោយ Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "រក្សាសិទ្ធិ​ឆ្នាំ ២០០៤, ២០០៧, ២០០៨, ២០០៩ ដោយ Marc Mutz, "
-#~ "Klarälvdalens Datakonsult AB"
-
-#, fuzzy
-#~| msgid "Could not open file \"%1\" for reading"
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr "មិន​អាច​បើក​អាន​ឯកសារ \"%1\" បានទេ"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr ""
-#~ "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "One unknown recipient."
-#~ msgid_plural "%1 unknown recipients."
-#~ msgstr[0] "មិនស្គាល់​អ្នក​ទទួល %1 ។"
-
-#~ msgid "Error: Signature not verified"
-#~ msgstr "កំហុស ៖ ហត្ថលេខា​មិន​បានផ្ទៀងផ្ទាត់"
-
-#~ msgid "Good signature"
-#~ msgstr "ហត្ថលេខា​ល្អ​"
-
-#, fuzzy
-#~| msgid "Signing certificate revoked"
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "បាន​ដកហូត​​ការ​ចុះហត្ថលេខា​​វិញ្ញាបនបត្រ"
-
-#, fuzzy
-#~| msgid "Signing certificate expired"
-#~ msgid "Signing certificate is expired"
-#~ msgstr "ការ​ចុះហត្ថលេខា​បាន​ផុត​កំណត់"
-
-#, fuzzy
-#~| msgid "Certificate Export Failed"
-#~ msgid "Certificate is not available"
-#~ msgstr "ការ​នាំចេញ​វិញ្ញាបនបត្រ​បានបរាជ័យ"
-
-#~ msgid "Signature expired"
-#~ msgstr "ហត្ថលេខា​បាន​ផុត​កំណត់"
-
-#~ msgid "CRL missing"
-#~ msgstr "បាត់ CRL"
-
-#~ msgid "CRL too old"
-#~ msgstr "CRL ចាស់ពេក"
-
-#~ msgid "Bad policy"
-#~ msgstr "គោលការណ៍​មិនល្អ"
-
-#~ msgid "System error"
-#~ msgstr "កំហុស​ប្រព័ន្ធ"
-
-#~ msgid ""
-#~ "The signature is valid but the trust in the certificate's validity is "
-#~ "only marginal."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ ប៉ុន្តែ​សេចក្ដី​ទុកចិត្ត​លើ​សុពលភាព​របស់​វិញ្ញាបនបត្រ​គឺ​បន្ទាប់បន្សំប៉ុណ្ណោះ ។"
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is fully trusted."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ និង​សុពលភាព​របស់​វិញ្ញាបនបត្រ​ត្រូវ​បាន​ទុក​ចិត្ត​យ៉ាង​ពេញលេញ ។"
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is ultimately "
-#~ "trusted."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ និង​សុពលភាព​របស់​វិញ្ញាបនបត្រ​ត្រូវ​បាន​ទុកចិត្ត​ចុងក្រោយ​បំផុត ។"
-
-#~ msgid ""
-#~ "The signature is valid but the certificate's validity is <em>not trusted</"
-#~ "em>."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ ប៉ុន្តែ​សុពលភាព​របស់​វិញ្ញាបនបត្រ​​គឺ <em>មិន​ទុក​ចិត្ត</em> ។​"
-
-#~ msgid "The signature is valid but the certificate's validity is unknown."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ ប៉ុន្តែ​ភាព​ត្រឹមត្រូវ​របស់​វិញ្ញាបនបត្រ​មិន​ត្រូវ​បានស្គាល់ ។"
-
-#~ msgid "The signature is valid but the certificate's validity is undefined."
-#~ msgstr "ហត្ថលេខា​ត្រឹមត្រូវ ប៉ុន្តែ​សុពលភាព​របស់​វិញ្ញាបនបត្រ​ត្រូវ​បាន​កំណត់ ។"
-
-#, fuzzy
-#~| msgid "Signature expired"
-#~ msgctxt "1 is a date"
-#~ msgid "Signature created on %1"
-#~ msgstr "ហត្ថលេខា​បាន​ផុត​កំណត់"
-
-#, fuzzy
-#~| msgid "certificate"
-#~ msgid "With certificate:"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "ហត្ថលេខា​គឺ​មិនត្រឹមត្រូវ ៖ %1"
-
-#, fuzzy
-#~| msgid "The signature is bad."
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "ហត្ថលេខា​នេះ​មិន​ត្រឹមត្រូវ ។"
-
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "ហត្ថលេខា​គឺ​មិនត្រឹមត្រូវ ៖ %1"
-
-#, fuzzy
-#~| msgid ""
-#~| "Certificate: %1\n"
-#~| "Fingerprint: %2"
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr ""
-#~ "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
-#~ "ស្នាម​ម្រាមដៃ ​៖​ %2"
-
-#, fuzzy
-#~| msgid ""
-#~| "The certificate was not certified because it was already certified by "
-#~| "the same certificate."
-#~ msgid ""
-#~ "The used certificate is not certified by a trustworthy Certificate "
-#~ "Authority or the Certificate Authority is unknown."
-#~ msgstr "វិញ្ញាបនបត្រ​គឺ​មិនត្រូវបាន​បញ្ជាក់​ទេ ព្រោះ​វា​បាន​បញ្ជាក់​ដោយ​វិញ្ញាបនបត្រ​ដូចគ្នា​រួចហើយ ។"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Set Initial Pin"
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "កំណត់​ Pin ដំបូង​​"
-
-#, fuzzy
-#~| msgid "Change Passphrase..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
-
-#, fuzzy
-#~| msgid "Real name:"
-#~ msgid "New name:"
-#~ msgstr "លេខ​​ពិត ៖"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "User-ID successfully added."
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "បាន​បន្ថែម​លេខ​សម្គាល់​អ្នក​ប្រើ​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "User-ID successfully added."
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "បាន​បន្ថែម​លេខ​សម្គាល់​អ្នក​ប្រើ​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Change Passphrase..."
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgctxt "@action:button"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "បង្កើត​គូរសោ OpenPGP ផ្ទាល់ខ្លួន"
-
-#, fuzzy
-#~| msgid "Change Passphrase..."
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
-
-#, fuzzy
-#~| msgid "Error"
-#~ msgid "Error"
-#~ msgstr "កំហុស"
-
-#, fuzzy
-#~| msgid "Change Passphrase..."
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "ផ្លាស់ប្ដូរ​ឃ្លា​សម្ងាត់..."
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Subkeys"
-#~ msgid "Subkeys"
-#~ msgstr "សោ​រង​"
-
-#, fuzzy
-#~| msgid "Type"
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "ប្រភេទ"
-
-#, fuzzy
-#~| msgid "Serial number"
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "លេខ​សៀរៀល"
-
-#, fuzzy
-#~| msgid "Ownertrust"
-#~ msgctxt "@title:column"
-#~ msgid "Owner"
-#~ msgstr "Ownertrust"
-
-#, fuzzy
-#~| msgid "Certification will be performed using certificate %1."
-#~ msgctxt "@info"
-#~ msgid "Smartcard information is only available for your own certificates."
-#~ msgstr "ការ​បញ្ជាក់​នឹង​​ត្រូវ​បាន​អនុវត្ត​ដោយ​ប្រើ​វិញ្ញាបនបត្រ %1 ។"
-
-#, fuzzy
-#~| msgctxt "Unknown encryption protocol"
-#~| msgid "Unknown"
-#~ msgctxt "Unknown <type> <version> (card)"
-#~ msgid "Unknown %1 v%2"
-#~ msgstr "មិនស្គាល់"
-
-#, fuzzy
-#~| msgctxt "name, email, key id"
-#~| msgid "%1 %2 (%3)"
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 %2 (%3)"
-
-#, fuzzy
-#~| msgctxt "unknown trust level"
-#~| msgid "unknown"
-#~ msgctxt "unknown cardholder"
-#~ msgid "unknown"
-#~ msgstr "មិនស្គាល់"
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "​SmartCard"
-
-#, fuzzy
-#~| msgid "This certificate has been disabled locally."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "វិញ្ញាបនបត្រ​នេះ ត្រូវបាន​បិទ​ជា​មូលដ្ឋាន ។"
-
-#~ msgid "Authentication"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Create CSR"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "Create a personal X.509 key pair and certification request "
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgid "Select Key"
-#~ msgstr "ជ្រើសឯកសារ"
-
-#, fuzzy
-#~| msgid "Create a personal X.509 key pair and certification request "
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "No usable inputs found"
-#~ msgctxt "@info"
-#~ msgid "<em>Public key not found locally</em>"
-#~ msgstr "រក​មិន​ឃើញ​ព័ត៌មាន​បញ្ចូល​ដែល​អាច​ប្រើ​បាន​ទេ"
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "<b>ហត្ថលេខា %1 មិន​ត្រឹមត្រូវ ។</b>"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "OpenPGP"
-#~ msgid "OpenPGP keys:"
-#~ msgstr "OpenPGP"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Subkeys"
-#~ msgid "Keys:"
-#~ msgstr "សោ​រង​"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "certificate"
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Import Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "នាំចូល​វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "(ស្វែងរក​មិន​ឃើញ​ការផ្គូផ្គង​វិញ្ញាបនបត្រ​ឡើយ​​)"
-
-#, fuzzy
-#~| msgid "Places"
-#~ msgctxt "@action:button"
-#~ msgid "Replace"
-#~ msgstr "ទីតាំង"
-
-#~ msgid "Reload"
-#~ msgstr "ផ្ទុកឡើងវិញ"
-
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "កំហុស​នៃ​ការ​បោះបង់​ឃ្លាំង​សម្ងាត់ CRL ចោល"
-
-#, fuzzy
-#~| msgid "Could not create certificate: %1"
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "មិន​អាច​បង្កើត​វិញ្ញាបនបត្រ ៖ %1 បាន​ទេ"
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "ស្នាម​ម្រាមដៃ"
-
-#, fuzzy
-#~| msgid "Name"
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "ឈ្មោះ"
-
-#, fuzzy
-#~| msgid "new dns name"
-#~ msgid "Enter a name."
-#~ msgstr "ឈ្មោះ dns ថ្មី"
-
-#, fuzzy
-#~| msgid "EMail address:"
-#~ msgctxt "@label"
-#~ msgid "Email address"
-#~ msgstr "អាសយដ្ឋាន​អ៊ីមែល ៖"
-
-#, fuzzy
-#~| msgid "Add. Email Address:"
-#~ msgid "Enter an email address."
-#~ msgstr "បន្ថែម​អាសយដ្ឋាន​អ៊ីមែល ៖"
-
-#, fuzzy
-#~| msgid "The validity of the signature cannot be verified."
-#~ msgctxt "@info"
-#~ msgid "The date cannot be changed."
-#~ msgstr "សុពលភាព​របស់​ហត្ថលេខា​មិនអាច​​បញ្ជាក់​បានទេ ។"
-
-#, fuzzy
-#~| msgid "(required)"
-#~ msgctxt "@label label text (required)"
-#~ msgid "%1 (required)"
-#~ msgstr "(ត្រូវការ)"
-
-#, fuzzy
-#~| msgid ""
-#~| "Certificate: %1\n"
-#~| "Fingerprint: %2"
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr ""
-#~ "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
-#~ "ស្នាម​ម្រាមដៃ ​៖​ %2"
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "ស្វែងរក"
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "ស្វែងរក"
-
-#, fuzzy
-#~| msgid "Serial number"
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "លេខ​សៀរៀល"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "បាន​ដកហូត​ថ្មីៗ ៖​"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "ដកហូត​វិញ..."
-
-#, fuzzy
-#~| msgid "Command not specified"
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "ពាក្យ​បញ្ជា​ដែល​មិន​បាន​បញ្ជាក់​"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "ដកហូត​វិញ..."
-
-#, fuzzy
-#~| msgid "Lookup Certificates on Server..."
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "រកមើល​វិញ្ញាបនបត្រ​លើ​ម៉ាស៊ីន​បម្រើ..."
-
-#, fuzzy
-#~| msgid "ID"
-#~ msgctxt "@title:column"
-#~ msgid "ID"
-#~ msgstr "លេខ​សម្គាល់"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "User-ID successfully added."
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "បាន​បន្ថែម​លេខ​សម្គាល់​អ្នក​ប្រើ​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Expiry date changed successfully."
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "បាន​ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Show owner information"
-#~ msgid "&Group configuration"
-#~ msgstr "បង្ហាញ​ព័ត៌មាន​របស់​ម្ចាស់"
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "បង្កើត​គូរសោ OpenPGP ផ្ទាល់ខ្លួន"
-
-#, fuzzy
-#~| msgid "Secret keys unchanged:"
-#~ msgid "The key hasn't changed."
-#~ msgstr "សោ​​សម្ងាត់​មិន​បាន​ផ្លាស់​ប្ដូរ​ឡើយ​ ៖​"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "OpenPGP certificates exported successfully."
-#~ msgid "The key has been revoked."
-#~ msgstr "បាន​នាំ​វិញ្ញាបនបត្រ​ OpenPGP ចេញ​ដោយ​ជោគជ័យ​ ។"
-
-#, fuzzy
-#~| msgid "Your key is being created."
-#~ msgid "The key has been updated."
-#~ msgstr "សោ​របស់​អ្នក​កំពុង​ត្រូ​វបាន​បង្កើត ។"
-
-#, fuzzy
-#~| msgid "No Audit Log available"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "មិន​មាន​កំណត់​ហេតុ​ត្រួតពិនិត្យ"
-
-#, fuzzy
-#~| msgid "&Update"
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>An error occurred while loading the certifications: <message>%1</"
-#~| "message></para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>កំហុស​មួយ​បាន​កើតឡើង ខណៈពេល​ផ្ទុក​វិញ្ញាបនបត្រ ៖ <message>%1</message></para>"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Error Deleting Registry Key"
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "កំហុស​ក្នុង​ការ​លុប​សោ​ចុះបញ្ជី"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~| "prematurely because of an unexpected error.</para><para>Please check the "
-#~| "output of <icode>%1</icode> for details.</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>​ដំណើរការ​ GPG ឬ​ GpgSM ដែល​បាន​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ត្រូវ​បាន​បញ្ចប់​មុន​ពេល ​ដោយសារតែ​"
-#~ "កំហុស​មិន​រំពឹង ។​</para><para>សូម​ពិនិត្យ​មើល​លទ្ធផល​របស់​​ <icode>%1</icode> សម្រាប់​សេចក្ដី​លម្អិត​ "
-#~ "។​</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>កំហុស​បាន​កើតឡើង​ខណៈ​ពេល​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ ។​</para> <para>​លទ្ធផល​ចេញពី​​ "
-#~ "<command>%1</command> គឺ​ ៖​ <message>%2</message></para>"
-
-#, fuzzy
-#~| msgid "RSA"
-#~ msgctxt "@option:radio"
-#~ msgid "RSA"
-#~ msgstr "RSA"
-
-#, fuzzy
-#~| msgid "DSA"
-#~ msgctxt "@option:radio"
-#~ msgid "DSA"
-#~ msgstr "DSA"
-
-#, fuzzy
-#~| msgid "+ Elgamal"
-#~ msgctxt "@option:check"
-#~ msgid "+ Elgamal"
-#~ msgstr "+ Elgamal"
-
-#, fuzzy
-#~| msgid "Additional User-IDs"
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "លេខ​សម្គាល់​អ្នក​ប្រើ​បន្ថែម"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Adding more than one User ID is not yet implemented."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Adding more than one user ID is not yet implemented."
-#~ msgstr "ការ​បន្ថែម​លេខ​សម្គាល់​អ្នកប្រើ​ច្រើនជាង​មួយ​គឺ​មិនទាន់​ត្រូវ​បាន​ប្រតិបត្តិ​ទេ ។"
-
-#, fuzzy
-#~| msgid ""
-#~| "Certificate created successfully.\n"
-#~| "Fingerprint: %1"
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr ""
-#~ "បាន​បង្កើត​វិញ្ញាបនបត្រដោយ​ជោគជ័យ ។\n"
-#~ "ស្នាមម្រាមដៃ ៖ %1"
-
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "ធ្វើ​ការ​បម្រុង​ទុក​នៃ​គូ​សោ​របស់​អ្នក​​..."
-
-#, fuzzy
-#~| msgid "Send Certificate By EMail..."
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "ផ្ញើ​វិញ្ញាបនបត្រ​​តាម​អ៊ីមែល​​..."
-
-#, fuzzy
-#~| msgid "Upload Certificate To Directory Service..."
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "ផ្ទុក​វិញ្ញាបនបត្រ​ទៅ​សេវា​ថត...​"
-
-#~ msgid "Create Revocation Request..."
-#~ msgstr "បង្កើត​សំណើដកហូត​វិញ..."
-
-#, fuzzy
-#~| msgid "My new OpenPGP certificate"
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ"
-
-#, fuzzy
-#~| msgid "Please find attached my new OpenPGP certificate."
-#~ msgid "Please find attached my new public OpenPGP key."
-#~ msgstr "សូម​រក​វិញ្ញាបនបត្រ OpenPGP ថ្មី​របស់​ខ្ញុំ​ដែល​បានភ្ជាប់ជា​មួយ ។"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para><application>Kleopatra</application> tried to send a mail via your "
-#~| "default mail client.</para><para>Some mail clients are known not to "
-#~| "support attachments when invoked this way.</para><para>If your mail "
-#~| "client does not have an attachment, then drag the "
-#~| "<application>Kleopatra</application> icon and drop it on the message "
-#~| "compose window of your mail client.</para><para>If that does not work, "
-#~| "either, save the request to a file, and then attach that.</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then attach the file <filename>%1</"
-#~ "filename> manually.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> បាន​ព្យាយាម​ផ្ញើ​សំបុត្រ​តាមរយៈ​កម្មវិធី​អ៊ីមែល​"
-#~ "លំនាំ​ដើម​របស់​អ្នក ។</para><para>កម្មវិធី​អ៊ីមែល​មួយ​ចំនួន​ត្រូវ​បាន​ដឹង​ថា​មិន​គាំទ្រ​ឯកសារ​ភ្ជាប់​នៅពេល​ដក​"
-#~ "ហូត​វិធី​នេះ ។</para><para>ប្រសិន​បើ​​កម្មវិធី​អ៊ីមែល​មិន​មាន​ឯកសារ​ភ្ជាប់ បន្ទាប់​អូស​ និង​ទម្លាក់​រូបតំណាង "
-#~ "<application>Kleopatra</application> នៅ​លើ​បង្អួច​កម្មវិធី​តែងសារ​របស់​កម្មវិធី​អ៊ីមែល​របស់​"
-#~ "អ្នក ។</para><para>ប្រសិន​បើ​វា​មិន​ធ្វើការ រក្សាទុក​សំណើ​​ទៅ​ឯកសារ និង​បន្ទាប់​មក​ភ្ជាប់​វា ។</"
-#~ "para>"
-
-#, fuzzy
-#~| msgid "EMail address:"
-#~ msgid "Related addresses:"
-#~ msgstr "អាសយដ្ឋាន​អ៊ីមែល ៖"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "សេចក្ដី​លម្អិត..."
-
-#, fuzzy
-#~| msgid "Show Details"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Subkeys"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "សោ​រង​"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Subkeys"
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "សោ​រង​"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Subkeys"
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "សោ​រង​"
-
-#, fuzzy
-#~| msgid "Chain"
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "ច្រវាក់"
-
-#, fuzzy
-#~| msgid "Error Learning SmartCard"
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "កំហុស​ការ​រៀន​​ SmartCard"
-
-#, fuzzy
-#~| msgid "Finished Learning SmartCard"
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "បាន​បញ្ចប់​ការ​រៀន​​ SmartCard"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>ដំណើរការ​​ GPG ឬ​​ GpgSM ដែល​បាន​ព្យាយាម​ស្គាល់​កាត​ឆ្លាត​ត្រូវ​បាន​បញ្ចប់​​មុន​ពេល​​ ដោយសារតែ​"
-#~ "កំហុស​មិន​រំពឹង ។​</para><para>សូម​ពិនិត្យ​មើល​លទ្ធផល​របស់​​​ <icode>%1</icode> សម្រាប់​សេចក្ដី​លម្អិត​ "
-#~ "។​</para>"
-
-#, fuzzy
-#~| msgid "Load Certifications (may take a while)"
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "ផ្ទុក​ការ​បញ្ជាក់ (អាច​ចំណាយ​ពេល​មួយ​រយៈ)"
-
-#~ msgid "Show Details"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត"
-
-#, fuzzy
-#~| msgid "Learn NetKey v3 Card Certificates"
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "រៀន​​ NetKey v3 វិញ្ញាបនបត្រ​កាត​​"
-
-#, fuzzy
-#~| msgid "Good signature by unknown certificate %1."
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "ហត្ថលេខា​ល្អ ដោយ​វិញ្ញាបនបត្រ​មិន​ស្គាល់ %1 ។"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Strength"
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "គុណភាព"
-
-#, fuzzy
-#~| msgid "Yes"
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "បាទ/ចាស"
-
-#, fuzzy
-#~| msgid "Export Secret Keys..."
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "នាំចេញ​វិញ្ញាបនបត្រ​​សម្ងាត់​​​...​"
-
-#, fuzzy
-#~| msgid "Select File"
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "ជ្រើសឯកសារ"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "ដកហូត​វិញ..."
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "មាន​ឯកសារ <b>%1</b> រួចហើយ ។\n"
-#~ "សរសេរ​ជាន់លើ​ឬ ?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "សរសេរ​ជាន់លើ​ឯកសារ​ដែល​មាន​ឬ ?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "សរសេរ​ជាន់​លើ​ទាំងអស់"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgid "Save changes"
-#~ msgstr "រក្សា​ទុក​ជា"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "រក្សា​ទុក​ជា"
-
-#~ msgid "Import Certificates"
-#~ msgstr "នាំចូល​វិញ្ញាបនបត្រ​"
-
-#~ msgid "Import CRLs"
-#~ msgstr "នាំចូល​ CRL"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>គ្មាន​សេវា​ថត OpenPGP ត្រូវ​បាន​កំណត់​រចនាសម្ព័ន្ធ​ ។</para><para>ព្រោះថា​គ្មាន​អ្វី​ត្រូវ​"
-#~ "បាន​កំណត់​រចនាសម្ព័ន្ធ <application>Kleopatra</application> នឹង​ប្រើ<resource>keys."
-#~ "gnupg.net</resource> ជា​ម៉ាស៊ីន​បម្រើ​ដើម្បីនាំចេញ ។</para><para>អ្នក​អាច​កំណត់​រចនាសម្ព័ន្ធ​"
-#~ "ម៉ាស៊ីន​បម្រើ​ថត OpenPGP នៅ​ក្នុង​ប្រអប់​កំណត់​រចនាសម្ព័ន្ធ​របស់ <application>Kleopatra</"
-#~ "application> ។</para><para>តើ​អ្នក​ចង់​បន្ត​ជា​មួយ​ <resource>keys.gnupg.net</"
-#~ "resource> ជា​ម៉ាស៊ីន​ប្រើ​ត្រូវ​នាំចេញ ?</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>គ្មាន​សេវា​ថត OpenPGP ដែល​ត្រូវបាន​កំណត់​រចនាសម្ព័ន្ធ​ទេ ។</para><para>ប្រសិន​បើ​មាន​"
-#~ "វិញ្ញាបនបត្រ​មួយ​ចំនួន​មិន​មាន​ឈ្មោះ​ម៉ាស៊ីន​បម្រើ​វិញ្ញាបនបត្រ​សំណព្វ​របស់​គេ​ទេ​នោះ ម៉ាស៊ីន​បម្រើស fallback "
-#~ "គឺ​ត្រូវការ​ដើម្បី​ទៅយក​ពី​វា ។</para><para>បើ​គ្មាន​វិញ្ញាបនបត្រណា​មួយ​ត្រូវបាន​កំណត់​រចនា​សម្ព័ន្ធ​ទេ​"
-#~ "នោះ <application>Kleopatra</application> នឹង​ប្រើ <resource>keys.gnupg.net</"
-#~ "resource> ជា fallback ។</para><para>អ្នក​អាច​កំណត់​រចនា​សម្ព័ន្ធ​ម៉ាស៊ីន​បម្រើ​ថត OpenPGP "
-#~ "នៅ​ក្នុង​ប្រអប់​កំណត់​រចនា​សម្ព័ន្ធ​របស់ Kleopatra ។</para><para>តើ​អ្នក​ចង់​បន្ត​ជាមួយ​នឹង "
-#~ "<resource>keys.gnupg.net</resource> ជា​ម៉ាស៊ីន​បម្រើ fallback ឬ ?</para>"
-
-#~ msgid "File Operations"
-#~ msgstr "ប្រតិបត្តិ​ឯកសារ​"
-
-#~ msgid "Secret Key Files"
-#~ msgstr "ឯកសារ​សោ​សម្ងាត់"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "កំហុស​នាំ​សោ​សម្ងាត់​ចេញ​​"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "បាន​បញ្ចប់​កា​រ​នាំចេញ​សោ​​សម្ងាត់​"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>​ដំណើរការ​ GPG ឬ​ GpgSM ដែល​បាន​ព្យាយាម​នាំ​ចេញ​សោ​​សម្ងាត់​ត្រូវ​បាន​បញ្ចប់​មុន​ពេល ​ដោយសារតែ​"
-#~ "កំហុស​មិន​រំពឹង ។​</para><para>សូម​ពិនិត្យ​មើល​លទ្ធផល​របស់​​ <icode>%1</icode> សម្រាប់​សេចក្ដី​លម្អិត​ "
-#~ "។​</para>"
-
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "បាន​នាំ​សោ​សម្ងាត់​ចេញ​ដោយ​ជោគជ័យ​ ។"
-
-#, fuzzy
-#~| msgid "Could not find gpgconf executable"
-#~ msgctxt "@info"
-#~ msgid "Failed to write data."
-#~ msgstr "មិន​អាច​ស្វែងរក​ឯកសារ​ប្រតិបត្តិ​ gpgconf បាន​ឡើយ​"
-
-#, fuzzy
-#~| msgid ""
-#~| "The CMS backend does not support certificate deletion.\n"
-#~| "Check your installation."
-#~ msgctxt "@info"
-#~ msgid "The backend does not support this operation."
-#~ msgstr ""
-#~ "ផ្នែក​ខាងក្រោយ CMS មិន​គាំទ្រ​ការ​លុប​វិញ្ញាបនបត្រ​ទេ ។\n"
-#~ "ពិនិត្យ​ការ​ដំឡើង​របស់​អ្នក ។"
-
-#, fuzzy
-#~| msgid "Export Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "នាំចេញ​វិញ្ញាបនបត្រ​"
-
-#~ msgid "Sender"
-#~ msgstr "អ្នក​ផ្ញើ​"
-
-#, fuzzy
-#~| msgid "Delete"
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "លុប"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "នាំចេញ"
-
-#~ msgid "Certificate Details"
-#~ msgstr "សេចក្ដី​លម្អិត​វិញ្ញាបនបត្រ"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgid "Explain expiration"
-#~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
-
-#, fuzzy
-#~| msgid "Trusted issuer?"
-#~ msgid "Explain trusted introducer"
-#~ msgstr "អ្នក​ចេញ​ផ្សាយ​ដែល​ជឿ​ទុក​ចិត្ត​ឬ ?"
-
-#, fuzzy
-#~| msgid "Good signature by unknown certificate %1."
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "ហត្ថលេខា​ល្អ ដោយ​វិញ្ញាបនបត្រ​មិន​ស្គាល់ %1 ។"
-
-#, fuzzy
-#~| msgid "Valid From"
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "មាន​សុពលភាព​ពី"
-
-#, fuzzy
-#~| msgid "Valid From"
-#~ msgid "Valid for:"
-#~ msgstr "មាន​សុពលភាព​ពី"
-
-#~ msgid "Days"
-#~ msgstr "ថ្ងៃ"
-
-#~ msgid "Weeks"
-#~ msgstr "សប្ដាហ៍"
-
-#~ msgid "Months"
-#~ msgstr "ខែ"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "You have to enter an output filename."
-#~ msgid "Failed to create output folder."
-#~ msgstr "អ្នក​ត្រូវ​តែ​បញ្ចូល​ឈ្មោះ​ឯកសា​រលទ្ធផល ។"
-
-#~ msgid "Tooltips"
-#~ msgstr "ព័ត៌មាន​ជំនួយ"
-
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "មិន​អាច​យក​ឯកសារ \"%1\" ចេញ​សម្រាប់​​សរសេរ​ជាន់​លើ​ទេ ។"
-
-#, fuzzy
-#~| msgid "Initializing..."
-#~ msgid "Finalizing output..."
-#~ msgstr "កំពុង​ចាប់ផ្ដើម​..."
-
-#, fuzzy
-#~| msgid "Any files"
-#~ msgid "Apply profile"
-#~ msgstr "ឯកសារ​មួយចំនួន"
-
-#, fuzzy
-#~| msgid "Configuration Error"
-#~ msgctxt "%1 is the name of the profile"
-#~ msgid "The configuration profile \"%1\" was applied."
-#~ msgstr "កំហុស​កំណត់​រចនាសម្ព័ន្ធ"
-
-#, fuzzy
-#~| msgid "Input file:"
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "ឯកសារ​បញ្ចូល​"
-
-#, fuzzy
-#~| msgid "EMail Operations"
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "​ប្រតិបត្តិ​ការ​អ៊ីមែល​ "
-
-#, fuzzy
-#~| msgid "Input file:"
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "ឯកសារ​បញ្ចូល​"
-
-#~ msgid "EMail Operations"
-#~ msgstr "​ប្រតិបត្តិ​ការ​អ៊ីមែល​ "
-
-#, fuzzy
-#~| msgid "Encrypt Mail Message"
-#~ msgctxt "@title:window"
-#~ msgid "Encrypt Mail Message"
-#~ msgstr "អ៊ិនគ្រីប​សារ​សំបុត្រ"
-
-#, fuzzy
-#~| msgid "Sign Mail Message"
-#~ msgctxt "@title:window"
-#~ msgid "Sign Mail Message"
-#~ msgstr "សារ​សំបុត្រ​ចុះហត្ថលេខា"
-
-#~ msgid "Quick Sign EMail"
-#~ msgstr "អ៊ីមែល​ហត្ថលេខា​រហ័ស"
-
-#~ msgid ""
-#~ "Minimize the number of steps when signing emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr ""
-#~ "បន្ថយ​ចំនួន​ជំហាន​ឲ្យ​តិច​បំផុត នៅពេល​ដែល​ចុះហត្ថលេខា​អ៊ីមែល ប្រើ​លំនាំដើម​ដែល​បាន​កំណត់​ពី​មុន លុះត្រា​តែ​មាន​"
-#~ "បញ្ហា​កើតឡើង ។"
-
-#~ msgid ""
-#~ "Minimize the number of steps when encrypting emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr ""
-#~ "បន្ថយ​ចំនួន​ជំហាន​ឲ្យ​តិច​បំផុត នៅពេល​ដែល​អ៊ិនគ្រីប​អ៊ីមែល ប្រើ​លំនាំដើម​ដែល​បាន​កំណត់​ពី​មុន លុះត្រា​តែ​មាន​បញ្ហា​"
-#~ "កើតឡើង ។"
-
-#~ msgid ""
-#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
-#~ "actually belongs to the person it claims it is from?"
-#~ msgstr ""
-#~ "<b>ជំហាន ២ ៖</b> តើ​អ្នក​ត្រួតពិនិត្យ​វិញ្ញាបនបត្រ​​នេះ​ថា​ពិត​ជា​របស់​មនុស្ស​ដែល​វា​ទាម​ទា​វា​ចេញពី​ ?"
-
-#~ msgid "I have not checked at all"
-#~ msgstr "ខ្ញុំ​មិន​បាន​ត្រួតពិនិត្យ​អ្វី​ទាំងអស់"
-
-#~ msgid "Describe semantics here..."
-#~ msgstr "ពិពណ៌នា semantics នៅ​ទីនេះ..."
-
-#~ msgid "I have checked casually"
-#~ msgstr "ខ្ញុំ​បាន​ត្រួតពិនិត្យ​តាម​ធម្មតា"
-
-#~ msgid ""
-#~ "Choose this if you know the person, and have asked them whether this was "
-#~ "their certificate, but you have not verified they are actually in "
-#~ "possession of the secret certificate."
-#~ msgstr ""
-#~ "ជ្រើស​វា ប្រសិនបើ​អ្នក​ស្គាល់​មនុស្ស​នោះ និង​បាន​សួរ​គាត់​ថា​តើ​វា​ជា​​វិញ្ញាបនបត្រ​របស់​​គាត់​ឬ ប៉ុន្តែ​អ្នក​មិន​"
-#~ "បាន​ផ្ទៀងផ្ទាត់​ ថា​គាត់​ពិត​​ជា​ម្ចាស់​របស់​វិញ្ញាបនបត្រ​​សម្ងាត់ ។"
-
-#~ msgid "I have checked very thoroughly"
-#~ msgstr "ខ្ញុំ​បាន​ត្រួតពិនិត្យ​វា​យ៉ាង​ហ្មត់ចត់"
-
-#~ msgid ""
-#~ "Choose this if you have, for instance, checked the ID card of the person, "
-#~ "and have verified that they are in possession of the secret key (e.g. by "
-#~ "sending them encrypted mail and asking for it to be decrypted)."
-#~ msgstr ""
-#~ "ជ្រើស​វា ឧទាហរណ៍​ប្រសិន​បើ​អ្នក​មាន កាត​​សម្គាល់​របស់​មនុស្ស​ដែល​បាន​ត្រួតពិនិត្យ និង​បាន​ផ្ទៀងផ្ទាត់​ថា​ គាត់​"
-#~ "ជា​ម្ចាស់​របស់​សោ​សម្ងាត់ (ឧ. ដោយ​ផ្ញើ​សំបុត្រ​ដែល​បាន​អ៊ិនគ្រីប​ទៅ​គាត់ និង​ស្នើ​ឲ្យគាត់​ឌិគ្រីប​ពួកវា​វិញ) ។"
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "បាន​នាំចូល​សោ​​សម្ងាត់​ ៖​"
-
-#, fuzzy
-#~| msgid "New signatures:"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "ហត្ថលេខា​ថ្មី ៖​"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "ការ​​អ៊ិនគ្រីប​"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
-#~| "b>:</p><p>%2</p>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr ""
-#~ "<p>កំហុស​មួយ​បានកើត​ឡើង​ខណៈ​ពេល​ព្យាយាម​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​លើ​ម្ចាស់​សម្រាប់ <b>%1</b> ៖</p><p>"
-#~ "%2</p>"
-
-#, fuzzy
-#~| msgid "Owner trust changed successfully."
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "បាន​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Owner Trust Change Succeeded"
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "បាន​ជោគជ័យ​ក្នុង​កា​រ​ផ្លាស់ប្ដូរ​ការ​ជឿជាក់​ម្ចាស់"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Change Trust Level of %1"
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "ផ្លាស់ប្ដូរ​កម្រិត​ទុកចិត្ត​របស់ %1"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr ""
-#~ "តើ​អ្នក​ទុកចិត្ត​វិញ្ញាបនបត្រ​ដែល​បាន​បង្កើត​ដោយ <b>%1</b> ថា​ផ្ទៀងផ្ទាត់​យ៉ាង​ត្រឹមត្រូវ​​តាម​"
-#~ "វិញ្ញាបនបត្រ ?"
-
-#~ msgid "I do not know"
-#~ msgstr "ខ្ញុំ​មិនដឹង"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>(មិនស្គាល់​កា​រ​ទុកចិត្ត)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">ជ្រើស​វា ប្រសិន​បើ​អ្នក​គ្មានជម្រើស​អំពី​ភាពទុកចិត្ត​របស់​ម្ចាស់​វិញ្ញាបនបត្រ ។"
-#~ "<br>កា​រ​បញ្ជាក់​នៅ​កម្រិត​នេះ​​ត្រូវ​បានមិនអើពើ នៅពេល​គូសធីក​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។</"
-#~ "font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "ខ្ញុំ​មិន​ទុកចិត្ត​ពួកវា​ទេ"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>(មិនទុកចិត្ត)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">ជ្រើស​វា​ប្រសិនបើអ្នក​ពិត​ជា <em>មិន</em> ទុកចិត្ត​ម្ចាស់​វិញ្ញាបនបត្រ ឧ. "
-#~ "ពីព្រោះអ្នក​​ស្គាល់​គាត់​ ដោយ​បញ្ជាក់​ដោយ​មិនបាន​ត្រួតពិនិត្យ​ ឬ​ដោយ​មិន​​យល់ព្រម​តាម​ម្ចាស់​របស់​វិញ្ញាបនបត្រ ។"
-#~ "<br>ការ​បញ្ជាក់​នៅ​កម្រិត​នេះ​ត្រូ​វបាន​មិនអើពើ​ នៅពេល​ត្រួតពិនិត្យ​សុពលភាព​របស់​វិញ្ញាបនបត្រ OpenPGP ។"
-#~ "</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ធម្មតា"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>(ទុកចិត្ត​ដោយផ្នែក)</i>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~| "blindly, but not very accuratly, either.<br>Certificates will only "
-#~| "become valid with multiple certifications (typically three) at this "
-#~| "trust level. This is usually a good choice.</font>"
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">ជ្រើស​វា​ប្រសិន​បើ​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​មិន​ត្រូវ​បាន​ធ្វើ​ដោយ​គ្មានការ​ពិចារណា​ "
-#~ "ប៉ុន្តែ​មិនត្រឹមត្រូវ​ទេ ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​ការ​បញ្ជាក់​ជា​ច្រើន (តាម​ធម្មតា​"
-#~ "បី) នៅ​កម្រិត​ទុកចិត្ត​នេះ ។តាម​ធម្មតា​នេះជា​ជម្រើស​ដ៏​ល្អ ។</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "ខ្ញុំ​ជឿថា​កា​រពិនិត្យ​មើល​គឺ​ត្រឹមត្រូវ​បំផុត"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>(ទុកចិត្ត​ពេញលេញ)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">ជ្រើស​វា​ ប្រសិន​បើ​​អ្នក​ទុកចិត្ត​ការ​បញ្ជាក់​ថា​ត្រូ​វបាន​ធ្វើ​ដោយ​សុវត្ថិភាព​បំផុត ។"
-#~ "<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​ជា​មួយ​នឹង​ការ​បញ្ជាក់​មួយ​​នៅ​កម្រិត​ទុក​ចិត្ត ដូច្នេះ​ផ្ដល់​នូវ​ការ​"
-#~ "ទុកចិត្ត​ច្រើន​ ។</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "នេះ​ជា​វិញ្ញាបនបត្រ​របស់​ខ្ញុំ"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>(ទុកចិត្ត​មែនទែន)</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">ជ្រើស​វា​ ប្រសិនបើ​​​នេះ​ជា​វិញ្ញាបនបត្រ​របស់​អ្នក ។ នេះ​ជា​លំនាំ​ដើម ប្រសិន​បើ​សោ​"
-#~ "សម្ងាត់​អាច​ប្រើ​បាន ប៉ុន្តែ​​ប្រសិនបើអ្នក​បាននាំចូល​វិញ្ញាបនបត្រ​នេះ អ្នក​អាច​លៃតម្រូវ​កម្រិត​ទុកចិត្ត​ដោយ​"
-#~ "ខ្លួន​អ្នក​ផ្ទាល់​បាន ។<br>វិញ្ញាបនបត្រ​នឹង​ក្លាយ​ជា​មាន​សុពលភាព​​ជា​មួយនឹង​កា​របញ្ជាក់​មួយ​នៅ​កម្រិត​ទុកចិត្ត ។"
-#~ "</font>"
-
-#~ msgctxt "@action"
-#~ msgid "Encrypt"
-#~ msgstr "អ៊ីនគ្រិប​"
-
-#, fuzzy
-#~| msgid "Certification Not Possible"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication not possible."
-#~ msgstr "មិន​មាន​វិញ្ញាបនបត្រ"
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create a new OpenPGP key pair"
-#~ msgstr "បង្កើត​គូរសោ OpenPGP ផ្ទាល់ខ្លួន"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgid "Import from a file."
-#~ msgstr "វិញ្ញាបនបត្រ​ដែលបាននាំចូល​ពី %1​"
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint: <b>%1</b>"
-#~ msgstr "ស្នាម​ម្រាមដៃ"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>An error occurred while trying to change the expiry date for <b>%1</"
-#~| "b>:</p><p>%2</p>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to revoke the certification of<br/><br/"
-#~ "><b>%1</b>:</p><p>\t%2</p>"
-#~ msgstr ""
-#~ "<p>មាន​កំហុស​​កើតឡើង​នៅ​ខណៈ​ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​​ផុត​កំណត់​សម្រាប់ <b>%1</b>:</p><p>%2</p>"
-
-#, fuzzy
-#~| msgid "Certification"
-#~ msgid "Revocation Error"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Certification canceled."
-#~ msgid "Revocation Succeeded"
-#~ msgstr "បាន​បោះបង់​ការ​បញ្ជាក់ ។"
-
-#, fuzzy
-#~| msgid "Certification"
-#~ msgctxt "@title:window arg is name, email of certificate holder"
-#~ msgid "Revoke Certification: %1"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "This certificate has been revoked."
-#~ msgid "The key whose certifications shall be revoke"
-#~ msgstr "​វិញ្ញាបនបត្រ​ត្រូវបាន​ដកហូត​វិញ ។"
-
-#~ msgid ""
-#~ "<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>The "
-#~ "error given was: <b>%1</b><br/>You can use Kleopatra as a certificate "
-#~ "manager, but cryptographic plugins that rely on a GPG UI Server being "
-#~ "present might not work correctly, or at all.</qt>"
-#~ msgstr ""
-#~ "<qt>មិនអាច​ចាប់ផ្ដើម​ម៉ូឌុល​ម៉ាស៊ីន​បម្រើ UI GPG របស់ Kleopatra បាន​ទេ ។<br/>កំហុស​ដែល​បាន​ផ្ដល់​"
-#~ "គឺ ៖ <b>%1</b><br/>អ្នក​អាច​ប្រើ Kleopatra ជា​កម្មវិធី​គ្រប់គ្រង​វិញ្ញាបនបត្រ ប៉ុន្តែ​កម្មវិធី​ជំនួយ​"
-#~ "គ្រីប ដែល​អាស្រ័យ​លើ​ម៉ាស៊ីន​បម្រើ UI GPG ដែល​ការ​បង្ហាញ​មិន​ដំណើរការ​ត្រឹមត្រូវ​ទេ ។</qt>"
-
-#~ msgid "Kleopatra Self-Test Results"
-#~ msgstr "លទ្ធផល​សាកល្បង​ដោយខ្លួន​ឯង​របស់ Kleopatra"
-
-#~ msgid "Expiry Date Change Error"
-#~ msgstr "កំហុស​ក្នុង​ការ​ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់"
-
-#~ msgid "Expiry Date Change Succeeded"
-#~ msgstr "បាន​ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់​ដោយ​ជោគជ័យ"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change the expiration date"
-#~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
-
-#, fuzzy
-#~| msgid "Never"
-#~ msgctxt "Expires"
-#~ msgid "never"
-#~ msgstr "កុំ"
-
-#, fuzzy
-#~| msgid "Please select when to expire this certificate:"
-#~ msgid "Please select when to expire this subkey:"
-#~ msgstr "សូមជ្រើស​ពេល​ដែល​វិញ្ញាបនបត្រ​ត្រូវ​ផុត​កំណត់ ៖"
-
-#~ msgid "Please select when to expire this certificate:"
-#~ msgstr "សូមជ្រើស​ពេល​ដែល​វិញ្ញាបនបត្រ​ត្រូវ​ផុត​កំណត់ ៖"
-
-#~ msgid "In"
-#~ msgstr "នៅ"
-
-#, fuzzy
-#~| msgid "On this day:"
-#~ msgid "On this da&y:"
-#~ msgstr "នៅ​ថ្ងៃ​នេះ ៖"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
-
-#~ msgid "Change Expiry Date..."
-#~ msgstr "ផ្លាស់ប្ដូរ​កាលបរិច្ឆេទ​ផុត​កំណត់..."
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a new certificate"
-#~ msgstr "បង្កើត​វិញ្ញាបនបត្រ​ថ្មី​មួយ​"
-
-#, fuzzy
-#~| msgid "Please choose which type of certificate you want to create. "
-#~ msgid "Choose which type of key pair you want to create."
-#~ msgstr "សូម​ជ្រើស​ប្រភេទ​វិញ្ញាបនបត្រ​ណាមួយ​ដែល​អ្នក​ចង់​បង្កើត ។ "
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create a Personal OpenPGP Key Pair"
-#~ msgstr "បង្កើត​គូរសោ OpenPGP ផ្ទាល់ខ្លួន"
-
-#, fuzzy
-#~| msgctxt "X.509/CMS encryption standard"
-#~| msgid "X.509"
-#~ msgid "X.509"
-#~ msgstr "X.509"
-
-#, fuzzy
-#~| msgid ""
-#~| "X.509 key pairs are created locally, but certified centrally by a "
-#~| "certification authority (CA). CAs can certify other CAs, creating a "
-#~| "central, hierarchical chain of trust."
-#~ msgid ""
-#~ "X.509 key pairs are certified by a certification authority (CA). The "
-#~ "generated request needs to be sent to a CA to finalize creation."
-#~ msgstr ""
-#~ "គូសោ X.509 ត្រូវ​បាន​បង្កើត​ក្នុង​មូលដ្ឋាន ប៉ុន្តែ​បាន​បញ្ជាក់​ជា​ទូទៅ​ដោយ certification "
-#~ "authority (CA) ។ CAs អាច​បញ្ជាក់​ CAs ផ្សេង​ទៀត ដោយ​បង្កើត​ឋានានុក្រម​កណ្ដាល​នៃ​កា​"
-#~ "រទុកចិត្ត ។"
-
-#, fuzzy
-#~| msgid "Create a personal X.509 key pair and certification request "
-#~ msgid "Create a Personal X.509 Key Pair and Certification Request"
-#~ msgstr "បង្កើត​គូសោ X.509 ផ្ទាល់ខ្លួន និង​សំណើ​​បញ្ជាក់ "
-
-#, fuzzy
-#~| msgid "Make a Backup Of Your Key Pair..."
-#~ msgctxt "@action:button"
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "ធ្វើ​ការ​បម្រុង​ទុក​នៃ​គូ​សោ​របស់​អ្នក​​..."
-
-#, fuzzy
-#~| msgid "Send Certificate By EMail..."
-#~ msgctxt "@action:button"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "ផ្ញើ​វិញ្ញាបនបត្រ​​តាម​អ៊ីមែល​​..."
-
-#, fuzzy
-#~| msgid "Upload Certificate To Directory Service..."
-#~ msgctxt "@action:button"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "ផ្ទុក​វិញ្ញាបនបត្រ​ទៅ​សេវា​ថត...​"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Sending Mail"
-#~ msgctxt "@title:window"
-#~ msgid "Sending Mail"
-#~ msgstr "ផ្ញើ​អ៊ីមែល"
-
-#~ msgctxt "stored..."
-#~ msgid "on SmartCard with serial no. %1"
-#~ msgstr "លើ​ SmartCard ដោយ​​លេខ​​សៀរៀល​ %1"
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "ស្វែងរក"
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "ស្វែងរក"
-
-#~ msgid "Type:"
-#~ msgstr "ប្រភេទ ៖"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "នាំចេញ"
-
-#, fuzzy
-#~| msgid "Certifications"
-#~ msgctxt "@action:button"
-#~ msgid "Certifications..."
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Dump Certificate"
-#~ msgctxt "@action:button"
-#~ msgid "Publish Certificate"
-#~ msgstr "បោះចោល​​វិញ្ញាបនបត្រ​"
-
-#~ msgid "CRL cache dump:"
-#~ msgstr "បោះចោល​ឃ្លាំងសម្ងាត់ CRL ៖​"
-
-#~ msgid "&Update"
-#~ msgstr "ធ្វើ​បច្ចុប្បន្នភាព"
-
-#~ msgid "Unable to start gpgsm process. Please check your installation."
-#~ msgstr "មិនអាច​ចាប់ផ្ដើម​ដំណើរការ gpgsm បានទេ ។ សូម​ពិនិត្យ​មើល​ការ​ដំឡើង​របស់​អ្នក ។"
-
-#~ msgid "Certificate Manager Error"
-#~ msgstr "កំហុស​កម្មវិធី​គ្រប់គ្រង​វិញ្ញាបនបត្រ"
-
-#~ msgid "The GpgSM process ended prematurely because of an unexpected error."
-#~ msgstr "ដំណើរការ GpgSM បាន​បញ្ចប់​មុន ដោយសារ​កំហុស​ដោយ​មិននឹក​ស្មាន ។"
-
-#, fuzzy
-#~| msgid "Error"
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "កំហុស"
-
-#, fuzzy
-#~| msgid "Revoke..."
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "ដកហូត​វិញ..."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "OpenPGP certificates exported successfully."
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "បាន​នាំ​វិញ្ញាបនបត្រ​ OpenPGP ចេញ​ដោយ​ជោគជ័យ​ ។"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Refreshed"
-#~ msgstr "បាន​ដកហូត​ថ្មីៗ ៖​"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Key Creation Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "បានបរាជ័យ​ក្នុងការ​បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgid "Load additional certificates"
-#~ msgstr "វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "Loading certificate cache..."
-#~ msgid "Loading certificates..."
-#~ msgstr "កំពុង​ឃ្លាំង​សម្ងាត់​វិញ្ញាបនបត្រ​..."
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "(ស្វែងរក​មិន​ឃើញ​ការផ្គូផ្គង​វិញ្ញាបនបត្រ​ឡើយ​​)"
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "(ស្វែងរក​មិន​ឃើញ​ការផ្គូផ្គង​វិញ្ញាបនបត្រ​ឡើយ​​)"
-
-#, fuzzy
-#~| msgid "Name:"
-#~ msgctxt "@label"
-#~ msgid "Name:"
-#~ msgstr "ឈ្មោះ ៖"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgid "Error: The entered name contains invalid characters."
-#~ msgstr "ហត្ថលេខា​គឺ​មិនត្រឹមត្រូវ ៖ %1"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgid "The entered name is not valid."
-#~ msgstr "ហត្ថលេខា​គឺ​មិនត្រឹមត្រូវ ៖ %1"
-
-#~ msgid "Comment"
-#~ msgstr "សេចក្ដី​អធិប្បាយ"
-
-#~ msgid "Add New User-ID"
-#~ msgstr "បន្ថែម​លេខសម្គាល់​អ្នក​ប្រើ​ថ្មី"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Click for details."
-#~ msgstr "សេចក្ដី​លម្អិត..."
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgid "List Smartcard Readers"
-#~ msgstr "​SmartCard"
-
-#, fuzzy
-#~| msgid "The signature is bad."
-#~ msgid "The signature."
-#~ msgstr "ហត្ថលេខា​នេះ​មិន​ត្រឹមត្រូវ ។"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Choose Certificate Format"
-#~ msgctxt "@title"
-#~ msgid "Choose Format"
-#~ msgstr "ជ្រើស​ទ្រង់ទ្រាយ​វិញ្ញាបនបត្រ"
-
-#~ msgctxt "Quit [ApplicationName]"
-#~ msgid "&Quit %1"
-#~ msgstr "ចេញពី %1"
-
-#~ msgid "&Configure %1..."
-#~ msgstr "កំណត់​រចនាសម្ព័ន្ធ %1..."
-
-#~ msgid "&About %1..."
-#~ msgstr "អំពី %1..."
-
-#~ msgid "&Shutdown Kleopatra"
-#~ msgstr "បិទ Kleopatra​"
-
-#~ msgid "Invalid hex char '%1' in input stream."
-#~ msgstr "តួ​អក្សរ​គោល​ដប់ប្រាំ​មួយ '%1' មិន​ត្រឹមត្រូវ​នៅ​ក្នុង​ស្ទ្រីម​ព័ត៌មាន​បញ្ចូល ។"
-
-#~ msgid "Premature end of hex-encoded char in input stream"
-#~ msgstr "ការ​បញ្ចប់​មុន​ពេល​របស់​តួ​អក្សរ​ដែល​បាន​ឌិកូដ​ជា​គោល​ដប់ប្រាំ​មួយ​នៅ​ក្នុង​ស្ទ្រីម​ព័ត៌មាន​បញ្ចូល"
-
-#~ msgid "Automatically add &new servers discovered in CRL distribution points"
-#~ msgstr "បន្ថែម​ម៉ាស៊ីន​បម្រើ​ថ្មី​ដោយ​ស្វ័យ​ប្រវត្តិ​ដែល​បាន​រក​ឃើញ​នៅ​ក្នុង​ចំណុច​ចែកចាយ​របស់ CRL"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of certificate import:</p><table width=\"100%\">"
-#~ "%1</table></qt>"
-#~ msgstr ""
-#~ "<qt><p>លទ្ធផល​នាំចូល​វិញ្ញាបនបត្រ​លម្អិត​ ៖ </p><table width=\"100%\">%1</table></qt>​"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of importing %1:</p><table width=\"100%\">%2</"
-#~ "table></qt>"
-#~ msgstr ""
-#~ "<qt><p>លទ្ធផល​​លម្អិត​នៃ​ការនាំចូល​​ %1 ៖ </p><table width=\"100%\">%2</table></qt>"
-
-#~ msgid "Totals"
-#~ msgstr "សរុប​"
-
-#~ msgid "Could not determine certificate type of %1."
-#~ msgstr "មិនអាច​កំណត់​ប្រភេទ​វិញ្ញាបនបត្រ​នៃ %1 បានទេ ។"
-
-#, fuzzy
-#~| msgid "Default certificate"
-#~ msgid "Multiple certificates"
-#~ msgstr "ប​វិញ្ញាបនបត្រ​លំនាំដើម​"
-
-#~ msgid "Change Certificate Date of Expiry"
-#~ msgstr "ប្ដូរ​កាលបរិច្ឆេទ​ផុតកំណត់​របស់​វិញ្ញាបនបត្រ"
-
-#, fuzzy
-#~| msgid "Scanning directories..."
-#~ msgid "Configuration of directory services"
-#~ msgstr "កំពុង​វិភាគ​រក​ថត​​..."
-
-#, fuzzy
-#~| msgid "Color && Font Configuration"
-#~ msgid "Colors & Fonts Configuration"
-#~ msgstr "ការកំណត់​រចនាសម្ព័ន្ធ​ពណ៌​ និង​ពុម្ពអក្សរ"
-
-#, fuzzy
-#~| msgid "Configuration Error"
-#~ msgid "Configuration of Crypto Operations"
-#~ msgstr "កំហុស​កំណត់​រចនាសម្ព័ន្ធ"
-
-#~ msgid "Configure GnuPG Backend..."
-#~ msgstr "កំណត់​រចនាសម្ព័ន្ធ​ផ្នែក​ខាង​ក្រោយ​របស់ GnuPG​..."
-
-#~ msgid ""
-#~ "Could not configure the cryptography backend (gpgconf tool not found)"
-#~ msgstr "មិន​អាច​កំណត់​រចនាសម្ព័ន្ធ​ផ្នែក​ខាង​ក្រោយ​កា​រគ្រីប (រក​មិន​ឃើញ​ឧបករណ៍ gpgconf​)"
-
-#~ msgid "Configuration Error"
-#~ msgstr "កំហុស​កំណត់​រចនាសម្ព័ន្ធ"
-
-#, fuzzy
-#~| msgid "Signing"
-#~ msgid "Signing key:"
-#~ msgstr "ការ​ចុះហត្ថលេខា"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Create a new certificate"
-#~ msgid "Generate &revocation certificate"
-#~ msgstr "បង្កើត​វិញ្ញាបនបត្រ​ថ្មី​មួយ​"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgid "&Export..."
-#~ msgstr "នាំចេញ"
-
-#~ msgid ""
-#~ "If this option is selected, S/MIME certificates are validated using "
-#~ "Certificate Revocation Lists (CRLs)."
-#~ msgstr ""
-#~ "ប្រសិនបើ​ជម្រើស​នេះ​ត្រូវ​បាន​ជ្រើស វិញ្ញាបនបត្រ S/MIME ត្រូវ​បាន​ធ្វើ​ឲ្យ​មាន​សុពលភាព​ដោយ​ប្រើ "
-#~ "Certificate Revocation Lists (CRLs) ។"
-
-#~ msgid "Validate certificates using CRLs"
-#~ msgstr "ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ​មាន​សុពលភាព​ដោយ​ប្រើ CRLs"
-
-#~ msgid "S/MIME export file:"
-#~ msgstr "ឯកសារ​នាំចេញ S/MIME ៖"
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgctxt "@info"
-#~ msgid "Failed to set PIN: %1"
-#~ msgstr "បាន​បរាជ័យ​ប្រតិបត្តិ​ %1 ៖ %2"
-
-#~ msgid "Email Address:"
-#~ msgstr "អាសយដ្ឋាន​អ៊ីមែល ៖"
-
-#~ msgid "Subject-DN:"
-#~ msgstr "ប្រធាន​បទ DN ៖"
-
-#~ msgid "Key Type:"
-#~ msgstr "ប្រភេទ​សោ ៖"
-
-#, fuzzy
-#~| msgid "Key Type:"
-#~ msgid "Key Curve:"
-#~ msgstr "ប្រភេទ​សោ ៖"
-
-#~ msgid "Key Strength:"
-#~ msgstr "កម្លាំង​សោ ៖"
-
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 ប៊ីត​"
-
-#~ msgctxt "separator for key usages"
-#~ msgid ",&nbsp;"
-#~ msgstr ",&nbsp;"
-
-#~ msgid "Subkey Type:"
-#~ msgstr "ប្រភេទ​សោរង ៖"
-
-#~ msgid "Subkey Usage:"
-#~ msgstr "កា​រ​ប្រើ​ប្រាស់​សោ​រង ៖"
-
-#~ msgid "Valid Until:"
-#~ msgstr "មាន​សុពលភាព​ដល់ ៖"
-
-#~ msgid "DNS Name:"
-#~ msgstr "ឈ្មោះ DNS ៖"
-
-#~ msgid "URI:"
-#~ msgstr "URI ៖"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Review Certificate Parameters"
-#~ msgctxt "@title"
-#~ msgid "Review Parameters"
-#~ msgstr "ពិនិត្យ​ប៉ារ៉ាម៉ែត្រ​វិញ្ញាបនបត្រ​ឡើង​វិញ"
-
-#, fuzzy
-#~| msgid ""
-#~| "Please review the certificate parameters before proceeding to create the "
-#~| "certificate."
-#~ msgid "Please review the parameters before proceeding."
-#~ msgstr "សូម​ពិនិត្យមើល​ប៉ារ៉ាម៉ែត្រ​វិញ្ញាបនបត្រ​មុននឹង​បន្ត​បង្កើត​វិញ្ញាបនបត្រ ។"
-
-#~ msgid "Show all details"
-#~ msgstr "បង្ហាញ​សេចក្ដី​លម្អិត​ទាំងអស់"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Authentication:"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid ""
-#~| "Your new key pair was created successfully. Please find details on the "
-#~| "result and some suggested next steps below."
-#~ msgid ""
-#~ "The certificate signing request was created successfully. Please find the "
-#~ "result and suggested next steps below."
-#~ msgstr ""
-#~ "គូ​សោ​ថ្មី​​របស់​អ្នក​ត្រូវ​បាន​បង្កើត​ដោយជោគជ័យ ។ សូម​រក​សេចក្ដីលម្អិត​ខាង​ក្រោម​អំពីលទ្ធផល​ និង​ជំហាន​បន្ទាប់​"
-#~ "ដែល​បាន​ស្នើ ។"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@title:window"
-#~ msgid "CSR Created"
-#~ msgstr "បង្កើត​សោ"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Card authentication:"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Digital signature:"
-#~ msgstr "ហត្ថលេខា​មិន​ត្រឹមត្រូវ"
-
-#~ msgid "Add email address to DN (only needed for broken CAs)"
-#~ msgstr "បន្ថែម​អាសយដ្ឋាន​អ៊ីមែល​ទៅ DN (ត្រូវ​កា​រសម្រាប់​តែ CAs ដែល​ខូច​ប៉ុណ្ណោះ)"
-
-#, fuzzy
-#~| msgid "Certify..."
-#~ msgid "Certify ..."
-#~ msgstr "ផ្ទៀងផ្ទាត់..."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "%1 nice serial number, %2 real serial number"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgid "The signature is bad."
-#~ msgctxt ""
-#~ "VS-NfD-conforming is a German standard for restricted documents for which "
-#~ "special restrictions about algorithms apply.  The string states that a "
-#~ "signature is compliant with that."
-#~ msgid "The signature is VS-NfD-compliant."
-#~ msgstr "ហត្ថលេខា​នេះ​មិន​ត្រឹមត្រូវ ។"
-
-#~ msgid "Refresh X.509 Certificates"
-#~ msgstr "ធ្វើ​ឲ្យ​វិញ្ញាបនបត្រ X.509 ស្រស់"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt ""
-#~ "Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-#~ "placeholder 2 is the identifier of a slot on a smart card"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "User-ID successfully added."
-#~ msgctxt "@info"
-#~ msgid "Code successfully changed."
-#~ msgstr "បាន​បន្ថែម​លេខ​សម្គាល់​អ្នក​ប្រើ​ដោយ​ជោគជ័យ ។"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit; default)"
-#~ msgid_plural "%2 (%1 bits; default)"
-#~ msgstr[0] "%2 (%1 ប៊ីត​  លំនាំដើម​​)​"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit (default)"
-#~ msgid_plural "%1 bits (default)"
-#~ msgstr[0] "%1 ប៊ីត​​ (លំនាំដើម​​)"
-
-#~ msgid "<b>Step 2:</b> Choose how to certify."
-#~ msgstr "<b>ជំហាន ២ ៖</b> ជ្រើស​វិធី​ត្រូវ​បញ្ជាក់ ។"
-
-#~ msgid "Choose which of your certificates to sign with:"
-#~ msgstr "ជ្រើស​វិញ្ញាបនបត្រ​​របស់​អ្នក​ណាមួយ​​ត្រូវ​ចុះហត្ថលេខា​ដោយ​ ៖​"
-
-#~ msgid "Certify only for myself"
-#~ msgstr "បញ្ជាក់​តែ​សម្រាប់​ខ្លួន​អ្នក​ផ្ទាល់"
-
-#~ msgid "Send certified certificate to server afterwards"
-#~ msgstr "ផ្ញើ​វិញ្ញាបនបត្រ​ដែល​បាន​បញ្ជាក់​ទៅ​ម៉ាស៊ីន​បម្រើ​ពេល​ក្រោយ"
-
-#, fuzzy
-#~| msgid "<b>Step 1:</b> Please select the user IDs you wish to certify."
-#~ msgid ""
-#~ "<b>Step 1:</b> Please select the names and email addresses you wish to "
-#~ "certify."
-#~ msgstr "<b>ជំហាន ១ ៖</b> សូម​ជ្រើស​លេខ​សម្គាល់​អ្នក​ប្រើ ដែល​អ្នក​ចង់​បញ្ជាក់ ។"
-
-#~ msgid "<b>Summary:</b>"
-#~ msgstr "<b>សង្ខេប ៖</b>"
-
-#~ msgid "Check level:"
-#~ msgstr "កម្រិត​ពិនិត្យ ៖"
-
-#~ msgid "No statement made"
-#~ msgstr "គ្មាន​សេចក្ដី​ថ្លែងការ"
-
-#~ msgid "Not checked"
-#~ msgstr "មិនបានត្រួតពិនិត្យ"
-
-#~ msgid "Casually checked"
-#~ msgstr "បានពិនិត្យ​តាម​ធម្មតា"
-
-#~ msgid "Thoroughly checked"
-#~ msgstr "បាន​ពិនិត្យ​យ៉ាង​ហ្មត់ចត់"
-
-#~ msgid ""
-#~ "The certificate was not certified because it was already certified by the "
-#~ "same certificate."
-#~ msgstr "វិញ្ញាបនបត្រ​គឺ​មិនត្រូវបាន​បញ្ជាក់​ទេ ព្រោះ​វា​បាន​បញ្ជាក់​ដោយ​វិញ្ញាបនបត្រ​ដូចគ្នា​រួចហើយ ។"
-
-#~ msgid "The certificate could not be certified. <b>Error</b>: %1"
-#~ msgstr "វិញ្ញាបនបត្រ​មិន​អាច​ត្រូវ​បានបញ្ជាក់​ទេ ។ <b>កំហុស</b> ៖ %1"
-
-#~ msgid "I have verified the fingerprint"
-#~ msgstr "ខ្ញុំ​បាន​បញ្ជាក់​ស្នាម​ផ្ដិត​ម្រាមដៃ​​"
-
-#~ msgid ""
-#~ "Certificate: %1\n"
-#~ "Fingerprint: %2"
-#~ msgstr ""
-#~ "វិញ្ញាបនបត្រ​ ៖​​ %1\n"
-#~ "ស្នាម​ម្រាមដៃ ​៖​ %2"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>You seem to be searching for a fingerprint or a key-id.</"
-#~| "p><p>Different keyservers expect different ways to search for these. "
-#~| "Some require a \"0x\" prefix, while others require there be no such "
-#~| "prefix.</p><p>If your search does not yield any results, try removing "
-#~| "the 0x prefix from your search.</p>"
-#~ msgid ""
-#~ "<p>You seem to be searching for a fingerPrint or a key-id.</"
-#~ "p><p>Different keyservers expect different ways to search for these. Some "
-#~ "require a \"0x\" prefix, while others require there be no such prefix.</"
-#~ "p><p>If your search does not yield any results, try removing the 0x "
-#~ "prefix from your search.</p>"
-#~ msgstr ""
-#~ "<p>អ្នក​ហាក់​ដូច​ជា​កំពុង​​ស្វែងរក​​ស្នាម​ម្រាមដៃ​​ ​ឬ​​លេខ​សម្គាល់​សោ​ ។​</p><p>Keyservers ខុស​គ្នា​"
-#~ "ទាមទារ​មធ្យោបាយ​ខុសគ្នា​ដើម្បី​ស​ស្វែងរក​ពួកវា ។ ខ្លះ​ទាមទារ​បុព្វបទ​ \"0x\" ខណៈ​ដែល​ខ្លះ​ទៀត​មិន​"
-#~ "ទាមទារ​បុព្វបទ​នោះ​ ។​</p><p>ប្រសិនបើ​ការ​ស្វែងរក​របស់​អ្នក​គ្មាន​លទ្ធផល​ទេ សាកល្បង​យក​បុព្វបទ​​ 0x​ "
-#~ "ចេញ​ពី​ការ​ស្វែង​រក​របស់​អ្នក​ ។​</p>​"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>You seem to be searching for a fingerprint or a key-id.</"
-#~| "p><p>Different keyservers expect different ways to search for these. "
-#~| "Some require a \"0x\" prefix, while others require there be no such "
-#~| "prefix.</p><p>If your search does not yield any results, try adding the "
-#~| "0x prefix to your search.</p>"
-#~ msgid ""
-#~ "<p>You seem to be searching for a fingerPrint or a key-id.</"
-#~ "p><p>Different keyservers expect different ways to search for these. Some "
-#~ "require a \"0x\" prefix, while others require there be no such prefix.</"
-#~ "p><p>If your search does not yield any results, try adding the 0x prefix "
-#~ "to your search.</p>"
-#~ msgstr ""
-#~ "<p>អ្នក​ហាក់​ដូច​ជា​កំពុង​​ស្វែងរក​​ស្នាម​ម្រាមដៃ​​ ​ឬ​​លេខ​សម្គាល់​សោ​ ។</p><p>Keyservers ខុស​គ្នា​"
-#~ "ទាមទារ​មធ្យោបាយ​ខុសគ្នា​ដើម្បី​ស​ស្វែងរក​ពួកវា ។ ខ្លះ​ទាមទារ​បុព្វបទ​ \"0x\" ខណៈ​ដែល​ខ្លះ​ទៀត​មិន​"
-#~ "ទាមទារ​បុព្វបទ​នោះ​ ។​</p><p>ប្រសិនបើ​ការ​ស្វែងរក​របស់​អ្នក​គ្មាន​លទ្ធផល​ទេ សាកល្បង​បន្ថែម​បុព្វបទ​​ "
-#~ "0x​ ទៅកាន់​ការ​ស្វែង​រក​របស់​អ្នក​ ។</p>"
-
-#~ msgid "Hex-String Search"
-#~ msgstr "ស្វែង​រក​ខ្សែ​អក្សរ​គោល​ដប់​ប្រាំ​មួយ"
-
-#~ msgid "The process terminated prematurely"
-#~ msgstr "ដំណើរការ​ត្រូវបាន​បញ្ចប់​មុនពេល"
-
-#~ msgid "Diagnostics:"
-#~ msgstr "ការវិនិច្ឆ័យ ៖"
-
-#~ msgctxt "self-check did not pass"
-#~ msgid "Failed"
-#~ msgstr "បាន​បរាជ័យ"
-
-#~ msgctxt "Self-test did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed.\n"
-#~ "\n"
-#~ "Error code: %1\n"
-#~ "Diagnostics:"
-#~ msgstr ""
-#~ "បាន​បរាជ័យ​ក្នុងកា​រត្រួតពិនិត្យ​កា​រកំណត់​រចនាសម្ព័ន្ធ GnuPG ដោយ​ខ្លួន​ឯង ។\n"
-#~ "\n"
-#~ "កូដ​កំហុស ៖ %1\n"
-#~ "លក្ខណៈ ៖"
-
-#~ msgctxt "self-check did not pass"
-#~ msgid ""
-#~ "The GnuPG configuration self-check failed with error code %1.\n"
-#~ "No output was received."
-#~ msgstr ""
-#~ "បាន​បរាជ័យ​ក្នុងការ​​ពិនិត្យ​ការ​កំណត់​រចនាសម្ព័ន្ធ GnuPG ដោយ​ខ្លួន​ឯង ដោយ​មានកូដ​កំហុស %1 ។\n"
-#~ "គ្មាន​លទ្ធផល​ត្រូវ​បាន​ទទួល ។"
-
-#~ msgctxt "@info"
-#~ msgid "Please select export options for %1:"
-#~ msgstr "សូម​ជ្រើស​ជម្រើស​នាំចេញ​សម្រាប់ %1 ៖"
-
-#~ msgid "Secret Key Files (*.pem *.p12 *.gpg *.asc *.pgp)"
-#~ msgstr "ឯកសារ​សោ​សម្ងាត់ (*.pem *.p12 *.gpg *.asc *.pgp)"
-
-#~ msgctxt "@info"
-#~ msgid "You have to enter an output filename."
-#~ msgstr "អ្នក​ត្រូវ​តែ​បញ្ចូល​ឈ្មោះ​ឯកសា​រលទ្ធផល ។"
-
-#~ msgctxt "@title"
-#~ msgid "Incomplete data"
-#~ msgstr "ទិន្នន័យ​មិនពេញលេញ"
-
-#~ msgctxt "@info"
-#~ msgid "You have to choose a passphrase character set."
-#~ msgstr "អ្នក​ត្រូវ​តែ​ជ្រើស​សំណុំ​តួអក្សរ​ឃ្លា​សម្ងាត់ ។"
-
-#~ msgid "Export Secret Certificate"
-#~ msgstr "នាំ​វិញ្ញាបនបត្រ​​សម្ងាត់​ចេញ​"
-
-#~ msgid "Output file:"
-#~ msgstr "ឯកសារ​លទ្ធផល ៖"
-
-#~ msgid "Passphrase charset:"
-#~ msgstr "សំណុំ​តួអក្សរ​ឃ្លាសម្ងាត់ ៖"
-
-#~ msgid "ASCII armor"
-#~ msgstr "ASCII armor"
-
-#, fuzzy
-#~| msgid "Please select a certificate"
-#~ msgid "Please select a certificate."
-#~ msgstr "សូម​ជ្រើស​វិញ្ញាបនបត្រ​"
-
-#, fuzzy
-#~| msgid "<b>Recipients</b>"
-#~ msgid "<h3>Recipients:</h3>"
-#~ msgstr "<b>អ្នក​ទទួល</b>"
-
-#~ msgid "No Audit Log available"
-#~ msgstr "មិន​មាន​កំណត់​ហេតុ​ត្រួតពិនិត្យ"
-
-#~ msgid "Error Retrieving Audit Log: %1"
-#~ msgstr "កំហុស​ការ​ទៅ​យក​កំណត់ហេតុ​ត្រួតពិនិត្យ ៖​ %1"
-
-#~ msgid "Certificate Server Certificate Lookup"
-#~ msgstr "រកមើល​វិញ្ញាបនបត្រ​ម៉ាស៊ីន​បម្រើ​​វិញ្ញាបនបត្រ​​"
-
-#~ msgid ""
-#~ "The process of creating a key requires large amounts of random numbers. "
-#~ "To foster this process, you can use the entry field below to enter some "
-#~ "gibberish. The text itself does not matter - only the inter-character "
-#~ "timing. You can also move this window around with your mouse, or start "
-#~ "some disk-intensive application."
-#~ msgstr ""
-#~ "ដំណើរការ​បង្កើត​សោ​ត្រូវការ​លេខ​ចៃដន្យ​មួយ​ចំនួន​ធំ ។ ដើម្បី​ផ្គត់ផ្គង់​ដំណើរការ​នេះ អ្នក​អាច​ប្រើ​វាល​ធាតុ​"
-#~ "ខាង​ក្រោម​ដើម្បី​បញ្ចូល​អ្វីឥតបានការ ។ អត្ថបទ​ខ្លួន​វាផ្ទាល់​នឹង​មិន​ត្រូវ​បានប្រើ​ទាល់​តែ​សោះ មានតែ​ការ​"
-#~ "កំណត់​ពេលវេលា​តួអក្សរ​ខាង​ក្នុង​ប៉ុណ្ណោះ ។ អ្នក​ក៏​អាច​ផ្លាស់ទី​បង្អួច​នេះ​ជុំវិញ​ដោយ​ប្រើ​កណ្ដុរ​របស់​អ្នក ឬ​"
-#~ "ចាប់ផ្ដើម​កម្មវិធី​ដែល​ស្គាល់​ថា​ស​មួយ​ចំនួន ។"
-
-#~ msgid "Certificate Usage:"
-#~ msgstr "ការ​ប្រើប្រាស់​វិញ្ញាបនបត្រ ៖"
-
-#~ msgid "Comment:"
-#~ msgstr "សេចក្ដី​អធិប្បាយ ៖"
-
-#~ msgid "No public certificate to verify the signature"
-#~ msgstr "គ្មាន​វិញ្ញាបនបត្រ​​សាធារណៈ​ត្រូវ​ផ្ទៀងផ្ទាត់​ហត្ថលេខា​ឡើយ​"
-
-#~ msgid "Certificate missing"
-#~ msgstr "បាត់​វិញ្ញាបនបត្រ​"
-
-#~ msgid "Signed on %1 with unknown certificate %2."
-#~ msgstr "បាន​ចាប់​ផ្ដើម​​ %1 ដោយ​មិន​ស្គាល់​​​វិញ្ញាបនបត្រ​​ %2 ។"
-
-#~ msgid "Signed with unknown certificate %1."
-#~ msgstr "បាន​ចុះហត្ថលេខា​ដោយ​មិន​ស្គាល់​​វិញ្ញាបនបត្រ​​ %1 ។"
-
-#~ msgctxt "date, key owner, key ID"
-#~ msgid "Signed on %1 by %2 (Key ID: %3)."
-#~ msgstr "បាន​ចុះហត្ថលេខា​លើ %1 ដោយ %2 (លេខ​សម្គាល់សោ ៖ %3) ។"
-
-#~ msgid "Signed by %1 with certificate %2."
-#~ msgstr "បាន​ចុះហត្ថលេខា​ដោយ %1 ជាមួយ​វិញ្ញាបនបត្រ​ %2 ។​"
-
-#~ msgid "Signed on %1 with certificate %2."
-#~ msgstr "បាន​ចុះហត្ថលេខា​លើ​ %1 ​ជាមួយ​វិញ្ញាបនបត្រ​​ %2 ។"
-
-#~ msgid "Signed with certificate %1."
-#~ msgstr "បាន​ចុះហត្ថលេខា​ជាមួយ​វិញ្ញាបនបត្រ​​ %1 ។"
-
-#~ msgid "<b>Not enough information to check signature validity.</b>"
-#~ msgid_plural "<b>%1 signatures could not be verified.</b>"
-#~ msgstr[0] "<b>ហត្ថលេខា %1 មិនអាច​ត្រូវ​បានផ្ទៀងផ្ទាត់ ។</b>"
-
-#~ msgid "<b>Signature is valid.</b>"
-#~ msgstr "<b>ហត្ថលេខា​ត្រឹមត្រូវ ។</b>"
-
-#~ msgid "<b>Signed by %1</b>"
-#~ msgstr "<b>បាន​ចុះហត្ថលេខា​ដោយ %1</b>"
-
-#~ msgid "Hide Details"
-#~ msgstr "លាក់​សេចក្ដី​លម្អិត"
-
-#~ msgid ""
-#~ "OpenPGP key pairs are created locally, and certified by your friends and "
-#~ "acquaintances. There is no central certification authority; instead, "
-#~ "every individual creates a personal Web of Trust by certifying other "
-#~ "users' key pairs with their own certificate."
-#~ msgstr ""
-#~ "គូសោ OpenPGP ត្រូវ​បាន​បង្កើត​ក្នុង​មូលដ្ឋាន និង​បានបញ្ជាក់ដោយ​មិត្តភក្ដិ​របស់​អ្នក ។ មិនមាន​"
-#~ "អាជ្ញាធរវិញ្ញាបនបត្រ​កណ្ដាលទេ ជំនួស​ឲ្យ​ការ​បង្កើត​បណ្ដាញ​ផ្ទាល់ខ្លួន​នៃ​ការ​ទុកចិត្ត​ដោយ​បញ្ជាក់​គូសោ​របស់​"
-#~ "អ្នក​ប្រើ​ផ្សេង​ទៀត​ជា​មួយ​នឹង​វិញ្ញាបនបត្រ​ផ្ទាល់របស់​គាត់ ។"
-
-#~ msgid "New Certificate..."
-#~ msgstr "វិញ្ញាបនបត្រ​ថ្មី..."
-
-#~ msgid "Export Certificates to Server..."
-#~ msgstr "នាំចេញ​វិញ្ញាបនបត្រ​ទៅ​ម៉ាស៊ីន​បម្រើ​..."
-
-#~ msgid "Import Certificates..."
-#~ msgstr "នាំចូល​វិញ្ញាបនបត្រ​..."
-
-#~ msgid "Decrypt/Verify Files..."
-#~ msgstr "ឌិគ្រីប/ផ្ទៀងផ្ទាត់​ឯកសារ..."
-
-#~ msgid "Sign/Encrypt Files..."
-#~ msgstr "ចុះហត្ថលេខា/អ៊ីនគ្រិប​ឯកសារ..."
-
-#~ msgid "Dump Certificate"
-#~ msgstr "បោះចោល​​វិញ្ញាបនបត្រ​"
-
-#~ msgid ""
-#~ "Gpg4win is an installer package for Windows for EMail and file encryption "
-#~ "using the core component GnuPG for Windows. Both relevant cryptography "
-#~ "standards are supported, OpenPGP and S/MIME. Gpg4win and the software "
-#~ "included with Gpg4win are Free Software."
-#~ msgstr ""
-#~ "Gpg4win គឺ​ជា​កញ្ចប់​កម្មវិធី​ដំឡើង​សម្រាប់​វីនដូ សម្រាប់​អ៊ីមែល និង​ការ​អ៊ិនគ្រីប​ឯកសារ ដោយប្រើ​សមាសភាគ​"
-#~ "ស្នូល​ GnuPG សម្រាប់​វីនដូ ។ ស្តង់ដារ​កូដសាស្ដ្រ​ដែល​ទាក់ទង​ទាំង​ពីរ​គឺ OpenPGP និង S/MIME ​ត្រូវបាន​"
-#~ "គាំទ្រ ។ Gpg4win និង​កម្មវិធី​ដែល​បាន​រួម​បញ្ចូល​ជាមួយ​នឹង Gpg4win គឺ​ជា​កម្មវិធី​ឥត​គិតថ្លៃ ។"
-
-#, fuzzy
-#~| msgid ""
-#~| "This Free Software product was developed mostly as part of commercial "
-#~| "contracts by the following companies:<ul><li><a href='http://intevation."
-#~| "net'>Intevation GmbH</a> (Projekt coordination, QA, Compendium)</"
-#~| "li><li><a href='http://www.g10code.com'>g10 Code GmbH</a> (Crypto "
-#~| "Funktionality, GpgOL, GpgEX, GPA)</li> <li><a href='http://www.kdab."
-#~| "com'>KDAB</a> (Kleopatra)</li></ul>The following persons have "
-#~| "contributed (as of 20100706):"
-#~ msgid ""
-#~ "This Free Software product was developed mostly as part of commercial "
-#~ "contracts by the following companies:<ul><li><a href='http://intevation."
-#~ "net'>Intevation GmbH</a> (Projekt coordination, QA, Compendium)</"
-#~ "li><li><a href='http://www.g10code.com'>g10 Code GmbH</a> (Crypto "
-#~ "Funktionality, GpgOL, GpgEX, GPA)</li> <li><a href='http://www.kdab."
-#~ "com'>KDAB</a> (Kleopatra)</li></ul>Contributors:<br><br>"
-#~ msgstr ""
-#~ "ផលិត​ផល​កម្មវិធី​នេះ​ត្រូវ​បាន​អភិវឌ្ឍន៍ ជា​ផ្នែក​នៃ​កិច្ចសន្យា​នៃ​ជំនួញ​ ដោយ​ក្រុមហ៊ុន​ជា​ច្រើន​ខាង​ក្រោម​ ៖​​"
-#~ "<ul><li><a href='http://intevation.net'>Intevation GmbH</a> (Projekt "
-#~ "coordination, QA, Compendium)</li><li><a href='http://www.g10code."
-#~ "com'>g10 Code GmbH</a> (Crypto Funktionality, GpgOL, GpgEX, GPA)</li> "
-#~ "<li><a href='http://www.kdab.com'>KDAB</a> (Kleopatra)</li></ul>អ្នក​ដែល​បាន​"
-#~ "ចូល​រួម​បន្ត​បន្ទាប់​ (ចាប់ពី ២០១០០៧០៦) ៖"
-
-#, fuzzy
-#~| msgid ""
-#~| "Till Adam<br>Marcus Brinkmann<br>Brigitte Hamilton<br>Bernhard "
-#~| "Herzog<br>Werner Koch<br>Colin Leroy<br>Marc Mutz<br>Marcel "
-#~| "Newmann<br>Frank Osterfeld<br>Bernhard Reiter<br>Florian v. "
-#~| "Samson<br>Emanuel Schütze<br>Dr. Jan-Oliver Wagner"
-#~ msgid ""
-#~ "Till Adam<br>Marcus Brinkmann<br>Brigitte Hamilton<br>Andre "
-#~ "Heinecke<br>Bernhard Herzog<br>Werner Koch<br>Colin Leroy<br>Marc "
-#~ "Mutz<br>Marcel Newmann<br>Frank Osterfeld<br>Bernhard Reiter<br>Florian "
-#~ "v. Samson<br>Emanuel Schütze<br>Dr. Jan-Oliver Wagner"
-#~ msgstr ""
-#~ "Till Adam<br>Marcus Brinkmann<br>Brigitte Hamilton<br>Bernhard "
-#~ "Herzog<br>Werner Koch<br>Colin Leroy<br>Marc Mutz<br>Marcel "
-#~ "Newmann<br>Frank Osterfeld<br>Bernhard Reiter<br>Florian v. "
-#~ "Samson<br>Emanuel Schütze<br>Dr. Jan-Oliver Wagner"
-
-#~ msgid "Gpg4win"
-#~ msgstr "Gpg4win"
-
-#~ msgid "About Gpg4win"
-#~ msgstr "អំពី Gpg4win"
-
-#~ msgid "Please wait while generating the dump..."
-#~ msgstr "សូម​រង់ចាំ​ខណៈពេល​បង្កើត​សារឥតបានការ..."
-
-#~ msgid "Overview"
-#~ msgstr "ទិដ្ឋភាព​ទូទៅ"
-
-#~ msgid "Trust Certifications Made by This Certificate..."
-#~ msgstr "ទុក​ចិត្ត​កា​របញ្ជាក់​​ដែល​បាន​ធ្វើ​ឡើង​ដោយ​វិញ្ញាបនបត្រ​នេះ..."
-
-#~ msgid "Photo"
-#~ msgstr "រូបថត"
-
-#~ msgid ""
-#~ "<p>At the moment, Kleopatra does not support photos in certificates. It "
-#~ "has no support for adding, nor for displaying them. This is for the "
-#~ "following reasons:</p>\n"
-#~ "<ul>\n"
-#~ "<li>Photos give a false sense of security.</li>\n"
-#~ "<li>Photos increase the size of certificates.</li>\n"
-#~ "</ul>"
-#~ msgstr ""
-#~ "<p>នៅ​ពេលនេះ Kleopatra មិន​គាំទ្រ​រូបថត​នៅ​ក្នុង​វិញ្ញាបនបត្រ​ទេ ។ វា​មិនមានការ​គាំទ្រ​សម្រាប់​"
-#~ "បន្ថែម ឬ​សម្រាប់​បង្ហាញ​ពួកវា​ទេ ។ នេះ​សម្រាប់​ហេតុផល​ដូច​​ខាង​ក្រោម ៖</p>\n"
-#~ "<ul>\n"
-#~ "<li>រូបថត​ផ្ដល់​នូវ​​ការ​យល់ដឹង​មិនពិត​នៃ​សុវត្ថិភាព ។</li>\n"
-#~ "<li>រូបថត​បង្កើន​ទំហំ​វិញ្ញាបនបត្រ ។</li>\n"
-#~ "</ul>"
-
-#~ msgid "Add..."
-#~ msgstr "បន្ថែម..."
-
-#~ msgid "1"
-#~ msgstr "១"
-
-#~ msgid "Dump"
-#~ msgstr "បោះបង់ចោល​"
-
-#~ msgid ""
-#~ "This is a dump of all information the backend has about this certificate:"
-#~ msgstr "នេះ​គឺ​ជា​ព័ត៌មាន​ឥតបានការ​ទាំងអស់​នៃ​កម្មវិធី​ផ្នែកខា​ងក្រោយ ដែល​វា​មាន​អំពី​វិញ្ញាបនបត្រ​នេះ ៖"
-
-#~ msgctxt "@info"
-#~ msgid "Could not connect to GpgAgent: <message>%1</message>"
-#~ msgstr "មិន​អាច​តភ្ជាប់​ទៅ​​ GpgAgent ៖ <message>%1</message>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Check that gpg-agent is running and that the "
-#~ "<environment>GPG_AGENT_INFO</environment> variable is set and up-to-date."
-#~ "</para>"
-#~ msgstr ""
-#~ "<para>ពិនិត្យមើល​ថា​តើ gpg-agent កំពុង​តែ​ដំណើរការ និង​ថា​តើ​អថេរ "
-#~ "<environment>GPG_AGENT_INFO</environment> ត្រូវ​បាន​កំណត់ និង​ធ្វើឲ្យ​ទាន់សម័យ​ដែរ​ឬទេ ។​"
-#~ "</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Selected Files"
-#~ msgstr "បាន​ជ្រើស​ឯកសារ"
-
-#~ msgid "No files selected."
-#~ msgstr "គ្មាន​ឯកសារ​ដែល​បាន​ជ្រើស​ទេ ។"
-
-#~ msgctxt "@action"
-#~ msgid "More..."
-#~ msgstr "ច្រើនជាង​..."
-
-#~ msgid "Archive files with:"
-#~ msgstr "ទុក​ឯកសារ​ក្នុង​ប័ណ្ណសារ​ជាមួយ ៖"
-
-#~ msgid "Archive name (OpenPGP):"
-#~ msgstr "ទុក​ឈ្មោះ​ក្នុង​ប័ណ្ណសារ​​ (OpenPGP) ៖​"
-
-#~ msgid "Archive name (S/MIME):"
-#~ msgstr "ឈ្មោះ​ប័ណ្ណសារ​​ (S/MIME) ៖​"
-
-#~ msgid "Sign and Encrypt (OpenPGP only)"
-#~ msgstr "ចុះហត្ថលេខា និង​អ៊ិនគ្រីប (តែ OpenPGP)​"
-
-#~ msgctxt "@title"
-#~ msgid "What do you want to do?"
-#~ msgstr "តើ​អ្នក​ចង់​ធ្វើ​អ្វី​​ ?"
-
-#~ msgid "This operation is not available for S/MIME"
-#~ msgstr "ប្រតិបត្តិការ​នេះ​មិន​អាច​រក​បាន​សម្រាប់​​ S/MIME ឡើយ​"
-
-#~ msgid "Add"
-#~ msgstr "បន្ថែម​"
-
-#~ msgctxt "@title"
-#~ msgid "For whom do you want to encrypt?"
-#~ msgstr "សម្រាប់​អ្នក​ណា​ដែល​អ្នក​ចង់​អ៊ិនគ្រីប​ ?"
-
-#~ msgctxt "@title"
-#~ msgid ""
-#~ "Please select for whom you want the files to be encrypted. Do not forget "
-#~ "to pick one of your own certificates."
-#~ msgstr ""
-#~ "សូម​ជ្រើស​សម្រាប់​អ្នក​ណា​ដែល​អ្នក​ចង់​ឲ្យ​​ឯកសារ​ត្រូវ​បាន​អ៊ិនគ្រីប​ ។​ កុំ​ភ្លេច​យក​មួយ​នៃវិញ្ញាបនបត្រ​ផ្ទាល់ខ្លួន​"
-#~ "របស់​អ្នក​ ។​"
-
-#~ msgid "Sign with OpenPGP"
-#~ msgstr "ចុះហត្ថលេខា​ដោយ​​​ OpenPGP"
-
-#~ msgid "Sign with S/MIME"
-#~ msgstr "ចុះហត្ថលេខាដោយ​ S/MIME"
-
-#~ msgctxt "@title"
-#~ msgid "Who do you want to sign as?"
-#~ msgstr "អ្នក​ណា​ដែល​អ្នក​ចង់​ចុះ​ហត្ថលេខា​ជា​ ?​"
-
-#~ msgctxt "@title"
-#~ msgid "Please choose an identity with which to sign the data."
-#~ msgstr "សូម​ជ្រើស​អត្តសញ្ញាណ​ជាមួយ​ទិន្នន័យ​ដើម្បី​ចុះ​ហត្ថលេខា ។"
-
-#~ msgid "E-Mail"
-#~ msgstr "អ៊ីមែល"
-
-#~ msgid "Key-ID"
-#~ msgstr "លេខសម្គាល់​សោ​"
-
-#~ msgid "<tr><th>%1:</th><td>%2</td></tr>"
-#~ msgstr "<tr><th>%1:</th><td>%2</td></tr>"
-
-#~ msgid "%1-bit %2 (secret key available)"
-#~ msgstr "%1-ប៊ីត %2 (វិញ្ញាបនបត្រ​សម្ងាត់​ដែល​មាន​​)"
-
-#~ msgid "%1-bit %2"
-#~ msgstr "%1-ប៊ីត %2"
-
-#~ msgid "Signing EMails and Files (Qualified)"
-#~ msgstr "ចុះ​ហត្ថលេខា​អ៊ីមែល និង​ឯកសារ"
-
-#~ msgid "Signing EMails and Files"
-#~ msgstr "ចុះហត្ថលេខា​អ៊ីមែល និង​ឯកសារ"
-
-#~ msgid "Encrypting EMails and Files"
-#~ msgstr "អ៊ិនគ្រីប​អ៊ីមែល និង​ឯកសារ"
-
-#~ msgid "Authenticate against Servers"
-#~ msgstr "ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​ម៉ាស៊ីន​បម្រើ"
-
-#~ msgid "This certificate is currently valid."
-#~ msgstr "វិញ្ញាបនបត្រ​នេះ​បច្ចុប្បន្ន​ត្រឹមត្រូវ ។"
-
-#~ msgid "The validity of this certificate cannot be checked at the moment."
-#~ msgstr "សុពលភាព​របស់​វិញ្ញាបនបត្រ​នេះ​មិនអាច​ពិនិត្យ​នៅពេល​ឥឡូវ​បានទេ ។"
-
-#~ msgid "Subject"
-#~ msgstr "ប្រធាន​បទ"
-
-#~ msgid "User-ID"
-#~ msgstr "លេខ​សម្គាល់​អ្នកប្រើ"
-
-#~ msgid "a.k.a."
-#~ msgstr "a.k.a."
-
-#~ msgid "from %1 until forever"
-#~ msgstr "ចាប់​ពី %1 តទៅ"
-
-#~ msgid "from %1 through %2"
-#~ msgstr "ពី %1 តាម %2"
-
-#~ msgid "Certificate type"
-#~ msgstr "ប្រភេទ​វិញ្ញាបនបត្រ"
-
-#~ msgid "No"
-#~ msgstr "ទេ​"
-
-#~ msgid "untrusted"
-#~ msgstr "មិនបាន​ទុកចិត្ត"
-
-#~ msgctxt "marginal trust"
-#~ msgid "marginal"
-#~ msgstr "នៃ​រឹម​ទំព័រ"
-
-#~ msgctxt "full trust"
-#~ msgid "full"
-#~ msgstr "ទាំងស្រុង"
-
-#~ msgctxt "ultimate trust"
-#~ msgid "ultimate"
-#~ msgstr "ជា​ទី​បំផុត"
-
-#~ msgctxt "undefined trust"
-#~ msgid "undefined"
-#~ msgstr "មិនបាន​កំណត់"
-
-#~ msgctxt "as in good/valid signature"
-#~ msgid "good"
-#~ msgstr "ល្អ"
-
-#~ msgid "class %1"
-#~ msgstr "ថ្នាក់ %1"
-
-#~ msgctxt "good/valid signature"
-#~ msgid "good"
-#~ msgstr "ល្អ"
-
-#~ msgctxt "fake/invalid signature"
-#~ msgid "bad"
-#~ msgstr "មិនល្អ"
-
-#~ msgid "Bad signature by unknown certificate %1: %2"
-#~ msgstr "ហត្ថលេខា​មិន​ល្អ ដោយ​វិញ្ញាបនបត្រ​មិន​ស្គាល់ %1 ៖ %2​"
-
-#~ msgid "Bad signature by an unknown certificate: %1"
-#~ msgstr "ហត្ថលេខា​មិន​ល្អ ដោយ​វិញ្ញាបនបត្រ​មិន​ស្គាល់ ៖​ %1"
-
-#~ msgid "Bad signature by %1: %2"
-#~ msgstr "ហត្ថលេខា​អាក្រក់​​ដោយ %1 ៖ %2"
-
-#~ msgid "Good signature by an unknown certificate."
-#~ msgstr "ហត្ថលេខា​ល្អ ដោយ​វិញ្ញាបនបត្រ​មិន​ស្គាល់ ។"
-
-#~ msgid "Good signature by %1."
-#~ msgstr "ហត្ថលេខា​ល្អ​ដោយ %1 ។"
-
-#~ msgid "Invalid signature by unknown certificate %1: %2"
-#~ msgstr "ហត្ថលេខា​មិន​ត្រឹមត្រូវ​ ដោយ​មិន​ស្គាល់​វិញ្ញាបនបត្រ​​ %1 ៖ %2"
-
-#~ msgid "Invalid signature by an unknown certificate: %1"
-#~ msgstr "ហត្ថលេខា​មិន​ត្រឹមត្រូវ​ ដោយ​មិន​ស្គាល់​​វិញ្ញាបនបត្រ​ ៖​ %1"
-
-#~ msgid "Invalid signature by %1: %2"
-#~ msgstr "ហត្ថលេខា​មិន​ត្រឹមត្រូវ ដោយ %1: %2"
-
-#~ msgid "This certificate was imported from the following sources:"
-#~ msgstr "វិញ្ញាបនបត្រ​នេះ​បាន​នាំចូល​ពី​ប្រភព​ខាងក្រោម​ ៖​"
-
-#~ msgid "The import of this certificate was canceled."
-#~ msgstr "ការ​នាំចូល​វិញ្ញាបនបត្រ​នេះ ត្រូវបាន​បោះបង់ ។"
-
-#~ msgid "New user-ids were added to this certificate by the import."
-#~ msgstr "លេខ​សម្គាល់​អ្នកប្រើ​ថ្មី​ត្រូវបាន​បន្ថែម​ទៅ​វិញ្ញាបនបត្រ​នេះ​តាម​ការ​នាំចូល ។"
-
-#~ msgid "New signatures were added to this certificate by the import."
-#~ msgstr "ហត្ថលេខា​ថ្មី ត្រូវបាន​បន្ថែម​ទៅ​វិញ្ញាបនបត្រ​នេះ​តាម​ការ​នាំចូល ។"
-
-#~ msgid "New subkeys were added to this certificate by the import."
-#~ msgstr "សោ​រង​ថ្មី​ត្រូវបាន​បន្ថែម​ទៅ​វិញ្ញាបនបត្រ​​នេះ​តាម​ការ​នាំចូល ។"
-
-#~ msgid ""
-#~ "The import contained no new data for this certificate. It is unchanged."
-#~ msgstr "ការ​នាំចូល​មិនមាន​ទិន្នន័យ​ថ្មី​សម្រាប់​វិញ្ញាបនបត្រ​នេះ ។ វា​មិនត្រូវ​បាន​ផ្លាស់ប្ដូរ​ទេ ។"
-
-#~ msgctxt "@info:whatsthis"
-#~ msgid ""
-#~ "When 'Quick Mode' is enabled, no dialog is shown when signing "
-#~ "(encrypting) emails, respectively, unless there is a conflict that needs "
-#~ "manual resolution."
-#~ msgstr ""
-#~ "នៅ​ពេល​ដែល​​ 'របៀប​រហ័ស​​' ត្រូវ​បាន​បើក គ្មាន​ប្រអប់​ត្រូវ​បាន​បង្ហាញ​ទេ​នៅ​ពេល​ចុះហត្ថលេខា (ការ​អ៊ិនគ្រីប​​"
-#~ ") អ៊ីមែល​នីមួយៗ លុះត្រាតែ​មាន​ការ​ប៉ះ​ទង្គិច​ដែល​ត្រូវការ​គុណភាព​បង្ហាញ​​​សៀវភៅ​ដៃ​​​​ ។​"
-
-#~ msgid "Use 'Quick Mode' when signing"
-#~ msgstr "ប្រើ​​ '​​របៀប​រហ័ស​​' នៅ​ពេល​ដែល​​ចុះហត្ថលេខា"
-
-#~ msgctxt "@info:whatsthis"
-#~ msgid ""
-#~ "<p>Choose here which of the configured checksum programs should be used "
-#~ "when creating checksum files.</p>\n"
-#~ "<p>When verifying checksums, the program to use is automatically found, "
-#~ "based on the names of the checksum files found.</p>\n"
-#~ msgstr ""
-#~ "<p>នៅ​ទីនេះ​ជ្រើស​កម្មវិធី​ឆេកសាំដែល​បាន​កំណត់​រចនាសម្ព័ន្ធ​ដែល​គួរ​ត្រូវ​បាន​ត្រូវ​បាន​ប្រើ នៅ​ពេល​បង្កើត​"
-#~ "ឯកសារ​ឆេកសាំ ។​</p>\n"
-#~ "<p>នៅ​ពេល​ផ្ទៀងផ្ទាត់​ឆេកសាំ​ កម្មវិធី​ដែល​ត្រូវ​ប្រើ​នឹង​ត្រូវ​បាន​រក​ឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ​​ដោយ​ផ្អែក​លើ​ឈ្មោះ​​​"
-#~ "ឯកសារ​ឆេកសាំ​ដែល​រក​ឃើញ​ ។​</p>\n"
-
-#~ msgid "Failed to open file \"%1\" for reading and writing: %2"
-#~ msgstr "បាន​បរាជ័យ​បើក​ឯកសារ​​ \"%1\" សម្រាប់​ការ​​អាន និង​ការ​សរសេរ ៖​ %2"
-
-#~ msgid ""
-#~ "Caught unexpected exception in DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared: %1"
-#~ msgstr ""
-#~ "បាន​ទទួល​ករណី​លើកលែង​ដែល​មិនបាន​រំពឹង​ទុក​នៅ​ក្នុង SignEncryptFilesController::Private::"
-#~ "slotWizardOperationPrepared ៖ %1"
-
-#~ msgid ""
-#~ "Caught unknown exception in DecryptVerifyFilesController::Private::"
-#~ "slotWizardOperationPrepared"
-#~ msgstr ""
-#~ "បាន​ទទួល​ករណី​លើកលែង​ដែល​មិន​​ស្គាល់​នៅ​ក្នុង SignEncryptFilesController::Private::"
-#~ "slotWizardOperationPrepared"
-
-#~ msgid "Performing Self-Check..."
-#~ msgstr "កំពុ​ងអនុវត្ត​កា​រពិនិត្យ​មើល​ដោយ​ខ្លួន​ឯង..."
-
-#~ msgctxt "did not pass"
-#~ msgid "Self-Check Failed"
-#~ msgstr "បានបរាជ័យ​ក្នុងការ​ពិនិត្យ​ដោយ​ខ្លួន​ឯង"
-
-#~ msgid "Self-Check Passed"
-#~ msgstr "បាន​ចម្លង​កា​រពិនិត្យ​ផ្ទាល់ខ្លួន"
-
-#~ msgid "Certificate cache loaded."
-#~ msgstr "បាន​ផ្ទុក​ឃ្លាំង​សម្ងាត់​វិញ្ញាបនបត្រ ។"
-
-#~ msgid "Remove unencrypted original file when done"
-#~ msgstr "យក​ឯកសារ​ដើម​ដែលបាន​អ៊ិនគ្រីប​ចេញ នៅពេល​ធ្វើរួច"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You have requested the unencrypted data to be removed after "
-#~ "encryption.</para><para>Are you really sure you do not need to access the "
-#~ "data anymore in decrypted form?</para>"
-#~ msgstr ""
-#~ "<para>អ្នក​បាន​ស្នើ​ឲ្យ​យក​ទិន្នន័យ​ដែល​មិនបាន​អ៊ិនគ្រីប​ចេញ​បន្ទាប់ពី​ការ​អ៊ិនគ្រីប ។​</para><para>តើ​អ្នក​"
-#~ "ពិតជា​មិន​ចង់​ដំណើរការ​ទិន្នន័យ​នៅ​ក្នុង​សំណុំ​បែបបទ​ដែល​បាន​ឌិគ្រីប​មែន​ឬ ?</para>"
-
-#~ msgid ""
-#~ "You need to select an OpenPGP signing certificate to perform this "
-#~ "operation."
-#~ msgstr "អ្នក​ត្រូវ​ជ្រើស​វិញ្ញាបនបត្រ​ការ​ចុះហត្ថលេខា OpenPGP ដើម្បី​ធ្វើ​ប្រតិបត្តិការ​នេះ ។"
-
-#~ msgid ""
-#~ "Only OpenPGP certificates will be offered for selection because you "
-#~ "specified a combined sign/encrypt operation that is only available for "
-#~ "OpenPGP."
-#~ msgstr ""
-#~ "មានតែ​វិញ្ញាបនបត្រ OpenPGP ប៉ុណ្ណោះ​ដែល​នឹង​ត្រូវបាន​ផ្ដល់​សម្រាប់​ជម្រើស ព្រោះ​អ្នក​បានបញ្ជាក់​នូវ​"
-#~ "ប្រតិបត្តិការ​ចុះហត្ថលេខា​/​អ៊ិនគ្រីប ដែល​មាន​តែ​សម្រាប់ OpenPGP ។"
-
-#~ msgid ""
-#~ "Only OpenPGP certificates will be offered for selection because you only "
-#~ "specified an OpenPGP signing certificate."
-#~ msgstr ""
-#~ "មាន​តែ​វិញ្ញាបនបត្រ OpenPGP ប៉ុណ្ណោះ​ដែល​នឹង​ត្រូវ​ផ្ដល់សម្រាប់​ជម្រើស ព្រោះ​អ្នក​បាន​បញ្ជាក់​តែ​"
-#~ "វិញ្ញាបនបត្រ​ចុះហត្ថលេខា OpenPGP ប៉ុណ្ណោះ ។"
-
-#~ msgid ""
-#~ "Only S/MIME certificates will be offered for selection because you only "
-#~ "specified an S/MIME signing certificate."
-#~ msgstr ""
-#~ "មានតែ​វិញ្ញាបនបត្រ S/MIME តែ​ប៉ុណ្ណោះ​ដែល​នឹង​ត្រូវ​ផ្ដល់​សម្រាប់​ជម្រើស ព្រោះ​អ្នក​បាន​បញ្ជាក់​តែ​"
-#~ "វិញ្ញាបនបត្រ​ចុះហត្ថលេខា S/MIME ។"
-
-#~ msgid ""
-#~ "You have selected both OpenPGP and S/MIME signing certificate types, thus "
-#~ "two signatures will be created."
-#~ msgstr ""
-#~ "អ្នក​បាន​ជ្រើស​វិញ្ញាបនបត្រ​ចុះហត្ថលេខា​របស់​ប្រភេទ OpenPGP និង S/MIME ដូច្នេះ​ហត្ថលេខា​ទាំងពីរ​នឹង​"
-#~ "ត្រូវ​បាន​បង្កើត ។"
-
-#~ msgid ""
-#~ "If you select both OpenPGP and S/MIME receipient certificates, two "
-#~ "encrypted files will be created: one for OpenPGP recipients, one for S/"
-#~ "MIME recipients."
-#~ msgstr ""
-#~ "ប្រសិនបើ​​អ្នក​ជ្រើស​វិញ្ញាបនបត្រ​របស់​អ្នក​ទទួល​នៃ​ប្រភេទ OpenPGP និង S/MIME ឯកសារ​ដែលបានអ៊ិនគ្រីប​"
-#~ "ទាំង​ពីរ​នឹង​ត្រូវ​បាន​បង្កើត ។ មួយ​សម្រាប់​អ្នក​ទទួល OpenPGP និង​មួយ​ទៀត​សម្រាប់​អ្នក​ទទួល S/MIME ។"
-
-#~ msgctxt "Version string is a guess"
-#~ msgid "guessed"
-#~ msgstr "បាន​ស្មាន​​"
-
-#~ msgid "(please wait while certifications are being loaded)"
-#~ msgstr "(សូម​រង់ចាំ​ខណៈពេល​ការ​បញ្ជាក់​កំពុង​ត្រូវ​បាន​ផ្ទុក)"
-
-#~ msgid "good"
-#~ msgstr "ល្អ"
-
-#~ msgid "Listing OpenPGP certificates"
-#~ msgstr "រាយ​វិញ្ញាបនបត្ររបស់​​​ OpenPGP"
-
-#~ msgid "Select Icon"
-#~ msgstr "ជ្រើស​រូបតំណាង"
-
-#~ msgid "Icon Source"
-#~ msgstr "ប្រភព​រូបតំណាង"
-
-#~ msgid "S&ystem icons:"
-#~ msgstr "រូបតំណាង​ប្រព័ន្ធ ៖"
-
-#~ msgid "O&ther icons:"
-#~ msgstr "រូបតំណាង​ផ្សេងទៀត ៖"
-
-#~ msgid "&Browse..."
-#~ msgstr "រកមើល..."
-
-#~ msgid "Search interactively for icon names (e.g. folder)."
-#~ msgstr "ស្វែងរកឈ្មោះ​រូបតំណាង​ជា​អន្តរ (ឧ. ថត) ។"
-
-#~ msgid "Applications"
-#~ msgstr "កម្មវិធី"
-
-#~ msgid "Devices"
-#~ msgstr "ឧបករណ៍"
-
-#~ msgid "Emblems"
-#~ msgstr "បដិរូប"
-
-#~ msgid "Emotes"
-#~ msgstr "សញ្ញា​អារម្មណ៍"
-
-#~ msgid "Filesystems"
-#~ msgstr "ប្រព័ន្ធ​ឯកសារ"
-
-#~ msgid "International"
-#~ msgstr "អន្តរជាតិ"
-
-#~ msgid "Mimetypes"
-#~ msgstr "ប្រភេទ Mime"
-
-#~ msgid "Open"
-#~ msgstr "បើក"
-
-#~ msgid "Icon Files (*.png *.xpm *.svg *.svgz)"
-#~ msgstr "ឯកសារ​រូបតំណាង (*.png *.xpm *.svg *.svgz)"
-
-#~ msgid "Parse error on gpgconf --list-config output: %1"
-#~ msgstr "ញែក​កំហុស​នៅ​លើ​លទ្ធផល gpgconf --list-config ៖ %1"
-
-#~ msgid "gpgconf --list-config: Unknown component: %1"
-#~ msgstr "gpgconf --list-config ៖ មិនស្គាល់​សមាសភាគ ៖ %1"
-
-#~ msgid "gpgconf --list-config: Unknown entry: %1:%2"
-#~ msgstr "gpgconf --list-config ៖ មិនស្គាល់​ធាតុ ៖ %1:%2"
-
-#~ msgid "gpgconf --list-config: Invalid entry: value must start with '\"': %1"
-#~ msgstr "gpgconf --list-config ៖ ធាតុ​មិនត្រឹមត្រូវ ៖ តម្លៃ​ត្រូវ​ចាប់ផ្ដើម​ដោយ '\"' ៖ %1"
-
-#~ msgid "Parse error on gpgconf --list-components. output: %1"
-#~ msgstr "ញែក​កំហុស​នៅ​លើ​លទ្ធផល gpgconf --list-components. ៖ %1"
-
-#~ msgid "gpgconf not found or cannot be started"
-#~ msgstr "រក​មិនឃើញ gpgconf ទេ ឬ​មិនអាច​ចាប់ផ្ដើម​បាន​ទេ"
-
-#~ msgid "gpgconf terminated unexpectedly"
-#~ msgstr "gpgconf ត្រូវ​បាន​បញ្ចប់​ដំណើរការ​ដោយ​មិន​រំពឹង​ទុក"
-
-#~ msgid "timeout while executing gpgconf"
-#~ msgstr "អស់ពេល​នៅ​ខណៈ​ប្រតិបត្តិ gpgconf"
-
-#~ msgid "error while writing to gpgconf"
-#~ msgstr "មាន​កំហុស​ខណៈ​ដែល​កំពុង​សរសេរ gpgconf"
-
-#~ msgid "error while reading from gpgconf"
-#~ msgstr "កំហុស​ខណៈ​ដែល​កំពុង​អាន​ពី gpgconf"
-
-#~ msgid "Unknown error while executing gpgconf"
-#~ msgstr "កំហុស​មិនស្គាល់​ខណៈ​ដែល​កំពុង​ប្រតិបត្តិ gpgconf"
-
-#~ msgctxt "as in \"verbosity level\""
-#~ msgid "Level"
-#~ msgstr "កម្រិត"
-
-#~ msgid "Set/Unset"
-#~ msgstr "កំណត់/​មិន​កំណត់"
-
-#~ msgid "String List"
-#~ msgstr "បញ្ជី​ខ្សែ​អក្សរ"
-
-#~ msgid "String"
-#~ msgstr "ខ្សែ​អក្សរ"
-
-#~ msgid "List of Integers"
-#~ msgstr "បញ្ជី​ចំនួន​គត់"
-
-#~ msgid "Integer"
-#~ msgstr "ចំនួន​គត់"
-
-#~ msgid "List of Unsigned Integers"
-#~ msgstr "បញ្ជី​ចំនួន​គត់​ដែលមិនបាន​ចុះហត្ថលេខា"
-
-#~ msgid "Unsigned Integer "
-#~ msgstr "ចំនួន​គត់​ដែល​មិនបាន​ចុះហត្ថលេខា "
-
-#~ msgid "Path List"
-#~ msgstr "បញ្ជី​ផ្លូវ"
-
-#~ msgid "Path"
-#~ msgstr "ផ្លូវ"
-
-#~ msgid "List of URLs"
-#~ msgstr "បញ្ជី URL"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "List of LDAP URLs"
-#~ msgstr "បញ្ជី URL LDAP"
-
-#~ msgid "Directory Path List"
-#~ msgstr "បញ្ជី​ផ្លូវ​ថត"
-
-#~ msgid "Directory Path"
-#~ msgstr "ផ្លូវ​ថត"
-
-#~ msgid "Option"
-#~ msgstr "ជម្រើស"
-
-#~ msgid "Impose"
-#~ msgstr "ដាក់លើ"
-
-#~ msgid "Reset user settings to built-in default"
-#~ msgstr "កំណត់​ការ​កំណត់​អ្នកប្រើ​ទៅ​លំនាំដើម​ដែល​មាន​ស្រាប់​ឡើងវិញ"
-
-#~ msgid "Custom value:"
-#~ msgstr "តម្លៃ​ផ្ទាល់ខ្លួន ៖"
-
-#~ msgid "Impose setting on all users"
-#~ msgstr "ដាក់​ការ​កំណត់​លើ​អ្នកប្រើ​ទាំងអស់"
-
-#~ msgid "Setup Error"
-#~ msgstr "កំហុស​ពេល​ដំឡើង"
-
-#~ msgid ""
-#~ "KGpgConf could not execute gpgconf.exe.\n"
-#~ "\n"
-#~ "Error: %1\n"
-#~ "Error Code: %2"
-#~ msgstr ""
-#~ "KGpgConf មិនអាច​ប្រតិបត្តិ gpgconf.exe បានទេ ។\n"
-#~ "\n"
-#~ "កំហុស ៖ %1\n"
-#~ "កូដ​កំហុស ៖ %2"
-
-#~ msgid "Parsing Error"
-#~ msgstr "កំហុស​ក្នុង​ការ​ញែក"
-
-#~ msgid ""
-#~ "An error occurred while reading the current configuration.\n"
-#~ "\n"
-#~ "Error: %1"
-#~ msgstr ""
-#~ "មាន​កំហុស​កើតឡើង នៅ​ខណៈ​អាន​ការ​កំណត់​រចនា​សម្ព័ន្ធ​បច្ចុប្បន្ន ។\n"
-#~ "\n"
-#~ "កំហុស ៖ %1"
-
-#~ msgid "Write Error"
-#~ msgstr "កំហុស​ក្នុងការ​សរសេរ"
-
-#~ msgid ""
-#~ "Could not open file %1 for writing. You might not have the permission to "
-#~ "write to that file."
-#~ msgstr "មិន​អាច​បើក​សរសេរ​ឯកសារ %1 ។ អ្នក​មិន​មាន​សិទ្ធិ​​ ដើម្បី​សរសេរ​ឯកសារ​នោះ​ទេ ។"
-
-#~ msgid "Error while writing to file %1."
-#~ msgstr "កំហុស​នៅ​ខណៈ​សរសេរ​ឯកសារ %1 ។"
-
-#~ msgid ""
-#~ "Could not start the GnuPG Administrative Console (kgpgconf). Please check "
-#~ "your installation."
-#~ msgstr ""
-#~ "មិនអាច​ចាប់ផ្ដើម​កុង​សូល​គ្រប់គ្រង GnuPG (kgpgconf) បាន​ទេ ។ សូម​ពិនិត្យ​មើល​ការ​ដំឡើង​របស់​អ្នក ។"
-
-#~ msgid "Error Starting KGpgConf"
-#~ msgstr "កំហុស​ក្នុងកា​រចាប់ផ្ដើម KGpgConf"
-
-#~ msgid "GnuPG Administrative Console"
-#~ msgstr "កុងសូល​គ្រប់គ្រង GnuPG"
-
-#~ msgid "No certificates loaded yet."
-#~ msgstr "គ្មាន​វិញ្ញាបនបត្រ​ដែលបាន​ផ្ទុក​ទេ ។"
-
-#~ msgid "File"
-#~ msgstr "ឯកសារ"
-
-#~ msgid "View"
-#~ msgstr "មើល"
-
-#~ msgid "KWatchGnuPG"
-#~ msgstr "KWatchGnuPG"
-
-#~ msgid "GnuPG log viewer"
-#~ msgstr "កម្មវិធី​មើល​កំណត់ហេតុ​របស់​ GnuPG"
-
-#~ msgid "Configure KWatchGnuPG"
-#~ msgstr "កំណត់​រចនាសម្ព័ន្ធ KWatchGnuPG"
-
-#~ msgid "WatchGnuPG"
-#~ msgstr "WatchGnuPG"
-
-#~ msgid "&Executable:"
-#~ msgstr "អាច​ប្រតិបត្តិបាន ៖"
-
-#~ msgid "&Socket:"
-#~ msgstr "រន្ធ ៖"
-
-#~ msgid "None"
-#~ msgstr "គ្មាន"
-
-#~ msgid "Basic"
-#~ msgstr "មូលដ្ឋាន"
-
-#~ msgid "Expert"
-#~ msgstr "ជំនាញ"
-
-#~ msgid "Guru"
-#~ msgstr "Guru"
-
-#~ msgid "Default &log level:"
-#~ msgstr "កម្រិត​កំណត់ហេតុ​លំនាំដើម ៖"
-
-#~ msgid "Log Window"
-#~ msgstr "បង្អួច​កំណត់ហេតុ"
-
-#~ msgid "&History size:"
-#~ msgstr "ទំហំ​ប្រវត្តិ ៖"
-
-#~ msgid "Set &Unlimited"
-#~ msgstr "កំណត់​គ្មាន​កំណត់"
-
-#~ msgid "Enable &word wrapping"
-#~ msgstr "អនុញ្ញាត​ការ​រុំ​ពាក្យ"
-
-#~ msgid "[%1] Log cleared"
-#~ msgstr "បាន​ជម្រះ​កំណត់ហេតុ [%1]"
-
-#~ msgid "C&lear History"
-#~ msgstr "ជម្រះ​ប្រវត្តិ"
-
-#~ msgid "[%1] Log stopped"
-#~ msgstr "បាន​បញ្ឈប់​ការ​ចុះ​កំណត់ហេតុ [%1]"
-
-#~ msgid ""
-#~ "The watchgnupg logging process could not be started.\n"
-#~ "Please install watchgnupg somewhere in your $PATH.\n"
-#~ "This log window is unable to display any useful information."
-#~ msgstr ""
-#~ "ដំណើរការ​ចុះ​កំណត់ហេតុ watchgnupg មិន​អាច​ចាប់ផ្ដើម​បានទេ ។\n"
-#~ "សូម​ដំឡើង watchgnupg នៅ​កន្លែង​ណាមួយ​ក្នុង $PATH របស់​អ្នក ។\n"
-#~ "បង្អួច​កំណត់ហេតុ​នេះ​គឺ​គ្មាន​ប្រយោជន៍​អ្វី​ទាំងអស់ ។"
-
-#~ msgid "[%1] Log started"
-#~ msgstr "បាន​ចាប់ផ្ដើម​ការ​ចុះ​កំណត់ហេតុ [%1]"
-
-#~ msgid "There are no components available that support logging."
-#~ msgstr "មិន​មាន​សមាសភាគ​ដែល​គាំទ្រ​ការ​ចុះ​កំណត់​ហេតុ​ទេ ។"
-
-#~ msgid ""
-#~ "The watchgnupg logging process died.\n"
-#~ "Do you want to try to restart it?"
-#~ msgstr ""
-#~ "ដំណើរការ​ចុះហត្ថលេខា watchgnupg បាន​បញ្ចប់ ។\n"
-#~ "តើ​អ្នក​ចង់​ព្យាយាម​ចាប់ផ្ដើម​វា​ឡើងវិញ​ឬ​ទេ ?"
-
-#~ msgid "Try Restart"
-#~ msgstr "ព្យាយាម​ចាប់ផ្ដើម​ឡើងវិញ"
-
-#~ msgid "====== Restarting logging process ====="
-#~ msgstr "====== ចាប់ផ្ដើម​ដំណើរការ​ចុះ​កំណត់ហេតុ ====="
-
-#~ msgid ""
-#~ "The watchgnupg logging process is not running.\n"
-#~ "This log window is unable to display any useful information."
-#~ msgstr ""
-#~ "ការ​ចុះ​កំណត់ហេតុ watchgnupg គឺ​មិន​ដំណើរការ​ទេ ។\n"
-#~ "បង្អួច​កំណត់ហេតុ​នេះ គឺ​គ្មាន​ប្រយោជន៍​អ្វី​ទាំងអស់ ។"
-
-#~ msgid "Could not save file %1: %2"
-#~ msgstr "មិន​អាច​រក្សាទុក​ឯកសារ %1: %2 បានទេ"
-
-#~ msgid "KWatchGnuPG Log Viewer"
-#~ msgstr "កម្មវិធី​មើល​កំណត់ហេតុ​របស់​ KWatchGnuPG"
-
-#~ msgid "&Find:"
-#~ msgstr "រក ៖"
-
-#~ msgid "Search Toolbar"
-#~ msgstr "របារ​ឧបករណ៍​ស្វែងរក"
-
-#~ msgid "CTRL+SHIFT+N"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+N"
-
-#~ msgid "CTRL+SHIFT+R"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+R"
-
-#~ msgid "CTRL+SHIFT+D"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+D"
-
-#~ msgid "CTRL+SHIFT+W"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+W"
-
-#~ msgid "CTRL+SHIFT+LEFT"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+ព្រួញ​ឆ្វេង"
-
-#~ msgid "CTRL+SHIFT+RIGHT"
-#~ msgstr "បញ្ជា​(CTRL)+ប្ដូរ​(SHIFT)+ព្រួញ​ស្ដាំ"
-
-#~ msgid "CTRL+."
-#~ msgstr "បញ្ជា​(CTRL)+"
-
-#~ msgid "CTRL+,"
-#~ msgstr "បញ្ជា​(CTRL)+"

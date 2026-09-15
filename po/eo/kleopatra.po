@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2025-03-15 10:38+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -167,11 +167,6 @@ msgstr "La dosiero <filename>%1</filename> jam ekzistas."
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, kde-format
-msgid "Certificate manager and cryptography app"
-msgstr "Atestila administranto kaj kriptografia aplikaĵo"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -201,6 +196,11 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "© 2001-%1 La programistoj de Kleopatra"
+
+#: src/aboutdata.cpp
+#, kde-format
+msgid "Certificate manager and cryptography app"
+msgstr "Atestila administranto kaj kriptografia aplikaĵo"
 
 #: src/commands/addadskcommand.cpp
 #, kde-format
@@ -242,8 +242,8 @@ msgstr "Aldoni ADSK"
 #: src/commands/addsubkeycommand.cpp
 #, kde-format
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<p>Okazis eraro provante aldoni novan subŝlosilon al <b>%1</b>:</p><p>%2</p>"
 
@@ -400,8 +400,8 @@ msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>Kopiado de la ŝlosilo al la karto malsukcesis:</para><para><message>"
-"%1</message></para>"
+"<para>Kopiado de la ŝlosilo al la karto malsukcesis:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/certificatetopivcardcommand.cpp
 #: src/commands/keytocardcommand.cpp
@@ -560,8 +560,8 @@ msgid ""
 "<para>The certification of the certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>La atestado de la atestiloj malsukcesis.</para><para>Eraro: <message>"
-"%1</message></para>"
+"<para>La atestado de la atestiloj malsukcesis.</para><para>Eraro: "
+"<message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp
 #, kde-format
@@ -576,8 +576,8 @@ msgid ""
 "<para>The certification of all certificates failed.</para><para>Error: "
 "<message>%1</message></para>"
 msgstr ""
-"<para>La atestado de ĉiuj atestiloj malsukcesis.</para><para>Eraro: <message>"
-"%1</message></para>"
+"<para>La atestado de ĉiuj atestiloj malsukcesis.</para><para>Eraro: "
+"<message>%1</message></para>"
 
 #: src/commands/certifygroupcommand.cpp
 #, kde-format
@@ -1096,7 +1096,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL-kaŝmemoro sukcese forigita."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1277,8 +1277,8 @@ msgstr "CMS-finaĵo: %1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Okazis eraro dum provado forigi la atestilon:</p><p><b>%1</b></p></qt>"
 
@@ -1472,8 +1472,8 @@ msgstr "Eksportante atestojn..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Okazis eraro dum provado eksporti la atestilon:</p><p><b>%1</b></p></"
 "qt>"
@@ -1510,6 +1510,12 @@ msgid "Certificate Groups (*%1)"
 msgstr "Atestilgrupoj (*%1)"
 
 #: src/commands/exportgroupscommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "Ne povas anstataŭigi ekzistantan <filename>%1</filename>."
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1522,12 +1528,6 @@ msgstr "Atestilgrupoj (*%1)"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "Eksporto Malsukcesis"
-
-#: src/commands/exportgroupscommand.cpp
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "Ne povas anstataŭigi ekzistantan <filename>%1</filename>."
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -1784,8 +1784,8 @@ msgid ""
 "<para>An error occurred during export of the secret key:</"
 "para><para><message>%1</message></para>"
 msgstr ""
-"<para>Eraro okazis dum elportado de la sekreta ŝlosilo:</para><para><message>"
-"%1</message></para>"
+"<para>Eraro okazis dum elportado de la sekreta ŝlosilo:</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/exportpaperkeycommand.cpp
 #, kde-kuit-format
@@ -2224,16 +2224,16 @@ msgstr[0] "Importante atestilon de 1 dosiero..."
 msgstr[1] "Importante atestilojn de %1 dosieroj..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "Ne eblis malfermi dosieron %1 por legado: %2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Atestilo Importo Malsukcesis"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "Ne eblis malfermi dosieron %1 por legado: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2566,8 +2566,8 @@ msgstr "Montri Aŭdigan Protokolon"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Okazis eraro dum provado importi la atestilon:</p><p><b>%1</b></p></"
 "qt>"
@@ -2575,8 +2575,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Okazis eraro dum provado importi la atestilon %1:</p><p><b>%2</b></"
 "p></qt>"
@@ -2585,9 +2585,9 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -2608,9 +2608,9 @@ msgstr "%1<item>%2</item>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -2905,13 +2905,25 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "La ekzistanta ŝlosilo havas la ŝlosiltenon:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>La ŝlosilo estis kopiita al la karto.</para>"
+
 #: src/commands/keytocardcommand.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "<para>The key has been copied to the card.</para><para>You can now delete "
+#| "the copy of the key stored on this computer. Optionally, you can first "
+#| "create a backup of the key.</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>La ŝlosilo estis kopiita al la karto.</para><para>Vi povas nun forigi "
 "la kopion de la ŝlosilo konservita en ĉi tiu komputilo. Laŭvole, vi povas "
@@ -2924,16 +2936,30 @@ msgid "Create backup"
 msgstr "Krei sekurkopion"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "Forigi kopion surdiske"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "Konservi kopion surdiske"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
+"Ĉu vi vere volas forigi la kopion de la ŝlosilo konservita en ĉi komputilo?"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -3175,8 +3201,8 @@ msgid ""
 "<para>The creation of the certificate signing request failed.</"
 "para><para>Error: <message>%1</message></para>"
 msgstr ""
-"<para>La atestado de la atestiloj malsukcesis.</para><para>Eraro: <message>"
-"%1</message></para>"
+"<para>La atestado de la atestiloj malsukcesis.</para><para>Eraro: "
+"<message>%1</message></para>"
 
 #: src/commands/newcertificatesigningrequestcommand.cpp
 #: src/kleopatraapplication.cpp
@@ -3588,9 +3614,9 @@ msgid ""
 "partners with the instruction to import it.</para>"
 msgstr ""
 "<para>La atestilo estis revokita sukcese kaj alŝutita al la interna "
-"dosierujo.</para><para>La revokita atestilo estis konservita al <filename>"
-"%1</filename>.</para><para>Vi devus sendi ĉi tiun dosieron al viaj komunikad-"
-"partneroj kun la instrukcio por enporti ĝin.</para>"
+"dosierujo.</para><para>La revokita atestilo estis konservita al "
+"<filename>%1</filename>.</para><para>Vi devus sendi ĉi tiun dosieron al viaj "
+"komunikad-partneroj kun la instrukcio por enporti ĝin.</para>"
 
 #: src/commands/revokekeycommand.cpp
 #, kde-kuit-format
@@ -3998,8 +4024,8 @@ msgstr "A&gordo"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 "Krei OpenPGP-ĉifritajn dosierojn kun \".pgp\" dosierfinaĵoj anstataŭ \".gpg\""
 
@@ -4734,15 +4760,15 @@ msgstr ""
 "ĉiuj dosieroj por esti kontrolsumitaj, ne miksaĵo de ambaŭ."
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "Komencante..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "Rezigni"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "Komencante..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4980,8 +5006,8 @@ msgstr "Malsukcesis malĉifri kaj kontroli <filename>%1</filename>:"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info Successfully decrypted and verified <file> as <file>."
 #| msgid ""
-#| "Successfully decrypted and verified <filename>%1</filename> as <filename>"
-#| "%2</filename>."
+#| "Successfully decrypted and verified <filename>%1</filename> as "
+#| "<filename>%2</filename>."
 msgctxt "@info Decrypted and verified <file> as <file>."
 msgid ""
 "Decrypted and verified <filename>%1</filename> as <filename>%2</filename>."
@@ -5000,6 +5026,34 @@ msgstr "Kontrolo de <filename>%1</filename> nuligita."
 msgctxt "@info Failed to verify <file>:"
 msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Malsukcesis kontroli <filename>%1</filename>:"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Kontrolis <filename>%1</filename> kun subskribo en <filename>%2</filename>."
+msgstr[1] ""
+"Kontrolis <filename>%1</filename> kun subskribo en <filename>%2</filename>."
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Verified <file> with signature in <file>."
+#| msgid ""
+#| "Verified <filename>%1</filename> with signature in <filename>%2</"
+#| "filename>."
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Kontrolis <filename>%1</filename> kun subskribo en <filename>%2</filename>."
+msgstr[1] ""
+"Kontrolis <filename>%1</filename> kun subskribo en <filename>%2</filename>."
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
@@ -5054,6 +5108,12 @@ msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr ""
 "La datumoj ne estis ĉifritaj por iu sekreta ŝlosilo en via atestil-listo."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5189,8 +5249,14 @@ msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr ""
-"Averto: La retpoŝtadreso de la sendinto ne estas konservita en la <a href="
-"\"key:%1\">atestilo</a> uzata por subskribi. Konservita:<ul>%2</ul>"
+"Averto: La retpoŝtadreso de la sendinto ne estas konservita en la <a "
+"href=\"key:%1\">atestilo</a> uzata por subskribi. Konservita:<ul>%2</ul>"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5553,6 +5619,22 @@ msgstr "Diagnozo"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Montri Aŭdigan Protokolon"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, fuzzy, kde-format
@@ -5981,6 +6063,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Subskribi / Ĉifri Dosieroj"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
@@ -5994,6 +6077,12 @@ msgstr "Subskribi / Ĉifri Dosieroj"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Subskribi / Ĉifri"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
@@ -6016,13 +6105,6 @@ msgstr "Subskribi"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Ĉifradi"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6384,20 +6466,20 @@ msgstr "arkivo"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"Kaptis neatenditan escepton en SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Kaptis neatenditan escepton en "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"Kaptis nekonatan escepton en SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Kaptis nekonatan escepton en "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-format
@@ -6423,8 +6505,8 @@ msgstr "Ĉifrado nuligita."
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "Malsukcesis subskribi kaj ĉifri <filename>%1</filename>: <emphasis "
 "strong='true'>%2</emphasis>"
@@ -6474,8 +6556,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6534,27 +6616,41 @@ msgstr ""
 "<filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully signed and encrypted <file> and <file> and saved it as "
+#| "<file>."
+#| msgid ""
+#| "Successfully signed and encrypted <filename>%1</filename> and "
+#| "<filename>%2</filename> and saved it as <filename>%3</filename>."
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
 "Sukcese subskribis kaj ĉifris <filename>%1</filename> kaj <filename>%2</"
 "filename> kaj konservis ĝin kiel <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
+#| msgid ""
+#| "Successfully signed and encrypted <filename>%2</filename> and %1 other "
+#| "and saved it as <filename>%3</filename>."
+#| msgid_plural ""
+#| "Successfully signed and encrypted <filename>%2</filename> and %1 others "
+#| "and saved it as <filename>%3</filename>."
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "Sukcese subskribis kaj ĉifris <filename>%2</filename> kaj %1 alian kaj "
 "konservis ĝin kiel <filename>%3</filename>."
@@ -6573,28 +6669,54 @@ msgstr ""
 "<filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info Successfully encrypted <file> and saved it as <file>."
+#| msgid ""
+#| "Successfully encrypted <filename>%1</filename> and saved it as "
+#| "<filename>%2</filename>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr ""
+"Sukcese ĉifris <filename>%1</filename> kaj konservis ĝin kiel <filename>%2</"
+"filename>."
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully signed <file> and <file> and saved the signature in "
+#| "<file>."
+#| msgid ""
+#| "Successfully signed <filename>%1</filename> and <filename>%2</filename> "
+#| "and saved the signature in <filename>%3</filename>."
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr ""
 "Sukcese subskribis <filename>%1</filename> kaj <filename>%2</filename> kaj "
 "konservis la subskribon en <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully signed <file> and <n> other(s) and saved the signature "
+#| "in <file>."
+#| msgid ""
+#| "Successfully signed <filename>%2</filename> and %1 other and saved the "
+#| "signature in <filename>%3</filename>."
+#| msgid_plural ""
+#| "Successfully signed <filename>%2</filename> and %1 others and saved the "
+#| "signature in <filename>%3</filename>."
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "Sukcese subskribis <filename>%2</filename> kaj %1 alian kaj konservis la "
 "subskribon en <filename>%3</filename>."
@@ -6613,26 +6735,41 @@ msgstr ""
 "filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully encrypted <file> and <file> and saved it as <file>."
+#| msgid ""
+#| "Successfully encrypted <filename>%1</filename> and <filename>%2</"
+#| "filename> and saved it as <filename>%3</filename>."
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "Sukcese ĉifris <filename>%1</filename> kaj <filename>%2</filename> kaj "
 "konservis ĝin kiel <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "@info Successfully encrypted <file> and <n> other(s) and saved it as "
+#| "<file>."
+#| msgid ""
+#| "Successfully encrypted <filename>%2</filename> and %1 other and saved it "
+#| "as <filename>%3</filename>."
+#| msgid_plural ""
+#| "Successfully encrypted <filename>%2</filename> and %1 others and saved it "
+#| "as <filename>%3</filename>."
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "Sukcese ĉifris <filename>%2</filename> kaj %1 alian kaj konservis ĝin kiel "
 "<filename>%3</filename>."
@@ -8361,23 +8498,24 @@ msgstr "Eraro: La priskribo ne devas enhavi malplenajn liniojn."
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
-"<para>Vi estas nuligonta la jenan atestilon:</para><para>&nbsp;&nbsp;&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis strong='true'>La "
-"revoko efektiviĝos tuj kaj ne povas esti malfarita.</emphasis></"
-"para><para>Konsekvencoj: <list><item>Vi ankoraŭ povas malĉifri ĉion ĉifritan "
-"por ĉi tiu atestilo.</item><item>Vi ne povas subskribi ion plu per ĉi tiu "
-"atestilo.</item><item>Vi ne plu povos atesti aliajn atestilojn per ĝi.</"
-"item><item>Aliaj homoj ne plu povos ĉifri per ĝi post ricevo de la revoko.</"
-"item></list></para>"
+"<para>Vi estas nuligonta la jenan atestilon:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>La revoko efektiviĝos tuj kaj ne povas "
+"esti malfarita.</emphasis></para><para>Konsekvencoj: <list><item>Vi ankoraŭ "
+"povas malĉifri ĉion ĉifritan por ĉi tiu atestilo.</item><item>Vi ne povas "
+"subskribi ion plu per ĉi tiu atestilo.</item><item>Vi ne plu povos atesti "
+"aliajn atestilojn per ĝi.</item><item>Aliaj homoj ne plu povos ĉifri per ĝi "
+"post ricevo de la revoko.</item></list></para>"
 
 #: src/dialogs/revokerswidget.cpp
 #, kde-format
@@ -8552,11 +8690,11 @@ msgstr "Agordi Komencan PIN (NKS)"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
-"Paŝo 2: Agordu la komencan PIN por la kvalifikita subskribatestilo (\"SigG"
-"\"):"
+"Paŝo 2: Agordu la komencan PIN por la kvalifikita subskribatestilo "
+"(\"SigG\"):"
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
 #: src/dialogs/setinitialpindialog.ui
@@ -8575,6 +8713,12 @@ msgstr "Subskribi/Ĉifri Tondujon"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Subskribi/Ĉifri Tondujon"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -9121,15 +9265,46 @@ msgstr "Atestiloj Malsukcesis"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
-msgstr "Anstataŭilo por CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg
-#, kde-format
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
+"Ĉi tiu teksto estos uzata kiel lokokupilo por la komunnomo (CN) kampo de S/"
+"MIME-atestiloj."
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Hint for CN"
+msgstr "Helpeto por NAME"
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Label for CN"
+msgstr "Anstataŭilo por CN"
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
 msgstr ""
 "Ĉi tiu teksto estos uzata kiel lokokupilo por la komunnomo (CN) kampo de S/"
 "MIME-atestiloj."
@@ -9176,18 +9351,68 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Regex for CN"
+msgstr "Anstataŭilo por CN"
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+"Ĉi tiu teksto estos uzata kiel lokokupilo por la komunnomo (CN) kampo de S/"
+"MIME-atestiloj."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be shown above the email address field of OpenPGP "
+#| "certificates and as placeholder in that field for S/MIME certificates."
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+"Ĉi tiu teksto estos montrata super la retpoŝtadresa kampo de OpenPGP-"
+"atestiloj kaj kiel lokokupilo en tiu kampo por S/MIME-atestiloj."
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr "Helpeto por EMAIL"
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Hint for EMAIL"
+msgid "Label for EMAIL"
+msgstr "Helpeto por EMAIL"
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be shown above the email address field of OpenPGP "
+#| "certificates and as placeholder in that field for S/MIME certificates."
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 "Ĉi tiu teksto estos montrata super la retpoŝtadresa kampo de OpenPGP-"
 "atestiloj kaj kiel lokokupilo en tiu kampo por S/MIME-atestiloj."
@@ -9232,6 +9457,26 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for EMAIL"
+msgid "Regex for EMAIL"
+msgstr "Helpeto por EMAIL"
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be shown above the email address field of OpenPGP "
+#| "certificates and as placeholder in that field for S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+"Ĉi tiu teksto estos montrata super la retpoŝtadresa kampo de OpenPGP-"
+"atestiloj kaj kiel lokokupilo en tiu kampo por S/MIME-atestiloj."
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9253,15 +9498,31 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
-msgstr "Helpeto por NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
 "Ĉi tiu teksto estos montrata kiel super la nomkampo de OpenPGP-atestiloj."
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr "Helpeto por NAME"
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Label for NAME"
+msgstr "Helpeto por NAME"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9303,6 +9564,24 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Regex for NAME"
+msgstr "Helpeto por NAME"
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be shown above the name field of OpenPGP certificates."
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
+msgstr ""
+"Ĉi tiu teksto estos montrata kiel super la nomkampo de OpenPGP-atestiloj."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9854,6 +10133,20 @@ msgstr ""
 "enmetita kun nekonataj atestiloj. Ĉi tio povas daŭri iom da tempo kaj blokas "
 "la inteligentan karton dum la komando funkcias."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10300,8 +10593,8 @@ msgstr "Nur &Fermi Fenestron"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "<application>%1</application> povas esti uzata de aliaj aplikaĵoj kiel servo."
 "<nl/>Vi eble volas fermi ĉi tiun fenestron sen eliri de <application>%1</"
@@ -11421,11 +11714,11 @@ msgstr "Neniuj ricevantoj donitaj, aŭ nur kun --info"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Kaptis neatenditan escepton en EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Kaptis neatenditan escepton en "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
@@ -11456,20 +11749,20 @@ msgstr "SENDER ne povas esti donita antaŭ PREP_ENCRYPT, krom kun --info"
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Kaptis neatenditan escepton en PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Kaptis neatenditan escepton en "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Kaptis nekonatan escepton en PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Kaptis nekonatan escepton en "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11502,11 +11795,11 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Kaptis neatenditan escepton en PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Kaptis neatenditan escepton en "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11518,20 +11811,20 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
-"Kaptis neatenditan escepton en SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Kaptis neatenditan escepton en "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
-"Kaptis nekonatan escepton en SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Kaptis nekonatan escepton en "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
@@ -12561,6 +12854,13 @@ msgstr "Hierarkia listo de atestiloj"
 msgid "List of certificates"
 msgstr "Listo de atestiloj"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "Detaloj"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -13417,11 +13717,11 @@ msgstr "Bonvenon al Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
-"Kleopatra estas fronto por la kripta programaro <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra estas fronto por la kripta programaro <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 
 #: src/view/welcomewidget.cpp
 #, kde-format
@@ -13472,8 +13772,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13517,583 +13817,3 @@ msgid ""
 msgstr ""
 "Importi atestilon el dosiero.<nl/>Por importi el publika ŝlosilservilo uzu "
 "anstataŭe <interface>Serĉi en Servilo</interface>."
-
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "Sukcese deĉifris kaj kontrolis la notblokon"
-
-#, fuzzy
-#~| msgctxt "A user ID (an error description)"
-#~| msgid "%1 (%2)"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> seems to be running for you "
-#~ "already, but with different privileges.</para><para>This usually happens "
-#~ "if <application>Kleopatra</application> is accidentally run as "
-#~ "Administrator.</para><para>Please right click the tray icon of "
-#~ "<application>Kleopatra</application> and select 'quit' to try again.</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> ŝajnas funkcii por vi jam, sed "
-#~ "kun malsamaj privilegioj.</para><para>Tio kutime okazas se "
-#~ "<application>Kleopatra</application> hazarde ruliĝas kiel Administranto.</"
-#~ "para><para>Bonvolu dekstre alklaki la plet-piktogramon de "
-#~ "<application>Kleopatra</application> kaj elekti 'forlasi' por provi "
-#~ "denove.</para>"
-
-#~ msgctxt "@title"
-#~ msgid "<application>Kleopatra</application> failed to start"
-#~ msgstr "<application>Kleopatra</application> malsukcesis starti"
-
-#~ msgid "Card Certificate"
-#~ msgstr "Karta Atestilo"
-
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "%1 Atestila servilo"
-
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "Malĉifrante/Konfirmante tondujon…"
-
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "Enportante atestilon el tondujo…"
-
-#~ msgctxt ""
-#~ "The user is offered to force decrypt a non integrity protected message. "
-#~ "With the strong advice to re-encrypt it."
-#~ msgid ""
-#~ "If you are confident that the file was not manipulated you should re-"
-#~ "encrypt it after you have forced the decryption."
-#~ msgstr ""
-#~ "Se vi certas, ke la dosiero ne estis manipulita, vi devus re-ĉifri ĝin "
-#~ "post kiam vi devigis la malĉifradon."
-
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "Devigi malĉifradon"
-
-#~ msgctxt "@action:button"
-#~ msgid "Yes, It's Mine"
-#~ msgstr "Jes, Ĝi estas Mia"
-
-#~ msgctxt "@action:button"
-#~ msgid "No, It's Not Mine"
-#~ msgstr "Ne, Ĝi Ne estas Mia"
-
-#~ msgctxt "@action:button"
-#~ msgid "Set Owner Trust"
-#~ msgstr "Fido de Posedanto"
-
-#~ msgid "Is this your own key?"
-#~ msgstr "Ĉu ĉi tio estas via propra ŝlosilo?"
-
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "Permesi subskribon per S/MIME-atestiloj"
-
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "Permesas subskribon de teksto aŭ dosieroj kun S/MIME-atestiloj."
-
-#~ msgid ""
-#~ "If false, then Kleopatra will not offer functionality for creating "
-#~ "signatures with S/MIME certificates."
-#~ msgstr ""
-#~ "Se estas malvera, tiam Kleopatra ne ofertos funkciojn por krei "
-#~ "subskribojn kun S/MIME-atestiloj."
-
-#~ msgctxt "@info"
-#~ msgid "The size of the URL may not exceed 254 characters."
-#~ msgstr "La grandeco de la URL ne rajtas superi 254 signojn."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "Sekreta Ŝlosila Rezerva Eraro"
-
-#~ msgid ""
-#~ "If this option is checked while a root CA certificate is being imported, "
-#~ "you will be asked to confirm its fingerprint and to state whether or not "
-#~ "you consider this root certificate to be trusted. A root certificate "
-#~ "needs to be trusted before the certificates it certified become trusted, "
-#~ "but lightly allowing trusted root certificates into your certificate "
-#~ "store will undermine the security of the system."
-#~ msgstr ""
-#~ "Se ĉi tiu elekteblo estas markita dum radika CA-atestilo estas importita, "
-#~ "oni petos vin konfirmi ĝian fingrospuron kaj deklari ĉu aŭ ne vi "
-#~ "konsideras ĉi tiun radikan atestilon fidinda. Radika atestilo devas esti "
-#~ "fidinda antaŭ ol la atestiloj kiujn ĝi atestis fariĝos fidindaj, sed "
-#~ "malpeze permesi fidindajn radikajn atestojn en vian atestilbutikon "
-#~ "subfosos la sekurecon de la sistemo."
-
-#~ msgid "Allow to mark root certificates as trusted"
-#~ msgstr "Permesi marki radikajn atestojn kiel fidindajn"
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Detaloj pri Atestilo"
-
-#~ msgctxt "@title"
-#~ msgid "Request Saved"
-#~ msgstr "Peto Konservita"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Konservado de la peto malsukcesis.</para><para><message>%1</"
-#~ "message></para>"
-
-#~ msgctxt "@title"
-#~ msgid "Error Saving Request"
-#~ msgstr "Eraro dum Konservado de Peto"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Could not remove file <filename>%1</filename> for overwriting."
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "Ne eblis forigi dosieron <filename>%1</filename> por anstataŭi."
-
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "(required)"
-#~ msgstr "(postulata)"
-
-#~ msgid "(optional)"
-#~ msgstr "(laŭvola)"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is required, but empty."
-#~ msgstr "<interface>%1</interface> estas bezonata, sed malplena."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-#~ "<icode>%2</icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> estas bezonata, sed malplena.<nl/>Regulo de "
-#~ "Loka Administranto: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is incomplete."
-#~ msgstr "<interface>%1</interface> estas nekompleta."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> estas nekompleta.<nl/>Regulo de Loka "
-#~ "Administranto: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is invalid."
-#~ msgstr "<interface>%1</interface> nevalidas."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> nevalidas.<nl/>Regulo de Loka Administranto: "
-#~ "<icode>%2</icode>"
-
-#~ msgctxt "@info:label"
-#~ msgid "RSA key strength:"
-#~ msgstr "Forto de RSA-ŝlosilo:"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "Teĥnikaj detaloj"
-
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "Retpoŝtaj Adresoj"
-
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "DNS-Nomoj"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "Personaj detaloj"
-
-#~ msgid "new email"
-#~ msgstr "nova retpoŝto"
-
-#~ msgid "new dns name"
-#~ msgstr "nova dns-nomo"
-
-#~ msgid "new uri"
-#~ msgstr "nova uri"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%2 (1 bito)"
-#~ msgstr[1] "%2 (%1 bitoj)"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "1 bito"
-#~ msgstr[1] "%1 bito"
-
-#~ msgid "EMail"
-#~ msgstr "Retpoŝto"
-
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "Enigi Detalojn"
-
-#~ msgid "Real name:"
-#~ msgstr "Reala nomo:"
-
-#~ msgid "EMail address:"
-#~ msgstr "Retpoŝta adreso:"
-
-#~ msgid "Protect the generated key with a passphrase."
-#~ msgstr "Protekti la generitan ŝlosilon per pasfrazo."
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~ "asked for the passphrase during key generation."
-#~ msgstr ""
-#~ "Ĉifras la sekretan ŝlosilon per nereakirebla pasfrazo. Vi estos petita "
-#~ "pri la pasfrazo dum ŝlosilgenerado."
-
-#~ msgid "Advanced Settings..."
-#~ msgstr "Altnivelaj agordoj..."
-
-#~ msgid "Please enter your personal details below."
-#~ msgstr "Bonvolu enigi viajn personajn detalojn sube."
-
-#~ msgid ""
-#~ "Please enter your personal details below. If you want more control over "
-#~ "the parameters, click on the Advanced Settings button."
-#~ msgstr ""
-#~ "Bonvolu enigi viajn personajn detalojn sube. Se vi volas pli da kontrolo "
-#~ "pri la parametroj, alklaku la butonon Altnivelaj Agordoj."
-
-#~ msgctxt "@action"
-#~ msgid "Create"
-#~ msgstr "Krei"
-
-#~ msgid "Operation canceled."
-#~ msgstr "Operacio nuligita."
-
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "Ne eblis krei ŝlosilparon: %1"
-
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "Ne eblis skribi eligdosieron %1: %2"
-
-#~ msgid "Key pair created successfully."
-#~ msgstr "Ŝlosilparo kreita sukcese."
-
-#~ msgctxt "@action:button"
-#~ msgid "Add Entry"
-#~ msgstr "Aldoni Eniron"
-
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "Forigi Eniron"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Up"
-#~ msgstr "Supreniĝi"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Down"
-#~ msgstr "Movi Malsupren"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "Ŝlosila Paro Kreado Sorĉisto"
-
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "Rezulto"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Drag this icon to your mail application's composer to attach the request "
-#~ "to a mail."
-#~ msgstr ""
-#~ "Trenu ĉi tiun piktogramon al la komponisto de via poŝta aplikaĵo por "
-#~ "alligi la peton al poŝto."
-
-#~ msgid "Restart This Wizard (Keeps Your Parameters)"
-#~ msgstr "Rekomenci Ĉi tiun Sorĉiston (Konservas Viajn Parametrojn)"
-
-#~ msgctxt "@title:group"
-#~ msgid "Next Steps"
-#~ msgstr "Sekvaj paŝoj"
-
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "Konservi atestilpeton al dosiero..."
-
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "Sendi Atestilpeton Per Retpoŝto..."
-
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "Krei Subskriban Atestilon Kun Samaj Parametroj"
-
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "Krei Ĉifradan Atestilon Kun Samaj Parametroj"
-
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "Ŝlosilkreado malsukcesis"
-
-#~ msgid ""
-#~ "Key pair creation failed. Please find details about the failure below."
-#~ msgstr ""
-#~ "Kreado de ŝlosilparoj malsukcesis. Bonvolu trovi detalojn pri la "
-#~ "malsukceso sube."
-
-#~ msgctxt "@title"
-#~ msgid "Key Pair Successfully Created"
-#~ msgstr "Ŝlosila paro Sukcese Kreita"
-
-#~ msgid ""
-#~ "Your new key pair was created successfully. Please find details on the "
-#~ "result and some suggested next steps below."
-#~ msgstr ""
-#~ "Via nova ŝlosilparo estis kreita sukcese. Bonvolu trovi detalojn pri la "
-#~ "rezulto kaj kelkajn proponitajn sekvajn paŝojn sube."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~ "%2</filename>: <message>%3</message>"
-#~ msgstr ""
-#~ "Ne eblis kopii provizoran dosieron <filename>%1</filename> al dosiero "
-#~ "<filename>%2</filename>: <message>%3</message>"
-
-#~ msgid "Please process this certificate."
-#~ msgstr "Bonvolu procesi ĉi tiun atestilon."
-
-#~ msgid ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-#~ msgstr ""
-#~ "Bonvolu procesi ĉi tiun atestilon kaj informi la sendinton pri la loko "
-#~ "por preni la rezultan atestilon.\n"
-#~ "\n"
-#~ "Dankon,\n"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then drag the <application>Kleopatra</"
-#~ "application> icon and drop it on the message compose window of your mail "
-#~ "client.</para><para>If that does not work, either, save the request to a "
-#~ "file, and then attach that.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> provis sendi retpoŝton per via "
-#~ "defaŭlta retpoŝta kliento.</para><para>Kelkaj retpoŝtaj klientoj scias ke "
-#~ "ne subtenas aldonaĵojn kiam oni alvokas tiel.</para><para> Se via poŝta "
-#~ "kliento ne havas aldonaĵon, tiam trenu la piktogramon "
-#~ "<application>Kleopatra</application> kaj faligu ĝin sur la mesaĝkomponan "
-#~ "fenestron de via poŝta kliento.</para><para>Se ankaŭ tio ne funkcias, "
-#~ "konservu la peton al dosiero, kaj poste aligu tion.</para>"
-
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "Sendante Poŝton"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "This operation will delete the certification request. Please make sure "
-#~ "that you have sent or saved it before proceeding."
-#~ msgstr ""
-#~ "Ĉi tiu operacio forigos la atestan peton. Bonvolu certigi, ke vi sendis "
-#~ "aŭ konservis ĝin antaŭ ol daŭrigi."
-
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "Atestada Peto Forigota"
-
-#~ msgid "Decrypt / Verify"
-#~ msgstr "Malĉifri/Konfirmi"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Refreshing the OpenPGP certificates is not possible because the usage of "
-#~ "key servers has been disabled explicitly."
-#~ msgstr ""
-#~ "Refreŝigi la OpenPGP-atestilojn ne eblas ĉar la uzado de ŝlosilserviloj "
-#~ "estis malŝaltita eksplicite."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Refreŝigi OpenPGP-atestojn implicas elŝuti ĉiujn atestojn denove, "
-#~ "por kontroli ĉu iu el ili estis revokita intertempe.</para><para>Tio "
-#~ "povas meti severan streĉon sur vi mem kaj ankaŭ pri la retkonektoj de "
-#~ "aliaj homoj, kaj povas daŭri ĝis unu horo aŭ pli por kompletigi, depende "
-#~ "de via retkonekto, kaj la nombro da atestiloj por kontroli.</para> "
-#~ "<para>Ĉu vi certas, ke vi volas daŭrigi?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "Eraro pri Refreŝiga Atestilo de OpenPGP"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "OpenPGP-Atestila Refreŝigo Finiĝis"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>La GPG-procezo, kiu provis refreŝigi OpenPGP-atestojn, finiĝis "
-#~ "trofrue pro neatendita eraro.</para><para>Bonvolu kontroli la eligon de "
-#~ "<icode>%1</icode> por detaloj.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Okazis eraro dum provado refreŝigi OpenPGP-atestojn.</para> "
-#~ "<para>La eligo de <command>%1</command> estis: <bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "OpenPGP-atestiloj refreŝiĝis sukcese."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Refreŝigi X.509-atestilojn implicas elŝuti CRL-ojn por ĉiuj "
-#~ "atestiloj, eĉ se ili alie ankoraŭ povus esti validaj.</para><para>Tio "
-#~ "povas meti severan streĉon al vi mem kaj ankaŭ al la retkonektoj de aliaj "
-#~ "homoj, kaj povas daŭras ĝis unu horo aŭ pli por kompletigi, depende de "
-#~ "via retkonekto, kaj la nombro da atestiloj por kontroli.</para> <para>Ĉu "
-#~ "vi certas, ke vi volas daŭrigi?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "X.509 Atestilo Refresh"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "Eraro pri Refreŝiga Atestilo X.509"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "X.509 Atestilo Refresh Finita"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>La GpgSM-procezo, kiu provis refreŝigi X.509-atestilojn, finiĝis "
-#~ "antaŭtempe pro neatendita eraro.</para><para>Bonvolu kontroli la eliron "
-#~ "de <icode>%1</icode> por detaloj.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Okazis eraro dum provado refreŝigi X.509-atestojn.</para><para>La "
-#~ "eligo de <command>%1</command> estis: <bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "X.509-atestiloj refreŝigitaj sukcese."
-
-#~ msgid "&Window"
-#~ msgstr "Fe&nestro"
-
-#~ msgid "Show GnuPG Configuration"
-#~ msgstr "Montri Agordon de GnuPG"
-
-#~ msgid "Configure Groups..."
-#~ msgstr "Agordi grupojn..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "Ĉesi Operacion"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "Refreŝigi OpenPGP-Atestojn"
-
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "Refreŝigi S/MIME-Atestojn"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "Importitaj Atestiloj de %1"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "Importitaj atestiloj el ĉi tiuj fontoj:<br/>%1"
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "Atestila Importo-Rezulto"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "Eksportado de OpenPGP Finis"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "OpenPGP-atestiloj sukcese eksportitaj."
-
-#~ msgid "GpgME library too old"
-#~ msgstr "GpgME-biblioteko tro malnova"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "Aŭ la biblioteko GpgME mem estas tro malnova, aŭ la biblioteko GpgME++ "
-#~ "estis kompilita kontraŭ pli malnova GpgME, kiu ne subtenis konekton al "
-#~ "gpg-agent."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "Ĝisdatigu al <application>gpgme</application> 1.2.0 aŭ pli alta, kaj "
-#~ "certigu, ke gpgme++ estis kompilita kontraŭ ĝi."
-
-#~ msgid "Keep open after operation completed"
-#~ msgstr "Teni malfermita post kiam operacio kompletiĝis"

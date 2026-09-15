@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2023-07-08 12:52+0100\n"
 "Last-Translator: Pedro Morais <morais@kde.org>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -10,9 +10,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POFile-IgnoreConsistency: In\n"
+"X-POFile-IgnoreConsistency: Name\n"
 "X-POFile-IgnoreConsistency: Signing\n"
-"X-POFile-SpellExtra: PKCS Kleopatra kwatchgnupg gpgsm GpgSM CA CRL Gra DN\n"
+"X-POFile-SpellExtra: smartcardsetupgnupgvsden\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-POFile-SpellExtra: Klarälvdalens Faure Marc Pedersen Dalheimer Ralf\n"
 "X-POFile-SpellExtra: EMAIL Molkentin DirMngr Jesper RDN CAs Zimmer KIOSK\n"
@@ -222,12 +222,6 @@ msgstr "O ficheiro <filename>%1</filename> já existe."
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager and Unified Crypto GUI"
-msgid "Certificate manager and cryptography app"
-msgstr "Gestor de Certificados e GUI Unificada de Criptografia"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -259,6 +253,12 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "(c) 2010-%1 Os programadores do Kleopatra, g10 Code GmbH"
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager and Unified Crypto GUI"
+msgid "Certificate manager and cryptography app"
+msgstr "Gestor de Certificados e GUI Unificada de Criptografia"
 
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
@@ -307,8 +307,8 @@ msgstr ""
 #| "<p>An error occurred while trying to change the passphrase for <b>%1</b>:"
 #| "</p><p>%2</p>"
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 "<p>Ocorreu um erro ao tentar mudar a frase-senha de <b>%1</b>:</p><p>%2</p>"
 
@@ -438,8 +438,8 @@ msgid ""
 "<para>The key was copied to the smart card.</para><para>A backup was "
 "exported to <filename>%1</filename></para>"
 msgstr ""
-"<para>Não foi possível copiar a chave para o cartão.</para><para><message>"
-"%1</message></para>"
+"<para>Não foi possível copiar a chave para o cartão.</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/certificatetocardcommand.cpp
 #, fuzzy, kde-kuit-format
@@ -478,8 +478,8 @@ msgid ""
 "<para>Copying the key to the card failed:</para><para><message>%1</message></"
 "para>"
 msgstr ""
-"<para>Não foi possível copiar a chave para o cartão.</para><para><message>"
-"%1</message></para>"
+"<para>Não foi possível copiar a chave para o cartão.</"
+"para><para><message>%1</message></para>"
 
 #: src/commands/certificatetopivcardcommand.cpp
 #: src/commands/keytocardcommand.cpp
@@ -720,8 +720,8 @@ msgid ""
 "<p>An error occurred while trying to change the end of the validity period "
 "for <b>%1</b>:</p><p>%2</p>"
 msgstr ""
-"<p>Ocorreu um erro ao tentar mudar a data de validade de <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>Ocorreu um erro ao tentar mudar a data de validade de <b>%1</b>:</"
+"p><p>%2</p>"
 
 #: src/commands/changeexpirycommand.cpp
 #, kde-format
@@ -1206,7 +1206,7 @@ msgid "CRL cache cleared successfully."
 msgstr "A 'cache' de CRL foi esvaziada com sucesso."
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1398,8 +1398,8 @@ msgstr "Infra-estrutura do CMS: %1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ocorreu um erro ao tentar apagar o certificado:</p><p><b>%1</b></p></"
 "qt>"
@@ -1611,8 +1611,8 @@ msgstr "A exportar os certificados..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ocorreu um erro ao tentar exportar o certificado:</p><p><b>%1</b></"
 "p></qt>"
@@ -1649,6 +1649,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "Grupos de Certificados (*%1)"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot overwrite existing <filename>%1</filename>."
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "Não é possível substituir o <filename>%1</filename> existente."
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1661,13 +1668,6 @@ msgstr "Grupos de Certificados (*%1)"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "A Exportação Falhou"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot overwrite existing <filename>%1</filename>."
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "Não é possível substituir o <filename>%1</filename> existente."
 
 #: src/commands/exportgroupscommand.cpp
 #, fuzzy, kde-kuit-format
@@ -2406,16 +2406,16 @@ msgstr[0] "A importar os certificados de 1 ficheiro..."
 msgstr[1] "A importar os certificados de %1 ficheiros..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "Não foi possível aceder ao ficheiro %1 para leitura: %2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "Importação do Certificado Falhou"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "Não foi possível aceder ao ficheiro %1 para leitura: %2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2751,8 +2751,8 @@ msgstr "Mostrar o Registo da Auditoria"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 "<qt><p>Ocorreu um erro ao tentar importar o certificado:</p><p><b>%1</b></"
 "p></qt>"
@@ -2760,8 +2760,8 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 "<qt><p>Ocorreu um erro ao tentar importar o certificado %1:</p><p><b>%2</b></"
 "p></qt>"
@@ -2770,9 +2770,9 @@ msgstr ""
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -2793,9 +2793,9 @@ msgstr "%1<item>%2</item>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -3098,6 +3098,14 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr "A chave existente tem o ID de chave:"
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "The certificate has been updated."
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "O certificado foi actualizado."
+
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
@@ -3106,9 +3114,8 @@ msgstr "A chave existente tem o ID de chave:"
 #| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>A chave foi copiada para o cartão.</para><para>Deseja remover a cópia "
 "da chave guardada neste computador?</para>"
@@ -3121,16 +3128,27 @@ msgid "Create backup"
 msgstr "Cópia em papel"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Do you really want to delete the local copy of the secret key?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "Deseja realmente remover a cópia local da chave privada?"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
@@ -4250,8 +4268,8 @@ msgstr "&Configuração"
 #| "\".gpg\""
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 "Criar os ficheiros encriptados por OpenPGP com a extensão \".pgp\" em vez de "
 "\".gpg\""
@@ -4895,8 +4913,8 @@ msgstr ""
 "<p>Se não estiver definido nenhum 'proxy' do sistema, ou se precisar de "
 "indicar um diferente para o GpgSM, indique aqui a localização do mesmo.</"
 "p><p>Este será usado para todos os pedidos de HTTP relacionados com o S/"
-"MIME. A sintaxe é máquina:porto, como por exemplo meu_proxy.nenhures."
-"com:3128.</p>"
+"MIME. A sintaxe é máquina:porto, como por exemplo "
+"meu_proxy.nenhures.com:3128.</p>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabLDAP)
 #: src/conf/smimevalidationconfigurationwidget.ui
@@ -4999,15 +5017,15 @@ msgstr ""
 "mas não ambos."
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "A inicializar..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "A inicializar..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -5302,6 +5320,34 @@ msgstr "Não foi possível substituir o <filename>%1</filename>."
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+msgstr[1] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+msgstr[1] ""
+"Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -5353,6 +5399,12 @@ msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "Os dados foram encriptados para esta chave / certificado."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5501,6 +5553,12 @@ msgid ""
 msgstr ""
 "<br/><b>Atenção:</b> O endereço de e-mail do remetente não está guardado nos "
 "certificados usados para a assinatura."
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5881,6 +5939,24 @@ msgstr "Diagnósticos"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "Mostrar o Registo da Auditoria"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, fuzzy, kde-format
+#| msgid "Explain tags"
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr "Explicar as marcas"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, fuzzy, kde-format
+#| msgid "Explain tags"
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr "Explicar as marcas"
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, fuzzy, kde-format
@@ -6326,6 +6402,7 @@ msgid "Sign / Encrypt Files"
 msgstr "Assinar / Encriptar os Ficheiros"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgctxt "@title"
 #| msgid "Sign / Encrypt Files"
@@ -6341,6 +6418,12 @@ msgstr "Assinar / Encriptar os Ficheiros"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "Assinar / Encriptar"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -6365,13 +6448,6 @@ msgstr "Assinar"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "Encriptar"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, fuzzy, kde-format
@@ -6758,20 +6834,20 @@ msgstr "arquivo"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"Foi recebida uma excepção inesperada em SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Foi recebida uma excepção inesperada em "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"Foi recebida uma excepção desconhecida em SignEncryptFilesController::"
-"Private::slotWizardOperationPrepared"
+"Foi recebida uma excepção desconhecida em "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp
 #, fuzzy, kde-format
@@ -6801,8 +6877,8 @@ msgstr "A encriptação foi cancelada."
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "Não foi possível mover o <filename>%1</filename> para <filename>%2</"
 "filename>."
@@ -6862,8 +6938,8 @@ msgstr ""
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6933,14 +7009,14 @@ msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
 "Não foi possível copiar o ficheiro temporário <filename>%1</filename> para o "
 "ficheiro <filename>%2</filename>: <message>%3</message>"
@@ -6955,10 +7031,10 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
 "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 msgstr[1] ""
@@ -6982,12 +7058,22 @@ msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 
 #: src/crypto/signencrypttask.cpp
@@ -6997,14 +7083,13 @@ msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
 "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 msgstr[1] ""
@@ -7026,13 +7111,13 @@ msgstr "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "Não foi possível copiar o ficheiro temporário <filename>%1</filename> para o "
 "ficheiro <filename>%2</filename>: <message>%3</message>"
@@ -7044,13 +7129,14 @@ msgstr ""
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
 "Foi verificado o <filename>%1</filename> com o <filename>%2</filename>"
 msgstr[1] ""
@@ -7940,8 +8026,8 @@ msgid ""
 "introducer acts as a kind of intermediate CA for a domain."
 msgstr ""
 "Todos os certificados cujos endereços de e-mail pertencem ao domínio que foi "
-"certificado pela introdução fidedigna serão tratados como certificados, i."
-"e., um uma introdução fidedigna funciona como uma espécie de AC intermédia "
+"certificado pela introdução fidedigna serão tratados como certificados, "
+"i.e., um uma introdução fidedigna funciona como uma espécie de AC intermédia "
 "para um dado domínio."
 
 #: src/dialogs/certifywidget.cpp
@@ -8926,14 +9012,15 @@ msgstr "Erro: A descrição não deverá ter linhas em branco."
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -9119,8 +9206,8 @@ msgstr "Definir o PIN Inicial (NKS)"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 "Passo 2: Definir o PIN inicial do certificado de assinatura qualificada "
 "(\"SigG\"):"
@@ -9144,6 +9231,12 @@ msgstr "Assinar / Encriptar o Bloco de Notas"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "Assinar / Encriptar o Bloco de Notas"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, fuzzy, kde-format
@@ -9720,15 +9813,45 @@ msgstr "O Carregamento das Certificações Falhou"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
-msgstr "Substituto do CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
+"Este texto será usado em substituição do campo do nome comum (CN) dos "
+"certificados S/MIME."
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
+msgid "Hint for CN"
+msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Label for CN"
+msgstr "Substituto do CN"
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
 msgstr ""
 "Este texto será usado em substituição do campo do nome comum (CN) dos "
 "certificados S/MIME."
@@ -9775,21 +9898,68 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Regex for CN"
+msgstr "Substituto do CN"
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+"Este texto será usado em substituição do campo do nome comum (CN) dos "
+"certificados S/MIME."
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for EMAIL"
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #, fuzzy, kde-format
 #| msgid ""
 #| "This text will be used as placeholder text for the email address field of "
 #| "OpenPGP and S/MIME certificates."
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"certificates and S/MIME certification requests."
+msgstr ""
+"Este texto será usado em substituição do campo do endereço de e-mail dos "
+"certificados de OpenPGP e S/MIME."
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL"
+msgstr ""
+
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for EMAIL"
+msgid "Label for EMAIL"
+msgstr "Substituto do EMAIL"
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the email address field of "
+#| "OpenPGP and S/MIME certificates."
+msgid ""
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 "Este texto será usado em substituição do campo do endereço de e-mail dos "
 "certificados de OpenPGP e S/MIME."
@@ -9834,6 +10004,26 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for EMAIL"
+msgid "Regex for EMAIL"
+msgstr "Substituto do EMAIL"
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the email address field of "
+#| "OpenPGP and S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+"Este texto será usado em substituição do campo do endereço de e-mail dos "
+"certificados de OpenPGP e S/MIME."
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, fuzzy, kde-format
@@ -9853,10 +10043,13 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, fuzzy, kde-format
 #| msgid ""
@@ -9866,6 +10059,19 @@ msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr ""
 "Este texto será usado em substituição do campo do nome dos certificados de "
 "OpenPGP."
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for NAME"
+msgid "Label for NAME"
+msgstr "Substituto do NAME"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9907,6 +10113,25 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the name field of OpenPGP "
+#| "certificates."
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
+msgstr ""
+"Este texto será usado em substituição do campo do nome dos certificados de "
+"OpenPGP."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -10484,6 +10709,20 @@ msgstr ""
 "inserido um cartão PKCS#15 com certificados desconhecidos. Isto pode demorar "
 "algum tempo e bloqueia o cartão enquanto o comando estiver em execução."
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -10958,8 +11197,8 @@ msgstr "Apenas Fe&char a Janela"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "O <application>%1</application> pode estar a ser usado por outras aplicações "
 "como um serviço.<nl/>Poderá em alternativa fechar esta janela sem sair do "
@@ -11480,8 +11719,8 @@ msgid ""
 msgstr ""
 "<para>A biblioteca do <application>GpgME</application> é recente o "
 "suficiente para suportar o <application>gpg-agent</application>, mas não o "
-"parece fazer nesta instalação.</para><para>O erro devolvido foi: <message>"
-"%1</message>.</para>"
+"parece fazer nesta instalação.</para><para>O erro devolvido foi: "
+"<message>%1</message>.</para>"
 
 #: src/selftest/gpgagentcheck.cpp
 #, kde-format
@@ -12057,15 +12296,15 @@ msgstr "O DECRYPT/VERIFY_FILES não pode aceitar pastas"
 msgid ""
 "Caught unexpected exception in SignCommand::Private::slotMicAlgDetermined: %1"
 msgstr ""
-"Foi recebida uma excepção inesperada em SignCommand::Private::"
-"slotMicAlgDetermined: %1"
+"Foi recebida uma excepção inesperada em "
+"SignCommand::Private::slotMicAlgDetermined: %1"
 
 #: src/uiserver/echocommand.cpp src/uiserver/signcommand.cpp
 #, kde-format
 msgid "Caught unknown exception in SignCommand::Private::slotMicAlgDetermined"
 msgstr ""
-"Foi recebida uma excepção inesperada em SignCommand::Private::"
-"slotMicAlgDetermined"
+"Foi recebida uma excepção inesperada em "
+"SignCommand::Private::slotMicAlgDetermined"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
@@ -12121,19 +12360,19 @@ msgstr "Sem destinatários indicados, ou então apenas com o --info"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Foi recebida uma excepção inesperada em EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Foi recebida uma excepção inesperada em "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
 "Caught unknown exception in EncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Foi recebida uma excepção inesperada em EncryptCommand::Private::"
-"slotRecipientsResolved"
+"Foi recebida uma excepção inesperada em "
+"EncryptCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
@@ -12159,20 +12398,20 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Foi recebida uma excepção desconhecida em PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Foi recebida uma excepção desconhecida em "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Foi recebida uma excepção desconhecida em PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Foi recebida uma excepção desconhecida em "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -12205,37 +12444,37 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"Foi recebida uma excepção inesperada em PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Foi recebida uma excepção inesperada em "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
 "Caught unknown exception in PrepSignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Foi recebida uma excepção inesperada em PrepSignCommand::Private::"
-"slotRecipientsResolved"
+"Foi recebida uma excepção inesperada em "
+"PrepSignCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
-"Foi recebida uma excepção inesperada em SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Foi recebida uma excepção inesperada em "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
-"Foi recebida uma excepção desconhecida em SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Foi recebida uma excepção desconhecida em "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
@@ -12267,16 +12506,16 @@ msgid ""
 "Caught unexpected exception in SignCommand::Private::slotRecipientsResolved: "
 "%1"
 msgstr ""
-"Foi recebida uma excepção inesperada em SignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Foi recebida uma excepção inesperada em "
+"SignCommand::Private::slotRecipientsResolved: %1"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
 msgid ""
 "Caught unknown exception in SignCommand::Private::slotRecipientsResolved"
 msgstr ""
-"Foi recebida uma excepção inesperada em SignCommand::Private::"
-"slotRecipientsResolved"
+"Foi recebida uma excepção inesperada em "
+"SignCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/signencryptfilescommand.cpp
 #: src/uiserver/signencryptfilescommand.cpp
@@ -13313,6 +13552,13 @@ msgstr "Lista hierárquica de certificados"
 msgid "List of certificates"
 msgstr "Lista de certificados"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "Detalhes"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -14234,11 +14480,11 @@ msgstr "Bem-vindo ao Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
-"O Kleopatra é uma interface para o 'software' de encriptação <a href="
-"\"https://gnupg.org\">GnuPG</a>."
+"O Kleopatra é uma interface para o 'software' de encriptação <a "
+"href=\"https://gnupg.org\">GnuPG</a>."
 
 #: src/view/welcomewidget.cpp
 #, fuzzy, kde-format
@@ -14295,8 +14541,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -14341,2107 +14587,3 @@ msgstr ""
 "Importa um certificado a partir de um ficheiro.<nl/>Para importar de um "
 "servidor de chaves públicas, use o <interface>Procurar num Servidor</"
 "interface> em alternativa."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Successfully copied the key to the card."
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "Foi copiada com sucesso a chave para o cartão."
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Successfully copied the key to the card."
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted the notepad"
-#~ msgstr "Foi copiada com sucesso a chave para o cartão."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgctxt "@action:button"
-#~| msgid "&Quit <application>%1</application>"
-#~ msgctxt "@title"
-#~ msgid "<application>Kleopatra</application> failed to start"
-#~ msgstr "&Sair do <application>%1</application>"
-
-#~ msgid "Card Certificate"
-#~ msgstr "Certificado do Cartão"
-
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "Servidor de Certificados %1"
-
-#, fuzzy
-#~| msgid "Decrypt/Verify Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "Erro de Descodificação/Verificação dos Ficheiros"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "Certificados Importados de %1"
-
-#~ msgctxt ""
-#~ "The user is offered to force decrypt a non integrity protected message. "
-#~ "With the strong advice to re-encrypt it."
-#~ msgid ""
-#~ "If you are confident that the file was not manipulated you should re-"
-#~ "encrypt it after you have forced the decryption."
-#~ msgstr ""
-#~ "Se tiver a certeza que o ficheiro não foi manipulado, deveria codificá-lo "
-#~ "de novo após ter forçado a descodificação."
-
-#, fuzzy
-#~| msgid "Force decryption"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "Forçar a descodificação"
-
-#~ msgctxt "@action:button"
-#~ msgid "Yes, It's Mine"
-#~ msgstr "Sim, é Meu"
-
-#~ msgctxt "@action:button"
-#~ msgid "No, It's Not Mine"
-#~ msgstr "Não, Não é Meu"
-
-#~ msgctxt "@action:button"
-#~ msgid "Set Owner Trust"
-#~ msgstr "Definir a Confiança do Dono"
-
-#~ msgid "Is this your own key?"
-#~ msgstr "Esta é a sua própria chave?"
-
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "Permitir a assinatura com certificados de S/MIME"
-
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "Permite a assinatura do texto ou ficheiros com certificados S/MIME."
-
-#~ msgid ""
-#~ "If false, then Kleopatra will not offer functionality for creating "
-#~ "signatures with S/MIME certificates."
-#~ msgstr ""
-#~ "Se for falso, então o Kleopatra não fornecerá nenhuma funcionalidade para "
-#~ "criar assinaturas com certificados S/MIME."
-
-#~ msgctxt "@info"
-#~ msgid "The size of the URL may not exceed 254 characters."
-#~ msgstr "O tamanho do URL não poderá exceder 254 caracteres."
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "Erro na Salvaguarda da Chave Privada"
-
-#~ msgid ""
-#~ "If this option is checked while a root CA certificate is being imported, "
-#~ "you will be asked to confirm its fingerprint and to state whether or not "
-#~ "you consider this root certificate to be trusted. A root certificate "
-#~ "needs to be trusted before the certificates it certified become trusted, "
-#~ "but lightly allowing trusted root certificates into your certificate "
-#~ "store will undermine the security of the system."
-#~ msgstr ""
-#~ "Se esta opção estiver assinalada enquanto estiver a importar um "
-#~ "certificado de AC de raiz, ser-lhe-á pedida a confirmação da sua "
-#~ "impressão digital e estado, quer considere ou não este certificado como "
-#~ "fidedigno. Um certificado de raiz precisa de ser considerado fidedigno "
-#~ "antes de os certificados por si confirmados serem considerados "
-#~ "fidedignos, mas ao considerar os certificados de raiz do seu armazém de "
-#~ "certificados como sendo fiáveis, irá comprometer a segurança do sistema."
-
-#~ msgid "Allow to mark root certificates as trusted"
-#~ msgstr "Permitir marcar os certificados de raiz como fidedignos"
-
-#, fuzzy
-#~| msgid "Certificate Details"
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "Detalhes do Certificado"
-
-#~ msgctxt "@title"
-#~ msgid "Request Saved"
-#~ msgstr "Pedido Gravado"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Não foi possível gravar o pedido.</para><para><message>%1</"
-#~ "message></para>"
-
-#~ msgctxt "@title"
-#~ msgid "Error Saving Request"
-#~ msgstr "Erro ao Gravar o Pedido"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Could not remove file <filename>%1</filename> for overwriting."
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr ""
-#~ "Não foi possível remover o ficheiro <filename>%1</filename> para o "
-#~ "substituir."
-
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "(required)"
-#~ msgstr "(obrigatório)"
-
-#~ msgid "(optional)"
-#~ msgstr "(opcional)"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is required, but empty."
-#~ msgstr "O <interface>%1</interface> é necessário, mas está em branco."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-#~ "<icode>%2</icode>"
-#~ msgstr ""
-#~ "O <interface>%1</interface> é necessário, mas está em branco.<nl/>Regra "
-#~ "de administração local: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is incomplete."
-#~ msgstr "O <interface>%1</interface> está incompleto."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "O <interface>%1</interface> está incompleto.<nl/>Regra de administração "
-#~ "local: <icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is invalid."
-#~ msgstr "O <interface>%1</interface> é inválido."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "O <interface>%1</interface> é inválido.<nl/>Regra de administração local: "
-#~ "<icode>%2</icode>"
-
-#, fuzzy
-#~| msgctxt "@title:column"
-#~| msgid "Strength"
-#~ msgctxt "@info:label"
-#~ msgid "RSA key strength:"
-#~ msgstr "Força"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "Detalhes Técnicos"
-
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "Endereços de E-Mail"
-
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "Nomes do DNS"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "Detalhes Pessoais"
-
-#~ msgid "new email"
-#~ msgstr "correio novo"
-
-#~ msgid "new dns name"
-#~ msgstr "nome de DNS novo"
-
-#~ msgid "new uri"
-#~ msgstr "URI novo"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%2 (%1 'bit')"
-#~ msgstr[1] "%2 (%1 'bits')"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "1 'bit'"
-#~ msgstr[1] "%1 'bits'"
-
-#~ msgid "EMail"
-#~ msgstr "E-mail"
-
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "Indique os Detalhes"
-
-#~ msgid "Real name:"
-#~ msgstr "Nome verdadeiro:"
-
-#~ msgid "EMail address:"
-#~ msgstr "Endereço de e-mail:"
-
-#~ msgid "Protect the generated key with a passphrase."
-#~ msgstr "Protege a chave gerada com uma frase-senha."
-
-#, fuzzy
-#~| msgid ""
-#~| "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~| "asked for the passphrase during key generation."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~ "asked for the passphrase during key generation."
-#~ msgstr ""
-#~ "Codificada a chave privada com uma frase-senha irrecuperável. Ser-lhe-á "
-#~ "pedida a senha durante a geração da chave."
-
-#~ msgid "Advanced Settings..."
-#~ msgstr "Configuração Avançada..."
-
-#~ msgid "Please enter your personal details below."
-#~ msgstr "Por favor indique em baixo os seus detalhes pessoais."
-
-#~ msgid ""
-#~ "Please enter your personal details below. If you want more control over "
-#~ "the parameters, click on the Advanced Settings button."
-#~ msgstr ""
-#~ "Indique por favor os seus detalhes pessoais em baixo. Se quiser mais "
-#~ "controlo sobre os parâmetros, carregue no botão de Configuração Avançada."
-
-#~ msgctxt "@action"
-#~ msgid "Create"
-#~ msgstr "Criar"
-
-#~ msgid "Operation canceled."
-#~ msgstr "A operação foi cancelada."
-
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "Não foi possível criar o par de chaves: %1"
-
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "Não foi possível gravar o ficheiro de saída %1: %2"
-
-#~ msgid "Key pair created successfully."
-#~ msgstr "O par de chaves foi criado com sucesso."
-
-#~ msgctxt "@action:button"
-#~ msgid "Add Entry"
-#~ msgstr "Adicionar um Item"
-
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "Remover o Item"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Up"
-#~ msgstr "Subir"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Down"
-#~ msgstr "Descer"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "Assistente de Criação de Pares de Chaves"
-
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "Resultado"
-
-#, fuzzy
-#~| msgid ""
-#~| "Drag this icon to your mail application's composer to attach the request "
-#~| "to a mail."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Drag this icon to your mail application's composer to attach the request "
-#~ "to a mail."
-#~ msgstr ""
-#~ "Arraste este ícone para o compositor da sua aplicação de correio, de modo "
-#~ "a anexar o pedido a uma mensagem."
-
-#~ msgid "Restart This Wizard (Keeps Your Parameters)"
-#~ msgstr "Reiniciar este Assistente (Mantém os Seus Parâmetros)"
-
-#~ msgctxt "@title:group"
-#~ msgid "Next Steps"
-#~ msgstr "Passos Seguintes"
-
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "Gravar o Pedido do Certificado num Ficheiro..."
-
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "Enviar o Pedido de Certificado por E-Mail..."
-
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "Criar um Certificado de Assinatura com os Mesmos Parâmetros"
-
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "Criar um Certificado de Encriptação com os Mesmos Parâmetros"
-
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "Problemas na Criação da Chave"
-
-#~ msgid ""
-#~ "Key pair creation failed. Please find details about the failure below."
-#~ msgstr ""
-#~ "A criação do par de chaves. Por favor, descubra mais detalhes sobre o "
-#~ "problema em baixo."
-
-#~ msgctxt "@title"
-#~ msgid "Key Pair Successfully Created"
-#~ msgstr "Par de Chaves Criado com Sucesso"
-
-#~ msgid ""
-#~ "Your new key pair was created successfully. Please find details on the "
-#~ "result and some suggested next steps below."
-#~ msgstr ""
-#~ "O seu novo par de chaves foi criado com sucesso. Veja abaixo por favor os "
-#~ "detalhes do resultado, assim como alguns passos seguintes sugeridos."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~ "%2</filename>: <message>%3</message>"
-#~ msgstr ""
-#~ "Não foi possível copiar o ficheiro temporário <filename>%1</filename> "
-#~ "para o ficheiro <filename>%2</filename>: <message>%3</message>"
-
-#~ msgid "Please process this certificate."
-#~ msgstr "Processe por favor este certificado."
-
-#~ msgid ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-#~ msgstr ""
-#~ "Processe por favor este certificado e informe o remetente da localização "
-#~ "onde poderá obter o certificado resultante.\n"
-#~ "\n"
-#~ "Obrigado,\n"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then drag the <application>Kleopatra</"
-#~ "application> icon and drop it on the message compose window of your mail "
-#~ "client.</para><para>If that does not work, either, save the request to a "
-#~ "file, and then attach that.</para>"
-#~ msgstr ""
-#~ "<para>O <application>Kleopatra</application> tentou enviar um e-mail com "
-#~ "o seu cliente de e-mail predefinido.</para><para>Alguns dos clientes de e-"
-#~ "mail são conhecidos por não suportarem anexos quando forem invocados "
-#~ "desta forma.</para><para>Se o seu cliente de e-mail não tiver um anexo, "
-#~ "então arraste o ícone do <application>Kleopatra</application> e largue-o "
-#~ "na janela de composição da mensagem do seu cliente de e-mail.</"
-#~ "para><para>Se isto também não funcionar, grave o pedido num ficheiro e "
-#~ "depois anexe-o.</para>"
-
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "A Enviar o Correio"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "This operation will delete the certification request. Please make sure "
-#~ "that you have sent or saved it before proceeding."
-#~ msgstr ""
-#~ "Esta operação irá apagar o pedido de certificação. Certifique-se por "
-#~ "favor que o enviou ou gravou antes de prosseguir."
-
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "Pedido de Certificação Prestes a ser Apagado"
-
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "A&ssinar como:"
-
-#, fuzzy
-#~| msgctxt "@option:check on SignEncryptPage"
-#~| msgid "&Sign as:"
-#~ msgid "&Sign as:"
-#~ msgstr "A&ssinar como:"
-
-#~ msgid "Decrypt / Verify"
-#~ msgstr "Descodificar / Verificar"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>A actualização dos certificados de OpenPGP implica a transferência "
-#~ "de todos os certificados de novo, para verificar se algum deles foi "
-#~ "revogado entretanto.</para><para>Isto poderá colocar uma pressão enorme "
-#~ "sobre as suas ligações de rede, bem como as das outras pessoas, podendo "
-#~ "levar até uma hora ou mais para terminar, dependendo da sua ligação de "
-#~ "rede e do número de certificados a verificar.</para> <para>Tem a certeza "
-#~ "que deseja continuar?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "Erro na Actualização do Certificado do OpenPGP"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "Actualização do Certificado do OpenPGP Terminada"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>O processo GpgSM que tentou apresentar os dados do certificado "
-#~ "terminou prematuramente devido a um erro inesperado.</para><para>Por "
-#~ "favor, verifique o resultado do <icode>%1</icode> para mais detalhes.</"
-#~ "para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Ocorreu um erro ao tentar actualizar os certificados OpenPGP.</"
-#~ "para><para>O resultado do <command>%1</command> foi: <bcode>%2</bcode></"
-#~ "para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "Os certificados do OpenPGP foram actualizados com sucesso."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>A actualização dos certificados de X.509 implica a transferência "
-#~ "dos CRL's de todos os certificados de novo, mesmo que boa parte deles "
-#~ "ainda seja válida.</para><para>Isto poderá colocar uma pressão enorme "
-#~ "sobre as suas ligações de rede, bem como as das outras pessoas, podendo "
-#~ "levar até uma hora ou mais para terminar, dependendo da sua ligação de "
-#~ "rede e do número de certificados a verificar.</para> <para>Tem a certeza "
-#~ "que deseja continuar?</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "Actualização do Certificado X.509"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "Erro da Actualização do Certificado X.509"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "Actualização do Certificado X.509 Terminada"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>O processo GpgSM que tentou actualizar os dados dos certificados "
-#~ "X.509 terminou prematuramente devido a um erro inesperado.</"
-#~ "para><para>Por favor, verifique o resultado do <icode>%1</icode> para "
-#~ "mais detalhes.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Ocorreu um erro ao tentar actualizar os certificados de X.509.</"
-#~ "para><para>O resultado do <command>%1</command> foi: <bcode>%2</bcode></"
-#~ "para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "Os certificados X.509 foram actualizados com sucesso."
-
-#~ msgid "&Window"
-#~ msgstr "&Janela"
-
-#, fuzzy
-#~| msgid "Show GnuPG system configuration"
-#~ msgid "Show GnuPG Configuration"
-#~ msgstr "Mostrar a configuração do sistema GnuPG"
-
-#~ msgid "Configure Groups..."
-#~ msgstr "Configurar os Grupos..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "Parar Operação"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "Actualizar os Certificados do OpenPGP"
-
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "Actualizar os Certificados de S/MIME"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "Certificados Importados de %1"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "Certificados importados destas fontes:<br/>%1"
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "Resultado da Importação de Certificado"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "Exportação do Certificado do OpenPGP Terminada"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "Os certificados do OpenPGP foram exportados com sucesso."
-
-#~ msgid "GpgME library too old"
-#~ msgstr "A biblioteca GpgME é demasiado antiga"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "Ou o executável do GpgME em si é demasiado antigo, ou a biblioteca GpgME+"
-#~ "+ foi compilada contra um GpgME mais antigo que não suporta a ligação ao "
-#~ "'gpg-agent'."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "Actualize para o <application>gpgme</application> 1.2.0 ou posterior, e "
-#~ "garanta que o 'gpgme++' foi compilado com ele."
-
-#~ msgid "Keep open after operation completed"
-#~ msgstr "Manter aberto após terminar a operação"
-
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "Certificados"
-
-#~ msgid "Show certificate overview"
-#~ msgstr "Mostrar a visão geral do certificado"
-
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "Geometria da Mensagem de Descodificação/Verificação"
-
-#~ msgid ""
-#~ "The remembered size and position of the Decrypt/Verify Result Popup used "
-#~ "by clients which do not support inline display of D/V results, such as MS "
-#~ "Outlook."
-#~ msgstr ""
-#~ "A posição recordada da Janela de Resultado da Descodificação/Verificação "
-#~ "que é usada pelos clientes que não suportam a apresentação incorporada "
-#~ "dos resultados da D/V, como o MS Outlook."
-
-#, fuzzy
-#~| msgid ""
-#~| "Automatically start operation based on input detection for decrypt/"
-#~| "verify."
-#~ msgctxt "@option:check"
-#~ msgid ""
-#~ "Automatically start operation based on input detection for decrypt/verify."
-#~ msgstr ""
-#~ "Iniciar automaticamente a operação com base na detecção à entrada da "
-#~ "descodificação/verificação."
-
-#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
-#~ msgstr ""
-#~ "Não é possível determinar se os dados de entrada são do OpenPGP ou do CMS"
-
-#~ msgid "No usable inputs found"
-#~ msgstr "Não foram indicados dados de entrada úteis"
-
-#~ msgid "<b>Choose operations to be performed</b>"
-#~ msgstr "<b>Escolha as operações a efectuar</b>"
-
-#~ msgid ""
-#~ "Here you can check and, if needed, override the operations Kleopatra "
-#~ "detected for the input given."
-#~ msgstr ""
-#~ "Aqui poderá verificar e, se necessário, substituir as operações que o "
-#~ "Kleopatra detectou para os dados introduzidos."
-
-#, fuzzy
-#~| msgid "&Decrypt/Verify"
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "&Descodificar/Verificar"
-
-#~ msgid "Create all output files in a single folder"
-#~ msgstr "Criar todos os ficheiros de saída numa única pasta"
-
-#~ msgid "&Output folder:"
-#~ msgstr "Pasta de destin&o:"
-
-#~ msgid "Input file:"
-#~ msgstr "Ficheiro de entrada:"
-
-#~ msgid "&Input file is a detached signature"
-#~ msgstr "O f&icheiro de entrada é uma assinatura destacada"
-
-#~ msgid "&Signed data:"
-#~ msgstr "Dados a&ssinados:"
-
-#~ msgid "&Input file is an archive; unpack with:"
-#~ msgstr "O f&icheiro de entrada é um pacote; descomprimir com:"
-
-#~ msgid ""
-#~ "Automatically start operation based on input detection for decrypt/verify."
-#~ msgstr ""
-#~ "Iniciar automaticamente a operação com base na detecção à entrada da "
-#~ "descodificação/verificação."
-
-#~ msgid ""
-#~ "With this option set Kleopatra no longer asks you what you want to do "
-#~ "with input files but instead automatically starts the operations it "
-#~ "detects as applicable to the input."
-#~ msgstr ""
-#~ "Com esta opção activada, o Kleopatra já não lhe pergunta mais o que fazer "
-#~ "com os ficheiros de entrada, iniciando assim automaticamente as operações "
-#~ "que detectar como adequadas aos dados de entrada."
-
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "Não foi possível enviar a opção crítica %1: %2"
-
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "Não foi possível enviar a localização do ficheiro %1: %2"
-
-#~ msgid "Failed to send sender %1: %2"
-#~ msgstr "Não foi possível enviar o emissor %1: %2"
-
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "Não foi possível enviar o destinatário %1: %2"
-
-#~ msgid "Change..."
-#~ msgstr "Modificar..."
-
-#~ msgid "Kleopatra Error"
-#~ msgstr "Erro do Kleopatra"
-
-#~ msgid "There was an error while connecting to Kleopatra: %1"
-#~ msgstr "Ocorreu um erro na ligação ao Kleopatra: %1"
-
-#, fuzzy
-#~| msgid "Encrypt Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "Erro na Encriptação da Área de Transferência"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "The result of the export is empty."
-#~ msgctxt "@info"
-#~ msgid "The clipboard is empty"
-#~ msgstr "O resultado da exportação está em branco."
-
-#, fuzzy
-#~| msgid "Sign Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Signing clipboard…"
-#~ msgstr "Erro de Assinatura da Área de Transferência"
-
-#, fuzzy
-#~| msgid "S/MIME-Sign..."
-#~ msgctxt "@action"
-#~ msgid "S/MIME-Sign..."
-#~ msgstr "Assinar por S/MIME..."
-
-#, fuzzy
-#~| msgid "OpenPGP-Sign..."
-#~ msgctxt "@action"
-#~ msgid "OpenPGP-Sign..."
-#~ msgstr "Assinar por OpenPGP..."
-
-#~ msgctxt "@title"
-#~ msgid "Available Keys"
-#~ msgstr "Chaves Disponíveis"
-
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr "Procurar nas chaves disponíveis"
-
-#~ msgid "available keys"
-#~ msgstr "chaves disponíveis"
-
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "Adicionar as Chaves Seleccionadas"
-
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "Remover as Chaves Seleccionadas"
-
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "Chaves do Grupo"
-
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "Procurar nas chaves do grupo"
-
-#~ msgid "group keys"
-#~ msgstr "chaves do grupo"
-
-#~ msgid "Unknown certificate"
-#~ msgstr "Certificado desconhecido"
-
-#, fuzzy
-#~| msgid "<b>Verification canceled.</b>"
-#~ msgid "Verification canceled."
-#~ msgstr "<b>A verificação foi cancelada.</b>"
-
-#, fuzzy
-#~| msgid "<b>No signatures found.</b>"
-#~ msgid "No signatures found."
-#~ msgstr "<b>Não foram encontradas assinaturas.</b>"
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "<b>Assinatura inválida.</b>"
-#~ msgstr[1] "<b>%1 assinaturas inválidas.</b>"
-
-#, fuzzy
-#~| msgid "<b>The data could not be verified.</b>"
-#~| msgid_plural "<b>%1 signatures could not be verified.</b>"
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "<b>Não é possível verificar os dados.</b>"
-#~ msgstr[1] "<b>Não é possível verificar as %1 assinaturas.</b>"
-
-#, fuzzy
-#~| msgid "<b>Valid signature by %1</b>"
-#~ msgid "Valid signature by %1."
-#~ msgstr "<b>Assinatura válida de %1</b>"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "Assinatura inválida"
-#~ msgstr[1] "Assinatura inválida"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#~| "certificates used for signing."
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
-#~ "used for signing."
-#~ msgstr ""
-#~ "<br/><b>Atenção:</b> O endereço de e-mail do remetente não está guardado "
-#~ "nos certificados usados para a assinatura."
-
-#, fuzzy
-#~| msgid "Encryption canceled."
-#~ msgid "Decryption canceled."
-#~ msgstr "A encriptação foi cancelada."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr ""
-#~ "Não foi possível mover o <filename>%1</filename> para <filename>%2</"
-#~ "filename>."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "Não foi possível mover o <filename>%1</filename> para <filename>%2</"
-#~ "filename>."
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr ""
-#~ "Não foi possível mover o <filename>%1</filename> para <filename>%2</"
-#~ "filename>."
-
-#~ msgid ""
-#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
-#~ "p>"
-#~ msgstr ""
-#~ "<p>O endereço do remetente %1 não está guardado no certificado. "
-#~ "Guardados: %2</p>"
-
-#~ msgctxt "separator for a list of e-mail addresses"
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "Procurar%1"
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "Importar%1"
-
-#~ msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
-#~ msgid "Uses:"
-#~ msgstr "Utilizações:"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 "
-#~| "used for signing."
-#~ msgctxt ""
-#~ "@info The placeholder is a link to the certificate. The text of the link "
-#~ "is the translated work 'certificate'"
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the %1 used for "
-#~ "signing."
-#~ msgstr ""
-#~ "<br/><b>Atenção:</b> O endereço de e-mail do remetente não está guardado "
-#~ "no %1, que é usado para a assinatura."
-
-#~ msgid "certificate"
-#~ msgstr "certificado"
-
-#~ msgctxt "Input file --> Output file (rarr is arrow"
-#~ msgid "%1 &rarr; %2"
-#~ msgstr "%1 &rarr; %2"
-
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "<b>A verificação foi mal-sucedida: %1.</b>"
-
-#~ msgid "<b>Valid signature.</b>"
-#~ msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgstr[0] "<b>Assinatura válida.</b>"
-#~ msgstr[1] "<b>%1 assinaturas válidas.</b>"
-
-#~ msgid "<b>Decryption canceled.</b>"
-#~ msgstr "<b>A descodificação foi cancelada.</b>"
-
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "<b>A descodificação foi mal-sucedida: %1.</b>"
-
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "<b>A descodificação foi bem-sucedida.</b>"
-
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1: %2"
-
-#~ msgid "Signing failed."
-#~ msgstr "A assinatura falhou."
-
-#~ msgid "Encryption failed."
-#~ msgstr "Cifra falhou."
-
-#~ msgid " Encryption succeeded."
-#~ msgstr "A encriptação foi bem-sucedida."
-
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "%1: <b>A assinatura/encriptação foi cancelada.</b>"
-
-#~ msgid " %1: Sign/encrypt failed."
-#~ msgstr "%1: A assinatura/encriptação foi mal-sucedida."
-
-#~ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
-#~ msgid "%1: <b>%2</b>"
-#~ msgstr "%1: <b>%2</b>"
-
-#~ msgctxt "e.g. \"Input to tar xf - file1 ...\""
-#~ msgid "Input to %1 ..."
-#~ msgstr "Entrada para %1 ..."
-
-#~ msgctxt "e.g. \"Input to tar xf - file\""
-#~ msgid "Input to %1"
-#~ msgstr "Entrada para %1"
-
-#~ msgid "Root Trust Update Failed"
-#~ msgstr "A Actualização da Confiança na Raiz foi Mal-Sucedida"
-
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid ""
-#~ "Encrypt with &password. Anyone you share the password with can read the "
-#~ "data."
-#~ msgstr ""
-#~ "Encriptar com uma &senha. Todas as pessoas com quem partilhar a senha "
-#~ "poderão ver os dados."
-
-#~ msgctxt "@title:group"
-#~ msgid "Output"
-#~ msgstr "Resultado"
-
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "Provar a autenticidade (assinar)"
-
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "Encriptar"
-
-#, fuzzy
-#~| msgid "<h3>Protocol:</h3>"
-#~ msgctxt "@label:textbox"
-#~ msgid "<h3>Protocol:</h3>"
-#~ msgstr "<h3>Protocolo:</h3>"
-
-#~ msgid "Recipients"
-#~ msgstr "Destinatários"
-
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "Erro na acção de encriptação"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "Manutenção Actual"
-
-#~ msgid ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-#~ msgstr ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr ""
-#~ "Não é possível aceder ao ficheiro <filename>%1</filename> para escrita."
-
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr ""
-#~ "<para>Ocorreu um erro durante a exportação:</para><para><message>%1</"
-#~ "message></para>"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "One unknown recipient."
-#~ msgid_plural "%1 unknown recipients."
-#~ msgstr[0] "Um destinatário desconhecido."
-#~ msgstr[1] "%1 destinatários desconhecidos."
-
-#~ msgid ""
-#~ "Configuration of directory services is not possible because the used "
-#~ "gpgme libraries are too old."
-#~ msgstr ""
-#~ "A configuração dos serviços de directório não é possível porque as "
-#~ "bibliotecas do 'gpgme' usadas são demasiado antigas."
-
-#~ msgid "Automatic import finished."
-#~ msgstr "A importação automática terminou."
-
-#~ msgid "Error multiple keys found on server."
-#~ msgstr "Erro com várias chaves encontradas no servidor."
-
-#~ msgid "Error: Signature not verified"
-#~ msgstr "Erro: A assinatura não foi verificada"
-
-#~ msgid "Good signature"
-#~ msgstr "Assinatura válida"
-
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "O certificado de assinatura foi revogado"
-
-#~ msgid "Signing certificate is expired"
-#~ msgstr "O certificado de assinatura expirou"
-
-#~ msgid "Certificate is not available"
-#~ msgstr "O certificado não está disponível"
-
-#~ msgid "Signature expired"
-#~ msgstr "Assinatura expirada"
-
-#~ msgid "CRL missing"
-#~ msgstr "Falta a CRL"
-
-#~ msgid "CRL too old"
-#~ msgstr "A CRL é demasiado antiga"
-
-#~ msgid "Bad policy"
-#~ msgstr "A política é inválida"
-
-#~ msgid "System error"
-#~ msgstr "Erro do sistema"
-
-#~ msgid ""
-#~ "The signature is valid but the trust in the certificate's validity is "
-#~ "only marginal."
-#~ msgstr ""
-#~ "A assinatura é válida, mas a confiança na validade do certificado é "
-#~ "apenas marginal."
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is fully trusted."
-#~ msgstr ""
-#~ "A assinatura é válida e a validade do certificado é completamente fiável."
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is ultimately "
-#~ "trusted."
-#~ msgstr ""
-#~ "A assinatura é válida e a validade do certificado é totalmente fiável."
-
-#~ msgid ""
-#~ "The signature is valid but the certificate's validity is <em>not trusted</"
-#~ "em>."
-#~ msgstr ""
-#~ "A assinatura é válida, mas a validade do certificado <em>não é fiável</"
-#~ "em>."
-
-#~ msgid "The signature is valid but the certificate's validity is unknown."
-#~ msgstr ""
-#~ "A assinatura é válida, mas a validade do certificado é desconhecida."
-
-#~ msgid "The signature is valid but the certificate's validity is undefined."
-#~ msgstr ""
-#~ "A assinatura é válida, mas a validade do certificado não está definida."
-
-#~ msgctxt "1 is a date"
-#~ msgid "Signature created on %1"
-#~ msgstr "Assinatura criada a %1"
-
-#~ msgid "With certificate:"
-#~ msgstr "Com o certificado:"
-
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "A assinatura é %1"
-
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "A assinatura <b>não</b> é %1."
-
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "A assinatura é inválida: %1"
-
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr ""
-#~ "Poderá procurar por um certificado num servidor de chaves ou importá-lo "
-#~ "de um ficheiro."
-
-#~ msgid "The used key is not certified by you or any trusted person."
-#~ msgstr ""
-#~ "A chave do utilizador não é certificada por si nem por qualquer pessoa "
-#~ "fidedigna."
-
-#~ msgid ""
-#~ "The used certificate is not certified by a trustworthy Certificate "
-#~ "Authority or the Certificate Authority is unknown."
-#~ msgstr ""
-#~ "O certificado usado não está validado por uma Autoridade de Certificação "
-#~ "fidedigna ou a Autoridade de Certificação é desconhecida."
-
-#~ msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set NKS PIN"
-#~ msgstr "Definir o PIN do NKS"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set SigG PIN"
-#~ msgstr "Definir o PIN do SigG"
-
-#~ msgid "Setting a PIN is required but <b>can't be reverted</b>."
-#~ msgstr ""
-#~ "A definição de um PIN é obrigatória mas <b>não pode ser revertida</b>."
-
-#~ msgid ""
-#~ "If you proceed you will be asked to enter a new PIN and later to repeat "
-#~ "that PIN."
-#~ msgstr ""
-#~ "Se prosseguir, ser-lhe-á agora pedido para introduzir um novo PIN e "
-#~ "posteriormente para repetir esse PIN."
-
-#~ msgid ""
-#~ "It will <b>not be possible</b> to recover the card if the PIN has been "
-#~ "entered wrongly more than 2 times."
-#~ msgstr ""
-#~ "<b>Não será possível</b> recuperar o cartão se o PIN tiver sido "
-#~ "introduzido de forma errada mais de 2 vezes."
-
-#, fuzzy
-#~| msgid "Set initial PIN"
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "Definir o PIN inicial"
-
-#, fuzzy
-#~| msgid "Change"
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "Modificar"
-
-#~ msgid "New name:"
-#~ msgstr "Novo nome:"
-
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "O nome foi modificado com sucesso."
-
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "O URL foi modificado com sucesso."
-
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "Modificar o PIN"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "Criar uma Chave de OpenPGP"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "Modificar o PIN do SigG"
-
-#~ msgid "Error"
-#~ msgstr "Erro"
-
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "Modificar o PUK"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Change the PIV Card Application PIN that activates the PIV Card and "
-#~ "enables private key operations using the stored keys."
-#~ msgstr ""
-#~ "Muda o PIN da Aplicação do Cartão PIV que activa o Cartão PIV e permite "
-#~ "operações com chave privada a usar as chaves armazenadas."
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-#~ msgstr "Muda a Chave de Desbloqueio do PIN que permite repor o PIN."
-
-#, fuzzy
-#~| msgctxt "@label"
-#~| msgid "Subkeys"
-#~ msgid "Subkeys"
-#~ msgstr "Sub-chaves"
-
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "Tipo"
-
-#, fuzzy
-#~| msgid "Serial number:"
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "Número de série:"
-
-#, fuzzy
-#~| msgctxt ""
-#~| "@title:tab smartcard application - name of card holder - serial number "
-#~| "of smartcard"
-#~| msgid "%1 - %2 - %3"
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 - %2 - %3"
-
-#, fuzzy
-#~| msgctxt "unknown storage location"
-#~| msgid "unknown"
-#~ msgctxt "unknown cardholder"
-#~ msgid "unknown"
-#~ msgstr "desconhecida"
-
-#, fuzzy
-#~| msgctxt "@action show smartcard management view"
-#~| msgid "Smartcards"
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "'Smartcards'"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "This certificate cannot be used for encryption."
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "Este certificado não pode ser usado para encriptação."
-
-#~ msgid "Authentication"
-#~ msgstr "Autenticação"
-
-#, fuzzy
-#~| msgid "Certificates:"
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "Certificados:"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create CSR"
-#~ msgstr "Criar um CSR"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr ""
-#~ "Criar um pedido de assinatura do certificado para uma chave guardada no "
-#~ "cartão."
-
-#~ msgid "Select Key"
-#~ msgstr "Seleccionar a Chave"
-
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr ""
-#~ "Por favor, seleccione a chave para a qual deseja criar um pedido de "
-#~ "assinatura do certificado:"
-
-#~ msgid ""
-#~ "Sorry! No keys suitable for creating a certificate signing request found "
-#~ "on the smartcard."
-#~ msgstr ""
-#~ "Infelizmente, não existem chaves adequadas para criar um pedido de "
-#~ "assinatura do certificado encontrado no cartão."
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "Mostrar os Detalhes"
-
-#~ msgctxt "@action:tooltip"
-#~ msgid "Show detailed information about this key"
-#~ msgstr "Mostrar informações detalhadas sobre esta chave"
-
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "Gerar uma Chave"
-
-#~ msgctxt "@info"
-#~ msgid "<em>No key</em>"
-#~ msgstr "<em>Sem chave</em>"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Generate a key for this card slot"
-#~ msgstr "Gerar uma chave para esta posição do cartão"
-
-#~ msgctxt "@info"
-#~ msgid "<em>Public key not found locally</em>"
-#~ msgstr "<em>A chave pública não foi encontrada a nível local</em>"
-
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "<em>Assinatura inválida</em>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "Gerar de Novo a Chave"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Generate a new key for this card slot replacing the existing key"
-#~ msgstr ""
-#~ "Gerar uma nova chave para esta posição do cartão, substituindo a chave "
-#~ "existente"
-
-#~ msgctxt "@info"
-#~ msgid "Sorry, I cannot find the key with fingerprint %1."
-#~ msgstr ""
-#~ "Infelizmente, não foi possível encontrar a chave com impressão digital %1."
-
-#~ msgid "OpenPGP keys:"
-#~ msgstr "Chaves de OpenPGP:"
-
-#~ msgid "Keys:"
-#~ msgstr "Chaves:"
-
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "Gerar"
-
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "Gravar o Certificado"
-
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "Importar o Certificado"
-
-#~ msgctxt "@info"
-#~ msgid "<em>slot empty</em>"
-#~ msgstr "<em>posição vazia</em>"
-
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "Gerar uma %1"
-
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "<em>sem certificados correspondentes</em>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Replace"
-#~ msgstr "Substituir"
-
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Replace %1 with new key"
-#~ msgstr "Substituir a %1 por uma chave nova"
-
-#~ msgid "Reload"
-#~ msgstr "Actualizar"
-
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "Erro de Apresentação da 'Cache' da CRL"
-
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "Mostrar as marcas associadas aos certificados"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Enable display and usage of tags attached to certificates."
-#~ msgstr ""
-#~ "Activar a apresentação e utilização das marcas associadas aos "
-#~ "certificados."
-
-#~ msgid "Use tags"
-#~ msgstr "Usar as marcas"
-
-#~ msgid "Enable display and usage of tags attached to keys."
-#~ msgstr ""
-#~ "Activar a apresentação e utilização das marcas associadas às chaves."
-
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "Impressão digital da chave da marca"
-
-#~ msgid ""
-#~ "If a key is specified, then only tags made with this key are considered. "
-#~ "Otherwise, tags made with any fully trusted key are considered."
-#~ msgstr ""
-#~ "Se for indicada uma chave, então só as marcas criadas com esta chave são "
-#~ "tidas em consideração. Caso contrário, só serão tidas em consideração as "
-#~ "marcas criadas com qualquer chave completamente fidedigna."
-
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "Nome"
-
-#~ msgid "Enter a name."
-#~ msgstr "Indique um nome."
-
-#~ msgctxt "@label"
-#~ msgid "Email address"
-#~ msgstr "Endereço de e-mail"
-
-#~ msgid "The name must not include <, >, and @."
-#~ msgstr "O nome não deverá incluir o <, > e @."
-
-#~ msgctxt "text for screen readers"
-#~ msgid ""
-#~ "The name must not include less-than sign, greater-than sign, and at sign."
-#~ msgstr ""
-#~ "O nome não deverá incluir o sinal de menor, maior ou o sinal da 'arroba'."
-
-#~ msgid ""
-#~ "The name must be in the format required by your organization and it must "
-#~ "not include <, >, and @."
-#~ msgstr ""
-#~ "O nome deverá estar no formato obrigatório da sua empresa e não deverá "
-#~ "incluir o <, > e @."
-
-#~ msgctxt "text for screen readers"
-#~ msgid ""
-#~ "The name must be in the format required by your organization and it must "
-#~ "not include less-than sign, greater-than sign, and at sign."
-#~ msgstr ""
-#~ "O nome deverá estar no formato obrigatório da sua empresa e não deverá "
-#~ "incluir o sinal de menor, maior e a 'arroba'."
-
-#~ msgid ""
-#~ "Enter an email address in the correct format required by your "
-#~ "organization."
-#~ msgstr "Indique um endereço de e-mail no formato correcto da sua empresa."
-
-#~ msgid ""
-#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~ "asked for the passphrase during key generation."
-#~ msgstr ""
-#~ "Codificada a chave privada com uma frase-senha irrecuperável. Ser-lhe-á "
-#~ "pedida a senha durante a geração da chave."
-
-#, fuzzy
-#~| msgid "The validity period cannot be changed."
-#~ msgctxt "@info"
-#~ msgid "The date cannot be changed."
-#~ msgstr "Não é possível modificar o período de validade."
-
-#, fuzzy
-#~| msgctxt "Date for expiration of certification"
-#~| msgid "Two years from now"
-#~ msgctxt "@item:inlistbox"
-#~ msgid "Three years from now"
-#~ msgstr "Daqui a dois anos"
-
-#, fuzzy
-#~| msgctxt "Date for expiration of certification"
-#~| msgid "Two years from now"
-#~ msgctxt "@item:inlistbox"
-#~ msgid "Two years from now"
-#~ msgstr "Daqui a dois anos"
-
-#, fuzzy
-#~| msgctxt "Date for expiration of certification"
-#~| msgid "One year from now"
-#~ msgctxt "@item:inlistbox"
-#~ msgid "One year from now"
-#~ msgstr "Daqui a um ano"
-
-#~ msgid "Error: Enter a value."
-#~ msgstr "Erro: Introduza um valor."
-
-#~ msgctxt "@label label text (required)"
-#~ msgid "%1 (required)"
-#~ msgstr "%1 (obrigatório)"
-
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr ""
-#~ "Procurar pelos certificados 'online', usando um servidor de chaves público"
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "Procurar..."
-
-#, fuzzy
-#~| msgid "Search...<%1>"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "Procurar...<%1>"
-
-#, fuzzy
-#~| msgid "Serial number:"
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "Número de série:"
-
-#~ msgid "SecOps VSA-10573"
-#~ msgstr "SecOps VSA-10573"
-
-#~ msgid "SecOps VSA-10584"
-#~ msgstr "SecOps VSA-10584"
-
-#~ msgctxt ""
-#~ "Only available in German and English. Leave to English for other "
-#~ "languages."
-#~ msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
-#~ msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "Chave Revogada"
-
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "Revogar a Chave"
-
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "Sem razão indicada"
-
-#~ msgctxt "@option:radio"
-#~ msgid "Key is superseded"
-#~ msgstr "A chave foi substituída"
-
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "Revogar a Chave"
-
-#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-#~ msgstr "<para>Está prestes a revogar a seguinte chave:<nl/>%1</para>"
-
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "Publicar depois no servidor de chaves"
-
-#~ msgctxt "@title:column"
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgctxt "@info"
-#~ msgid "Changing the Reset Code failed: %1"
-#~ msgstr "A mudança do Código de Reposição falhou: %1"
-
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "O PUK foi modificado com sucesso."
-
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "O Código de Reposição foi modificado com sucesso."
-
-#~ msgid "Create a new primary key and generate subkeys on the card."
-#~ msgstr "Criar uma nova chave primária e gerar sub-chaves no cartão."
-
-#~ msgid "Change Reset Code"
-#~ msgstr "Modificar o Código de Reinício"
-
-#~ msgid "&Quickguide"
-#~ msgstr "&Guia Rápido"
-
-#~ msgid "&Group configuration"
-#~ msgstr "Configuração do &grupo"
-
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "Criar uma Chave de OpenPGP"
-
-#~ msgid "Create an OpenPGP key for the keys stored on the card."
-#~ msgstr "Criar uma chave de OpenPGP para as chaves guardadas no cartão."
-
-#~ msgid "The key hasn't changed."
-#~ msgstr "A chave não foi modificada."
-
-#~ msgid "The key has been revoked."
-#~ msgstr "A chave foi revogada."
-
-#~ msgid "The key has been updated."
-#~ msgstr "A chave foi actualizada."
-
-#, fuzzy
-#~| msgctxt "@title:window"
-#~| msgid "Update Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "Actualização sem Sucesso"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "Chave Actualizada"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Não foi possível gravar o pedido.</para><para><message>%1</"
-#~ "message></para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr ""
-#~ "<para>Ocorreu um erro durante a actualização do certificado:</"
-#~ "para><para><message>%1</message></para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "Erro ao imprimir a chave privada"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>O processo do GPG que tentou exportar a chave privada terminou "
-#~ "prematuramente devido a um erro inesperado.</para><para>Verifique por "
-#~ "favor o resultado do <icode>%1</icode> para mais detalhes.</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>Ocorreu um erro ao tentar exportar a chave privada.</para><para>O "
-#~ "resultado do <command>%1</command> foi: <message>%2</message></para>"
-
-#~ msgctxt "@option:radio"
-#~ msgid "RSA"
-#~ msgstr "RSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ RSA"
-#~ msgstr "+ RSA"
-
-#~ msgctxt "@option:radio"
-#~ msgid "DSA"
-#~ msgstr "DSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ Elgamal"
-#~ msgstr "+ ElGamal"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "This subkey is required for encryption."
-#~ msgstr "Esta sub-chave é necessária para descodificar."
-
-#~ msgctxt "@option:radio"
-#~ msgid "ECDSA"
-#~ msgstr "ECDSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ ECDH"
-#~ msgstr "+ ECDH"
-
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "IDs de Utilizador Adicionais"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Adding more than one user ID is not yet implemented."
-#~ msgstr ""
-#~ "A adição de mais que uma ID de utilizador ainda não está implementada."
-
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr ""
-#~ "O par de chaves foi criado com sucesso.\n"
-#~ "Impressão digital: %1"
-
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "Criar uma Cópia de Segurança do seu Par de Chaves..."
-
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "Enviar a Chave Pública por E-Mail..."
-
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "Enviar a Chave Pública para o Servidor de Directório..."
-
-#~ msgid "Create Revocation Request..."
-#~ msgstr "Criar um Pedido de Revogação..."
-
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "A minha nova chave pública de OpenPGP"
-
-#~ msgid "Please find attached my new public OpenPGP key."
-#~ msgstr "Poderá verificar em anexo a minha nova chave pública de OpenPGP."
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then attach the file <filename>%1</"
-#~ "filename> manually.</para>"
-#~ msgstr ""
-#~ "<para>O <application>Kleopatra</application> tentou enviar um e-mail com "
-#~ "o seu cliente de e-mail predefinido.</para><para>Alguns dos clientes de e-"
-#~ "mail são conhecidos por não suportarem anexos quando forem invocados "
-#~ "desta forma.</para><para>Se o seu cliente de e-mail não tiver um anexo, "
-#~ "então anexe o ficheiro <filename>%1</filename> manualmente.</para>"
-
-#~ msgid "Related addresses:"
-#~ msgstr "Endereços relacionados:"
-
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "Mais Detalhes..."
-
-#, fuzzy
-#~| msgid "Manage groups"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "Gerir os grupos"
-
-#, fuzzy
-#~| msgctxt "@label"
-#~| msgid "Subkeys"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "Sub-chaves"
-
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "Sub-chaves:"
-
-#~ msgid "Restore printed backup"
-#~ msgstr "Repor a cópia de segurança impressa"
-
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "Detalhes das Sub-Chaves"
-
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "Cadeia de Confiança"
-
-#~ msgctxt "@info"
-#~ msgid "One certificate without name and email address was ignored."
-#~ msgid_plural "%1 certificates without name and email address were ignored."
-#~ msgstr[0] "Foi ignorado um certificado sem nome ou endereço de e-mail."
-#~ msgstr[1] "Foram ignorados %1 certificados sem nome ou endereço de e-mail."
-
-#~ msgid ""
-#~ "This setting specifies how many days a new OpenPGP key is valid at least, "
-#~ "or, in other words, after how many days the new key will expire at the "
-#~ "earliest."
-#~ msgstr ""
-#~ "Esta opção define quantos dias no mínimo será válida uma chave nova de "
-#~ "OpenPGP ou, por outras palavras, ao fim de quantos dias a nova chave "
-#~ "ficará expirada."
-
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "Erro ao Aprender o 'Smartcard'"
-
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "Terminou a Aprendizagem do 'Smartcard'"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>O processo do GPG ou GpgSM que tentou aprender o 'smartcard' "
-#~ "terminou prematuramente devido a um erro inesperado.</"
-#~ "para><para>Verifique por favor o resultado do <icode>%1</icode> para mais "
-#~ "detalhes.</para>"
-
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "A carregar os certificados... (isto poderá levar algum tempo)"
-
-#~ msgid "Show Details"
-#~ msgstr "Mostrar os Detalhes"
-
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "Aprender os Certificados do Cartão NetKey v3"
-
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "Existem certificados desconhecidos neste cartão."
-
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "Carregar os Certificados"
-
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "Primária"
-
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "sim"
-
-#~ msgctxt "no, is not primary key"
-#~ msgid "no"
-#~ msgstr "não"
-
-#~ msgid "View Columns"
-#~ msgstr "Ver as Colunas"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "Criar uma Cópia de Segurança e Apagar a Chave"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "Apagar a Chave"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "Manter a Chave"
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "O ficheiro <b>%1</b> já existe.\n"
-#~ "Deseja sobrepo-lo?"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "Sobrepor o Ficheiro Existente?"
-
-#~ msgid "Overwrite All"
-#~ msgstr "Sobrepor Tudo"
-
-#~ msgid "Save changes"
-#~ msgstr "Gravar as alterações"
-
-#~ msgid "Discard changes"
-#~ msgstr "Esquecer as alterações"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The certificates or the certificate groups have been updated in the "
-#~ "background.</para><para>Do you want to save your changes?</para>"
-#~ msgstr ""
-#~ "<para>Os certificados ou grupos de certificados foram actualizados em "
-#~ "segundo plano.</para><para>Deseja gravar as suas modificações?</para>"
-
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "Gravar as alterações?"
-
-#~ msgid "Import Certificates"
-#~ msgstr "Importar os Certificados"
-
-#~ msgid "Import CRLs"
-#~ msgstr "Importar as CRLs"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>Não foram configurados nenhuns serviços de directório de OpenPGP.</"
-#~ "para><para>Dado que não está nenhum configurado, o "
-#~ "<application>Kleopatra</application> irá usar o <resource>keys.gnupg.net</"
-#~ "resource> como servidor para onde exportar.</para><para>Poderá configurar "
-#~ "os servidores de directórios de OpenPGP na janela de configuração do "
-#~ "<application>Kleopatra</application>.</para><para>Deseja continuar com o "
-#~ "<resource>keys.gnupg.net</resource> como o servidor para onde exportar os "
-#~ "dados?</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>Não foram configurados nenhuns serviços de directório de OpenPGP.</"
-#~ "para><para>Se nem todos os certificados possuem o nome do seu servidor de "
-#~ "certificados favorito (poucos o fazem), é necessário usar um servidor de "
-#~ "contingência.</para><para>Dado que não está nenhum configurado, o "
-#~ "<application>Kleopatra</application> irá usar o <resource>keys.gnupg.net</"
-#~ "resource> como servidor de contingência.</para><para>Poderá configurar os "
-#~ "servidores de directórios de OpenPGP na janela de configuração do "
-#~ "<application>Kleopatra</application>.</para><para>Deseja continuar com o "
-#~ "<resource>keys.gnupg.net</resource> como servidor de contingência?</para>"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECC (Brainpool P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECC (Brainpool P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-512)"
-#~ msgstr "ECC (Brainpool P-512)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECC (Curva25519)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECC (Curva448)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECC (NIST P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECC (NIST P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-521)"
-#~ msgstr "ECC (NIST P-521)"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA 2048"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 3072"
-#~ msgstr "RSA 3072"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 4096"
-#~ msgstr "RSA 4096"
-
-#~ msgid "File Operations"
-#~ msgstr "Operações Com Ficheiros"
-
-#~ msgid "Secret Key Files"
-#~ msgstr "Ficheiros de Chave Privada"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "Erro de Exportação da Chave Privada"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "Exportação da Chave Privada Terminada"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>O processo do GPG ou GpgSM que tentou exportar a chave privada "
-#~ "terminou prematuramente devido a um erro inesperado.</"
-#~ "para><para>Verifique por favor o resultado do <icode>%1</icode> para mais "
-#~ "detalhes.</para>"
-
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "A chave privada foi exportada com sucesso."
-
-#~ msgctxt "@info"
-#~ msgid "Possibly bad passphrase given."
-#~ msgstr "Possivelmente foi indicada uma frase-senha inválida."
-
-#~ msgid "The backend does not support updating individual certificates."
-#~ msgstr ""
-#~ "A infra-estrutura não suporta a actualização de certificados individuais."
-
-#~ msgctxt "@info"
-#~ msgid "The backend does not support this operation."
-#~ msgstr "A infra-estrutura não suporta esta operação."
-
-#, fuzzy
-#~| msgctxt "1 is protocol"
-#~| msgid "Export %1 Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "Exportar os Certificados %1"
-
-#, fuzzy
-#~| msgctxt "@info %1: a certificate, %2: name of a compliance mode"
-#~| msgid ""
-#~| "<para>The certificate '%1' is empowered to mark other certificates as %2 "
-#~| "for you.</para><para>Do you want to revoke this power?</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>You haven't certified all OpenPGP certificates in this group.</"
-#~ "para><para>Do you want to continue the export?</para>"
-#~ msgstr ""
-#~ "<para>O certificado '%1' tem a capacidade de marcar outros certificados "
-#~ "como %2 para si.</para><para>Deseja revogar esta capacidade?</para>"
-
-#~ msgid "Sender"
-#~ msgstr "Remetente"
-
-#~ msgctxt "@action::button"
-#~ msgid "Edit"
-#~ msgstr "Editar"
-
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "Apagar"
-
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "Exportar"
-
-#~ msgid "Explain tags"
-#~ msgstr "Explicar as marcas"
-
-#~ msgid "Explain expiration"
-#~ msgstr "Explicar a data de validade"
-
-#~ msgid "Explain trusted introducer"
-#~ msgstr "Explicar a introdução fidedigna"
-
-#~ msgid "The certification must be valid at least until tomorrow."
-#~ msgstr "A certificação deverá estar válida pelo menos até amanhã."
-
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "A data da última certificação permitida é %1."
-
-#~ msgid "Valid for %1 day"
-#~ msgid_plural "Valid for %1 days"
-#~ msgstr[0] "Válido por %1 dia"
-#~ msgstr[1] "Válido por %1 dias"
-
-#~ msgid "Valid for %1 week"
-#~ msgid_plural "Valid for %1 weeks"
-#~ msgstr[0] "Válido por %1 semana"
-#~ msgstr[1] "Válido por %1 semanas"
-
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "Válido por %1 mês"
-#~ msgstr[1] "Válido por %1 meses"
-
-#~ msgid "Valid for %1 year"
-#~ msgid_plural "Valid for %1 years"
-#~ msgstr[0] "Válido por %1 ano"
-#~ msgstr[1] "Válido por %1 anos"
-
-#~ msgid "Valid for:"
-#~ msgstr "Válido por:"
-
-#~ msgid "Days"
-#~ msgstr "Dias"
-
-#~ msgid "Weeks"
-#~ msgstr "Semanas"
-
-#~ msgid "Months"
-#~ msgstr "Meses"
-
-#~ msgctxt "... between today and <another date>."
-#~ msgid "The validity period must end between today and %1."
-#~ msgstr "O período de validade deverá terminar entre hoje e %1."
-
-#~ msgid "The validity period must end after today."
-#~ msgstr "O período de validade deverá terminar depois de hoje."
-
-#~ msgctxt "... after <a date>."
-#~ msgid "The validity period must end after %1."
-#~ msgstr "O período de validade deverá terminar depois de %1."

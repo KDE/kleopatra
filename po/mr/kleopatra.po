@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2013-03-05 17:34+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -163,12 +163,6 @@ msgstr "प्रमाणपत्र"
 msgid "Kleopatra"
 msgstr "क्लिओपात्रा"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, fuzzy, kde-format
-#| msgid "Certificate Manager and Unified Crypto GUI"
-msgid "Certificate manager and cryptography app"
-msgstr "प्रमाणपत्र व्यवस्थापक व एकत्रित क्रिप्टो GUI"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -198,6 +192,12 @@ msgstr ""
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr ""
+
+#: src/aboutdata.cpp
+#, fuzzy, kde-format
+#| msgid "Certificate Manager and Unified Crypto GUI"
+msgid "Certificate manager and cryptography app"
+msgstr "प्रमाणपत्र व्यवस्थापक व एकत्रित क्रिप्टो GUI"
 
 #: src/commands/addadskcommand.cpp
 #, kde-format
@@ -236,8 +236,8 @@ msgstr ""
 #: src/commands/addsubkeycommand.cpp
 #, kde-format
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr ""
 
 #: src/commands/addsubkeycommand.cpp
@@ -1051,7 +1051,7 @@ msgid "CRL cache cleared successfully."
 msgstr ""
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1212,8 +1212,8 @@ msgstr ""
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 
 #: src/commands/dumpcertificatecommand.cpp
@@ -1390,8 +1390,8 @@ msgstr ""
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 
 #: src/commands/exportcertificatecommand.cpp
@@ -1426,6 +1426,12 @@ msgid "Certificate Groups (*%1)"
 msgstr "प्रमाणपत्र"
 
 #: src/commands/exportgroupscommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr ""
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1438,12 +1444,6 @@ msgstr "प्रमाणपत्र"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "निर्यात"
-
-#: src/commands/exportgroupscommand.cpp
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr ""
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2051,15 +2051,15 @@ msgstr[0] "प्रमाणपत्र"
 msgstr[1] "प्रमाणपत्र"
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr ""
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
-msgstr ""
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
 msgstr ""
 
 #: src/commands/importcertificatefromfilecommand.cpp
@@ -2375,15 +2375,15 @@ msgstr ""
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr ""
 
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr ""
 
 #: src/commands/importcertificatescommand.cpp
@@ -2669,13 +2669,18 @@ msgstr ""
 msgid "The existing key has the key grip:"
 msgstr ""
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "प्रमाणपत्र"
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp
@@ -2685,15 +2690,25 @@ msgid "Create backup"
 msgstr "फाईल निवडा (&S)..."
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
+msgstr ""
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
 msgstr ""
 
 #: src/commands/keytocardcommand.cpp
@@ -3647,8 +3662,8 @@ msgstr "संयोजना (&S)"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr ""
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4309,15 +4324,15 @@ msgid ""
 msgstr ""
 
 #: src/crypto/createchecksumscontroller.cpp
+#, fuzzy, kde-format
+msgid "Initializing..."
+msgstr "सुरवात केलेले"
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "रद्द करा"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, fuzzy, kde-format
-msgid "Initializing..."
-msgstr "सुरवात केलेले"
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4559,6 +4574,22 @@ msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, fuzzy, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "प्रमाणपत्र"
+msgstr[1] "प्रमाणपत्र"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "प्रमाणपत्र"
+msgstr[1] "प्रमाणपत्र"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -4598,6 +4629,12 @@ msgstr "प्रमाणपत्र"
 #, kde-format
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
@@ -4720,6 +4757,12 @@ msgctxt "@info"
 msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
+msgstr ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
 msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5075,6 +5118,22 @@ msgstr ""
 #, kde-format
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
 msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
@@ -5483,6 +5542,7 @@ msgid "Sign / Encrypt Files"
 msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
 #| msgid "Encryption"
 msgctxt "@title:dialog"
@@ -5496,6 +5556,12 @@ msgstr "कुटलिपी"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "कुटलिपी"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, fuzzy, kde-format
@@ -5517,13 +5583,6 @@ msgstr "उघडा"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "कुटलिपी"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr ""
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -5886,15 +5945,15 @@ msgstr "संग्रह"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
@@ -5923,8 +5982,8 @@ msgstr "कुटलिपी"
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
@@ -5966,8 +6025,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6012,27 +6071,27 @@ msgid ""
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
-msgstr ""
+"filename> and saved them as <filename>%3</filename>."
+msgstr "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
-msgstr[0] ""
-msgstr[1] ""
+"saved them as <filename>%3</filename>."
+msgstr[0] "प्रमाणपत्र"
+msgstr[1] "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6043,28 +6102,33 @@ msgid ""
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+#, fuzzy, kde-kuit-format
+msgctxt "@info Successfully signed <file> and saved it as <file>."
 msgid ""
-"Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
-msgstr ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
-msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+#, fuzzy, kde-kuit-format
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
+"saved them as <filename>%3</filename>."
+msgstr "प्रमाणपत्र"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+msgctxt ""
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
+msgid ""
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
-msgstr[0] ""
-msgstr[1] ""
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
+msgstr[0] "प्रमाणपत्र"
+msgstr[1] "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6075,26 +6139,27 @@ msgid ""
 msgstr ""
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
-msgstr ""
+"and saved them as <filename>%3</filename>."
+msgstr "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
-msgstr[0] ""
-msgstr[1] ""
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
+msgstr[0] "प्रमाणपत्र"
+msgstr[1] "प्रमाणपत्र"
 
 #: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
@@ -7757,14 +7822,15 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -7933,8 +7999,8 @@ msgstr ""
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -7956,6 +8022,12 @@ msgstr "कुटलिपी"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "कुटलिपी"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr ""
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -8489,15 +8561,36 @@ msgstr ""
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
+msgid "Hint for CN (deprecated use CN_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for CN"
+msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
@@ -8538,18 +8631,53 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr ""
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -8588,6 +8716,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -8606,13 +8748,28 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
 msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr ""
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
 msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
@@ -8650,6 +8807,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -9137,6 +9308,20 @@ msgid ""
 "smartcard while the command is running."
 msgstr ""
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9553,8 +9738,8 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 
 #: src/mainwindow.cpp
@@ -10616,8 +10801,8 @@ msgstr ""
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/encryptcommand.cpp
@@ -10646,15 +10831,15 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -10684,8 +10869,8 @@ msgstr ""
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 
 #: src/uiserver/prepsigncommand.cpp
@@ -10697,15 +10882,15 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
 
 #: src/uiserver/signcommand.cpp
@@ -11710,6 +11895,13 @@ msgstr ""
 msgid "List of certificates"
 msgstr "प्रमाणपत्र"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "तपशील"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -12537,8 +12729,8 @@ msgstr ""
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -12586,8 +12778,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -12626,851 +12818,3 @@ msgid ""
 "Import certificate from a file.<nl/>To import from a public keyserver use "
 "<interface>Lookup on Server</interface> instead."
 msgstr ""
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Card Certificate"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Overwrite File"
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "फाईल खोडून पुन्हा लिहा"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "कुटलिपी"
-
-#, fuzzy
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "(optional)"
-#~ msgstr "वैकल्पिक"
-
-#, fuzzy
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "इमेल पत्ता :"
-
-#, fuzzy
-#~| msgid "Name"
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "नाव"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "16-बीट"
-#~ msgstr[1] "बिट्स"
-
-#, fuzzy
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "16-बीट"
-#~ msgstr[1] "बिट्स"
-
-#, fuzzy
-#~ msgid "EMail"
-#~ msgstr "इमेल"
-
-#, fuzzy
-#~ msgid "Real name:"
-#~ msgstr "खरे नाव (&R):"
-
-#, fuzzy
-#~ msgid "EMail address:"
-#~ msgstr "इमेल पत्ता :"
-
-#, fuzzy
-#~ msgid "Advanced Settings..."
-#~ msgstr "प्रगत संयोजना"
-
-#, fuzzy
-#~| msgid "Remove"
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "काढून टाका"
-
-#, fuzzy
-#~| msgid "Result"
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "परिणाम"
-
-#~ msgid "&Window"
-#~ msgstr "चौकट (&W)"
-
-#, fuzzy
-#~| msgid "&Configure %1..."
-#~ msgid "Configure Groups..."
-#~ msgstr "%1 संयोजीत करा (&C)..."
-
-#, fuzzy
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Show certificate overview"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Overwrite File"
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "फाईल खोडून पुन्हा लिहा"
-
-#, fuzzy
-#~ msgid "Input file:"
-#~ msgstr "इनपुट फाईल"
-
-#, fuzzy
-#~| msgid "Kleopatra"
-#~ msgid "Kleopatra Error"
-#~ msgstr "क्लिओपात्रा"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgid "group keys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~ msgid "No signatures found."
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Selection"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "निवड"
-#~ msgstr[1] "निवड"
-
-#, fuzzy
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "प्रमाणपत्र"
-#~ msgstr[1] "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Valid signature by %1."
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "प्रमाणपत्र"
-#~ msgstr[1] "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Overwrite File"
-#~ msgid "Decryption canceled."
-#~ msgstr "फाईल खोडून पुन्हा लिहा"
-
-#, fuzzy
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "शोधा"
-
-#, fuzzy
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "आयात"
-
-#, fuzzy
-#~ msgid "certificate"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Output file:"
-#~ msgctxt "@title:group"
-#~ msgid "Output"
-#~ msgstr "आउटपुट फाईल :"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "कुटलिपी"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "कुटलिपी"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "वर्तमान पालक"
-
-#~ msgid "System error"
-#~ msgstr "प्रणाली त्रुटी"
-
-#, fuzzy
-#~ msgid "With certificate:"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "सुरवात केलेले"
-
-#, fuzzy
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~ msgid "New name:"
-#~ msgstr "खरे नाव (&R):"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~| msgid "Error"
-#~ msgid "Error"
-#~ msgstr "त्रुटी"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgid "Subkeys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Type"
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "प्रकार"
-
-#, fuzzy
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "खरे नाव (&R):"
-
-#, fuzzy
-#~ msgctxt "Unknown <type> <version> (card)"
-#~ msgid "Unknown %1 v%2"
-#~ msgstr "अपरिचीत"
-
-#, fuzzy
-#~| msgctxt "unknown trust level"
-#~| msgid "unknown"
-#~ msgctxt "unknown cardholder"
-#~ msgid "unknown"
-#~ msgstr "अपरिचीत"
-
-#, fuzzy
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "सर्व निवडा"
-
-#, fuzzy
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "प्रमाणपत्र"
-
-#~ msgid "Authentication"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Select Key"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "File Operations"
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "फाईलच्या क्रिया"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Open"
-#~ msgid "OpenPGP keys:"
-#~ msgstr "उघडा"
-
-#, fuzzy
-#~| msgid "File Operations"
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "फाईलच्या क्रिया"
-
-#, fuzzy
-#~| msgid "File Operations"
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "फाईलच्या क्रिया"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Replace"
-#~ msgstr "जागा"
-
-#, fuzzy
-#~ msgid "Reload"
-#~ msgstr "पुन्हा दाखल करा"
-
-#, fuzzy
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~| msgid "Name"
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "नाव"
-
-#, fuzzy
-#~ msgid "Enter a name."
-#~ msgstr "खरे नाव (&R):"
-
-#, fuzzy
-#~ msgctxt "@label"
-#~ msgid "Email address"
-#~ msgstr "इमेल पत्ता :"
-
-#, fuzzy
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "शोधा"
-
-#, fuzzy
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "शोधा"
-
-#, fuzzy
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "खरे नाव (&R):"
-
-#, fuzzy
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~ msgctxt "@title:column"
-#~ msgid "ID"
-#~ msgstr "Id"
-
-#, fuzzy
-#~ msgid "The key has been revoked."
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "निर्यात"
-
-#, fuzzy
-#~| msgid "&Update"
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "अद्ययावत (&U)"
-
-#, fuzzy
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "वापरकर्ता ID (&U):"
-
-#, fuzzy
-#~ msgid "Related addresses:"
-#~ msgstr "इमेल पत्ता :"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "तपशील..."
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~| msgid "Details"
-#~ msgid "Show Details"
-#~ msgstr "तपशील"
-
-#, fuzzy
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "हो"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "फाईल निवडा (&S)..."
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "सध्याची फाईल खोडून पुन्हा लिहायची आहे का?"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgid "Save changes"
-#~ msgstr "असे साठवा"
-
-#, fuzzy
-#~| msgid "Save As"
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "असे साठवा"
-
-#~ msgid "File Operations"
-#~ msgstr "फाईलच्या क्रिया"
-
-#, fuzzy
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "काढून टाका"
-
-#, fuzzy
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "निर्यात"
-
-#, fuzzy
-#~ msgid "Explain expiration"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~| msgid "Validity"
-#~ msgid "Valid for:"
-#~ msgstr "वैधता"
-
-#~ msgid "Days"
-#~ msgstr "दिवस"
-
-#~ msgid "Months"
-#~ msgstr "महीने"
-
-#, fuzzy
-#~ msgid "Tooltips"
-#~ msgstr "टूलटिप्स :"
-
-#, fuzzy
-#~ msgid "Finalizing output..."
-#~ msgstr "सुरवात केलेले"
-
-#, fuzzy
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "इनपुट फाईल"
-
-#, fuzzy
-#~| msgid "File Operations"
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "फाईलच्या क्रिया"
-
-#, fuzzy
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "इनपुट फाईल"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "कुटलिपी"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~| msgctxt "as in \"verbosity level\""
-#~| msgid "Level"
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "पातळी"
-
-#, fuzzy
-#~ msgid "Revocation Error"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Revocation Succeeded"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~| msgid "Never"
-#~ msgctxt "Expires"
-#~ msgid "never"
-#~ msgstr "कधीही नाही"
-
-#~ msgid "In"
-#~ msgstr "च्या आत"
-
-#, fuzzy
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "न बदललेले"
-
-#, fuzzy
-#~ msgid "X.509"
-#~ msgstr "x"
-
-#, fuzzy
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "शोधा"
-
-#, fuzzy
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "शोधा"
-
-#~ msgid "Type:"
-#~ msgstr "प्रकार :"
-
-#, fuzzy
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "निर्यात"
-
-#~ msgid "&Update"
-#~ msgstr "अद्ययावत (&U)"
-
-#, fuzzy
-#~| msgid "Error"
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "त्रुटी"
-
-#, fuzzy
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "निर्यात"
-
-#, fuzzy
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Load additional certificates"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "प्रमाणपत्र"
-
-#, fuzzy
-#~ msgctxt "@label"
-#~ msgid "Name:"
-#~ msgstr "नाव :"
-
-#, fuzzy
-#~ msgid "Comment"
-#~ msgstr "टीप"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Click for details."
-#~ msgstr "तपशील..."
-
-#, fuzzy
-#~ msgctxt "Quit [ApplicationName]"
-#~ msgid "&Quit %1"
-#~ msgstr "बाहेर पडा"
-
-#~ msgid "&Configure %1..."
-#~ msgstr "%1 संयोजीत करा (&C)..."
-
-#, fuzzy
-#~ msgid "&About %1..."
-#~ msgstr "%1 विषयी"
-
-#, fuzzy
-#~ msgid "&Export..."
-#~ msgstr "निर्यात"
-
-#, fuzzy
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "16-बीट"
-#~ msgstr[1] "बिट्स"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Authentication:"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Card authentication:"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "अधिप्रमाणन"
-
-#, fuzzy
-#~ msgid "<b>Summary:</b>"
-#~ msgstr "सारांश"
-
-#, fuzzy
-#~ msgid "Comment:"
-#~ msgstr "टीप :"
-
-#, fuzzy
-#~ msgid "Overview"
-#~ msgstr "आढावा"
-
-#, fuzzy
-#~ msgid "Add..."
-#~ msgstr "जोडा..."
-
-#, fuzzy
-#~ msgctxt "@action"
-#~ msgid "More..."
-#~ msgstr "अधिक....."
-
-#~ msgid "Add"
-#~ msgstr "जोडा"
-
-#, fuzzy
-#~ msgid "E-Mail"
-#~ msgstr "इ-मेल :"
-
-#, fuzzy
-#~ msgid "%1-bit %2"
-#~ msgstr "16-बीट"
-
-#~ msgid "Subject"
-#~ msgstr "विषय"
-
-#~ msgid "No"
-#~ msgstr "नाही"
-
-#~ msgctxt "undefined trust"
-#~ msgid "undefined"
-#~ msgstr "व्याख्यारहित"
-
-#~ msgctxt "as in good/valid signature"
-#~ msgid "good"
-#~ msgstr "चांगले"
-
-#, fuzzy
-#~ msgid "class %1"
-#~ msgstr "वर्ग"
-
-#~ msgctxt "good/valid signature"
-#~ msgid "good"
-#~ msgstr "चांगले"
-
-#~ msgid "good"
-#~ msgstr "चांगले"
-
-#, fuzzy
-#~ msgid "&Browse..."
-#~ msgstr "संचार करा (&B)..."
-
-#~ msgid "Applications"
-#~ msgstr "अनुप्रयोग"
-
-#, fuzzy
-#~ msgid "Devices"
-#~ msgstr "साधने"
-
-#~ msgid "String"
-#~ msgstr "स्ट्रिंग"
-
-#~ msgid "Path"
-#~ msgstr "मार्ग"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Option"
-#~ msgstr "पर्याय"
-
-#, fuzzy
-#~ msgid "Parsing Error"
-#~ msgstr "व्याख्या वाचताना त्रुटी : "
-
-#~ msgid "View"
-#~ msgstr "दृश्य"
-
-#~ msgid "&Executable:"
-#~ msgstr "एक्जीक्यूटेबल (&E):"
-
-#, fuzzy
-#~ msgid "None"
-#~ msgstr "काही नाही"
-
-#~ msgid "Basic"
-#~ msgstr "मूळ"
-
-#~ msgid "C&lear History"
-#~ msgstr "इतिहास काढून टाका (&l)"
-
-#, fuzzy
-#~ msgid "&Find:"
-#~ msgstr "शोधा"
-
-#~ msgid "Search Toolbar"
-#~ msgstr "शोध साधनपट्टी"
-
-#, fuzzy
-#~ msgid "CTRL+."
-#~ msgstr "Ctrl"
-
-#, fuzzy
-#~ msgid "CTRL+,"
-#~ msgstr "Ctrl"

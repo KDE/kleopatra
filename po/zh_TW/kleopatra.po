@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2025-09-25 02:45+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -170,11 +170,6 @@ msgstr "檔案 <filename>%1</filename> 已存在。"
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, kde-format
-msgid "Certificate manager and cryptography app"
-msgstr "憑證管理與加密應用程式"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -205,11 +200,16 @@ msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "© 2001-%1 Kleopatra 開發團隊"
 
+#: src/aboutdata.cpp
+#, kde-format
+msgid "Certificate manager and cryptography app"
+msgstr "憑證管理與加密應用程式"
+
 #: src/commands/addadskcommand.cpp
 #, fuzzy, kde-format
 #| msgid ""
-#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-#| "%2</p>"
+#| "<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+#| "p><p>%2</p>"
 msgctxt "@info"
 msgid ""
 "<p>An error occurred while trying to add an ADSK to <b>%1</b>:</p><p>%2</p>"
@@ -247,8 +247,8 @@ msgstr "新增 ADSK"
 #: src/commands/addsubkeycommand.cpp
 #, kde-format
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr "<p>試著新增子金鑰到 <b>%1</b> 時發生錯誤：</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp
@@ -1080,7 +1080,7 @@ msgid "CRL cache cleared successfully."
 msgstr "憑證撤銷清冊快取已成功清除。"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1256,8 +1256,8 @@ msgstr "CMS 後端介面：%1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>試著刪除憑證時發生錯誤：</p><p><b>%1</b></p></qt>"
 
 #: src/commands/dumpcertificatecommand.cpp
@@ -1443,8 +1443,8 @@ msgstr "匯出憑證中..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>匯出憑證時發生錯誤：</p><p><b>%1</b></p></qt>"
 
 #: src/commands/exportcertificatecommand.cpp
@@ -1478,6 +1478,13 @@ msgid "Certificate Groups (*%1)"
 msgstr "憑證群組 (*%1)"
 
 #: src/commands/exportgroupscommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgid "Cannot overwrite existing <filename>%1</filename>."
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "無法覆寫既存檔案 <filename>%1</filename>。"
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1490,13 +1497,6 @@ msgstr "憑證群組 (*%1)"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "匯出失敗"
-
-#: src/commands/exportgroupscommand.cpp
-#, fuzzy, kde-kuit-format
-#| msgid "Cannot overwrite existing <filename>%1</filename>."
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "無法覆寫既存檔案 <filename>%1</filename>。"
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2147,16 +2147,16 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "正在從 %1 個檔案中匯入憑證..."
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "無法開啟檔案 %1 以讀取：%2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "匯入憑證失敗"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "無法開啟檔案 %1 以讀取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2485,24 +2485,24 @@ msgstr "顯示稽核紀錄"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證時發生錯誤：</p> <p><b>%1</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr "<qt><p>嘗試匯入憑證 %1 時發生錯誤：</p> <p><b>%2</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -2522,9 +2522,9 @@ msgstr "%1<item>%2</item>"
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "<para>You have imported a certificate with fingerprint</para><para><numid>"
-#| "%1</numid></para><para>and user IDs<list>%2</list></para><para>Is this "
-#| "your own certificate?</para>"
+#| "<para>You have imported a certificate with fingerprint</"
+#| "para><para><numid>%1</numid></para><para>and user IDs<list>%2</list></"
+#| "para><para>Is this your own certificate?</para>"
 msgctxt "@info"
 msgid ""
 "<para>You have imported a certificate with a secret key.</"
@@ -2804,6 +2804,14 @@ msgstr "抱歉！只有加密金鑰和簽章金鑰才能被移轉到 PIV 卡片�
 msgid "The existing key has the key grip:"
 msgstr "現存金鑰的 key grip："
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid "<para>The key was copied to the smart card.</para>"
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr "<para>金鑰已複製到智慧卡上。</para>"
+
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
@@ -2812,9 +2820,8 @@ msgstr "現存金鑰的 key grip："
 #| "delete the copy of the key stored on this computer?</para>"
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
 "<para>金鑰已被複製到卡片上。</para><para>您要刪除該金鑰儲存在這台電腦上的複本"
 "嗎？</para>"
@@ -2826,16 +2833,29 @@ msgid "Create backup"
 msgstr "建立備份"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "刪除磁碟上的複本"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "保留磁碟上的複本"
+
+#: src/commands/keytocardcommand.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Do you really want to delete the copy of the key stored on this computer?"
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr "您確定要刪除金鑰在這台電腦上的複本嗎？"
 
 #: src/commands/keytocardcommand.cpp
 #, fuzzy, kde-kuit-format
@@ -3873,8 +3893,8 @@ msgstr "設定(&S)"
 #| "\".gpg\""
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr "所建立的 OpenPGP 加密檔用 \".pgp\" 而不是用 \".gpg\" 做副檔名。"
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4574,15 +4594,15 @@ msgstr ""
 "不能混著給。"
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "初始化中..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "初始化中..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4842,6 +4862,28 @@ msgstr "檢查 <filename>%1</filename> 時失敗："
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
+
+#: src/crypto/decryptverifytask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -4889,6 +4931,12 @@ msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filen
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "資料是為這個金鑰 / 憑證所加密的。"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -5026,6 +5074,12 @@ msgid ""
 "Warning: The sender's mail address is not stored in the <a href=\"key:"
 "%1\">certificate</a> used for signing. Stored:<ul>%2</ul>"
 msgstr "<br /><b>警告：</b>寄件者的電子郵件地址並未儲存在憑證中以用於簽署。"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5386,6 +5440,22 @@ msgstr "診斷"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "顯示稽核紀錄"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, fuzzy, kde-format
@@ -5803,6 +5873,7 @@ msgid "Sign / Encrypt Files"
 msgstr "簽署/加密檔案"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
@@ -5814,6 +5885,12 @@ msgstr "簽署/加密檔案"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "簽署/加密(&S)"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
@@ -5832,13 +5909,6 @@ msgstr "簽署(&S)"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "加密(&E)"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr "完成"
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6197,20 +6267,20 @@ msgstr "封存"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
-"遇到非預期的例外狀況，發生於 SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared：%1"
+"遇到非預期的例外狀況，發生於 "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared：%1"
 
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
-"遇到未知的例外狀況，發生於 SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"遇到未知的例外狀況，發生於 "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-format
@@ -6237,8 +6307,8 @@ msgstr "加密已取消。"
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr "將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。"
 
 #: src/crypto/signencrypttask.cpp
@@ -6291,8 +6361,8 @@ msgstr ""
 #| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6349,14 +6419,14 @@ msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filen
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
@@ -6371,10 +6441,10 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/signencrypttask.cpp
@@ -6395,12 +6465,22 @@ msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filen
 #| "Verification of a detached signature summary. The first file contains the "
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
+
+#: src/crypto/signencrypttask.cpp
+#, fuzzy, kde-kuit-format
+#| msgctxt ""
+#| "Verification of a detached signature summary. The first file contains the "
+#| "data.The second file is signature."
+#| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/signencrypttask.cpp
@@ -6410,14 +6490,13 @@ msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filen
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/signencrypttask.cpp
@@ -6436,13 +6515,13 @@ msgstr "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filen
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
-#| "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#| "%2</filename>: <message>%3</message>"
+#| "Could not copy temporary file <filename>%1</filename> to file "
+#| "<filename>%2</filename>: <message>%3</message>"
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
 "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
 "<message>%3</message>"
@@ -6454,13 +6533,14 @@ msgstr ""
 #| "data.The second file is signature."
 #| msgid "Verified <filename>%1</filename> with <filename>%2</filename>"
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] "已使用簽章檔 <filename>%2</filename> 來檢查 <filename>%1</filename>"
 
 #: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
@@ -7385,8 +7465,8 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
-"<para>已選金鑰：<emphasis>%1</emphasis></para><para>已選智慧卡：<emphasis>"
-"%2</emphasis></para><para>選擇一下選項之一來繼續：</para>"
+"<para>已選金鑰：<emphasis>%1</emphasis></para><para>已選智慧卡："
+"<emphasis>%2</emphasis></para><para>選擇一下選項之一來繼續：</para>"
 
 #: src/dialogs/createcsrdialog.cpp
 #, kde-format
@@ -8120,14 +8200,15 @@ msgstr "錯誤：描述不能包含空行。"
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
 
 #: src/dialogs/revokerswidget.cpp
@@ -8302,8 +8383,8 @@ msgstr "設定初始 PIN 碼（NKS）"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr "步驟 2：設定有資格簽章憑證（\"SigG\"）的初始 PIN 碼："
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -8323,6 +8404,12 @@ msgstr "簽署/加密剪貼簿"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "簽署/加密剪貼簿"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr "完成"
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -8852,15 +8939,44 @@ msgstr "憑證載入失敗"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
-msgstr "俗名預設文字"
+msgid "Hint for CN (deprecated use CN_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg
-#, kde-format
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr "這串文字會用來當做 S/MIME 憑證俗名 (common name, CN) 欄位的預設文字。"
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Hint for CN"
+msgstr "名稱提示"
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Label for CN"
+msgstr "俗名預設文字"
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
 msgstr "這串文字會用來當做 S/MIME 憑證俗名 (common name, CN) 欄位的預設文字。"
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
@@ -8904,21 +9020,64 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Placeholder for CN"
+msgid "Regex for CN"
+msgstr "俗名預設文字"
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the common name (CN) field "
+#| "of S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr "這串文字會用來當做 S/MIME 憑證俗名 (common name, CN) 欄位的預設文字。"
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for EMAIL"
-msgstr "電子郵件提示"
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
-#: src/kcfg/settings.kcfg
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #, fuzzy, kde-format
 #| msgid ""
 #| "This text will be used as placeholder text for the email address field of "
 #| "OpenPGP and S/MIME certificates."
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"certificates and S/MIME certification requests."
+msgstr "這串文字會用來當做 OpenPGP 和 S/MIME 憑證電子郵件地址欄位的預設文字。"
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL"
+msgstr "電子郵件提示"
+
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for EMAIL"
+msgid "Label for EMAIL"
+msgstr "電子郵件提示"
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the email address field of "
+#| "OpenPGP and S/MIME certificates."
+msgid ""
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr "這串文字會用來當做 OpenPGP 和 S/MIME 憑證電子郵件地址欄位的預設文字。"
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
@@ -8960,6 +9119,24 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for EMAIL"
+msgid "Regex for EMAIL"
+msgstr "電子郵件提示"
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the email address field of "
+#| "OpenPGP and S/MIME certificates."
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr "這串文字會用來當做 OpenPGP 和 S/MIME 憑證電子郵件地址欄位的預設文字。"
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -8980,10 +9157,13 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
-msgstr "名稱提示"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, fuzzy, kde-format
 #| msgid ""
@@ -8991,6 +9171,19 @@ msgstr "名稱提示"
 #| "certificates."
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr "這串文字會用來當做 OpenPGP 憑證名稱欄位的預設文字。"
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr "名稱提示"
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Label for NAME"
+msgstr "名稱提示"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9030,6 +9223,24 @@ msgid ""
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
 msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid "Hint for NAME"
+msgid "Regex for NAME"
+msgstr "名稱提示"
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, fuzzy, kde-format
+#| msgid ""
+#| "This text will be used as placeholder text for the name field of OpenPGP "
+#| "certificates."
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
+msgstr "這串文字會用來當做 OpenPGP 憑證名稱欄位的預設文字。"
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -9525,6 +9736,20 @@ msgstr ""
 "若為真，則 Kleopatra 在插入有未知憑證的 PKCS#15 智慧卡時會呼叫 gpgsm --"
 "learn。這會需要一段時間並在指令執行中時會擋住智慧卡其他功能。"
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9874,8 +10099,8 @@ msgid ""
 msgstr ""
 "<para><application>Kleopatra</application> 用管理員權限執行時會摧毀 GnuPG 資"
 "料儲存資料夾的檔案權限，因此不能以管理員權限執行。</para><para>要管理其他使用"
-"者的金鑰請以普通使用者權限管理它，並且複製 <filename>AppData\\Roaming"
-"\\gnupg</filename> 目錄並確保權限正確。</para>"
+"者的金鑰請以普通使用者權限管理它，並且複製 "
+"<filename>AppData\\Roaming\\gnupg</filename> 目錄並確保權限正確。</para>"
 
 #: src/main.cpp
 #, fuzzy, kde-kuit-format
@@ -9969,8 +10194,8 @@ msgstr "只關閉視窗(&C)"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "<application>%1</application> 可能被其它應用程式做為服務使用中。<nl/>您可能會"
 "想要只關閉此視窗，而不完全關閉 <application>%1</application>。"
@@ -11081,11 +11306,11 @@ msgstr "沒有指定收件者，或是指給 --info"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"遇到未預期的例外狀況，發生於 EncryptCommand::Private::"
-"slotRecipientsResolved：%1"
+"遇到未預期的例外狀況，發生於 "
+"EncryptCommand::Private::slotRecipientsResolved：%1"
 
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
@@ -11114,20 +11339,20 @@ msgstr "SENDER 不能在 PREP_ENCRYPT 之前，除非使用 --info"
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"遇到非預期的例外狀況，發生於 PrepEncryptCommand::Private::"
-"slotRecipientsResolved：%1"
+"遇到非預期的例外狀況，發生於 "
+"PrepEncryptCommand::Private::slotRecipientsResolved：%1"
 
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
-"遇到未知的例外狀況，發生於 PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"遇到未知的例外狀況，發生於 "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11156,11 +11381,11 @@ msgstr "指定的協定與這個工作階段中 PREP_ENCRYPT 決定的協定互�
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
-"遇到非預期的例外狀況，發生於 PrepSignCommand::Private::"
-"slotRecipientsResolved：%1"
+"遇到非預期的例外狀況，發生於 "
+"PrepSignCommand::Private::slotRecipientsResolved：%1"
 
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
@@ -11172,20 +11397,20 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
-"遇到非預期的例外狀況，發生於 SelectCertificateCommand::Private::"
-"slotDialogAccepted：%1"
+"遇到非預期的例外狀況，發生於 "
+"SelectCertificateCommand::Private::slotDialogAccepted：%1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
-"遇到未知的例外狀況，發生於 SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"遇到未知的例外狀況，發生於 "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 
 #: src/uiserver/signcommand.cpp
 #, kde-format
@@ -12194,6 +12419,13 @@ msgstr "階層式憑證清單"
 msgid "List of certificates"
 msgstr "憑證列表"
 
+#: src/view/keytreeview.cpp
+#, fuzzy, kde-format
+#| msgid "Details"
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr "詳情"
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -13050,8 +13282,8 @@ msgstr "歡迎來到 Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr ""
 "Kleopatra 是加密軟體 <a href=\"https://gnupg.org\">GnuPG</a> 的一個前端。"
 
@@ -13100,8 +13332,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 
 #: src/view/welcomewidget.cpp
@@ -13144,2747 +13376,3 @@ msgid ""
 msgstr ""
 "從檔案匯入憑證。<nl/>要從公開的金鑰伺服器匯入，請改用<interface>在伺服器上查"
 "詢</interface>。"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted and verified the notepad"
-#~ msgstr "已成功解密並檢查筆記本"
-
-#~ msgctxt "@info"
-#~ msgid "Successfully decrypted the notepad"
-#~ msgstr "已成功解密筆記本"
-
-#, fuzzy
-#~| msgctxt "A user ID (an error description)"
-#~| msgid "%1 (%2)"
-#~ msgctxt "@action:button Encrypt Notepad (not compliant)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> seems to be running for you "
-#~ "already, but with different privileges.</para><para>This usually happens "
-#~ "if <application>Kleopatra</application> is accidentally run as "
-#~ "Administrator.</para><para>Please right click the tray icon of "
-#~ "<application>Kleopatra</application> and select 'quit' to try again.</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> 已在執行中，但權限不同。</"
-#~ "para><para>這通常代表 <application>Kleopatra</application> 已意外以管理員"
-#~ "模式開啟。</para><para>請點擊 <application>Kleopatra</application> 的系統"
-#~ "匣圖示，選取「離開」之後再試一次。</para>"
-
-#~ msgctxt "@title"
-#~ msgid "<application>Kleopatra</application> failed to start"
-#~ msgstr "<application>Kleopatra</application> 啟動失敗"
-
-#~ msgid "Card Certificate"
-#~ msgstr "卡片憑證"
-
-#~ msgctxt "@title %1:\"OpenPGP\" or \"S/MIME\""
-#~ msgid "%1 Certificate Server"
-#~ msgstr "%1 憑證伺服器"
-
-#, fuzzy
-#~| msgid "Decrypt/Verify Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Decrypting/Verifying clipboard…"
-#~ msgstr "解密/檢查剪貼簿時發生錯誤"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Import Certificate from Card"
-#~ msgctxt "@info"
-#~ msgid "Importing certificate from clipboard…"
-#~ msgstr "從卡片匯入憑證"
-
-#~ msgctxt ""
-#~ "The user is offered to force decrypt a non integrity protected message. "
-#~ "With the strong advice to re-encrypt it."
-#~ msgid ""
-#~ "If you are confident that the file was not manipulated you should re-"
-#~ "encrypt it after you have forced the decryption."
-#~ msgstr "如果您有信心檔案沒有被竄改，您應該在強制解密之後重新加密它。"
-
-#~ msgctxt "@action:button"
-#~ msgid "Force decryption"
-#~ msgstr "強制解密"
-
-#~ msgctxt "@action:button"
-#~ msgid "Yes, It's Mine"
-#~ msgstr "對，它是我的"
-
-#~ msgctxt "@action:button"
-#~ msgid "No, It's Not Mine"
-#~ msgstr "它不是我的"
-
-#~ msgctxt "@action:button"
-#~ msgid "Set Owner Trust"
-#~ msgstr "設定擁有者信任"
-
-#~ msgid "Is this your own key?"
-#~ msgstr "這是您自己的金鑰嗎？"
-
-#~ msgid "Allow signing with S/MIME certificates"
-#~ msgstr "允許使用 S/MIME 憑證進行簽署"
-
-#~ msgid "Allows signing of text or files with S/MIME certificates."
-#~ msgstr "允許使用 S/MIME 憑證簽署文字或檔案。"
-
-#~ msgctxt "@info"
-#~ msgid "The size of the URL may not exceed 254 characters."
-#~ msgstr "網址大小不能超過 254 個字元。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Backup Error"
-#~ msgstr "秘鑰備份錯誤"
-
-#~ msgid ""
-#~ "If this option is checked while a root CA certificate is being imported, "
-#~ "you will be asked to confirm its fingerprint and to state whether or not "
-#~ "you consider this root certificate to be trusted. A root certificate "
-#~ "needs to be trusted before the certificates it certified become trusted, "
-#~ "but lightly allowing trusted root certificates into your certificate "
-#~ "store will undermine the security of the system."
-#~ msgstr ""
-#~ "若是勾選此選項，當根憑證匯入時，不管該根憑證是否被信任，您都會被要求確認它"
-#~ "的指紋與狀態。在信任其它的憑證前，根憑證必須先被信任。不過直接將信任的根憑"
-#~ "證放入系統中，可能會有些許安全問題。"
-
-#~ msgid "Allow to mark root certificates as trusted"
-#~ msgstr "允許將根憑證標為信任"
-
-#~ msgctxt "@title:window"
-#~ msgid "Certificate Details"
-#~ msgstr "憑證詳情"
-
-#~ msgctxt "@title"
-#~ msgid "Request Saved"
-#~ msgstr "要求已儲存"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Saving the request failed.</para><para><message>%1</message></para>"
-#~ msgstr "<para>儲存請求時失敗。</para><para><message>%1</message></para>"
-
-#~ msgctxt "@title"
-#~ msgid "Error Saving Request"
-#~ msgstr "儲存要求錯誤"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "Could not remove file <filename>%1</filename> for overwriting."
-#~ msgctxt "@info"
-#~ msgid "Could not write the request to the file <filename>%1</filename>: %2"
-#~ msgstr "無法移除檔案 <filename>%1</filename> 以覆寫。"
-
-#~ msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "(required)"
-#~ msgstr "（必要）"
-
-#~ msgid "(optional)"
-#~ msgstr "（可選）"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is required, but empty."
-#~ msgstr "需要有<interface>%1</interface>，但未填入。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is required, but empty.<nl/>Local Admin rule: "
-#~ "<icode>%2</icode>"
-#~ msgstr ""
-#~ "需要 <interface>%1</interface>，但未填入。<nl/>本地端管理規則：<icode>%2</"
-#~ "icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is incomplete."
-#~ msgstr "<interface>%1</interface> 不完整。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is incomplete.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> 不完整。<nl/>本地端管理規則：<icode>%2</icode>"
-
-#~ msgctxt "@info"
-#~ msgid "<interface>%1</interface> is invalid."
-#~ msgstr "<interface>%1</interface>無效。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<interface>%1</interface> is invalid.<nl/>Local Admin rule: <icode>%2</"
-#~ "icode>"
-#~ msgstr ""
-#~ "<interface>%1</interface> 無效。<nl/>本地端管理規則：<icode>%2</icode>"
-
-#~ msgctxt "@info:label"
-#~ msgid "RSA key strength:"
-#~ msgstr "RSA 金鑰強度："
-
-#~ msgctxt "@title:tab"
-#~ msgid "Technical Details"
-#~ msgstr "技術詳情"
-
-#~ msgctxt "@title:group"
-#~ msgid "EMail Addresses"
-#~ msgstr "電子郵件地址"
-
-#~ msgctxt "@title:group"
-#~ msgid "DNS Names"
-#~ msgstr "DNS 名稱"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Personal Details"
-#~ msgstr "個人資料"
-
-#~ msgid "new email"
-#~ msgstr "新郵件"
-
-#~ msgid "new dns name"
-#~ msgstr "新 dns 名稱"
-
-#~ msgid "new uri"
-#~ msgstr "新 uri"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit)"
-#~ msgid_plural "%2 (%1 bits)"
-#~ msgstr[0] "%2（%1 位元）"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 位元"
-
-#~ msgid "EMail"
-#~ msgstr "電子郵件"
-
-#~ msgctxt "@title"
-#~ msgid "Enter Details"
-#~ msgstr "輸入詳情"
-
-#~ msgid "Real name:"
-#~ msgstr "真實姓名："
-
-#~ msgid "EMail address:"
-#~ msgstr "電子郵件地址："
-
-#~ msgid "Protect the generated key with a passphrase."
-#~ msgstr "用密碼保護產生的金鑰。"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~ "asked for the passphrase during key generation."
-#~ msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
-
-#~ msgid "Advanced Settings..."
-#~ msgstr "進階設定..."
-
-#~ msgid "Please enter your personal details below."
-#~ msgstr "請在下方輸入您的個人資料。"
-
-#~ msgid ""
-#~ "Please enter your personal details below. If you want more control over "
-#~ "the parameters, click on the Advanced Settings button."
-#~ msgstr ""
-#~ "請在下方輸入您的個人資料。如果您要更進一步控制參數，請點擊「進階設定」按"
-#~ "鍵。"
-
-#~ msgctxt "@action"
-#~ msgid "Create"
-#~ msgstr "建立"
-
-#~ msgid "Operation canceled."
-#~ msgstr "操作已取消。"
-
-#~ msgid "Could not create key pair: %1"
-#~ msgstr "無法建立金鑰對：%1"
-
-#~ msgid "Could not write output file %1: %2"
-#~ msgstr "無法寫入輸出檔案 %1：%2。"
-
-#~ msgid "Key pair created successfully."
-#~ msgstr "已成功產生金鑰對。"
-
-#~ msgctxt "@action:button"
-#~ msgid "Add Entry"
-#~ msgstr "新增項目"
-
-#~ msgctxt "@action:button"
-#~ msgid "Remove Entry"
-#~ msgstr "移除項目"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Up"
-#~ msgstr "上移"
-
-#~ msgctxt "@action:button"
-#~ msgid "Move Down"
-#~ msgstr "下移"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Pair Creation Wizard"
-#~ msgstr "金鑰對建立精靈"
-
-#~ msgctxt "@title:group"
-#~ msgid "Result"
-#~ msgstr "結果"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Drag this icon to your mail application's composer to attach the request "
-#~ "to a mail."
-#~ msgstr "將底下的圖示拖曳到您的郵件編寫器中，就可以將此要求附加到郵件中。"
-
-#~ msgid "Restart This Wizard (Keeps Your Parameters)"
-#~ msgstr "重新啟動此精靈（保存您的參數）"
-
-#~ msgctxt "@title:group"
-#~ msgid "Next Steps"
-#~ msgstr "接下來的步驟"
-
-#~ msgid "Save Certificate Request To File..."
-#~ msgstr "儲存憑證要求到檔案..."
-
-#~ msgid "Send Certificate Request By EMail..."
-#~ msgstr "以電子郵件送出憑證要求..."
-
-#~ msgid "Create Signing Certificate With Same Parameters"
-#~ msgstr "用相同的參數建立簽署憑證"
-
-#~ msgid "Create Encryption Certificate With Same Parameters"
-#~ msgstr "用相同的參數建立加密憑證"
-
-#~ msgctxt "@title"
-#~ msgid "Key Creation Failed"
-#~ msgstr "金鑰建立失敗"
-
-#~ msgid ""
-#~ "Key pair creation failed. Please find details about the failure below."
-#~ msgstr "金鑰對建立失敗。請參考以下的失敗詳情。"
-
-#~ msgctxt "@title"
-#~ msgid "Key Pair Successfully Created"
-#~ msgstr "已成功產生金鑰對"
-
-#~ msgid ""
-#~ "Your new key pair was created successfully. Please find details on the "
-#~ "result and some suggested next steps below."
-#~ msgstr "您已成功建立新的金鑰對。請參考以下的詳情，以及下一步驟的建議。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Could not copy temporary file <filename>%1</filename> to file <filename>"
-#~ "%2</filename>: <message>%3</message>"
-#~ msgstr ""
-#~ "無法複製暫存檔 <filename>%1</filename> 到檔案 <filename>%2</filename>："
-#~ "<message>%3</message>"
-
-#~ msgid "Please process this certificate."
-#~ msgstr "Please process this certificate."
-
-#~ msgid ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-#~ msgstr ""
-#~ "Please process this certificate and inform the sender about the location "
-#~ "to fetch the resulting certificate.\n"
-#~ "\n"
-#~ "Thanks,\n"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then drag the <application>Kleopatra</"
-#~ "application> icon and drop it on the message compose window of your mail "
-#~ "client.</para><para>If that does not work, either, save the request to a "
-#~ "file, and then attach that.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> 試圖透過您預設的電子郵件程式傳"
-#~ "送郵件。</para> <para>目前已知有些郵件程式使用這種方式傳送的話不支援夾檔。"
-#~ "</para> <para>若您的電子郵件沒有夾檔，則請試試將 <application>Kleopatra</"
-#~ "application> 圖示拖曳到信件編輯器中</para> <para>若是這樣還沒用，則請您將"
-#~ "要求存成檔案，再自行附件。</para>"
-
-#~ msgctxt "@title"
-#~ msgid "Sending Mail"
-#~ msgstr "傳送郵件中"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "This operation will delete the certification request. Please make sure "
-#~ "that you have sent or saved it before proceeding."
-#~ msgstr "此操作會刪除憑證的要求。請確定您已送出該要求，或已另外存檔。"
-
-#~ msgctxt "@title"
-#~ msgid "Certification Request About To Be Deleted"
-#~ msgstr "憑證要求將被刪除"
-
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid "&Sign as:"
-#~ msgstr "簽署名義(&S)："
-
-#~ msgid "&Sign as:"
-#~ msgstr "簽署名義(&S)："
-
-#~ msgid "Decrypt / Verify"
-#~ msgstr "解密/檢查"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing OpenPGP certificates implies downloading all "
-#~ "certificates anew, to check if any of them have been revoked in the "
-#~ "meantime.</para><para>This can put a severe strain on your own as well as "
-#~ "other people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>刷新 OpenPGP 憑證表示要重新下載所有憑證，以確認憑證是否已被撤銷。</"
-#~ "para> <para>這有可能會造成您與其他人的網路連線不穩，如果憑證數量多或網路連"
-#~ "線狀況不好，可能得花一個小時以上才能完成。</para> <para>您確定要繼續嗎？</"
-#~ "para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Error"
-#~ msgstr "OpenPGP 憑證刷新錯誤"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Refresh Finished"
-#~ msgstr "OpenPGP 憑證刷新完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to refresh OpenPGP certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 行程在試著刷新 OpenPGP 憑證時發生非預期的錯誤，導致行程已不正常"
-#~ "的結束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh OpenPGP certificates.</"
-#~ "para> <para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>試著刷新 OpenPGP 憑證時發生錯誤。</para> <para><command>%1</"
-#~ "command> 的輸出為：<bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates refreshed successfully."
-#~ msgstr "OpenPGP 憑證已成功刷新。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>Refreshing X.509 certificates implies downloading CRLs for all "
-#~ "certificates, even if they might otherwise still be valid.</"
-#~ "para><para>This can put a severe strain on your own as well as other "
-#~ "people's network connections, and can take up to an hour or more to "
-#~ "complete, depending on your network connection, and the number of "
-#~ "certificates to check.</para> <para>Are you sure you want to continue?</"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>刷新 X.509 憑證表示要下載所有憑證的憑證撤銷清單，即使憑證仍舊有效。"
-#~ "</para> <para>這有可能會造成您與其他人的網路連線不穩，如果憑證數量多或網路"
-#~ "連線狀況不好，可能得花一個小時以上才能完成。</para> <para>您確定要繼續嗎？"
-#~ "</para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh"
-#~ msgstr "X.509 憑證刷新"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Error"
-#~ msgstr "X.509 憑證刷新錯誤"
-
-#~ msgctxt "@title:window"
-#~ msgid "X.509 Certificate Refresh Finished"
-#~ msgstr "X.509 憑證刷新完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GpgSM process that tried to refresh X.509 certificates ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GpgSM 行程在試著刷新 X.509 憑證時發生非預期的錯誤，導致行程已不正常"
-#~ "的結束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to refresh X.509 certificates.</"
-#~ "para><para>The output from <command>%1</command> was: <bcode>%2</bcode></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>試著刷新 X.509 憑證時發生錯誤。</para> <para><command>%1</command> "
-#~ "的輸出為：<bcode>%2</bcode></para>"
-
-#~ msgctxt "@info"
-#~ msgid "X.509 certificates refreshed successfully."
-#~ msgstr "X.509 憑證已成功刷新。"
-
-#~ msgid "&Window"
-#~ msgstr "視窗(&W)"
-
-#, fuzzy
-#~| msgid "Show GnuPG system configuration"
-#~ msgid "Show GnuPG Configuration"
-#~ msgstr "顯示 GnuPG 系統設定"
-
-#~ msgid "Configure Groups..."
-#~ msgstr "設定群組..."
-
-#~ msgid "Stop Operation"
-#~ msgstr "停止操作"
-
-#~ msgid "Refresh OpenPGP Certificates"
-#~ msgstr "重新整理 OpenPGP 憑證"
-
-#~ msgid "Refresh S/MIME Certificates"
-#~ msgstr "刷新 S/MIME 憑證"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported Certificates from %1"
-#~ msgstr "已從 %1 匯入憑證"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Imported certificates from these sources:<br/>%1"
-#~ msgstr "已從這些來源匯入憑證：<br/>%1"
-
-#~ msgid "Certificate Import Result"
-#~ msgstr "憑證匯入結果"
-
-#~ msgctxt "@title:window"
-#~ msgid "OpenPGP Certificate Export Finished"
-#~ msgstr "OpenPGP 憑證匯出完成"
-
-#~ msgctxt "@info"
-#~ msgid "OpenPGP certificates exported successfully."
-#~ msgstr "OpenPGP 憑證已成功匯出。"
-
-#~ msgid "GpgME library too old"
-#~ msgstr "GpgME 函式庫太舊了"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Either the GpgME library itself is too old, or the GpgME++ library was "
-#~ "compiled against an older GpgME that did not support connecting to gpg-"
-#~ "agent."
-#~ msgstr ""
-#~ "不是 GpgME 函式庫本身太舊了，就是 GpgME++ 函式庫編譯時與舊的 GpgME 不相"
-#~ "容，不支援連線到 gpg-agent。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Upgrade to <application>gpgme</application> 1.2.0 or higher, and ensure "
-#~ "that gpgme++ was compiled against it."
-#~ msgstr ""
-#~ "升級 <application>gpgme</application> 到 1.2.0 版以後，並確定 gpgme++ 編譯"
-#~ "時有支援。"
-
-#~ msgid "Keep open after operation completed"
-#~ msgstr "操作完成後保持視窗開啟。"
-
-#~ msgctxt "@action show certificate overview"
-#~ msgid "Certificates"
-#~ msgstr "憑證"
-
-#~ msgid "Show certificate overview"
-#~ msgstr "顯示憑證概覽"
-
-#~ msgid "Decrypt/Verify Popup Geometry"
-#~ msgstr "解密/檢查彈出視窗位置"
-
-#~ msgid ""
-#~ "The remembered size and position of the Decrypt/Verify Result Popup used "
-#~ "by clients which do not support inline display of D/V results, such as MS "
-#~ "Outlook."
-#~ msgstr ""
-#~ "解密/檢查結果的彈出視窗位置，給不支援內含式顯示的用戶端程式，如 MS "
-#~ "Outlook 使用。"
-
-#~ msgid "Cannot determine whether input data is OpenPGP or CMS"
-#~ msgstr "無法決定輸入資料是否為 OpenPGP 或 CMS"
-
-#~ msgid "No usable inputs found"
-#~ msgstr "沒有找到有用的輸入"
-
-#~ msgid "<b>Choose operations to be performed</b>"
-#~ msgstr "<b>選擇要執行的操作</b>"
-
-#~ msgid ""
-#~ "Here you can check and, if needed, override the operations Kleopatra "
-#~ "detected for the input given."
-#~ msgstr "您可以在此檢查，或是覆寫 Kleopatra 偵測到的操作。"
-
-#~ msgctxt "@action:button"
-#~ msgid "&Decrypt/Verify"
-#~ msgstr "解密/檢查(&D)"
-
-#~ msgid "Create all output files in a single folder"
-#~ msgstr "將所有的輸出檔都放在單一資料夾下"
-
-#~ msgid "&Output folder:"
-#~ msgstr "輸出資料夾(&O)："
-
-#~ msgid "Input file:"
-#~ msgstr "輸入檔："
-
-#~ msgid "&Input file is a detached signature"
-#~ msgstr "輸入檔是一個分離的簽章(&I)"
-
-#~ msgid "&Signed data:"
-#~ msgstr "已簽署資料(&S)："
-
-#~ msgid "&Input file is an archive; unpack with:"
-#~ msgstr "輸入檔是個封存。解開方式(&I)："
-
-#~ msgid ""
-#~ "With this option set Kleopatra no longer asks you what you want to do "
-#~ "with input files but instead automatically starts the operations it "
-#~ "detects as applicable to the input."
-#~ msgstr ""
-#~ "設定這個選項後，Kleopatra 不會再問您要對輸入檔案做什麼，而會自動偵測對輸入"
-#~ "可用的操作並開始執行它。"
-
-#~ msgid "Failed to send critical option %1: %2"
-#~ msgstr "傳送重要選項 %1 時失敗：%2"
-
-#~ msgid "Failed to send file path %1: %2"
-#~ msgstr "傳送檔案路徑 %1 時失敗：%2"
-
-#~ msgid "Failed to send sender %1: %2"
-#~ msgstr "傳送寄件者 %1 時失敗：%2"
-
-#~ msgid "Failed to send recipient %1: %2"
-#~ msgstr "傳送收件者 %1 時失敗：%2"
-
-#~ msgid "Change..."
-#~ msgstr "變更..."
-
-#~ msgid "Kleopatra Error"
-#~ msgstr "Kleopatra 錯誤"
-
-#~ msgid "There was an error while connecting to Kleopatra: %1"
-#~ msgstr "連線到 Kleopatra 時發生錯誤：%1"
-
-#, fuzzy
-#~| msgid "Encrypt Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Encrypting clipboard…"
-#~ msgstr "加密剪貼簿錯誤"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "The result of the export is empty."
-#~ msgctxt "@info"
-#~ msgid "The clipboard is empty"
-#~ msgstr "匯出結果是空的。"
-
-#, fuzzy
-#~| msgid "Sign Clipboard Error"
-#~ msgctxt "@info"
-#~ msgid "Signing clipboard…"
-#~ msgstr "簽署剪貼簿錯誤"
-
-#~ msgctxt "@action"
-#~ msgid "S/MIME-Sign..."
-#~ msgstr "S/MIME 簽署..."
-
-#~ msgctxt "@action"
-#~ msgid "OpenPGP-Sign..."
-#~ msgstr "OpenPGP 簽署..."
-
-#~ msgctxt "@title"
-#~ msgid "Available Keys"
-#~ msgstr "可用的金鑰"
-
-#~ msgctxt "@label"
-#~ msgid "Search available keys"
-#~ msgstr "在可用的金鑰中搜尋"
-
-#~ msgid "available keys"
-#~ msgstr "可用的金鑰"
-
-#~ msgctxt "@action:button"
-#~ msgid "Add Selected Keys"
-#~ msgstr "新增選取的金鑰"
-
-#~ msgctxt "@action:button"
-#~ msgid "Remove Selected Keys"
-#~ msgstr "移除選取的金鑰"
-
-#~ msgctxt "@title"
-#~ msgid "Group Keys"
-#~ msgstr "群組的金鑰"
-
-#~ msgctxt "@label"
-#~ msgid "Search group keys"
-#~ msgstr "在群組的金鑰中搜尋"
-
-#~ msgid "group keys"
-#~ msgstr "群組的金鑰"
-
-#~ msgid "Unknown certificate"
-#~ msgstr "未知的憑證"
-
-#, fuzzy
-#~| msgid "<b>Verification canceled.</b>"
-#~ msgid "Verification canceled."
-#~ msgstr "<b>確認已取消。</b>"
-
-#, fuzzy
-#~| msgid "<b>No signatures found.</b>"
-#~ msgid "No signatures found."
-#~ msgstr "<b>找不到簽章</b>"
-
-#, fuzzy
-#~| msgid "<b>Invalid signature.</b>"
-#~| msgid_plural "<b>%1 invalid signatures.</b>"
-#~ msgid "Invalid signature."
-#~ msgid_plural "%1 invalid signatures."
-#~ msgstr[0] "<b>%1 個無效的簽章。</b>"
-
-#, fuzzy
-#~| msgid "<b>The data could not be verified.</b>"
-#~| msgid_plural "<b>%1 signatures could not be verified.</b>"
-#~ msgid "The data could not be verified."
-#~ msgid_plural "%1 signatures could not be verified."
-#~ msgstr[0] "<b>%1 個簽章無法被檢查。</b>"
-
-#, fuzzy
-#~| msgid "<b>Valid signature.</b>"
-#~| msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgid "Valid signature by %1."
-#~ msgstr "<b>%1 個有效的簽章。</b>"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Valid signature."
-#~ msgid_plural "%1 valid signatures."
-#~ msgstr[0] "不正確的簽章"
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the "
-#~| "certificates used for signing."
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the certificates "
-#~ "used for signing."
-#~ msgstr "<br /><b>警告：</b>寄件者的電子郵件地址並未儲存在憑證中以用於簽署。"
-
-#, fuzzy
-#~| msgid "Encryption canceled."
-#~ msgid "Decryption canceled."
-#~ msgstr "加密已取消。"
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt and verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt and verify <filename>%1</filename>: <emphasis "
-#~ "strong='true'>%2</emphasis>"
-#~ msgstr "將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。"
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to verify <file>: <reason>"
-#~ msgid ""
-#~ "Failed to verify <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr "將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。"
-
-#, fuzzy
-#~| msgid "Failed to move <filename>%1</filename> to <filename>%2</filename>."
-#~ msgctxt "@info Failed to decrypt <file>: <reason>"
-#~ msgid ""
-#~ "Failed to decrypt <filename>%1</filename>: <emphasis strong='true'>%2</"
-#~ "emphasis>"
-#~ msgstr "將 <filename>%1</filename> 移動到 <filename>%2</filename> 失敗。"
-
-#~ msgid ""
-#~ "<p>The sender's address %1 is not stored in the certificate. Stored: %2</"
-#~ "p>"
-#~ msgstr "<p>寄件者的電子郵件地址 %1 並未儲存在憑證中。儲存的為：%2</p>"
-
-#~ msgctxt "separator for a list of e-mail addresses"
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Search%1"
-#~ msgstr "搜尋%1"
-
-#~ msgctxt "1 is optional keyid. No space is intended as it can be empty."
-#~ msgid "Import%1"
-#~ msgstr "匯入%1"
-
-#~ msgctxt "Preceeds a list of applications/libraries used by Kleopatra"
-#~ msgid "Uses:"
-#~ msgstr "使用："
-
-#, fuzzy
-#~| msgid ""
-#~| "<br/><b>Warning:</b> The sender's mail address is not stored in the %1 "
-#~| "used for signing."
-#~ msgctxt ""
-#~ "@info The placeholder is a link to the certificate. The text of the link "
-#~ "is the translated work 'certificate'"
-#~ msgid ""
-#~ "<br/>Warning: The sender's mail address is not stored in the %1 used for "
-#~ "signing."
-#~ msgstr "<br /><b>警告：</b>寄件者電子郵件地址並未儲存在 %1 中以用於簽署。"
-
-#~ msgid "certificate"
-#~ msgstr "憑證"
-
-#~ msgctxt "Input file --> Output file (rarr is arrow"
-#~ msgid "%1 &rarr; %2"
-#~ msgstr "%1 &rarr; %2"
-
-#~ msgid "<b>Verification failed: %1.</b>"
-#~ msgstr "<b>確認失敗：%1</b>"
-
-#~ msgid "<b>Valid signature.</b>"
-#~ msgid_plural "<b>%1 valid signatures.</b>"
-#~ msgstr[0] "<b>%1 個有效的簽章。</b>"
-
-#~ msgid "<b>Decryption canceled.</b>"
-#~ msgstr "<b>解密已取消。</b>"
-
-#~ msgid "<b>Decryption failed: %1.</b>"
-#~ msgstr "<b>解密失敗：%1</b>"
-
-#~ msgid "<b>Decryption succeeded.</b>"
-#~ msgstr "<b>解密成功。</b>"
-
-#~ msgctxt "label: result example: foo.sig: Verification failed. "
-#~ msgid "%1: %2"
-#~ msgstr "%1：%2"
-
-#~ msgid "Signing failed."
-#~ msgstr "簽署失敗。"
-
-#~ msgid "Encryption failed."
-#~ msgstr "加密失敗。"
-
-#~ msgid " Encryption succeeded."
-#~ msgstr "加密成功。"
-
-#~ msgid "%1: <b>Sign/encrypt canceled.</b>"
-#~ msgstr "%1：<b>簽署/加密已取消。</b>"
-
-#~ msgid " %1: Sign/encrypt failed."
-#~ msgstr "%1：簽署/加密失敗。"
-
-#~ msgctxt "label: result. Example: foo -> foo.gpg: Encryption failed."
-#~ msgid "%1: <b>%2</b>"
-#~ msgstr "%1：<b>%2</b>"
-
-#~ msgctxt "e.g. \"Input to tar xf - file1 ...\""
-#~ msgid "Input to %1 ..."
-#~ msgstr "%1 的輸入..."
-
-#~ msgctxt "e.g. \"Input to tar xf - file\""
-#~ msgid "Input to %1"
-#~ msgstr "%1 的輸入"
-
-#~ msgid "Root Trust Update Failed"
-#~ msgstr "根信任更新失敗"
-
-#~ msgctxt "@option:check on SignEncryptPage"
-#~ msgid ""
-#~ "Encrypt with &password. Anyone you share the password with can read the "
-#~ "data."
-#~ msgstr "利用密碼(&P)加密。任何知道密碼的人都可以讀取資料。"
-
-#~ msgctxt "@title:group"
-#~ msgid "Output"
-#~ msgstr "輸出"
-
-#~ msgctxt "@title:group"
-#~ msgid "Prove authenticity (sign)"
-#~ msgstr "證明真實性（簽署）"
-
-#~ msgctxt "@title:group"
-#~ msgid "Encrypt"
-#~ msgstr "加密"
-
-#~ msgctxt "@label:textbox"
-#~ msgid "<h3>Protocol:</h3>"
-#~ msgstr "<h3>協定：</h3>"
-
-#~ msgid "Recipients"
-#~ msgstr "收件者"
-
-#~ msgctxt "@title"
-#~ msgid "Error in crypto action"
-#~ msgstr "加密動作中發生錯誤"
-
-#~ msgid "Current Maintainer"
-#~ msgstr "目前維護者"
-
-#~ msgid ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-#~ msgstr ""
-#~ "(c) 2002 Steffen Hansen, Matthias Kalle Dalheimer, "
-#~ "Klarälvdalens Datakonsult AB\n"
-#~ "(c) 2004, 2007, 2008, 2009 Marc Mutz, Klarälvdalens Datakonsult AB"
-
-#~ msgid "Cannot open file <filename>%1</filename> for writing."
-#~ msgstr "無法開啟檔案 <filename>%1</filename> 以寫入。"
-
-#~ msgid ""
-#~ "<para>An error occurred during the export:</para><para><message>%1</"
-#~ "message></para>"
-#~ msgstr "<para>匯出時發生錯誤：</para><para><message>%1</message></para>"
-
-#, fuzzy
-#~| msgctxt "A user ID (an error description)"
-#~| msgid "%1 (%2)"
-#~ msgctxt "User ID (Key ID)"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#~ msgid "One unknown recipient."
-#~ msgid_plural "%1 unknown recipients."
-#~ msgstr[0] "%1 個未知的收件者。"
-
-#~ msgid ""
-#~ "Configuration of directory services is not possible because the used "
-#~ "gpgme libraries are too old."
-#~ msgstr "使用的 gpgme 函式庫太舊了，因此無法設定目錄服務。"
-
-#~ msgid "Automatic import finished."
-#~ msgstr "自動匯入已完成。"
-
-#~ msgid "Error multiple keys found on server."
-#~ msgstr "錯誤，伺服器上找到多個金鑰。"
-
-#~ msgid "Error: Signature not verified"
-#~ msgstr "錯誤：簽名檔未檢查"
-
-#~ msgid "Good signature"
-#~ msgstr "正確簽章"
-
-#~ msgid "Signing certificate was revoked"
-#~ msgstr "簽署用的憑證已被撤銷"
-
-#~ msgid "Signing certificate is expired"
-#~ msgstr "簽署用的憑證已過期"
-
-#~ msgid "Certificate is not available"
-#~ msgstr "憑證不可用"
-
-#~ msgid "Signature expired"
-#~ msgstr "簽章過期"
-
-#~ msgid "CRL missing"
-#~ msgstr "缺乏憑證撤銷清冊"
-
-#~ msgid "CRL too old"
-#~ msgstr "憑證撤銷清冊太舊了"
-
-#~ msgid "Bad policy"
-#~ msgstr "錯誤的政策"
-
-#~ msgid "System error"
-#~ msgstr "系統錯誤"
-
-#~ msgid ""
-#~ "The signature is valid but the trust in the certificate's validity is "
-#~ "only marginal."
-#~ msgstr "簽章有效，但是憑證並非可信任。"
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is fully trusted."
-#~ msgstr "簽章有效，並且憑證可信任。"
-
-#~ msgid ""
-#~ "The signature is valid and the certificate's validity is ultimately "
-#~ "trusted."
-#~ msgstr "簽章有效，並且憑證可完全信任。"
-
-#~ msgid ""
-#~ "The signature is valid but the certificate's validity is <em>not trusted</"
-#~ "em>."
-#~ msgstr "簽章有效，但是憑證不可信任。"
-
-#~ msgid "The signature is valid but the certificate's validity is unknown."
-#~ msgstr "簽章有效，但是憑證信任度未知。"
-
-#~ msgid "The signature is valid but the certificate's validity is undefined."
-#~ msgstr "簽章有效，但是憑證信任度未定義。"
-
-#~ msgctxt "1 is a date"
-#~ msgid "Signature created on %1"
-#~ msgstr "簽章於 %1 建立"
-
-#~ msgid "With certificate:"
-#~ msgstr "利用憑證："
-
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature is %1"
-#~ msgstr "此簽章%1"
-
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "The signature <b>is not</b> %1."
-#~ msgstr "此簽章<b>不</b>%1。"
-
-#~ msgid "The signature is invalid: %1"
-#~ msgstr "此簽章不正確：%1"
-
-#~ msgid ""
-#~ "You can search the certificate on a keyserver or import it from a file."
-#~ msgstr "您可以在金鑰伺服器上搜尋憑證，或是從一個檔案匯入它。"
-
-#~ msgid "The used key is not certified by you or any trusted person."
-#~ msgstr "使用的金鑰未被您或任何已信任的人進行保證。"
-
-#, fuzzy
-#~| msgid ""
-#~| "The certificate was not certified because it was already certified by "
-#~| "the same certificate."
-#~ msgid ""
-#~ "The used certificate is not certified by a trustworthy Certificate "
-#~ "Authority or the Certificate Authority is unknown."
-#~ msgstr "此憑證已經被確認過了。"
-
-#~ msgctxt "NKS is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set NKS PIN"
-#~ msgstr "設定 NKS PIN 碼"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Set SigG PIN"
-#~ msgstr "設定 SigG PIN 碼"
-
-#~ msgid "Setting a PIN is required but <b>can't be reverted</b>."
-#~ msgstr "設定 PIN 碼是必須的但<b>不可回復</b>。"
-
-#~ msgid ""
-#~ "If you proceed you will be asked to enter a new PIN and later to repeat "
-#~ "that PIN."
-#~ msgstr "如果選擇繼續，將會請您輸入新 PIN 碼並再重複輸入它。"
-
-#~ msgid ""
-#~ "It will <b>not be possible</b> to recover the card if the PIN has been "
-#~ "entered wrongly more than 2 times."
-#~ msgstr "PIN 碼輸入錯誤 2 次以上時將<b>不可能</b>回復卡片。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Set initial PIN"
-#~ msgstr "設定初始 PIN 碼"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change"
-#~ msgstr "變更"
-
-#~ msgid "New name:"
-#~ msgstr "新名稱："
-
-#~ msgctxt "@info"
-#~ msgid "Name successfully changed."
-#~ msgstr "名稱已成功變更。"
-
-#~ msgctxt "@info"
-#~ msgid "URL successfully changed."
-#~ msgstr "網址已成功變更。"
-
-#~ msgctxt "@action:button"
-#~ msgid "Change PIN"
-#~ msgstr "變更 PIN 碼"
-
-#~ msgctxt "@action:button"
-#~ msgid "Set PUK"
-#~ msgstr "設定 PUK 碼"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "建立 OpenPGP 金鑰"
-
-#~ msgctxt "SigG is an identifier for a type of keys on a NetKey card"
-#~ msgid "Change SigG PIN"
-#~ msgstr "變更 SigG PIN 碼"
-
-#~ msgid "Error"
-#~ msgstr "錯誤"
-
-#~ msgctxt "@action:button"
-#~ msgid "Change PUK"
-#~ msgstr "變更 PUK 碼"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Change the PIV Card Application PIN that activates the PIV Card and "
-#~ "enables private key operations using the stored keys."
-#~ msgstr ""
-#~ "變更啟用 PIV 卡片用的 PIV 卡片應用 PIN，並且啟用利用已儲存金鑰的私鑰操作。"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change the PIN Unblocking Key that enables a reset of the PIN."
-#~ msgstr "變更允許 PIN 碼重設的 PIN 碼解鎖金鑰。"
-
-#~ msgid "Subkeys"
-#~ msgstr "子金鑰"
-
-#~ msgctxt "@title:column"
-#~ msgid "Token"
-#~ msgstr "權杖"
-
-#~ msgctxt "@title:column"
-#~ msgid "Type"
-#~ msgstr "類型"
-
-#~ msgctxt "@title:column"
-#~ msgid "Serial Number"
-#~ msgstr "序號"
-
-#~ msgctxt "@title:column"
-#~ msgid "Owner"
-#~ msgstr "擁有者"
-
-#, fuzzy
-#~| msgid "Certification will be performed using certificate %1."
-#~ msgctxt "@info"
-#~ msgid "Smartcard information is only available for your own certificates."
-#~ msgstr "將會使用憑證 %1 來執行。"
-
-#~ msgctxt "Unknown <type> <version> (card)"
-#~ msgid "Unknown %1 v%2"
-#~ msgstr "未知 %1 v%2"
-
-#~ msgctxt "<Manufacturer> <type> <version>"
-#~ msgid "%1 %2 v%3"
-#~ msgstr "%1 %2 v%3"
-
-#~ msgctxt "unknown cardholder"
-#~ msgid "unknown"
-#~ msgstr "未知"
-
-#~ msgid "n/a"
-#~ msgstr "不適用"
-
-#~ msgctxt "@title:tab"
-#~ msgid "Smartcard"
-#~ msgstr "智慧卡"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "This certificate cannot be added to the group as it cannot be used for "
-#~ "encryption."
-#~ msgstr "此憑證無法加入該群組，因為它無法用來加密。"
-
-#~ msgid "Authentication"
-#~ msgstr "認證"
-
-#~ msgctxt "@label:listbox"
-#~ msgid "Certificates:"
-#~ msgstr "憑證："
-
-#~ msgctxt "@action:button"
-#~ msgid "Create CSR"
-#~ msgstr "建立 CSR"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a certificate signing request for a key stored on the card."
-#~ msgstr "為卡片上儲存的金鑰建立憑證簽署請求。"
-
-#~ msgid "Select Key"
-#~ msgstr "選擇金鑰"
-
-#~ msgid ""
-#~ "Please select the key you want to create a certificate signing request "
-#~ "for:"
-#~ msgstr "建立個人的 X.509 金鑰對與憑證要求"
-
-#~ msgid ""
-#~ "Sorry! No keys suitable for creating a certificate signing request found "
-#~ "on the smartcard."
-#~ msgstr "抱歉！智慧卡上沒有找到適合建立憑證簽署請求的金鑰。"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Details"
-#~ msgstr "顯示詳情"
-
-#~ msgctxt "@action:tooltip"
-#~ msgid "Show detailed information about this key"
-#~ msgstr "顯示關於此金鑰的詳細資訊"
-
-#~ msgctxt "@action:button"
-#~ msgid "Generate Key"
-#~ msgstr "建立金鑰"
-
-#~ msgctxt "@info"
-#~ msgid "<em>No key</em>"
-#~ msgstr "<em>無金鑰</em>"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Generate a key for this card slot"
-#~ msgstr "為這個卡片欄位產生金鑰"
-
-#~ msgctxt "@info"
-#~ msgid "<em>Public key not found locally</em>"
-#~ msgstr "<em>未在本地找到公鑰</em>"
-
-#~ msgctxt "@info"
-#~ msgid "<em>Invalid fingerprint</em>"
-#~ msgstr "<em>無效的指紋</em>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Regenerate Key"
-#~ msgstr "重新建立金鑰"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Generate a new key for this card slot replacing the existing key"
-#~ msgstr "為這個卡片欄位產生金鑰，取代現有的金鑰"
-
-#~ msgctxt "@info"
-#~ msgid "Sorry, I cannot find the key with fingerprint %1."
-#~ msgstr "抱歉，我找不到指紋為 %1 的金鑰。"
-
-#~ msgid "OpenPGP keys:"
-#~ msgstr "OpenPGP 金鑰："
-
-#~ msgid "Keys:"
-#~ msgstr "金鑰："
-
-#~ msgctxt "@action:button"
-#~ msgid "Generate"
-#~ msgstr "產生"
-
-#~ msgctxt "@action:button"
-#~ msgid "Write Certificate"
-#~ msgstr "寫入憑證"
-
-#~ msgctxt "@action:button"
-#~ msgid "Import Certificate"
-#~ msgstr "匯入憑證"
-
-#~ msgctxt "@info"
-#~ msgid "<em>slot empty</em>"
-#~ msgstr "<em>欄位為空</em>"
-
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Generate %1"
-#~ msgstr "建立 %1"
-
-#~ msgctxt "@info"
-#~ msgid "<em>no matching certificate</em>"
-#~ msgstr "<em>沒有符合的憑證</em>"
-
-#~ msgctxt "@action:button"
-#~ msgid "Replace"
-#~ msgstr "取代"
-
-#~ msgctxt "@info:tooltip %1 display name of a key"
-#~ msgid "Replace %1 with new key"
-#~ msgstr "用新金鑰取代 %1"
-
-#~ msgid "Reload"
-#~ msgstr "重新載入"
-
-#~ msgid "Debug View"
-#~ msgstr "除錯檢視"
-
-#~ msgid "Dump CRL Cache Error"
-#~ msgstr "傾印憑證撤銷清冊時發生錯誤"
-
-#~ msgctxt "@option:check"
-#~ msgid "Show tags attached to certificates"
-#~ msgstr "顯示附加於憑證上的變遷"
-
-#~ msgid "Use tags"
-#~ msgstr "使用標籤"
-
-#~ msgid "Fingerprint of tag key"
-#~ msgstr "標籤金鑰的指紋"
-
-#~ msgctxt "@label"
-#~ msgid "Name"
-#~ msgstr "名稱"
-
-#~ msgid "Enter a name."
-#~ msgstr "請輸入名稱。"
-
-#~ msgctxt "@label"
-#~ msgid "Email address"
-#~ msgstr "電子郵件地址"
-
-#~ msgid "Enter an email address."
-#~ msgstr "請輸入一個電子郵件地址。"
-
-#~ msgid "The name must not include <, >, and @."
-#~ msgstr "名稱不能包含 <、> 或 @。"
-
-#~ msgctxt "text for screen readers"
-#~ msgid ""
-#~ "The name must not include less-than sign, greater-than sign, and at sign."
-#~ msgstr "名稱不能包含小於符號、大於符號，或小老鼠 (at) 符號。"
-
-#~ msgid ""
-#~ "The name must be in the format required by your organization and it must "
-#~ "not include <, >, and @."
-#~ msgstr "名稱必須符合您的組織所要求的格式，並且不能包含 <、> 或 @。"
-
-#~ msgctxt "text for screen readers"
-#~ msgid ""
-#~ "The name must be in the format required by your organization and it must "
-#~ "not include less-than sign, greater-than sign, and at sign."
-#~ msgstr ""
-#~ "名稱必須符合您的組織所要求的格式，並且包含小於符號、大於符號，或小老鼠 "
-#~ "(at) 符號。"
-
-#~ msgid ""
-#~ "Enter an email address in the correct format required by your "
-#~ "organization."
-#~ msgstr "請輸入符合您組織的格式要求的電子郵件地址。"
-
-#~ msgid ""
-#~ "Encrypts the secret key with an unrecoverable passphrase. You will be "
-#~ "asked for the passphrase during key generation."
-#~ msgstr "用無法讀出的密碼將私鑰進行加密。產生金鑰時將會向您詢問密碼。"
-
-#~ msgctxt "@info"
-#~ msgid "The date cannot be changed."
-#~ msgstr "日期無法變更。"
-
-#~ msgctxt "@item:inlistbox"
-#~ msgid "Three years from now"
-#~ msgstr "現在起三年"
-
-#~ msgctxt "@item:inlistbox"
-#~ msgid "Two years from now"
-#~ msgstr "現在起兩年"
-
-#~ msgctxt "@item:inlistbox"
-#~ msgid "One year from now"
-#~ msgstr "現在起一年"
-
-#~ msgid "Error: Enter a value."
-#~ msgstr "錯誤：請輸入值。"
-
-#~ msgctxt "@label label text (required)"
-#~ msgid "%1 (required)"
-#~ msgstr "%1（必要）"
-
-#~ msgid "Search for certificates online using a public keyserver"
-#~ msgstr "用公開金鑰伺服器在線上搜尋憑證"
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search..."
-#~ msgstr "搜尋..."
-
-#, fuzzy
-#~| msgid "Search...<%1>"
-#~ msgctxt "@info:placeholder"
-#~ msgid "Search...<%1>"
-#~ msgstr "搜尋...<%1>"
-
-#~ msgctxt "@label:textbox"
-#~ msgid "Serial number:"
-#~ msgstr "序號："
-
-#~ msgid "SecOps VSA-10573"
-#~ msgstr "SecOps VSA-10573"
-
-#~ msgid "SecOps VSA-10584"
-#~ msgstr "SecOps VSA-10584"
-
-#~ msgctxt ""
-#~ "Only available in German and English. Leave to English for other "
-#~ "languages."
-#~ msgid "BSI-VSA-10584-ENG_secops-20220207.pdf"
-#~ msgstr "BSI-VSA-10584-ENG_secops-20220207.pdf"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Revoked"
-#~ msgstr "金鑰已撤銷"
-
-#~ msgctxt "title:window"
-#~ msgid "Revoke Key"
-#~ msgstr "撤銷金鑰"
-
-#~ msgctxt "@option:radio"
-#~ msgid "No reason specified"
-#~ msgstr "未指定原因"
-
-#~ msgctxt "@option:radio"
-#~ msgid "Key is superseded"
-#~ msgstr "金鑰已經被取代"
-
-#~ msgctxt "@action:button"
-#~ msgid "Revoke Key"
-#~ msgstr "撤銷金鑰"
-
-#~ msgid "<para>You are about to revoke the following key:<nl/>%1</para>"
-#~ msgstr "<para>您即將撤銷以下金鑰：<nl/>%1</para>"
-
-#~ msgid "Publish on keyserver afterwards"
-#~ msgstr "之後公開到金鑰伺服器上"
-
-#~ msgctxt "@title:column"
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgctxt "@info"
-#~ msgid "Changing the Reset Code failed: %1"
-#~ msgstr "變更重設碼時失敗：%1"
-
-#~ msgctxt "@info"
-#~ msgid "PUK successfully changed."
-#~ msgstr "PUK 碼已成功變更。"
-
-#~ msgctxt "@info"
-#~ msgid "Reset Code changed successfully."
-#~ msgstr "重設碼已成功變更。"
-
-#~ msgid "Create a new primary key and generate subkeys on the card."
-#~ msgstr "在卡片上建立新的主金鑰並產生子金鑰。"
-
-#~ msgid "Change Reset Code"
-#~ msgstr "變更重設碼"
-
-#~ msgid "&Quickguide"
-#~ msgstr "快速指南(&Q)"
-
-#~ msgid "&Group configuration"
-#~ msgstr "群組設定(&G)"
-
-#~ msgid "Create OpenPGP Key"
-#~ msgstr "建立 OpenPGP 金鑰"
-
-#~ msgid "Create an OpenPGP key for the keys stored on the card."
-#~ msgstr "為卡片上儲存的金鑰建立一個 OpenPGP 金鑰。"
-
-#~ msgid "The key hasn't changed."
-#~ msgstr "此金鑰未變更。"
-
-#~ msgid "The key has been revoked."
-#~ msgstr "此金鑰已撤銷。"
-
-#~ msgid "The key has been updated."
-#~ msgstr "此金鑰已更新。"
-
-#, fuzzy
-#~| msgctxt "@title:window"
-#~| msgid "Update Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Update Skipped"
-#~ msgstr "更新失敗"
-
-#~ msgctxt "@title:window"
-#~ msgid "Key Updated"
-#~ msgstr "金鑰已更新"
-
-#~ msgctxt "@info"
-#~ msgid "<para>The update failed: <message>%1</message></para>"
-#~ msgstr "<para>更新失敗：<message>%1</message></para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while updating the certificate:</"
-#~ "para><para><message>%1</message></para>"
-#~ msgstr "<para>更新憑證時發生錯誤：</para><para><message>%1</message></para>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error printing secret key"
-#~ msgstr "列印私鑰時發生錯誤"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~| "prematurely because of an unexpected error.</para><para>Please check the "
-#~| "output of <icode>%1</icode> for details.</para>"
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 或 GpgSM 行程在試著匯出秘密金鑰時發生非預期的錯誤，導致行程已不"
-#~ "正常的結束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>An error occurred while trying to export the secret key.</para> "
-#~ "<para>The output from <command>%1</command> was: <message>%2</message></"
-#~ "para>"
-#~ msgstr ""
-#~ "<para>試著匯出秘密金鑰時發生錯誤。</para> <para><command>%1</command> 的輸"
-#~ "出為：<message>%2</message></para>"
-
-#~ msgctxt "@option:radio"
-#~ msgid "RSA"
-#~ msgstr "RSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ RSA"
-#~ msgstr "+ RSA"
-
-#~ msgctxt "@option:radio"
-#~ msgid "DSA"
-#~ msgstr "DSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ Elgamal"
-#~ msgstr "+ Elgamal"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "This subkey is required for encryption."
-#~ msgstr "這個子金鑰是加密必須的。"
-
-#~ msgctxt "@option:radio"
-#~ msgid "ECDSA"
-#~ msgstr "ECDSA"
-
-#~ msgctxt "@option:check"
-#~ msgid "+ ECDH"
-#~ msgstr "+ ECDH"
-
-#~ msgctxt "@title:group"
-#~ msgid "Additional User IDs"
-#~ msgstr "額外的使用者 ID"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Adding more than one user ID is not yet implemented."
-#~ msgstr "一次新增一個以上的使用者 ID 的功能尚未實作。"
-
-#~ msgid ""
-#~ "Key pair created successfully.\n"
-#~ "Fingerprint: %1"
-#~ msgstr ""
-#~ "已成功產生金鑰對。\n"
-#~ "指紋：%1"
-
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "備份您的金鑰對..."
-
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "透過電子郵件傳送公鑰..."
-
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "將公鑰上傳到目錄伺服器..."
-
-#~ msgid "Create Revocation Request..."
-#~ msgstr "建立撤銷要求..."
-
-#~ msgid "My new public OpenPGP key"
-#~ msgstr "我的新 OpenPGP 金鑰"
-
-#~ msgid "Please find attached my new public OpenPGP key."
-#~ msgstr "請見附件中有我的新的 OpenPGP 公開金鑰。"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para><application>Kleopatra</application> tried to send a mail via your "
-#~ "default mail client.</para><para>Some mail clients are known not to "
-#~ "support attachments when invoked this way.</para><para>If your mail "
-#~ "client does not have an attachment, then attach the file <filename>%1</"
-#~ "filename> manually.</para>"
-#~ msgstr ""
-#~ "<para><application>Kleopatra</application> 試圖透過您預設的電子郵件程式傳"
-#~ "送郵件。</para> <para>目前已知有些郵件程式使用這種方式傳送的話不支援附件。"
-#~ "</para> <para>若您的電子郵件沒有附件，則請手動將檔案 <filename>%1</"
-#~ "filename>新增為附件。</para>"
-
-#~ msgid "Related addresses:"
-#~ msgstr "相關地址："
-
-#~ msgctxt "@action:button"
-#~ msgid "More Details..."
-#~ msgstr "更多詳細資訊..."
-
-#~ msgctxt "@action:button"
-#~ msgid "Manage Subkeys"
-#~ msgstr "管理子金鑰"
-
-#~ msgctxt "@action:button"
-#~ msgid "Show Subkeys"
-#~ msgstr "顯示子金鑰"
-
-#~ msgctxt "@label"
-#~ msgid "Subkeys:"
-#~ msgstr "子金鑰："
-
-#~ msgid "Restore printed backup"
-#~ msgstr "回復印出的備份"
-
-#~ msgctxt "@title:window"
-#~ msgid "Subkeys Details"
-#~ msgstr "子金鑰詳情"
-
-#~ msgctxt "@title:window"
-#~ msgid "Trust Chain"
-#~ msgstr "信任鍊"
-
-#~ msgctxt "@info"
-#~ msgid "One certificate without name and email address was ignored."
-#~ msgid_plural "%1 certificates without name and email address were ignored."
-#~ msgstr[0] "已忽略 %1 個沒有名稱和電子郵件地址的憑證。"
-
-#~ msgctxt "@title:window"
-#~ msgid "Error Learning SmartCard"
-#~ msgstr "辨識智慧卡時發生錯誤"
-
-#~ msgctxt "@title:window"
-#~ msgid "Finished Learning SmartCard"
-#~ msgstr "已完成辨識智慧卡"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to learn the smart card ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 或 GpgSM 行程在試著辨識智慧卡時發生非預期的錯誤，導致行程已不正"
-#~ "常的結束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
-
-#~ msgid "Loading certificates... (this can take a while)"
-#~ msgstr "正在載入憑證...（這可能會花上一段時間）"
-
-#~ msgid "Show Details"
-#~ msgstr "顯示詳情"
-
-#~ msgctxt "@action:inmenu"
-#~ msgid "Learn NetKey v3 Card Certificates"
-#~ msgstr "辨識 NetKey v3 卡片憑證"
-
-#~ msgid "There are unknown certificates on this card."
-#~ msgstr "這張卡片上有未知的憑證。"
-
-#~ msgctxt "@action"
-#~ msgid "Load Certificates"
-#~ msgstr "載入憑證"
-
-#~ msgctxt "@title:column"
-#~ msgid "Strength"
-#~ msgstr "強度"
-
-#~ msgctxt "@title:column"
-#~ msgid "Primary"
-#~ msgstr "主要"
-
-#~ msgctxt "yes, is primary key"
-#~ msgid "yes"
-#~ msgstr "是"
-
-#~ msgctxt "no, is not primary key"
-#~ msgid "no"
-#~ msgstr "否"
-
-#~ msgid "View Columns"
-#~ msgstr "檢視欄位"
-
-#~ msgctxt "@action:button"
-#~ msgid "Create Backup and Delete Key"
-#~ msgstr "建立備份並刪除金鑰"
-
-#~ msgctxt "@action:button"
-#~ msgid "Delete Key"
-#~ msgstr "刪除金鑰"
-
-#~ msgctxt "@action:button"
-#~ msgid "Keep Key"
-#~ msgstr "保留金鑰"
-
-#~ msgid ""
-#~ "The file <b>%1</b> already exists.\n"
-#~ "Overwrite?"
-#~ msgstr ""
-#~ "檔案 <b>%1</b> 已存在。\n"
-#~ "要覆寫它嗎？"
-
-#~ msgid "Overwrite Existing File?"
-#~ msgstr "要覆寫檔案嗎？"
-
-#~ msgid "Overwrite All"
-#~ msgstr "全部覆寫"
-
-#~ msgid "Save changes"
-#~ msgstr "儲存變更"
-
-#~ msgid "Discard changes"
-#~ msgstr "丟棄變更"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The certificates or the certificate groups have been updated in the "
-#~ "background.</para><para>Do you want to save your changes?</para>"
-#~ msgstr ""
-#~ "<para>憑證或憑證群組已在背景被更新。</para><para>您還是要儲存變更嗎？</"
-#~ "para>"
-
-#~ msgctxt "@title::window"
-#~ msgid "Save changes?"
-#~ msgstr "是否儲存變更？"
-
-#~ msgid "Import Certificates"
-#~ msgstr "匯入憑證"
-
-#~ msgid "Import CRLs"
-#~ msgstr "匯入憑證撤銷清冊"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the server to export to.</"
-#~ "para><para>You can configure OpenPGP directory servers in "
-#~ "<application>Kleopatra</application>'s configuration dialog.</"
-#~ "para><para>Do you want to continue with <resource>keys.gnupg.net</"
-#~ "resource> as the server to export to?</para>"
-#~ msgstr ""
-#~ "<para>沒有設定任何的 OpenPGP 目錄服務。</para> <para>在未指定憑證伺服器的"
-#~ "情況下，<application>Kleopatra</application> 會使用 <resource>keys.gnupg."
-#~ "net</resource> 做為預設伺服器。</para> <para>您可以在 Kleopatra 的設定對話"
-#~ "框中設定 OpenPGP 目錄服務的伺服器。</para> <para>您要以 <resource>keys."
-#~ "gnupg.net</resource> 做為預設伺服器來繼續操作嗎？</para>"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>No OpenPGP directory services have been configured.</para><para>If "
-#~ "not all of the certificates carry the name of their preferred certificate "
-#~ "server (few do), a fallback server is needed to fetch from.</"
-#~ "para><para>Since none is configured, <application>Kleopatra</application> "
-#~ "will use <resource>keys.gnupg.net</resource> as the fallback.</"
-#~ "para><para>You can configure OpenPGP directory servers in Kleopatra's "
-#~ "configuration dialog.</para><para>Do you want to continue with "
-#~ "<resource>keys.gnupg.net</resource> as fallback server?</para>"
-#~ msgstr ""
-#~ "<para>沒有設定任何的 OpenPGP 目錄服務。</para> <para>若是有憑證未指定憑證"
-#~ "伺服器（通常都不會指定），則需要一個預設的憑證伺服器設定。</para> <para>在"
-#~ "未指定憑證伺服器的情況下，<application>Kleopatra</application> 會使用 "
-#~ "<resource>keys.gnupg.net</resource> 做為預設伺服器。</para> <para>您可以"
-#~ "在 Kleopatra 的設定對話框中設定 OpenPGP 目錄服務的伺服器。</para> <para>您"
-#~ "要以 <resource>keys.gnupg.net</resource> 做為預設伺服器來繼續操作嗎？</"
-#~ "para>"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-256)"
-#~ msgstr "ECC (Brainpool P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-384)"
-#~ msgstr "ECC (Brainpool P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Brainpool P-512)"
-#~ msgstr "ECC (Brainpool P-512)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve25519)"
-#~ msgstr "ECC (Curve25519)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (Curve448)"
-#~ msgstr "ECC (Curve448)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-256)"
-#~ msgstr "ECC (NIST P-256)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-384)"
-#~ msgstr "ECC (NIST P-384)"
-
-#~ msgctxt "@info"
-#~ msgid "ECC (NIST P-521)"
-#~ msgstr "ECC (NIST P-521)"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 2048"
-#~ msgstr "RSA 2048"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 3072"
-#~ msgstr "RSA 3072"
-
-#~ msgctxt "@info"
-#~ msgid "RSA 4096"
-#~ msgstr "RSA 4096"
-
-#~ msgid "File Operations"
-#~ msgstr "檔案"
-
-#~ msgid "Secret Key Files"
-#~ msgstr "選擇私密金鑰檔"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Error"
-#~ msgstr "匯出秘密金鑰錯誤"
-
-#~ msgctxt "@title:window"
-#~ msgid "Secret Key Export Finished"
-#~ msgstr "匯出秘密金鑰完成"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "<para>The GPG or GpgSM process that tried to export the secret key ended "
-#~ "prematurely because of an unexpected error.</para><para>Please check the "
-#~ "output of <icode>%1</icode> for details.</para>"
-#~ msgstr ""
-#~ "<para>GPG 或 GpgSM 行程在試著匯出秘密金鑰時發生非預期的錯誤，導致行程已不"
-#~ "正常的結束。</para> <para>請檢查 <icode>%1</icode> 的輸出。</para>"
-
-#~ msgctxt "@info"
-#~ msgid "Secret key successfully exported."
-#~ msgstr "已成功匯出秘密金鑰。"
-
-#, fuzzy
-#~| msgid "Could not find gpgconf executable"
-#~ msgctxt "@info"
-#~ msgid "Failed to write data."
-#~ msgstr "找不到 gpgconf 執行檔"
-
-#, fuzzy
-#~| msgid ""
-#~| "The CMS backend does not support certificate deletion.\n"
-#~| "Check your installation."
-#~ msgctxt "@info"
-#~ msgid "The backend does not support this operation."
-#~ msgstr ""
-#~ "CMS 的後端介面不支援刪除憑證。\n"
-#~ "請檢查您的安裝。"
-
-#, fuzzy
-#~| msgid "Export Certificates"
-#~ msgctxt "@action:button"
-#~ msgid "Export Certificates"
-#~ msgstr "匯出憑證"
-
-#~ msgid "Sender"
-#~ msgstr "發送者"
-
-#, fuzzy
-#~| msgid "Delete"
-#~ msgctxt "@action::button"
-#~ msgid "Delete"
-#~ msgstr "刪除"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@action::button"
-#~ msgid "Export"
-#~ msgstr "匯出"
-
-#~ msgid "Certificate Details"
-#~ msgstr "憑證詳情"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgid "Explain expiration"
-#~ msgstr "變更到期日期..."
-
-#, fuzzy
-#~| msgid "Good signature by unknown certificate %1."
-#~ msgid "The latest allowed certification date is %1."
-#~ msgstr "未知的憑證 %1 所做的正常簽署。"
-
-#, fuzzy
-#~| msgid "Valid From"
-#~ msgid "Valid for %1 month"
-#~ msgid_plural "Valid for %1 months"
-#~ msgstr[0] "合法起始時間"
-
-#, fuzzy
-#~| msgid "Valid From"
-#~ msgid "Valid for:"
-#~ msgstr "合法起始時間"
-
-#~ msgid "Days"
-#~ msgstr "天內"
-
-#~ msgid "Weeks"
-#~ msgstr "週內"
-
-#~ msgid "Months"
-#~ msgstr "月內"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "You have to enter an output filename."
-#~ msgid "Failed to create output folder."
-#~ msgstr "您必須鍵入輸出檔名。"
-
-#~ msgid "Tooltips"
-#~ msgstr "工具提示"
-
-#~ msgid "Could not remove file \"%1\" for overwriting."
-#~ msgstr "無法移除檔案 %1 以覆寫。"
-
-#, fuzzy
-#~| msgid "Initializing..."
-#~ msgid "Finalizing output..."
-#~ msgstr "初始化中..."
-
-#, fuzzy
-#~| msgid "Any files"
-#~ msgid "Apply profile"
-#~ msgstr "所有檔案"
-
-#, fuzzy
-#~| msgid "Configuration Error"
-#~ msgctxt "%1 is the name of the profile"
-#~ msgid "The configuration profile \"%1\" was applied."
-#~ msgstr "設定錯誤"
-
-#, fuzzy
-#~| msgid "Input file:"
-#~ msgid "GnuPG Profile - Kleopatra"
-#~ msgstr "輸入檔："
-
-#, fuzzy
-#~| msgid "EMail Operations"
-#~ msgctxt "@title"
-#~ msgid "General Operations"
-#~ msgstr "電子郵件操作"
-
-#, fuzzy
-#~| msgid "Input file:"
-#~ msgid "Activate GnuPG Profile:"
-#~ msgstr "輸入檔："
-
-#~ msgid "EMail Operations"
-#~ msgstr "電子郵件操作"
-
-#, fuzzy
-#~| msgid "Encrypt Mail Message"
-#~ msgctxt "@title:window"
-#~ msgid "Encrypt Mail Message"
-#~ msgstr "加密電子郵件"
-
-#, fuzzy
-#~| msgid "Sign Mail Message"
-#~ msgctxt "@title:window"
-#~ msgid "Sign Mail Message"
-#~ msgstr "簽署郵件"
-
-#~ msgid "Quick Sign EMail"
-#~ msgstr "快速簽署電子郵件"
-
-#~ msgid ""
-#~ "Minimize the number of steps when signing emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr "將簽署電子郵件的步驟縮到最少，大部份都使用預設值，除非遇到問題"
-
-#~ msgid ""
-#~ "Minimize the number of steps when encrypting emails, use preset defaults "
-#~ "unless problems occur."
-#~ msgstr "將加密電子郵件的步驟縮到最少，大部份都使用預設值，除非遇到問題"
-
-#~ msgid ""
-#~ "<b>Step 2:</b> How thoroughly have you checked that this certificate "
-#~ "actually belongs to the person it claims it is from?"
-#~ msgstr "<b>步驟 2：</b>您如何檢查這個憑證確實是宣稱擁有他的人的？"
-
-#~ msgid "I have not checked at all"
-#~ msgstr "我沒檢查過"
-
-#~ msgid "Describe semantics here..."
-#~ msgstr "在此描述..."
-
-#~ msgid "I have checked casually"
-#~ msgstr "我只隨便檢查"
-
-#~ msgid ""
-#~ "Choose this if you know the person, and have asked them whether this was "
-#~ "their certificate, but you have not verified they are actually in "
-#~ "possession of the secret certificate."
-#~ msgstr ""
-#~ "如果您認識這些人，並問過這是不是他們的憑證，但尚未透過私密憑證確認過此事，"
-#~ "則選擇此項。"
-
-#~ msgid "I have checked very thoroughly"
-#~ msgstr "我完整檢查過"
-
-#~ msgid ""
-#~ "Choose this if you have, for instance, checked the ID card of the person, "
-#~ "and have verified that they are in possession of the secret key (e.g. by "
-#~ "sending them encrypted mail and asking for it to be decrypted)."
-#~ msgstr ""
-#~ "如果您確定這些人沒問題，比方說看過他們的身份證，並且確認他們有私密金鑰（例"
-#~ "如您可以用他們的公開金鑰對信件加密，他們若解得開就沒問題），您可以選擇此"
-#~ "項。"
-
-#, fuzzy
-#~| msgid "Secret keys imported:"
-#~ msgctxt "@title:window"
-#~ msgid "Secret key imported"
-#~ msgstr "已匯入的秘密金鑰："
-
-#, fuzzy
-#~| msgid "Signature file"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Signature (%1)"
-#~ msgstr "簽名檔"
-
-#, fuzzy
-#~| msgid "Encryption"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Encryption (%1)"
-#~ msgstr "加密"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgctxt "Placeholder is the number of a slot on a smart card"
-#~ msgid "Authentication (%1)"
-#~ msgstr "認證"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>An error occurred while trying to change the owner trust for <b>%1</"
-#~| "b>:</p><p>%2</p>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to change the certification trust for "
-#~ "<b>%1</b>:</p><p>%2</p>"
-#~ msgstr "<p>試著改變 <b>%1</b> 的擁有者信任時發生錯誤：</p> <p>%2</p>"
-
-#, fuzzy
-#~| msgid "Owner trust changed successfully."
-#~ msgid "Certification trust changed successfully."
-#~ msgstr "擁有者信任已成功變更。"
-
-#, fuzzy
-#~| msgid "Owner Trust Change Succeeded"
-#~ msgid "Certification Trust Change Succeeded"
-#~ msgstr "變更擁有者信任成功。"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Change Trust Level of %1"
-#~ msgctxt "@title:window"
-#~ msgid "Change Trust Level of %1"
-#~ msgstr "變更 %1 的信任等級"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "How much do you trust certifications made by <b>%1</b> to correctly "
-#~ "verify authenticity of certificates?"
-#~ msgstr "您有多信任由 <b>%1</b> 產生的憑證可以正確地認證？"
-
-#~ msgid "I do not know"
-#~ msgstr "我不知道"
-
-#~ msgid "<i>(unknown trust)</i>"
-#~ msgstr "<i>（未知的信任）</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you have no opinion about the "
-#~ "trustworthyness of the certificate's owner.<br>Certifications at this "
-#~ "trust level are ignored when checking the validity of OpenPGP "
-#~ "certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">若是您不知道憑證擁有者的可信任程度，則選擇此項。<br/> 在"
-#~ "檢查 OpenPGP 憑證時此信任等級的憑證會被忽略。</font>"
-
-#~ msgid "I do NOT trust them"
-#~ msgstr "我不信任他們"
-
-#~ msgid "<i>(never trust)</i>"
-#~ msgstr "<i>（永不信任）</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you explicitly do <em>not</em> trust the "
-#~ "certificate owner, e.g. because you have knowledge of him certifying "
-#~ "without checking or without the certificate owner's consent."
-#~ "<br>Certifications at this trust level are ignored when checking the "
-#~ "validity of OpenPGP certificates.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">若是您<em>明確地不信任</em>憑證擁有者，則選擇此項。<br/"
-#~ "> 在檢查 OpenPGP 憑證時此信任等級的憑證會被忽略。</font>"
-
-#~ msgid "I believe checks are casual"
-#~ msgstr "我大致信任這些檢查"
-
-#~ msgid "<i>(marginal trust)</i>"
-#~ msgstr "<i>（大致信任）</i>"
-
-#, fuzzy
-#~| msgid ""
-#~| "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~| "blindly, but not very accuratly, either.<br>Certificates will only "
-#~| "become valid with multiple certifications (typically three) at this "
-#~| "trust level. This is usually a good choice.</font>"
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are not done "
-#~ "blindly, but not very accurately, either.<br>Certificates will only "
-#~ "become valid with multiple certifications (typically three) at this trust "
-#~ "level. This is usually a good choice.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">若是您相信憑證擁有者不是盲目地簽署憑證，但還不是很確定，"
-#~ "可以選擇此項。<br/> 這些憑證在確認多次（通常是三次）以上之後才會變成合法。"
-#~ "</font>"
-
-#~ msgid "I believe checks are very accurate"
-#~ msgstr "我完全信任"
-
-#~ msgid "<i>(full trust)</i>"
-#~ msgstr "<i>（完全信任）</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if you trust certifications are done very "
-#~ "accurately.<br>Certificates will become valid with just a single "
-#~ "certification at this trust level, so assign this much trust with care.</"
-#~ "font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">若是您完全信任，則選擇此項。請小心使用此選項。</font>"
-
-#~ msgid "This is my certificate"
-#~ msgstr "這是我的憑證"
-
-#~ msgid "<i>(ultimate trust)</i>"
-#~ msgstr "<i>（絕對信任）</i>"
-
-#~ msgid ""
-#~ "<font size=\"-1\">Choose this if and only if this is your certificate. "
-#~ "This is the default if the secret key is available, but if you imported "
-#~ "this certificate, you might need to adjust the trust level yourself."
-#~ "<br>Certificates will become valid with just a single certification at "
-#~ "this trust level.</font>"
-#~ msgstr ""
-#~ "<font size=\"-1\">只有在這是您自己的憑證時，才使用此選項。若是擁有私密金鑰"
-#~ "時，這一選項是預設值，但若您是匯入此憑證，則您可能要自行調整信任等級。</"
-#~ "font>"
-
-#, fuzzy
-#~| msgid "Signing and encryption succeeded."
-#~ msgid "Signing and encrypting files is not possible."
-#~ msgstr "簽署與加密成功"
-
-#~ msgctxt "@action"
-#~ msgid "Encrypt"
-#~ msgstr "加密"
-
-#, fuzzy
-#~| msgid "Certification Not Possible"
-#~ msgctxt ""
-#~ "%1 is a placeholder for the name of a compliance mode. E.g. NATO "
-#~ "RESTRICTED compliant or VS-NfD compliant"
-#~ msgid "%1 communication not possible."
-#~ msgstr "無法確認憑證"
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create a new OpenPGP key pair"
-#~ msgstr "建立個人 OpenPGP 金鑰配對"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Imported Certificates from %1"
-#~ msgid "Import from a file."
-#~ msgstr "從 %1 匯入憑證"
-
-#, fuzzy
-#~| msgid "Fingerprint"
-#~ msgid "Fingerprint: <b>%1</b>"
-#~ msgstr "指印（Fingerprint）"
-
-#, fuzzy
-#~| msgid ""
-#~| "<p>An error occurred while trying to change the expiry date for <b>%1</"
-#~| "b>:</p><p>%2</p>"
-#~ msgid ""
-#~ "<p>An error occurred while trying to revoke the certification of<br/><br/"
-#~ "><b>%1</b>:</p><p>\t%2</p>"
-#~ msgstr "<p>試著改變 <b>%1</b> 的到期日時發生錯誤：</p> <p>%2</p>"
-
-#, fuzzy
-#~| msgid "Certification"
-#~ msgid "Revocation Error"
-#~ msgstr "憑證"
-
-#, fuzzy
-#~| msgid "Certification canceled."
-#~ msgid "Revocation Succeeded"
-#~ msgstr "確認已取消。"
-
-#, fuzzy
-#~| msgid "Certification"
-#~ msgctxt "@title:window arg is name, email of certificate holder"
-#~ msgid "Revoke Certification: %1"
-#~ msgstr "憑證"
-
-#~ msgid ""
-#~ "<qt>The Kleopatra GPG UI Server Module could not be initialized.<br/>The "
-#~ "error given was: <b>%1</b><br/>You can use Kleopatra as a certificate "
-#~ "manager, but cryptographic plugins that rely on a GPG UI Server being "
-#~ "present might not work correctly, or at all.</qt>"
-#~ msgstr ""
-#~ "<qt>Kleopatra GPG 使用者介面伺服器無法初始化。<br/> 錯誤為：<b>%1</b><br/"
-#~ "> 您可以使用 Kleopatra 做為憑證管理員，但是使用 GPG 使用者介面伺服器的加密"
-#~ "外掛程式可能無法正常運作。</qt>"
-
-#~ msgid "Kleopatra Self-Test Results"
-#~ msgstr "Kleopatra 自我測試結果"
-
-#~ msgid "Expiry Date Change Error"
-#~ msgstr "變更到期日錯誤"
-
-#~ msgid "Expiry Date Change Succeeded"
-#~ msgstr "變更到期日成功。"
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@info:tooltip"
-#~ msgid "Change the expiration date"
-#~ msgstr "變更到期日期..."
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@action:button"
-#~ msgid "Change expiration"
-#~ msgstr "變更到期日期..."
-
-#, fuzzy
-#~| msgid "Never"
-#~ msgctxt "Expires"
-#~ msgid "never"
-#~ msgstr "永久有效"
-
-#, fuzzy
-#~| msgid "Please select when to expire this certificate:"
-#~ msgid "Please select when to expire this subkey:"
-#~ msgstr "請選擇何時要讓此憑證到期："
-
-#~ msgid "Please select when to expire this certificate:"
-#~ msgstr "請選擇何時要讓此憑證到期："
-
-#~ msgid "In"
-#~ msgstr "於"
-
-#, fuzzy
-#~| msgid "On this day:"
-#~ msgid "On this da&y:"
-#~ msgstr "於這一天："
-
-#, fuzzy
-#~| msgid "Change Expiry Date..."
-#~ msgctxt "@title:window"
-#~ msgid "Change Expiry"
-#~ msgstr "變更到期日期..."
-
-#~ msgid "Change Expiry Date..."
-#~ msgstr "變更到期日期..."
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Create a new certificate"
-#~ msgstr "建立新的憑證"
-
-#, fuzzy
-#~| msgid "Please choose which type of certificate you want to create. "
-#~ msgid "Choose which type of key pair you want to create."
-#~ msgstr "請選擇您要建立的憑證的格式。"
-
-#, fuzzy
-#~| msgid "Create a personal OpenPGP key pair"
-#~ msgid "Create a Personal OpenPGP Key Pair"
-#~ msgstr "建立個人 OpenPGP 金鑰配對"
-
-#, fuzzy
-#~| msgid ""
-#~| "X.509 key pairs are created locally, but certified centrally by a "
-#~| "certification authority (CA). CAs can certify other CAs, creating a "
-#~| "central, hierarchical chain of trust."
-#~ msgid ""
-#~ "X.509 key pairs are certified by a certification authority (CA). The "
-#~ "generated request needs to be sent to a CA to finalize creation."
-#~ msgstr ""
-#~ "X.509 金鑰配對已在本地端建立，由憑證中心（CA）保證。CA 可以保證其它的 CA，"
-#~ "建立一個階層式的信任鍊。"
-
-#, fuzzy
-#~| msgid "Create a personal X.509 key pair and certification request "
-#~ msgid "Create a Personal X.509 Key Pair and Certification Request"
-#~ msgstr "建立個人的 X.509 金鑰配對與憑證要求"
-
-#, fuzzy
-#~| msgid "Make a Backup Of Your Key Pair..."
-#~ msgctxt "@action:button"
-#~ msgid "Make a Backup Of Your Key Pair..."
-#~ msgstr "備份您的金鑰配對..."
-
-#, fuzzy
-#~| msgid "Send Certificate By EMail..."
-#~ msgctxt "@action:button"
-#~ msgid "Send Public Key By EMail..."
-#~ msgstr "以電子郵件送出憑證..."
-
-#, fuzzy
-#~| msgid "Upload Certificate To Directory Service..."
-#~ msgctxt "@action:button"
-#~ msgid "Upload Public Key To Directory Service..."
-#~ msgstr "將憑證上傳到目錄伺服器..."
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Sending Mail"
-#~ msgctxt "@title:window"
-#~ msgid "Sending Mail"
-#~ msgstr "傳送郵件中"
-
-#~ msgctxt "stored..."
-#~ msgid "on SmartCard with serial no. %1"
-#~ msgstr "於智慧卡上，序號 %1"
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "@info::placeholder"
-#~ msgid "Search..."
-#~ msgstr "搜尋..."
-
-#, fuzzy
-#~| msgid "Search..."
-#~ msgctxt "Placeholder text"
-#~ msgid "Search..."
-#~ msgstr "搜尋..."
-
-#~ msgid "Type:"
-#~ msgstr "型態："
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@action:button"
-#~ msgid "Export..."
-#~ msgstr "匯出"
-
-#, fuzzy
-#~| msgid "Certifications"
-#~ msgctxt "@action:button"
-#~ msgid "Certifications..."
-#~ msgstr "憑證"
-
-#, fuzzy
-#~| msgid "Dump Certificate"
-#~ msgctxt "@action:button"
-#~ msgid "Publish Certificate"
-#~ msgstr "傾印憑證"
-
-#~ msgid "CRL cache dump:"
-#~ msgstr "印出廢棄憑證清單快取內容："
-
-#~ msgid "&Update"
-#~ msgstr "更新(&U)"
-
-#~ msgid "Unable to start gpgsm process. Please check your installation."
-#~ msgstr "無法啟動 gpgsm 行程。請檢查您的安裝是否完整。"
-
-#~ msgid "Certificate Manager Error"
-#~ msgstr "憑證管理員錯誤"
-
-#~ msgid "The GpgSM process ended prematurely because of an unexpected error."
-#~ msgstr "GpgSM 行程遇到不可預期的錯誤而結束。"
-
-#~ msgctxt "@title"
-#~ msgid "Error"
-#~ msgstr "錯誤"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgctxt "@info:status"
-#~ msgid "Refreshing key..."
-#~ msgstr "匯出"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "OpenPGP certificates exported successfully."
-#~ msgctxt "@info"
-#~ msgid "The key was refreshed successfully."
-#~ msgstr "OpenPGP 憑證已成功匯出。"
-
-#, fuzzy
-#~| msgid "Newly revoked:"
-#~ msgctxt "@title:window"
-#~ msgid "Key Refreshed"
-#~ msgstr "新廢棄的："
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Key Creation Failed"
-#~ msgctxt "@title:window"
-#~ msgid "Refreshing Failed"
-#~ msgstr "金鑰建立失敗"
-
-#, fuzzy
-#~| msgid "Certificates"
-#~ msgid "Load additional certificates"
-#~ msgstr "憑證"
-
-#, fuzzy
-#~| msgid "Loading certificate cache..."
-#~ msgid "Loading certificates..."
-#~ msgstr "載入憑證快取中..."
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: No matching certificates or groups found"
-#~ msgstr "（找不到符合的憑證）"
-
-#, fuzzy
-#~| msgid "(no matching certificates found)"
-#~ msgid "Error: Multiple matching certificates or groups found"
-#~ msgstr "（找不到符合的憑證）"
-
-#, fuzzy
-#~| msgid "Name:"
-#~ msgctxt "@label"
-#~ msgid "Name:"
-#~ msgstr "名稱："
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgid "Error: The entered name contains invalid characters."
-#~ msgstr "此簽章不正確：%1"
-
-#, fuzzy
-#~| msgid "EMail"
-#~ msgctxt "@label"
-#~ msgid "Email:"
-#~ msgstr "電子郵件"
-
-#, fuzzy
-#~| msgid "The signature is invalid: %1"
-#~ msgid "The entered name is not valid."
-#~ msgstr "此簽章不正確：%1"
-
-#~ msgid "Comment"
-#~ msgstr "註解"
-
-#~ msgid "Add New User-ID"
-#~ msgstr "新的使用者代碼"
-
-#, fuzzy
-#~| msgid "Current selection"
-#~ msgid "Open selection dialog."
-#~ msgstr "目前的選取"
-
-#, fuzzy
-#~| msgid "Details..."
-#~ msgid "Click for details."
-#~ msgstr "詳情..."
-
-#, fuzzy
-#~| msgid "SmartCard"
-#~ msgid "List Smartcard Readers"
-#~ msgstr "智慧卡"
-
-#, fuzzy
-#~| msgid "The signature is bad."
-#~ msgid "The signature."
-#~ msgstr "此簽章不正確。"
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Choose Certificate Format"
-#~ msgctxt "@title"
-#~ msgid "Choose Format"
-#~ msgstr "選擇憑證格式"
-
-#~ msgid "&Configure %1..."
-#~ msgstr "設定 %1(&C)..."
-
-#~ msgid "&About %1..."
-#~ msgstr "關於 %1(&A)..."
-
-#~ msgid "&Shutdown Kleopatra"
-#~ msgstr "關閉 Kleopatra(&S)"
-
-#~ msgid "Invalid hex char '%1' in input stream."
-#~ msgstr "輸入串中有不合法的十六位元字元 %1"
-
-#~ msgid "Premature end of hex-encoded char in input stream"
-#~ msgstr "輸入串中的十六位元編碼的字元結尾不正確"
-
-#~ msgid "Automatically add &new servers discovered in CRL distribution points"
-#~ msgstr "自動將在廢棄憑證清單（CRL）分布點中發現的新伺服器加入"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of certificate import:</p><table width=\"100%\">"
-#~ "%1</table></qt>"
-#~ msgstr ""
-#~ "<qt><p>匯入憑證的詳細結果：</p> <table width=\"100%\">%1</table></qt>"
-
-#~ msgid ""
-#~ "<qt><p>Detailed results of importing %1:</p><table width=\"100%\">%2</"
-#~ "table></qt>"
-#~ msgstr ""
-#~ "<qt><p>匯入 %1 的詳細結果：</p> <table width=\"100%\">%2</table></qt>"
-
-#~ msgid "Totals"
-#~ msgstr "總計"
-
-#~ msgid "Could not determine certificate type of %1."
-#~ msgstr "無法決定 %1 的憑證型態。"
-
-#, fuzzy
-#~| msgid "Default certificate"
-#~ msgid "Multiple certificates"
-#~ msgstr "預設憑證"
-
-#~ msgid "Change Certificate Date of Expiry"
-#~ msgstr "變更憑證到期日"
-
-#, fuzzy
-#~| msgid "Scanning directories..."
-#~ msgid "Configuration of directory services"
-#~ msgstr "掃描目錄中..."
-
-#, fuzzy
-#~| msgid "Color && Font Configuration"
-#~ msgid "Colors & Fonts Configuration"
-#~ msgstr "顏色與字型設定"
-
-#, fuzzy
-#~| msgid "Configuration Error"
-#~ msgid "Configuration of Crypto Operations"
-#~ msgstr "設定錯誤"
-
-#~ msgid "Configure GnuPG Backend..."
-#~ msgstr "設定 GnuPG 後端介面..."
-
-#~ msgid ""
-#~ "Could not configure the cryptography backend (gpgconf tool not found)"
-#~ msgstr "無法設定加密後端介面（找不到 gpgconf）"
-
-#~ msgid "Configuration Error"
-#~ msgstr "設定錯誤"
-
-#, fuzzy
-#~| msgid "Signing"
-#~ msgid "Signing key:"
-#~ msgstr "簽署"
-
-#, fuzzy
-#~| msgctxt "@info:tooltip"
-#~| msgid "Create a new certificate"
-#~ msgid "Generate &revocation certificate"
-#~ msgstr "建立新的憑證"
-
-#, fuzzy
-#~| msgid "Export"
-#~ msgid "&Export..."
-#~ msgstr "匯出"
-
-#~ msgid ""
-#~ "If this option is selected, S/MIME certificates are validated using "
-#~ "Certificate Revocation Lists (CRLs)."
-#~ msgstr "如果選擇此選項，S/MIME 憑證會透過廢棄憑證清單（CRL）來確認。"
-
-#~ msgid "Validate certificates using CRLs"
-#~ msgstr "使用 CRL 確認憑證"
-
-#~ msgid "S/MIME export file:"
-#~ msgstr "S/MIME 匯出檔："
-
-#, fuzzy
-#~| msgid "Failed to execute %1: %2"
-#~ msgctxt "@info"
-#~ msgid "Failed to set PIN: %1"
-#~ msgstr "執行 %1 時失敗：%2"
-
-#~ msgid "Email Address:"
-#~ msgstr "電子郵件地址："
-
-#~ msgid "Subject-DN:"
-#~ msgstr "主旨-DN："
-
-#~ msgid "Key Type:"
-#~ msgstr "金鑰型態："
-
-#, fuzzy
-#~| msgid "Key Type:"
-#~ msgid "Key Curve:"
-#~ msgstr "金鑰型態："
-
-#~ msgid "Key Strength:"
-#~ msgstr "金鑰強度"
-
-#~ msgid "1 bit"
-#~ msgid_plural "%1 bits"
-#~ msgstr[0] "%1 位元2"
-
-#~ msgctxt "separator for key usages"
-#~ msgid ",&nbsp;"
-#~ msgstr "，&nbsp;"
-
-#~ msgid "Subkey Type:"
-#~ msgstr "子金鑰型態："
-
-#~ msgid "Subkey Usage:"
-#~ msgstr "子金鑰用途："
-
-#~ msgid "Valid Until:"
-#~ msgstr "合法結束時間："
-
-#~ msgid "DNS Name:"
-#~ msgstr "DNS 名稱："
-
-#~ msgid "URI:"
-#~ msgstr "網址："
-
-#, fuzzy
-#~| msgctxt "@title"
-#~| msgid "Review Certificate Parameters"
-#~ msgctxt "@title"
-#~ msgid "Review Parameters"
-#~ msgstr "重新檢視憑證參數"
-
-#, fuzzy
-#~| msgid ""
-#~| "Please review the certificate parameters before proceeding to create the "
-#~| "certificate."
-#~ msgid "Please review the parameters before proceeding."
-#~ msgstr "在建立憑證之前請重新再檢視一次憑證的參數。"
-
-#~ msgid "Show all details"
-#~ msgstr "顯示所有詳情"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Authentication:"
-#~ msgstr "認證"
-
-#, fuzzy
-#~| msgid ""
-#~| "Your new key pair was created successfully. Please find details on the "
-#~| "result and some suggested next steps below."
-#~ msgid ""
-#~ "The certificate signing request was created successfully. Please find the "
-#~ "result and suggested next steps below."
-#~ msgstr "您已成功建立新的金鑰配對。請參考以下的詳情，以及下一步驟的建議。"
-
-#, fuzzy
-#~| msgctxt "@action"
-#~| msgid "Create Key"
-#~ msgctxt "@title:window"
-#~ msgid "CSR Created"
-#~ msgstr "建立金鑰"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Card authentication:"
-#~ msgstr "認證"
-
-#, fuzzy
-#~| msgid "Bad signature"
-#~ msgid "Digital signature:"
-#~ msgstr "不正確的簽章"
-
-#~ msgid "Add email address to DN (only needed for broken CAs)"
-#~ msgstr "將電子郵件加入 DN（只有破損的 CA 需要）"
-
-#, fuzzy
-#~| msgid "Certify..."
-#~ msgid "Certify ..."
-#~ msgstr "保證..."
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt "%1 nice serial number, %2 real serial number"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgid "The signature is bad."
-#~ msgctxt ""
-#~ "VS-NfD-conforming is a German standard for restricted documents for which "
-#~ "special restrictions about algorithms apply.  The string states that a "
-#~ "signature is compliant with that."
-#~ msgid "The signature is VS-NfD-compliant."
-#~ msgstr "此簽章不正確。"
-
-#~ msgid "Refresh X.509 Certificates"
-#~ msgstr "刷新 X.509 憑證"
-
-#, fuzzy
-#~| msgctxt "Format string for the labels in the \"Your Personal Data\" page"
-#~| msgid "%1 (%2)"
-#~ msgctxt ""
-#~ "Placeholder 1 is the name of a key, e.g. 'Digital Signature Key'; "
-#~ "placeholder 2 is the identifier of a slot on a smart card"
-#~ msgid "%1 (%2)"
-#~ msgstr "%1 (%2)"
-
-#, fuzzy
-#~| msgctxt "@info"
-#~| msgid "User-ID successfully added."
-#~ msgctxt "@info"
-#~ msgid "Code successfully changed."
-#~ msgstr "使用者代碼已成功新增。"
-
-#, fuzzy
-#~| msgid "Authentication"
-#~ msgid "Generate Card Authentication Key"
-#~ msgstr "認證"
-
-#~ msgctxt "%2: some admin-supplied text, %1: key size in bits"
-#~ msgid "%2 (1 bit; default)"
-#~ msgid_plural "%2 (%1 bits; default)"
-#~ msgstr[0] "%2 （%1 位元；預設）"
-
-#~ msgctxt "%1: key size in bits"
-#~ msgid "1 bit (default)"
-#~ msgid_plural "%1 bits (default)"
-#~ msgstr[0] "%1 位元（預設）"
-
-#~ msgid "<b>Step 2:</b> Choose how to certify."
-#~ msgstr "<b>步驟 2：</b>請選取如何認證。"
-
-#~ msgid "Choose which of your certificates to sign with:"
-#~ msgstr "選擇要以哪個憑證簽署"
-
-#~ msgid "Certify only for myself"
-#~ msgstr "只確認自己"
-
-#~ msgid "Send certified certificate to server afterwards"
-#~ msgstr "稍候將確認過的憑證傳送到伺服器"
-
-#, fuzzy
-#~| msgid "<b>Step 1:</b> Please select the user IDs you wish to certify."
-#~ msgid ""
-#~ "<b>Step 1:</b> Please select the names and email addresses you wish to "
-#~ "certify."
-#~ msgstr "<b>步驟 1：</b>請選取您要保證的使用者代碼。"
-
-#~ msgid "<b>Summary:</b>"
-#~ msgstr "<b>摘要：</b>"
-
-#~ msgid "Check level:"
-#~ msgstr "檢查等級："
-
-#~ msgid "No statement made"
-#~ msgstr "沒有產生敘述"
-
-#~ msgid "Not checked"
-#~ msgstr "未檢查"
-
-#~ msgid "Casually checked"
-#~ msgstr "已隨便檢查"
-
-#~ msgid "Thoroughly checked"
-#~ msgstr "已徹底檢查"
-
-#~ msgid ""
-#~ "The certificate was not certified because it was already certified by the "
-#~ "same certificate."
-#~ msgstr "此憑證已經被確認過了。"

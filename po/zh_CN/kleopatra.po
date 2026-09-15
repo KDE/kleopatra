@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 02:41+0000\n"
+"POT-Creation-Date: 2026-09-15 16:16+0200\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-stable/messages/kleopatra/kleopatra.pot\n"
-"X-Crowdin-File-ID: 50218\n"
+"X-Crowdin-File: /kf6-trunk/messages/kleopatra/kleopatra.pot\n"
+"X-Crowdin-File-ID: 45663\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -158,11 +158,6 @@ msgstr ""
 msgid "Kleopatra"
 msgstr "Kleopatra"
 
-#: src/aboutdata.cpp src/aboutdata.cpp
-#, kde-format
-msgid "Certificate manager and cryptography app"
-msgstr "证书管理器和加密应用程序"
-
 #: src/aboutdata.cpp
 #, kde-format
 msgctxt "@info:credit"
@@ -192,6 +187,11 @@ msgstr "© 2001-2010 Klarälvdalens Datakonsult AB"
 msgctxt "@info:credit"
 msgid "© 2001-%1 The Kleopatra developers"
 msgstr "© 2001-%1 Kleopatra 开发人员 "
+
+#: src/aboutdata.cpp
+#, kde-format
+msgid "Certificate manager and cryptography app"
+msgstr "证书管理器和加密应用程序"
 
 #: src/commands/addadskcommand.cpp
 #, kde-format
@@ -232,8 +232,8 @@ msgstr "添加 ADSK"
 #: src/commands/addsubkeycommand.cpp
 #, kde-format
 msgid ""
-"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</p><p>"
-"%2</p>"
+"<p>An error occurred while trying to add a new subkey to <b>%1</b>:</"
+"p><p>%2</p>"
 msgstr "<p>尝试将新子项添加到以下内容中时发生错误 <b>%1</b>：</p><p>%2</p>"
 
 #: src/commands/addsubkeycommand.cpp
@@ -1064,7 +1064,7 @@ msgid "CRL cache cleared successfully."
 msgstr "CRL 缓存清除成功。"
 
 #: src/commands/command_p.h src/commands/keytocardcommand.cpp
-#: src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
 #: src/commands/newopenpgpcertificatecommand.cpp src/utils/csrutils.cpp
 #, kde-format
 msgctxt "@title:window"
@@ -1240,8 +1240,8 @@ msgstr "CMS 后端：%1"
 #: src/commands/deletecertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to delete the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to delete the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>尝试删除证书时出错：</p><p><b>%1</b></p></qt>"
 
 #: src/commands/dumpcertificatecommand.cpp
@@ -1427,8 +1427,8 @@ msgstr "正在导出证书..."
 #: src/commands/exportcertificatecommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to export the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to export the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>尝试导出证书时出错：</p><p><b>%1</b></p></qt>"
 
 #: src/commands/exportcertificatecommand.cpp
@@ -1462,6 +1462,12 @@ msgid "Certificate Groups (*%1)"
 msgstr "组证书（*%1）"
 
 #: src/commands/exportgroupscommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "Cannot overwrite existing <filename>%1</filename>."
+msgstr "无法覆盖已存在的文件 <filename>%1</filename>"
+
+#: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
 #: src/commands/exportgroupscommand.cpp
@@ -1474,12 +1480,6 @@ msgstr "组证书（*%1）"
 msgctxt "@title:window"
 msgid "Export Failed"
 msgstr "导出失败"
-
-#: src/commands/exportgroupscommand.cpp
-#, kde-kuit-format
-msgctxt "@info"
-msgid "Cannot overwrite existing <filename>%1</filename>."
-msgstr "无法覆盖已存在的文件 <filename>%1</filename>"
 
 #: src/commands/exportgroupscommand.cpp
 #, kde-kuit-format
@@ -2116,16 +2116,16 @@ msgid_plural "Importing certificates from %1 files..."
 msgstr[0] "正在从%1个文件导入证书。"
 
 #: src/commands/importcertificatefromfilecommand.cpp
+#, kde-format
+msgid "Could not open file %1 for reading: %2"
+msgstr "无法打开文件 %1 进行读取：%2"
+
+#: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid "Certificate Import Failed"
 msgstr "证书导入失败"
-
-#: src/commands/importcertificatefromfilecommand.cpp
-#, kde-format
-msgid "Could not open file %1 for reading: %2"
-msgstr "无法打开文件 %1 进行读取：%2"
 
 #: src/commands/importcertificatefromfilecommand.cpp
 #: src/commands/importcertificatescommand.cpp src/view/keytreeview.cpp
@@ -2438,15 +2438,15 @@ msgstr "显示审核日志"
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate:</p><p><b>"
-"%1</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate:</"
+"p><p><b>%1</b></p></qt>"
 msgstr "<qt><p>尝试导入证书时出错：</p><p><b>%1</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp
 #, kde-format
 msgid ""
-"<qt><p>An error occurred while trying to import the certificate %1:</p><p><b>"
-"%2</b></p></qt>"
+"<qt><p>An error occurred while trying to import the certificate %1:</"
+"p><p><b>%2</b></p></qt>"
 msgstr "<qt><p>尝试导入证书 %1 时出错：</p><p><b>%2</b></p></qt>"
 
 #: src/commands/importcertificatescommand.cpp
@@ -2745,16 +2745,19 @@ msgstr "抱歉！只有加密密钥和签名密钥才能被传输到 PIV 卡上�
 msgid "The existing key has the key grip:"
 msgstr "现有密钥的 key grip："
 
+#: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid "<para>The key has been copied to the card.</para>"
+msgstr ""
+
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>The key has been copied to the card.</para><para>You can now delete "
-"the copy of the key stored on this computer. Optionally, you can first "
-"create a backup of the key.</para>"
+"<para>You can now delete the copy of the key stored on this computer. "
+"Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>密钥已复制到卡中。</para><para>您现在可以删除存储在这台计算机上的密钥副"
-"本。您也可以先创建密钥的备份。</para>"
 
 #: src/commands/keytocardcommand.cpp
 #, kde-format
@@ -2763,16 +2766,26 @@ msgid "Create backup"
 msgstr "创建备份"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Delete copy on disk"
 msgstr "删除磁盘上的副本"
 
 #: src/commands/keytocardcommand.cpp src/commands/keytocardcommand.cpp
+#: src/commands/keytocardcommand.cpp
 #, kde-format
 msgctxt "@action:button"
 msgid "Keep copy on disk"
 msgstr "将副本保存在磁盘上"
+
+#: src/commands/keytocardcommand.cpp
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>Do you want to delete the copy of the key stored on this computer?</"
+"para>"
+msgstr ""
 
 #: src/commands/keytocardcommand.cpp
 #, kde-kuit-format
@@ -3305,8 +3318,8 @@ msgid ""
 "<para>The revocation of the certification of user ID<nl/>%1<nl/>made with "
 "key<nl/>%2<nl/>failed:</para><para><message>%3</message></para>"
 msgstr ""
-"无法使用密钥<nl/>%2<nl/><para>吊销证书<nl/>%1<nl/>：</para><para><message>"
-"%3</message></para>"
+"无法使用密钥<nl/>%2<nl/><para>吊销证书<nl/>%1<nl/>：</"
+"para><para><message>%3</message></para>"
 
 #: src/commands/revokecertificationcommand.cpp
 #, kde-format
@@ -3379,9 +3392,9 @@ msgid ""
 "para><para>You should send this file to your communication partners with the "
 "instruction to import it.</para>"
 msgstr ""
-"<para>证书已成功吊销并上传至 %1。</para><para>已吊销的证书已保存到 <filename>"
-"%2</filename>。</para><para>您应该将此文件连同导入说明一起发送给您的通信伙"
-"伴。</para>"
+"<para>证书已成功吊销并上传至 %1。</para><para>已吊销的证书已保存到 "
+"<filename>%2</filename>。</para><para>您应该将此文件连同导入说明一起发送给您"
+"的通信伙伴。</para>"
 
 #: src/commands/revokekeycommand.cpp
 #, kde-kuit-format
@@ -3535,8 +3548,8 @@ msgstr ""
 "<para>已禁用的证书无法被选中用于签名或加密。它们仅在 <interface>%2</"
 "interface> 过滤器生效时可见。</para><para>您可以通过切换到 <interface>%2</"
 "interface> 过滤器并重新启用证书来撤销此操作。</para><para><emphasis "
-"strong='true'>您确定要禁用并隐藏以下证书吗？</emphasis></para><list><item>"
-"%1</item></list>"
+"strong='true'>您确定要禁用并隐藏以下证书吗？</emphasis></"
+"para><list><item>%1</item></list>"
 
 #: src/commands/togglecertificateenabledcommand.cpp
 #, kde-format
@@ -3758,8 +3771,8 @@ msgstr "设置"
 #, kde-format
 msgctxt "@option:check"
 msgid ""
-"Create OpenPGP encrypted files with \".pgp\" file extensions instead of \"."
-"gpg\""
+"Create OpenPGP encrypted files with \".pgp\" file extensions instead of "
+"\".gpg\""
 msgstr "创建 OpenPGP 加密文件时，以“.pgp”为扩展名，而不是“.gpg”"
 
 #: src/conf/cryptooperationsconfigwidget.cpp
@@ -4450,15 +4463,15 @@ msgstr ""
 "合。"
 
 #: src/crypto/createchecksumscontroller.cpp
+#, kde-format
+msgid "Initializing..."
+msgstr "正在初始化..."
+
+#: src/crypto/createchecksumscontroller.cpp
 #: src/dialogs/updatenotification.cpp
 #, kde-format
 msgid "Cancel"
 msgstr "取消"
-
-#: src/crypto/createchecksumscontroller.cpp
-#, kde-format
-msgid "Initializing..."
-msgstr "正在初始化..."
 
 #: src/crypto/createchecksumscontroller.cpp
 #, kde-format
@@ -4703,6 +4716,20 @@ msgstr "无法覆盖 <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-kuit-format
+msgctxt "@info Verified <file> with N detached signature(s)."
+msgid "Verified <filename>%2</filename> with detached signature."
+msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
+msgstr[0] ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
+msgctxt "@info Verified <file> with N embedded signature(s)."
+msgid "Verified <filename>%2</filename> with embedded signature."
+msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
+msgstr[0] ""
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-kuit-format
 msgctxt "@info Verified <file> with signature(s) in <file>."
 msgid ""
 "Verified <filename>%2</filename> with signature in <filename>%3</filename>."
@@ -4744,6 +4771,12 @@ msgstr ""
 msgctxt "@info"
 msgid "The data was not encrypted for any secret key in your certificate list."
 msgstr "数据已用该密钥/证书加密。"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info Diagnostics is the label of a button"
+msgid "An unknown error occurred. Please check Diagnostics for details."
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp
 #, kde-format
@@ -4869,6 +4902,12 @@ msgid ""
 msgstr ""
 "警告：发件人的邮件地址未存储在 <a href=\"key:%1\">证书</a>用于签名。存储："
 "<ul>%2</ul>"
+
+#: src/crypto/decryptverifytask.cpp
+#, kde-format
+msgctxt "@info What can be done: Some guidance"
+msgid "What can be done: %1"
+msgstr ""
 
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
 #: src/crypto/decryptverifytask.cpp src/crypto/decryptverifytask.cpp
@@ -5219,6 +5258,22 @@ msgstr "诊断"
 msgctxt "The Audit Log is a detailed error log from the gnupg backend"
 msgid "Show Audit Log"
 msgstr "显示审核日志"
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@action:button Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
+
+#: src/crypto/gui/resultitemwidget.cpp
+#, kde-format
+msgctxt ""
+"@info:tooltip Opens a popup with some explanations for the assessment of a "
+"signature"
+msgid "Explain this result"
+msgstr ""
 
 #: src/crypto/gui/resultitemwidget.cpp
 #, kde-format
@@ -5630,6 +5685,7 @@ msgid "Sign / Encrypt Files"
 msgstr "签名/加密文件"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
+#: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Sign / Encrypt Files"
@@ -5641,6 +5697,12 @@ msgstr "签名/加密文件"
 msgctxt "@action:button"
 msgid "&Sign / Encrypt"
 msgstr "&签名/加密"
+
+#: src/crypto/gui/signencryptfilesdialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Retry"
+msgstr ""
 
 #: src/crypto/gui/signencryptfilesdialog.cpp
 #, kde-format
@@ -5659,13 +5721,6 @@ msgstr "&签名"
 msgctxt "@action:button"
 msgid "&Encrypt"
 msgstr "&加密"
-
-#: src/crypto/gui/signencryptfilesdialog.cpp
-#: src/dialogs/signencryptclipboarddialog.cpp
-#, kde-format
-msgctxt "@action:button"
-msgid "Finish"
-msgstr "完成"
 
 #: src/crypto/gui/signencryptwidget.cpp
 #, kde-format
@@ -6022,8 +6077,8 @@ msgstr "archive"
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared: %1"
+"Caught unexpected exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared: %1"
 msgstr ""
 "在 SignEncryptFilesController::Private::slotWizardOperationPrepared 调用中捕"
 "捉到不可预料的异常：%1"
@@ -6031,8 +6086,8 @@ msgstr ""
 #: src/crypto/signencryptfilescontroller.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SignEncryptFilesController::Private::"
-"slotWizardOperationPrepared"
+"Caught unknown exception in "
+"SignEncryptFilesController::Private::slotWizardOperationPrepared"
 msgstr ""
 "在 SignEncryptFilesController::Private::slotWizardOperationPrepared 调用中捕"
 "捉到不可预料的异常"
@@ -6061,8 +6116,8 @@ msgstr "加密已取消。"
 #, kde-kuit-format
 msgctxt "@info Failed to sign and encrypt <file>: <reason>"
 msgid ""
-"Failed to sign and encrypt <filename>%1</filename>: <emphasis strong='true'>"
-"%2</emphasis>"
+"Failed to sign and encrypt <filename>%1</filename>: <emphasis "
+"strong='true'>%2</emphasis>"
 msgstr ""
 "签名和加密失败： <filename>%1</filename>: <emphasis strong='true'>%2</"
 "emphasis>"
@@ -6087,8 +6142,8 @@ msgid_plural ""
 "Failed to sign and encrypt <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
 msgstr[0] ""
-"签名和加密失败：<filename>%2</filename> 和 %1 其它: <emphasis strong='true'>"
-"%3</emphasis>"
+"签名和加密失败：<filename>%2</filename> 和 %1 其它: <emphasis "
+"strong='true'>%3</emphasis>"
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6112,8 +6167,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info Failed to sign <file> and <n> other(s): <reason>"
 msgid ""
-"Failed to sign <filename>%2</filename> and %1 other: <emphasis strong='true'>"
-"%3</emphasis>"
+"Failed to sign <filename>%2</filename> and %1 other: <emphasis "
+"strong='true'>%3</emphasis>"
 msgid_plural ""
 "Failed to sign <filename>%2</filename> and %1 others: <emphasis "
 "strong='true'>%3</emphasis>"
@@ -6167,14 +6222,12 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully signed and encrypted <file> and <file> and saved it as "
+"@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
 msgid ""
 "Successfully signed and encrypted <filename>%1</filename> and <filename>%2</"
-"filename> and saved it as <filename>%3</filename>."
+"filename> and saved them as <filename>%3</filename>."
 msgstr ""
-"已成功签名和加密 <filename>%1</filename> 和 <filename>%2</filename> 并将其保"
-"存为 <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6182,13 +6235,11 @@ msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 other and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgid_plural ""
 "Successfully signed and encrypted <filename>%2</filename> and %1 others and "
-"saved it as <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr[0] ""
-"已签名并加密成功 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</"
-"filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6201,30 +6252,31 @@ msgstr ""
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
-msgctxt ""
-"@info Successfully signed <file> and <file> and saved the signature in "
-"<file>."
+msgctxt "@info Successfully signed <file> and saved it as <file>."
+msgid ""
+"Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
+"filename>."
+msgstr ""
+
+#: src/crypto/signencrypttask.cpp
+#, kde-kuit-format
+msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
-"saved the signature in <filename>%3</filename>."
+"saved them as <filename>%3</filename>."
 msgstr ""
-"已成功签名 <filename>%1</filename> 和 <filename>%2</filename> 并将签名保存在 "
-"<filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully signed <file> and <n> other(s) and saved the signature in "
-"<file>."
+"@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
-"Successfully signed <filename>%2</filename> and %1 other and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 other and saved them as "
+"<filename>%3</filename>."
 msgid_plural ""
-"Successfully signed <filename>%2</filename> and %1 others and saved the "
-"signature in <filename>%3</filename>."
+"Successfully signed <filename>%2</filename> and %1 others and saved them as "
+"<filename>%3</filename>."
 msgstr[0] ""
-"成功签名 <filename>%2</filename> 和 %1 并将签名保存在 <filename>%3</"
-"filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
@@ -6238,26 +6290,24 @@ msgstr ""
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <file> and saved it as <file>."
+"@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully encrypted <filename>%1</filename> and <filename>%2</filename> "
-"and saved it as <filename>%3</filename>."
+"and saved them as <filename>%3</filename>."
 msgstr ""
-"已成功加密 <filename>%1</filename> 和 <filename>%2</filename> 并将其保存为 "
-"<filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp
 #, kde-kuit-format
 msgctxt ""
-"@info Successfully encrypted <file> and <n> other(s) and saved it as <file>."
+"@info Successfully encrypted <file> and <n> other(s) and saved them as "
+"<file>."
 msgid ""
-"Successfully encrypted <filename>%2</filename> and %1 other and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 other and saved them "
+"as <filename>%3</filename>."
 msgid_plural ""
-"Successfully encrypted <filename>%2</filename> and %1 others and saved it as "
-"<filename>%3</filename>."
+"Successfully encrypted <filename>%2</filename> and %1 others and saved them "
+"as <filename>%3</filename>."
 msgstr[0] ""
-"成功加密 <filename>%2</filename> 和 %1 并将其保存为 <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp src/crypto/signencrypttask.cpp
 #: src/crypto/signencrypttask.cpp
@@ -7178,8 +7228,8 @@ msgid ""
 "<emphasis>%2</emphasis></para><para>Choose one of the following options to "
 "continue:</para>"
 msgstr ""
-"<para>所选密钥: <emphasis>%1</emphasis></para><para>所选智能卡: <emphasis>"
-"%2</emphasis></para><para>选择以下选项之一继续:</para>"
+"<para>所选密钥: <emphasis>%1</emphasis></para><para>所选智能卡: "
+"<emphasis>%2</emphasis></para><para>选择以下选项之一继续:</para>"
 
 #: src/dialogs/createcsrdialog.cpp
 #, kde-format
@@ -7396,8 +7446,8 @@ msgid_plural ""
 "The following certificates will be deleted even though you did <b>not</b> "
 "explicitly select them (<a href=\"whatsthis://\">Why?</a>):"
 msgstr[0] ""
-"下面的证书将被删除，即使您这样做了 <b>not</b> 明确地选择它(<a href="
-"\"whatsthis://\">Why?</a>):"
+"下面的证书将被删除，即使您这样做了 <b>not</b> 明确地选择它(<a "
+"href=\"whatsthis://\">Why?</a>):"
 
 #: src/dialogs/deletecertificatesdialog.cpp
 #, kde-format
@@ -7897,21 +7947,22 @@ msgstr "错误：描述不得包含空行。"
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"<para>You are about to revoke the following certificate:</para><para>&nbsp;"
-"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</para><para><emphasis "
-"strong='true'>The revocation will take effect immediately and cannot be "
-"reverted.</emphasis></para><para>Consequences: <list><item>You can still "
-"decrypt everything encrypted for this certificate.</item><item>You cannot "
-"sign anything with this certificate anymore.</item><item>You cannot certify "
-"other certificates with it anymore.</item><item>Other people can no longer "
-"encrypt with it after receiving the revocation.</item></list></para>"
+"<para>You are about to revoke the following certificate:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>The revocation will take effect "
+"immediately and cannot be reverted.</emphasis></para><para>Consequences: "
+"<list><item>You can still decrypt everything encrypted for this certificate."
+"</item><item>You cannot sign anything with this certificate anymore.</"
+"item><item>You cannot certify other certificates with it anymore.</"
+"item><item>Other people can no longer encrypt with it after receiving the "
+"revocation.</item></list></para>"
 msgstr ""
-"<para>您将要吊销以下证书:</para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-"&nbsp;&nbsp;%1</para><para><emphasis strong='true'>撤销将立即生效并且不可撤"
-"销。</emphasis></para><para>重要: <list><item>您仍然可以解密该证书的所有内"
-"容。</item><item>您不能再使用此证书签署任何内容。</item><item>您不能再使用它"
-"来认证其他证书。</item><item>其他人在收到撤销后无法再使用它进行加密。</"
-"item></list></para>"
+"<para>您将要吊销以下证书:</"
+"para><para>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%1</"
+"para><para><emphasis strong='true'>撤销将立即生效并且不可撤销。</emphasis></"
+"para><para>重要: <list><item>您仍然可以解密该证书的所有内容。</item><item>您"
+"不能再使用此证书签署任何内容。</item><item>您不能再使用它来认证其他证书。</"
+"item><item>其他人在收到撤销后无法再使用它进行加密。</item></list></para>"
 
 #: src/dialogs/revokerswidget.cpp
 #, kde-format
@@ -8085,8 +8136,8 @@ msgstr "设置初始 PIN (NKS)"
 #: src/dialogs/setinitialpindialog.ui
 #, kde-format
 msgid ""
-"Step 2: Set the initial PIN for the qualified signature certificate (\"SigG"
-"\"):"
+"Step 2: Set the initial PIN for the qualified signature certificate "
+"(\"SigG\"):"
 msgstr "第 2 步：设置合格签名证书的初始 PIN (SigG)："
 
 #. i18n: ectx: property (text), widget (QPushButton, sigGPB)
@@ -8106,6 +8157,12 @@ msgstr "签名/加密剪贴板"
 msgctxt "@title"
 msgid "Sign/Encrypt Clipboard"
 msgstr "签名/加密剪贴板"
+
+#: src/dialogs/signencryptclipboarddialog.cpp
+#, kde-format
+msgctxt "@action:button"
+msgid "Finish"
+msgstr "完成"
 
 #: src/dialogs/signencryptclipboarddialog.cpp
 #, kde-format
@@ -8626,16 +8683,37 @@ msgstr "证书加载失败"
 #. i18n: ectx: label, entry (cnPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Placeholder for CN"
-msgstr "CN 占位符"
+msgid "Hint for CN (deprecated use CN_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for CN"
+msgstr ""
+
+#. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be used as placeholder text for the common name (CN) field of "
-"S/MIME certificates."
-msgstr "此文本将被用作 S/MIME 证书的通用名称 (CN) 字段的占位符文本。"
+"This text will be the label of the common name (CN) field of S/MIME "
+"certification requests."
+msgstr ""
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -8678,21 +8756,54 @@ msgid ""
 "Active Directory server."
 msgstr ""
 
+#. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for CN"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the common name (CN) field "
+"of S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be shown above the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
+msgstr ""
+
+#. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "Hint for EMAIL"
 msgstr "电子邮件提示"
 
-#. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid ""
-"This text will be shown above the email address field of OpenPGP "
-"certificates and as placeholder in that field for S/MIME certificates."
+"This text will be the label of the email address field of OpenPGP "
+"certificates and S/MIME certification requests."
 msgstr ""
-"该文本将显示在 OpenPGP 证书的电子邮件地址字段上方，并作为 S/MIME 证书该字段的"
-"占位符。"
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -8733,6 +8844,20 @@ msgid ""
 "server."
 msgstr ""
 
+#. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for EMAIL"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the address email field of "
+"OpenPGP certificates and S/MIME certification requests."
+msgstr ""
+
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -8753,14 +8878,29 @@ msgstr ""
 #. i18n: ectx: label, entry (namePlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
 #, kde-format
-msgid "Hint for NAME"
-msgstr "名称提示"
+msgid "Hint for NAME (deprecated use NAME_hint instead)"
+msgstr ""
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
+#. i18n: ectx: whatsthis, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg src/kcfg/settings.kcfg
 #: src/kcfg/settings.kcfg
 #, kde-format
 msgid "This text will be shown above the name field of OpenPGP certificates."
 msgstr "该文本将显示在 OpenPGP 证书的名称字段上方。"
+
+#. i18n: ectx: label, entry (nameHint), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Hint for NAME"
+msgstr "名称提示"
+
+#. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Label for NAME"
+msgstr ""
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg
@@ -8799,6 +8939,20 @@ msgid ""
 "attribute (displayName) retrieved from the Active Directory server. "
 "ADFirstNameLastName (Windows-only) uses the first name (givenName) and last "
 "name (sn) attributes retrieved from the Active Directory server."
+msgstr ""
+
+#. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Regex for NAME"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"This text will be used as pattern validator for the name field of OpenPGP "
+"certificates."
 msgstr ""
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
@@ -9316,6 +9470,20 @@ msgstr ""
 "如果为真，那么如果一个 PKCS#15 智能卡被插入了未知的证书，Kleopatra 将调用 "
 "gpgsm --learning。 这可能需要一段时间，并在命令运行时屏蔽智能卡。"
 
+#. i18n: ectx: label, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid "Offer backup of subkey after copying subkey to smartcard"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
+#: src/kcfg/settings.kcfg
+#, kde-format
+msgid ""
+"If true then Kleopatra will show a \"Create backup\" button after a subkey "
+"was copied to a smartcard."
+msgstr ""
+
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg
 #, kde-format
@@ -9734,8 +9902,8 @@ msgstr "只关闭窗口(&C)"
 msgctxt "@info"
 msgid ""
 "<application>%1</application> may be used by other applications as a service."
-"<nl/>You may instead want to close this window without exiting <application>"
-"%1</application>."
+"<nl/>You may instead want to close this window without exiting "
+"<application>%1</application>."
 msgstr ""
 "<application>%1</application> 可能被其他应用程序用作一种服务。<nl/>你可能想要"
 "关闭此窗口而不退出 <application>%1</application>。"
@@ -10819,8 +10987,8 @@ msgstr "未给定收件人，或只出了 --info 选项"
 #: src/uiserver/encryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in EncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"EncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "在 EncryptCommand::Private::slotRecipientsResolved 函数中捕捉到不可预料的异"
 "常：%1"
@@ -10852,8 +11020,8 @@ msgstr "SENDER 不能在 PREP_ENCRYPT 之前使用，除非和 --info 结合使�
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "在 PrepEncryptCommand::Private::slotRecipientsResolved 捕捉到不可预料的异常："
 "%1"
@@ -10861,8 +11029,8 @@ msgstr ""
 #: src/uiserver/prepencryptcommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in PrepEncryptCommand::Private::"
-"slotRecipientsResolved"
+"Caught unknown exception in "
+"PrepEncryptCommand::Private::slotRecipientsResolved"
 msgstr ""
 "在 PrepEncryptCommand::Private::slotRecipientsResolved 捕捉到未知的异常"
 
@@ -10893,8 +11061,8 @@ msgstr "在本次会话中，PREP_ENCRYPT 所确定的协议和指定的协议�
 #: src/uiserver/prepsigncommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in PrepSignCommand::Private::"
-"slotRecipientsResolved: %1"
+"Caught unexpected exception in "
+"PrepSignCommand::Private::slotRecipientsResolved: %1"
 msgstr ""
 "在 PrepSignCommand::Private::slotRecipientsResolved 函数中捕捉到不可预料的异"
 "常：%1"
@@ -10909,16 +11077,16 @@ msgstr ""
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unexpected exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted: %1"
+"Caught unexpected exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted: %1"
 msgstr ""
 "在 SelectCertificateCommand::Private::slotDialogAccepted 捕捉到意外异常：%1"
 
 #: src/uiserver/selectcertificatecommand.cpp
 #, kde-format
 msgid ""
-"Caught unknown exception in SelectCertificateCommand::Private::"
-"slotDialogAccepted"
+"Caught unknown exception in "
+"SelectCertificateCommand::Private::slotDialogAccepted"
 msgstr ""
 "在 SelectCertificateCommand::Private::slotDialogAccepted 捕捉到未知异常"
 
@@ -11915,6 +12083,12 @@ msgstr "证书分类列表"
 msgid "List of certificates"
 msgstr "证书列表"
 
+#: src/view/keytreeview.cpp
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Details"
+msgstr ""
+
 #: src/view/padwidget.cpp
 #, kde-format
 msgid "Sign / Encrypt Notepad"
@@ -12745,8 +12919,8 @@ msgstr "欢迎来到 Kleopatra %1"
 #: src/view/welcomewidget.cpp
 #, kde-format
 msgid ""
-"Kleopatra is a front-end for the crypto software <a href=\"https://gnupg.org"
-"\">GnuPG</a>."
+"Kleopatra is a front-end for the crypto software <a href=\"https://"
+"gnupg.org\">GnuPG</a>."
 msgstr "Kleopatra 是加密软件 <a href=\"https://gnupg.org\">GnuPG</a> 的前端。"
 
 #: src/view/welcomewidget.cpp
@@ -12796,8 +12970,8 @@ msgstr ""
 #, kde-format
 msgctxt "@info"
 msgid ""
-"For password based encryption see this <a href=\"action:help_doc_symenc"
-"\">guide</a>."
+"For password based encryption see this <a "
+"href=\"action:help_doc_symenc\">guide</a>."
 msgstr ""
 "如需使用基于密码的加密方式，请参阅此 <a href=\"action:help_doc_symenc\">指南"
 "</a>。"
