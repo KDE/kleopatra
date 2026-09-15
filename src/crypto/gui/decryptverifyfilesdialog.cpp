@@ -13,7 +13,6 @@
 
 #include "crypto/decryptverifytask.h"
 #include "crypto/gui/resultlistwidget.h"
-#include "crypto/gui/resultpage.h"
 #include "crypto/taskcollection.h"
 #include "utils/fileutils.h"
 #include "utils/path-helper.h"
