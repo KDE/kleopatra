@@ -74,11 +74,12 @@
 #include <QDir>
 #include <QFile>
 #include <QFocusFrame>
-#include <QProxyStyle>
 #if QT_CONFIG(graphicseffect)
 #include <QGraphicsEffect>
 #endif
 #include <QPointer>
+#include <QProxyStyle>
+#include <QPushButton>
 #include <QStyleOption>
 #include <QStylePainter>
 #include <QTemporaryDir>
@@ -343,6 +344,19 @@ public:
             return 0;
 
         return QProxyStyle::styleHint(hint, option, widget, returnData);
+    }
+
+    void polish(QWidget *widget) override
+    {
+        auto pushButton = qobject_cast<QPushButton *>(widget);
+        const bool wasAutoDefault = pushButton ? pushButton->autoDefault() : false;
+
+        QProxyStyle::polish(widget);
+
+        if (pushButton && wasAutoDefault && pushButton->autoDefault() != wasAutoDefault) {
+            // the style (Breeze?) messed with the autoDefault property; set it again to true
+            pushButton->setAutoDefault(true);
+        }
     }
 };
 
