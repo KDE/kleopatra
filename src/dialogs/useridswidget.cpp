@@ -153,11 +153,11 @@ UserIdsWidget::UserIdsWidget(QWidget *parent)
     d->revokeUserIDBtn = new QPushButton(i18nc("@action:button", "Revoke User ID"), parent);
     d->buttonRow->addWidget(d->revokeUserIDBtn);
 
-    d->setPrimaryUserIDAction = new QAction({}, i18nc("@action:button", "Flag as Primary"));
+    d->setPrimaryUserIDAction = new QAction({}, i18nc("@action:button", "Flag as Primary"), this);
     d->setPrimaryUserIDAction->setToolTip(i18nc("@info:tooltip", "Flag the selected user ID as the primary user ID of this key."));
 
-    d->certifyAction = new QAction({}, i18nc("@action:button", "Certify User IDs"));
-    d->revokeCertificationsAction = new QAction({}, i18nc("@action:button", "Revoke Certifications"));
+    d->certifyAction = new QAction({}, i18nc("@action:button", "Certify User IDs"), this);
+    d->revokeCertificationsAction = new QAction({}, i18nc("@action:button", "Revoke Certifications"), this);
 
     d->certifyBtn = addActionButton(d->buttonRow, d->certifyAction);
     d->revokeCertificationsBtn = addActionButton(d->buttonRow, d->revokeCertificationsAction);
