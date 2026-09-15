@@ -186,13 +186,13 @@ public:
             {
                 auto buttonRow = new QHBoxLayout;
 
-                addSubkeyAction = new QAction({}, i18nc("@action:button", "Add subkey"));
+                addSubkeyAction = new QAction({}, i18nc("@action:button", "Add subkey"), widget);
                 changeValidityAction = new QAction({}, i18nc("@action:button", "Change validity"), widget);
                 exportOpenSSHAction = new QAction({}, i18nc("@action:button", "Export OpenSSH key"), widget);
                 restoreAction = new QAction({}, i18nc("@action:button", "Restore printed backup"), widget);
                 transferToSmartcardAction = new QAction({}, i18nc("@action:button", "Transfer to smartcard"), widget);
                 exportSecretAction = new QAction({}, i18nc("@action:button", "Export secret subkey"), widget);
-                addAdskAction = new QAction({}, i18nc("@action:button", "Add ADSK"));
+                addAdskAction = new QAction({}, i18nc("@action:button", "Add ADSK"), widget);
                 addAdskAction->setToolTip(i18nc("@info:tooltip",
                                                 "<html>Add the ADSK specified in the GnuPG configuration to your certificate. By "
                                                 "adding an ADSK to your certificate, you allow the owner of the ADSK to decrypt all new messages that "

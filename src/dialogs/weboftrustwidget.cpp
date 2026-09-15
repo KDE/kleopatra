@@ -119,7 +119,7 @@ public:
             });
         }
 
-        fetchAction = new QAction(QIcon::fromTheme(QStringLiteral("download")), i18nc("@action:button", "Fetch Missing Keys"));
+        fetchAction = new QAction(QIcon::fromTheme(QStringLiteral("download")), i18nc("@action:button", "Fetch Missing Keys"), q);
         fetchAction->setToolTip(i18nc("@info:tooltip", "Look up and import all keys that were used to certify the user IDs of this key"));
         connect(fetchAction, &QAction::triggered, q, [this]() {
             fetchMissingKeys();
