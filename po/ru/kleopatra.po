@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kleopatra\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-09-16 00:46+0000\n"
-"PO-Revision-Date: 2026-06-25 11:46+0200\n"
+"PO-Revision-Date: 2026-09-22 22:09+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -2797,7 +2797,8 @@ msgid ""
 "message></para>"
 msgstr ""
 "<para>Во время восстановления закрытого ключа произошла ошибка.</para> "
-"<para>Вывод команды <command>%1</command>: <message>%2</message></para>"
+"<para>Вывод команды <command>%1</command>:</para><para><message>%2</"
+"message></para>"
 
 #: src/commands/keytocardcommand.cpp:160
 #, kde-format
@@ -2910,28 +2911,20 @@ msgid "The existing key has the key grip:"
 msgstr "Существующий ключ имеет идентификатор (key grip):"
 
 #: src/commands/keytocardcommand.cpp:501 src/commands/keytocardcommand.cpp:520
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid "<para>The key was copied to the smart card.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid "<para>The key has been copied to the card.</para>"
 msgstr "<para>Ключ скопирован на смарт-карту.</para>"
 
 #: src/commands/keytocardcommand.cpp:503
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "<para>The key has been copied to the card.</para><para>You can now delete "
-#| "the copy of the key stored on this computer. Optionally, you can first "
-#| "create a backup of the key.</para>"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>You can now delete the copy of the key stored on this computer. "
 "Optionally, you can first create a backup of the key.</para>"
 msgstr ""
-"<para>Ключ скопирован на карту.</para><para>Теперь можно удалить хранящуюся "
-"на этом компьютере копию ключа (предварительно создав резервную копию ключа, "
-"если нужно).</para>"
+"<para>Теперь можно удалить хранящуюся на этом компьютере копию ключа. При "
+"необходимости сначала создайте резервную копию ключа.</para>"
 
 #: src/commands/keytocardcommand.cpp:506
 #, kde-format
@@ -2954,15 +2947,12 @@ msgid "Keep copy on disk"
 msgstr "Оставить копию на диске"
 
 #: src/commands/keytocardcommand.cpp:521
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Do you really want to delete the copy of the key stored on this computer?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>Do you want to delete the copy of the key stored on this computer?</"
 "para>"
-msgstr "Удалить хранящуюся на этом компьютере копию ключа?"
+msgstr "<para>Удалить хранящуюся на этом компьютере копию ключа?</para>"
 
 #: src/commands/keytocardcommand.cpp:560
 #, kde-kuit-format
@@ -5047,54 +5037,40 @@ msgid "Failed to verify <filename>%1</filename>:"
 msgstr "Не удалось проверить файл <filename>%1</filename>:"
 
 #: src/crypto/decryptverifytask.cpp:246
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Verified <file> with signature(s) in <file>."
-#| msgid ""
-#| "Verified <filename>%2</filename> with signature in <filename>%3</"
-#| "filename>."
-#| msgid_plural ""
-#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
-#| "filename>."
+#, kde-kuit-format
 msgctxt "@info Verified <file> with N detached signature(s)."
 msgid "Verified <filename>%2</filename> with detached signature."
 msgid_plural "Verified <filename>%2</filename> with %1 detached signatures."
 msgstr[0] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 отсоединённых "
+"подписей."
 msgstr[1] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 отсоединённых "
+"подписей."
 msgstr[2] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 отсоединённых "
+"подписей."
 msgstr[3] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью подписи в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью отсоединённой "
+"подписи."
 
 #: src/crypto/decryptverifytask.cpp:253
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Verified <file> with signature(s) in <file>."
-#| msgid ""
-#| "Verified <filename>%2</filename> with signature in <filename>%3</"
-#| "filename>."
-#| msgid_plural ""
-#| "Verified <filename>%2</filename> with %1 signatures in <filename>%3</"
-#| "filename>."
+#, kde-kuit-format
 msgctxt "@info Verified <file> with N embedded signature(s)."
 msgid "Verified <filename>%2</filename> with embedded signature."
 msgid_plural "Verified <filename>%2</filename> with %1 embedded signatures."
 msgstr[0] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 встроенных "
+"подписей."
 msgstr[1] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 встроенных "
+"подписей."
 msgstr[2] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью %1 подписей в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью %1 встроенных "
+"подписей."
 msgstr[3] ""
-"Выполнена проверка файла <filename>%2</filename> с помощью подписи в "
-"<filename>%3</filename>."
+"Выполнена проверка файла <filename>%2</filename> с помощью встроенной "
+"подписи."
 
 #: src/crypto/decryptverifytask.cpp:260
 #, kde-kuit-format
@@ -5157,7 +5133,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info Diagnostics is the label of a button"
 msgid "An unknown error occurred. Please check Diagnostics for details."
-msgstr ""
+msgstr "Произошла неизвестная ошибка. Подробности приведены в диагностике."
 
 #: src/crypto/decryptverifytask.cpp:291
 #, kde-format
@@ -5292,7 +5268,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info What can be done: Some guidance"
 msgid "What can be done: %1"
-msgstr ""
+msgstr "Что можно сделать: %1"
 
 #: src/crypto/decryptverifytask.cpp:759 src/crypto/decryptverifytask.cpp:943
 #: src/crypto/decryptverifytask.cpp:1020 src/crypto/decryptverifytask.cpp:1121
@@ -5655,22 +5631,20 @@ msgid "Show Audit Log"
 msgstr "Журнал аудита"
 
 #: src/crypto/gui/resultitemwidget.cpp:173
-#, fuzzy, kde-format
-#| msgid "Explain tags"
+#, kde-format
 msgctxt ""
 "@action:button Opens a popup with some explanations for the assessment of a "
 "signature"
 msgid "Explain this result"
-msgstr "Пояснение меток"
+msgstr "Пояснить результат"
 
 #: src/crypto/gui/resultitemwidget.cpp:174
-#, fuzzy, kde-format
-#| msgid "Explain tags"
+#, kde-format
 msgctxt ""
 "@info:tooltip Opens a popup with some explanations for the assessment of a "
 "signature"
 msgid "Explain this result"
-msgstr "Пояснение меток"
+msgstr "Пояснить результат"
 
 #: src/crypto/gui/resultitemwidget.cpp:228
 #, kde-format
@@ -6115,7 +6089,7 @@ msgstr "&Подписать / зашифровать"
 #, kde-format
 msgctxt "@action:button"
 msgid "Retry"
-msgstr ""
+msgstr "Повторить"
 
 #: src/crypto/gui/signencryptfilesdialog.cpp:582
 #, kde-format
@@ -6672,13 +6646,7 @@ msgstr ""
 "его сохранение как <filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp:226
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully signed and encrypted <file> and <file> and saved it as "
-#| "<file>."
-#| msgid ""
-#| "Successfully signed and encrypted <filename>%1</filename> and <filename>"
-#| "%2</filename> and saved it as <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <file> and saved them as "
 "<file>."
@@ -6690,15 +6658,7 @@ msgstr ""
 "<filename>%2</filename>, а также их сохранение как <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp:232
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
-#| msgid ""
-#| "Successfully signed and encrypted <filename>%2</filename> and %1 other "
-#| "and saved it as <filename>%3</filename>."
-#| msgid_plural ""
-#| "Successfully signed and encrypted <filename>%2</filename> and %1 others "
-#| "and saved it as <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info Successfully signed and encrypted <file> and <n> other(s) as <file>."
 msgid ""
@@ -6731,46 +6691,27 @@ msgstr ""
 "подписи в <filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp:248
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info Successfully encrypted <file> and saved it as <file>."
-#| msgid ""
-#| "Successfully encrypted <filename>%1</filename> and saved it as <filename>"
-#| "%2</filename>."
+#, kde-kuit-format
 msgctxt "@info Successfully signed <file> and saved it as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and saved it as <filename>%2</"
 "filename>."
 msgstr ""
-"Выполнено шифрование файла <filename>%1</filename>, а также его сохранение "
+"Выполнено подписывание файла <filename>%1</filename>, а также его сохранение "
 "как <filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp:255
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully signed <file> and <file> and saved the signature in "
-#| "<file>."
-#| msgid ""
-#| "Successfully signed <filename>%1</filename> and <filename>%2</filename> "
-#| "and saved the signature in <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt "@info Successfully signed <file> and <file> and saved them as <file>."
 msgid ""
 "Successfully signed <filename>%1</filename> and <filename>%2</filename> and "
 "saved them as <filename>%3</filename>."
 msgstr ""
 "Выполнено подписывание файлов <filename>%1</filename> и <filename>%2</"
-"filename>, а также сохранение подписи в <filename>%3</filename>."
+"filename>, а также их сохранение как <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp:261
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully signed <file> and <n> other(s) and saved the signature "
-#| "in <file>."
-#| msgid ""
-#| "Successfully signed <filename>%2</filename> and %1 other and saved the "
-#| "signature in <filename>%3</filename>."
-#| msgid_plural ""
-#| "Successfully signed <filename>%2</filename> and %1 others and saved the "
-#| "signature in <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info Successfully signed <file> and <n> other(s) and saved them as <file>."
 msgid ""
@@ -6781,16 +6722,16 @@ msgid_plural ""
 "<filename>%3</filename>."
 msgstr[0] ""
 "Выполнено подписывание файла <filename>%2</filename> и ещё %1 файла, а также "
-"сохранение подписи в <filename>%3</filename>."
+"их сохранение как <filename>%3</filename>."
 msgstr[1] ""
 "Выполнено подписывание файла <filename>%2</filename> и ещё %1 файлов, а "
-"также сохранение подписи в <filename>%3</filename>."
+"также их сохранение как <filename>%3</filename>."
 msgstr[2] ""
 "Выполнено подписывание файла <filename>%2</filename> и ещё %1 файлов, а "
-"также сохранение подписи в <filename>%3</filename>."
+"также их сохранение как <filename>%3</filename>."
 msgstr[3] ""
-"Выполнено подписывание файла <filename>%2</filename> и ещё %1 файла, а также "
-"сохранение подписи в <filename>%3</filename>."
+"Выполнено подписывание файла <filename>%2</filename> и ещё одного файла, а "
+"также их сохранение как <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp:270
 #, kde-kuit-format
@@ -6803,12 +6744,7 @@ msgstr ""
 "как <filename>%2</filename>."
 
 #: src/crypto/signencrypttask.cpp:276
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully encrypted <file> and <file> and saved it as <file>."
-#| msgid ""
-#| "Successfully encrypted <filename>%1</filename> and <filename>%2</"
-#| "filename> and saved it as <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <file> and saved them as <file>."
 msgid ""
@@ -6819,16 +6755,7 @@ msgstr ""
 "filename>, а также их сохранение как <filename>%3</filename>."
 
 #: src/crypto/signencrypttask.cpp:282
-#, fuzzy, kde-kuit-format
-#| msgctxt ""
-#| "@info Successfully encrypted <file> and <n> other(s) and saved it as "
-#| "<file>."
-#| msgid ""
-#| "Successfully encrypted <filename>%2</filename> and %1 other and saved it "
-#| "as <filename>%3</filename>."
-#| msgid_plural ""
-#| "Successfully encrypted <filename>%2</filename> and %1 others and saved it "
-#| "as <filename>%3</filename>."
+#, kde-kuit-format
 msgctxt ""
 "@info Successfully encrypted <file> and <n> other(s) and saved them as "
 "<file>."
@@ -8024,8 +7951,11 @@ msgstr ""
 "<para>Когда удаляются сертификаты удостоверяющего центра (либо сертификат "
 "корневого УЦ, либо сертификат промежуточного УЦ), сертификаты, выданные "
 "этими центрами, также будут удалены.</para><para>Наиболее наглядно это "
-"показано в представлении иерархического списка сертификатов: если удаляется "
-"сертификат, имеющий дочерние сертификаты, они также будут удалены.</para>"
+"показано в режиме иерархического представления <application>Kleopatra</"
+"application>: если удаляется сертификат, имеющий дочерние сертификаты, они "
+"также будут удалены. Считайте сертификаты удостоверяющих центров папками, "
+"содержащими другие сертификаты: при удалении папки удаляется и её содержимое."
+"</para>"
 
 #: src/dialogs/deletecertificatesdialog.cpp:211
 #, kde-format
@@ -9357,48 +9287,40 @@ msgstr "Ошибка загрузки сертификатов"
 #: src/kcfg/settings.kcfg:8
 #, kde-format
 msgid "Hint for CN (deprecated use CN_hint instead)"
-msgstr ""
+msgstr "Подсказка для CN (устарело, используйте CN_hint)"
 
 #. i18n: ectx: whatsthis, entry (cnPlaceholder), group (CertificateCreationWizard)
 #. i18n: ectx: whatsthis, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:9 src/kcfg/settings.kcfg:14
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the common name (CN) field "
-#| "of S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the common name (CN) field of S/MIME "
 "certification requests."
 msgstr ""
-"Этот текст будет использоваться в качестве заполнителя для поля общего имени "
-"(CN) сертификатов S/MIME."
+"Этот текст будет показан над полем общего имени (CN) запросов на "
+"сертификацию S/MIME."
 
 #. i18n: ectx: label, entry (cnHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:13
-#, fuzzy, kde-format
-#| msgid "Hint for NAME"
+#, kde-format
 msgid "Hint for CN"
-msgstr "Подсказка для NAME"
+msgstr "Подсказка для CN"
 
 #. i18n: ectx: label, entry (cnLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:18
-#, fuzzy, kde-format
-#| msgid "Placeholder for CN"
+#, kde-format
 msgid "Label for CN"
-msgstr "Заполнитель для CN"
+msgstr "Подпись для CN"
 
 #. i18n: ectx: whatsthis, entry (cnLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:19
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the common name (CN) field "
-#| "of S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be the label of the common name (CN) field of S/MIME "
 "certification requests."
 msgstr ""
-"Этот текст будет использоваться в качестве заполнителя для поля общего имени "
-"(CN) сертификатов S/MIME."
+"Этот текст будет подписью поля общего имени (CN) запросов на сертификацию S/"
+"MIME."
 
 #. i18n: ectx: label, entry (prefillCN), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:23
@@ -9454,44 +9376,36 @@ msgstr ""
 
 #. i18n: ectx: label, entry (cnRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:34
-#, fuzzy, kde-format
-#| msgid "Placeholder for CN"
+#, kde-format
 msgid "Regex for CN"
-msgstr "Заполнитель для CN"
+msgstr "Регулярное выражение для CN"
 
 #. i18n: ectx: whatsthis, entry (cnRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:35
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be used as placeholder text for the common name (CN) field "
-#| "of S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be used as pattern validator for the common name (CN) field "
 "of S/MIME certification requests."
 msgstr ""
-"Этот текст будет использоваться в качестве заполнителя для поля общего имени "
-"(CN) сертификатов S/MIME."
+"Этот текст будет использоваться как регулярное выражение для проверки поля "
+"общего имени (CN) запросов на сертификацию S/MIME."
 
 #. i18n: ectx: label, entry (emailPlaceholder), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:39
 #, kde-format
 msgid "Hint for EMAIL (deprecated use EMAIL_hint instead)"
-msgstr ""
+msgstr "Подсказка для EMAIL (устарело, используйте EMAIL_hint)"
 
 #. i18n: ectx: whatsthis, entry (emailPlaceholder), group (CertificateCreationWizard)
 #. i18n: ectx: whatsthis, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:40 src/kcfg/settings.kcfg:45
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be shown above the email address field of OpenPGP "
-#| "certificates and as placeholder in that field for S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be shown above the email address field of OpenPGP "
 "certificates and S/MIME certification requests."
 msgstr ""
 "Этот текст будет показан над полем адреса электронной почты сертификатов "
-"OpenPGP, а также использован в качестве заполнителя в соответствующем поле "
-"сертификатов S/MIME."
+"OpenPGP и запросов на сертификацию S/MIME."
 
 #. i18n: ectx: label, entry (emailHint), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:44
@@ -9501,24 +9415,19 @@ msgstr "Подсказка для EMAIL"
 
 #. i18n: ectx: label, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:49
-#, fuzzy, kde-format
-#| msgid "Hint for EMAIL"
+#, kde-format
 msgid "Label for EMAIL"
-msgstr "Подсказка для EMAIL"
+msgstr "Подпись для EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:50
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be shown above the email address field of OpenPGP "
-#| "certificates and as placeholder in that field for S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be the label of the email address field of OpenPGP "
 "certificates and S/MIME certification requests."
 msgstr ""
-"Этот текст будет показан над полем адреса электронной почты сертификатов "
-"OpenPGP, а также использован в качестве заполнителя в соответствующем поле "
-"сертификатов S/MIME."
+"Этот текст будет подписью поля адреса электронной почты сертификатов OpenPGP "
+"и запросов на сертификацию S/MIME."
 
 #. i18n: ectx: label, entry (prefillEmail), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:54
@@ -9571,24 +9480,20 @@ msgstr ""
 
 #. i18n: ectx: label, entry (emailRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:65
-#, fuzzy, kde-format
-#| msgid "Hint for EMAIL"
+#, kde-format
 msgid "Regex for EMAIL"
-msgstr "Подсказка для EMAIL"
+msgstr "Регулярное выражение для EMAIL"
 
 #. i18n: ectx: whatsthis, entry (emailRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:66
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be shown above the email address field of OpenPGP "
-#| "certificates and as placeholder in that field for S/MIME certificates."
+#, kde-format
 msgid ""
 "This text will be used as pattern validator for the address email field of "
 "OpenPGP certificates and S/MIME certification requests."
 msgstr ""
-"Этот текст будет показан над полем адреса электронной почты сертификатов "
-"OpenPGP, а также использован в качестве заполнителя в соответствующем поле "
-"сертификатов S/MIME."
+"Этот текст будет использоваться как регулярное выражение для проверки поля "
+"адреса электронной почты сертификатов OpenPGP и запросов на сертификацию S/"
+"MIME."
 
 #. i18n: ectx: label, entry (email), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:70
@@ -9613,7 +9518,7 @@ msgstr ""
 #: src/kcfg/settings.kcfg:75
 #, kde-format
 msgid "Hint for NAME (deprecated use NAME_hint instead)"
-msgstr ""
+msgstr "Подсказка для NAME (устарело, используйте NAME_hint)"
 
 #. i18n: ectx: whatsthis, entry (namePlaceholder), group (CertificateCreationWizard)
 #. i18n: ectx: whatsthis, entry (nameHint), group (CertificateCreationWizard)
@@ -9632,10 +9537,9 @@ msgstr "Подсказка для NAME"
 
 #. i18n: ectx: label, entry (nameLabel), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:85
-#, fuzzy, kde-format
-#| msgid "Hint for NAME"
+#, kde-format
 msgid "Label for NAME"
-msgstr "Подсказка для NAME"
+msgstr "Подпись для NAME"
 
 #. i18n: ectx: label, entry (prefillName), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:90
@@ -9690,20 +9594,19 @@ msgstr ""
 
 #. i18n: ectx: label, entry (nameRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:101
-#, fuzzy, kde-format
-#| msgid "Hint for NAME"
+#, kde-format
 msgid "Regex for NAME"
-msgstr "Подсказка для NAME"
+msgstr "Регулярное выражение для NAME"
 
 #. i18n: ectx: whatsthis, entry (nameRegex), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:102
-#, fuzzy, kde-format
-#| msgid ""
-#| "This text will be shown above the name field of OpenPGP certificates."
+#, kde-format
 msgid ""
 "This text will be used as pattern validator for the name field of OpenPGP "
 "certificates."
-msgstr "Этот текст будет показан над полем имени сертификатов OpenPGP."
+msgstr ""
+"Этот текст будет использоваться как регулярное выражение для проверки поля "
+"имени сертификатов OpenPGP."
 
 #. i18n: ectx: label, entry (name), group (CertificateCreationWizard)
 #: src/kcfg/settings.kcfg:106
@@ -10279,6 +10182,8 @@ msgstr ""
 #, kde-format
 msgid "Offer backup of subkey after copying subkey to smartcard"
 msgstr ""
+"Предлагать резервное копирование подключа после его копирования на смарт-"
+"карту"
 
 #. i18n: ectx: whatsthis, entry (OfferBackupOfSubkeyAfterCopyingSubkeyToCard), group (Smartcard)
 #: src/kcfg/settings.kcfg:312
@@ -10287,6 +10192,8 @@ msgid ""
 "If true then Kleopatra will show a \"Create backup\" button after a subkey "
 "was copied to a smartcard."
 msgstr ""
+"Если этот параметр включён, Kleopatra будет показывать кнопку «Создать "
+"резервную копию» после копирования подключа на смарт-карту."
 
 #. i18n: ectx: label, entry (RefreshInterval), group (SMime Validation)
 #: src/kcfg/settings.kcfg:318
@@ -12981,8 +12888,7 @@ msgid "List of certificates"
 msgstr "Список сертификатов"
 
 #: src/view/keytreeview.cpp:248
-#, fuzzy, kde-format
-#| msgid "Details"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Details"
 msgstr "Подробности"
