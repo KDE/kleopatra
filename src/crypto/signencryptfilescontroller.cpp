@@ -415,7 +415,7 @@ static std::shared_ptr<SignEncryptTask> createSignEncryptTaskForFileInfo(const Q
     return task;
 }
 
-static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
+static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
 {
     return (protocol == GpgME::OpenPGP) && QGpgME::SignEncryptArchiveJob::isSupported();
 }

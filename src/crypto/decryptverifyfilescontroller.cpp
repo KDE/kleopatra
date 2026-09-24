@@ -237,7 +237,7 @@ QList<DecryptVerifyFilesController::Private::CryptoFile> DecryptVerifyFilesContr
     return out;
 }
 
-static bool archiveJobsCanBeUsed([[maybe_unused]] GpgME::Protocol protocol)
+static bool archiveJobsCanBeUsed(GpgME::Protocol protocol)
 {
     return (protocol == GpgME::OpenPGP) && QGpgME::DecryptVerifyArchiveJob::isSupported();
 }
