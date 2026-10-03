@@ -318,13 +318,9 @@ public:
     void exportFocusWindow()
     {
 #ifdef HAVE_WAYLAND
-#if KWINDOWSYSTEM_VERSION >= QT_VERSION_CHECK(6, 28, 0)
         if (auto w = QGuiApplication::focusWindow()) {
             KWaylandExtras::exportToplevel(w);
         }
-#else
-        KWaylandExtras::self()->exportWindow(QGuiApplication::focusWindow());
-#endif
 #endif
     }
 };
