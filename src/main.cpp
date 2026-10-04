@@ -250,7 +250,10 @@ int main(int argc, char **argv)
         Kleo::installAccessibleEventLogger();
     }
 
+#ifndef Q_OS_MACOS
+    // on macOS the window icon would replace the icon of the app bundle in the Dock
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kleopatra"), app.windowIcon()));
+#endif
 
     if (gpgmeInitError) {
         // Show a failed initialization of GpgME after creating QApplication and KDSingleApplication,

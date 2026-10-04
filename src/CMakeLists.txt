@@ -560,7 +560,15 @@ if (NOT KLEOPATRA_ICON_DIR)
 endif()
 file(GLOB ICONS_PNGS "${KLEOPATRA_ICON_DIR}/*.png")
 file(GLOB ICONS_SVGS "${KLEOPATRA_ICON_DIR}/*.svg")
-ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_PNGS} ${ICONS_SVGS})
+if (APPLE AND EXISTS "${KLEOPATRA_ICON_DIR}/macos")
+    # Bundle icon drawn on the macOS icon grid tile. Only the PNGs are passed so
+    # that ECM assembles the .icns with iconutil instead of rendering an SVG
+    # with ksvg2icns.
+    file(GLOB MACOS_ICONS_PNGS "${KLEOPATRA_ICON_DIR}/macos/*.png")
+    ecm_add_app_icon(_kleopatra_SRCS ICONS ${MACOS_ICONS_PNGS} OUTFILE_BASENAME kleopatra)
+else()
+    ecm_add_app_icon(_kleopatra_SRCS ICONS ${ICONS_PNGS} ${ICONS_SVGS})
+endif()
 if (NOT WIN32)
     ecm_install_icons(ICONS ${ICONS_PNGS} ${ICONS_SVGS} DESTINATION ${KDE_INSTALL_ICONDIR})
 else()
