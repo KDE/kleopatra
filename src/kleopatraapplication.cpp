@@ -63,6 +63,7 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KStyleManager>
 #include <KWindowSystem>
 
 #if __has_include(<KWaylandExtras>)
@@ -77,6 +78,7 @@
 #if QT_CONFIG(graphicseffect)
 #include <QGraphicsEffect>
 #endif
+#include <QMenu>
 #include <QPointer>
 #include <QProxyStyle>
 #include <QPushButton>
@@ -328,6 +330,8 @@ public:
 class KleopatraProxyStyle : public QProxyStyle
 {
 public:
+    using QProxyStyle::QProxyStyle;
+
     int styleHint(StyleHint hint, const QStyleOption *option = nullptr, const QWidget *widget = nullptr, QStyleHintReturn *returnData = nullptr) const override
     {
         // disable parent<->child navigation in tree views with left/right arrow keys
@@ -360,11 +364,36 @@ KleopatraApplication::KleopatraApplication(int &argc, char *argv[])
     : QApplication(argc, argv)
     , d(new Private(this))
 {
+#ifdef Q_OS_MACOS
+    // Use Breeze (or the style chosen by the user) instead of the native macOS style so that
+    // Kleopatra looks the same as on the other platforms
+    KStyleManager::initStyle();
+    wrapStyleInProxyStyle();
+#else
     setStyle(new KleopatraProxyStyle);
+#endif
     connect(this, &QApplication::focusChanged, this, [this](QWidget *, QWidget *now) {
         d->updateFocusFrame(now);
     });
 }
+
+#ifdef Q_OS_MACOS
+void KleopatraApplication::wrapStyleInProxyStyle()
+{
+    // KStyleManager replaces the application style, so the proxy style has to be recreated
+    // with the newly chosen style as base
+    setStyle(new KleopatraProxyStyle{style()->name()});
+}
+
+QAction *KleopatraApplication::createConfigureStyleAction(QObject *parent)
+{
+    auto action = KStyleManager::createConfigureAction(parent);
+    if (action->menu()) {
+        connect(action->menu(), &QMenu::triggered, this, &KleopatraApplication::wrapStyleInProxyStyle);
+    }
+    return action;
+}
+#endif
 
 void KleopatraApplication::init()
 {

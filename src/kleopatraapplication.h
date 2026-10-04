@@ -24,6 +24,7 @@ extern QElapsedTimer startupTimer;
 
 class MainWindow;
 class DistributionData;
+class QAction;
 class QTemporaryDir;
 
 class KleopatraApplication : public QApplication
@@ -94,6 +95,11 @@ public:
     // Creates a temporary directory that's removed when the application exits
     std::weak_ptr<const QTemporaryDir> createTemporaryDirectory();
 
+#ifdef Q_OS_MACOS
+    // Creates an action with a menu for choosing the widget style
+    QAction *createConfigureStyleAction(QObject *parent);
+#endif
+
 public Q_SLOTS:
     void openOrRaiseMainWindow();
     void openOrRaiseSmartCardWindow();
@@ -119,6 +125,9 @@ Q_SIGNALS:
     void distributionDataChanged();
 
 private Q_SLOTS:
+#ifdef Q_OS_MACOS
+    void wrapStyleInProxyStyle();
+#endif
     // used as URL handler for URLs with schemes that shall be blocked
     void blockUrl(const QUrl &url);
     void startGpgAgent();

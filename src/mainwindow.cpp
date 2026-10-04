@@ -675,6 +675,9 @@ void MainWindow::Private::setupActions()
     auto manager = KColorSchemeManager::instance();
     KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
     coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
+#ifdef Q_OS_MACOS
+    coll->addAction(u"configure_style"_s, KleopatraApplication::instance()->createConfigureStyleAction(q));
+#endif
 
     focusToClickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);
