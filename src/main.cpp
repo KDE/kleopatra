@@ -75,6 +75,14 @@
 #include <iostream>
 #include <memory>
 
+#ifdef Q_OS_MACOS
+#include <climits>
+#include <cstdlib>
+#include <mach-o/dyld.h>
+#include <string>
+#include <unistd.h>
+#endif
+
 using namespace Qt::StringLiterals;
 
 QElapsedTimer startupTimer;
@@ -122,9 +130,52 @@ static void fillKeyCache(Kleo::UiServer *server)
     cmd->start();
 }
 
+#ifdef Q_OS_MACOS
+// Makes Kleopatra use the GnuPG bundled in the app bundle (if there is one) instead of
+// a GnuPG installed on the system. The packaging puts the GnuPG programs into Contents/MacOS
+// and symlinks to them together with a gpgconf.ctl into Contents/bin. gpgconf.ctl takes the
+// root directory of the GnuPG installation from KLEOPATRA_GNUPG_ROOTDIR because it requires
+// an absolute path, and GpgME looks up gpgconf in PATH.
+static void useBundledGnuPG()
+{
+    uint32_t size = 0;
+    _NSGetExecutablePath(nullptr, &size);
+    std::string executablePath(size, '\0');
+    if (_NSGetExecutablePath(executablePath.data(), &size) != 0) {
+        return;
+    }
+    char resolvedPath[PATH_MAX];
+    if (!realpath(executablePath.c_str(), resolvedPath)) {
+        return;
+    }
+    // the executable is Contents/MacOS/kleopatra
+    std::string contentsDir{resolvedPath};
+    for (int i = 0; i < 2; ++i) {
+        const auto pos = contentsDir.rfind('/');
+        if (pos == std::string::npos || pos == 0) {
+            return;
+        }
+        contentsDir.resize(pos);
+    }
+    const std::string binDir = contentsDir + "/bin";
+    if (access((binDir + "/gpgconf").c_str(), X_OK) != 0) {
+        return;
+    }
+    setenv("KLEOPATRA_GNUPG_ROOTDIR", contentsDir.c_str(), 1);
+    const char *path = getenv("PATH");
+    const std::string newPath = (path && *path) ? binDir + ':' + path : binDir;
+    setenv("PATH", newPath.c_str(), 1);
+}
+#endif
+
 int main(int argc, char **argv)
 {
     startupTimer.start();
+
+#ifdef Q_OS_MACOS
+    // must be done before GpgME looks up gpgconf
+    useBundledGnuPG();
+#endif
 
     // Initialize GpgME
     const GpgME::Error gpgmeInitError = GpgME::initializeLibrary(0);
