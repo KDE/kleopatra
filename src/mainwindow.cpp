@@ -14,6 +14,7 @@
 
 #include "view/keycacheoverlay.h"
 #include "view/keylistcontroller.h"
+#include "view/padwidget.h"
 #include "view/searchbar.h"
 #include "view/tabwidget.h"
 #include "view/welcomewidget.h"
@@ -339,16 +340,66 @@ public:
     void showView(QWidget *widget)
     {
         ui.stackWidget->setCurrentWidget(widget);
+        updateViewActions();
         if (auto ffci = dynamic_cast<Kleo::FocusFirstChild *>(widget)) {
             ffci->focusFirstChild(Qt::TabFocusReason);
         }
     }
 
+    void showCertificateView()
+    {
+        if (KeyCache::instance()->initialized() && KeyCache::instance()->keys().empty()) {
+            showView(ui.welcomeWidget);
+        } else {
+            showView(ui.searchTab);
+        }
+    }
+
     void showPadView()
     {
+        if (Settings{}.showNotepadInMainWindow()) {
+            if (!ui.padWidget) {
+                ui.padWidget = new PadWidget;
+                ui.stackWidget->addWidget(ui.padWidget);
+            }
+            showView(ui.padWidget);
+            return;
+        }
         auto padWindow = new PadWindow();
         padWindow->setAttribute(Qt::WA_DeleteOnClose);
         padWindow->show();
+    }
+
+    bool padViewIsShown() const
+    {
+        return ui.padWidget && ui.stackWidget->currentWidget() == ui.padWidget;
+    }
+
+    void updateViewActions()
+    {
+        // in the main window the certificate view and the notepad behave like exclusive views
+        const bool padShown = padViewIsShown();
+        if (auto action = q->actionCollection()->action(u"view_certificate_overview"_s)) {
+            action->setChecked(!padShown);
+        }
+        if (auto action = q->actionCollection()->action(u"pad_view"_s)) {
+            action->setChecked(padShown);
+        }
+    }
+
+    void applyNotepadSetting()
+    {
+        const bool inMainWindow = Settings{}.showNotepadInMainWindow();
+        if (auto action = q->actionCollection()->action(u"view_certificate_overview"_s)) {
+            action->setVisible(inMainWindow);
+        }
+        if (auto action = q->actionCollection()->action(u"pad_view"_s)) {
+            action->setCheckable(inMainWindow);
+        }
+        if (!inMainWindow && padViewIsShown()) {
+            showCertificateView();
+        }
+        updateViewActions();
     }
 
     void restartDaemons()
@@ -366,12 +417,12 @@ private:
 
     void keyListingDone()
     {
+        // don't take the notepad away from the user if it's shown in the main window
+        if (padViewIsShown()) {
+            return;
+        }
         if (KeyCache::instance()->initialized()) {
-            if (KeyCache::instance()->keys().empty()) {
-                showView(ui.welcomeWidget);
-            } else {
-                showView(ui.searchTab);
-            }
+            showCertificateView();
         }
     }
 
@@ -393,6 +444,7 @@ private:
     struct UI {
         CertificateView *searchTab = nullptr;
         WelcomeWidget *welcomeWidget = nullptr;
+        PadWidget *padWidget = nullptr;
         QStackedWidget *stackWidget = nullptr;
         KActionMenu *columnsVisibilityMenuAction = nullptr;
         KActionMenu *columnsSortingMenuAction = nullptr;
@@ -453,6 +505,7 @@ MainWindow::Private::Private(MainWindow *qq)
     setupActions();
 
     ui.stackWidget->setCurrentWidget(ui.searchTab);
+    applyNotepadSetting();
 
     connect(&controller, SIGNAL(contextMenuRequested(QAbstractItemView *, QPoint)), q, SLOT(slotContextMenuRequested(QAbstractItemView *, QPoint)));
     connect(KeyCache::instance().get(), &KeyCache::keyListingDone, q, [this]() {
@@ -592,6 +645,17 @@ void MainWindow::Private::setupActions()
 #endif
         // View menu
         {
+            "view_certificate_overview",
+            i18nc("@action show certificate overview", "Certificates"),
+            i18n("Show certificate overview"),
+            "view-certificate",
+            q,
+            [this](bool) {
+                showCertificateView();
+            },
+            QString(),
+        },
+        {
             "pad_view",
             i18nc("@action show input / output area for encrypting/signing resp. decrypting/verifying text", "Notepad"),
             i18n("Show pad for encrypting/decrypting and signing/verifying text"),
@@ -650,6 +714,10 @@ void MainWindow::Private::setupActions()
         }};
 
     make_actions_from_data(action_data, coll);
+
+    if (auto action = coll->action(u"view_certificate_overview"_s)) {
+        action->setCheckable(true);
+    }
 
     if (QStandardPaths::findExecutable(u"kwatchgnupg"_s).isEmpty()) {
         if (auto action = coll->action(u"tools_start_kwatchgnupg"_s)) {
@@ -830,6 +898,7 @@ void MainWindow::Private::setupActions()
 void MainWindow::Private::slotConfigCommitted()
 {
     controller.updateConfig();
+    applyNotepadSetting();
     updateStatusBar();
 }
 

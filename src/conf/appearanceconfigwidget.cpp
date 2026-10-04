@@ -321,6 +321,7 @@ public:
     QCheckBox *tooltipOwnerCheckBox;
     QCheckBox *tooltipDetailsCheckBox;
     QCheckBox *showExpirationCheckBox;
+    QCheckBox *notepadInMainWindowCheckBox;
     QSpinBox *ownCertificateThresholdSpinBox;
     QSpinBox *otherCertificateThresholdSpinBox;
 
@@ -393,6 +394,13 @@ public:
                 gridLayout->setColumnStretch(2, 1);
                 tabLayout->addLayout(gridLayout);
             }
+
+            tabLayout->addWidget(new KSeparator{tab});
+
+            notepadInMainWindowCheckBox = new QCheckBox{i18nc("@option:check", "Show the notepad in the main window"), tab};
+            notepadInMainWindowCheckBox->setToolTip(
+                i18nc("@info:tooltip", "If checked, the notepad replaces the certificate list instead of being opened in a separate window."));
+            tabLayout->addWidget(notepadInMainWindowCheckBox);
 
             tabLayout->addStretch(1);
 
@@ -540,6 +548,7 @@ public:
         connect(tooltipOwnerCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipOwnerChanged(bool)));
         connect(tooltipDetailsCheckBox, SIGNAL(toggled(bool)), q, SLOT(slotTooltipDetailsChanged(bool)));
         connect(showExpirationCheckBox, &QCheckBox::toggled, q, emitChanged);
+        connect(notepadInMainWindowCheckBox, &QCheckBox::toggled, q, emitChanged);
         connect(ownCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
         connect(otherCertificateThresholdSpinBox, &QSpinBox::valueChanged, q, emitChanged);
     }
@@ -685,6 +694,8 @@ void AppearanceConfigWidget::defaults()
     d->tooltipOwnerCheckBox->setChecked(settings.showOwnerInformation());
     settings.setShowCertificateDetails(settings.findItem(QStringLiteral("ShowCertificateDetails"))->getDefault().toBool());
     d->tooltipDetailsCheckBox->setChecked(settings.showCertificateDetails());
+    settings.setShowNotepadInMainWindow(settings.findItem(QStringLiteral("ShowNotepadInMainWindow"))->getDefault().toBool());
+    d->notepadInMainWindowCheckBox->setChecked(settings.showNotepadInMainWindow());
 
     if (d->dnOrderWidget) {
         if (!settings.isImmutable(QStringLiteral("AttributeOrder"))) {
@@ -727,6 +738,8 @@ void AppearanceConfigWidget::load()
     d->tooltipOwnerCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowOwnerInformation")));
     d->tooltipDetailsCheckBox->setChecked(settings.showCertificateDetails());
     d->tooltipDetailsCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowCertificateDetails")));
+    d->notepadInMainWindowCheckBox->setChecked(settings.showNotepadInMainWindow());
+    d->notepadInMainWindowCheckBox->setEnabled(!settings.isImmutable(QStringLiteral("ShowNotepadInMainWindow")));
 }
 
 void AppearanceConfigWidget::save()
@@ -748,6 +761,7 @@ void AppearanceConfigWidget::save()
     settings.setShowValidity(d->tooltipValidityCheckBox->isChecked());
     settings.setShowOwnerInformation(d->tooltipOwnerCheckBox->isChecked());
     settings.setShowCertificateDetails(d->tooltipDetailsCheckBox->isChecked());
+    settings.setShowNotepadInMainWindow(d->notepadInMainWindowCheckBox->isChecked());
     settings.save();
 
     KSharedConfigPtr config = KSharedConfig::openConfig(QStringLiteral("libkleopatrarc"));
