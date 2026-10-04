@@ -580,6 +580,15 @@ target_link_libraries(kleopatra_bin kcm_kleopatra_static)
 #    set_target_properties(kleopatra_bin PROPERTIES UNITY_BUILD ON)
 #endif()
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
+if (APPLE)
+    set_target_properties(kleopatra_bin PROPERTIES
+        MACOSX_BUNDLE_BUNDLE_NAME "Kleopatra"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.kleopatra"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${kleopatra_version}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${kleopatra_version}"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "Kleopatra ${KLEOPATRA_VERSION_STRING}"
+    )
+endif()
 
 set(_kleopatra_platform_libs)
 if (WIN32)
