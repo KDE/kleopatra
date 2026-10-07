@@ -264,12 +264,6 @@ std::unique_ptr<QGpgME::WKDRefreshJob> RefreshCertificatesCommand::Private::star
     }
     if (wkdKeys.empty()) {
         wkdRefreshResult = ImportResult{Error::fromCode(GPG_ERR_USER_1)};
-        QMetaObject::invokeMethod(
-            q,
-            [this]() {
-                checkFinished();
-            },
-            Qt::QueuedConnection);
         return {};
     }
 
