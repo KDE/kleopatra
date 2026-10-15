@@ -122,6 +122,24 @@ static void fillKeyCache(Kleo::UiServer *server)
     cmd->start();
 }
 
+// Effectively used on MacOS, only: Support "open" requests. This is needed to
+// handle file associations in Finder, or via drag-and-drop to our dock icon.
+class FileOpenEventHandler : public QObject
+{
+protected:
+    bool eventFilter(QObject *, QEvent *event) override
+    {
+        if (event->type() == QEvent::FileOpen) {
+            const auto url = static_cast<QFileOpenEvent *>(event)->url();
+            if (url.isLocalFile()) {
+                KleopatraApplication::instance()->handleFiles({url.toLocalFile()});
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
 int main(int argc, char **argv)
 {
     startupTimer.start();
@@ -275,6 +293,8 @@ int main(int argc, char **argv)
     // setup / systray icon).
     Migration::migrate();
     app.init();
+    FileOpenEventHandler fileOpenEventHandler;
+    app.installEventFilter(&fileOpenEventHandler);
     STARTUP_TIMING << "Application initialized";
 
     aboutData.setupCommandLine(&parser);
