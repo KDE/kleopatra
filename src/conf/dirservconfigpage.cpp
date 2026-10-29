@@ -199,8 +199,8 @@ DirectoryServicesConfigurationPage::Private::Private(DirectoryServicesConfigurat
             l->addWidget(mOpenPGPKeyserverEdit.widget());
         }
 
-        connect(mUseKeyServerCheckBox, &QCheckBox::toggled, mOpenPGPKeyserverEdit.widget(), &QLineEdit::setEnabled);
         connect(mUseKeyServerCheckBox, &QCheckBox::toggled, q, [this]() {
+            mOpenPGPKeyserverEdit.setEnabled(mUseKeyServerCheckBox->isChecked());
             if (!mUseKeyServerCheckBox->isChecked()) {
                 mRememberedKeyserver = mOpenPGPKeyserverEdit.widget()->text();
                 mOpenPGPKeyserverEdit.widget()->clear();
