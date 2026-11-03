@@ -430,14 +430,6 @@ auto consolidatedAuditLogEntries(const std::vector<ImportResultData> &res)
 
 void ImportCertificatesCommand::Private::showDetails(const std::vector<ImportResultData> &res, const std::vector<ImportedGroup> &groups)
 {
-    const auto singleOpenPGPImport = getSingleOpenPGPImport(res);
-
-    if (!singleOpenPGPImport.isNull()) {
-        if (showPleaseCertify(singleOpenPGPImport)) {
-            return;
-        }
-    }
-
     auto dialog = new QDialog(parentWidgetOrView());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     auto layout = new QVBoxLayout(dialog);
@@ -700,6 +692,11 @@ void ImportCertificatesCommand::Private::processResults()
         return result.result.numConsidered() == 0 || (importFailed(result) && result.result.numConsidered() == 1);
     });
     if (!(hasError && allAreIrrelevant)) {
+        if (const auto singleOpenPGPImport = getSingleOpenPGPImport(results); //
+            !singleOpenPGPImport.isNull() && showPleaseCertify(singleOpenPGPImport)) {
+            finished();
+            return;
+        }
         showDetails(results, importedGroups);
     }
 
