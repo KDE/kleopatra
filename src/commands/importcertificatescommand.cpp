@@ -266,7 +266,7 @@ static QString make_message_report(const std::vector<ImportResultData> &res, con
 }
 
 // Returns false on error, true if please certify was shown.
-bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &imp)
+bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &imp, SecretKeyOwnership secretKeyOwnership)
 {
     if (!Kleo::userHasCertificationKey()) {
         qCDebug(KLEOPATRA_LOG) << q << __func__ << "No certification key available";
@@ -311,7 +311,7 @@ bool ImportCertificatesCommand::Private::showPleaseCertify(const GpgME::Import &
 
     QString title;
     QString message;
-    if (key.subkey(0).isGroupOwned() && key.hasSecret()) {
+    if (key.hasSecret() && (key.subkey(0).isGroupOwned() || (secretKeyOwnership == SecretKeyOwnership::Shared))) {
         message = "<p>"_L1 + i18nc("@info", "You have imported a shared secret key.") + "</p>"_L1 //
             + "<p>"_L1 + i18nc("@info", "In order to use this shared secret key you should certify it. ") //
             + i18nc("@info", "Certification means that you check the fingerprint against a trusted source.") + "</p>"_L1 //
@@ -531,8 +531,9 @@ void ImportCertificatesCommand::Private::addImportResult(const ImportResultData 
     tryToFinish();
 }
 
-static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
+static SecretKeyOwnership handleOwnerTrust(const std::vector<ImportResultData> &results, QWidget *dialog)
 {
+    SecretKeyOwnership ret = SecretKeyOwnership::Unknown;
     std::unordered_set<std::string> askedAboutFingerprints;
     for (const auto &r : results) {
         if (r.protocol != GpgME::Protocol::OpenPGP) {
@@ -612,31 +613,43 @@ static void handleOwnerTrust(const std::vector<ImportResultData> &results, QWidg
                                  uids);
             }
 
-            int k = KMessageBox::questionTwoActionsCancel(dialog,
-                                                          message,
-                                                          i18nc("@title:window", "Mark Own Certificate"),
-                                                          KGuiItem{i18nc("@action:button", "Yes, I am the only user")},
-                                                          KGuiItem{i18nc("@action:button", "No, others also use this key")});
+            const auto answer = KMessageBox::questionTwoActionsCancel(dialog,
+                                                                      message,
+                                                                      i18nc("@title:window", "Mark Own Certificate"),
+                                                                      KGuiItem{i18nc("@action:button", "Yes, I am the only user")},
+                                                                      KGuiItem{i18nc("@action:button", "No, others also use this key")});
             askedAboutFingerprints.insert(fpr);
 
-            if (k == KMessageBox::ButtonCode::PrimaryAction) {
+            switch (answer) {
+            case KMessageBox::ButtonCode::PrimaryAction: {
+                if (ret == SecretKeyOwnership::Unknown) {
+                    ret = SecretKeyOwnership::Exclusive;
+                }
+
                 // To use the ChangeOwnerTrustJob over
                 // the CryptoBackendFactory
                 const QGpgME::Protocol *const backend = QGpgME::openpgp();
 
                 if (!backend) {
                     qCWarning(KLEOPATRA_LOG) << "Failed to get CryptoBackend";
-                    return;
+                    return ret;
                 }
 
                 ChangeOwnerTrustJob *const j = backend->changeOwnerTrustJob();
                 j->start(toTrustOwner, Key::Ultimate);
-            } else if (k == KMessageBox::ButtonCode::Cancel) {
+            } break;
+            case KMessageBox::ButtonCode::SecondaryAction: {
+                ret = SecretKeyOwnership::Shared;
+            } break;
+            case KMessageBox::ButtonCode::Cancel:
                 // do not bother the user with further "Is this yours?" questions
-                return;
+                return ret;
+            default:
+                qCWarning(KLEOPATRA_LOG) << __func__ << "Unexpected button code:" << answer;
             }
         }
     }
+    return ret;
 }
 
 static void validateImportedCertificate(const GpgME::Import &import)
@@ -683,7 +696,7 @@ void ImportCertificatesCommand::Private::processResults()
     // ensure that the progress dialog is closed before we show any other dialogs
     setProgressToMaximum();
 
-    handleOwnerTrust(results, parentWidgetOrView());
+    const SecretKeyOwnership secretKeyOwnership = handleOwnerTrust(results, parentWidgetOrView());
 
     auto hasError = std::ranges::any_of(results, [](const auto &result) {
         return importFailed(result);
@@ -693,7 +706,7 @@ void ImportCertificatesCommand::Private::processResults()
     });
     if (!(hasError && allAreIrrelevant)) {
         if (const auto singleOpenPGPImport = getSingleOpenPGPImport(results); //
-            !singleOpenPGPImport.isNull() && showPleaseCertify(singleOpenPGPImport)) {
+            !singleOpenPGPImport.isNull() && showPleaseCertify(singleOpenPGPImport, secretKeyOwnership)) {
             finished();
             return;
         }
