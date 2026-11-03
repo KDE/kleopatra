@@ -49,7 +49,7 @@ ConfigureDialog::ConfigureDialog(QWidget *parent)
     }
     if (settings.showCryptoOperationsConfiguration()) {
         addModule(i18n("Crypto Operations"),
-                  QStringLiteral("kleopatra/configuration-cryptooperations.html"),
+                  QStringLiteral("kleopatra/configuration-crypto-operations.html"),
                   QStringLiteral("document-encrypt"),
                   new Kleo::Config::CryptoOperationsConfigurationPage(this));
     }
