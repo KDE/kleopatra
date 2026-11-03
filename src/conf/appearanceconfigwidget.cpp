@@ -32,7 +32,6 @@
 #include <QColor>
 #include <QColorDialog>
 #include <QFont>
-#include <QFontDialog>
 #include <QGridLayout>
 #include <QIcon>
 #include <QLabel>
@@ -42,8 +41,6 @@
 #include <QString>
 #include <QVBoxLayout>
 
-#include <algorithm>
-
 #include <kleopatra_debug.h>
 
 using namespace Kleo;
@@ -51,11 +48,9 @@ using namespace Kleo::Config;
 using namespace Qt::Literals::StringLiterals;
 
 enum {
-    HasFontRole = Qt::UserRole + 0x1234, /*!< Records that the user has chosen  completely different font (as opposed to italic/bold/strikeout) */
-    IconNameRole, /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
+    IconNameRole = Qt::UserRole + 0x1234, /*!< Records the name of the icon (since QIcon won't give it out again, once set) */
     MayChangeForegroundRole,
     MayChangeBackgroundRole,
-    MayChangeFontRole,
     MayChangeItalicRole,
     MayChangeBoldRole,
     MayChangeStrikeOutRole,
@@ -69,11 +64,7 @@ enum {
 
 static QFont tryToFindFontFor(const QListWidgetItem *item)
 {
-    if (item)
-        if (const QListWidget *const lw = item->listWidget()) {
-            return lw->font();
-        }
-    return QApplication::font("QListWidget");
+    return (item && item->listWidget()) ? item->listWidget()->font() : QApplication::font("QListWidget");
 }
 
 static bool is(const QListWidgetItem *item, bool (QFont::*func)() const)
@@ -149,20 +140,11 @@ static void apply_config(const KConfigGroup &group, QListWidgetItem *item)
     }
     item->setData(MayChangeBackgroundRole, !group.isEntryImmutable("background-color"));
 
-    const QFont defaultFont = tryToFindFontFor(item);
-    if (group.hasKey("font")) {
-        const QFont font = group.readEntry("font", defaultFont);
-        item->setData(Qt::FontRole, font != defaultFont ? font : QVariant());
-        item->setData(HasFontRole, font != defaultFont);
-    } else {
-        QFont font = defaultFont;
-        font.setStrikeOut(group.readEntry("font-strikeout", false));
-        font.setItalic(group.readEntry("font-italic", false));
-        font.setBold(group.readEntry("font-bold", false));
-        item->setData(Qt::FontRole, font);
-        item->setData(HasFontRole, false);
-    }
-    item->setData(MayChangeFontRole, !group.isEntryImmutable("font"));
+    QFont font = tryToFindFontFor(item);
+    font.setStrikeOut(group.readEntry("font-strikeout", false));
+    font.setItalic(group.readEntry("font-italic", false));
+    font.setBold(group.readEntry("font-bold", false));
+    item->setData(Qt::FontRole, font);
     item->setData(MayChangeItalicRole, !group.isEntryImmutable("font-italic"));
     item->setData(MayChangeBoldRole, !group.isEntryImmutable("font-bold"));
     item->setData(MayChangeStrikeOutRole, !group.isEntryImmutable("font-strikeout"));
@@ -203,11 +185,10 @@ static void erase_if_allowed(QListWidgetItem *item, const int allowRole[], size_
             return;
         }
     auto config = item->data(ConfigGroupRole).value<KConfigGroup>();
-    config.revertToDefault("font");
     config.revertToDefault("font-bold");
     config.revertToDefault("font-strikeout");
     config.revertToDefault("font-italic");
-    auto value = config.readEntry<QFont>("font", tryToFindFontFor(item));
+    QFont value = tryToFindFontFor(item);
     value.setBold(config.readEntry("font-bold", false));
     value.setStrikeOut(config.readEntry("font-strikeout", false));
     value.setItalic(config.readEntry("font-italic", false));
@@ -228,7 +209,6 @@ static void set_default_appearance(QListWidgetItem *item)
     resetString(item, IconNameRole, MayChangeIconRole, "icon");
     item->setData(Qt::DecorationRole, QIcon::fromTheme(item->data(ConfigGroupRole).value<KConfigGroup>().readEntry("icon", QString())));
     static const int fontAllowRoles[] = {
-        MayChangeFontRole,
         MayChangeItalicRole,
         MayChangeBoldRole,
         MayChangeStrikeOutRole,
@@ -274,15 +254,9 @@ static void save_to_config(const QListWidgetItem *item, KConfigGroup &group, con
                   systemGroup.readEntry("background-color", QColor()));
     writeOrDelete(group, "icon", item->data(IconNameRole).toString(), systemGroup.readEntry("icon", QString()));
 
-    group.deleteEntry("font");
     group.deleteEntry("font-strikeout");
     group.deleteEntry("font-italic");
     group.deleteEntry("font-bold");
-
-    if (item->data(HasFontRole).toBool()) {
-        writeOrDelete(group, "font", item->data(Qt::FontRole).value<QFont>(), tryToFindFontFor(item));
-        return;
-    }
 
     writeOrDelete(group, "font-strikeout", is_strikeout(item), systemGroup.readEntry("font-strikeout", false));
     writeOrDelete(group, "font-italic", is_italic(item), systemGroup.readEntry("font-italic", false));
@@ -312,7 +286,6 @@ public:
     QPushButton *iconButton;
     QPushButton *foregroundButton;
     QPushButton *backgroundButton;
-    QPushButton *fontButton;
     QCheckBox *italicCB;
     QCheckBox *boldCB;
     QCheckBox *strikeoutCB;
@@ -437,13 +410,6 @@ public:
 
         vboxLayout->addWidget(backgroundButton);
 
-        fontButton = new QPushButton(tab_2);
-        fontButton->setText(i18nc("@action:button", "Set Font..."));
-        fontButton->setObjectName(QString::fromUtf8("fontButton"));
-        fontButton->setEnabled(false);
-
-        vboxLayout->addWidget(fontButton);
-
         italicCB = new QCheckBox(tab_2);
         italicCB->setText(i18nc("@option:check", "Italic"));
         italicCB->setObjectName(QString::fromUtf8("italicCB"));
@@ -523,11 +489,6 @@ public:
         foregroundButton->hide();
         backgroundButton->hide();
 #endif
-#ifndef QT_NO_FONTDIALOG
-        connect(fontButton, SIGNAL(clicked()), q, SLOT(slotFontClicked()));
-#else
-        fontButton->hide();
-#endif
         auto emitChanged = [this]() {
             Q_EMIT q->changed();
         };
@@ -554,9 +515,6 @@ private:
 #ifndef QT_NO_COLORDIALOG
     void slotForegroundClicked();
     void slotBackgroundClicked();
-#endif
-#ifndef QT_NO_FONTDIALOG
-    void slotFontClicked();
 #endif
     void slotSelectionChanged();
     void slotDefaultClicked();
@@ -628,9 +586,6 @@ void AppearanceConfigWidget::Private::enableDisableActions(QListWidgetItem *item
 #ifndef QT_NO_COLORDIALOG
     kiosk_enable(foregroundButton, item, MayChangeForegroundRole);
     kiosk_enable(backgroundButton, item, MayChangeBackgroundRole);
-#endif
-#ifndef QT_NO_FONTDIALOG
-    kiosk_enable(fontButton, item, MayChangeFontRole);
 #endif
     kiosk_enable(italicCB, item, MayChangeItalicRole);
     kiosk_enable(boldCB, item, MayChangeBoldRole);
@@ -830,41 +785,6 @@ void AppearanceConfigWidget::Private::slotBackgroundClicked()
     }
 }
 #endif // QT_NO_COLORDIALOG
-
-#ifndef QT_NO_FONTDIALOG
-void AppearanceConfigWidget::Private::slotFontClicked()
-{
-    QListWidgetItem *const item = selectedItem();
-    if (!item) {
-        return;
-    }
-
-    const QVariant v = item->data(Qt::FontRole);
-
-    bool ok = false;
-    const QFont defaultFont = tryToFindFontFor(item);
-    const QFont initial = v.isValid() && v.userType() == QMetaType::QFont ? v.value<QFont>() : defaultFont;
-    QFont f = QFontDialog::getFont(&ok, initial, q);
-    if (!ok) {
-        return;
-    }
-
-    // disallow circumventing KIOSK:
-    if (!item->data(MayChangeItalicRole).toBool()) {
-        f.setItalic(initial.italic());
-    }
-    if (!item->data(MayChangeBoldRole).toBool()) {
-        f.setBold(initial.bold());
-    }
-    if (!item->data(MayChangeStrikeOutRole).toBool()) {
-        f.setStrikeOut(initial.strikeOut());
-    }
-
-    item->setData(Qt::FontRole, f != defaultFont ? f : QVariant());
-    item->setData(HasFontRole, true);
-    Q_EMIT q->changed();
-}
-#endif // QT_NO_FONTDIALOG
 
 void AppearanceConfigWidget::Private::slotItalicToggled(bool on)
 {

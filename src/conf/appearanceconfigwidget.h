@@ -39,9 +39,6 @@ private:
     Q_PRIVATE_SLOT(d, void slotForegroundClicked())
     Q_PRIVATE_SLOT(d, void slotBackgroundClicked())
 #endif
-#ifndef QT_NO_FONTDIALOG
-    Q_PRIVATE_SLOT(d, void slotFontClicked())
-#endif
     Q_PRIVATE_SLOT(d, void slotSelectionChanged())
     Q_PRIVATE_SLOT(d, void slotDefaultClicked())
     Q_PRIVATE_SLOT(d, void slotItalicToggled(bool))
