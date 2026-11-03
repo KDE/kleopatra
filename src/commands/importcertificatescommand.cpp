@@ -703,12 +703,6 @@ void ImportCertificatesCommand::Private::processResults()
         showDetails(results, importedGroups);
     }
 
-    auto tv = dynamic_cast<QTreeView *>(view());
-    if (!tv) {
-        qCDebug(KLEOPATRA_LOG) << "Failed to find treeview";
-    } else {
-        tv->expandAll();
-    }
     finished();
 }
 
