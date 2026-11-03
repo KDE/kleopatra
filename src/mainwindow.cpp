@@ -302,8 +302,6 @@ public:
         KleopatraApplication::instance()->openOrRaiseGroupsConfigDialog(nullptr);
     }
 
-    void showHandbook();
-
     void gnupgLogViewer()
     {
         // Warning: Don't assume that the program needs to be in PATH. On Windows, it will also be found next to the calling process.
