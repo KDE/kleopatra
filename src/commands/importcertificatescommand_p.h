@@ -77,6 +77,12 @@ struct ImportOptions {
     QString keyOriginUrl;
 };
 
+enum class SecretKeyOwnership {
+    Unknown,
+    Exclusive,
+    Shared,
+};
+
 class Kleo::ImportCertificatesCommand::Private : public Command::Private
 {
     friend class ::Kleo::ImportCertificatesCommand;
@@ -105,7 +111,7 @@ public:
 
     void setImportResultProxyModel(const std::vector<ImportResultData> &results);
 
-    bool showPleaseCertify(const GpgME::Import &imp);
+    bool showPleaseCertify(const GpgME::Import &imp, SecretKeyOwnership secretKeyOwnership);
 
     void keyListDone(const GpgME::KeyListResult &result, const std::vector<GpgME::Key> &keys, const QString &, const GpgME::Error &);
 
