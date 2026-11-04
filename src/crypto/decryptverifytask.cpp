@@ -134,10 +134,15 @@ static bool mimeTypeInherits(const QMimeType &mimeType, const QString &mimeTypeN
 namespace
 {
 
-static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, unsigned int numRecipients)
+static QString formatRecipientsDetails(const std::vector<Key> &knownRecipients, const GpgME::DecryptionResult &decryptionResult, GpgME::Protocol protocol)
 {
+    const unsigned int numRecipients = decryptionResult.numRecipients();
     if (numRecipients == 0) {
-        return {};
+        if ((protocol == GpgME::CMS) && (decryptionResult.error().code() == GPG_ERR_NOT_FOUND)) {
+            return i18nc("The recipients of an encrypted message are unknown", "Recipients: Unknown");
+        } else {
+            return {};
+        }
     }
 
     QString details = i18np("Recipient:", "Recipients:", numRecipients);
@@ -202,11 +207,12 @@ public:
         const auto verify = m_verificationResult.numSignatures() > 0;
         const auto decrypt = !m_decryptionResult.isNull();
         const auto recipients = KeyCache::instance()->findRecipients(m_decryptionResult);
+        const auto protocol = q->parentTask()->protocol();
 
         Q_ASSERT(verify || decrypt);
 
         Error error;
-        if (decrypt && (q->parentTask()->protocol() == GpgME::CMS) && (m_decryptionResult.error().code() == GPG_ERR_NOT_FOUND)) {
+        if (decrypt && (protocol == GpgME::CMS) && (m_decryptionResult.error().code() == GPG_ERR_NOT_FOUND)) {
             // gpgsm returns "Not found" if the complete certificate is missing and "No secret key" if the public certificate is present;
             // gpg returns "No secret key" in both cases; map "Not found" to "No secret key" for clearer message to the user
             error = Error::fromCode(GPG_ERR_NO_SECKEY);
@@ -340,7 +346,7 @@ public:
         }
 
         if (decrypt) {
-            label += "<br/>"_L1 + formatRecipientsDetails(recipients, m_decryptionResult.numRecipients());
+            label += "<br/>"_L1 + formatRecipientsDetails(recipients, m_decryptionResult, protocol);
         }
 
         return label;
