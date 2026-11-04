@@ -206,7 +206,11 @@ public:
         Q_ASSERT(verify || decrypt);
 
         Error error;
-        if (m_error.code()) {
+        if (decrypt && (q->parentTask()->protocol() == GpgME::CMS) && (m_decryptionResult.error().code() == GPG_ERR_NOT_FOUND)) {
+            // gpgsm returns "Not found" if the complete certificate is missing and "No secret key" if the public certificate is present;
+            // gpg returns "No secret key" in both cases; map "Not found" to "No secret key" for clearer message to the user
+            error = Error::fromCode(GPG_ERR_NO_SECKEY);
+        } else if (m_error.code()) {
             error = m_error;
         } else if (m_decryptionResult.error().code()) {
             error = m_decryptionResult.error();
