@@ -598,7 +598,6 @@ target_link_libraries(kleopatra_bin
   KF6::IconThemes
   KF6::ItemModels
   KF6::KIOCore
-  KF6::KIOWidgets
   KF6::WindowSystem
   KF6::XmlGui
   KDAB::kdsingleapplication
