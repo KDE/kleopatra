@@ -462,6 +462,24 @@ MainWindow::Private::Private(MainWindow *qq)
 
     q->createGUI(QStringLiteral("kleopatra.rc"));
 
+#ifdef Q_OS_MACOS
+    // On MacOS, the main preferences action gets moved to the "kleopatra" menu to follow platform standards.
+    // To keep everything in one place, also move all further actions from the settings menu. Fortunately, it is
+    // only a few, and we don't have to cope with any dynamic changes, so we can just do this once, after the
+    // GUI has been created.
+    if (auto settingsMenu = q->findChild<QMenu *>("settings")) {
+        const auto settingsActions = settingsMenu->actions();
+        for (auto action : settingsActions) {
+            if (action->menuRole() == QAction::TextHeuristicRole || action->menuRole() == QAction::NoRole) {
+                action->setMenuRole(QAction::ApplicationSpecificRole);
+            }
+            if (action->isSeparator()) {
+                action->setVisible(false);
+            }
+        }
+    }
+#endif
+
     if (auto helpMenu = q->findChild<KHelpMenu *>()) {
         qCDebug(KLEOPATRA_LOG) << "Hook into the help menu to show the About dialog ourselves";
         connect(helpMenu, &KHelpMenu::showAboutApplication, KleopatraApplication::instance(), &KleopatraApplication::showAboutDialog);
