@@ -670,9 +670,11 @@ void MainWindow::Private::setupActions()
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
     KStandardAction::preferences(qApp, SLOT(openOrRaiseConfigDialog()), coll);
 
+#ifndef Q_OS_MACOS
     auto manager = KColorSchemeManager::instance();
     KActionMenu *schemeMenu = KColorSchemeMenu::createMenu(manager, q);
     coll->addAction(QStringLiteral("colorscheme_menu"), schemeMenu->menu()->menuAction());
+#endif
 
     focusToClickSearchAction = new QAction(i18nc("@action", "Set Focus to Quick Search"), q);
     coll->addAction(QStringLiteral("focus_to_quickseach"), focusToClickSearchAction);
