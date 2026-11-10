@@ -174,7 +174,7 @@ public:
             row++;
             mFprField = std::make_unique<InfoField>(i18n("Fingerprint:"), q);
             grid->addWidget(mFprField->label(), row, 0);
-            grid->addLayout(mFprField->layout(), row, 1);
+            grid->addWidget(mFprField->valueWidget(), row, 1);
 
             row++;
             auto label = new QLabel{i18n("Certify with:"), q};

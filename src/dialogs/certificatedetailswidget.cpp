@@ -161,7 +161,7 @@ private:
                 row++;
                 primaryUserIdField = std::make_unique<InfoField>(i18n("User ID:"), parent);
                 gridLayout->addWidget(primaryUserIdField->label(), row, 0);
-                gridLayout->addLayout(primaryUserIdField->layout(), row, 1);
+                gridLayout->addWidget(primaryUserIdField->valueWidget(), row, 1);
 
                 for (const auto &attribute : DNAttributes::order()) {
                     const auto attributeLabel = DNAttributes::nameToLabel(attribute);
@@ -174,19 +174,19 @@ private:
                         row++;
                         const auto &field = it->second;
                         gridLayout->addWidget(field->label(), row, 0);
-                        gridLayout->addLayout(field->layout(), row, 1);
+                        gridLayout->addWidget(field->valueWidget(), row, 1);
                     }
                 }
 
                 row++;
                 smimeTrustLevelField = std::make_unique<InfoField>(i18n("Trust level:"), parent);
                 gridLayout->addWidget(smimeTrustLevelField->label(), row, 0);
-                gridLayout->addLayout(smimeTrustLevelField->layout(), row, 1);
+                gridLayout->addWidget(smimeTrustLevelField->valueWidget(), row, 1);
 
                 row++;
                 validFromField = std::make_unique<InfoField>(i18n("Valid from:"), parent);
                 gridLayout->addWidget(validFromField->label(), row, 0);
-                gridLayout->addLayout(validFromField->layout(), row, 1);
+                gridLayout->addWidget(validFromField->valueWidget(), row, 1);
 
                 row++;
                 expiresField = std::make_unique<InfoField>(i18n("Valid until:"), parent);
@@ -196,12 +196,12 @@ private:
                 Kleo::setAccessibleName(changeExpirationAction, i18nc("@action:button", "Change Validity"));
                 expiresField->setAction(changeExpirationAction);
                 gridLayout->addWidget(expiresField->label(), row, 0);
-                gridLayout->addLayout(expiresField->layout(), row, 1);
+                gridLayout->addWidget(expiresField->valueWidget(), row, 1);
 
                 row++;
                 statusField = std::make_unique<InfoField>(i18n("Status:"), parent);
                 gridLayout->addWidget(statusField->label(), row, 0);
-                gridLayout->addLayout(statusField->layout(), row, 1);
+                gridLayout->addWidget(statusField->valueWidget(), row, 1);
 
                 row++;
                 fingerprintField = std::make_unique<InfoField>(i18n("Fingerprint:"), parent);
@@ -213,7 +213,7 @@ private:
                     fingerprintField->setAction(copyFingerprintAction);
                 }
                 gridLayout->addWidget(fingerprintField->label(), row, 0);
-                gridLayout->addLayout(fingerprintField->layout(), row, 1);
+                gridLayout->addWidget(fingerprintField->valueWidget(), row, 1);
 
                 row++;
                 smimeIssuerField = std::make_unique<InfoField>(i18n("Issuer:"), parent);
@@ -223,28 +223,28 @@ private:
                 Kleo::setAccessibleName(showIssuerCertificateAction, i18nc("@action:button", "Show certificate"));
                 smimeIssuerField->setAction(showIssuerCertificateAction);
                 gridLayout->addWidget(smimeIssuerField->label(), row, 0);
-                gridLayout->addLayout(smimeIssuerField->layout(), row, 1);
+                gridLayout->addWidget(smimeIssuerField->valueWidget(), row, 1);
 
                 row++;
                 complianceField = std::make_unique<InfoField>(i18n("Compliance:"), parent);
                 gridLayout->addWidget(complianceField->label(), row, 0);
-                gridLayout->addLayout(complianceField->layout(), row, 1);
+                gridLayout->addWidget(complianceField->valueWidget(), row, 1);
 
                 row++;
                 usageField = std::make_unique<InfoField>(i18n("Usage:"), parent);
                 gridLayout->addWidget(usageField->label(), row, 0);
-                gridLayout->addLayout(usageField->layout(), row, 1);
+                gridLayout->addWidget(usageField->valueWidget(), row, 1);
 
                 row++;
                 trustedIntroducerField = std::make_unique<InfoField>(i18n("Trusted introducer for:"), parent);
                 gridLayout->addWidget(trustedIntroducerField->label(), row, 0);
                 trustedIntroducerField->setToolTip(i18nc("@info:tooltip", "See certifications for details."));
-                gridLayout->addLayout(trustedIntroducerField->layout(), row, 1);
+                gridLayout->addWidget(trustedIntroducerField->valueWidget(), row, 1);
 
                 row++;
                 privateKeyInfoField = std::make_unique<InfoField>(i18n("Private Key:"), parent);
                 gridLayout->addWidget(privateKeyInfoField->label(), row, 0);
-                gridLayout->addLayout(privateKeyInfoField->layout(), row, 1);
+                gridLayout->addWidget(privateKeyInfoField->valueWidget(), row, 1);
 
                 mainLayout->addLayout(gridLayout);
             }

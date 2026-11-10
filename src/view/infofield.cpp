@@ -24,30 +24,33 @@ using namespace Kleo;
 
 InfoField::InfoField(const QString &label, QWidget *parent)
     : mLabel{new QLabel{label, parent}}
-    , mLayout{new QHBoxLayout}
-    , mIcon{new QLabel{parent}}
-    , mValue{new QLabel{parent}}
-    , mButton{new QPushButton{parent}}
+    , mValueWidget{new QWidget{parent}}
+    , mIcon{new QLabel{mValueWidget}}
+    , mValue{new QLabel{mValueWidget}}
+    , mButton{new QPushButton{mValueWidget}}
 {
     mLabel->setObjectName(QLatin1StringView("InfoField.label"));
     mIcon->setObjectName(QLatin1StringView("InfoField.icon"));
     mValue->setObjectName(QLatin1StringView("InfoField.value"));
     mButton->setObjectName(QLatin1StringView("InfoField.button"));
 
+    auto layout = new QHBoxLayout(mValueWidget);
+    layout->setContentsMargins({});
+
     mLabel->setBuddy(mValue);
     mLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     mIcon->setVisible(false);
-    mLayout->addWidget(mIcon);
+    layout->addWidget(mIcon);
     mValue->setTextInteractionFlags(Qt::TextSelectableByMouse);
     mValue->setFocusPolicy(Qt::TabFocus);
 #ifdef Q_OS_WIN
     Kleo::setRepresentAsAccessibleValueWidget(mValue, true);
 #endif
-    mLayout->addWidget(mValue);
+    layout->addWidget(mValue);
     mButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     mButton->setVisible(false);
-    mLayout->addWidget(mButton);
-    mLayout->addStretch();
+    layout->addWidget(mButton);
+    layout->addStretch();
 }
 
 QLabel *InfoField::label() const
@@ -55,9 +58,9 @@ QLabel *InfoField::label() const
     return mLabel;
 }
 
-QLayout *InfoField::layout() const
+QWidget *InfoField::valueWidget() const
 {
-    return mLayout;
+    return mValueWidget;
 }
 
 QLabel *InfoField::valueLabel() const
@@ -125,9 +128,7 @@ void InfoField::setToolTip(const QString &toolTip)
 void InfoField::setVisible(bool visible)
 {
     mLabel->setVisible(visible);
-    mIcon->setVisible(visible && !mIcon->pixmap().isNull());
-    mValue->setVisible(visible);
-    mButton->setVisible(visible && mAction);
+    mValueWidget->setVisible(visible);
 }
 
 void InfoField::onActionChanged()

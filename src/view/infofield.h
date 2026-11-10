@@ -28,14 +28,14 @@ public:
     /** Returns the label which displays the label text. Add it to the UI. */
     QLabel *label() const;
     /**
-     * Returns the layout containing the value label and the optional action button.
+     * Returns the widget containing the value label and the optional action button.
      * Add it to the UI.
      */
-    QLayout *layout() const;
+    QWidget *valueWidget() const;
 
     /**
      * Returns the label which displays the value.
-     * Don't add this label to the UI. Instead add layout() to the UI.
+     * Don't add this label to the UI. Instead add valueWidget() to the UI.
      * Use this accessor if you need to change some properties of the value
      * label, e.g. the text interaction flags.
      */
@@ -53,7 +53,7 @@ private:
     void onActionChanged();
 
     QLabel *mLabel = nullptr;
-    QHBoxLayout *mLayout = nullptr;
+    QWidget *mValueWidget = nullptr;
     QLabel *mIcon = nullptr;
     QLabel *mValue = nullptr;
     QPushButton *mButton = nullptr;

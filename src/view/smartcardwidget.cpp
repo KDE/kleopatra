@@ -230,12 +230,12 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
         row++;
         mCardTypeField = std::make_unique<InfoField>(i18nc("@label", "Card type:"), parent);
         gridLayout->addWidget(mCardTypeField->label(), row, 0);
-        gridLayout->addLayout(mCardTypeField->layout(), row, 1);
+        gridLayout->addWidget(mCardTypeField->valueWidget(), row, 1);
 
         row++;
         mSerialNumberField = std::make_unique<InfoField>(i18nc("@label", "Serial number:"), parent);
         gridLayout->addWidget(mSerialNumberField->label(), row, 0);
-        gridLayout->addLayout(mSerialNumberField->layout(), row, 1);
+        gridLayout->addWidget(mSerialNumberField->valueWidget(), row, 1);
 
         if (mAppType == AppType::OpenPGPApp) {
             row++;
@@ -247,7 +247,7 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             action->setText({});
             mCardholderField->setAction(action);
             gridLayout->addWidget(mCardholderField->label(), row, 0);
-            gridLayout->addLayout(mCardholderField->layout(), row, 1);
+            gridLayout->addWidget(mCardholderField->valueWidget(), row, 1);
         }
 
         if (mAppType == AppType::OpenPGPApp) {
@@ -262,7 +262,7 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
             action->setText({});
             mPublicKeyUrlField->setAction(action);
             gridLayout->addWidget(mPublicKeyUrlField->label(), row, 0);
-            gridLayout->addLayout(mPublicKeyUrlField->layout(), row, 1);
+            gridLayout->addWidget(mPublicKeyUrlField->valueWidget(), row, 1);
         }
 
         if (mAppType == AppType::OpenPGPApp) {
@@ -273,7 +273,7 @@ SmartCardWidget::SmartCardWidget(Kleo::SmartCard::AppType appType, QWidget *pare
                                                             parent);
             mPinCountersField->setToolTip(xi18nc("@info:tooltip", "Shows the number of remaining attempts for entering the correct PIN or PUK."));
             gridLayout->addWidget(mPinCountersField->label(), row, 0);
-            gridLayout->addLayout(mPinCountersField->layout(), row, 1);
+            gridLayout->addWidget(mPinCountersField->valueWidget(), row, 1);
         }
 
         upperLayout->addLayout(gridLayout, 1);
