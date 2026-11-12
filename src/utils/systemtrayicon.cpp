@@ -12,6 +12,9 @@
 #ifndef QT_NO_SYSTEMTRAYICON
 
 #include "kleopatra_debug.h"
+
+#include "kleopatraapplication.h"
+
 #include <QApplication>
 #include <QEvent>
 #include <QPointer>
@@ -86,7 +89,7 @@ SystemTrayIcon::Private::Private(SystemTrayIcon *qq)
     // activate when dock item is clicked; systray icon should show menu, only
     connect(qApp, &QApplication::applicationStateChanged, q, [this](Qt::ApplicationState state) {
         if (state == Qt::ApplicationActive && !qApp->focusWindow()) {
-            q->doActivated();
+            KleopatraApplication::instance()->openOrRaiseMainWindow();
         }
     });
 #else
