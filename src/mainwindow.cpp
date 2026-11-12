@@ -682,7 +682,12 @@ void MainWindow::Private::setupActions()
         }
     }
 
+#ifdef Q_OS_MACOS
+    // File->Close is redundant on MacOS. We don't want it in the menu, but we do want the shortcut.
+    coll->addAction(QStringLiteral("hidden_file_close"), KStandardAction::close(q, SLOT(close()), q));
+#else
     KStandardAction::close(q, SLOT(close()), coll);
+#endif
     KStandardAction::quit(q, SLOT(closeAndQuit()), coll);
     KStandardAction::configureToolbars(q, SLOT(configureToolbars()), coll);
     KStandardAction::keyBindings(q, SLOT(editKeybindings()), coll);
