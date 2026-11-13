@@ -65,7 +65,6 @@ protected:
     qint64 writeData(const char *data, qint64 size) override;
 
 private:
-    Q_DISABLE_COPY(WindowsProcessDevice)
     class Private;
     std::shared_ptr<Private> d;
 };
