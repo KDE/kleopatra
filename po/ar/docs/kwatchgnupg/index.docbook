@@ -1,0 +1,293 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY gnupg "<acronym
+>GnuPG</acronym
+>">
+  <!ENTITY gpgconf "<application
+>GPGConf</application
+>">
+  <!ENTITY watchgnupg "<application
+>WatchGnuPG</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE">
+]>
+
+<book id="kwatchgnupg" lang="&language;">
+
+<bookinfo id="kwatchgnupginfo">
+<title
+>دليل kwatchgnupg</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+>&Marc.Mutz.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <contrib
+>مطوّر</contrib>
+<affiliation>
+<address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <affiliation
+> <address
+>&David.Faure.mail;</address>
+</affiliation>
+<contrib
+>مطوّر</contrib>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>2024-10-24</date>
+<releaseinfo
+>(Gear 24.12)</releaseinfo>
+
+<abstract>
+<para
+>kwatchgnupg هو عارض سجلات بسيط لـ GnuPG. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>GnuPG</keyword>
+<keyword
+>عارض سجلات</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>مقدمة</title
+> 
+
+<para
+>kwatchgnupg هو عارض سجلات بسيط لـ GnuPG. وهو يعمل كواجهة رسومية (GUI) لأداة سطر الأوامر watchgnupg، التي تستمع على مقبس لخطوط السجل من تطبيقات GnuPG الخلفية. راجع <userinput
+>info watchgnupg</userinput
+> لمزيد من المعلومات حول watchgnupg.</para>
+
+<para
+>يمكن تشغيل kwatchgnupg من قائمة <menuchoice
+><guimenu
+>أدوات</guimenu
+><guimenuitem
+>عارض سجلات GnuPG</guimenuitem
+></menuchoice
+> في كل من كليوبترا وكمايل، وكذلك من سطر الأوامر. ملف kwatchgnupg التنفيذي يسمى <userinput
+>kwatchgnupg</userinput
+>. </para>
+
+<sect1 id="mainfunc"
+><title
+>الوظائف الرئيسة</title>
+
+<sect2 id="mainfunc.viewing"
+><title
+>عرض السجل</title>
+
+<para
+>وظيفة kwatchgnupg الرئيسة هي بالطبع تقديم معلومات تنقيح وسجلات GnuPG للمستخدم. تنقسم النافذة الرئيسة إلى منطقة عرض نصية كبيرة، حيث ستظهر رسائل GnuPG فور توليدها، وشريط أدوات يتيح الوصول السريع إلى الوظائف الأكثر احتياجًا، بالإضافة إلى شريط القوائم. </para>
+
+<para
+>تسبق كل سطر في عرض النص عادةً بادئة تتكون من معرّف <acronym
+>FD</acronym
+> وطابع زمني بتنسيق ISO. يمكن استخدام معرّف <acronym
+>FD</acronym
+> للتمييز بين مخرجات سيرورات GnuPG المختلفة التي تعمل بالتوازي. يتبع الطابع الزمني اسم المكون الذي هو مصدر سطر السجل، جنبًا إلى جنب مع بعض المعلومات الداخلية بين أقواس مربعة، يليه مخرجات التنقيح أو السجل الأصلية كما طبعها المكون. </para>
+
+<para
+>مبدئيًا، حُدد عدد أسطر السجل التي يُحتفظ بها في التاريخ بـ 10000 سطر. يمكنك ضبط حجم التاريخ في مربع حوار الضبط. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.saving">
+<title
+>حفظ محتويات نافذة السجل في ملف</title>
+
+<para
+>أحيانًا قد يكون من المفيد حفظ محتويات نافذة السجل الحالية في ملف، مثلًا لإرسالها بالبريد إلى المطورين كجزء من تقرير خطأ. هناك طريقتان لتحقيق ذلك في kwatchgnupg: </para>
+
+<para
+>أولًا، يمكنك اختيار <menuchoice
+><guilabel
+>ملف</guilabel
+><guimenuitem
+>حفظ باسم...</guimenuitem
+></menuchoice
+> (أو أيقونة شريط الأدوات المقابلة) لحفظ كامل محتويات نافذة السجل في ملف. سيُطلب منك تحديد موقع حفظ الملف. </para>
+
+<para
+>ثانيًا، يمكنك تحديد الأسطر المهمة باستخدام زر الفأرة الأيسر ولصقها في معالج نصوص أو عميل بريد، تمامًا مثل أي نص آخر. يجب أن تتأكد، مع ذلك، من عدم انكسار الأسطر، لأن هذا يقلل من قابلية قراءة السجل. </para>
+
+</sect2>
+
+<sect2 id="mainfunc.clear"
+><title
+>مسح نافذة السجل</title>
+
+<para
+>من أجل الراحة، يمكنك توجيه kwatchgnupg لمسح نافذة السجل باستخدام  <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>مسح التاريخ</guimenuitem
+></menuchoice
+> (أو أيقونة شريط الأدوات المقابلة). </para>
+
+<para
+>استخدم هذا قبل بدء العملية التشفيرية التي تريد مراقبتها للحصول فقط على مخرجات تلك العملية. يمكنك بعد ذلك حفظ السجل باستخدام <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>حفظ باسم...</guimenuitem
+></menuchoice
+> كما هو موضح أعلاه. </para>
+
+<para
+>مسح السجل يتخلص من أي محتويات سابقة لنافذة السجل. إذا كنت غير متأكد مما إذا كنت ستحتاج للمحتويات الحالية لاحقًا، فيجب عليك حفظها في ملف (انظر أعلاه) قبل المسح. </para>
+</sect2>
+</sect1>
+
+</chapter>
+
+<chapter id="configure"
+><title
+>ضبط kwatchgnupg</title>
+
+<para
+>لضبط kwatchgnupg، اختر <menuchoice
+><guimenu
+>إعدادات</guimenu
+><guimenuitem
+>اضبط kwatchgnupg</guimenuitem
+></menuchoice
+>، أو أيقونة شريط الأدوات المقابلة. </para>
+
+<sect1 id="configure.dialog"
+><title
+>مربع حوار الإعدادات</title>
+
+<sect2 id="configure.logwindow"
+><title
+>إعدادات نافذة السجل</title>
+
+<para
+>هنا، يمكنك ضبط حجم خبيئة التاريخ، أي عدد أسطر السجل التي يُحتفظ بها. إذا أصدرت خلفية GnuPG أسطرًا أكثر منذ آخر عملية مسح للتاريخ، فسيُتخلص من أقدم الأسطر حتى تتوفر مساحة كافية للأسطر الجديدة مرة أخرى. </para>
+
+<para
+>يمكنك تعطيل حد حجم التاريخ بالنقر على <guibutton
+>اضبط كغير محدود</guibutton
+>. لاحظ، مع ذلك، أن استهلاك kwatchgnupg للذاكرة سيزداد مع عدد الأسطر التي يعرضها حاليًا. إذا استخدمت حجم تاريخ غير محدود، فتأكد من تشغيل kwatchgnupg للعمليات القصيرة فقط، أو مسح التاريخ يدويًا بانتظام. </para>
+
+</sect2>
+
+</sect1>
+
+<sect1 id="configure.watchgnupg"
+><title
+>إعدادات سجلات GnuPG</title>
+
+<para
+>استخدم مربع حوار إعدادات كليوبترا لضبط سجلات مكونات نظام GnuPG. لكل مكون تريد رؤية سجلاته، اختر مستوى تنقيح وأدخل <filename
+>socket://</filename
+> كملف يجب كتابة السجلات إليه. </para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>الحقوق والترخيص</title>
+
+<para
+>حقوق نشر kwatchgnupg لعام 2004 لشركة Klarälvdalens Datakonsult AB</para>
+
+<para
+>حقوق نشر التوثيق لعام 2004 لشركة Klarälvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>المساهمون</title>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index; 
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->
