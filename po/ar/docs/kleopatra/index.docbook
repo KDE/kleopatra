@@ -1,0 +1,3984 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kleopatra "<application
+>Kleopatra</application
+>">
+  <!ENTITY uiserver "UiServer">
+  <!ENTITY kwatchgnupg "<application
+>GnuPG Log Viewer</application
+>">
+  <!ENTITY gpgsm "<application
+>GpgSM</application
+>">
+  <!ENTITY gnupg "<application
+>GnuPG</application
+>">
+  <!ENTITY gpg "<application
+>GPG</application
+>">
+  <!ENTITY gpgme "<application
+>GpgME</application
+>"
+> <!--### there's no <library
+>-->
+  <!ENTITY gpgconf "<application
+>GpgConf</application
+>">
+  <!ENTITY gpgagent "<application
+>GpgAgent</application
+>">
+  <!ENTITY dirmngr "<application
+>DirMngr</application
+>">
+  <!ENTITY scdaemon "<application
+>SCDaemon</application
+>">
+  <!ENTITY pinentry "<application
+>PinEntry</application
+>">
+  <!ENTITY kappname "&kleopatra;">
+  <!ENTITY package "kdepim">
+  <!ENTITY ldap "<acronym
+>LDAP</acronym
+>">
+  <!ENTITY ldaps "<acronym
+>LDAPS</acronym
+>">
+  <!ENTITY http "<acronym
+>HTTP</acronym
+>">
+  <!ENTITY smime "<acronym
+>S/MIME</acronym
+>">
+  <!ENTITY openpgp "<acronym
+>OpenPGP</acronym
+>">
+  <!ENTITY ascii "<acronym
+>ASCII</acronym
+>">
+  <!ENTITY der "<acronym
+>DER</acronym
+>">
+  <!ENTITY ssl "<acronym
+>SSL</acronym
+>">
+  <!ENTITY x509 "<acronym
+>X.509</acronym
+>">
+  <!ENTITY crl "<acronym
+>CRL</acronym
+>">
+  <!ENTITY ocsp "<acronym
+>OCSP</acronym
+>">
+  <!ENTITY NA "<acronym
+>N/A</acronym
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE">
+
+  <!ENTITY dn "<acronym
+>DN</acronym
+>">
+  <!ENTITY ca "<acronym
+>CA</acronym
+>">
+]>
+
+<book id="kleopatra" lang="&language;">
+
+<bookinfo id="kleopatrainfo">
+<title
+>دليل كليوبترا</title>
+
+<authorgroup>
+<author
+><firstname
+>Marc</firstname
+> <surname
+>Mutz</surname
+> <affiliation
+> <address
+><email
+>marc@kdab.net</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>David</firstname
+> <surname
+>Faure</surname
+> <contrib
+>مطوّر</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Steffen</firstname
+> <surname
+>Hansen</surname
+> <affiliation
+> <address
+>&Steffen.Hansen.mail;</address>
+</affiliation>
+<contrib
+>مطوّر</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Matthias Kalle</firstname
+> <surname
+>Dalheimer</surname
+> <contrib
+>مطوّر</contrib>
+</othercredit>
+
+<othercredit role="developer"
+><firstname
+>Jesper</firstname
+> <surname
+>Pedersen</surname
+> <affiliation
+> <address
+>&Jesper.Pedersen.mail;</address>
+</affiliation>
+<contrib
+>مطوّر</contrib>
+</othercredit>
+<othercredit role="developer"
+><firstname
+>Daniel</firstname
+> <surname
+>Molkentin</surname
+> <affiliation
+> <address
+>&Daniel.Molkentin.mail;</address>
+</affiliation>
+<contrib
+>مطوّر</contrib>
+</othercredit>
+
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<legalnotice
+>&GPLNotice;</legalnotice>
+
+<date
+>2013-07-04</date>
+<releaseinfo
+>2.1.1 (كيدي 4.11)</releaseinfo>
+
+<abstract>
+<para
+>كليوبترا أداة لإدارة شهادات <ulink url="https://en.wikipedia.org/wiki/X.509"
+>x509</ulink
+> و <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>OpenPGP</ulink
+>. </para>
+</abstract>
+
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>تطبيق كيدي</keyword>
+<keyword
+>X509</keyword>
+<keyword
+>OpenPGP</keyword>
+<keyword
+>PGP</keyword>
+<keyword
+>LDAP</keyword>
+<keyword
+>gpg</keyword>
+<keyword
+>gpgsm</keyword>
+<keyword
+>شهادة</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction"
+> <title
+>مقدمة</title>
+
+<para
+>كليوبترا هي أداة كيدي لإدارة شهادات <ulink url="https://en.wikipedia.org/wiki/X.509"
+>x509</ulink
+> و <ulink url="https://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP"
+>OpenPGP</ulink
+> في صناديق مفاتيح <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html"
+>gpgsm</ulink
+> و <ulink url="https://en.wikipedia.org/wiki/GNU_Privacy_Guard"
+>gpg</ulink
+> وجلب الشهادات من LDAP وخوادم الشهادات الأخرى.</para>
+
+<para
+>يمكن تشغيل كليوبترا من قائمة بريدك <menuchoice
+><guimenu
+>أدوات</guimenu
+> <guimenuitem
+>مدير الشهادات</guimenuitem
+></menuchoice
+>، وأيضًا من سطر الأوامر. يسمى ملف كليوبترا التنفيذي <userinput
+><command
+>kleopatra</command
+></userinput
+>.</para>
+
+<note
+><para
+>سُمي هذا البرنامج على اسم كليوبترا، وهي فرعون مصرية شهيرة عاشت في زمن يوليوس قيصر، وأنجبت منه طفلًا، سيزاريون، الذي لم يُعترف به وريثًا له.</para>
+
+<para
+>اختير الاسم لأن أصل هذا البرنامج يعود إلى <ulink url="https://www.gnupg.org/aegypten2/"
+>مشاريع Ägypten</ulink
+> و (Ägypten هي الكلمة الألمانية لمصر). كليوبترا هو التهجئة الألمانية لـ Cleopatra.</para
+></note>
+
+</chapter>
+
+<chapter id="functions"
+><title
+>الوظائف الرئيسة</title>
+
+<sect1 id="functions-view"
+><title
+>عرض صندوق المفاتيح المحلي</title>
+
+<!-- Viewing and Refreshing, also Validation -->
+
+<para
+>وظيفة كليوبترا الرئيسة هي عرض وتحرير محتويات صندوق المفاتيح المحلي، وهو ما يشبه مفهوم gpg لحلقات المفاتيح، وإن كان لا ينبغي المبالغة في هذا التشبيه.</para>
+
+<para
+>تنقسم النافذة الرئيسة إلى مساحة عرض مفاتيح كبيرة تتكون من عدة ألسنة، وشريط قوائم و <link linkend="functions-search"
+>شريط بحث</link
+> في الأعلى، وشريط حالة في الأسفل.</para>
+
+<para
+>يقابل كل سطر في قائمة المفاتيح شهادة واحدة، تُعرف بما يسمى <guilabel
+>موضوع DN</guilabel
+>. يرمز DN إلى <quote
+>الاسم المتميز</quote
+>، وهو معرف هرمي، يشبه إلى حد كبير مسار نظام ملفات بصيغة غير معتادة، ومن المفترض أن يحدد شهادة معينة بشكل فريد عالميًا.</para>
+
+<para
+>لتكون المفاتيح (العامة) صالحة، وبالتالي قابلة للاستخدام، يجب أن تُوقع من قِبل سلطة شهادات (CA). تسمى هذه التوقيعات شهادات، ولكن عادةً ما يُستخدم المصطلحان <quote
+>شهادة</quote
+> و <quote
+>مفتاح (عام)</quote
+> بالتبادل، ولن نفرق بينهما في هذا الدليل أيضًا، إلا عند الإشارة إلى ذلك صراحةً.</para>
+
+<para
+>يجب بدورها أن تُوقع سلطات الشهادات من قِبل سلطات شهادات أخرى لتكون صالحة. وبالطبع، يجب أن ينتهي هذا في مكان ما، لذا تقوم سلطة الشهادات من المستوى الأعلى (سلطة الجذر) بتوقيع مفتاحها بنفسها (وهذا ما يسمى بالتوقيع الذاتي). لذا تحتاج شهادات الجذر إلى تعيين صلاحية لها (تسمى عادةً الثقة) يدويًا، مثلًا بعد مقارنة البصمة مع تلك الموجودة على موقع سلطة الشهادات. يتم ذلك عادةً بواسطة مسؤول النظام أو مورد المنتج الذي يستخدم الشهادات، ولكن يمكن للمستخدم القيام بذلك عبر واجهة سطر الأوامر لـ gpgsm.</para>
+
+<para
+>لمعرفة أي من الشهادات هي شهادات جذر، انتقل إلى وضع قائمة المفاتيح الهرمي باستخدام <xref linkend="view-hierarchical-key-list"/>.</para>
+
+<para
+>يمكنك رؤية تفاصيل أي شهادة بالنقر المزدوج عليها أو باستخدام <xref linkend="view-certificate-details"/>. يفتح هذا حوارًا يعرض الخصائص الأكثر شيوعًا للشهادة، وسلسلة شهاداتها (أي سلسلة المصدرين وصولًا إلى سلطة الجذر)، وتفريغًا لجميع المعلومات التي يستطيع المحرك الخلفي استخراجها من الشهادة.</para>
+
+<para
+>إذا غيّرت صندوق المفاتيح دون استخدام كليوبترا (مثلًا باستخدام واجهة سطر أوامر gpgsm)، يمكنك تحديث العرض باستخدام <xref linkend="view-redisplay"/>.</para>
+
+<!-- no longer in kde 4
+para
+>Since validating a key may take some time (&eg; CRLs might need
+to be fetched), the normal keylisting does not attempt to check the
+validity of keys. For this, <link linkend="certificates-validate">
+<menuchoice
+><shortcut
+><keycombo action="simul"
+>&Shift;<keycap
+>F5</keycap
+></keycombo>
+</shortcut
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Validate</guimenuitem
+></menuchoice
+></link
+>,
+a special variant of <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, is provided. It
+either checks the selected certificates, or all keys if none are
+selected.</para-->
+
+</sect1>
+
+<sect1 id="functions-search"
+><title
+>البحث عن الشهادات واستيرادها</title>
+
+<para
+>في معظم الأوقات، ستحصل على شهادات جديدة من خلال التحقق من التوقيعات في رسائل البريد الإلكتروني، حيث تدمج الشهادات في التوقيعات المصنوعة باستخدامها في أغلب الأحيان. ومع ذلك، إذا كنت بحاجة إلى إرسال بريد إلى شخص لم تتواصل معه بعد، فأنت بحاجة إلى جلب الشهادة من مجلد LDAP (على الرغم من أن <ulink url="https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPGSM.html#Invoking-GPGSM"
+> gpgsm</ulink
+> يمكنه القيام بذلك آليًا)، أو من ملف. تحتاج أيضًا إلى استيراد شهادتك الخاصة بعد تلقي رد سلطة الشهادات على طلب الشهادة الخاص بك.</para>
+
+<para
+>للبحث عن شهادة في دليل LDAP، اختر <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>ابحث عن الشهادات في الخادم</guimenuitem
+></menuchoice
+> وأدخل نصًا (مثل اسم الشخص الذي تريد شهادته) في حقل تحرير حوار <guilabel
+>البحث عن شهادة في خادم المفاتيح</guilabel
+>، ثم انقر فوق زر <guilabel
+>ابحث</guilabel
+>. ستُعرض النتائج في قائمة المفاتيح أسفل شريط البحث، حيث يمكنك تحديد الشهادات للنظر فيها بالنقر فوق زر <guibutton
+>التفاصيل</guibutton
+> أو تنزيلها باستخدام <guibutton
+>استورد</guibutton
+> إلى صندوق المفاتيح المحلي.</para>
+<!--
+Note that you can also download the certificate from the
+details dialog, using the <guilabel
+>Import to Local</guilabel>
+button.</para>
+not found in 4.2
+-->
+
+<para
+>يمكنك ضبط قائمة خوادم LDAP للبحث في صفحة <link linkend="configuration-directory-services"
+><guilabel
+>خدمات الدليل</guilabel
+></link
+> في حوار ضبط كليوبترا.</para>
+
+<para
+>إذا استلمت الشهادة كملف، فجرب <xref linkend="file-import-certificates"/>. يحتاج gpgsm إلى فهم تنسيق ملف الشهادة؛ يرجى الرجوع إلى دليل gpgsm للحصول على قائمة بتنسيقات الملفات المدعومة.</para>
+
+<para
+>إذا لم تقم بـ <link linkend="functions-newkey"
+>إنشاء زوج مفاتيحك باستخدام gpgsm</link
+>، فستحتاج أيضًا إلى استيراد المفتاح العام يدويًا (وكذلك المفتاح السري) من ملف PKCS#12 الذي حصلت عليه من سلطة الشهادات. يمكنك القيام بذلك في سطر الأوامر باستخدام <link linkend="commandline-option-import-certificate"
+><userinput
+><command
+>kleopatra <option
+>--import-certificate</option
+> <filename
+>اسم_الملف</filename
+></command
+></userinput
+></link
+> أو من داخل كليوبترا باستخدام <xref linkend="file-import-certificates"/>، تمامًا كما تفعل مع الشهادات <quote
+>العادية</quote
+>.</para>
+
+</sect1>
+
+<sect1 id="functions-newkey"
+><title
+>إنشاء أزواج مفاتيح جديدة</title>
+
+<para
+>يبدأ عنصر القائمة <xref linkend="file-new-key-pair"/> <guilabel
+>معالج إنشاء زوج المفاتيح</guilabel
+> الذي سيرشدك عبر عدد من الخطوات لإنشاء طلب شهادة.</para>
+<para
+>عند الانتهاء من خطوة في المعالج، اضغط على <guibutton
+>التالي</guibutton
+> للانتقال إلى الخطوة التالية (أو <guibutton
+>السابق</guibutton
+> لمراجعة الخطوات التي اكتملت بالفعل). يمكن إلغاء إنشاء طلب الشهادة في أي وقت بالضغط على زر <guibutton
+>ألغِ</guibutton
+>. </para>
+<para
+>في الصفحة الأولى من المعالج، اختر نوع الشهادة التي تريد إنشاءها:</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><guilabel
+>أنشئ زوج مفاتيح OpenPGP شخصي</guilabel
+></term>
+<listitem
+><para
+>تُنشأ أزواج مفاتيح OpenPGP محليًا، ويصدق عليها أصدقاؤك ومعارفك. لا توجد سلطة شهادات مركزية؛ بدلًا من ذلك، ينشئ كل فرد شبكة ثقة شخصية من خلال التصديق على أزواج مفاتيح المستخدمين الآخرين بشهادته الخاصة.</para>
+<para
+>يجب عليك إدخال <guilabel
+>الاسم</guilabel
+>، و <guilabel
+>البريد الإلكتروني</guilabel
+> و <guilabel
+>تعليق</guilabel
+> اختياري.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>أنشئ زوج مفاتيح X.509 شخصي وطلب شهادة</guilabel
+></term>
+<listitem>
+<para
+>تُنشأ أزواج مفاتيح X.509 محليًا، ولكن تُصدق مركزيًا من قبل سلطة شهادات (CA). يمكن لسلطات الشهادات التصديق على سلطات شهادات أخرى، مما ينشئ سلسلة ثقة هرمية مركزية.</para>
+<para
+>الخطوة التالية في المعالج هي كتابة بياناتك الشخصية للشهادة. الحقول التي يجب ملؤها هي: <itemizedlist>
+<listitem>
+<para
+><guilabel
+>الاسم الشائع (CN):</guilabel
+> اسمك؛</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>عنوان البريد الإلكتروني (EMAIL):</guilabel
+> عنوان بريدك الإلكتروني؛ تأكد من كتابته بشكل صحيح&mdash;سيكون هذا هو العنوان الذي سيرسل إليه الأشخاص البريد عندما يستخدمون شهادتك.</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>الموقع (L):</guilabel
+> البلدة أو المدينة التي تعيش فيها؛</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>الوحدة التنظيمية (OU):</guilabel
+> الوحدة التنظيمية التي تتبع لها (على سبيل المثال، "الخدمات اللوجستية")؛</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>المؤسسة (O):</guilabel
+> المؤسسة التي تمثلها (على سبيل المثال، الشركة التي تعمل بها)؛</para>
+</listitem>
+<listitem>
+<para
+><guilabel
+>رمز الدولة (C):</guilabel
+> الرمز المكون من حرفين للدولة التي تعيش فيها (على سبيل المثال، "SA")؛</para>
+</listitem>
+</itemizedlist>
+</para
+><para
+>الخطوة التالية في المعالج هي اختيار ما إذا كنت تريد تخزين الشهادة في ملف أو إرسالها مباشرة إلى سلطة الشهادات. سيتعين عليك تحديد اسم الملف أو عنوان البريد الإلكتروني لإرسال طلب الشهادة إليه. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<!--FIXME modified copy from kgpg-->
+<sect2 id="key-revoke">
+<title
+>إبطال مفتاح</title>
+
+<para
+>يمكن إعادة زوج المفاتيح الذي انتهت صلاحيته إلى حالة التشغيل طالما كان لديك حق الوصول إلى المفتاح السري وكلمة السر. لجعل المفتاح غير قابل للاستخدام بشكل موثوق، تحتاج إلى إبطاله. يتم الإبطال بإضافة توقيع إبطال خاص إلى المفتاح.</para>
+
+<para
+>يُخزن توقيع الإبطال هذا في ملف منفصل. يمكن لاحقًا استيراد هذا الملف إلى حلقة المفاتيح ثم إرفاقه بالمفتاح مما يجعله غير قابل للاستخدام. يرجى ملاحظة أنه لاستيراد هذا التوقيع إلى المفتاح لا يلزم وجود كلمة سر. لذلك يجب عليك تخزين توقيع الإبطال هذا في مكان آمن، وعادةً ما يكون مكانًا مختلفًا عن زوج مفاتيحك. ومن النصائح الجيدة استخدام مكان منفصل عن حاسوبك، إما بنسخه إلى جهاز تخزين خارجي مثل ذاكرة USB أو طباعته.</para>
+
+<para
+>لا توفر كليوبترا وظيفة لإنشاء توقيع إبطال في أي وقت، ولكن يمكنك القيام بذلك باستخدام تطبيق كيدي Kgpg باختيار <menuchoice
+><guimenu
+>مفاتيح</guimenu
+> <guimenuitem
+>أبطل المفتاح</guimenuitem
+></menuchoice
+> واستيراد توقيع الإبطال اختياريًا إلى حلقة مفاتيحك فورًا.</para>
+
+<para
+>توجد طريقة بديلة لإنشاء شهادة إبطال وهي استخدام gpg مباشرة من سطر الأوامر: <userinput
+>gpg --output <replaceable
+>revocation_certificate</replaceable
+>.asc --gen-revoke <replaceable
+>your_key</replaceable
+></userinput
+>. يجب أن يكون المعامل <replaceable
+>your_key</replaceable
+> محددًا للمفتاح، إما معرف المفتاح لزوج مفاتيحك الرئيس أو أي جزء من معرف المستخدم الذي يحدد زوج مفاتيحك.</para>
+
+</sect2>
+
+</sect1>
+
+
+<!-- hopelessly outdated
+<sect1 id="functions-keybox-management"
+><title
+>Keybox Management</title>
+
+<para
+>In addition to <link linkend="functions-view"
+>list and
+validate</link
+>, <link linkend="functions-search"
+>search and
+import</link
+> certificates and <link
+linkend="functions-newkey"
+>creating new ones</link
+>, &kleopatra; also
+has some less often used functions that help you manage your local
+keybox.</para>
+
+<para
+>These functions include deleting certificates from the local
+keybox with <xref linkend="certificates-delete"/>, as well
+as manual handling of CRLs (<xref linkend="certificates-refresh-x509"/>,
+<xref linkend="crls-clear-crl-cache"/>, <xref linkend="crls-dump-crl-cache"/>).
+</para>
+
+</sect1>
+-->
+
+</chapter>
+
+<chapter id="menu"
+><title
+>مرجع القائمة</title>
+
+<sect1 id="menufile"
+><title
+>قائمة ملف</title>
+
+<variablelist>
+
+<varlistentry id="file-new-key-pair">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>شهادة جديدة...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يُنشئ زوج مفاتيح جديد (عام وسري)</action
+> ويسمح بإرسال الجزء العام إلى سلطة شهادات (CA) للتوقيع. ثم تُرسل الشهادة الناتجة إليك، أو تُخزن في خادم LDAP لتتمكن من تنزيلها في صندوق مفاتيحك المحلي، حيث يمكنك استخدامها لتوقيع وفك تعمية الرسائل.</para>
+
+<para
+>يسمى هذا الوضع من التشغيل <quote
+>توليد المفاتيح اللامركزي</quote
+>، حيث تُنشأ جميع المفاتيح محليًا. لا تدعم كليوبترا (و gpgsm) <quote
+>توليد المفاتيح المركزي</quote
+> بشكل مباشر، ولكن يمكنك استيراد حزمة المفاتيح العامة/السرية التي تتلقاها من سلطة الشهادات بتنسيق PKCS#12 عبر <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+        <varlistentry id="file-lookup-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>ابحث عن الشهادات في الخادم...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يبحث عن الشهادات ويستوردها من خوادم الشهادات إلى صندوق المفاتيح المحلي.</action
+> راجع <xref linkend="functions-search"/> لمزيد من التفاصيل. </para>
+            <para
+>يجب أن تكون خوادم المفاتيح مضبوطة ليعمل هذا. راجع <xref linkend="configuration-directory-services"/> لمزيد من التفاصيل. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>I</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>استورد الشهادات...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يستورد الشهادات و/أو المفاتيح السرية من الملفات إلى صندوق المفاتيح المحلي.</action
+> راجع <xref linkend="functions-search"/> لمزيد من التفاصيل. </para>
+            <para
+>يجب أن يكون تنسيق ملف الشهادة مدعومًا من قبل gpgsm/gpg. يرجى الرجوع إلى دليلي gpgsm و gpg للحصول على قائمة بالتنسيقات المدعومة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-certificates">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>صدّر الشهادات...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يُصدّر الشهادات المحددة إلى ملف.</action>
+            </para>
+            <para
+>يحدد امتداد اسم الملف الذي تختاره لاسم ملف التصدير تنسيق ملف التصدير: </para>
+            <itemizedlist>
+              <listitem>
+                <para
+>بالنسبة لشهادات OpenPGP، سيؤدي استخدام <filename class="extension"
+>gpg</filename
+> و <filename class="extension"
+>pgp</filename
+> إلى ملف ثنائي، بينما سيؤدي <filename class="extension"
+>asc</filename
+> إلى ملف ASCII مدرع. </para>
+              </listitem>
+              <listitem>
+                <para
+>بالنسبة لشهادات S/MIME، سيؤدي استخدام <filename class="extension"
+>der</filename
+> إلى ملف ثنائي بترميز DER، بينما سيؤدي <filename class="extension"
+>pem</filename
+> إلى ملف ASCII مدرع. </para>
+              </listitem>
+            </itemizedlist>
+            <para
+>ما لم تُحدد شهادات متعددة، ستقترح كليوبترا <filename
+><replaceable
+>البصمة</replaceable
+>.{asc,pem}</filename
+> كاسم لملف التصدير. </para>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة واحدة أو أكثر. </para>
+            <note>
+              <para
+>تُصدّر هذه الوظيفة المفاتيح العامة فقط، حتى لو كان المفتاح السري متاحًا. استخدم <xref linkend="file-export-secret-key"/> لتصدير المفاتيح السرية إلى ملف. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-export-secret-key">
+          <term>
+            <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>صدّر المفاتيح السرية...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يُصدّر المفتاح السري إلى ملف.</action>
+            </para>
+            <para
+>في الحوار الذي يفتح، يمكنك اختيار ما إذا كنت تريد إنشاء ملف تصدير ثنائي أو ASCII مدرع (<guilabel
+>ASCII مدرع</guilabel
+>). بعد ذلك انقر فوق أيقونة المجلد على الجانب الأيمن من مربع نص <guilabel
+>ملف المخرجات</guilabel
+> واختر المجلد واسم ملف التصدير. عند تصدير مفاتيح S/MIME السرية، يمكنك أيضًا اختيار <guilabel
+>مجموعة محارف عبارة السر</guilabel
+>. راجع مناقشة خيار <option
+>--p12-charset <replaceable
+>مجموعة_المحارف</replaceable
+></option
+> في دليل gpgsm لمزيد من التفاصيل. </para>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة واحدة بالضبط، ويكون المفتاح السري لتلك الشهادة متاحًا. </para>
+            <warning>
+              <para
+>نادرًا ما يكون من الضروري استخدام هذه الوظيفة، وإذا كان الأمر كذلك، فيجب التخطيط له بعناية. يتضمن التخطيط لنقل مفتاح سري اختيار وسائط النقل والحذف الآمن لبيانات المفتاح على الجهاز القديم، وكذلك على وسيط النقل، من بين أمور أخرى. </para>
+            </warning>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>E</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>صدّر الشهادات إلى الخادم...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يُنشر الشهادات المحددة على خادم مفاتيح</action
+> (OpenPGP فقط). </para>
+            <para
+>تُرسل الشهادة إلى خادم الشهادات المضبوط لـ OpenPGP (راجع <xref linkend="configuration-directory-services"/>)، إذا كان ذلك مضبوطًا، وإلا فإلى <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+            <para
+>هذه الوظيفة متاحة فقط إذا حُددت شهادة OpenPGP واحدة على الأقل (وليس شهادات S/MIME). </para>
+            <note>
+              <!-- also appears in message box in -->
+              <!-- commands/exportopenpgpcertificatestoserver.cpp -->
+              <para
+>عندما تُصدّر شهادات OpenPGP إلى خادم دليل عام، يكاد يكون من المستحيل إزالتها مرة أخرى. قبل تصدير شهادتك إلى خادم دليل عام، تأكد من إنشاء شهادة إبطال حتى تتمكن من إبطال الشهادة إذا لزم الأمر لاحقًا. </para>
+            </note>
+            <note>
+              <para
+>تقوم معظم خوادم شهادات OpenPGP العامة بمزامنة الشهادات فيما بينها، لذا لا فائدة تذكر من الإرسال إلى أكثر من خادم واحد. </para>
+              <para
+>قد يحدث ألا تظهر نتائج عند البحث في خادم شهادات على الرغم من أنك أرسلت شهادتك إليه للتو. هذا لأن معظم عناوين خوادم المفاتيح العامة تستخدم نظام تدوير DNS لموازنة الحمل عبر عدة أجهزة. تتزامن هذه الأجهزة مع بعضها البعض، ولكن عادةً كل 24 ساعة تقريبًا. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>فك تعمية/تحقق من الملفات...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يفك تعمية الملفات و/أو يتحقق من التوقيعات</action
+> على الملفات. </para>
+<!--
+            <para>
+              See <xref linkend="function-decrypt-verify-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>ملف</guimenu
+><guimenuitem
+>وقع/عمِّ الملفات...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يوقع و/أو يعمي الملفات.</action>
+            </para>
+<!--
+            <para>
+              See <xref linkend="function-sign-encrypt-files"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+<!--
+Create Checksum Files...
+Verify Checksum Files...
+  missing-->
+        <varlistentry>
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>W</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>أغلق</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يغلق نافذة كليوبترا الرئيسة.</action
+> يمكنك استعادتها من أيقونة صينية النظام في أي وقت. </para>
+          </listitem>
+        </varlistentry>
+
+<varlistentry id="file-quit">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>ملف</guimenu
+><guimenuitem
+>أنهِ</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>ينهي كليوبترا.</action
+></para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1
+> <!-- File Menu -->
+
+
+
+<sect1 id="menuview"
+><title
+>قائمة عرض</title>
+
+      <variablelist>
+
+        <varlistentry id="view-redisplay">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>F5</keycap
+></keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>أعد العرض</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يُحدّث قائمة الشهادات.</action>
+            </para>
+            <para
+>استخدام هذه الوظيفة ليس ضروريًا عادةً، حيث تراقب كليوبترا نظام الملفات بحثًا عن التغييرات وتحدث قائمة الشهادات آليًا عند الحاجة. </para>
+          </listitem>
+        </varlistentry>
+
+
+        <varlistentry id="view-stop-operation">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+>&Esc;</keycombo
+></shortcut
+> <guimenu
+>عرض</guimenu
+><guimenuitem
+>أوقف العملية</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يوقف (يلغي) جميع العمليات المعلقة،</action
+> مثل البحث أو إدراج المفاتيح أو التنزيل. </para>
+            <para
+>هذه الوظيفة متاحة فقط إذا كانت هناك عملية واحدة على الأقل نشطة. </para>
+            <note>
+              <para
+>بسبب قيود المحرك الخلفي، قد تتعلق العمليات أحيانًا بطريقة تجعل هذه الوظيفة غير قادرة على إلغائها فورًا، أو على الإطلاق. </para>
+              <para
+>في مثل هذه الحالات، الطريقة الوحيدة لاستعادة النظام هي إنهاء عمليات scdaemon و dirmngr و gpgsm و gpg بهذا الترتيب، عبر أدوات نظام التشغيل (<command
+>top</command
+>، مدير المهام، وما إلى ذلك)، حتى يُلغى حظر العملية. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+
+<varlistentry id="view-certificate-details">
+<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>تفاصيل الشهادة</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يظهر تفاصيل الشهادة المحددة حاليًا.</action
+></para>
+
+<para
+>هذه الوظيفة متاحة فقط إذا حُددت شهادة واحدة بالضبط.</para>
+
+<para
+>هذه الوظيفة متاحة أيضًا بالنقر المزدوج فوق العنصر المقابل في عرض القائمة مباشرةً.</para>
+
+<!--FIXME: link to the dialog's help, but where do we put _that_?-->
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-hierarchical-key-list">
+<term
+><menuchoice
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>قائمة الشهادات الهرمية</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يبدل بين وضع قائمة الشهادات الهرمي والمسطح. </action
+></para>
+
+<para
+>في الوضع الهرمي، تُرتب الشهادات حسب علاقة المصدر/الموضوع، لذا من السهل معرفة التسلسل الهرمي الذي تنتمي إليه شهادة معينة، ولكن يصعب العثور على شهادة معينة في البداية (على الرغم من أنه يمكنك بالطبع استخدام <link linkend="functions-search"
+>شريط البحث</link
+>).</para>
+
+<para
+>في الوضع المسطح، تُعرض جميع الشهادات في قائمة مسطحة، مرتبة أبجديًا. في هذا الوضع، يسهل العثور على شهادة معينة، ولكن لا يتضح بشكل مباشر شهادة الجذر التي تنتمي إليها.</para>
+
+            <para
+>تبدل هذه الوظيفة الوضع الهرمي لكل لسان، أي أن لكل لسان حالة هرمية خاصة به. يهدف ذلك إلى تمكينك من الحصول على قائمة مسطحة وأخرى هرمية في آن واحد، كل منها في لسان مستقل. </para>
+
+            <note>
+              <para
+>يُطبق العرض الهرمي حاليًا لشهادات S/MIME فقط. يوجد خلاف بين المطورين حول الطريقة الصحيحة لعرض شهادات OpenPGP هرميًا (أساسًا، <quote
+>الأصل = الموقع</quote
+> أو <quote
+>الأصل = الموقع له</quote
+>). </para>
+            </note>
+
+</listitem>
+</varlistentry>
+
+
+<varlistentry id="view-expand-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>.</keycap
+> </keycombo
+></shortcut
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>وسع الكل</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يوسع جميع عناصر القائمة في عرض قائمة الشهادات،</action
+> أي يجعل جميع العناصر مرئية.</para>
+
+<para
+>هذا هو الوضع المبدئي عند الدخول في وضع قائمة المفاتيح الهرمي.</para>
+
+<para
+>يمكنك بالطبع توسيع وطي كل عنصر بمفرده.</para>
+
+<para
+>هذه الوظيفة متاحة فقط عندما يكون <xref linkend="view-hierarchical-key-list"/> مفعلًا.</para>
+
+</listitem>
+</varlistentry>
+
+<varlistentry id="view-collapse-all">
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>,</keycap
+> </keycombo
+></shortcut
+><guimenu
+>عرض</guimenu
+><guimenuitem
+>اطوِ الكل</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يطوي جميع عناصر القائمة في عرض قائمة الشهادات،</action
+> أي يخفي كل شيء باستثناء عناصر المستوى الأعلى.</para>
+
+<para
+>يمكنك بالطبع توسيع وطي كل عنصر بمفرده.</para>
+
+<para
+>هذه الوظيفة متاحة فقط عندما يكون <xref linkend="view-hierarchical-key-list"/> مفعلًا.</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menucertificates"
+><title
+>قائمة الشهادات</title>
+
+      <variablelist>
+
+        <varlistentry id="certificates-change-owner-trust">
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>غيّر ثقة المالك...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يغير ثقة المالك لشهادة OpenPGP المحددة.</action>
+<!--
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة OpenPGP واحدة بالضبط. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-trust-root">
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>ثق في شهادة الجذر</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يضع علامة موثوقة على شهادة الجذر (S/MIME) هذه.</action>
+            </para>
+            <para
+>بطريقة ما، هذا يعادل <xref linkend="certificates-change-owner-trust"/> لشهادات جذر S/MIME. ومع ذلك، يمكنك فقط الاختيار بين&mdash;بمصطلحات OpenPGP&mdash;الثقة <quote
+>المطلقة</quote
+> و <quote
+>عدم الثقة أبدًا</quote
+>. </para>
+            <note>
+              <para
+>سيطلب المحرك الخلفي (عن طريق gpg-agent) وقت استيراد شهادة الجذر ما إذا كان يجب الوثوق بشهادة الجذر المستوردة. ومع ذلك، يجب تمكين هذه الوظيفة صراحةً في ضبط المحرك الخلفي (<option
+>allow-mark-trusted</option
+> في <filename
+>gpg-agent.conf</filename
+>، أو إما <menuchoice
+><guimenu
+>نظام GnuPG</guimenu
+> <guisubmenu
+>عميل GPG</guisubmenu
+> <guimenuitem
+>اسمح للعملاء بتمييز المفاتيح كـ "موثوقة"</guimenuitem
+></menuchoice
+> أو <link linkend="configuration-smime-validation-allow-mark-trusted"
+><menuchoice
+><guimenu
+>تصديق S/MIME</guimenu
+> <guimenuitem
+>اسمح بتمييز شهادات الجذر كموثوقة</guimenuitem
+></menuchoice
+></link
+> ضمن <xref linkend="configuration"/>). </para>
+              <para
+>قد يؤدي تمكين هذه الوظيفة في المحرك الخلفي إلى ظهور نوافذ منبثقة من pinentry في أوقات غير مناسبة (على سبيل المثال عند التحقق من التوقيعات)، وبالتالي يمكن أن يعيق معالجة البريد الإلكتروني غير المراقبة. لهذا السبب، ولأنه من المرغوب فيه أن تكون قادرًا على <emphasis
+>إلغاء الثقة</emphasis
+> في شهادة جذر موثوقة مرة أخرى، تسمح كليوبترا بضبط الثقة يدويًا. </para>
+            </note>
+            <warning>
+              <para
+>بسبب نقص دعم المحرك الخلفي لهذه الوظيفة، تحتاج كليوبترا إلى العمل مباشرة على قاعدة بيانات ثقة gpgsm (<filename
+>trustlist.txt</filename
+>). عند استخدام هذه الوظيفة، تأكد من عدم وجود عمليات تعمية أخرى قيد التنفيذ قد تتداخل مع كليوبترا لتعديل قاعدة البيانات تلك. </para>
+            </warning>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة جذر S/MIME واحدة بالضبط، وتكون تلك الشهادة غير موثوقة بعد. </para>
+            <para
+>استخدم <xref linkend="certificates-distrust-root"/> للتراجع عن هذه الوظيفة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-distrust-root">
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>ألغِ الثقة في شهادة الجذر</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يضع علامة غير موثوقة على شهادة الجذر (S/MIME) هذه.</action>
+            </para>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة جذر S/MIME واحدة بالضبط، وتكون تلك الشهادة موثوقة حاليًا. </para>
+            <para
+>تُستخدم للتراجع عن <xref linkend="certificates-trust-root"/>. راجع هناك لمزيد من التفاصيل. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-certify">
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>صادق على الشهادة...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يتيح لك المصادقة على شهادة &openpgp; أخرى.</action>
+<!-- ### xref
+              See <xref linkend="functions-manage-wot"/> for details.
+-->
+            </para>
+            <para
+>هذه الوظيفة متاحة فقط إذا حُددت شهادة &openpgp; واحدة بالضبط. </para>
+          </listitem>
+        </varlistentry>
+
+
+<!--no longer in kde4
+<para
+>This is similar to <link
+linkend="view-redisplay"
+><menuchoice
+><shortcut
+><keycombo action="simul">
+<keycap
+>F5</keycap
+></keycombo
+></shortcut
+><guimenu
+>View</guimenu>
+<guimenuitem
+>Redisplay</guimenuitem
+></menuchoice
+></link
+>, but
+performs a validation of the (selected) keys. Validation here means
+that all relevant CRLs are fetched, and the certificate chain is
+checked for correctness. As a result, invalid or expired keys will be
+marked according to your color and font preferences set in the <link
+linkend="configuration-appearance-certificate-filters"
+><guilabel
+>Appearance</guilabel>
+page</link
+> of &kleopatra;'s <link linkend="configuration"
+>configure
+dialog</link
+>.</para>
+
+<warning
+><para
+>You can only rely on information from validated keys,
+and, since any of them may be revoked at any time, even validation is
+only ever a snapshot of the current state of the local keyring. This
+is why the backend normally performs such checks whenever the keys
+are used (&eg; for signing, signature verification, encryption or
+decryption).</para
+></warning>
+</listitem>
+</varlistentry>
+-->
+<!--not in 4.2
+varlistentry id="certificates-refresh-crls">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Refresh CRLs</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Fetches the current CRLs for all selected keys,</action>
+even though they would normally not be fetched when using the
+key.</para>
+
+<para
+>This function only has an effect on certificates which define a
+&crl; distribution point. Depending on the backend used, certificates
+configured to perform checks using &ocsp; will not be updated.</para>
+
+<para
+>You may use this &eg; if you have sideband knowledge that a key
+has been revoked, and you want the backend to reflect this
+<emphasis
+>now</emphasis
+> instead of relying on this to automatically
+happen at the next scheduled &crl; update.</para>
+
+<warning
+><para
+>Excessive use of this function might put a high load on
+your provider's or company's network, since CRLs of large
+organizations can be surprisingly big (several megabytes are not
+uncommon).</para>
+
+<para
+>Use this function scarcely.</para
+></warning>
+</listitem>
+</varlistentry-->
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>غيّر تاريخ الانتهاء...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يتيح تغيير تاريخ انتهاء شهادة &openpgp; الخاصة بك.</action>
+            </para>
+            <para
+>استخدم هذه الوظيفة لتمديد عمر شهادات &openpgp; كبديل لإنشاء شهادة جديدة أو استخدام عمر غير محدود (<quote
+>لا تنتهي أبدا</quote
+>). </para>
+            <para
+>هذه الوظيفة متاحة فقط إذا حُددت شهادة &openpgp; واحدة بالضبط، وكان المفتاح السري متاحا لتلك الشهادة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>غيّر عبارة المرور...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يتيح تغيير عبارة المرور لمفتاحك السري.</action>
+            </para>
+            <para
+>هذه الوظيفة متاحة فقط إذا حُددت شهادة واحدة بالضبط، وكان المفتاح السري متاحا لتلك الشهادة. تتطلب هذه الوظيفة واجهة خلفية حديثة جدا، حيث غُيّر التنفيذ من الاستدعاء المباشر لـ &gpg; و &gpgsm; إلى تنفيذ معتمد على &gpgme;. </para>
+            <note>
+              <para
+>لأسباب أمنية، تُطلب عبارتا المرور القديمة والجديدة بواسطة &pinentry;، وهي عملية منفصلة. بناء على المنصة التي تعمل عليها وجودة تنفيذ &pinentry; على تلك المنصة، قد تظهر نافذة &pinentry; في الخلفية. لذا، إذا اخترت هذه الوظيفة ولم يحدث شيء، فافحص شريط المهام لنظام التشغيل تحسبا لوجود نافذة &pinentry; مفتوحة في الخلفية. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>أضف معرف مستخدم...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يتيح إضافة معرف مستخدم جديد إلى شهادة &openpgp; الخاصة بك.</action>
+            </para>
+            <para
+>استخدم هذا لإضافة هويات جديدة إلى شهادة موجودة كبديل لإنشاء زوج مفاتيح جديد. يكون معرف مستخدم &openpgp; على الشكل التالي: </para>
+            <programlisting
+><replaceable
+>الاسم&nbsp;الحقيقي</replaceable
+>&nbsp;<optional
+>(<replaceable
+>تعليق</replaceable
+>)</optional
+>&nbsp;&lt;<replaceable
+>البريد&nbsp;الإلكتروني</replaceable
+>&gt;</programlisting>
+            <para
+>في الحوار الذي يظهر عند تحديد هذه الوظيفة، سيطلب منك كليوبترا كل معلمة من المعالم الثلاث (<replaceable
+>الاسم&nbsp;الحقيقي</replaceable
+>، و<replaceable
+>التعليق</replaceable
+> و<replaceable
+>البريد&nbsp;الإلكتروني</replaceable
+>) بشكل منفصل، ويعرض النتيجة في معاينة. </para>
+            <note>
+              <para
+>تخضع هذه المعالم لقيود المسؤول ذاتها كما في الشهادات الجديدة. راجع <xref linkend="functions-newkey"/> و <xref linkend="admin-certificate-request-wizard"/> للتفاصيل. </para>
+            </note>
+            <para
+>هذه الوظيفة متاحة فقط عند تحديد شهادة &openpgp; واحدة بالضبط، ويكون المفتاح السري متاحا لتلك الشهادة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-delete">
+          <term>
+            <menuchoice
+><shortcut
+><keycombo action="simul"
+><keycap
+>Del</keycap
+></keycombo
+></shortcut
+> <guimenu
+>الشهادات</guimenu
+><guimenuitem
+>احذف</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يحذف الشهادات المحددة</action
+> من حلقة المفاتيح المحلية. </para>
+            <para
+>استخدم هذه الوظيفة لإزالة المفاتيح غير المستخدمة من صندوق مفاتيحك المحلي. ومع ذلك، نظرا لأن الشهادات تُلحق عادة برسائل البريد الموقعة، فإن التحقق من بريد إلكتروني قد يؤدي إلى عودة المفتاح الذي حُذف لتوّه إلى الصندوق المحلي. لذا يفضل تجنب استخدام هذه الوظيفة قدر الإمكان. عندما تفقد السيطرة، استخدم <link linkend="functions-search"
+>شريط البحث</link
+> أو وظيفة <xref linkend="view-hierarchical-key-list"/> لاستعادة السيطرة على مجموعة الشهادات. </para>
+            <warning>
+              <para
+>هناك استثناء واحد لما سبق: عندما تحذف إحدى شهاداتك الخاصة، فإنك تحذف المفتاح السري معها. هذا يعني أنك لن تكون قادرا على قراءة المراسلات السابقة المعماة لك باستخدام هذه الشهادة، ما لم تكن تملك نسخة احتياطية في مكان ما. </para>
+              <para
+>سيحذرك كليوبترا عندما تحاول حذف مفتاح سري. </para>
+            </warning>
+            <para
+>نظرا للطبيعة الهرمية لشهادات &smime;، إذا حذفت شهادة مصدر &smime; (شهادة &ca;)، فستُحذف جميع المواضيع التابعة لها أيضا.<footnote
+><para
+>هذا يشبه نظام ملفات: عندما تحذف مجلدا، فإنك تحذف جميع الملفات والمجلدات التي بداخله أيضا.</para
+></footnote>
+            </para>
+            <para
+>بطبيعة الحال، هذه الوظيفة متاحة فقط إذا حددت شهادة واحدة على الأقل. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-dump-certificate">
+          <term>
+            <menuchoice
+><guimenu
+>الشهادات</guimenu
+><guimenuitem
+>تفريغ الشهادة</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يعرض كل المعلومات التي يملكها &gpgsm; عن الشهادة (&smime;) المحددة.</action>
+            </para>
+            <para
+>راجع النقاش حول <option
+>--dump-key&nbsp;<replaceable
+>key</replaceable
+></option
+> في دليل &gpgsm; للحصول على تفاصيل حول المخرج. </para>
+          </listitem>
+        </varlistentry>
+
+<!--not in 4.2
+varlistentry id="certificates-download">
+<term
+><menuchoice
+><guimenu
+>Certificates</guimenu
+><guimenuitem
+>Download</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Downloads the selected certificate(s) from the &ldap; to the local keybox.</action
+></para>
+</listitem>
+</varlistentry-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menutools"
+><title
+>قائمة الأدوات</title>
+
+<variablelist>
+
+        <varlistentry id="tools-gnupg-log-viewer">
+          <term>
+            <menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>عارض سجل GnuPG...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يشغل <ulink url="help:/kwatchgnupg/index.html"
+>&kwatchgnupg;</ulink
+></action
+>، وهي أداة لعرض مخرجات تنقِيح تطبيقات &gnupg;. إذا توقف التوقيع أو التعمية أو التحقق عن العمل بشكل غامض، فقد تكتشف السبب بالنظر في السجل. </para>
+            <para
+>هذه الوظيفة غير متاحة على ويندوز، لأن الآليات الأساسية غير منفذة في الواجهة الخلفية على تلك المنصة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-openpgp">
+          <term>
+            <menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>حدث شهادات OpenPGP</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يحدث جميع شهادات &openpgp;</action
+> عبر تنفيذ <programlisting
+><command
+>gpg&nbsp;<option
+>--refresh-keys</option
+></command
+></programlisting
+> بعد إتمام الأمر بنجاح، سيعكس مخزن المفاتيح المحلي آخر التغييرات فيما يتعلق بصلاحية شهادات &openpgp;. </para>
+            <para
+>راجع الملحوظة تحت <xref linkend="certificates-refresh-x509"/> لبعض التنبيهات. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="certificates-refresh-x509">
+          <term>
+            <menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>حدث شهادات X.509</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para
+><action
+>يحدث كافة شهادات S/MIME</action
+> بتنفيذ <programlisting
+><!--
+                --><command
+>gpgsm&nbsp;<!--
+                  --><option
+>-k</option
+>&nbsp;<!--
+                  --><option
+>--with-validation</option
+>&nbsp;<!--
+                  --><option
+>--force-crl-refresh</option
+>&nbsp;<!--
+                  --><option
+>--enable-crl-checks</option
+><!--
+                  --></command
+></programlisting
+> بعد اكتمال الأمر بنجاح، سيعكس مخزن المفاتيح المحلي لديك آخر التغييرات فيما يتعلق بصلاحية شهادات S/MIME. </para>
+            <note>
+              <para
+>تحديث شهادات &x509; أو &openpgp; يتضمن تنزيل جميع الشهادات وقوائم نقض الشهادات (&crl;s)، للتحقق مما إذا كان أي منها قد نُقض في هذه الأثناء. </para>
+              <para
+>يمكن أن يضع هذا ضغطا شديدا على اتصالات الشبكة الخاصة بك وببقية الأشخاص، وقد يستغرق الأمر ساعة أو أكثر ليكتمل، اعتمادا على اتصال الشبكة وعدد الشهادات المراد التحقق منها. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="file-import-crls">
+          <term>
+            <menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>استورد قائمة نقض شهادات من ملف...</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يتيح لك استيراد قوائم نقض الشهادات (&crl;s) يدويا من الملفات.</action>
+            </para>
+            <para
+>عادةً، تُعالج قوائم نقض الشهادات (&crl;s) بشفافية بواسطة الواجهة الخلفية، ولكن قد يكون من المفيد أحيانا استيراد قائمة نقض شهادات يدويا إلى خبيئة قوائم نقض الشهادات المحلية. </para>
+            <note>
+              <para
+>ليعمل استيراد قوائم نقض الشهادات، يجب أن تكون أداة &dirmngr; في مسار البحث <envar
+>PATH</envar
+>. إذا كان عنصر القائمة هذا معطلا، فيجب عليك الاتصال بمسؤول النظام وطلب تثبيت &dirmngr;. </para>
+            </note>
+          </listitem>
+        </varlistentry>
+
+<!-- no longer provided
+that is wrong
+"Clear CRL Cache"+"Dump CRL Cache" are still in the gui of 4.5 + trunk
+-->
+<varlistentry id="crls-clear-crl-cache">
+<term
+><menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>نظف خبيئة CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>ينظف خبيئة &crl; الخاصة بـ &gpgsm;.</action
+></para>
+
+<para
+>من المحتمل أنك لن تحتاج إلى هذا أبدا. يمكنك فرض تحديث لخبيئة &crl; عبر تحديد جميع الشهادات واستخدام <xref linkend="certificates-refresh-x509"/> بدلا من ذلك.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="crls-dump-crl-cache">
+<term
+><menuchoice
+><guimenu
+>الأدوات</guimenu
+><guimenuitem
+>تفريغ خبيئة CRL</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>يعرض المحتويات التفصيلية لخبيئة &crl; الخاصة بـ &gpgsm;.</action
+></para>
+</listitem>
+</varlistentry>
+<!-- no longer provided
+<varlistentry id="settings-configure-gpgme-backend">
+<term
+><menuchoice
+><guimenu
+>Tools</guimenu
+><guimenuitem
+>Configure GnuPG Backend...</guimenuitem
+></menuchoice
+></term>
+
+<listitem>
+<para
+><action
+>Opens a dialog that allows you to configure every aspect of
+&gpgsm; and other backend modules.</action
+></para>
+
+<para
+>This dialog is dynamically built from the output of the
+&gpgconf; utility and may thus change when backend modules are
+updated.</para>
+</listitem>
+</varlistentry>
+-->
+
+</variablelist>
+
+</sect1>
+
+<sect1 id="menusettings"
+><title
+>قائمة الإعدادات</title>
+
+<para
+>يملك كليوبترا قائمة <guimenu
+>إعدادات</guimenu
+> كيدي مبدئية كما هو موضح في <ulink url="help:/fundamentals/menus.html#menus-settings"
+>أساسيات كيدي</ulink
+> مع مدخل إضافي واحد:</para>
+
+      <variablelist>
+
+        <varlistentry id="settings-self-test">
+          <term>
+            <menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>أجرِ اختبارا ذاتيا</guimenuitem
+> </menuchoice>
+          </term>
+          <listitem>
+            <para>
+              <action
+>يجري مجموعة من الاختبارات الذاتية ويعرض نتيجتها.</action>
+            </para>
+            <para
+>هذه هي مجموعة الاختبارات ذاتها التي تُشغل عند البدء مبدئيا. إذا عطلت الاختبارات الذاتية وقت البدء، يمكنك إعادة تفعيلها هنا. </para>
+<!-- ### xref
+            <para>
+              See <xref linkend="function-selftest"/> for details.
+            </para>
+-->
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect1
+> <!-- Settings Menu -->
+
+<sect1 id="menuwindow"
+><title
+>قائمة النافذة</title>
+<para
+>تتيح قائمة <guimenu
+>النافذة</guimenu
+> إدارة الألسنة. باستخدام العناصر في هذه القائمة، يمكنك إعادة تسمية لسان، أو إضافة لسان جديد، أو تكرار اللسان الحالي، أو إغلاق اللسان الحالي، أو تحريك اللسان الحالي لليسار أو اليمين.</para>
+
+<para
+>عبر النقر بزر الفأرة الأيمن على لسان، تفتح قائمة سياقية حيث يمكنك أيضا اختيار الإجراءات ذاتها.</para>
+</sect1>
+
+<sect1 id="menuhelp"
+><title
+>قائمة المساعدة</title>
+
+<para
+>يملك كليوبترا قائمة <guimenu
+>مساعدة</guimenu
+> كيدي مبدئية كما هو موضح في <ulink url="help:/fundamentals/menus.html#menus-help"
+>أساسيات كيدي</ulink
+>.</para>
+
+</sect1>
+
+</chapter>
+
+<chapter id="commandline-options"
+><title
+>مرجع خيارات سطر الأوامر</title>
+
+<para
+>أُدرجت هنا الخيارات الخاصة بكليوبترا فقط. كما هو الحال مع جميع تطبيقات كيدي، يمكنك الحصول على قائمة كاملة من الخيارات بإصدار الأمر <userinput
+><command
+>kleopatra <option
+>--help</option
+></command
+></userinput
+>.</para>
+
+<variablelist>
+
+<varlistentry>
+<term
+><option
+>--uiserver-socket</option
+> <replaceable
+>معطى</replaceable
+></term>
+<listitem>
+<para
+>موقع المقبس الذي يستمع إليه خادم واجهة المستخدم</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>--daemon</option
+></term>
+<listitem>
+<para
+>شغل خادم واجهة المستخدم فقط، وأخفِ النافذة الرئيسة</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-p</option
+> <option
+>--openpgp</option
+></term>
+<listitem>
+<para
+>استخدم &openpgp; للعملية التالية</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-c</option
+> <option
+>--cms</option
+></term>
+<listitem>
+<para
+>استخدم CMS (&x509;، S/&MIME;) للعملية التالية</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="commandline-option-import-certificate">
+<term
+><option
+>-i</option
+> <option
+>--import-certificate</option
+></term>
+<listitem>
+<para
+><action
+>يحدد ملفا أو عنوانا (&URL;) لاستيراد الشهادات (أو المفاتيح السرية) منه.</action
+></para>
+
+<para
+>هذا هو المكافئ في سطر الأوامر لـ <xref linkend="file-import-certificates"/>.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-e</option
+> <option
+>--encrypt</option
+></term>
+<listitem>
+<para
+>عمِّ الملف (الملفات)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-s</option
+> <option
+>--sign</option
+></term>
+<listitem>
+<para
+>وقع الملف (الملفات)</para>
+</listitem>
+</varlistentry>
+<!-- comment for 4.5-->
+<varlistentry>
+<term
+><option
+>-E</option
+> <option
+>--encrypt-sign</option
+></term>
+<listitem>
+<para
+>عمِّ و/أو وقع الملف (الملفات). مماثل لـ <option
+>--sign-encrypt</option
+>، لا تستخدمه</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-d</option
+> <option
+>--decrypt</option
+></term>
+<listitem>
+<para
+>فك تعمية الملف (الملفات)</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-V</option
+> <option
+>--verify</option
+></term>
+<listitem>
+<para
+>تحقق من ملف/توقيع</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><option
+>-D</option
+> <option
+>--decrypt-verify</option
+></term>
+<listitem>
+<para
+>فك تعمية و/أو تحقق من الملف (الملفات)</para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>
+
+  <chapter id="configuration">
+    <title
+>ضبط كليوبترا</title>
+
+    <para
+>يمكن الوصول إلى حوار ضبط كليوبترا عبر <menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guimenuitem
+>اضبط كليوبترا...</guimenuitem
+></menuchoice
+> </para>
+    <para
+>وُصفت كل صفحة من صفحاته في الأقسام أدناه. </para>
+
+    <sect1 id="configuration-directory-services">
+      <title
+>ضبط خدمات الدليل</title>
+
+      <para
+>في هذه الصفحة، يمكنك ضبط خوادم &ldap; التي ستستخدم لعمليات البحث عن شهادات &smime;، وخوادم المفاتيح التي ستستخدم للبحث عن شهادات &openpgp;. </para>
+      <note>
+        <para
+>هذه ببساطة نسخة أكثر سهولة في الاستخدام من الإعدادات ذاتها التي تجدها أيضا في <xref linkend="configuration-gnupg-system"/>. كل ما يمكنك ضبطه هنا، يمكنك ضبطه هناك أيضا. </para>
+      </note>
+      <note>
+        <title
+>ملحوظة حول إعدادات الوكيل</title>
+        <para
+>يمكن ضبط إعدادات الوكيل لـ &http; و &ldap; في <xref linkend="configuration-smime-validation"/>، ولكن لـ &gpgsm; فقط. أما بالنسبة لـ &gpg;، وبسبب تعقيد خيارات خادم المفاتيح في &gpg; ونقص الدعم المناسب لها في &gpgconf;، فأنت بحاجة حاليا لتعديل ملف الضبط <filename
+>gpg.conf</filename
+> مباشرة. يرجى مراجعة دليل &gpg; لمزيد من التفاصيل. سيحافظ كليوبترا على هذه الإعدادات، لكنه لا يسمح بعد بتعديلها في واجهة المستخدم الرسومية. </para>
+      </note>
+      <para
+>يظهر جدول <guilabel
+>خدمات الدليل</guilabel
+> الخوادم المضبوطة حاليا. انقر نقرا مزدوجا على خلية في الجدول لتغيير معالم مداخل الخوادم الموجودة. </para>
+      <para
+>معنى الأعمدة في الجدول هو كما يلي: </para>
+      <variablelist>
+        <varlistentry id="configuration-directory-services-scheme">
+          <term
+><guilabel
+>المخطط</guilabel
+></term
+> <!-- linebreak here'd show up in xref text :/ -->
+          <listitem>
+            <para
+>يحدد بروتوكول الشبكة المستخدم للوصول إلى الخادم. تشمل المخططات المستخدمة غالبا <guilabel
+>ldap</guilabel
+> (وشقيقه المؤمن بـ &ssl; وهو <guilabel
+>ldaps</guilabel
+>) لخوادم &ldap; (بروتوكول شائع لـ &smime;؛ وهو الوحيد المدعوم من &gpgsm;)، و <guilabel
+>hkp</guilabel
+>، بروتوكول هورويتز لخادم المفاتيح، والمعروف حاليا ببروتوكول خادم مفاتيح &http;، وهو بروتوكول مبني على &http; تدعمه تقريبا جميع خوادم مفاتيح &openpgp; العامة. </para>
+            <para
+>يرجى مراجعة أدلة &gpg; و &gpgsm; للحصول على قائمة بالمخططات المدعومة. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-name">
+          <term
+><guilabel
+>اسم الخادم</guilabel
+></term>
+          <listitem>
+            <para
+>اسم نطاق الخادم، مثلا <systemitem class="systemname"
+>keys.gnupg.net</systemitem
+>. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-server-port">
+          <term
+><guilabel
+>منفذ الخادم</guilabel
+></term>
+          <listitem>
+            <para
+>منفذ الشبكة الذي يستمع إليه الخادم. </para>
+            <para
+>يتغير هذا آليا إلى المنفذ المبدئي عند تغيير <xref linkend="configuration-directory-services-scheme"/>، ما لم يكن قد ضُبط على منفذ غير قياسي في البداية. إذا غيرت المنفذ المبدئي ولم تستطع استعادته، جرب ضبط <xref linkend="configuration-directory-services-scheme"/> على <userinput
+>http</userinput
+> و <xref linkend="configuration-directory-services-server-port"/> على <userinput
+>80</userinput
+> (المبدئي لـ &http;)، ثم أكمل من هناك. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-base-dn">
+          <term
+><guilabel
+>Base DN</guilabel
+></term>
+          <listitem>
+            <para
+>الاسم المميز الأساسي (Base-&dn;) (فقط لـ &ldap; و &ldaps;)، أي جذر هرمية &ldap; للبدء منه. يسمى هذا غالبا بـ <quote
+>جذر البحث</quote
+> أو <quote
+>قاعدة البحث</quote
+>. </para>
+            <para
+>عادة ما يبدو كـ <userinput
+>c=de,o=Foo</userinput
+>، ويُعطى كجزء من عنوان &ldap; (&URL;). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-user-name">
+          <term
+><guilabel
+>اسم المستخدم</guilabel
+></term>
+          <listitem>
+            <para
+>اسم المستخدم، إن وجد، لاستخدامه في الولوج إلى الخادم. </para>
+            <para
+>يظهر هذا العمود فقط إذا فُعل الخيار <guilabel
+>أظهر معلومات المستخدم وكلمة السر</guilabel
+> (تحت الجدول). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-password">
+          <term
+><guilabel
+>كلمة السر</guilabel
+></term>
+          <listitem>
+            <para
+>كلمة السر، إن وجدت، لاستخدامها في الولوج إلى الخادم. </para>
+            <para
+>يظهر هذا العمود فقط إذا فُعل الخيار <guilabel
+>أظهر معلومات المستخدم وكلمة السر</guilabel
+> (تحت الجدول). </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-x509">
+          <term
+><guilabel
+>X.509</guilabel
+></term>
+          <listitem>
+            <para
+>فعل هذا العمود إذا كان يجب استخدام هذا المدخل لعمليات البحث عن شهادات &x509; (&smime;). </para>
+            <para
+>خوادم &ldap; (و &ldaps;) هي الوحيدة المدعومة لـ &smime;. </para>
+          </listitem>
+        </varlistentry>
+        <varlistentry id="configuration-directory-services-openpgp">
+          <term
+><guilabel
+>OpenPGP</guilabel
+></term>
+          <listitem>
+            <para
+>فعل هذا العمود إذا كان يجب استخدام هذا المدخل لعمليات البحث عن شهادات &openpgp;. </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <para
+>يمكنك ضبط أي عدد تريده من خوادم &smime; (&x509;)، ولكن يُسمح بخادم &openpgp; واحد فقط في أي وقت. ستفرض واجهة المستخدم الرسومية هذا الأمر. </para>
+      <para
+>لإضافة خادم جديد، انقر على زر <guibutton
+>جديد</guibutton
+>. يكرر هذا المدخل المحدد، إن وجد، وإلا فإنه يدرج خادم &openpgp; مبدئيا. ثم يمكنك ضبط <xref linkend="configuration-directory-services-server-name"/>، و <xref linkend="configuration-directory-services-server-port"/>، و <xref linkend="configuration-directory-services-base-dn"/>، و <xref linkend="configuration-directory-services-password"/> و <xref linkend="configuration-directory-services-user-name"/> المعتادين، وكلاهما مطلوب فقط إذا كان الخادم يتطلب استيثاقا. </para>
+      <para
+>لإدراج مدخل لشهادات &x509; مباشرة، استخدم <menuchoice
+><guimenu
+>جديد</guimenu
+><guimenuitem
+>X.509</guimenuitem
+></menuchoice
+>؛ واستخدم <menuchoice
+><guimenu
+>جديد</guimenu
+><guimenuitem
+>OpenPGP</guimenuitem
+></menuchoice
+> لـ &openpgp;. </para>
+      <para
+>لإزالة خادم من قائمة البحث، حدده في القائمة، ثم اضغط على زر <guibutton
+>احذف</guibutton
+>. </para>
+<!-- not in 4.2
+<para
+>To change the relative search order of servers, select one of
+them and move it up or down with the arrow buttons right next to the
+list.</para>
+-->
+      <para
+>لضبط مهلة &ldap;، أي أقصى وقت ستنتظره الواجهة الخلفية لاستجابة الخادم، استخدم ببساطة حقل الإدخال المقابل المسمى <guilabel
+>مهلة LDAP (دقائق:ثوانٍ)</guilabel
+>. </para>
+      <para
+>إذا كان أحد خوادمك يملك قاعدة بيانات كبيرة، بحيث أن عمليات البحث المعقولة مثل <userinput
+>Smith</userinput
+> تصل إلى <guilabel
+>أقصى عدد من العناصر المرجعة بواسطة الاستعلام</guilabel
+>، فقد ترغب في زيادة هذا الحد. يمكنك معرفة ما إذا وصلت إلى الحد بسهولة أثناء البحث، حيث سيظهر صندوق حوار في تلك الحالة يخبرك بأن النتائج قد قُطعت. </para>
+      <note>
+        <para
+>قد تفرض بعض الخوادم حدودها الخاصة على عدد العناصر المرجعة من الاستعلام. في هذه الحالة، لن تؤدي زيادة الحد هنا إلى إرجاع المزيد من العناصر. </para>
+      </note>
+    </sect1>
+
+    <sect1 id="configuration-appearance">
+      <title
+>ضبط المظهر</title>
+
+      <sect2 id="configuration-appearance-tooltips">
+          <title
+>ضبط <guilabel
+>تلميحات الأدوات</guilabel
+></title>
+
+        <para
+>في قائمة الشهادات الرئيسة، يمكن لكليوبترا عرض تفاصيل حول الشهادة في تلميح أداة. المعلومات المعروضة هي ذاتها الموجودة في لسان <guilabel
+>نظرة عامة</guilabel
+> في حوار <guilabel
+>تفاصيل الشهادة</guilabel
+>. ومع ذلك، يمكن قصر تلميحات الأدوات على عرض مجموعة فرعية فقط من المعلومات للحصول على تجربة أقل تفصيلا. </para>
+        <note>
+          <para
+>يُعرض <guilabel
+>معرف المفتاح</guilabel
+> <emphasis
+>دائما</emphasis
+>. هذا لضمان أن تلميحات الأدوات للشهادات المختلفة تختلف بالفعل (وهذا مهم بشكل خاص إذا حُدد <xref linkend="tooltips-validity"/> فقط). </para>
+        </note>
+        <para
+>يمكنك تفعيل أو تعطيل مجموعات المعلومات التالية بشكل مستقل: </para>
+        <variablelist>
+          <varlistentry id="tooltips-validity">
+            <term
+><guilabel
+>أظهر الصلاحية</guilabel
+></term>
+            <listitem>
+              <para
+>يعرض معلومات حول صلاحية الشهادة: حالتها الحالية، والاسم المميز للمصدر (&smime; فقط)، وتواريخ الانتهاء (إن وجدت) وأعلام استخدام الشهادة. </para>
+              <para
+>مثال: <programlisting
+><!--
+                  -->This certificate is currently valid.
+<!--              -->Issuer:            CN=Test-ZS 7,O=Intevation GmbH,C=DE
+<!--              -->Validity:          from 25.08.2009 10:42 through 19.10.2010 10:42
+<!--              -->Certificate usage: Signing EMails and Files, Encrypting EMails and Files
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-owner">
+            <term
+><guilabel
+>أظهر معلومات المالك</guilabel
+></term>
+            <listitem>
+              <para
+>يعرض معلومات حول مالك الشهادة: الاسم المميز للموضوع (&smime; فقط)، ومعرفات المستخدم (بما في ذلك عناوين البريد) وثقة المالك (&openpgp; فقط). </para>
+              <para
+>مثال &openpgp; : <programlisting
+><!--
+                  -->User-ID:           Gpg4winUserA &lt;gpg4winusera@test.hq&gt;
+<!--              -->Key-ID:            C6BF6664
+<!--              -->Ownertrust:        ultimate<!--
+                  --></programlisting
+> مثال &smime;: <programlisting
+><!--
+                  -->Subject:           CN=Gpg4winTestuserA,OU=Testlab,O=Gpg4win Project,C=DE
+<!--              -->a.k.a.:            Gpg4winUserA@test.hq
+<!--              -->Key-ID:            DC9D9E43<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="tooltips-details">
+            <term
+><guilabel
+>أظهر التفاصيل التقنية</guilabel
+></term>
+            <listitem>
+              <para
+>يعرض معلومات تقنية حول الشهادة: الرقم التسلسلي (&smime; فقط)، والنوع، والبصمة وموقع التخزين. </para>
+              <para
+>مثال: <programlisting
+><!--
+                  -->Serial Number:     27
+<!--              -->Certificate type:  1,024-bit RSA (secret certificate available)
+<!--              -->Key-ID:            DC9D9E43
+<!--              -->Fingerprint:       854F62EEEBB41BFDD3BE05D124971E09DC9D9E43
+<!--              -->Stored:            on this computer<!--
+                  --></programlisting>
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-appearance-certificate-filters">
+        <title
+>ضبط <guilabel
+>فئات الشهادات</guilabel
+></title>
+
+        <para
+>يتيح لك كليوبترا تخصيص مظهر الشهادات في عرض القائمة. يشمل هذا عرض أيقونة صغيرة، ولكن يمكنك أيضا التأثير على ألوان الواجهة (النص) والخلفية، بالإضافة إلى الخط. </para>
+        <para
+>تُخصص لكل فئة شهادة في القائمة مجموعة من الألوان، وأيقونة (اختيارية) وخط تُعرض به الشهادات من تلك الفئة. تعمل قائمة الفئات أيضا كمعاينة للإعدادات. يمكن تعريف الفئات بحرية بواسطة المسؤول أو المستخدم المتقدم، راجع <xref linkend="admin-key-filters"/> في <xref linkend="admin"/>. </para>
+        <para
+>لضبط أو تغيير أيقونة فئة ما، حددها في القائمة واضغط على زر <guibutton
+>اضبط الأيقونة...</guibutton
+>. سيظهر حوار اختيار أيقونات كيدي المبدئي حيث يمكنك اختيار أيقونة موجودة من مجموعة كيدي، أو تحميل واحدة مخصصة. </para>
+        <para
+>لإزالة أيقونة مرة أخرى، تحتاج إلى الضغط على زر <guibutton
+>المظهر المبدئي</guibutton
+>. </para>
+        <para
+>لتغيير لون النص (أي الواجهة) لفئة ما، حددها في القائمة واضغط على زر <guibutton
+>اضبط لون النص...</guibutton
+>. سيظهر حوار اختيار الألوان المبدئي لكيدي حيث يمكنك اختيار لون موجود أو إنشاء لون جديد. </para>
+        <para
+>يُجرى تغيير لون الخلفية بالطريقة ذاتها، فقط اضغط على <guibutton
+>اضبط لون الخلفية...</guibutton
+> بدلا من ذلك. </para>
+        <para
+>لتغيير الخط، لديك خياران أساسيان: </para>
+        <orderedlist>
+          <listitem>
+            <para
+>عدل الخط المبدئي المستخدم لجميع عروض القوائم في كيدي. </para>
+          </listitem>
+          <listitem>
+            <para
+>استخدم خطا مخصصا. </para>
+          </listitem>
+        </orderedlist>
+        <para
+>يتميز الخيار الأول بأن الخط سيتبع أي نمط تختاره على مستوى كيدي، بينما يمنحك الأخير تحكما كاملا في الخط المراد استخدامه. الخيار لك. </para>
+        <para
+>لاستخدام الخط المبدئي المعدل، حدد الفئة في القائمة، وفعل أو عطل معدلات الخط <guilabel
+>مائل</guilabel
+>، و <guilabel
+>عريض</guilabel
+>، و/أو <guilabel
+>يتوسطه خط</guilabel
+>. يمكنك رؤية التأثير فوريا على الخط في قائمة الفئات. </para>
+        <para
+>لاستخدام خط مخصص، اضغط على زر <guibutton
+>اضبط الخط...</guibutton
+>. سيظهر مربع حوار اختيار الخط القياسي لـ كيدي حيث يمكنك تحديد الخط الجديد. </para>
+        <note>
+          <para
+>لا يزال بإمكانك استخدام معدلات الخط لتغيير الخط المخصص، تمامًا كما هو الحال لتعديل الخط القياسي. </para>
+        </note>
+        <para
+>للعودة إلى الخط القياسي، يجب عليك الضغط على زر <guibutton
+>المظهر المبدئي</guibutton
+>. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-dn-order">
+        <title
+>ضبط <guilabel
+>ترتيب سمات DN</guilabel
+></title>
+
+<para
+>على الرغم من أن &dn;s هرمية، إلا أن ترتيب المكونات الفردية (المسماة &dn;s النسبية (RDNs)، أو سمات &dn;) غير محدد. لذا فإن الترتيب الذي تظهر به السمات هو مسألة ذوق شخصي أو سياسة الشركة، وهذا هو سبب قابليتها للضبط في كليوبترا.</para>
+
+<note
+><para
+>لا ينطبق هذا الإعداد على كليوبترا فحسب، بل على جميع التطبيقات التي تستخدم تقنية كليوبترا. في وقت كتابة هذا الدليل، تشمل هذه التطبيقات كي-ميل، ودفتر عناوين كيدي، بالإضافة إلى كليوبترا نفسها بالطبع.</para
+></note>
+
+<para
+>تتكون صفحة الضبط هذه أساسًا من قائمتين، واحدة للسمات المعروفة (<guilabel
+>السمات المتاحة</guilabel
+>)، وأخرى تصف <guilabel
+>ترتيب السمات الحالي</guilabel
+>.</para>
+
+<para
+>تحتوي كلتا القائمتين على مدخلات موصوفة بالشكل القصير للسمة (مثلًا <guilabel
+>CN</guilabel
+>) بالإضافة إلى الشكل المكتوب بالكامل (<guilabel
+>الاسم الشائع</guilabel
+>).</para>
+
+<para
+>تُفرز قائمة <guilabel
+>السمات المتاحة</guilabel
+> دائمًا أبجديًا، بينما يعكس ترتيب قائمة <guilabel
+>ترتيب السمات الحالي</guilabel
+> ترتيب سمات &dn; المضبوط: السمة الأولى في القائمة هي أيضًا السمة التي تُعرض أولًا.</para>
+
+<para
+>تُعرض فقط السمات المدرجة صراحةً في قائمة <guilabel
+>ترتيب السمات الحالي</guilabel
+> فقط. الباقي مخفي مبدئيًا.</para>
+
+<para
+>ومع ذلك، إذا كان مدخل العنصر النائب <guilabel
+>_X_</guilabel
+> (<guilabel
+>كل الآخرين</guilabel
+>) موجودًا في القائمة <quote
+>الحالية</quote
+>، فستُدرج جميع السمات غير المدرجة (سواء كانت معروفة أم لا) عند نقطة <guilabel
+>_X_</guilabel
+>، بترتيبها النسبي الأصلي.</para>
+
+<para
+>سيساعد مثال صغير في جعل هذا الأمر أكثر وضوحًا:</para>
+
+<informalexample>
+<para
+>باعتبار &dn;</para>
+<blockquote>
+<para
+>O=كيدي، C=US، CN=Dave Devel، X-BAR=foo، OU=كليوبترا، X-FOO=bar، </para>
+</blockquote>
+<para
+>سينتج عن ترتيب السمات المبدئي <quote
+>CN, L, _X_, OU, O, C</quote
+> تنسيق &dn; التالي:</para>
+<blockquote>
+<para
+>CN=Dave Devel, X-BAR=foo, X-FOO=bar, OU=كليوبترا, O=كيدي, C=US </para>
+</blockquote>
+<para
+>بينما سينتج <quote
+>CN, L, OU, O, C</quote
+></para>
+<blockquote>
+<para
+>CN=Dave Devel, OU=كليوبترا, O=كيدي, C=US </para>
+</blockquote>
+</informalexample>
+
+<para
+>لإضافة سمة إلى قائمة ترتيب العرض، حددها في قائمة <guilabel
+>السمات المتاحة</guilabel
+>، واضغط على زر <guilabel
+>أضف إلى ترتيب السمات الحالي</guilabel
+>.</para>
+
+<para
+>لإزالة سمة من قائمة ترتيب العرض، حددها في قائمة <guilabel
+>ترتيب السمات الحالي</guilabel
+>، واضغط على زر <guilabel
+>أزل من ترتيب السمات الحالي</guilabel
+>.</para>
+
+<para
+>لنقل سمة إلى البداية (النهاية)، حددها في قائمة <guilabel
+>ترتيب السمات الحالي</guilabel
+>، واضغط على زر <guilabel
+>انقل إلى الأعلى</guilabel
+> (<guilabel
+>انقل إلى الأسفل</guilabel
+>).</para>
+
+<para
+>لنقل سمة للأعلى (للأسفل) بمقدار خانة واحدة فقط، حددها في قائمة <guilabel
+>ترتيب السمات الحالي</guilabel
+>، واضغط على زر <guilabel
+>انقل واحدة للأعلى</guilabel
+> (<guilabel
+>انقل واحدة للأسفل</guilabel
+>).</para>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-crypto-operations">
+      <title
+>ضبط عمليات التعمية</title>
+
+      <sect2 id="configuration-crypto-operations-email">
+        <title
+>ضبط <guilabel
+>عمليات البريد الإلكتروني</guilabel
+></title>
+
+        <para
+>هنا يمكنك ضبط بعض جوانب عمليات البريد الإلكتروني لخادم واجهة مستخدم كليوبترا. حاليًا، يمكنك فقط ضبط ما إذا كنت تريد استخدام <quote
+>الوضع السريع</quote
+> للتوقيع وتعمية رسائل البريد الإلكتروني، بشكل فردي. </para>
+        <para
+>عند تفعيل <quote
+>الوضع السريع</quote
+>، لا يُعرض أي مربع حوار عند توقيع (تعمية) رسائل البريد الإلكتروني، على التوالي، ما لم يكن هناك تعارض يحتاج إلى حل يدوي. </para>
+
+      </sect2>
+
+      <sect2 id="configuration-crypto-operations-file">
+        <title
+>ضبط <guilabel
+>عمليات الملفات</guilabel
+></title>
+
+        <para
+>هنا يمكنك ضبط بعض جوانب عمليات الملفات لخادم واجهة مستخدم كليوبترا. حاليًا، يمكنك فقط اختيار برنامج المجموع الاختباري لاستخدامه مع <command
+>CHECKSUM_CREATE_FILES</command
+>. </para>
+        <para
+>استخدم <guilabel
+>برنامج المجموع الاختباري المراد استخدامه</guilabel
+> لاختيار أي من برامج المجموع الاختباري المضبوطة يجب استخدامه عند إنشاء ملفات المجموع الاختباري. </para>
+        <para
+>عند التحقق من المجموع الاختباري، يُعثر على البرنامج المراد استخدامه آليًا، بناءً على أسماء ملفات المجموع الاختباري التي عُثر عليها. </para>
+        <note>
+          <para
+>يمكن للمسؤول والمستخدم المتقدم تحديد برامج المجموع الاختباري التي يجب إتاحتها لـ كليوبترا تمامًا من خلال ما يسمى <quote
+>تعريفات المجموع الاختباري</quote
+> في ملف الضبط. راجع <xref linkend="admin-checksum-definitions"/> في <xref linkend="admin"/> للحصول على التفاصيل. </para>
+        </note>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-smime-validation">
+    <!-- keep in sync with section configure-security-smime-validation from kmail configure.docbook
+    both apps have the same page in settings-->
+      <title
+>ضبط جوانب استيثاق S/MIME</title>
+
+      <para
+>في هذه الصفحة، يمكنك ضبط جوانب معينة لاستيثاق شهادات S/MIME. </para>
+      <note>
+        <para
+>في الغالب، هذه مجرد نسخة أكثر سهولة في الاستخدام لنفس الإعدادات التي تجدها أيضًا في <xref linkend="configuration-gnupg-system"/>. كل شيء يمكنك ضبطه هنا، يمكنك ضبطه هناك أيضًا، باستثناء <xref linkend="configuration-smime-validation-refresh-interval"/>، وهو خاص بـ كليوبترا. </para>
+      </note>
+      <para
+>معنى الخيارات هو كما يلي: </para>
+
+      <sect2 id="configuration-smime-validation-interval-checking">
+        <title
+>ضبط الفاصل الزمني لفحص الشهادات</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-refresh-interval">
+            <term
+><guilabel
+>افحص صلاحية الشهادة كل <replaceable
+>N</replaceable
+> ساعة</guilabel
+></term>
+            <listitem>
+              <para
+>يفعل هذا الخيار الفحص الدوري لصلاحية الشهادة. يمكنك أيضًا اختيار فاصل الفحص (بالساعات). تأثير الفحص الدوري هو نفسه <xref linkend="view-redisplay"/>؛ لا يوجد نص لـ جدولة دورية لـ <xref linkend="certificates-refresh-openpgp"/> أو <xref linkend="certificates-refresh-x509"/>. </para>
+              <note>
+                <para
+>يُجرى الاستيثاق ضمنيًا كلما تغيرت ملفات مهمة في <filename
+>~/.gnupg</filename
+>. هذا الخيار، تمامًا مثل <xref linkend="certificates-refresh-openpgp"/> و <xref linkend="certificates-refresh-x509"/>، يؤثر فقط على العوامل الخارجية لصلاحية الشهادة. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-method">
+        <title
+>ضبط طريقة الاستيثاق</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-use-crls">
+            <term
+><guilabel
+>استوثق من الشهادات باستخدام CRLs</guilabel
+></term>
+            <listitem>
+              <para
+>إذا حُدد هذا الخيار، فسيُستوثق من شهادات S/MIME باستخدام قوائم إبطال الشهادات (CRLs). </para>
+              <para
+>راجع <xref linkend="configuration-smime-validation-use-ocsp"/> لمعرفة طريقة بديلة لفحص صلاحية الشهادات. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-use-ocsp">
+            <term
+><guilabel
+>استوثق من الشهادات عبر الإنترنت (OCSP)</guilabel
+></term>
+            <listitem>
+              <para
+>إذا حُدد هذا الخيار، فسيُستوثق من شهادات S/MIME عبر الإنترنت باستخدام بروتوكول حالة الشهادات عبر الإنترنت (OCSP). </para>
+              <warning>
+                <para
+>عند اختيار هذه الطريقة، يُرسل طلب إلى خادم هيئة الشهادات تقريبًا في كل مرة ترسل فيها أو تستقبل رسالة معماة، مما يسمح نظريًا للجهة المصدرة للشهادة بتتبع من تتبادل (مثلًا) رسائل البريد معه. </para>
+              </warning>
+              <para
+>لاستخدام هذه الطريقة، تحتاج إلى إدخال رابط (URL) مجيب OCSP في <xref linkend="configuration-smime-validation-ocsp-url"/>. </para>
+              <para
+>راجع <xref linkend="configuration-smime-validation-use-ocsp"/> لمعرفة طريقة أكثر تقليدية لفحص صلاحية الشهادات لا تسرب معلومات حول من تتبادل الرسائل معه. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-url">
+            <term
+><guilabel
+>رابط مجيب OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>أدخل هنا عنوان الخادم للاستيثاق من الشهادات عبر الإنترنت (مجيب OCSP). يبدأ الرابط (URL) عادةً بـ <literal
+>http://</literal
+>. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-signature">
+            <term
+><guilabel
+>توقيع مجيب OCSP</guilabel
+></term>
+            <listitem>
+              <para
+>اختر هنا الشهادة التي يوقع بها خادم OCSP ردوده. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ocsp-ignore-service-url">
+            <term
+><guilabel
+>تجاهل رابط الخدمة للشهادات</guilabel
+></term>
+            <listitem>
+              <para
+>تحتوي كل شهادة S/MIME عادةً على رابط (URL) لمجيب OCSP الخاص بمصدرها (سيكشف <xref linkend="certificates-dump-certificate"/> ما إذا كانت شهادة معينة تحتويه). </para>
+              <para
+>تحديد هذا الخيار يجعل gpgsm يتجاهل تلك الروابط (URLs) ويستخدم فقط الرابط المضبوط أعلاه. </para>
+              <para
+>استخدم هذا مثلًا لفرض استخدام وكيل OCSP على مستوى الشركة. </para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-options">
+        <title
+>ضبط خيارات الاستيثاق</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-dont-check-cert-policy">
+            <term
+><guilabel
+>لا تفحص سياسات الشهادات</guilabel
+></term>
+            <listitem>
+              <para
+>مبدئيًا، يستخدم gpgsm الملف <filename
+>~/.gnupg/policies.txt</filename
+> لفحص ما إذا كانت سياسة الشهادة مسموحًا بها. إذا حُدد هذا الخيار، فلن تُفحص السياسات. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-never-consult-crl">
+            <term
+><guilabel
+>لا تراجع CRL أبدًا</guilabel
+></term>
+            <listitem>
+              <para
+>إذا حُدد هذا الخيار، فلن تُستخدم قوائم إبطال الشهادات أبدًا للاستيثاق من شهادات S/MIME. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-allow-mark-trusted">
+            <term
+><guilabel
+>اسمح بوسم شهادات الجذر كموثوقة</guilabel
+></term>
+            <listitem>
+            <para
+>إذا حُدد هذا الخيار أثناء استيراد شهادة جذر لهيئة شهادات، سيُطلب منك تأكيد بصمتها وتحديد ما إذا كنت تعتبر شهادة الجذر هذه موثوقة أم لا. </para>
+              <para
+>يجب أن تكون شهادة الجذر موثوقة قبل أن تصبح الشهادات التي صدقت عليها موثوقة، ولكن السماح المتساهل بشهادات الجذر الموثوقة في مخزن الشهادات الخاص بك سيقوض أمن النظام. </para>
+              <note>
+                <para
+>يمكن أن يؤدي تفعيل هذه الوظيفة في الخلفية إلى ظهور نوافذ منبثقة من pinentry في أوقات غير مناسبة (مثلًا عند التحقق من التوقيعات)، وبالتالي يمكن أن يمنع معالجة البريد الإلكتروني غير المراقبة. لهذا السبب، ولأنه من المرغوب فيه القدرة على <emphasis
+>عدم الوثوق</emphasis
+> بشهادة جذر موثوقة مرة أخرى، تسمح كليوبترا بضبط الثقة يدويًا باستخدام <xref linkend="certificates-trust-root"/> و <xref linkend="certificates-distrust-root"/>. </para>
+                <para
+>هذا الإعداد هنا لا يؤثر على وظيفة كليوبترا. </para>
+              </note>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-fetch-missing-issuers">
+            <term
+><guilabel
+>اجلب شهادات المصدر المفقودة</guilabel
+></term>
+            <listitem>
+              <para
+>إذا حُدد هذا الخيار، ستُجلب شهادات المصدر المفقودة عند الضرورة (ينطبق هذا على كلتا طريقتي الاستيثاق، CRLs و OCSP). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-http-options">
+        <title
+>ضبط خيارات طلب HTTP</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-http">
+            <term
+><guilabel
+>لا تُجرِ أي طلبات HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>يعطل تمامًا استخدام HTTP لـ S/MIME. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-http-dp">
+            <term
+><guilabel
+>تجاهل نقطة توزيع HTTP CRL للشهادات</guilabel
+></term>
+            <listitem>
+              <para
+>عند البحث عن موقع CRL، تحتوي الشهادة المراد اختبارها عادةً على ما يعرف بمدخلات <quote
+>نقطة توزيع CRL</quote
+> (DP)، وهي روابط (URLs) تصف طريقة الوصول إلى CRL. تُستخدم أول مدخلة DP يُعثر عليها. </para>
+              <para
+>باستخدام هذا الخيار، ستُتجاهل جميع المدخلات التي تستخدم بروتوكول HTTP عند البحث عن DP مناسب. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-honor-http-proxy">
+            <term
+><guilabel
+>استخدم وكيل HTTP للنظام</guilabel
+></term>
+            <listitem>
+              <para
+>إذا حُدد هذا الخيار، فستُستخدم قيمة وكيل HTTP الموضحة على اليمين (والتي تأتي من متغير البيئة <envar
+>http_proxy</envar
+>) لأي طلب HTTP. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-http-proxy">
+            <term
+><guilabel
+>استخدم هذا الوكيل لطلبات HTTP</guilabel
+></term>
+            <listitem>
+              <para
+>إذا لم يُضبط وكيل للنظام، أو كنت بحاجة إلى استخدام وكيل مختلف لـ gpgsm، يمكنك إدخال موقعه هنا. </para>
+              <para
+>سيُستخدم لجميع طلبات HTTP المتعلقة بـ S/MIME. </para>
+              <para
+>الصيغة هي <userinput
+><replaceable
+>المضيف</replaceable
+><literal
+>:</literal
+><replaceable
+>المنفذ</replaceable
+></userinput
+>، مثلًا <userinput
+>myproxy.nowhere.com:3128</userinput
+>. </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+      <sect2 id="configuration-smime-validation-ldap-options">
+        <title
+>ضبط خيارات طلب LDAP</title>
+
+        <variablelist>
+          <varlistentry id="configuration-smime-validation-disable-ldap">
+            <term
+><guilabel
+>لا تُجرِ أي طلبات LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>يعطل تمامًا استخدام LDAP لـ S/MIME. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-ignore-ldap-dp">
+            <term
+><guilabel
+>تجاهل نقطة توزيع LDAP CRL للشهادات</guilabel
+></term>
+            <listitem>
+              <para
+>عند البحث عن موقع CRL، تحتوي الشهادة المراد اختبارها عادةً على ما يعرف بمدخلات "نقطة توزيع CRL" (DP)، وهي روابط (URLs) تصف طريقة الوصول إلى CRL. تُستخدم أول مدخلة DP يُعثر عليها. </para>
+              <para
+>باستخدام هذا الخيار، ستُتجاهل جميع المدخلات التي تستخدم بروتوكول LDAP عند البحث عن DP مناسب. </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry id="configuration-smime-validation-custom-ldap-proxy">
+            <term
+><guilabel
+>المضيف الرئيس لطلبات LDAP</guilabel
+></term>
+            <listitem>
+              <para
+>إدخال خادم LDAP هنا سيجعل جميع طلبات LDAP تذهب إلى ذلك الخادم أولًا. وبشكل أدق، يتجاوز هذا الإعداد أي جزء محدد لـ <replaceable
+>المضيف</replaceable
+> و <replaceable
+>المنفذ</replaceable
+> في رابط LDAP وسيُستخدم أيضًا إذا أُسقط <replaceable
+>المضيف</replaceable
+> و <replaceable
+>المنفذ</replaceable
+> من الرابط. </para>
+              <para
+>ستُستخدم خوادم LDAP الأخرى فقط إذا فشل الاتصال بـ <quote
+>الوكيل</quote
+>. الصيغة هي <userinput
+><replaceable
+>المضيف</replaceable
+></userinput
+> أو <userinput
+><replaceable
+>المضيف</replaceable
+><literal
+>:</literal
+><replaceable
+>المنفذ</replaceable
+></userinput
+>. إذا أُسقط <replaceable
+>المنفذ</replaceable
+>، فسيُستخدم المنفذ 389 (منفذ LDAP القياسي). </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="configuration-gnupg-system">
+    <!-- kleopatra + kmail have the this page in settings-->
+
+      <title
+>ضبط نظام GnuPG</title>
+
+      <para
+>يُولد هذا الجزء من مربع الحوار آليًا من مخرجات <command
+>gpgconf <option
+>--list-components</option
+></command
+> ولكل <replaceable
+>مكون</replaceable
+> يعيده الأمر أعلاه، مخرجات <command
+>gpgconf <option
+>--list-options</option
+> <replaceable
+>المكون</replaceable
+></command
+>. </para>
+      <note>
+        <para
+>كُررت الخيارات الأكثر فائدة منها كصفحات منفصلة في مربع حوار ضبط كليوبترا. راجع <xref linkend="configuration-directory-services"/> و <xref linkend="configuration-smime-validation"/> لصفحتي مربع الحوار اللتين تحتويان على خيارات مختارة من هذا الجزء من مربع الحوار. </para>
+      </note>
+      <para
+>يعتمد المحتوى الدقيق لهذا الجزء من مربع الحوار على إصدار خلفية GnuPG التي ثبتها، وربما على المنصة التي تعمل عليها. لذا، سنناقش فقط المخطط العام لمربع الحوار، بما في ذلك الربط من خيار gpgconf إلى عنصر تحكم واجهة مستخدم كليوبترا الرسومية. </para>
+      <para
+>يعيد gpgconf معلومات الضبط لمكونات متعددة. داخل كل مكون، تُجمع الخيارات الفردية في مجموعات. </para>
+      <para
+>تعرض كليوبترا لسان تبويب واحد لكل مكون يبلغ عنه gpgconf؛ وتُعنون المجموعات بخط أفقي يعرض اسم المجموعة كما يعود من gpgconf. </para>
+      <para
+>كل خيار gpgconf له نوع. باستثناء بعض الخيارات المعروفة التي تدعمها كليوبترا بعناصر تحكم متخصصة لتجربة مستخدم أفضل، فإن الربط بين أنواع gpgconf وعناصر تحكم كليوبترا هو كما يلي: </para>
+      <table id="table-gpgconf-types">
+	<title
+>الربط من أنواع gpgconf إلى عناصر تحكم واجهة المستخدم الرسومية</title>
+	<tgroup cols="3">
+          <colspec colname="type"/>
+	  <colspec colname="lists" align="center"/>
+          <colspec colname="non-lists" align="center"/>
+	  <thead>
+	    <row>
+	      <entry morerows="1"
+>نوع gpgconf</entry>
+              <entry namest="lists" nameend="non-lists"
+>عنصر تحكم كليوبترا</entry>
+            </row>
+            <row>
+	      <entry
+>للقوائم</entry>
+	      <entry
+>لغير القوائم</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><literal
+>لا شيء</literal
+></entry>
+	      <entry
+>صندوق عددي (دلالات <quote
+>العد</quote
+>)</entry>
+	      <entry
+>مربع اختيار</entry>
+	    </row>
+            <row>
+              <entry
+><literal
+>سلسلة نصية</literal
+></entry>
+              <entry
+>غير متاح</entry>
+              <entry
+>تحرير سطر</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>int32</literal
+></entry>
+              <entry morerows="1"
+>تحرير سطر (غير منسق)</entry>
+              <entry morerows="1"
+>صندوق عددي</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>uint32</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>اسم المسار</literal
+></entry>
+              <entry
+>غير متاح</entry>
+              <entry
+>عنصر تحكم متخصص</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>خادم ldap</literal
+></entry>
+              <entry
+>عنصر تحكم متخصص</entry>
+              <entry
+>غير متاح</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>بصمة المفتاح</literal
+></entry>
+              <entry morerows="3" namest="lists" nameend="non-lists"
+>غير متاح</entry>
+            </row>
+            <row>
+              <entry
+><literal
+>مفتاح عام</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>مفتاح سري</literal
+></entry>
+            </row>
+            <row>
+              <entry
+><literal
+>قائمة الأسماء المستعارة</literal
+></entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para
+>راجع دليل gpgconf لمزيد من المعلومات حول ما يمكنك ضبطه هنا وكيفية ذلك. </para>
+
+    </sect1>
+
+</chapter>
+
+<chapter id="admin"
+><title
+>دليل المسؤول</title>
+
+<para
+>يصف دليل المسؤول هذا طرق تخصيص كليوبترا التي لا يمكن الوصول إليها عبر واجهة المستخدم الرسومية، ولكن فقط عبر ملفات الضبط.</para>
+
+<para
+>يُفترض أن القارئ على دراية بالتقنية المستخدمة لضبط تطبيقات كيدي، بما في ذلك التخطيط وموقع نظام الملفات و تتالي ملفات ضبط كيدي، بالإضافة إلى إطار عمل KIOSK.</para>
+
+<sect1 id="admin-certificate-request-wizard"
+><title
+>تخصيص معالج إنشاء الشهادات</title>
+
+<sect2 id="admin-certificate-request-wizard-dn"
+><title
+>تخصيص حقول &dn;</title>
+
+<para
+>تسمح لك كليوبترا بتخصيص الحقول التي يُسمح للمستخدم بإدخالها لإنشاء شهادته.</para>
+
+<para
+>أنشئ مجموعة تسمى <literal
+>CertificateCreationWizard</literal
+> في ملف <filename
+>kleopatrarc</filename
+> على مستوى النظام. إذا كنت تريد ترتيبًا مخصصًا لـ السمات أو إذا كنت تريد ظهور عناصر معينة فقط، فأنشئ مفتاحًا يسمى <varname
+>DNAttributeOrder</varname
+>. المعامل هو واحد أو أكثر من <varname
+>CN,SN,GN,L,T,OU,O,PC,C,SP,DC,BC,EMAIL</varname
+>. إذا كنت تريد تهيئة الحقول بقيمة معينة، فاكتب شيئًا مثل السمة=القيمة. إذا كنت تريد معاملة السمة كسمة مطلوبة، فألحق علامة تعجب (مثلًا <varname
+>CN!,L,OU,O!,C!,EMAIL!</varname
+>، وهو الضبط المبدئي).</para>
+
+<para
+>يسمح استخدام معدل وضع KIOSK المسمى <varname
+>$e</varname
+> باسترجاع القيم من متغيرات البيئة أو من سكربت أو ملف ثنائي مُقيم. إذا كنت تريد منع تحرير الحقل المعني بالإضافة إلى ذلك، استخدم المعدل <varname
+>$i</varname
+>. إذا كنت تريد منع استخدام زر <guibutton
+>أدرج عنواني</guibutton
+>، فاضبط <varname
+>ShowSetWhoAmI</varname
+> على خطأ.</para>
+
+<tip
+><para
+>نظرًا لطبيعة إطار عمل KIOSK لـ كيدي، فإن استخدام راية عدم القابلية للتغيير (<varname
+>$i</varname
+>) يجعل من المستحيل على المستخدم تجاوز الراية. هذا سلوك مقصود. يمكن استخدام <varname
+>$i</varname
+> و <varname
+>$e</varname
+> مع جميع مفاتيح الضبط الأخرى في تطبيقات كيدي أيضًا.</para
+></tip>
+
+<para
+>يوضح المثال التالي التخصيصات الممكنة:</para>
+
+<para>
+<programlisting
+>[CertificateCreationWizard]
+;امنع نسخ البيانات الشخصية من دفتر العناوين، ولا تسمح بالتجاوز المحلي
+ShowSetWhoAmI[$i]=false
+
+;يضبط اسم المستخدم على $USER
+CN[$e]=$USER
+
+;يضبط اسم الشركة على "My Company"، ويمنع التحرير
+O[$i]=My Company
+
+;يضبط اسم القسم على قيمة يعيدها سكربت
+OU[$ei]=$(lookup_dept_from_ip)
+
+; يضبط الدولة على DE، ولكنه يسمح للمستخدم بتغييرها
+C=DE
+</programlisting>
+</para>
+
+</sect2>
+
+      <sect2 id="admin-certificate-request-wizard-keys">
+
+        <title
+>تقييد أنواع المفاتيح التي يُسمح للمستخدم بإنشائها</title>
+
+        <para
+>تسمح كليوبترا أيضًا بتقييد نوع الشهادات التي يُسمح للمستخدم بإنشائها. لاحظ، مع ذلك، أن هناك طريقة سهلة للالتفاف حول هذه القيود وهي مجرد إنشاء واحدة عبر سطر الأوامر. </para>
+
+        <sect3 id="admin-certificate-request-wizard-keys-type">
+
+          <title
+>خوارزميات المفتاح العام</title>
+
+          <para
+>لتقييد خوارزمية المفتاح العام المراد استخدامها، أضف مفتاح الضبط <varname
+>PGPKeyType</varname
+> (و <varname
+>CMSKeyType</varname
+>، ولكن RSA هو الوحيد المدعوم لـ CMS على أي حال) إلى قسم <literal
+>CertificateCreationWizard</literal
+> في ملف <filename
+>kleopatrarc</filename
+>. </para>
+
+          <para
+>القيم المسموح بها هي <literal
+>RSA</literal
+> لمفاتيح RSA، و <literal
+>DSA</literal
+> لمفاتيح DSA (للتوقيع فقط)، و <literal
+>DSA+ELG</literal
+> لمفتاح DSA (للتوقيع فقط) مع مفتاح فرعي Elgamal للتعمية. </para>
+
+          <para
+>تُقرأ القيمة المبدئية من gpgconf وإلا ستكون <literal
+>RSA</literal
+> إذا لم يوفر gpgconf قيمة مبدئية. </para>
+
+        </sect3>
+
+        <sect3 id="admin-certificate-request-wizard-keys-size">
+
+          <title
+>حجم المفتاح العام</title>
+
+          <para
+>لتقييد أحجام المفاتيح المتاحة لخوارزمية عامة، أضف مفتاح الضبط <varname
+><replaceable
+>&lt;ALG&gt;</replaceable
+>KeySizes</varname
+> (حيث قد تكون <replaceable
+>ALG</replaceable
+> هي <literal
+>RSA</literal
+> أو <literal
+>DSA</literal
+> أو <literal
+>ELG</literal
+>) إلى قسم <literal
+>CertificateCreationWizard</literal
+> في ملف <filename
+>kleopatrarc</filename
+>، مع تضمين قائمة مفصولة بفاصلة لأحجام المفاتيح (بالبت). يمكن الإشارة إلى القيمة المبدئية ببادئة حجم المفتاح بشرطة (<literal
+>-</literal
+>). </para>
+
+          <para>
+            <programlisting
+>RSAKeySizes = 1536,-2048,3072
+            </programlisting>
+          </para>
+
+
+          <para
+>سيقيد ما ورد أعلاه أحجام مفاتيح RSA المسموح بها إلى 1536 و 2048 و 3072، مع كون 2048 هي القيمة المبدئية. </para>
+
+          <para
+>بالإضافة إلى الأحجام نفسها، يمكنك أيضًا تحديد لصائق لكل حجم. ببساطة اضبط مفتاح الضبط <varname
+><replaceable
+>ALG</replaceable
+>KeySizeLabels</varname
+> على قائمة لصائق مفصولة بفاصلة. </para>
+
+          <para>
+            <programlisting
+>RSAKeySizeLabels = ضعيف,عادي,قوي
+            </programlisting>
+          </para>
+
+          <para
+>ما ورد أعلاه، بالارتباط مع المثال السابق، سيطبع شيئًا مثل الخيارات التالية للاختيار: <programlisting
+>ضعيف (1536 بت)
+              عادي (2048 بت)
+              قوي (3072 بت)
+            </programlisting>
+          </para>
+
+          <para
+>القيم المبدئية كما لو كان ما يلي ساري المفعول: <programlisting
+>RSAKeySizes = 1536,-2048,3072,4096
+              RSAKeySizeLabels =
+              DSAKeySizes = -1024,2048
+              DSAKeySizeLabels = v1,v2
+              ELGKeySizes = 1536,-2048,3072,4096
+            </programlisting>
+          </para>
+
+        </sect3>
+
+      </sect2>
+
+    </sect1>
+
+    <sect1 id="admin-key-filters">
+
+      <title
+>إنشاء وتحرير فئات المفاتيح</title>
+
+      <para
+>تسمح كليوبترا للمستخدم بضبط <link linkend="configuration-appearance-certificate-filters"
+>المظهر المرئي</link
+> للمفاتيح بناءً على مفهوم يسمى <guilabel
+>فئات المفاتيح</guilabel
+>. تُستخدم <guilabel
+>فئات المفاتيح</guilabel
+> أيضًا لتصفية قائمة الشهادات. يصف هذا القسم كيف يمكنك تحرير الفئات المتاحة وإضافة فئات جديدة. </para>
+
+      <para
+>عند محاولة العثور على الفئة التي ينتمي إليها المفتاح، تحاول كليوبترا مطابقة المفتاح مع تسلسل لمرشحات المفاتيح، المضبوطة في <filename
+>libkleopatrarc</filename
+>. يحدد أول مرشح مطابق الفئة، بناءً على مفهوم <emphasis
+>الخصوصية</emphasis
+>، الموضح بمزيد من التفصيل أدناه. </para>
+
+      <para
+>يُعرف كل مرشح مفتاح في مجموعة ضبط تسمى <literal
+>Key Filter #<replaceable
+>n</replaceable
+></literal
+>، حيث <replaceable
+>n</replaceable
+> هو رقم، يبدأ من <literal
+>0</literal
+>. </para>
+
+      <para
+>المفاتيح الإجبارية الوحيدة في مجموعة <literal
+>مرشح المفاتيح رقم <replaceable
+>n</replaceable
+></literal
+> هي <varname
+>Name</varname
+>، الذي يحتوي اسم الفئة كما يُعرض في <link linkend="configuration-appearance-certificate-filters"
+>مربع حوار الضبط</link
+>، و <varname
+>id</varname
+>، الذي يُستخدم كمرجع للمرشح في أقسام الضبط الأخرى (مثل <literal
+>العرض رقم <replaceable
+>n</replaceable
+></literal
+>). </para>
+
+      <para
+><xref linkend="table-key-filters-appearance"/> يسرد كافة المفاتيح التي تعرّف خصائص عرض المفاتيح التي تنتمي لتلك الفئة (أي تلك المفاتيح التي يمكن تعديلها في <link linkend="configuration-appearance-certificate-filters"
+>مربع حوار الضبط</link
+>)، بينما يسرد <xref linkend="table-key-filters-criteria"/> كافة المفاتيح التي تعرّف المعايير التي يطابق المرشح المفاتيح بناءً عليها. </para>
+
+      <table id="table-key-filters-appearance">
+	<title
+>مفاتيح ضبط مرشح المفاتيح التي تعرّف خصائص العرض</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>مفتاح الضبط</entry>
+	      <entry
+>النوع</entry>
+	      <entry
+>الوصف</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>background-color</varname
+></entry>
+	      <entry
+>لون</entry>
+	      <entry
+>لون الخلفية المراد استخدامه. في حال فقده، سيُستخدم لون الخلفية المبدئي المحدد عالميًا لعروض القوائم. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>foreground-color</varname
+></entry>
+	      <entry
+>لون</entry>
+	      <entry
+>لون المقدمة المراد استخدامه. في حال فقده، سيُستخدم لون المقدمة المبدئي المحدد عالميًا لعروض القوائم. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font</varname
+></entry>
+	      <entry
+>خط</entry>
+	      <entry
+>الخط المخصص المراد استخدامه. سيُقاس الخط حسب الحجم المضبوط لعروض القوائم، وستُطبق أي سمات خط (انظر أدناه). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-bold</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>إذا ضُبط على <literal
+>true</literal
+> ولم يُضبط <varname
+>font</varname
+>، فسيُستخدم خط عرض القائمة المبدئي مع إضافة نمط الخط العريض (إن وجد). يُتجاهل إذا كان <varname
+>font</varname
+> موجودًا أيضًا. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-italic</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>مشابه لـ <varname
+>font-bold</varname
+>، ولكن لنمط الخط المائل بدلًا من العريض. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>font-strikeout</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>إذا كان <literal
+>true</literal
+>، فسيُرسم خط يتوسط الخط. يُطبق حتى لو ضُبط <varname
+>font</varname
+>. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>أيقونة</varname
+></entry>
+	      <entry
+>نص</entry>
+	      <entry
+>اسم أيقونة لعرضها في العمود الأول. لم يُنفذ بعد. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <table id="table-key-filters-criteria">
+	<title
+>مفاتيح ضبط مرشح المفاتيح التي تعرّف معايير الترشيح</title>
+	<tgroup cols="3">
+	  <colspec colnum="2" align="center"/>
+	  <thead>
+	    <row>
+	      <entry
+>مفتاح الضبط</entry>
+	      <entry
+>النوع</entry>
+	      <entry
+>إذا حُدد، سيطابق المرشح عندما...</entry>
+	    </row>
+	  </thead>
+	  <!--tfoot/-->
+	  <tbody>
+	    <row>
+	      <entry
+><varname
+>is-revoked</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح قد أُبطل.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>match-context</varname
+></entry>
+	      <entry
+>سياق<footnote
+> <para
+>السياق هو تعداد بالقيم التالية المسموح بها: <literal
+>appearance</literal
+>، و <literal
+>filtering</literal
+> و <literal
+>any</literal
+>.</para>
+                </footnote>
+              </entry>
+	      <entry
+>السياق الذي يطابق فيه هذا المرشح.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-expired</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح منتهي الصلاحية.</entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-disabled</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح قد عُطل (عُلّم لعدم الاستخدام) من قبل المستخدم. يُتجاهل لمفاتيح S/MIME. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-root-certificate</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح شهادة جذر. يُتجاهل لمفاتيح OpenPGP. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-encrypt</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يمكن استخدام المفتاح للتعمية. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-sign</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يمكن استخدام المفتاح للتوقيع. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-certify</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يمكن استخدام المفتاح لتوقيع (تصديق) مفاتيح أخرى. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>can-authenticate</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يمكن استخدام المفتاح للاستيثاق (مثلًا كشهادة عميل <acronym
+>TLS</acronym
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-qualified</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يمكن استخدام المفتاح لعمل تواقيع مؤهلة (كما يعرفها قانون التوقيع الرقمي الألماني). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-cardkey</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>تُخزن مادة المفتاح على بطاقة ذكية (بدلًا من الحاسوب). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>has-secret-key</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح السري لزوج المفاتيح هذا متوفرًا. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>is-openpgp-key</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح هو مفتاح OpenPGP (<literal
+>true</literal
+>)، أو مفتاح S/MIME (<literal
+>false</literal
+>). </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+>was-validated</varname
+></entry>
+	      <entry
+>منطقي</entry>
+	      <entry
+>يكون المفتاح قد تم التحقق من صحته. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+></entry>
+	      <entry
+>الصلاحية<footnote
+> <para
+>الصلاحية هي تعداد (مرتب) بالقيم التالية المسموح بها: <literal
+>unknown</literal
+>، و <literal
+>undefined</literal
+>، و <literal
+>never</literal
+>، و <literal
+>marginal</literal
+>، و <literal
+>full</literal
+>، و <literal
+>ultimate</literal
+>. انظر أدلة GnuPG و GpgSM لشرح مفصل.</para>
+		</footnote>
+	      </entry>
+	      <entry
+>يمتلك المفتاح بالضبط (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is</literal
+>)، أو يمتلك أي شيء عدا (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-not</literal
+>)، أو يمتلك على الأقل (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-least</literal
+>)، أو يمتلك على الأكثر (<replaceable
+>prefix</replaceable
+>&nbsp;=&nbsp;<literal
+>is-at-most</literal
+>) ثقة المالك المعطاة كقيمة لمفتاح الضبط. إذا وُجد أكثر من مفتاح <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+> واحد (بقيم <replaceable
+>prefix</replaceable
+> مختلفة) في مجموعة واحدة، يكون السلوك غير محدد. </entry>
+	    </row>
+	    <row>
+	      <entry
+><varname
+><replaceable
+>prefix</replaceable
+>-validity</varname
+></entry>
+	      <entry
+>الصلاحية</entry>
+	      <entry
+>مشابه لـ <varname
+><replaceable
+>prefix</replaceable
+>-ownertrust</varname
+>، ولكن لصلاحية المفتاح بدلًا من ثقة المالك. </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+
+      <note>
+	<para
+>بعض المعايير الأكثر أهمية، مثل <varname
+>is-revoked</varname
+> أو <varname
+>is-expired</varname
+> ستعمل فقط على المفاتيح <emphasis
+>المحققة</emphasis
+>، ولهذا السبب، بشكل مبدئي، تُفحص فقط المفاتيح المحققة للإبطال وانتهاء الصلاحية، رغم أنك حر في إزالة هذه الفحوصات الإضافية. </para>
+      </note>
+
+      <para
+>بالإضافة إلى مفاتيح الضبط المسرودة أعلاه، قد يمتلك مرشح المفاتيح أيضًا <varname
+>id</varname
+> و <varname
+>match-contexts</varname
+>. </para>
+
+      <para
+>باستخدام <varname
+>id</varname
+> الخاص بالمرشح، والذي تكون قيمته المبدئية هي اسم مجموعة ضبط المرشح إذا لم تُعطَ أو كانت فارغة، يمكنك الإشارة إلى مرشح المفاتيح في مكان آخر في الضبط، مثلًا في ضبوطات عرض كليوبترا. لا تُفسر كليوبترا الـ <varname
+>id</varname
+>، لذا يمكنك استخدام أي سلسلة تريدها، طالما أنها فريدة. </para>
+
+      <para
+>يحد <varname
+>match-contexts</varname
+> من قابلية تطبيق المرشح. عُرف سياقان حاليًا: سياق <literal
+>appearance</literal
+> يُستخدم عند تعريف التلوين وخصائص الخط للعروض. وسياق <literal
+>filtering</literal
+> يُستخدم لتضمين (واستثناء) الشهادات بشكل انتقائي من العروض. يمكن استخدام <literal
+>any</literal
+> للإشارة إلى كافة السياقات المعرفة حاليًا، وهي القيمة المبدئية إذا لم يُعطَ <varname
+>match-contexts</varname
+>، أو إذا لم ينتج عنه أي سياقات. هذا يضمن ألا ينتهي الأمر بمرشح مفاتيح <quote
+>ميت</quote
+>، أي بدون سياقات لتطبيقه فيها. </para>
+
+      <para
+>تنسيق المدخل هو قائمة من الرموز، مفصولة بحروف غير كلمية. كل رمز يمكن مسبوقًا اختياريًا بعلامة تعجب (<literal
+>!</literal
+>)، مما يشير إلى النفي. تعمل الرموز بالترتيب على قائمة سياقات داخلية، تبدأ فارغة. يُشرح هذا بشكل أفضل بمثال: <literal
+>any !appearance</literal
+> هي نفسها <literal
+>filtering</literal
+>، و <literal
+>appearance !appearance</literal
+> تنتج مجموعة فارغة، وكذلك <literal
+>!any</literal
+>. ومع ذلك، سيُستبدل الأخيران داخليًا بـ <literal
+>any</literal
+>، بما أنهما لا ينتجان أي سياقات على الإطلاق. </para>
+
+      <para
+>بشكل عام، المعايير غير المحددة (أي أن مدخل الضبط لم يُضبط) لا تُفحص. إذا أُعطي معيار، فسيُفحص ويجب أن يطابق لكي يطابق المرشح ككل، أي أن المعايير تُجمع بعملية «و» (AND) معًا. </para>
+
+      <para
+>لكل مرشح <quote
+>خصوصية</quote
+> ضمنية تُستخدم لترتيب كافة المرشحات المتطابقة. المرشح الأكثر خصوصية يفوز على الأقل خصوصية. إذا امتلك مرشحان نفس الخصوصية، فإن المرشح الذي يأتي أولًا في ملف الضبط هو الذي يفوز. تتناسب خصوصية المرشح مع عدد المعايير التي يحتوي عليها. </para>
+
+      <example>
+	<title
+>أمثلة على مرشحات المفاتيح</title>
+	<para
+>لفحص كافة شهادات الجذر منتهية الصلاحية ولكن غير المبطلة، ستستخدم مرشح مفاتيح معرفًا كما يلي: </para>
+<!-- isn't there a better way to not indent this in the output??? -->
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=expired, but not revoked
+was-validated=true
+is-expired=true
+is-revoked=false
+is-root-certificate=true
+; ( specificity 4 )<!--
+     --></screen>
+	<para
+>لفحص كافة مفاتيح OpenPGP المعطلة (غير مدعومة بعد في كليوبترا) مع ثقة مالك لا تقل عن <quote
+>marginal</quote
+> (هامشية)، ستستخدم: </para>
+	<screen
+><!--
+-->[Key Filter #<replaceable
+>n</replaceable
+>]
+Name=disabled OpenPGP keys with marginal or better ownertrust
+is-openpgp=true
+is-disabled=true
+is-at-least-ownertrust=marginal
+; ( specificity 3 )<!--
+     --></screen>
+      </example>
+
+    </sect1>
+
+    <sect1 id="admin-archive-definitions">
+
+      <title
+>ضبط المؤرشفات للاستخدام مع توقيع/تعمية الملفات</title>
+
+      <para
+>تسمح كليوبترا للمدير (والمستخدم المتقدم) بضبط قائمة المؤرشفات التي تُعرض في مربع حوار توقيع/تعمية الملفات. </para>
+
+      <para
+>كل مؤرشف يُعرف في <filename
+>libkleopatrarc</filename
+> كمجموعة منفصلة <literal
+>Archive&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>، مع المفاتيح الإجبارية التالية: </para>
+
+      <variablelist>
+
+        <varlistentry id="archive-definition-extensions">
+          <term
+><literal
+>الامتدادات</literal
+></term>
+          <listitem>
+            <para
+>قائمة مفصولة بفواصل للامتدادات التي تشير عادةً لتنسيق الأرشيف هذا. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>معرف فريد يُستخدم لتعريف هذا المؤرشف داخليًا. عند الشك، استخدم اسم الأمر. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-Name">
+          <term
+><literal
+>الاسم</literal
+> (مترجم)</term>
+          <listitem>
+            <para
+>اسم هذا المؤرشف الذي يراه المستخدم، كما يُعرض في القائمة المنسدلة المقابلة في مربع حوار توقيع/تعمية الملفات. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="archive-definition-pack-command">
+          <term
+><literal
+>pack-command</literal
+></term>
+          <listitem>
+            <para
+>الأمر الفعلي لأرشفة الملفات. يمكنك استخدام أي أمر، طالما أنه لا يتطلب صدفة لتنفيذه. يُبحث عن ملف البرنامج باستخدام متغير البيئة <envar
+>PATH</envar
+>، إلا إذا استخدمت مسار ملف مطلق. الاقتباس مدعوم كما لو كانت الصدفة مستخدمة: <programlisting
+>pack-command="/opt/ZIP v2.32/bin/zip" -r -</programlisting>
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <note id="backslashes-in-config-keys">
+        <para
+>بما أن الشرطة المائلة الخلفية (<literal
+>\</literal
+>) هي حرف هروب في ملفات ضبط كيدي، عليك مضاعفتها عندما تظهر في أسماء المسارات: <programlisting
+>pack-command=C:\\Programs\\GNU\\tar\\gtar.exe&nbsp;...</programlisting
+> ومع ذلك، بالنسبة للأمر نفسه (خلافًا لوسطائه)، يمكنك فقط استخدام الشرطات المائلة للأمام (<literal
+>/</literal
+>) كفواصل للمسارات على كافة المنصات: <programlisting
+>pack-command=C:/Programs/GNU/tar/gtar.exe&nbsp;...</programlisting
+> هذا غير مدعوم في الوسائط، لأن معظم برامج ويندوز تستخدم الشرطة المائلة للأمام للخيارات. على سبيل المثال، التالي لن يعمل، لأن <literal
+>C:/myarchivescript.bat</literal
+> هو وسيط لـ <command
+>cmd.exe</command
+>، و <literal
+>/</literal
+> لا يُحول إلى <literal
+>\</literal
+> في الوسائط، فقط في الأوامر: <programlisting
+>pack-command=cmd.exe C:/myarchivescript.bat</programlisting
+> هذا يحتاج بدلًا من ذلك لأن يُكتب هكذا: <programlisting
+>pack-command=cmd.exe C:\\myarchivescript.bat</programlisting>
+        </para>
+      </note>
+
+      <sect2 id="admin-archive-definitions-filename-passing">
+
+      <title
+>تمرير أسماء ملفات الدخل لـ <literal
+>pack-command</literal
+></title>
+
+      <para
+>توجد ثلاث طرق لتمرير أسماء الملفات لأمر التحزيم. لكل منها، يوفر <literal
+>pack-command</literal
+> صيغة معينة: </para>
+
+      <orderedlist>
+
+        <listitem>
+          <para
+>كوسطاء لسطر الأوامر.</para>
+            <para
+>مثال (tar): <programlisting
+>pack-command=tar cf -</programlisting
+> مثال (zip): <programlisting
+>pack-command=zip -r - %f</programlisting
+> في هذه الحالة، تُمرر أسماء الملفات على سطر الأوامر، تمامًا كما تفعل عند استخدام محث الأوامر. لا تستخدم كليوبترا صدفة لتنفيذ الأمر. لذلك، هذه طريقة آمنة لتمرير أسماء الملفات، ولكنها قد تصطدم بقيود طول سطر الأوامر على بعض المنصات. <literal
+>%f</literal
+> الحرفي، إن وجد، يُستبدل بأسماء الملفات المراد أرشفتها. وإلا، تُلحق أسماء الملفات بسطر الأوامر. وبالتالي، مثال zip أعلاه يمكن كتابته بشكل مكافئ كالتالي: <programlisting
+>pack-command=zip -r -</programlisting>
+            </para>
+        </listitem>
+
+        <listitem>
+          <para
+>عبر الدخل القياسي، مفصولة بأسطر جديدة: بادئة <literal
+>|</literal
+>.</para>
+            <para
+>مثال (GNU-tar): <programlisting
+>pack-command=|gtar cf - -T-</programlisting
+> مثال (ZIP): <programlisting
+>pack-command=|zip -@ -</programlisting
+> في هذه الحالة، تُمرر أسماء الملفات للمؤرشف على <acronym
+>stdin</acronym
+>، واحد في كل سطر. هذا يتجنب المشاكل على المنصات التي تضع حدًا منخفضًا لعدد وسطاء سطر الأوامر المسموح بها، ولكنه يفشل عندما تحتوي أسماء الملفات في الواقع على أسطر جديدة. </para>
+            <note>
+              <para
+>تدعم كليوبترا حاليًا <acronym
+>LF</acronym
+> فقط كفاصل سطر جديد، وليس <acronym
+>CRLF</acronym
+>. قد يتغير هذا في النسخ المستقبلية بناءً على ملاحظات المستخدمين. </para>
+            </note>
+        </listitem>
+
+        <listitem>
+          <para
+>عبر الدخل القياسي، مفصولة ببايتات NUL: بادئة <literal
+>0|</literal
+>.</para>
+            <para
+>مثال (GNU-tar): <programlisting
+>pack-command=0|gtar cf - -T- --null</programlisting
+> هذا هو نفس ما ورد أعلاه، باستثناء استخدام بايتات NUL لفصل أسماء الملفات. بما أن بايتات NUL ممنوعة في أسماء الملفات، فهذه هي الطريقة الأكثر متانة لتمرير أسماء الملفات، ولكن لا تدعمها كافة المؤرشفات. </para>
+        </listitem>
+
+      </orderedlist>
+
+      </sect2
+> <!-- Input Filename Passing for pack-command -->
+
+    </sect1
+> <!-- Archive Definitions -->
+
+    <sect1 id="admin-checksum-definitions">
+
+      <title
+>ضبط برامج المجموع الاختباري للاستخدام مع إنشاء/التحقق من المجموع الاختباري</title>
+
+      <para
+>تسمح كليوبترا للمدير (والمستخدم المتقدم) بضبط قائمة برامج المجموع الاختباري التي يمكن للمستخدم الاختيار منها في مربع حوار الضبط والتي تستطيع كليوبترا اكتشافها آليًا عند طلب التحقق من مجموع اختباري لملف معطى. </para>
+
+      <note>
+        <para
+>لكي تكون قابلة للاستخدام بواسطة كليوبترا، يجب أن يكون خرج برامج المجموع الاختباري (ملف المجموع الاختباري المكتوب، وكذلك الخرج على <acronym
+>stdout</acronym
+> عند التحقق من المجاميع الاختبارية) متوافقًا مع GNU <command
+>md5sum</command
+> و <command
+>sha1sum</command
+>. </para>
+
+        <para
+>تحديدًا، يجب أن يكون ملف المجموع الاختباري معتمدًا على الأسطر بحيث يمتلك كل سطر التنسيق التالي: <programlisting
+><replaceable
+>CHECKSUM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>FILENAME</replaceable
+></programlisting
+> حيث <replaceable
+>CHECKSUM</replaceable
+> يتكون من حروف ست عشرية فقط. إذا احتوى <replaceable
+>FILENAME</replaceable
+> على حرف سطر جديد، يجب أن يُقرأ السطر بدلًا من ذلك: <programlisting
+>\<replaceable
+>CHECKSUM</replaceable
+> ' ' ( ' ' | '*' ) <replaceable
+>ESCAPED-FILENAME</replaceable
+></programlisting
+> حيث <replaceable
+>ESCAPED-FILENAME</replaceable
+> هو اسم الملف مع استبدال الأسطر الجديدة بـ <literal
+>\n</literal
+>، ومضاعفة الشرطات المائلة الخلفية (<literal
+>\</literal
+>&#x21A6;<literal
+>\\</literal
+>). </para>
+
+        <para
+>بالمثل، يجب أن يكون خرج <xref linkend="checksum-definition-verify-command"/> على الشكل <programlisting
+><replaceable
+>FILENAME</replaceable
+> ( ': OK' | ': FAILED' )</programlisting
+> مفصولًا بأسطر جديدة. الأسطر الجديدة والحروف الأخرى <emphasis
+>لا</emphasis
+> تُهرب في الخرج.<footnote
+> <para
+>نعم، هذه البرامج لم تُكتب مع وضع واجهات رسومية في الاعتبار، وستفشل كليوبترا في تحليل أسماء الملفات المرضية التي تحتوي على ":&nbsp;OK" بالإضافة لسطر جديد فيها. </para>
+          </footnote>
+        </para>
+      </note>
+
+      <para
+>كل برنامج مجموع اختباري يُعرف في <filename
+>libkleopatrarc</filename
+> كمجموعة منفصلة <literal
+>Checksum&nbsp;Definition&nbsp;#<replaceable
+>n</replaceable
+></literal
+>، مع المفاتيح الإجبارية التالية: </para>
+
+      <variablelist>
+
+        <varlistentry id="checksum-definition-file-patterns">
+          <term
+><literal
+>file-patterns</literal
+></term>
+          <listitem>
+            <para
+>قائمة من التعبيرات النمطية التي تصف أي الملفات يجب اعتبارها ملفات مجموع اختباري لهذا البرنامج. الصيغة هي تلك المستخدمة لقوائم السلاسل في ملفات ضبط كيدي. <note
+> <para
+> بما أن التعبيرات النمطية تحتوي عادةً شرطات مائلة خلفية، يجب الحرص على تهريبها بشكل صحيح في ملف الضبط. يوصى باستخدام أداة تحرير لملفات الضبط. </para
+> </note
+> تحدد المنصة ما إذا كانت الأنماط تُعامل كحساسة لحالة الأحرف أو غير حساسة. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-output-file">
+          <term
+><literal
+>output-file</literal
+></term>
+          <listitem>
+            <para
+>اسم ملف الخرج المعتاد لبرنامج المجموع الاختباري هذا (يجب أن يطابق أحد <xref linkend="checksum-definition-file-patterns"/>، طبعًا). هذا ما ستستخدمه كليوبترا كاسم ملف خرج عند إنشاء ملفات المجموع الاختباري من هذا النوع. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-id">
+          <term
+><literal
+>id</literal
+></term>
+          <listitem>
+            <para
+>معرف فريد يُستخدم لتعريف برنامج المجموع الاختباري هذا داخليًا. عند الشك، استخدم اسم الأمر. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-Name">
+          <term
+><literal
+>الاسم</literal
+> (مترجم)</term>
+          <listitem>
+            <para
+>اسم برنامج المجموع الاختباري هذا الذي يراه المستخدم، كما يُعرض في القائمة المنسدلة في مربع حوار ضبط كليوبترا. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-create-command">
+          <term
+><literal
+>create-command</literal
+></term>
+          <listitem>
+            <para
+>الأمر الفعلي الذي يُستخدم لإنشاء ملفات المجموع الاختباري. الصيغة، والقيود وخيارات تمرير الوسطاء هي نفسها الموصوفة لـ <xref linkend="archive-definition-pack-command"/> في <xref linkend="admin-archive-definitions"/>. </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry id="checksum-definition-verify-command">
+          <term
+><literal
+>verify-command</literal
+></term>
+          <listitem>
+            <para
+>نفس <xref linkend="checksum-definition-create-command"/>، ولكن للتحقق من المجموع الاختباري. </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+      <para
+>إليك مثال كامل: <programlisting
+>[Checksum Definition #1]
+          file-patterns=sha1sum.txt
+          output-file=sha1sum.txt
+          id=sha1sum-gnu
+          Name=sha1sum (GNU)
+          Name[ar]=sha1sum (جنو)
+          ...
+          create-command=sha1sum -- %f
+          verify-command=sha1sum -c -- %f
+        </programlisting>
+      </para>
+
+    </sect1
+> <!-- Checksum Definition -->
+
+  </chapter
+> <!-- Administrator's Guide -->
+
+<chapter id="credits-and-license">
+<title
+>الحقوق والترخيص</title>
+
+<para
+>حقوق كليوبترا 2002 Steffen Hansen، و Matthias Kalle Dalheimer و Jesper Pedersen.، حقوق 2004 Daniel Molkentin، حقوق 2004، 2007، 2008، 2009، 2010 Klarälvdalens Datakonsult AB</para>
+
+<para
+>حقوق التوثيق 2002 Steffen Hansen، حقوق 2004 Daniel Molkentin، حقوق 2004، 2010 Klarälvdalens Datakonsult AB</para>
+
+<itemizedlist>
+<title
+>المساهمون</title>
+<listitem>
+<para
+>&Marc.Mutz; &Marc.Mutz.mail;</para>
+</listitem>
+<listitem>
+<para
+>&David.Faure; &David.Faure.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Steffen.Hansen; <email
+>hansen@kde.org</email
+></para>
+</listitem>
+<listitem>
+<para
+>&Matthias.Kalle.Dalheimer; &Matthias.Kalle.Dalheimer.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Jesper.Pedersen; &Jesper.Pedersen.mail;</para>
+</listitem>
+<listitem>
+<para
+>&Daniel.Molkentin; &Daniel.Molkentin.mail;</para>
+</listitem>
+</itemizedlist>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:2
+sgml-indent-data:t
+End:
+
+// vim:ts=2:sw=2:tw=78:noet
+-->
