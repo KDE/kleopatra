@@ -92,6 +92,7 @@ find_package(KF6 ${KF6_WANT_VERSION}
     IconThemes
     ItemModels
     KIO
+    Mime
     WidgetsAddons
     WindowSystem
     XmlGui
@@ -125,7 +126,6 @@ set(QGPGME_NAME "QGpgmeQt6")
 find_package(${QGPGME_NAME} ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 
 find_package(KPim6Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
-find_package(KF6Mime ${KF6_WANT_VERSION} CONFIG REQUIRED)
 find_package(KPim6MimeTreeParserWidgets ${MIMETREEPARSER_VERSION} CONFIG REQUIRED)
 
 option(ENABLE_AKONADISUPPORT "Support submitting PGP keys to a WebKeyDirectory service (uses akonadi)" ON)
