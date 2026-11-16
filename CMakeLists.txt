@@ -126,10 +126,14 @@ find_package(${QGPGME_NAME} ${GPGME_REQUIRED_VERSION} CONFIG REQUIRED)
 
 find_package(KPim6Libkleo ${LIBKLEO_VERSION} CONFIG REQUIRED)
 find_package(KF6Mime ${KF6_WANT_VERSION} CONFIG REQUIRED)
-find_package(KPim6IdentityManagementCore ${PIM_MIN_VERSION} CONFIG)
-find_package(KPim6MailTransport ${PIM_MIN_VERSION} CONFIG)
-find_package(KPim6AkonadiMime ${PIM_MIN_VERSION} CONFIG)
 find_package(KPim6MimeTreeParserWidgets ${MIMETREEPARSER_VERSION} CONFIG REQUIRED)
+
+option(ENABLE_AKONADISUPPORT "Support submitting PGP keys to a WebKeyDirectory service (uses akonadi)" ON)
+if(ENABLE_AKONADISUPPORT)
+    find_package(KPim6IdentityManagementCore ${PIM_MIN_VERSION} CONFIG REQUIRED)
+    find_package(KPim6MailTransport ${PIM_MIN_VERSION} CONFIG REQUIRED)
+    find_package(KPim6AkonadiMime ${PIM_MIN_VERSION} CONFIG REQUIRED)
+endif()
 
 set(CMAKE_MODULE_PATH ${LIBKLEO_MODULE_PATH} ${CMAKE_MODULE_PATH})
 

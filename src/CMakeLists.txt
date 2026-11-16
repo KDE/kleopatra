@@ -52,7 +52,7 @@ set(_kleopatra_uiserver_extra_libs LibAssuan::LibAssuan LibGpgError::LibGpgError
 add_definitions(-DGPG_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
 add_definitions(-DGPGMEPP_ERR_SOURCE_DEFAULT=GPG_ERR_SOURCE_KLEO)
 
-if(KPim6IdentityManagementCore_FOUND AND KPim6MailTransport_FOUND AND KPim6AkonadiMime_FOUND)
+if(ENABLE_AKONADISUPPORT)
   set(_kleopatra_mail_libs
       KPim6::IdentityManagementCore # Export OpenPGP keys using WKS
       KPim6::MailTransport
