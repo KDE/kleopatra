@@ -29,6 +29,12 @@ QString stripSuffix(const QString &fileName);
 QString sanitizedFileName(QString &&fileName);
 
 /**
+ * Removes trailing dots from the file name part of \p filePath.
+ * If the file name was all dots then it's replaced with \c "dot" or \c "dots".
+ */
+QString prettifiedDotFileName(const QString &filePath);
+
+/**
  * Checks if the file/directory referenced by \p fi is writable.
  *
  * On Windows, a temporary file is created to check if a directory is writable.

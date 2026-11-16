@@ -110,6 +110,20 @@ QString Kleo::sanitizedFileName(QString &&fileName)
     return std::move(fileName);
 }
 
+QString Kleo::prettifiedDotFileName(const QString &filePath)
+{
+    QString fileName = QFileInfo{filePath}.fileName();
+    const bool pathIsFileNameOnly = fileName == filePath;
+    const auto size = fileName.size();
+    while (fileName.startsWith(u'.')) {
+        fileName.slice(1);
+    }
+    if (fileName.isEmpty()) {
+        fileName = (size == 1) ? u"dot"_s : u"dots"_s;
+    }
+    return pathIsFileNameOnly ? fileName : QFileInfo{filePath}.dir().filePath(fileName);
+}
+
 bool Kleo::isWritable(const QFileInfo &fi)
 {
 #ifdef Q_OS_WIN

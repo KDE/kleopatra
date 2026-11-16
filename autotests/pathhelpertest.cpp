@@ -24,6 +24,9 @@ private Q_SLOTS:
 
     void testSanitizedFileName_data();
     void testSanitizedFileName();
+
+    void testPrettifiedDotFileName_data();
+    void testPrettifiedDotFileName();
 };
 
 void PathHelperTest::testStripSuffix_data()
@@ -77,6 +80,33 @@ void PathHelperTest::testSanitizedFileName()
     QFETCH(QString, sanitizedFileName);
 
     QCOMPARE(Kleo::sanitizedFileName(std::move(fileName)), sanitizedFileName);
+}
+
+void PathHelperTest::testPrettifiedDotFileName_data()
+{
+    QTest::addColumn<QString>("filePath");
+    QTest::addColumn<QString>("expected");
+
+    QTest::newRow("no dot file w/o path") << u"file.abc"_s << u"file.abc"_s;
+    QTest::newRow("no dot file w/ relative path") << u"folder/file"_s << u"folder/file"_s;
+    QTest::newRow("no dot file w/ absolute path") << u"/folder/file"_s << u"/folder/file"_s;
+    QTest::newRow("dot file w/o path") << u".hidden"_s << u"hidden"_s;
+    QTest::newRow("dot file w/ relative path") << u"folder/.hidden"_s << u"folder/hidden"_s;
+    QTest::newRow("dot file w/ absolute path") << u"/folder/.hidden"_s << u"/folder/hidden"_s;
+    QTest::newRow("single dot as file name w/o path") << u"."_s << u"dot"_s;
+    QTest::newRow("single dot as file name w/ relative path") << u"folder/."_s << u"folder/dot"_s;
+    QTest::newRow("single dot as file name w/ absolute path") << u"/folder/."_s << u"/folder/dot"_s;
+    QTest::newRow("multiple dots as file name w/o path") << u"..."_s << u"dots"_s;
+    QTest::newRow("multiple dots as file name w/ relative path") << u"folder/..."_s << u"folder/dots"_s;
+    QTest::newRow("multiple dots as file name w/ absolute path") << u"/folder/..."_s << u"/folder/dots"_s;
+}
+
+void PathHelperTest::testPrettifiedDotFileName()
+{
+    QFETCH(QString, filePath);
+    QFETCH(QString, expected);
+
+    QCOMPARE(Kleo::prettifiedDotFileName(filePath), expected);
 }
 
 QTEST_GUILESS_MAIN(PathHelperTest)
