@@ -276,7 +276,7 @@ static QMap<int, QString> buildOutputNames(const QStringList &files, const bool 
     QString baseNamePgp;
     const QFileInfo firstFile(files.first());
     if (archive) {
-        QString baseName = files.size() > 1 ? i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive") : firstFile.baseName();
+        QString baseName = files.size() > 1 ? i18nc("base name of an archive file, e.g. archive.zip or archive.tar.gz", "archive") : firstFile.fileName();
         baseName = QDir(heuristicBaseDirectory(files)).absoluteFilePath(baseName);
 
         const auto ad = getDefaultAd();
