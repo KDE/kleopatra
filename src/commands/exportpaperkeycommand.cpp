@@ -170,8 +170,33 @@ void ExportPaperKeyCommand::Private::startPaperKey(const QByteArray &data)
         return;
     }
 
+    // paperkey output is 78 chars wide by default. Try to ensure a font-size where this
+    // will print without wrapping. Unfortunately, to get at realiable effective sizes,
+    // we first need to set margins, explicitly. We arbitrarily use 20mm margins, here, but if
+    // we get larger page margins from the print dialog, those were _probably_ set explicitly,
+    // and we should respect those, instead.
+    const int outputWidth = 78 + 2; // wiggle room for rounding/rendering errors
+    const auto minimumMargin = 20.0 * 72 / 25.4; // 20 Millimeters converted to Point
+    auto printRegion = printer.pageRect(QPrinter::Point);
+    const auto paperRegion = printer.paperRect(QPrinter::Point);
+    printer.setPageMargins(
+        QMarginsF{
+            qMax(minimumMargin, printRegion.left()),
+            qMax(minimumMargin, printRegion.top()),
+            qMax(minimumMargin, paperRegion.right() - printRegion.right()),
+            qMax(minimumMargin, paperRegion.bottom() - printRegion.bottom()),
+        },
+        QPageLayout::Point);
+    printRegion = printer.pageRect(QPrinter::Point);
+
+    const auto pageWidth = printRegion.width();
+    auto font = QFontDatabase::systemFont(QFontDatabase::FixedFont);
+    int width = QFontMetrics(font).horizontalAdvance(QString(outputWidth, QLatin1Char('X')));
+    font.setPointSizeF(qMax(5.0, font.pointSizeF() * pageWidth / width));
+
     QTextDocument doc(QString::fromLatin1(pkProc.readAllStandardOutput()));
-    doc.setDefaultFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
+    doc.setPageSize(printRegion.size());
+    doc.setDefaultFont(font);
     doc.print(&printer);
     success = true;
     finished();
