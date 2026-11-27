@@ -202,6 +202,9 @@ if(MINGW)
 endif()
 
 add_definitions(-DQT_NO_EMIT)
+if(ECM_VERSION VERSION_GREATER_EQUAL "6.33.0")
+    add_definitions(-DQT_NO_QPAIR)
+endif()
 remove_definitions(-DQT_NO_FOREACH)
 
 # Disable the use of QStringBuilder for operator+ to prevent crashes when
